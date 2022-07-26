@@ -27,14 +27,28 @@
     </script>
     <!-- bootstrap -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-      crossorigin="anonymous">
-    </script>
-    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous">
+    </script>
+
+    <script>
+      $(function() {
+        // show gpo content
+        $( ".js-open-gpo" ).click(function() {
+          $( ".content-intro" ).addClass("d-none");
+          $( ".content-gpo" ).removeClass("d-none");
+        });
+        // show home content
+        $( ".js-close-gpo" ).click(function() {
+          $( ".content-gpo" ).addClass("d-none");
+          $( ".content-intro" ).removeClass("d-none");
+        });
+        // hide all sub page content before showing latest clicked
+        $( ".sub-content" ).on( "show.bs.collapse", function() {
+          $( ".sub-content" ).removeClass("show");
+        });
+      });
     </script>
 
   </head>
@@ -70,7 +84,7 @@
             <nav class="navbar navbar-expand-lg">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link js-close-gpo" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">About</a>
@@ -95,60 +109,153 @@
 
     </header>
 
-    <section class="project-content">
+    <section class="project-content content-intro">
       <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
 
           <div class="col">
             <div class="card h-100">
-              <img src="images/card-back-borchward.png" class="card-img-top" alt="...">
+              <img
+                src="images/card-back-golovkin-mikhail.jpg"
+                class="card-img-top fixed-height"
+                alt="...">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title mb-5">The Languages of Diplomacy</h5>
                 <p class="card-text">
-                  This is a wider card with supporting text below as a
-                  natural lead-in to additional content. This content is a
-                  little bit longer.
+                  This special issue is conceived within the framework of a
+                  German-Russian research project “The Languages of Diplomacy
+                  in Russia in the Eighteenth Century in the European Context”
+                  (2022-2024).
                 </p>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+              <div class="card-footer text-center no-back mt-3 mb-3">
+                <a
+                  href="http://qed.perspectivia.net/index.php?id=593"
+                  class="btn btn-primary text-white stretched-link">Zum Projekt</a>
               </div>
             </div>
           </div>
 
           <div class="col">
             <div class="card h-100">
-              <img src="images/card-back-fantin-latour.png" class="card-img-top" alt="...">
+              <img
+                src="images/card-back-sovjet.jpg"
+                class="card-img-top fixed-height"
+                alt="...">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title mb-5">Sowjetische Zeitzeugen</h5>
                 <p class="card-text">
-                  This card has supporting text below as a
-                  natural lead-in to additional content.
+                  Diese Website versammelt die ersten aufgezeichneten Stimmen
+                  von sowjetischen Überlebenden der NS-Herrschaft.
                 </p>
+
               </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+              <div class="card-footer text-center no-back mt-3 mb-3">
+                <a
+                  href="https://reposis-test.gbv.de/diemawes/"
+                  class="btn btn-primary text-white stretched-link">Zum Projekt</a>
               </div>
             </div>
           </div>
 
           <div class="col">
             <div class="card h-100">
-              <img src="images/card-back-judenporzellan.png" class="card-img-top" alt="...">
+              <img
+                src="images/card-back-lettre-pape.png"
+                class="card-img-top fixed-height"
+                alt="...">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title mb-5">Gallia Pontificia Online</h5>
                 <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content than the first to show that equal height action.
+                  Die »Gallia Pontificia« ist das einzige Langzeitprojekt des
+                  DHIP; sie wird zusammen mit der École nationale des chartes
+                  bearbeitet. Ziel ist die kritische Edition aller Papsturkunden
+                  bis zum Pontifikatsbeginn Innocenz’ III. (1198–1216).
                 </p>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+              <div class="card-footer text-center no-back mt-3 mb-3">
+                <a
+                  href="#"
+                  class="btn btn-primary text-white stretched-link js-open-gpo">Zum Projekt</a>
               </div>
             </div>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <section class="project-content content-gpo d-none">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="mb-5">Gallia Pontificia Online</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+
+            <nav class="navbar mt-5">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#start">
+                    Startseite
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#intro">
+                    Erklärung
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#search">
+                    Suche
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#contact">
+                    Kontakt
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+          <div class="col-9">
+            <h3 class="mb-3">Reimser Papstregesten</h3>
+            <div id="start" class="sub-content collapse show">
+              <img
+                  src="images/card-back-lettre-pape.png"
+                  class="img-fluid mb-3"
+                  alt="...">
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                erat, sed diam voluptua. At vero eos et accusam et justo duo
+                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              </p>
+            </div>
+            <div id="intro" class="sub-content collapse">intro</div>
+            <div id="search" class="sub-content collapse">search</div>
+            <div id="contact" class="sub-content collapse">contact</div>
+          </div>
         </div>
       </div>
     </section>

@@ -86,7 +86,14 @@ body {
   min-height: 40rem;
   padding-top: 3rem;
   padding-bottom: 4rem;
-
+}
+.card-img-top.fixed-height {
+  height: 20rem;
+  object-fit: cover;
+}
+.card-footer.no-back {
+  border-top: none;
+  background-color: white;
 }
 
 // footer
