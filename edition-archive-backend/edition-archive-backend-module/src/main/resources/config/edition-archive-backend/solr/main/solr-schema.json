@@ -1,0 +1,12 @@
+[ {"add-field": {
+      "name": "edition-archive-backend.hasFiles",
+      "type": "boolean"
+    }
+  },
+  {"add-field": {
+      "name": "edition-archive-backend.title",
+      "type": "text_general",
+      "stored": true
+    }
+  }
+]

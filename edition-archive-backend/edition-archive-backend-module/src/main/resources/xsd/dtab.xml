@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mycoreobject xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  ID="dea_tei_00000001" version="2014.07-SNAPSHOT" label="mir_mods_00000001">
+    <structure>
+    </structure>
+    <metadata>
+        <def.teiHeader class="MCRMetaXML" heritable="false" notinherit="true">
+            <teiHeader inherited="0">
+    <teiHeader xmlns="http://www.tei-c.org/ns/1.0" >
+        <fileDesc>
+            <titleStmt>
+<!--
+                <title type="main">[Haupttitel]</title>
+                <title type="sub">[Untertitel]</title>
+                <title type="volume">[Bandnummer und ggf. -titel der Quelle]</title>
+-->
+                <author> <!-- Autor*innen der Zeitschrift -->
+                    <persName ref="https://d-nb.info/gnd/GND" >
+                        <surname>[Nachname]</surname>
+                        <forename>[Vorname]</forename>
+
+                    </persName>
+                </author>
+                <!-- weitere <author> möglich -->
+                <editor><!-- Herausgeber der vorliegenden Transkription/Textausgabe; nicht zu verwechseln mit Herausgeber der Quelle  -->
+                    <persName ref="https://d-nb.info/gnd/GND">
+                        <surname>[Nachname]</surname>
+                        <forename>[Vorname]</forename>
+                    </persName>
+                </editor>
+                <!-- weitere <editor> möglich -->
+
+
+            </titleStmt>
+            <editionStmt>
+                <edition>
+
+                    <!--   Hier Freitext für das Projekt, um alle Angaben zur Art der Edition machen zu können -->
+
+                </edition>
+            </editionStmt>
+            <extent>
+                <measure type="images">[Umfang der Textausgabe in Bilddateien]</measure>
+
+            </extent>
+            <publicationStmt>
+
+                <publisher><!-- an erster Stelle im Publication Statement -->
+                    <orgName role="hostingInstitution" ref="#5053491-9"> Thüringer Universitäts- und Landesbibliothek</orgName><!-- ggf. mehrfach zu verwenden -->
+                    <orgName role="project">[Projektname]</orgName>
+                </publisher>
+
+                <pubPlace><placeName ref=" http://vocab.getty.edu/page/tgn/7005973">Jena</placeName></pubPlace>
+
+                <date type="publication">[Datum der Publikation der Edition]</date>
+                <availability>
+                    <!-- ggf. mehrfach zu verwenden -->
+                    <licence target="https://creativecommons.org/licenses/by/4.0/">
+                        <p>[Nennung der Lizenz der
+                            Textausgabe]</p>
+                    </licence>
+                </availability>
+                <idno>
+                    <idno type="URN">[URN der Onlinepublikation]</idno>
+                    <idno type="URLXML">[URL zum XML/TEI-Publikation]</idno>
+
+                </idno>
+            </publicationStmt>
+            <seriesStmt> <!-- Hier die bibliographischen Daten einfügen -->
+
+                <title level="j" type="main">[Haupttitel der Zeitschrift]</title>
+                <title level="j" type="sub">[ggf. Untertitel der Zeitschrift]</title>
+                <biblScope unit="volume">[Jahrgang]</biblScope>
+                <biblScope unit="issue">[Heft]</biblScope>
+                <biblScope unit="pages">[Seitenangabe]</biblScope>
+
+            </seriesStmt>
+            <notesStmt>
+                <note type="remarkDocument">[Zusatzinformationen zur Textausgabe]</note>
+            </notesStmt>
+            <sourceDesc>
+                <bibl type="J">[Zitiertitel]</bibl>
+                <biblFull>
+                    <titleStmt>
+                        <title type="main">[Haupttitel]</title>
+
+                        <title type="sub">[Untertitel]</title>
+                        <title type="volume">[Bandtitel- und nummer]</title>
+                        <author><!-- meist identisch zu filesDesc/titleStmt/author -->
+                        </author>
+                        <!-- ggf. mehrfach zu verwenden -->
+                        <editor><!-- Herausgeber der vorliegenden Transkription/Textausgabe; nicht zu verwechseln mit Herausgeber der Quelle  -->
+                            <persName ref="https://d-nb.info/gnd/GND">
+                                <surname>[Nachname]</surname>
+                                <forename>[Vorname]</forename>
+                            </persName>
+                        </editor>
+                        <!-- ggf. mehrfach zu verwenden -->
+                    </titleStmt>
+                    <extent>
+                        <measure type="pages">[Umfang der Quelle in Seiten]</measure>
+                    </extent>
+                    <publicationStmt>
+                        <!--nähere Angaben zu den Umständen der Quelle, welche als Vorlage für die Textausgabe diente-->
+                        <publisher/>
+                        <pubPlace><placeName ref="http://vocab.getty.edu/page/tgn/TGN">[Publikationsort der Zeitschrift]</placeName>
+                        </pubPlace>
+                        <date type="creation">[Entstehungsdatum der Quelle]
+                            <note>[ggf. Angaben zur Datierung durch Editor]</note>
+
+                        </date>
+                    </publicationStmt>
+
+                    <notesStmt>
+                        <note type="remarkSource">[Für Kommentar zur zugrundeliegenden Quelle, Hinweise auf andere verwandte Texte (z.B. andere Hefte]</note>
+                    </notesStmt>
+                </biblFull>
+
+
+
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <editorialDecl>
+                <p>
+                    <!-- weitere Angaben zur Edition, z.B. Editionsrichtlinien -->
+                </p>
+            </editorialDecl>
+
+
+        </encodingDesc>
+        <profileDesc>
+            <langUsage>
+                <!-- in der Quelle auftretende Sprachen -->
+                <language ident="deu"/>
+                <!-- weitere <language> möglich -->
+            </langUsage>
+
+
+        </profileDesc>
+
+    </teiHeader>
+            </teiHeader>
+        </def.teiHeader>
+    </metadata>
+    <service>
+        <servdates class="MCRMetaISO8601Date">
+            <servdate type="modifydate" inherited="0">2022-07-26T02:21:43.795Z</servdate>
+            <servdate type="createdate" inherited="0">2014-10-31T07:27:58.634Z</servdate>
+        </servdates>
+        <servflags class="MCRMetaLangText">
+            <servflag type="createdby" inherited="0" form="plain">administrator</servflag>
+            <servflag type="modifiedby" inherited="0" form="plain">administrator</servflag>
+        </servflags>
+        <servstates class="MCRMetaClassification">
+            <servstate inherited="0" classid="state" categid="published"/>
+        </servstates>
+    </service>
+</mycoreobject>

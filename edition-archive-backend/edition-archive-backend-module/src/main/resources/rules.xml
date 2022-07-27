@@ -1,0 +1,5 @@
+<or>
+    <and>
+        <role>admin</role>
+    </and>
+</or>

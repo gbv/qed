@@ -25,3 +25,5 @@ hs_err_pid*
 # prototype files
 .sass-cache
 node_modules
+*.iml
+target/
