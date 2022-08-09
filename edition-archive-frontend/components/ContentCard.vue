@@ -6,7 +6,7 @@
       <p class="card-text"><slot /></p>
     </div>
     <div class="card-footer text-center no-back mt-3 mb-3">
-      <a :href="link" class="btn btn-primary text-white stretched-link">{{ linkText }}</a>
+      <nuxt-link :href="link" class="btn btn-primary text-white stretched-link">{{ linkText }}</nuxt-link>
     </div>
   </div>
 </template>

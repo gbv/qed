@@ -1,15 +1,16 @@
 ## Impressum
 
 ### Adresse
-
-Max Weber Stiftung –
-Deutsche Geisteswissenschaftliche Institute im Ausland
-Geschäftsstelle
-Rheinallee 6
-53173 Bonn
-Tel. +49-(0)228-37786-0
-Fax:+49 (0)228-37786-19
-E-Mail: info(at)maxweberstiftung.de
+<address>
+Max Weber Stiftung –<br>
+Deutsche Geisteswissenschaftliche Institute im Ausland<br>
+Geschäftsstelle<br>
+Rheinallee 6<br>
+53173 Bonn<br>
+Tel. +49-(0)228-37786-0<br>
+Fax:+49 (0)228-37786-19<br>
+E-Mail: info(at)maxweberstiftung.de<br>
+</address>
 
 ### Vertreter
 

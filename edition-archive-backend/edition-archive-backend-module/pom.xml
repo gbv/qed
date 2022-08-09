@@ -70,6 +70,10 @@
       <artifactId>gson</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
@@ -111,10 +115,6 @@
     </dependency>
     <dependency>
       <groupId>org.mycore</groupId>
-      <artifactId>mycore-iiif</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mycore</groupId>
       <artifactId>mycore-iview2</artifactId>
     </dependency>
     <dependency>
@@ -136,6 +136,16 @@
     <dependency>
       <groupId>org.mycore</groupId>
       <artifactId>mycore-xeditor</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-c3p0</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 </project>

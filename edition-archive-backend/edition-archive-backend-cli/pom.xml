@@ -12,15 +12,6 @@
   <description>ZIP package ready to run MyCoRe commands from shell</description>
   <properties>
     <MCR.AppName>edition-archive-backend</MCR.AppName>
-    <acl-description.admins>administrators only</acl-description.admins>
-    <acl-description.all>always allowed</acl-description.all>
-    <acl-description.editors>administrators and editors</acl-description.editors>
-    <acl-description.guests>guests only</acl-description.guests>
-    <acl-description.guests-and-submitters>guests and submitters</acl-description.guests-and-submitters>
-    <acl-description.never>never allowed</acl-description.never>
-    <acl-description.not-logged-in>not logged-in</acl-description.not-logged-in>
-    <acl-description.require-login>require login</acl-description.require-login>
-    <acl-description.submitters>submitters, editors and administrators</acl-description.submitters>
   </properties>
   <build>
     <plugins>
@@ -98,10 +89,6 @@
     </plugins>
   </build>
   <dependencies>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
       <artifactId>edition-archive-backend-module</artifactId>

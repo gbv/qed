@@ -1,4 +1,3 @@
-update all classifications from directory ${app.home}/config/classifications
 update classification from url http://www.mycore.org/classifications/state.xml
 update classification from url http://www.mycore.org/classifications/mcr-roles.xml
 update classification from url http://mycore.de/classifications/derivate_types.xml

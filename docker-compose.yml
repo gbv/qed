@@ -1,0 +1,58 @@
+version: "3.1"
+services:
+  solr:
+    build: edition-archive-backend/edition-archive-backend-webapp/src/main/solr
+    ports:
+      - ${SOLR_HTTP}:8983
+    restart: always
+    volumes:
+      - ${SOLR_DATA}:/opt/solr-data
+  db:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: eab
+    volumes:
+      - ${DB_DATA}:/var/lib/postgresql/data/
+    ports:
+      - ${DB_PORT}:5432
+  backend:
+    build: edition-archive-backend
+    environment:
+      TOMCAT_PASSWORD: test
+      JDBC_NAME: ${DB_USER}
+      JDBC_PASSWORD: ${DB_PASSWORD}
+      JDBC_DRIVER: org.postgresql.Driver
+      JDBC_URL: jdbc:postgresql://db:5432/eab
+      SOLR_URL: http://solr:8983
+      SOLR_CLASSIFICATION_CORE: classification
+      SOLR_CORE: main
+      XMX: 1G
+      XMS: 1G
+    volumes:
+      - ${BACKEND_HOME}:/mcr/home/
+      - ${BACKEND_DATA}:/mcr/data/
+      - ${BACKEND_TMP}:/mcr/tmp/
+      - ${BACKEND_LOG}:/mcr/logs/
+    depends_on:
+      - db
+      - solr
+    ports:
+      - ${BACKEND_HTTP}:8080
+      - ${BACKEND_AJP}:8009
+  frontend:
+    image: node:16
+    user: node
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./edition-archive-frontend/:/home/node/app
+    ports:
+      - ${FRONTEND_PORT}:3000
+    command: "node .output/server/index.mjs"
+
+
+
