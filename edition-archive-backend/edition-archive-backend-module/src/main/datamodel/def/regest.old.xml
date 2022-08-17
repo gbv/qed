@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttype xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            name="certificate"
+            isParent="true" isChild="true" hasDerivates="true" xsi:noNamespaceSchemaLocation="datamodel.xsd">
+
+    <!-- Should be used to generate the Datamodel. Currently not usable, because the Datamodel-Plugin needs to be adjusted-->
+    <metadata>
+        <element name="regest" type="xml" style="dontknow" notinherit="true" heritable="false">
+            <xs:any/>
+        </element>
+    </metadata>
+
+</objecttype>

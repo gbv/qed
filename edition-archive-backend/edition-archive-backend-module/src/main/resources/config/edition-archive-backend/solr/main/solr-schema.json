@@ -1,11 +1,70 @@
-[ {"add-field": {
-      "name": "edition-archive-backend.hasFiles",
-      "type": "boolean"
+[
+  {
+    "add-field-type": {
+      "name": "date_range",
+      "class": "solr.DateRangeField"
     }
   },
-  {"add-field": {
-      "name": "edition-archive-backend.title",
+  {
+    "add-field": {
+      "name": "issuer",
       "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "idno",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "issued.text",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "issued.range",
+      "type": "date_range",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuedPlace",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "initium",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "fake",
+      "type": "boolean",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "lost",
+      "type": "boolean",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "certainly",
+      "type": "boolean",
       "stored": true
     }
   }

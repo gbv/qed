@@ -53,6 +53,16 @@ services:
     ports:
       - ${FRONTEND_PORT}:3000
     command: "node .output/server/index.mjs"
-
+  apache:
+    image: httpd:2.4
+    ports:
+      - 8000:80
+      - 4430:443
+    volumes:
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+    depends_on:
+      - backend
+      - frontend
+      - solr
 
 

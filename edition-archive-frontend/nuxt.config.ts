@@ -13,8 +13,16 @@ export default defineNuxtConfig({
         localeDir: 'locales', // set the `locales` directory at source directory of your Nuxt application
         vueI18n: {
             locale: 'de'
-            // ...
+        }
+    },
+    runtimeConfig: {
+        public: {
+            backendURL: 'http://localhost:8000/backend/',
+            backendURLServer: 'http://backend:8291/backend/',
+            solrURL: 'http://localhost:8000/solr/',
+            solrURLServer: 'http://solr:8983/solr/'
         }
     }
 
 })
+//

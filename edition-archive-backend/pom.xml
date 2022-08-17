@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.mycore</groupId>
     <artifactId>mycore-parent</artifactId>
-    <version>49-SNAPSHOT</version>
+    <version>50-SNAPSHOT</version>
   </parent>
   <groupId>de.gbv</groupId>
   <artifactId>edition-archive-backend</artifactId>
@@ -20,9 +20,9 @@
     <url>https://github.com/gbv/digitaledition-archive.git</url>
   </scm>
   <properties>
-    <java.target.version>11</java.target.version>
     <jetty.version>11.0.11</jetty.version>
     <mycore.version>2022.06.0-SNAPSHOT</mycore.version>
+    <java.target.version>17</java.target.version>
   </properties>
   <repositories>
     <repository>

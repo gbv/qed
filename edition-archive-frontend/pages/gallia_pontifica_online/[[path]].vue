@@ -49,7 +49,6 @@ export default {}
 const {path} = useRoute()
 import {createError} from 'h3'
 
-
 const {data, error} = await useAsyncData(`content-${path}`, () => {
   const p1 = path.lastIndexOf("/") === path.length - 1 ? path + "main" : path;
   return queryContent().where({_path: p1}).findOne()
