@@ -5,5 +5,13 @@
   "explain": "Explain",
   "search": "Search",
   "contact": "Contact",
-  "language": "Language"
+  "language": "Language",
+  "search_basic": "basic search",
+  "search_extended": "extended search",
+  "search_placeholder": "enter search",
+  "search_submit": "search",
+  "search_page_prev": "previous page",
+  "search_page_next": "next nage",
+  "search_pagination": "pagination search",
+  "seach_page_go_to": "go to page {page}"
 }

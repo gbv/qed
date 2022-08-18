@@ -8,32 +8,7 @@
     </div>
     <div class="row">
       <div class="col-3">
-
-        <nav class="navbar mt-5">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <nuxt-link class="nav-link" data-bs-toggle="collapse" href="/gallia_pontifica_online/">
-                {{ $t('startPage') }}
-              </nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" data-bs-toggle="collapse" href="/gallia_pontifica_online/erklaerung">
-                {{ $t('explain') }}
-              </nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" data-bs-toggle="collapse" href="/gallia_pontifica_online/suche">
-                {{ $t('search') }}
-              </nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" data-bs-toggle="collapse" href="/gallia_pontifica_online/kontakt">
-                {{ $t('contact') }}
-              </nuxt-link>
-            </li>
-          </ul>
-        </nav>
-
+        <gallia-pontifica-online-menu />
       </div>
       <div class="col-9">
         <ContentRenderer v-if="data" :value="data"/>

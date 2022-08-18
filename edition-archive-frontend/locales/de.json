@@ -5,5 +5,15 @@
   "explain": "Erklärung",
   "search": "Suche",
   "contact": "Kontakt",
-  "language": "Sprache"
+  "language": "Sprache",
+  "search_basic": "Einfache Suche",
+  "search_extended": "Erweiterte Suche",
+  "search_placeholder": "Suchbegriff eingeben",
+  "search_submit": "Suchen",
+  "search_page_prev": "vorherige Seite",
+  "search_page_next": "nächste Seite",
+  "search_pagination": "Paginierung Suche",
+  "seach_page_go_to": "Gehe zu Seite {page}",
+  "search_no_hits": "Keine Treffer",
+  "go_to_regest": "Gehe zu Regest {regest}"
 }

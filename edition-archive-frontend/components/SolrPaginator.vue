@@ -1,0 +1,77 @@
+<template>
+  <nav class="solr-paginator" :aria-label="$t('search_pagination')" v-if="count>numPerPage">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" :class="start>0?'':'disabled'" v-on:click.prevent="pageChanged(current-1)" href="#">
+          {{ $t("search_page_prev") }}
+        </a>
+      </li>
+      <li class="page-item" v-for="page in shownPages">
+        <a class="page-link"
+           :class="current === page ?'active':''"
+           v-on:click.prevent="pageChanged(page)"
+           :title="$t('seach_page_go_to', {page})"
+           href="#">{{ page }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" :class="(start+numPerPage)<count?'':'disabled'" v-on:click.prevent="pageChanged(current+1)"
+           href="#">
+          {{ $t("search_page_next") }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<script setup>
+const emit = defineEmits(["pageChanged"]);
+const props = defineProps(['count', "start", "numPerPage"]);
+
+const current = computed(() => {
+  const current = Math.floor(props.start / props.numPerPage) + 1;
+  console.log({wh: "current", count: props.count, start: props.start, numberPerPage: props.numPerPage, current});
+
+  return current;
+});
+
+
+const shownPages = computed(() => {
+  console.log({
+    wh: "showPages",
+    count: props.count,
+    start: props.start,
+    numberPerPage: props.numPerPage,
+    current: current
+  });
+  const maxShownPages = 10;
+
+  const lastPage = Math.ceil(props.count / props.numPerPage);
+  const currentPlusSix = (props.start + (6 * props.numPerPage)) / props.numPerPage;
+  const last = Math.min(lastPage, currentPlusSix);
+
+  const currentMinusFour = (props.start - (4 * props.numPerPage)) / props.numPerPage;
+  const first = Math.max(currentMinusFour, 1);
+  const pages = [];
+  for (let i = first; i <= last; i++) {
+    pages.push(i);
+  }
+  return pages;
+});
+
+
+const pageChanged = (page) => {
+  emit("pageChanged", page)
+};
+
+</script>
+
+<style scoped>
+li.page-item {
+  flex-grow: 1;
+  text-align: center;
+}
+
+ul.pagination {
+  justify-content: stretch;
+}
+</style>
