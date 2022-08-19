@@ -7,7 +7,7 @@ function build_backend() {
 function build_frontend() {
   cd edition-archive-frontend &&
     yarn install &&
-    npm run build &&
+    yarn build &&
     cd -
 }
 

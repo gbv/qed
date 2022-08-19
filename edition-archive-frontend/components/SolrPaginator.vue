@@ -28,23 +28,11 @@ const emit = defineEmits(["pageChanged"]);
 const props = defineProps(['count', "start", "numPerPage"]);
 
 const current = computed(() => {
-  const current = Math.floor(props.start / props.numPerPage) + 1;
-  console.log({wh: "current", count: props.count, start: props.start, numberPerPage: props.numPerPage, current});
-
-  return current;
+  return Math.floor(props.start / props.numPerPage) + 1;
 });
 
 
 const shownPages = computed(() => {
-  console.log({
-    wh: "showPages",
-    count: props.count,
-    start: props.start,
-    numberPerPage: props.numPerPage,
-    current: current
-  });
-  const maxShownPages = 10;
-
   const lastPage = Math.ceil(props.count / props.numPerPage);
   const currentPlusSix = (props.start + (6 * props.numPerPage)) / props.numPerPage;
   const last = Math.min(lastPage, currentPlusSix);

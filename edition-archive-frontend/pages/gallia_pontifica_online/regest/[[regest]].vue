@@ -1,30 +1,30 @@
 <template>
   <div>
-
     <div class="row">
-      <div class="col">
+      <div class="col text-center">
         <h2 class="mb-5">Gallia Pontificia Online</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-12" v-if="data">
-        {{ data }}
+        <client-only placeholder="Loading...">
+          <XSLTComponent :document="data['regest.xml']" :xslt="xsltString" />
+        </client-only>
 
-        Aussteller: {{data.issuer}}
+
       </div>
     </div>
   </div>
 
 </template>
-<script>
-export default {}
-</script>
 <script setup>
+import XSLTComponent from "../../../components/XSLTComponent";
+
 const route = useRoute()
 const config = useRuntimeConfig()
 import {createError} from 'h3'
+import xsltString from '~/assets/xsl/cei2html.xsl?raw'
 
-console.log();
 const regestedIdno = route.params.regest;
 
 const {$solrURL, $backendURL} = useNuxtApp();

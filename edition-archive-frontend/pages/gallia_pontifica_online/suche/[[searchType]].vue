@@ -16,7 +16,7 @@
             <tabs :tabs="tabData" card-class="text-center" current="basic"
                   v-on:tabChanged="tabChanged">
               <template v-slot:basic>
-                <basic-search v-on:search="basicSearchCallback" :search-string="model.searchString"/>
+                <BasicSearch v-on:search="basicSearchCallback" :searchString="model.searchString"/>
               </template>
               <template v-slot:extended>
                 extended
@@ -57,6 +57,7 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 import {createError} from "h3";
+import BasicSearch from "../../../components/BasicSearch";
 
 const i18n = useI18n();
 const BASIC_SEARCH_TYPE = "basic";
@@ -68,23 +69,36 @@ const tabData = ref([
 ]);
 const {$solrURL, $backendURL} = useNuxtApp();
 const solrURL = $solrURL();
-let model = reactive({searchResult: undefined, count: 0, start: 0, searchString: ""});
+const model = reactive(
+    {
+      searchResult: undefined,
+      count: 0,
+      start: 0,
+      searchString: ""
+    });
 const route = useRoute();
 
 const {searchType} = route.params;
+
+const escapeSpecialChars = (s) => s
+    .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
+      return '\\' + match;
+    })
+    .replace(/&&/g, '\\&\\&')
+    .replace(/\|\|/g, '\\|\\|');
 
 async function triggerSearch(query) {
   switch (searchType) {
     case "":
       break;
     case BASIC_SEARCH_TYPE:
-      const {searchString, start} = query;
-      if (searchString) {
-        model.searchString = searchString;
-        let url = `${$solrURL()}main/select/?q=allMeta:${searchString}&wt=json`;
+      if (query.searchString) {
+        console.log("Assign searchstring " + query.searchString);
+        model.searchString = query.searchString;
+        let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(query.searchString)} AND objectKind:mycoreobject AND objectProject:gpo&wt=json`;
 
-        if (start) {
-          url += "&start=" + start;
+        if (query.start) {
+          url += "&start=" + query.start;
         }
         const request = await fetch(url)
         const searchResult = await request.json();
@@ -111,20 +125,18 @@ const tabChanged = (obj) => {
 }
 
 const basicSearchCallback = async (searchParameters) => {
-  const {searchString} = searchParameters
   navigateTo({
     path: "./basic",
     query: {
-      searchString
+      searchString: searchParameters.searchString
     }
   })
 }
 const pageChangedCallback = async (newPage) => {
-  const {searchString} = route.query;
   navigateTo({
     path: "./basic",
     query: {
-      searchString,
+      searchString: route.query.searchString,
       start: (newPage - 1) * 20
     }
   });

@@ -67,5 +67,12 @@
       "type": "boolean",
       "stored": true
     }
+  },
+  {
+    "add-field": {
+      "name": "regest.xml",
+      "type": "string",
+      "stored": true
+    }
   }
 ]

@@ -15,9 +15,14 @@
 
 const emit = defineEmits(["search"])
 const props = defineProps(["searchString"]);
+const searchString = ref(props.searchString);
+
+watch(() => props.searchString, (newSearchString) => {
+  searchString.value = newSearchString;
+});
 
 const submit = () => {
-  emit("search", {searchString: props.searchString})
+  emit("search", {searchString: searchString.value})
 }
 
 </script>

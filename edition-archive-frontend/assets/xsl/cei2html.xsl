@@ -2,13 +2,13 @@
 
 <xsl:stylesheet version="3.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-  xmlns:xalan="http://xml.apache.org/xalan"
   xmlns:cei="http://www.monasterium.net/NS/cei"
-  exclude-result-prefixes="xalan cei">
+  exclude-result-prefixes="cei">
 
   <xsl:output method="html" encoding="utf-8" indent="yes" />
   <xsl:strip-space elements="*" />
 
+  <!--
   <xsl:template match="/">
     <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
     <html>
@@ -21,9 +21,19 @@
       </body>
     </html>
   </xsl:template>
-
+  -->
 <!-- Global -->
-  
+
+  <xsl:template match="/">
+    <div>
+      <xsl:apply-templates />
+    </div>
+  </xsl:template>
+
+  <xsl:template match="cei:text">
+    <xsl:apply-templates />
+  </xsl:template>
+
   <xsl:template match="cei:foreign[@lang='lat']">
     <span style="font-style: italic;">
       <xsl:value-of select="."/>
@@ -93,7 +103,7 @@
   </xsl:template>
 
   <xsl:template match="cei:diplomaticAnalysis">
-    <xsl:apply-templates select="node() except cei:incipit" />
+    <xsl:apply-templates select="node()[not(cei:incipit)]" />
   </xsl:template>
   
   <xsl:template match="cei:p[@type]">

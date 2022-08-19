@@ -13,10 +13,10 @@
     <xsl:template match="regest">
         <xsl:variable name="json" select="text()"/>
         <xsl:apply-templates select="fn:json-to-xml($json)" mode="regest"/>
+        <xsl:call-template name="appendXMLBody" />
     </xsl:template>
 
     <xsl:template match="fn:map" mode="regest">
-
         <xsl:apply-templates select="fn:string[@key='idno']" mode="regest" />
         <xsl:apply-templates select="fn:map[@key='issued']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='issuer']" mode="regest"/>
@@ -95,5 +95,26 @@
                 </field>
             </xsl:when>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="appendXMLBody">
+        <xsl:variable name="derivate" select="../../../structure/derobjects/derobject/@xlink:href" />
+        <xsl:if test="string-length($derivate) &gt; 0">
+            <xsl:variable name="xml" select="document(concat('mcrfile:', $derivate, '/regest.xml'))" />
+            <xsl:if test="count($xml)&gt;0">
+                <field name="regest.xml">
+                    <xsl:apply-templates select="$xml" mode="serialize" />
+                </field>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="node()" mode="serialize">
+        <xsl:variable name="ser-params">
+            <output:serialization-parameters xmlns:output="http://www.w3.org/2010/xslt-xquery-serialization">
+                <output:omit-xml-declaration value="yes"/>
+            </output:serialization-parameters>
+        </xsl:variable>
+        <xsl:value-of select="serialize(., $ser-params/*)"/>
     </xsl:template>
 </xsl:stylesheet>

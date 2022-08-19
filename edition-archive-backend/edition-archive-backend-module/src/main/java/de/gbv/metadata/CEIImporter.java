@@ -1,6 +1,7 @@
 package de.gbv.metadata;
 
 import com.google.gson.Gson;
+import org.apache.commons.collections.keyvalue.AbstractMapEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdom2.Content;
@@ -20,13 +21,15 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.AbstractMap;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CEIImporter implements Iterator<Regest> {
+public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Regest>> {
     public static final String YEAR_GROUP_NAME = "Year";
     public static final String MONTH_GROUP_NAME = "Month";
     public static final String DAY_GROUP_NAME = "Day";
@@ -120,7 +123,7 @@ public class CEIImporter implements Iterator<Regest> {
     }
 
     @Override
-    public Regest next() {
+    public AbstractMap.SimpleEntry<Element, Regest> next() {
         Element currentTextElement = textElements.get(currentTextElementIndex);
         Element currentBodyElement = currentTextElement.getChild("body", CEI_NAMESPACE);
 
@@ -132,8 +135,10 @@ public class CEIImporter implements Iterator<Regest> {
         extractIssuedDate(currentBodyElement, regest);
         extractInitium(currentBodyElement, regest);
 
+        Element textElement = currentTextElement.detach();
+
         currentTextElementIndex++;
-        return regest;
+        return new AbstractMap.SimpleEntry<>(textElement, regest);
     }
 
     private void extractIdno(Element currentBodyElement, Regest regest) {
