@@ -40,4 +40,13 @@ public class DateRangeText {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return "DateRangeText{" +
+                "from=" + from +
+                ", to=" + to +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

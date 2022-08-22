@@ -1,7 +1,6 @@
 package de.gbv.cli;
 
 import de.gbv.metadata.CEIImporter;
-import de.gbv.metadata.MetaJSONHelper;
 import de.gbv.metadata.Regest;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -10,7 +9,6 @@ import org.jdom2.output.XMLOutputter;
 import org.mycore.access.MCRAccessException;
 import org.mycore.common.MCRException;
 import org.mycore.common.MCRPersistenceException;
-import org.mycore.common.MCRUtils;
 import org.mycore.common.config.MCRConfiguration2;
 import org.mycore.datamodel.classifications2.MCRCategoryDAO;
 import org.mycore.datamodel.classifications2.MCRCategoryDAOFactory;
@@ -23,7 +21,6 @@ import org.mycore.datamodel.metadata.MCRMetadataManager;
 import org.mycore.datamodel.metadata.MCRObject;
 import org.mycore.datamodel.metadata.MCRObjectID;
 import org.mycore.datamodel.niofs.MCRPath;
-import org.mycore.datamodel.niofs.utils.MCRDerivateUtil;
 import org.mycore.frontend.cli.annotation.MCRCommand;
 import org.mycore.frontend.cli.annotation.MCRCommandGroup;
 

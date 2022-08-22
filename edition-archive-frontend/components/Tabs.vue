@@ -4,28 +4,30 @@
       <ul class="nav nav-tabs card-header-tabs">
         <li v-for="tab in tabs" class="nav-item">
           <a class="nav-link"
-             :class="tab === currentTab ? 'active' : ''"
+             :class="tab === model.currentTab ? 'active' : ''"
              v-on:click="changeToTab(tab)"
              href="#">{{ tab.title }}</a>
         </li>
       </ul>
     </div>
-    <div class="card-body">
-      <h5 v-if="!currentTab.noTitle" class="card-title">{{ currentTab.title }}</h5>
-      <slot :name="currentTab.id"></slot>
+    <div class="card-body" v-if="model.currentTab">
+      <h5 v-if="!model.currentTab.noTitle" class="card-title">{{ model.currentTab.title }}</h5>
+      <slot :name="model.currentTab.id"></slot>
     </div>
   </div>
 </template>
 
-<script setup>
-const {tabs, current, cardClass} = defineProps(['tabs', 'current', 'cardClass']);
-const currentTab = ref(tabs.filter((tab) => tab.id === current)[0]);
+<script setup lang="ts">
+const props = defineProps(['tabs', 'current', 'cardClass']);
 const emit = defineEmits(['tabChanged']);
+const model = reactive({currentTab: props.tabs.filter(tab => tab.id === props.current)[0]})
+
+watch(() => props.current, (newCurrent) => model.currentTab = props.tabs.filter(tab => tab.id === newCurrent)[0]);
 
 function changeToTab(tab) {
-  const old = currentTab.value;
-  currentTab.value = tab;
-  emit('tabChanged', {old: old, _new: currentTab.value});
+  const old = model.currentTab;
+  model.currentTab = tab;
+  emit('tabChanged', {old: old, _new: model.currentTab});
 }
 
 </script>

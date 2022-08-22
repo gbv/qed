@@ -23,6 +23,8 @@
         <xsl:apply-templates select="fn:string[@key='recipient']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='initium']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='issuedPlace']" mode="regest"/>
+        <xsl:apply-templates select="fn:string[@key='pontifikatAEP']" mode="regest"/>
+        <xsl:apply-templates select="fn:string[@key='pontifikatPP']" mode="regest"/>
         <xsl:apply-templates select="fn:map[@key='authenticityStatus']" mode="regest"/>
     </xsl:template>
 
@@ -54,6 +56,26 @@
         <field name="recipient">
             <xsl:value-of select="text()"/>
         </field>
+    </xsl:template>
+
+    <xsl:template match="fn:string[@key='pontifikatAEP']" mode="regest">
+        <field name="pontifikatAEP">
+            <xsl:value-of select="text()"/>
+        </field>
+    </xsl:template>
+
+    <xsl:template match="fn:string[@key='pontifikatPP']" mode="regest">
+        <field name="pontifikatPP">
+            <xsl:value-of select="text()"/>
+        </field>
+    </xsl:template>
+
+    <xsl:template match="fn:map[@key='deliveryForm']">
+        <xsl:for-each select="fn:array[@key='categids']/fn:string">
+            <field name="deliveryForm">
+                <xsl:value-of select="text()" />
+            </field>
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="fn:map[@key='authenticityStatus']" mode="regest">

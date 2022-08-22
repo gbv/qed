@@ -13,13 +13,27 @@
         <div class="row">
           <div class="col-12">
             <!-- Search Form -->
-            <tabs :tabs="tabData" card-class="text-center" current="basic"
+            <tabs :tabs="tabData" card-class="text-center" :current="model.currentTab"
                   v-on:tabChanged="tabChanged">
-              <template v-slot:basic>
+              <template v-slot:einfach>
                 <BasicSearch v-on:search="basicSearchCallback" :searchString="model.searchString"/>
               </template>
-              <template v-slot:extended>
-                extended
+              <template v-slot:erweitert>
+                <ExtendedSearch v-on:search="extendedSearchCallback"
+                                :allMeta="model.extendedSearch.allMeta"
+                                :person="model.extendedSearch.person"
+                                :place="model.extendedSearch.place"
+                                :initium="model.extendedSearch.initium"
+                                :issuer="model.extendedSearch.issuer"
+                                :recipient="model.extendedSearch.recipient"
+                                :lost="model.extendedSearch.lost"
+                                :fake="model.extendedSearch.fake"
+                                :certainly="model.extendedSearch.certainly"
+                                :dateRangeRange="model.extendedSearch.dateRangeRange"
+                                :dateRangeFrom="model.extendedSearch.dateRangeFrom"
+                                :dateRangeTo="model.extendedSearch.dateRangeTo"
+                                :dateText="model.extendedSearch.dateText"
+                />
               </template>
             </tabs>
           </div>
@@ -54,14 +68,13 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import {useI18n} from 'vue-i18n';
 import {createError} from "h3";
-import BasicSearch from "../../../components/BasicSearch";
 
 const i18n = useI18n();
-const BASIC_SEARCH_TYPE = "basic";
-const EXTENDED_SEARCH_TYPE = "extended";
+const BASIC_SEARCH_TYPE = "einfach";
+const EXTENDED_SEARCH_TYPE = "erweitert";
 
 const tabData = ref([
   {id: BASIC_SEARCH_TYPE, title: i18n.t('search_basic')},
@@ -69,16 +82,33 @@ const tabData = ref([
 ]);
 const {$solrURL, $backendURL} = useNuxtApp();
 const solrURL = $solrURL();
+const route = useRoute();
+
 const model = reactive(
     {
       searchResult: undefined,
       count: 0,
       start: 0,
-      searchString: ""
+      searchString: null,
+      extendedSearch: {
+        allMeta: null,
+        person: null,
+        place: null,
+        initium: null,
+        issuer: null,
+        recipient: null,
+        lost: null,
+        fake: null,
+        certainly: null,
+        dateRangeFrom: null,
+        dateRangeTo: null,
+        dateRangeRange: false,
+        dateText: null
+      },
+      currentTab: route.params.searchType || BASIC_SEARCH_TYPE
     });
-const route = useRoute();
 
-const {searchType} = route.params;
+console.log(model);
 
 const escapeSpecialChars = (s) => s
     .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
@@ -87,26 +117,93 @@ const escapeSpecialChars = (s) => s
     .replace(/&&/g, '\\&\\&')
     .replace(/\|\|/g, '\\|\\|');
 
+async function executeSearch(url, query) {
+  if (query.start) {
+    url += "&start=" + query.start;
+  }
+  const request = await fetch(url)
+  const searchResult = await request.json();
+  model.searchResult = searchResult;
+  model.count = searchResult.response.numFound;
+  model.start = searchResult.response.start;
+}
+
 async function triggerSearch(query) {
-  switch (searchType) {
+  switch (route.params.searchType) {
     case "":
       break;
     case BASIC_SEARCH_TYPE:
       if (query.searchString) {
         console.log("Assign searchstring " + query.searchString);
         model.searchString = query.searchString;
+        model.currentTab = BASIC_SEARCH_TYPE;
         let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(query.searchString)} AND objectKind:mycoreobject AND objectProject:gpo&wt=json`;
 
-        if (query.start) {
-          url += "&start=" + query.start;
-        }
-        const request = await fetch(url)
-        const searchResult = await request.json();
-        model.searchResult = searchResult;
-        model.count = searchResult.response.numFound;
-        model.start = searchResult.response.start;
-
+        await executeSearch(url, query);
       }
+      break;
+    case EXTENDED_SEARCH_TYPE:
+      model.currentTab = EXTENDED_SEARCH_TYPE;
+      for (const key in model.extendedSearch) {
+        if (key in query) {
+          model.extendedSearch[key] = query[key];
+        } else {
+          model.extendedSearch[key] = null;
+        }
+      }
+
+      const q = ["objectKind:mycoreobject", "objectProject:gpo"];
+
+      if (model.extendedSearch.allMeta != null) {
+        let allMeta = model.extendedSearch.allMeta;
+        if(allMeta==""){
+          allMeta = "*";
+        }
+        q.push(`allMeta:${escapeSpecialChars(allMeta)}`);
+      }
+
+      if (model.extendedSearch.person != null && model.extendedSearch.person != "") {
+        const escapedPerson = escapeSpecialChars(model.extendedSearch.person);
+        q.push(`(recipient:${escapedPerson} OR issuer:${escapedPerson})`);
+      }
+
+      if (model.extendedSearch.place != null && model.extendedSearch.place != "") {
+        const escapedPlace = escapeSpecialChars(model.extendedSearch.place);
+        q.push(`issuedPlace:${escapedPlace}`);
+      }
+
+      if (model.extendedSearch.initium != null && model.extendedSearch.initium != "") {
+        const escapedInitium = escapeSpecialChars(model.extendedSearch.initium);
+        q.push(`initium:${escapedInitium}`);
+      }
+
+      if (model.extendedSearch.recipient != null && model.extendedSearch.recipient != "") {
+        const escapedRecipient = escapeSpecialChars(model.extendedSearch.recipient);
+        q.push(`recipient:${escapedRecipient}`);
+      }
+
+      if(!model.extendedSearch.dateRangeRange){
+        if(model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom != "") {
+          q.push(`issued.range:${model.extendedSearch.dateRangeFrom}`);
+        }
+      } else {
+        if(model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom != "" &&
+            model.extendedSearch.dateRangeTo != null && model.extendedSearch.dateRangeTo != "") {
+          q.push(`issued.range:[${model.extendedSearch.dateRangeFrom} TO ${model.extendedSearch.dateRangeTo}]`)
+        } else if(model.extendedSearch.dateRangeTo != null && model.extendedSearch.dateRangeTo != "") {
+          q.push(`issued.range:[* TO ${model.extendedSearch.dateRangeTo}]`)
+        } else if(model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom) {
+          q.push(`issued.range:[${model.extendedSearch.dateRangeFrom} TO *]`)
+        }
+      }
+
+      if (model.extendedSearch.dateText != null && model.extendedSearch.dateText != "") {
+        const dateTextEscapted = escapeSpecialChars(model.extendedSearch.dateText);
+        q.push(`issued.text:${dateTextEscapted}`);
+      }
+
+      let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
+      await executeSearch(url, query);
       break;
     default:
       throwError(
@@ -126,26 +223,34 @@ const tabChanged = (obj) => {
 
 const basicSearchCallback = async (searchParameters) => {
   navigateTo({
-    path: "./basic",
+    path: "./" + BASIC_SEARCH_TYPE,
     query: {
       searchString: searchParameters.searchString
     }
   })
 }
+
+const extendedSearchCallback = async (searchParameters) => {
+  navigateTo({
+    path: "./" + EXTENDED_SEARCH_TYPE,
+    query: {
+      ...searchParameters
+    }
+  })
+}
+
 const pageChangedCallback = async (newPage) => {
   navigateTo({
-    path: "./basic",
+    path: "./" + model.currentTab,
     query: {
-      searchString: route.query.searchString,
+      ...route.query,
       start: (newPage - 1) * 20
     }
   });
 }
 
-watch(() => route.query, async (_new, old) => {
-  console.log({old});
-  console.log({_new});
-  triggerSearch(_new);
+watch(() => route.query, async (newQueryString, old) => {
+  triggerSearch(newQueryString);
 });
 
 </script>

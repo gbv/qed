@@ -6,7 +6,7 @@ services:
       - ${SOLR_HTTP}:8983
     restart: always
     volumes:
-      - ${SOLR_DATA}:/opt/solr-data
+      - ${SOLR_DATA}:/var/solr/data
   db:
     image: postgres:12
     restart: always

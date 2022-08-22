@@ -22,7 +22,9 @@ watch(() => props.searchString, (newSearchString) => {
 });
 
 const submit = () => {
-  emit("search", {searchString: searchString.value})
+  if (searchString != null) {
+    emit("search", {searchString: searchString.value})
+  }
 }
 
 </script>

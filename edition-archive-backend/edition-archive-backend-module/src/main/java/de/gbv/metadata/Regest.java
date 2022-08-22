@@ -6,7 +6,7 @@ public class Regest {
 
     private String idno;
 
-
+    private ClassificationMultivalue deliveryForm;
 
     private DateRangeText issued;
 
@@ -23,6 +23,9 @@ public class Regest {
 
     private String initium;
 
+    private String pontifikatPP;
+
+    private String pontifikatAEP;
 
     public String getIdno() {
         return idno;
@@ -40,12 +43,12 @@ public class Regest {
         this.issuer = issuer;
     }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
-    }
-
     public String getRecipient() {
         return recipient;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
     }
 
     public String getIssuedPlace() {
@@ -55,7 +58,45 @@ public class Regest {
     public void setIssuedPlace(String issuedPlace) {
         this.issuedPlace = issuedPlace;
     }
+    public String getInitium() {
+        return initium;
+    }
 
+    public void setInitium(String initium) {
+        this.initium = initium;
+    }
+
+    public DateRangeText getIssued() {
+        return issued;
+    }
+
+    public void setIssued(DateRangeText issued) {
+        this.issued = issued;
+    }
+
+    public ClassificationMultivalue getDeliveryForm() {
+        return deliveryForm;
+    }
+
+    public void setDeliveryForm(ClassificationMultivalue deliveryForm) {
+        this.deliveryForm = deliveryForm;
+    }
+
+    public String getPontifikatPP() {
+        return pontifikatPP;
+    }
+
+    public void setPontifikatPP(String pontifikatPP) {
+        this.pontifikatPP = pontifikatPP;
+    }
+
+    public String getPontifikatAEP() {
+        return pontifikatAEP;
+    }
+
+    public void setPontifikatAEP(String pontifikatAEP) {
+        this.pontifikatAEP = pontifikatAEP;
+    }
 
     public Authenticity getAuthenticityStatus() {
         return authenticityStatus;
@@ -65,32 +106,19 @@ public class Regest {
         this.authenticityStatus = authenticityStatus;
     }
 
-    public void setInitium(String initium) {
-        this.initium = initium;
-    }
-
-    public String getInitium() {
-        return initium;
-    }
-
-    public void setIssued(DateRangeText issued) {
-        this.issued = issued;
-    }
-
-    public DateRangeText getIssued() {
-        return issued;
-    }
-
     @Override
     public String toString() {
         return "Regest{" +
                 "idno='" + idno + '\'' +
+                ", deliveryForm=" + deliveryForm +
                 ", issued=" + issued +
                 ", issuedPlace='" + issuedPlace + '\'' +
                 ", issuer='" + issuer + '\'' +
                 ", recipient='" + recipient + '\'' +
                 ", authenticityStatus=" + authenticityStatus +
                 ", initium='" + initium + '\'' +
+                ", pontifikatPP='" + pontifikatPP + '\'' +
+                ", pontifikatAEP='" + pontifikatAEP + '\'' +
                 '}';
     }
 }

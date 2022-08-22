@@ -1,7 +1,5 @@
 package de.gbv.metadata;
 
-import com.google.gson.Gson;
-import org.apache.commons.collections.keyvalue.AbstractMapEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdom2.Content;
@@ -25,9 +23,11 @@ import java.util.AbstractMap;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Regest>> {
     public static final String YEAR_GROUP_NAME = "Year";
@@ -134,6 +134,9 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         extractRecipient(currentBodyElement, regest);
         extractIssuedDate(currentBodyElement, regest);
         extractInitium(currentBodyElement, regest);
+        extractDeliveryForm(currentBodyElement, regest);
+        extractParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
+        extractParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
 
         Element textElement = currentTextElement.detach();
 
@@ -145,7 +148,7 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         Element idnoElement = currentBodyElement.getChild("idno", CEI_NAMESPACE);
         String idnoElementContent = idnoElement.getText();
         Matcher idnoMatcher = idnoPattern.matcher(idnoElementContent);
-        if(!idnoMatcher.matches()){
+        if (!idnoMatcher.matches()) {
             throw new MCRException(idnoElementContent + " doesnt match the pattern " + idnoPattern);
         }
         String idnoMatched = idnoMatcher.group(NUMBER_GROUP_NAME);
@@ -154,20 +157,20 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
 
         Authenticity authenticity = new Authenticity();
 
-        if(status!=null){
+        if (status != null) {
 
 
-        if(status.contains("*")){
-            authenticity.setLost(true);
-        }
+            if (status.contains("*")) {
+                authenticity.setLost(true);
+            }
 
-        if(status.contains("†")){
-            authenticity.setFake(true);
-        }
+            if (status.contains("†")) {
+                authenticity.setFake(true);
+            }
 
-        if(!status.contains("?")){
-            authenticity.setCertainly(true);
-        }
+            if (!status.contains("?")) {
+                authenticity.setCertainly(true);
+            }
         }
 
         regest.setAuthenticityStatus(authenticity);
@@ -179,7 +182,34 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
             String initium = flattenText(foreign);
             regest.setInitium(initium);
         }
+    }
 
+    private void extractParagraph(Element currentBodyElement, String pType, Consumer<String> applyFn) {
+        Element paragraphElement = getXpathFirst(".//cei:p[@type='" + pType + "']", currentBodyElement);
+        if (paragraphElement != null) {
+            String paragraphContent = flattenText(paragraphElement);
+            applyFn.accept(paragraphContent);
+        }
+    }
+
+    private void extractDeliveryForm(Element currentBodyElement, Regest regest) {
+        Element überlieferungsformP = getXpathFirst(".//cei:diplomaticAnalysis/cei:p[@type='Überlieferungsform']", currentBodyElement);
+        if (überlieferungsformP != null) {
+            String überlieferungsformList = flattenText(überlieferungsformP);
+            String[] values = überlieferungsformList.split(",");
+
+            List<String> classIds = Stream.of(values).filter(Predicate.not(String::isBlank)).map(val -> switch (val.trim()) {
+                case "Kopie" -> "copy";
+                case "Deperditum oder chronikalische Notiz" -> "deperditum_oder_chronikalische_notiz";
+                case "Dekretale" -> "dekretale";
+                case "Fälschungsverdacht" -> "faelschungverdacht";
+                case "Briefsammlung" -> "briefsammlung";
+                case "Insert" -> "insert";
+                case "Original" -> "original";
+                default -> throw new MCRException("Unknown überlieferungsform Value: " + überlieferungsformList);
+            }).toList();
+            regest.setDeliveryForm(new ClassificationMultivalue("delivery_form", classIds));
+        }
     }
 
     private void extractIssuedDate(Element currentBodyElement, Regest regest) {
