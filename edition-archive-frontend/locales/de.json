@@ -37,5 +37,11 @@
   "search_field_date_range_label": "Zeitraum",
   "search_field_dateText": "Datum (Text)",
   "search_field_dateText_placeholder": "",
-  "search_field_dateText_help": ""
+  "search_field_dateText_help": "",
+  "regest_ueberlieferungsform": "Überlieferungsform",
+  "regest_pontifikatPP": "PontifikatPP",
+  "regest_pontifikatAEP": "PontifikatAEP",
+  "regest_ueberlieferung": "Überlieferung",
+  "regest_sachkommentar": "Sachkommentar",
+  "browse_current_of": "{current} von {of}"
 }

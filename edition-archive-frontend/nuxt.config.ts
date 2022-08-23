@@ -7,7 +7,8 @@ export default defineNuxtConfig({
         '@intlify/nuxt3'
     ],
     css: [
-        '@/assets/scss/prototype.scss'
+        '@/assets/scss/prototype.scss',
+        "bootstrap-icons/font/bootstrap-icons.css"
     ],
     intlify: {
         localeDir: 'locales', // set the `locales` directory at source directory of your Nuxt application

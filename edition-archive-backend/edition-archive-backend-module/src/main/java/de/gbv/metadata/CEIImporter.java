@@ -53,7 +53,7 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         document = builder.build(gesamtXML.toFile());
         ceiGroup = document.getRootElement().getChild("text", CEI_NAMESPACE).getChild("group", CEI_NAMESPACE);
         textElements = ceiGroup.getChildren("text", CEI_NAMESPACE);
-        currentTextElementIndex = 1;
+        currentTextElementIndex = 0;
     }
 
     public static void main(String[] args) throws IOException, JDOMException {
@@ -138,7 +138,7 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         extractParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
         extractParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
 
-        Element textElement = currentTextElement.detach();
+        Element textElement = currentTextElement.clone();
 
         currentTextElementIndex++;
         return new AbstractMap.SimpleEntry<>(textElement, regest);
@@ -206,6 +206,7 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
                 case "Briefsammlung" -> "briefsammlung";
                 case "Insert" -> "insert";
                 case "Original" -> "original";
+                case "Unsichere Information" -> "unsure_information";
                 default -> throw new MCRException("Unknown überlieferungsform Value: " + überlieferungsformList);
             }).toList();
             regest.setDeliveryForm(new ClassificationMultivalue("delivery_form", classIds));
@@ -222,6 +223,9 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
 
             String from = dateRange.getAttributeValue("from");
             String to = dateRange.getAttributeValue("to");
+            if(from != null && from.equals(to)) {
+                to = null;
+            }
 
             if (from != null) {
                 final Matcher fromMatcher = datePattern.matcher(from);

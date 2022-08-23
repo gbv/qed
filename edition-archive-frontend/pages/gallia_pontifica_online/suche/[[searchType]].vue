@@ -49,10 +49,13 @@
 
             <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
               <section class="card-body">
+                <div><span class="issuer">{{ result.pontifikatAEP?.join(",") }} - </span></div>
                 <nuxt-link :href="`/gallia_pontifica_online/regest/${result.idno}`"
                            :title="$t('go_to_regest', {regest:result.idno})">
                   <RegestId :lost="result.lost" :certainly="result.certainly" :fake="result.fake" :idno="result.idno"/>
+                  , {{ [result['issued.text']?.join(", "), result.issuedPlace?.join(", ")].join(", ") }}
                 </nuxt-link>
+                <p>{{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}</p>
               </section>
             </article>
 
@@ -71,6 +74,7 @@
 <script setup lang="ts">
 import {useI18n} from 'vue-i18n';
 import {createError} from "h3";
+import {XMLApi, findFirstElement, flattenElement, byName} from "~/api/XMLApi";
 
 const i18n = useI18n();
 const BASIC_SEARCH_TYPE = "einfach";
@@ -124,6 +128,10 @@ async function executeSearch(url, query) {
   const request = await fetch(url)
   const searchResult = await request.json();
   model.searchResult = searchResult;
+  for (const doc of model.searchResult.response.docs) {
+    const xmlCode = doc["regest.xml"];
+    doc["regest.json"] = await XMLApi(xmlCode);
+  }
   model.count = searchResult.response.numFound;
   model.start = searchResult.response.start;
 }
@@ -156,7 +164,7 @@ async function triggerSearch(query) {
 
       if (model.extendedSearch.allMeta != null) {
         let allMeta = model.extendedSearch.allMeta;
-        if(allMeta==""){
+        if (allMeta == "") {
           allMeta = "*";
         }
         q.push(`allMeta:${escapeSpecialChars(allMeta)}`);
@@ -182,17 +190,17 @@ async function triggerSearch(query) {
         q.push(`recipient:${escapedRecipient}`);
       }
 
-      if(!model.extendedSearch.dateRangeRange){
-        if(model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom != "") {
+      if (!model.extendedSearch.dateRangeRange) {
+        if (model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom != "") {
           q.push(`issued.range:${model.extendedSearch.dateRangeFrom}`);
         }
       } else {
-        if(model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom != "" &&
+        if (model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom != "" &&
             model.extendedSearch.dateRangeTo != null && model.extendedSearch.dateRangeTo != "") {
           q.push(`issued.range:[${model.extendedSearch.dateRangeFrom} TO ${model.extendedSearch.dateRangeTo}]`)
-        } else if(model.extendedSearch.dateRangeTo != null && model.extendedSearch.dateRangeTo != "") {
+        } else if (model.extendedSearch.dateRangeTo != null && model.extendedSearch.dateRangeTo != "") {
           q.push(`issued.range:[* TO ${model.extendedSearch.dateRangeTo}]`)
-        } else if(model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom) {
+        } else if (model.extendedSearch.dateRangeFrom != null && model.extendedSearch.dateRangeFrom) {
           q.push(`issued.range:[${model.extendedSearch.dateRangeFrom} TO *]`)
         }
       }
@@ -249,9 +257,24 @@ const pageChangedCallback = async (newPage) => {
   });
 }
 
+const trimString = (str) => {
+  const size = 240;
+
+  if (str.length > size) {
+    return str.substring(0, str.indexOf(' ', size)) + "…";
+  } else {
+    return str;
+  }
+}
 watch(() => route.query, async (newQueryString, old) => {
   triggerSearch(newQueryString);
 });
 
 </script>
 
+
+<style scoped>
+.issuer {
+  font-weight: bold;
+}
+</style>

@@ -13,11 +13,11 @@
     <xsl:template match="regest">
         <xsl:variable name="json" select="text()"/>
         <xsl:apply-templates select="fn:json-to-xml($json)" mode="regest"/>
-        <xsl:call-template name="appendXMLBody" />
+        <xsl:call-template name="appendXMLBody"/>
     </xsl:template>
 
     <xsl:template match="fn:map" mode="regest">
-        <xsl:apply-templates select="fn:string[@key='idno']" mode="regest" />
+        <xsl:apply-templates select="fn:string[@key='idno']" mode="regest"/>
         <xsl:apply-templates select="fn:map[@key='issued']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='issuer']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='recipient']" mode="regest"/>
@@ -25,6 +25,7 @@
         <xsl:apply-templates select="fn:string[@key='issuedPlace']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='pontifikatAEP']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='pontifikatPP']" mode="regest"/>
+        <xsl:apply-templates select="fn:map[@key='deliveryForm']" mode="regest"/>
         <xsl:apply-templates select="fn:map[@key='authenticityStatus']" mode="regest"/>
     </xsl:template>
 
@@ -42,13 +43,13 @@
 
     <xsl:template match="fn:string[@key='initium']" mode="regest">
         <field name="initium">
-            <xsl:value-of select="text()" />
+            <xsl:value-of select="text()"/>
         </field>
     </xsl:template>
 
     <xsl:template match="fn:string[@key='issuedPlace']" mode="regest">
         <field name="issuedPlace">
-            <xsl:value-of select="text()" />
+            <xsl:value-of select="text()"/>
         </field>
     </xsl:template>
 
@@ -70,23 +71,23 @@
         </field>
     </xsl:template>
 
-    <xsl:template match="fn:map[@key='deliveryForm']">
+    <xsl:template match="fn:map[@key='deliveryForm']" mode="regest">
         <xsl:for-each select="fn:array[@key='categids']/fn:string">
             <field name="deliveryForm">
-                <xsl:value-of select="text()" />
+                <xsl:value-of select="text()"/>
             </field>
         </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="fn:map[@key='authenticityStatus']" mode="regest">
         <field name="fake">
-            <xsl:value-of select="fn:boolean[@key='fake']" />
+            <xsl:value-of select="fn:boolean[@key='fake']"/>
         </field>
         <field name="lost">
-            <xsl:value-of select="fn:boolean[@key='lost']" />
+            <xsl:value-of select="fn:boolean[@key='lost']"/>
         </field>
         <field name="certainly">
-            <xsl:value-of select="fn:boolean[@key='certainly']" />
+            <xsl:value-of select="fn:boolean[@key='certainly']"/>
         </field>
     </xsl:template>
 
@@ -107,25 +108,28 @@
             <xsl:when test="count(fn:string[@key='from'])&gt;0">
                 <xsl:variable name="from" select="substring-before(fn:string[@key='from'], 'T')"/>
                 <field name="issued.range">
-                    [<xsl:value-of select="$from"/> TO <xsl:value-of select="$from"/>]
+                    <xsl:value-of select="$from"/>
                 </field>
             </xsl:when>
             <xsl:when test="count(fn:string[@key='to'])&gt;0">
                 <xsl:variable name="to" select="substring-before(fn:string[@key='to'], 'T')"/>
                 <field name="issued.range">
-                    [<xsl:value-of select="$to"/> TO<xsl:value-of select="$to"/>]
+                    <xsl:value-of select="$to"/>
                 </field>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
 
     <xsl:template name="appendXMLBody">
-        <xsl:variable name="derivate" select="../../../structure/derobjects/derobject/@xlink:href" />
+        <xsl:variable name="derivate" select="../../../structure/derobjects/derobject/@xlink:href"/>
         <xsl:if test="string-length($derivate) &gt; 0">
-            <xsl:variable name="xml" select="document(concat('mcrfile:', $derivate, '/regest.xml'))" />
+            <xsl:variable name="xml" select="document(concat('mcrfile:', $derivate, '/regest.xml'))"/>
             <xsl:if test="count($xml)&gt;0">
                 <field name="regest.xml">
-                    <xsl:apply-templates select="$xml" mode="serialize" />
+                    <xsl:apply-templates select="$xml" mode="serialize"/>
+                </field>
+                <field name="allMeta">
+                    <xsl:value-of select="$xml"  />
                 </field>
             </xsl:if>
         </xsl:if>
