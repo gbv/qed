@@ -37,14 +37,13 @@
     "add-field": {
       "name": "deliveryForm",
       "type": "string",
-      "stored": true,
-      "multivalued": true
+      "stored": true
     }
   },
   {
     "add-field": {
       "name": "idno",
-      "type": "string",
+      "type": "pint",
       "stored": true
     }
   },

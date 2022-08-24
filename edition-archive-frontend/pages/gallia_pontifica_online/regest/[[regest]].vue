@@ -122,18 +122,25 @@ const {data, error} = await useAsyncData(`idno:${regestedIdno}`, async () => {
   return doc;
 });
 
-const {data: browseData} = await useAsyncData(`idno-count:${regestedIdno}`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=idno:*&wt=json&rows=0`)
-  const json = await request.json();
-  const regestNumber = parseInt(regestedIdno as string);
+const {data: browseData} = await useAsyncData(`idno-count-follow:${regestedIdno}`, async () => {
+  const [prevRequest, nextRequest] = await Promise.all([
+    fetch(`${$solrURL()}main/select/?q=idno:[* TO ${regestedIdno}]&wt=json&rows=2&sort=idno desc`),
+    fetch(`${$solrURL()}main/select/?q=idno:[${regestedIdno} TO *]&wt=json&rows=2&sort=idno asc`)
+  ]);
+
+  const [prevJson, nextJson] = await Promise.all(
+      [prevRequest.json(), nextRequest.json()]
+  );
   const result: any = {
-    count: json.response.numFound
+    count: prevJson.response.numFound + nextJson.response.numFound - 1,
   };
-  if (regestNumber > 1) {
-    result.prevLabel = (regestNumber + -1) + "";
+
+  if (prevJson.response.docs.length > 1) {
+    result.prevLabel = prevJson.response.docs[1].idno + "";
   }
-  if (regestNumber < result.count) {
-    result.nextLabel = (regestNumber + 1) + "";
+
+  if (nextJson.response.docs.length > 1) {
+    result.nextLabel = nextJson.response.docs[1].idno + "";
   }
 
   return result;
