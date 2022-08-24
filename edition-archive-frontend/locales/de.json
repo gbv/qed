@@ -43,5 +43,8 @@
   "regest_pontifikatAEP": "PontifikatAEP",
   "regest_ueberlieferung": "Überlieferung",
   "regest_sachkommentar": "Sachkommentar",
-  "browse_current_of": "{current} von {of}"
+  "browse_current_of": "{current} von {of}",
+  "error_404": "Seite konnte nicht gefunden werden.",
+  "error": "Ein unbekannter Fehler ist aufgetreten.",
+  "back": "Zurück"
 }
