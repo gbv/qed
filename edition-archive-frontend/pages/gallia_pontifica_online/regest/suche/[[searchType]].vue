@@ -10,7 +10,7 @@
         <gallia-pontifica-online-menu/>
       </div>
       <div class="col-9">
-        <div class="row">
+        <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
           <div class="col-12">
             <!-- Search Form -->
             <tabs :tabs="tabData" card-class="text-center" :current="model.currentTab"
@@ -55,7 +55,7 @@
                   <RegestId :lost="result.lost" :certainly="result.certainly" :fake="result.fake" :idno="result.idno"/>
                   , {{ [result['issued.text']?.join(", "), result.issuedPlace?.join(", ")].join(", ") }}
                 </nuxt-link>
-                <p>{{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}</p>
+                <p v-if="'regest.json' in result">{{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}</p>
               </section>
             </article>
 
@@ -93,6 +93,7 @@ const model = reactive(
       searchResult: undefined,
       count: 0,
       start: 0,
+      personObj: null,
       searchString: null,
       extendedSearch: {
         allMeta: null,
@@ -145,7 +146,7 @@ async function triggerSearch(query) {
         console.log("Assign searchstring " + query.searchString);
         model.searchString = query.searchString;
         model.currentTab = BASIC_SEARCH_TYPE;
-        let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(query.searchString)} AND objectKind:mycoreobject AND objectProject:gpo&wt=json`;
+        let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(query.searchString)} AND objectType:regest AND objectProject:gpo&wt=json`;
 
         await executeSearch(url, query);
       }
@@ -212,6 +213,13 @@ async function triggerSearch(query) {
 
       let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
       await executeSearch(url, query);
+      break;
+    case "person":
+      if (query.personObj) {
+        model.personObj = query.personObj;
+        let url = `${$solrURL()}main/select/?q=${model.personObj} AND objectType:regest AND objectProject:gpo&wt=json`;
+        await executeSearch(url, query);
+      }
       break;
     default:
       throwError(

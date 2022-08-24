@@ -46,5 +46,6 @@
   "browse_current_of": "{current} von {of}",
   "error_404": "Seite konnte nicht gefunden werden.",
   "error": "Ein unbekannter Fehler ist aufgetreten.",
-  "back": "Zurück"
+  "back": "Zurück",
+  "person_index": "Personen Index"
 }

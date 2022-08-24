@@ -19,17 +19,19 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.AbstractMap;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Regest>> {
+public class CEIImporter {
     public static final String YEAR_GROUP_NAME = "Year";
     public static final String MONTH_GROUP_NAME = "Month";
     public static final String DAY_GROUP_NAME = "Day";
@@ -46,31 +48,33 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
     // holds all text elements below ceiGroup
     List<Element> textElements;
     // holds the current <cei:text type="charter">
-    private int currentTextElementIndex;
+    List<Regest> regests = new LinkedList<>();
+    List<Person> persons = new LinkedList<>();
+    HashMap<Regest, Element> regestTextMap = new HashMap<>();
+    HashMap<Person, List<PersonLink>> personLinksHashMap = new HashMap<>();
 
     public CEIImporter(Path gesamtXML) throws IOException, JDOMException {
         SAXBuilder builder = new SAXBuilder();
         document = builder.build(gesamtXML.toFile());
         ceiGroup = document.getRootElement().getChild("text", CEI_NAMESPACE).getChild("group", CEI_NAMESPACE);
         textElements = ceiGroup.getChildren("text", CEI_NAMESPACE);
-        currentTextElementIndex = 0;
     }
 
     public static void main(String[] args) throws IOException, JDOMException {
 
     }
 
-    public static Element createMetadata(Regest regest) {
+    public static Element createMetadata(Object regest, String className, String type) {
         Element metadata = new Element("metadata");
 
-        Element defRegestElement = new Element("def.regest");
+        Element defRegestElement = new Element("def." + type);
         defRegestElement.setAttribute("class", "MetaJSON");
         defRegestElement.setAttribute("heritable", "false");
         defRegestElement.setAttribute("notinherit", "true");
 
-        Element regestElement = new Element("regest");
+        Element regestElement = new Element(type);
         regestElement.setAttribute("inherited", "0");
-        regestElement.setAttribute("class", Regest.class.getName());
+        regestElement.setAttribute("class", className);
 
         defRegestElement.addContent(regestElement);
         String regestJson = MetaJSON.getGson().toJson(regest);
@@ -117,31 +121,91 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         return sdf.parse(dateStr.toString());
     }
 
-    @Override
-    public boolean hasNext() {
-        return textElements.size() > currentTextElementIndex;
+    public List<Regest> getRegests() {
+        return regests;
     }
 
-    @Override
-    public AbstractMap.SimpleEntry<Element, Regest> next() {
-        Element currentTextElement = textElements.get(currentTextElementIndex);
-        Element currentBodyElement = currentTextElement.getChild("body", CEI_NAMESPACE);
+    public List<Person> getPersons() {
+        return persons;
+    }
 
-        Regest regest = new Regest();
-        extractIdno(currentBodyElement, regest);
-        extractIssuedPlace(currentBodyElement, regest);
-        extractIssuer(currentBodyElement, regest);
-        extractRecipient(currentBodyElement, regest);
-        extractIssuedDate(currentBodyElement, regest);
-        extractInitium(currentBodyElement, regest);
-        extractDeliveryForm(currentBodyElement, regest);
-        extractParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
-        extractParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
+    public HashMap<Regest, Element> getRegestTextMap() {
+        return regestTextMap;
+    }
 
-        Element textElement = currentTextElement.clone();
+    public void runImport() {
+        textElements.forEach(currentTextElement -> {
+            Element currentBodyElement = currentTextElement.getChild("body", CEI_NAMESPACE);
 
-        currentTextElementIndex++;
-        return new AbstractMap.SimpleEntry<>(textElement, regest);
+            Regest regest = new Regest();
+            extractIdno(currentBodyElement, regest);
+            extractIssuedPlace(currentBodyElement, regest);
+            extractIssuer(currentBodyElement, regest);
+            extractRecipient(currentBodyElement, regest);
+            extractIssuedDate(currentBodyElement, regest);
+            extractInitium(currentBodyElement, regest);
+            extractDeliveryForm(currentBodyElement, regest);
+            extractParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
+            extractParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
+            extractOtherPersons(currentBodyElement, regest);
+            regests.add(regest);
+            Element textElement = currentTextElement.clone();
+            regestTextMap.put(regest, textElement);
+        });
+    }
+
+    private void extractOtherPersons(Element currentBodyElement, Regest regest) {
+            Element issuerPersNameElement = getXpathFirst(".//cei:persName", currentBodyElement);
+            if (issuerPersNameElement == null) {
+                LOGGER.info("NO ISSUER SET!");
+            } else {
+                extractPerson(issuerPersNameElement, p -> {
+                    regest.getBodyPersons().add(p);
+                });
+            }
+    }
+
+    private void extractPerson(Element persName, Consumer<PersonLink> regestApplier) {
+        String flattenName = flattenText(persName);
+        String key = persName.getAttributeValue("key");
+
+        List<Person> people = getPersons().stream().filter(p -> {
+            if (key != null) {
+                Optional<IdentifierType> matchingIdentifierFound = p.getIdentifier().stream().filter(id -> id.getIdentifier().equals(key)).findFirst();
+
+                if (matchingIdentifierFound.isPresent()) {
+                    LOGGER.info("FOUND Match by key: " + matchingIdentifierFound.get().getIdentifier());
+                    return true;
+                }
+            }
+
+            if (p.getDisplayName().equals(flattenName)) {
+                LOGGER.info("FOUND Match by flatten name: " + flattenName);
+                return true;
+            }
+
+            return false;
+        }).toList();
+        PersonLink pl = new PersonLink();
+        pl.setLabel(flattenName);
+
+        Person match;
+        if (people.size() == 1) {
+            match = people.get(0);
+        } else if (people.size() == 0) {
+            match = new Person();
+            match.setDisplayName(flattenName);
+            if (key != null) {
+                match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
+            }
+            getPersons().add(match);
+        } else {
+            LOGGER.error("Can not distiguish between the persons " + people.stream().map(Person::getDisplayName).collect(Collectors.joining()));
+            return;
+        }
+        List<PersonLink> ll = this.personLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
+        ll.add(pl);
+        regestApplier.accept(pl);
     }
 
     private void extractIdno(Element currentBodyElement, Regest regest) {
@@ -223,7 +287,7 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
 
             String from = dateRange.getAttributeValue("from");
             String to = dateRange.getAttributeValue("to");
-            if(from != null && from.equals(to)) {
+            if (from != null && from.equals(to)) {
                 to = null;
             }
 
@@ -268,13 +332,16 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         }
     }
 
+    public HashMap<Person, List<PersonLink>> getPersonLinksHashMap() {
+        return personLinksHashMap;
+    }
+
     private void extractIssuer(Element currentBodyElement, Regest regest) {
         Element issuerPersNameElement = getXpathFirst(".//cei:issuer/cei:persName", currentBodyElement);
         if (issuerPersNameElement == null) {
             LOGGER.info("NO ISSUER SET!");
         } else {
-            String issuerString = flattenText(issuerPersNameElement);
-            regest.setIssuer(issuerString);
+            extractPerson(issuerPersNameElement, regest::setIssuer);
         }
     }
 
@@ -283,8 +350,7 @@ public class CEIImporter implements Iterator<AbstractMap.SimpleEntry<Element, Re
         if (recipientPersNameElement == null) {
             LOGGER.info("NO recipient SET!");
         } else {
-            String recipientString = flattenText(recipientPersNameElement);
-            regest.setRecipient(recipientString);
+            extractPerson(recipientPersNameElement, regest::setRecipient);
         }
     }
 

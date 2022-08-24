@@ -1,5 +1,8 @@
 package de.gbv.metadata;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Regest {
 
     public static final String TAG_NAME = "regest";
@@ -14,10 +17,12 @@ public class Regest {
     private String issuedPlace;
 
     //Aussteller
-    private String issuer;
+    private PersonLink issuer;
 
     //Empfänger
-    private String recipient;
+    private PersonLink recipient;
+
+    private List<PersonLink> bodyPersons = new ArrayList<>();
 
     private Authenticity authenticityStatus;
 
@@ -35,19 +40,19 @@ public class Regest {
         this.idno = idno;
     }
 
-    public String getIssuer() {
+    public PersonLink getIssuer() {
         return issuer;
     }
 
-    public void setIssuer(String issuer) {
+    public void setIssuer(PersonLink issuer) {
         this.issuer = issuer;
     }
 
-    public String getRecipient() {
+    public PersonLink getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(String recipient) {
+    public void setRecipient(PersonLink recipient) {
         this.recipient = recipient;
     }
 
@@ -104,6 +109,15 @@ public class Regest {
 
     public void setAuthenticityStatus(Authenticity authenticityStatus) {
         this.authenticityStatus = authenticityStatus;
+    }
+
+
+    public List<PersonLink> getBodyPersons() {
+        return bodyPersons;
+    }
+
+    public void setBodyPersons(List<PersonLink> bodyPersons) {
+        this.bodyPersons = bodyPersons;
     }
 
     @Override

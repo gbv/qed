@@ -8,6 +8,8 @@
         <xsl:apply-imports/>
 
         <xsl:apply-templates select="metadata/def.regest/regest"/>
+        <xsl:apply-templates select="metadata/def.person/person"/>
+
     </xsl:template>
 
     <xsl:template match="regest">
@@ -16,17 +18,42 @@
         <xsl:call-template name="appendXMLBody"/>
     </xsl:template>
 
+    <xsl:template match="person">
+        <xsl:variable name="json" select="text()"/>
+        <xsl:apply-templates select="fn:json-to-xml($json)" mode="person"/>
+    </xsl:template>
+
+    <xsl:template match="fn:map" mode="person">
+        <xsl:apply-templates select="fn:string[@key='displayName']" mode="person"/>
+        <xsl:apply-templates select="fn:array[@key='identifier']" mode="person"/>
+    </xsl:template>
+
+    <xsl:template match="fn:array[@key='identifier']" mode="person">
+        <xsl:for-each select="fn:map">
+            <field name="identifier.{fn:string[@key='type']}">
+                <xsl:value-of select="fn:string[@key='identifier']"/>
+            </field>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template match="fn:string[@key='displayName']" mode="person">
+        <field name="displayName">
+            <xsl:value-of select="text()"/>
+        </field>
+    </xsl:template>
+
     <xsl:template match="fn:map" mode="regest">
         <xsl:apply-templates select="fn:string[@key='idno']" mode="regest"/>
         <xsl:apply-templates select="fn:map[@key='issued']" mode="regest"/>
-        <xsl:apply-templates select="fn:string[@key='issuer']" mode="regest"/>
-        <xsl:apply-templates select="fn:string[@key='recipient']" mode="regest"/>
+        <xsl:apply-templates select="fn:map[@key='issuer']" mode="regest"/>
+        <xsl:apply-templates select="fn:map[@key='recipient']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='initium']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='issuedPlace']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='pontifikatAEP']" mode="regest"/>
         <xsl:apply-templates select="fn:string[@key='pontifikatPP']" mode="regest"/>
         <xsl:apply-templates select="fn:map[@key='deliveryForm']" mode="regest"/>
         <xsl:apply-templates select="fn:map[@key='authenticityStatus']" mode="regest"/>
+        <xsl:apply-templates select="fn:array[@key='bodyPersons']" mode="regest"/>
     </xsl:template>
 
     <xsl:template match="fn:string[@key='idno']" mode="regest">
@@ -35,9 +62,12 @@
         </field>
     </xsl:template>
 
-    <xsl:template match="fn:string[@key='issuer']" mode="regest">
+    <xsl:template match="fn:map[@key='issuer']" mode="regest">
         <field name="issuer">
-            <xsl:value-of select="text()"/>
+            <xsl:value-of select="fn:string[@key='label']/text()"/>
+        </field>
+        <field name="issuer.obj">
+            <xsl:value-of select="fn:string[@key='mycoreId']/text()"/>
         </field>
     </xsl:template>
 
@@ -53,10 +83,24 @@
         </field>
     </xsl:template>
 
-    <xsl:template match="fn:string[@key='recipient']" mode="regest">
+    <xsl:template match="fn:map[@key='recipient']" mode="regest">
         <field name="recipient">
-            <xsl:value-of select="text()"/>
+            <xsl:value-of select="fn:string[@key='label']/text()"/>
         </field>
+        <field name="recipient.obj">
+            <xsl:value-of select="fn:string[@key='mycoreId']/text()"/>
+        </field>
+    </xsl:template>
+
+    <xsl:template match="fn:array[@key='bodyPersons']" mode="regest">
+        <xsl:for-each select="fn:map">
+            <field name="person">
+                <xsl:value-of select="fn:string[@key='label']/text()"/>
+            </field>
+            <field name="person.obj">
+                <xsl:value-of select="fn:string[@key='mycoreId']/text()"/>
+            </field>
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="fn:string[@key='pontifikatAEP']" mode="regest">
@@ -129,7 +173,7 @@
                     <xsl:apply-templates select="$xml" mode="serialize"/>
                 </field>
                 <field name="allMeta">
-                    <xsl:value-of select="$xml"  />
+                    <xsl:value-of select="$xml"/>
                 </field>
             </xsl:if>
         </xsl:if>

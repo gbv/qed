@@ -7,6 +7,20 @@
   },
   {
     "add-field": {
+      "name": "displayName",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "identifier.key",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
       "name": "issuer",
       "type": "text_general",
       "stored": true
@@ -14,8 +28,36 @@
   },
   {
     "add-field": {
+      "name": "issuer.obj",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
       "name": "recipient",
       "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "recipient.obj",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "person",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "person.obj",
+      "type": "string",
       "stored": true
     }
   },

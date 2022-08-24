@@ -1,6 +1,8 @@
 package de.gbv.cli;
 
 import de.gbv.metadata.CEIImporter;
+import de.gbv.metadata.Person;
+import de.gbv.metadata.PersonLink;
 import de.gbv.metadata.Regest;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -29,7 +31,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -45,13 +47,30 @@ public class EditionArchiveImportCommands {
     @MCRCommand(syntax = "import regests from cei file {0}", help = "")
     public static void importRegestsFromCEI(String ceiFilePath) throws IOException, JDOMException, MCRAccessException {
         CEIImporter ceiImporter = new CEIImporter(Paths.get(ceiFilePath));
-        while (ceiImporter.hasNext()) {
-            AbstractMap.SimpleEntry<Element, Regest> next = ceiImporter.next();
+        ceiImporter.runImport();
+        HashMap<Regest, Element> regestTextMap = ceiImporter.getRegestTextMap();
+        HashMap<Person, List<PersonLink>> personLinksHashMap = ceiImporter.getPersonLinksHashMap();
+        for (Person person : ceiImporter.getPersons()) {
+            MCRObject personObject = new MCRObject();
+            MCRObjectID personMyCoReId = MCRObjectID.getNextFreeId("gpo", "person");
+            personObject.setId(personMyCoReId);
+            personObject.setSchema("datamodel-person.xsd");
+
+            Element metadata = createMetadata(person, Person.class.getName(), "person");
+            personObject.getMetadata().setFromDOM(metadata);
+            MCRMetadataManager.create(personObject);
+            for (PersonLink link : personLinksHashMap.get(person)) {
+                link.setMycoreId(personMyCoReId.toString());
+            }
+        }
+
+
+        for (Regest regest : ceiImporter.getRegests()) {
             MCRObject object = new MCRObject();
             object.setId(MCRObjectID.getNextFreeId("gpo", "regest"));
             object.setSchema("datamodel-regest.xsd");
 
-            Element metadata = createMetadata(next.getValue());
+            Element metadata = createMetadata(regest, Regest.class.getName(), "regest");
             object.getMetadata().setFromDOM(metadata);
             MCRMetadataManager.create(object);
 
@@ -59,7 +78,7 @@ public class EditionArchiveImportCommands {
             MCRObjectID derivateId = derivate.getId();
 
             MCRPath regestPath = MCRPath.getPath(derivateId.toString(), "/regest.xml");
-            Document regestDocument = new Document(next.getKey());
+            Document regestDocument = new Document(regestTextMap.get(regest));
 
             try(OutputStream os = Files.newOutputStream(regestPath, StandardOpenOption.WRITE, StandardOpenOption.CREATE)){
                 new XMLOutputter().output(regestDocument, os);
