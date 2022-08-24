@@ -43,16 +43,12 @@ services:
       - ${BACKEND_HTTP}:8080
       - ${BACKEND_AJP}:8009
   frontend:
-    image: node:16
+    build: edition-archive-frontend
     user: node
-    working_dir: /home/node/app
     environment:
       - NODE_ENV=production
-    volumes:
-      - ./edition-archive-frontend/:/home/node/app
     ports:
       - ${FRONTEND_PORT}:3000
-    command: "node .output/server/index.mjs"
   apache:
     image: httpd:2.4
     ports:
