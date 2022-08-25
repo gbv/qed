@@ -1,21 +1,11 @@
 <template>
-  <div>
+  <GalliaPontificaOnlineLayout>
 
-    <div class="row">
-      <div class="col">
-        <h2 class="mb-5">Gallia Pontificia Online</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <gallia-pontifica-online-menu />
-      </div>
-      <div class="col-9">
+    <template #content>
         <ContentRenderer v-if="data" :value="data"/>
-      </div>
-    </div>
-  </div>
+    </template>
 
+  </GalliaPontificaOnlineLayout>
 </template>
 <script>
 export default {}

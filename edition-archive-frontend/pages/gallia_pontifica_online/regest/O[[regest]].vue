@@ -1,21 +1,13 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col text-center">
-        <h2 class="mb-5">Gallia Pontificia Online</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <gallia-pontifica-online-menu/>
-      </div>
-      <div class="col-9" v-if="data">
-        <client-only placeholder="Loading...">
-          <XSLTComponent :document="data['regest.xml']" :xslt="xsltString"/>
-        </client-only>
-      </div>
-    </div>
-  </div>
+  <GalliaPontificaOnlineLayout>
+
+    <template #content>
+      <client-only placeholder="Loading...">
+        <XSLTComponent :document="data['regest.xml']" :xslt="xsltString"/>
+      </client-only>
+    </template>
+
+  </GalliaPontificaOnlineLayout>
 </template>
 <script setup>
 import XSLTComponent from "../../../components/XSLTComponent";

@@ -1,15 +1,8 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col text-center">
-        <h2 class="mb-5">Gallia Pontificia Online</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <gallia-pontifica-online-menu/>
-      </div>
-      <div class="col-9 content" v-if="data">
+  <GalliaPontificaOnlineLayout>
+
+    <template #content>
+      <div class="content" v-if="data">
         <BrowseComponent :current="parseInt(regestedIdno)" :of="browseData.count" :next-label="browseData.nextLabel"
                          :prev-label="browseData.prevLabel"
                          v-on:prevClicked="browsePrevClicked"
@@ -86,11 +79,12 @@
         <hr/>
         {{ data }}
       </div>
-    </div>
-  </div>
+    </template>
+
+  </GalliaPontificaOnlineLayout>
 </template>
 <script setup lang="ts">
-import BrowseComponent from "~/components/BrowseComponent.vue";
+import BrowseComponent from "~/components/BrowseBar.vue";
 
 const route = useRoute()
 const config = useRuntimeConfig()

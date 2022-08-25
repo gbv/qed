@@ -1,80 +1,77 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col">
-        <h2 class="mb-5">Gallia Pontificia Online</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <gallia-pontifica-online-menu/>
-      </div>
-      <div class="col-9">
-        <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
-          <div class="col-12">
-            <!-- Search Form -->
-            <tabs :tabs="tabData" card-class="text-center" :current="model.currentTab"
-                  v-on:tabChanged="tabChanged">
-              <template v-slot:einfach>
-                <BasicSearch v-on:search="basicSearchCallback" :searchString="model.searchString"/>
-              </template>
-              <template v-slot:erweitert>
-                <ExtendedSearch v-on:search="extendedSearchCallback"
-                                :allMeta="model.extendedSearch.allMeta"
-                                :person="model.extendedSearch.person"
-                                :place="model.extendedSearch.place"
-                                :initium="model.extendedSearch.initium"
-                                :issuer="model.extendedSearch.issuer"
-                                :recipient="model.extendedSearch.recipient"
-                                :lost="model.extendedSearch.lost"
-                                :fake="model.extendedSearch.fake"
-                                :certainly="model.extendedSearch.certainly"
-                                :dateRangeRange="model.extendedSearch.dateRangeRange"
-                                :dateRangeFrom="model.extendedSearch.dateRangeFrom"
-                                :dateRangeTo="model.extendedSearch.dateRangeTo"
-                                :dateText="model.extendedSearch.dateText"
-                />
-              </template>
-            </tabs>
-          </div>
-        </div>
-        <div class="row" v-if="model.searchResult">
-          <div class="col-12 mt-3">
-            <!-- Search Results -->
+  <GalliaPontificaOnlineLayout>
+    <template #menu>
+      <GalliaPontificaOnlineMenu/>
+    </template>
 
-            <solr-paginator v-on:pageChanged="pageChangedCallback"
-                            :count="model.count"
-                            :start="model.start"
-                            :numPerPage="20"/>
-
-            <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
-              <section class="card-body">
-                <div><span class="issuer">{{ result.pontifikatAEP?.join(",") }} - </span></div>
-                <nuxt-link :href="`/gallia_pontifica_online/regest/${result.idno}`"
-                           :title="$t('go_to_regest', {regest:result.idno})">
-                  <RegestId :lost="result.lost" :certainly="result.certainly" :fake="result.fake" :idno="result.idno"/>
-                  , {{ [result['issued.text']?.join(", "), result.issuedPlace?.join(", ")].join(", ") }}
-                </nuxt-link>
-                <p v-if="'regest.json' in result">{{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}</p>
-              </section>
-            </article>
-
-            <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search_no_hits') }}</h2>
-
-            <solr-paginator v-on:pageChanged="pageChangedCallback"
-                            :count="model.count"
-                            :start="model.start"
-                            :numPerPage="20"/>
-          </div>
+    <template #content>
+      <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
+        <div class="col-12">
+          <!-- Search Form -->
+          <TabsCard :tabs="tabData" card-class="text-center" :current="model.currentTab"
+                v-on:tabChanged="tabChanged">
+            <template v-slot:einfach>
+              <BasicSearchForm v-on:search="basicSearchCallback" :searchString="model.searchString"/>
+            </template>
+            <template v-slot:erweitert>
+              <ExtendedSearchForm v-on:search="extendedSearchCallback"
+                              :allMeta="model.extendedSearch.allMeta"
+                              :person="model.extendedSearch.person"
+                              :place="model.extendedSearch.place"
+                              :initium="model.extendedSearch.initium"
+                              :issuer="model.extendedSearch.issuer"
+                              :recipient="model.extendedSearch.recipient"
+                              :lost="model.extendedSearch.lost"
+                              :fake="model.extendedSearch.fake"
+                              :certainly="model.extendedSearch.certainly"
+                              :dateRangeRange="model.extendedSearch.dateRangeRange"
+                              :dateRangeFrom="model.extendedSearch.dateRangeFrom"
+                              :dateRangeTo="model.extendedSearch.dateRangeTo"
+                              :dateText="model.extendedSearch.dateText"
+              />
+            </template>
+          </TabsCard>
         </div>
       </div>
-    </div>
-  </div>
+      <div class="row" v-if="model.searchResult">
+        <div class="col-12 mt-3">
+          <!-- Search Results -->
+
+          <SolrPaginator v-on:pageChanged="pageChangedCallback"
+                          :count="model.count"
+                          :start="model.start"
+                          :numPerPage="20"/>
+
+          <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
+            <section class="card-body">
+              <div><span class="issuer">{{ result.pontifikatAEP?.join(",") }} - </span></div>
+              <nuxt-link :href="`/gallia_pontifica_online/regest/${result.idno}`"
+                         :title="$t('go_to_regest', {regest:result.idno})">
+                <GalliaPontificaOnlineRegestId :lost="result.lost" :certainly="result.certainly" :fake="result.fake" :idno="result.idno"/>
+                , {{ [result['issued.text']?.join(", "), result.issuedPlace?.join(", ")].join(", ") }}
+              </nuxt-link>
+              <p v-if="'regest.json' in result">
+                {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}</p>
+            </section>
+          </article>
+
+          <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search_no_hits') }}</h2>
+
+          <SolrPaginator v-on:pageChanged="pageChangedCallback"
+                          :count="model.count"
+                          :start="model.start"
+                          :numPerPage="20"/>
+        </div>
+      </div>
+    </template>
+
+  </GalliaPontificaOnlineLayout>
 </template>
 <script setup lang="ts">
 import {useI18n} from 'vue-i18n';
 import {createError} from "h3";
 import {XMLApi, findFirstElement, flattenElement, byName} from "~/api/XMLApi";
+import SolrPaginator from "~/components/SolrPaginator.vue";
 
 const i18n = useI18n();
 const BASIC_SEARCH_TYPE = "einfach";
@@ -113,8 +110,6 @@ const model = reactive(
       currentTab: route.params.searchType || BASIC_SEARCH_TYPE
     });
 
-console.log(model);
-
 const escapeSpecialChars = (s) => s
     .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
       return '\\' + match;
@@ -143,7 +138,6 @@ async function triggerSearch(query) {
       break;
     case BASIC_SEARCH_TYPE:
       if (query.searchString) {
-        console.log("Assign searchstring " + query.searchString);
         model.searchString = query.searchString;
         model.currentTab = BASIC_SEARCH_TYPE;
         let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(query.searchString)} AND objectType:regest AND objectProject:gpo&wt=json`;

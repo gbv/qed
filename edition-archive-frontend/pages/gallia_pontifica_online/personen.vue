@@ -1,26 +1,16 @@
 <template>
-  <div>
+  <GalliaPontificaOnlineLayout>
 
-    <div class="row">
-      <div class="col">
-        <h2 class="mb-5">Gallia Pontificia Online</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <gallia-pontifica-online-menu/>
-      </div>
-      <div class="col-9">
-        <h2>{{ $t("person_index") }}</h2>
-        <ul class="list-group list-group-flush mt-5" v-if="data">
-          <li v-for="doc in data.docs" class="list-group-item">
-            <nuxt-link :href="`/gallia_pontifica_online/regest/suche/person/?personObj=${doc.id}`">{{ doc.displayName.join(", ") }}</nuxt-link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <template #content>
+      <h2>{{ $t("person_index") }}</h2>
+      <ul class="list-group list-group-flush mt-5" v-if="data">
+        <li v-for="doc in data.docs" class="list-group-item">
+          <nuxt-link :href="`/gallia_pontifica_online/regest/suche/person/?personObj=${doc.id}`">{{ doc.displayName.join(", ") }}</nuxt-link>
+        </li>
+      </ul>
+    </template>
 
+  </GalliaPontificaOnlineLayout>
 </template>
 <script>
 export default {}

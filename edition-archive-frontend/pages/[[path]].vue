@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col">
       <ContentRenderer v-if="data" :value="data"/>
-
     </div>
   </div>
 </template>
