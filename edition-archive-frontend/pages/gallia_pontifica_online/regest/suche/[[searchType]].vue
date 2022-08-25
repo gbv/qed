@@ -161,7 +161,7 @@ async function triggerSearch(query) {
         }
       }
 
-      const q = ["objectKind:mycoreobject", "objectProject:gpo"];
+      const q = ["objectType:regest", "objectProject:gpo"];
 
       if (model.extendedSearch.allMeta != null) {
         let allMeta = model.extendedSearch.allMeta;
