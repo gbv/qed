@@ -44,6 +44,10 @@
           $( ".content-gpo" ).addClass("d-none");
           $( ".content-intro" ).removeClass("d-none");
         });
+        // hide all main page content before showing latest clicked
+        $( ".main-content" ).on( "show.bs.collapse", function() {
+          $( ".main-content" ).removeClass("show");
+        });
         // hide all sub page content before showing latest clicked
         $( ".sub-content" ).on( "show.bs.collapse", function() {
           $( ".sub-content" ).removeClass("show");
@@ -202,15 +206,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="#">Beschreibung</a>
+                      <a class="nav-link" aria-current="page" href="#description" data-bs-toggle="collapse">Beschreibung</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Projekte
+                        Regesten
                       </a>
                       <ul class="dropdown-menu active">
-                        <li><a class="dropdown-item active" href="#"> Reimser Papstregesten</a></li>
-                        <li><a class="dropdown-item" href="#"> Regesten für Thérouanne</a></li>
+                        <li><a class="dropdown-item active" data-bs-toggle="collapse" href="#reimser"> Reimser Papstregesten</a></li>
+                        <li><a class="dropdown-item" data-bs-toggle="collapse" href="#therouanne">Regesten für Thérouanne</a></li>
                       </ul>
                     </li>
                     <li class="nav-item">
@@ -221,8 +225,10 @@
                     </li>
                   </ul>
                   <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Suche in GPO" aria-label="Search">
+                    <button class="btn btn-primary text-white" type="submit">
+                      Los
+                    </button>
                   </form>
                 </div>
               </div>
@@ -230,72 +236,212 @@
           </div>
         </div>
 
-        <h3 class="mb-5">Reimser Papstregesten</h3>
-        <div class="row">
-          <div class="col-3">
+        <div id="description" class="collapse main-content show">
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua. At vero eos et accusam et justo duo
+            dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+            eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+            gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          </p>
+        </div>
 
-            <nav class="navbar">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    data-bs-toggle="collapse"
-                    href="#start">
-                    Startseite
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    data-bs-toggle="collapse"
-                    href="#intro">
-                    Erklärung
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    data-bs-toggle="collapse"
-                    href="#search">
-                    Suche
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    data-bs-toggle="collapse"
-                    href="#contact">
-                    Kontakt
-                  </a>
-                </li>
-              </ul>
-            </nav>
+        <div id="reimser" class="collapse main-content">
+          <h3 class="mb-5">Reimser Papstregesten</h3>
+          <div class="row">
+            <div class="col-3">
 
-          </div>
-          <div class="col-9">
+              <nav class="navbar">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#start">
+                      Startseite
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#intro">
+                      Erklärung
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#search">
+                      Suche
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#writings">
+                      Handschriftenverzeichnis
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#sources">
+                      Quellen- und Literaturverzeichnis
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#dekretalen">
+                      Dekretalenverzeichnis
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#initien">
+                      Initienverzeichnis
+                    </a>
+                  </li>
+                </ul>
+              </nav>
 
-            <div id="start" class="sub-content collapse show">
-              <img
-                  src="images/card-back-lettre-pape.png"
-                  class="img-fluid mb-3"
-                  alt="...">
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-              </p>
             </div>
-            <div id="intro" class="sub-content collapse">intro</div>
-            <div id="search" class="sub-content collapse">search</div>
-            <div id="contact" class="sub-content collapse">contact</div>
+            <div class="col-9">
+
+              <div id="start" class="sub-content collapse show">
+                <img
+                    src="images/card-back-lettre-pape.png"
+                    class="img-fluid mb-3"
+                    alt="...">
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                  nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                  erat, sed diam voluptua. At vero eos et accusam et justo duo
+                  dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                  sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                  consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                  ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                  eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                  gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+              </div>
+              <div id="intro" class="sub-content collapse">intro</div>
+              <div id="search" class="sub-content collapse">search</div>
+              <div id="writings" class="sub-content collapse">Handschriftenverzeichnis</div>
+              <div id="sources" class="sub-content collapse">Quellen- und Literaturverzeichnis</div>
+              <div id="dekretalen" class="sub-content collapse">Dekretalenverzeichnis</div>
+              <div id="initien" class="sub-content collapse">Initienverzeichnis</div>
+            </div>
           </div>
         </div>
+
+        <div id="therouanne" class="collapse main-content">
+          <h3 class="mb-5">Regesten für Thérouanne</h3>
+          <div class="row">
+            <div class="col-3">
+
+              <nav class="navbar">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#start">
+                      Startseite
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#intro">
+                      Erklärung
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#search">
+                      Suche
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#writings">
+                      Handschriftenverzeichnis
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#sources">
+                      Quellen- und Literaturverzeichnis
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#dekretalen">
+                      Dekretalenverzeichnis
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-bs-toggle="collapse"
+                      href="#initien">
+                      Initienverzeichnis
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
+            </div>
+            <div class="col-9">
+
+              <div id="start" class="sub-content collapse show">
+                <img
+                    src="images/card-back-lettre-pape.png"
+                    class="img-fluid mb-3"
+                    alt="...">
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                  nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                  erat, sed diam voluptua. At vero eos et accusam et justo duo
+                  dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                  sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                  consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                  ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                  eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                  gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+              </div>
+              <div id="intro" class="sub-content collapse">intro</div>
+              <div id="search" class="sub-content collapse">search</div>
+              <div id="writings" class="sub-content collapse">Handschriftenverzeichnis</div>
+              <div id="sources" class="sub-content collapse">Quellen- und Literaturverzeichnis</div>
+              <div id="dekretalen" class="sub-content collapse">Dekretalenverzeichnis</div>
+              <div id="initien" class="sub-content collapse">Initienverzeichnis</div>
+            </div>
+          </div>
+        </div>
+
 
       </div>
     </section>
