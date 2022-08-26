@@ -18,7 +18,7 @@ export function XMLApiXML(xml: Node): XElement {
         .filter(n => {
             return n.nodeType === 1 || n.nodeType === 3
         })
-        .map(n => n.nodeType === 1 ? XMLApiXML(n) : n.textContent);
+        .map(n => n.nodeType === 1 ? XMLApiXML(n) : { text: n.textContent});
 
 
     const elem = xml as Element;
@@ -37,14 +37,18 @@ export function XMLApiXML(xml: Node): XElement {
 export interface XElement {
     name: string,
     attributes?: Record<string, string>,
-    content?: Array<XElement | String>
+    content?: Array<XElement | XText>
+}
+
+export  interface XText {
+    text:string;
 }
 
 export interface Filter<T> {
     (obj: T): boolean;
 }
 
-function isElement(content: XElement | String) {
+function isElement(content: XElement | XText) {
     return content instanceof Object && "name" in content;
 }
 
@@ -108,38 +112,41 @@ export function or<T>(...filters: Array<Filter<T>>) {
     }
 }
 
-export function flattenElement(parent: XElement | string) {
+export function flattenElement(parent: XElement | XText) {
     const array = new Array<string>();
     flattenElementBuilder(parent, array)
-    return array.join("");
+    const result = array.join("");
+    //console.log(["FLATTEN", parent, "FLATTEN TO", result])
+
+    return result;
+
 }
 
-function flattenElementBuilder(parent: XElement | string, builder = new Array<string>()) {
+function flattenElementBuilder(parent: XElement | XText, builder = new Array<string>()) {
     if (!isElement(parent)) {
-        return parent;
+        builder.push((parent as XText).text);
     } else {
         for (const content of (parent as XElement).content) {
             if (isElement(content)) {
                 flattenElementBuilder(content as XElement, builder);
             } else {
-                builder.push(content as string);
+                builder.push((content as XText).text);
             }
         }
     }
 }
 
-export function flattenElementExcept(parent: XElement | string, filter: Filter<XElement>) {
+export function flattenElementExcept(parent: XElement | XText, filter: Filter<XElement>) {
     const arr = new Array<string | XElement>()
 
     flattenElementExceptBuilder(parent, arr, filter);
-    console.log(["Elements", ...arr]);
 
     return arr;
 }
 
-function flattenElementExceptBuilder(parent: XElement | string, builder = new Array<string | XElement>(), filter: Filter<XElement>) {
+function flattenElementExceptBuilder(parent: XElement | XText, builder = new Array<string | XElement>(), filter: Filter<XElement>) {
     if (!isElement(parent)) {
-        return parent;
+        builder.push((parent as XText).text);
     } else {
         for (const content of (parent as XElement).content) {
             if (isElement(content)) {
@@ -149,7 +156,7 @@ function flattenElementExceptBuilder(parent: XElement | string, builder = new Ar
                     flattenElementExceptBuilder(content as XElement, builder, filter);
                 }
             } else {
-                builder.push(content as string);
+                builder.push((content as XText).text);
             }
         }
     }

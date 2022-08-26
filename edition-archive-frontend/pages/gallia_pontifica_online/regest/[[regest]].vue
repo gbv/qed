@@ -10,14 +10,18 @@
 
         <section class="heading mt-5">
           <h2>{{ flattenElement(findFirstElement(data, byName("cei:idno"))) }}</h2>
-          <span v-for="issuedContent in findFirstElement(data, byName('cei:issued')).content">
-          <template v-if="issuedContent.name==='cei:placeName'">
-            <span>{{ issuedContent.content[0] }}</span>
+          <template v-for="(issuedContent, index) in findFirstElement(data, byName('cei:issued')).content">
+
+            <template v-if="issuedContent.name==='cei:placeName'">
+              {{ flattenElement(issuedContent) }}
+            </template>
+            <template v-else-if="issuedContent.name==='cei:date'">
+              {{ flattenElement(issuedContent).toString() }}
+            </template>
+            <template v-else>
+              {{ flattenElement(issuedContent).toString() }}
+            </template>
           </template>
-          <template v-else>
-            {{ flattenElement(issuedContent) }}
-          </template>
-         </span>
         </section>
         <section class="abstract" v-for="abstract in findElement(data, byName('cei:abstract'))">
           <template
@@ -28,7 +32,7 @@
             <template v-else-if="abstractContent.name === 'cei:issuer'">
               <template v-for="issuerContent in flattenElementExcept(abstract, byName('cei:persName'))">
                 <template v-if="typeof issuerContent === 'string'">
-                  {{ issuerContent }}
+                  {{ flattenElement(issuerContent) }}
                 </template>
                 <template v-else>
                   <!-- is a persName -->
