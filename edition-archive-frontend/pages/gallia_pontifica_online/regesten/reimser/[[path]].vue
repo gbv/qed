@@ -1,11 +1,11 @@
 <template>
   <GalliaPontificaOnlineLayout>
     <template #content>
-        <div class="row">
-          <div class="col">
-            <ContentRenderer v-if="data" :value="data"/>
-          </div>
-        </div>
+      <GalliaPontificaOnlineReimser>
+        <template #regesten>
+          <ContentRenderer v-if="data" :value="data"/>
+        </template>
+      </GalliaPontificaOnlineReimser>
     </template>
   </GalliaPontificaOnlineLayout>
 </template>
@@ -19,7 +19,7 @@
   import {createError} from 'h3'
 
   const {data, error} = await useAsyncData(`content-${path}`, () => {
-    const p1 = path.lastIndexOf("/") === path.length - 1 ? path + "beschreibung" : path;
+    const p1 = path.lastIndexOf("/") === path.length - 1 ? path + "startseite" : path;
     return queryContent().where({_path: p1}).findOne()
   })
   if (error.value) {
