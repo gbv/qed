@@ -41,6 +41,19 @@
         </nav>
       </div>
     </div>
-    <slot name="content" />
+
+    <div class="row" v-if="'menu' in $slots">
+      <div class="col-3">
+        <slot name="menu" />
+      </div>
+      <div class="col-9">
+        <slot name="content" />
+      </div>
+    </div>
+
+    <div v-else>
+      <slot name="content" />
+    </div>
+
   </div>
 </template>

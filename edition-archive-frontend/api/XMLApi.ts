@@ -161,3 +161,4 @@ function flattenElementExceptBuilder(parent: XElement | XText, builder = new Arr
         }
     }
 }
+

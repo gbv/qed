@@ -1,6 +1,4 @@
 <template>
-  <div class="row">
-    <div class="col-3">
       <nav class="navbar mt-5">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -40,9 +38,4 @@
           </li>
         </ul>
       </nav>
-    </div>
-    <div class="col-9">
-      <slot name="regesten" />
-    </div>
-  </div>
 </template>

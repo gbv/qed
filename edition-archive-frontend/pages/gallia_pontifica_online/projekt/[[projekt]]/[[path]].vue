@@ -1,12 +1,14 @@
 <template>
   <GalliaPontificaOnlineLayout>
     <template #content>
-      <GalliaPontificaOnlineTherouanne>
-        <template #regesten>
           <ContentRenderer v-if="data" :value="data"/>
-        </template>
-      </GalliaPontificaOnlineTherouanne>
     </template>
+
+    <template #menu>
+        <GalliaPontificaOnlineReimserMenu v-if="$route.params.projekt == 'reimser'" />
+        <GalliaPontificaOnlineTherouanneMenu v-else />
+    </template>
+
   </GalliaPontificaOnlineLayout>
 </template>
 
@@ -15,11 +17,11 @@
 </script>
 
 <script setup>
-  const {path} = useRoute()
+  const route = useRoute();
   import {createError} from 'h3'
 
-  const {data, error} = await useAsyncData(`content-${path}`, () => {
-    const p1 = path.lastIndexOf("/") === path.length - 1 ? path + "startseite" : path;
+  const {data, error} = await useAsyncData(`content-${(route.path)}`, () => {
+    const p1 = route.path.lastIndexOf("/") === route.path.length - 1 ? route.path + "startseite" : route.path;
     return queryContent().where({_path: p1}).findOne()
   })
   if (error.value) {

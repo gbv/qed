@@ -1,18 +1,17 @@
 <template>
   <GalliaPontificaOnlineLayout>
+
     <template #content>
-      <GalliaPontificaOnlineReimser>
-        <template #regesten>
-          <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
-            <div class="col-12">
-              <!-- Search Form -->
-              <TabsCard :tabs="tabData" card-class="text-center" :current="model.currentTab"
+      <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
+        <div class="col-12">
+          <!-- Search Form -->
+          <TabsCard :tabs="tabData" card-class="text-center" :current="model.currentTab"
                     v-on:tabChanged="tabChanged">
-                <template v-slot:einfach>
-                  <BasicSearchForm v-on:search="basicSearchCallback" :searchString="model.searchString"/>
-                </template>
-                <template v-slot:erweitert>
-                  <ExtendedSearchForm v-on:search="extendedSearchCallback"
+            <template v-slot:einfach>
+              <BasicSearchForm v-on:search="basicSearchCallback" :searchString="model.searchString"/>
+            </template>
+            <template v-slot:erweitert>
+              <ExtendedSearchForm v-on:search="extendedSearchCallback"
                                   :allMeta="model.extendedSearch.allMeta"
                                   :person="model.extendedSearch.person"
                                   :place="model.extendedSearch.place"
@@ -56,13 +55,15 @@
               <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search_no_hits') }}</h2>
 
               <SolrPaginator v-on:pageChanged="pageChangedCallback"
-                              :count="model.count"
-                              :start="model.start"
-                              :numPerPage="20"/>
+                             :count="model.count"
+                             :start="model.start"
+                             :numPerPage="20"/>
             </div>
           </div>
-        </template>
-      </GalliaPontificaOnlineReimser>
+    </template>
+    <template #menu>
+      <GalliaPontificaOnlineReimserMenu v-if="$route.params.projekt == 'reimser'"/>
+      <GalliaPontificaOnlineTherouanneMenu v-else/>
     </template>
   </GalliaPontificaOnlineLayout>
 </template>

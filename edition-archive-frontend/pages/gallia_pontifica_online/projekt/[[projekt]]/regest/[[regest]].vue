@@ -1,8 +1,6 @@
 <template>
   <GalliaPontificaOnlineLayout>
     <template #content>
-      <GalliaPontificaOnlineReimser>
-        <template #regesten>
           <div class="content" v-if="data">
             <BrowseComponent :current="parseInt(regestedIdno)" :of="browseData.count" :next-label="browseData.nextLabel"
                              :prev-label="browseData.prevLabel"
@@ -84,9 +82,13 @@
             <hr/>
             {{ data }}
           </div>
-        </template>
-      </GalliaPontificaOnlineReimser>
     </template>
+
+    <template #menu>
+      <GalliaPontificaOnlineReimserMenu v-if="$route.params.projekt == 'reimser'" />
+      <GalliaPontificaOnlineTherouanneMenu v-else />
+    </template>
+
   </GalliaPontificaOnlineLayout>
 </template>
 
