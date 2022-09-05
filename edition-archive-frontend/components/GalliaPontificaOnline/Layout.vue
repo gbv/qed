@@ -15,25 +15,25 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/gallia_pontifica_online/">Beschreibung</a>
+                  <a class="nav-link" aria-current="page" href="/gallia-pontifica-online/">Zum Projekt</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Regesten
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/gallia_pontifica_online/regesten/reimser/"> Reimser Papstregesten</a></li>
-                    <li><a class="dropdown-item" href="/gallia_pontifica_online/regesten/therouanne/">Regesten für Thérouanne</a></li>
+                    <li><a class="dropdown-item" href="/gallia-pontifica-online/regesten/reims/">Reims I: Erzbischöfe</a></li>
+                    <li><a class="dropdown-item" href="/gallia-pontifica-online/regesten/genf/">Genf I: Bischöfe</a></li>
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/gallia_pontifica_online/publikationen">Publikationen</a>
+                  <a class="nav-link" href="/gallia-pontifica-online/editionen">Editionen</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/gallia_pontifica_online/erklaerung">Erklärung</a>
+                  <a class="nav-link" href="/gallia-pontifica-online/publikationen">Publikationen</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/gallia_pontifica_online/kontakt">Kontakt</a>
+                  <a class="nav-link" href="/gallia-pontifica-online/kontakt">Kontakt</a>
                 </li>
               </ul>
             </div>
@@ -43,6 +43,13 @@
     </div>
 
     <div class="row" v-if="'menu' in $slots">
+      <div class="col-12 mb-5">
+        <h2>
+          <span v-if="$route.params.regesten == 'reims'">Reims I: Erzbischöfe</span>
+          <span v-else-if="$route.params.regesten == 'genf'">Genf I: Bischöfe</span>
+          <span v-else>Subpage</span>
+        </h2>
+      </div>
       <div class="col-3">
         <slot name="menu" />
       </div>

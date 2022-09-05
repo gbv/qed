@@ -20,7 +20,7 @@
 
     <div class="col">
       <ContentCard img-href="/images/card-back-lettre-pape.png" img-alt="..." :link-text="$t('toProject')"
-                    link="gallia_pontifica_online/" card-title="Gallia Pontificia Online">
+                    link="gallia-pontifica-online/" card-title="Gallia Pontificia Online">
         Die »Gallia Pontificia« ist das einzige Langzeitprojekt des
         DHIP; sie wird zusammen mit der École nationale des chartes
         bearbeitet. Ziel ist die kritische Edition aller Papsturkunden

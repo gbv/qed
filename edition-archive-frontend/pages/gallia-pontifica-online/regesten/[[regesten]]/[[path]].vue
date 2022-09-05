@@ -5,8 +5,8 @@
     </template>
 
     <template #menu>
-        <GalliaPontificaOnlineReimserMenu v-if="$route.params.projekt == 'reimser'" />
-        <GalliaPontificaOnlineTherouanneMenu v-else />
+        <GalliaPontificaOnlineReimsMenu v-if="$route.params.regesten == 'reims'" />
+        <GalliaPontificaOnlineGenfMenu v-else />
     </template>
 
   </GalliaPontificaOnlineLayout>

@@ -42,7 +42,7 @@
               <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
                 <section class="card-body">
                   <div><span class="issuer">{{ result.pontifikatAEP?.join(",") }} - </span></div>
-                  <nuxt-link :href="`/gallia_pontifica_online/regest/${result.idno}`"
+                  <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${result.idno}`"
                              :title="$t('go_to_regest', {regest:result.idno})">
                     <GalliaPontificaOnlineRegestId :lost="result.lost" :certainly="result.certainly" :fake="result.fake" :idno="result.idno"/>
                     , {{ [result['issued.text']?.join(", "), result.issuedPlace?.join(", ")].join(", ") }}
@@ -62,8 +62,8 @@
           </div>
     </template>
     <template #menu>
-      <GalliaPontificaOnlineReimserMenu v-if="$route.params.projekt == 'reimser'"/>
-      <GalliaPontificaOnlineTherouanneMenu v-else/>
+      <GalliaPontificaOnlineReimsMenu v-if="$route.params.regesten == 'reims'"/>
+      <GalliaPontificaOnlineGenfMenu v-else/>
     </template>
   </GalliaPontificaOnlineLayout>
 </template>
