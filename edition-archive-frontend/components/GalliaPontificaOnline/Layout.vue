@@ -15,25 +15,25 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/gallia-pontifica-online/">Zum Projekt</a>
+                  <nuxt-link class="nav-link" aria-current="page" href="/gallia-pontifica-online/">Zum Projekt</nuxt-link>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <nuxt-link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Regesten
-                  </a>
+                  </nuxt-link>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/gallia-pontifica-online/regesten/reims/">Reims I: Erzbischöfe</a></li>
-                    <li><a class="dropdown-item" href="/gallia-pontifica-online/regesten/genf/">Genf I: Bischöfe</a></li>
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/reims/">Reims I: Erzbischöfe</nuxt-link></li>
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/genf/">Genf I: Bischöfe</nuxt-link></li>
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/gallia-pontifica-online/editionen">Editionen</a>
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/editionen">Editionen</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/gallia-pontifica-online/publikationen">Publikationen</a>
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/publikationen">Publikationen</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/gallia-pontifica-online/kontakt">Kontakt</a>
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/kontakt">Kontakt</nuxt-link>
                 </li>
               </ul>
             </div>
