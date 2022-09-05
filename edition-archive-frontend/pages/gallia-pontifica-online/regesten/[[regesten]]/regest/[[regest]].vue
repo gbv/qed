@@ -85,8 +85,7 @@
     </template>
 
     <template #menu>
-      <GalliaPontificaOnlineReimsMenu v-if="$route.params.regesten == 'reims'" />
-      <GalliaPontificaOnlineGenfMenu v-else />
+      <GalliaPontificaOnlineMenu />
     </template>
 
   </GalliaPontificaOnlineLayout>

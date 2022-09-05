@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="row" v-if="'menu' in $slots">
+    <div class="row" v-if="$route.params.regesten == 'reims' || $route.params.regesten == 'genf'">
       <div class="col-12 mb-5">
         <h2>
           <span v-if="$route.params.regesten == 'reims'">Reims I: Erzbischöfe</span>
