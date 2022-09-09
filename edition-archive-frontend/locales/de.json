@@ -1,7 +1,7 @@
 {
   "home": "Home",
   "toProject": "Zum Projekt",
-  "startPage": "Startseite",
+  "startPage": "Vorbemerkungen",
   "explain": "Erklärung",
   "search": "Suche",
   "contact": "Kontakt",
@@ -47,5 +47,5 @@
   "error_404": "Seite konnte nicht gefunden werden.",
   "error": "Ein unbekannter Fehler ist aufgetreten.",
   "back": "Zurück",
-  "person_index": "Personen Index"
+  "person_index": "Personen"
 }

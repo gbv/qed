@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <div class="body-box">
+
     <header class="project-header">
       <div class="container-fluid project-header__logos g-0">
         <div class="row g-0">
@@ -17,7 +18,6 @@
           </div>
         </div>
       </div>
-
       <div class="container">
         <div class="row">
           <div class="col project-header__menu">
@@ -37,15 +37,15 @@
           </div>
         </div>
       </div>
-
     </header>
+
     <section class="project-content content-intro">
       <div class="container">
         <slot/>
       </div>
     </section>
-    <footer class="project-footer">
 
+    <footer class="project-footer">
       <section class="project-footer__menu">
         <div class="container">
           <div class="row">
@@ -66,9 +66,6 @@
                     <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
                   </li>
                   <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/kontakt">Kontakt</nuxt-link>
-                  </li>
-                  <li class="nav-item">
                     <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit
                     </nuxt-link>
                   </li>
@@ -78,7 +75,6 @@
           </div>
         </div>
       </section>
-
       <section class="project-footer__credits">
         <div class="container">
           <div class="row">
@@ -94,8 +90,10 @@
         </div>
       </section>
     </footer>
-  </section>
+
+  </div>
 </template>
+
 <script setup>
 
 </script>
