@@ -9,8 +9,7 @@
 
             <section class="heading mt-5">
               <h2>{{ flattenElement(findFirstElement(data, byName("cei:idno"))) }}</h2>
-              <template v-for="(issuedContent, index) in findFirstElement(data, byName('cei:issued')).content">
-
+              <template v-for="(issuedContent, index) in filterElement(findFirstElement(data, byName('cei:issued')).content)">
                 <template v-if="issuedContent.name==='cei:placeName'">
                   {{ flattenElement(issuedContent) }}
                 </template>
@@ -31,7 +30,7 @@
                 <template v-else-if="abstractContent.name === 'cei:issuer'">
                   <template v-for="issuerContent in flattenElementExcept(abstract, byName('cei:persName'))">
                     <template v-if="typeof issuerContent === 'string'">
-                      {{ flattenElement(issuerContent) }}
+                      {{ issuerContent }}
                     </template>
                     <template v-else>
                       <!-- is a persName -->
@@ -93,12 +92,13 @@
 
 <script setup lang="ts">
   import BrowseComponent from "~/components/BrowseBar.vue";
-
-  const route = useRoute()
-  const config = useRuntimeConfig()
   import {createError} from 'h3'
   import {
     XMLApi,
+
+  } from "~/api/XMLApi";
+
+  import {
     findFirstElement,
     findElement,
     byName,
@@ -106,10 +106,16 @@
     or,
     byAttr,
     flattenElement,
-    flattenElementExcept
-  } from "~/api/XMLApi";
+    flattenElementExcept,
+    filterElement,
+    XElement
+  } from "@mycore-org/xml-json-api";
 
-  const regestedIdno = route.params.regest;
+  const route = useRoute()
+  const config = useRuntimeConfig()
+
+
+  const regestedIdno: string = typeof route.params.regest == "string" ? route.params.regest : route.params.regest[0];
 
   const {$solrURL, $backendURL} = useNuxtApp();
 
@@ -121,7 +127,7 @@
     }
     const regestString = json.response.docs[0]['regest.xml'];
     const doc = await XMLApi(regestString);
-    return doc;
+    return doc as XElement;
   });
 
   const {data: browseData} = await useAsyncData(`idno-count-follow:${regestedIdno}`, async () => {

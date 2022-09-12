@@ -11,30 +11,17 @@
     </template>
 
     <template #menu>
-      <GalliaPontificaOnlineMenu />
+      <GalliaPontificaOnlineMenu/>
     </template>
 
   </GalliaPontificaOnlineLayout>
 </template>
 
-<script>
-  export default {}
-  </script>
-  <script setup>
-  const route = useRoute()
-  const config = useRuntimeConfig()
-  import {createError} from 'h3'
-  import {
-    XMLApi,
-    findFirstElement,
-    findElement,
-    byName,
-    and,
-    or,
-    byAttr,
-    flattenElement,
-    flattenElementExcept
-  } from "~/api/XMLApi";
+
+<script lang="ts" setup>
+const route = useRoute()
+const config = useRuntimeConfig()
+
   const {$solrURL, $backendURL} = useNuxtApp();
   const {data, error} = await useAsyncData(`objectType:person`, async () => {
     const request = await fetch(`${$solrURL()}main/select/?q=objectType:person&wt=json&rows=99999`)

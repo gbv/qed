@@ -23,6 +23,10 @@ export default defineNuxtConfig({
             solrURL: 'http://localhost:8000/solr/',
             solrURLServer: 'http://solr:8983/solr/'
         }
+    },
+    typescript: {
+        /* strict: true, */
+        typeCheck: true
     }
 
 })
