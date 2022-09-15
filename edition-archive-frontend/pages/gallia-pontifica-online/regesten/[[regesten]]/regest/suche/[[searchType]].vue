@@ -71,9 +71,9 @@
 import {useI18n} from 'vue-i18n';
 import {createError} from "h3";
 import {XMLApi} from "~/api/XMLApi";
-import {findFirstElement, flattenElement, byName} from "@mycore-org/xml-json-api"
+import {byName, findFirstElement, flattenElement} from "@mycore-org/xml-json-api"
 import SolrPaginator from "~/components/SolrPaginator.vue";
-import {LocationQuery, LocationQueryValue, RouteLocationNormalizedLoaded} from "vue-router";
+import {LocationQuery, LocationQueryValue} from "vue-router";
 
 const i18n = useI18n();
 const route = useRoute();
@@ -93,6 +93,7 @@ interface Model {
   count: number,
   start: number,
   personObj: string | null,
+  ortObj: string | null,
   searchString: string | null,
   extendedSearch: ExtendedSearchModel,
   currentTab: string
@@ -120,6 +121,7 @@ const model: Model = reactive(
     count: 0,
     start: 0,
     personObj: null,
+    ortObj: null,
     searchString: null,
     extendedSearch: {
       allMeta: null,
@@ -234,23 +236,30 @@ async function triggerSearch(query: LocationQuery) {
           q.push(`issued.text:${dateTextEscapted}`);
         }
 
-        let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
+      let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
+      await executeSearch(url, query);
+      break;
+    case "person":
+      if (query.personObj) {
+        model.personObj = queryToString(query.personObj);
+        let url = `${$solrURL()}main/select/?q=person.obj:${model.personObj} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
-        break;
-      case "person":
-        if (query.personObj) {
-          model.personObj = queryToString(query.personObj);
-          let url = `${$solrURL()}main/select/?q=${model.personObj} AND objectType:regest AND objectProject:gpo&wt=json`;
-          await executeSearch(url, query);
-        }
-        break;
-      default:
-        throwError(
-          createError({
-            statusCode: 404,
-            statusMessage: 'Not Found',
-          })
-        );
+      }
+      break;
+    case "ort":
+      if (query.ortObj) {
+        model.ortObj = queryToString(query.ortObj);
+        let url = `${$solrURL()}main/select/?q=place.obj:${model.ortObj} AND objectType:regest AND objectProject:gpo&wt=json`;
+        await executeSearch(url, query);
+      }
+      break;
+    default:
+      throwError(
+        createError({
+          statusCode: 404,
+          statusMessage: 'Not Found',
+        })
+      );
   }
 }
 

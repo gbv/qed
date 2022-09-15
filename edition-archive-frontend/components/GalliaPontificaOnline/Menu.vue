@@ -48,8 +48,8 @@
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="#">
-                Orte
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/orte/">
+                {{ $t('place_index') }}
               </nuxt-link>
             </li>
           </ul>

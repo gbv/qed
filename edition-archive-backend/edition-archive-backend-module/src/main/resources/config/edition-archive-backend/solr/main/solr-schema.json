@@ -51,14 +51,16 @@
     "add-field": {
       "name": "person",
       "type": "text_general",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
     "add-field": {
       "name": "person.obj",
       "type": "string",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
@@ -70,8 +72,22 @@
   },
   {
     "add-field": {
+      "name": "pontifikatPP.obj",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
       "name": "pontifikatAEP",
       "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "pontifikatAEP.obj",
+      "type": "string",
       "stored": true
     }
   },
@@ -108,6 +124,29 @@
       "name": "issuedPlace",
       "type": "text_general",
       "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuedPlace.obj",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "place",
+      "type": "text_general",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "place.obj",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
     }
   },
   {
