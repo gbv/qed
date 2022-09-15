@@ -3,7 +3,7 @@
 
     <template #content>
       <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
-        <div class="col-12">
+        <div class="col-12" v-if="tabData">
           <!-- Search Form -->
           <TabsCard :tabs="tabData" card-class="text-center" :current="model.currentTab"
                     v-on:tabChanged="tabChanged">
@@ -68,90 +68,121 @@
 </template>
 
 <script setup lang="ts">
-  import {useI18n} from 'vue-i18n';
-  import {createError} from "h3";
-  import {XMLApi, findFirstElement, flattenElement, byName} from "~/api/XMLApi";
-  import SolrPaginator from "~/components/SolrPaginator.vue";
+import {useI18n} from 'vue-i18n';
+import {createError} from "h3";
+import {XMLApi} from "~/api/XMLApi";
+import {byName, findFirstElement, flattenElement} from "@mycore-org/xml-json-api"
+import SolrPaginator from "~/components/SolrPaginator.vue";
+import {LocationQuery, LocationQueryValue} from "vue-router";
 
-  const i18n = useI18n();
-  const BASIC_SEARCH_TYPE = "einfach";
-  const EXTENDED_SEARCH_TYPE = "erweitert";
+const i18n = useI18n();
+const route = useRoute();
 
-  const tabData = ref([
-    {id: BASIC_SEARCH_TYPE, title: i18n.t('search_basic')},
-    {id: EXTENDED_SEARCH_TYPE, title: i18n.t('search_extended')}
-  ]);
-  const {$solrURL, $backendURL} = useNuxtApp();
-  const solrURL = $solrURL();
-  const route = useRoute();
+const BASIC_SEARCH_TYPE = "einfach";
+const EXTENDED_SEARCH_TYPE = "erweitert";
 
-  const model = reactive(
-      {
-        searchResult: undefined,
-        count: 0,
-        start: 0,
-        personObj: null,
-        searchString: null,
-        extendedSearch: {
-          allMeta: null,
-          person: null,
-          place: null,
-          initium: null,
-          issuer: null,
-          recipient: null,
-          lost: null,
-          fake: null,
-          certainly: null,
-          dateRangeFrom: null,
-          dateRangeTo: null,
-          dateRangeRange: false,
-          dateText: null
-        },
-        currentTab: route.params.searchType || BASIC_SEARCH_TYPE
-      });
+const tabData = ref([
+  {id: BASIC_SEARCH_TYPE, title: i18n.t('search_basic')},
+  {id: EXTENDED_SEARCH_TYPE, title: i18n.t('search_extended')}
+]);
+const {$solrURL, $backendURL} = useNuxtApp();
+const solrURL = $solrURL();
 
-  const escapeSpecialChars = (s) => s
-      .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
-        return '\\' + match;
-      })
-      .replace(/&&/g, '\\&\\&')
-      .replace(/\|\|/g, '\\|\\|');
+interface Model {
+  searchResult: any,
+  count: number,
+  start: number,
+  personObj: string | null,
+  ortObj: string | null,
+  searchString: string | null,
+  extendedSearch: ExtendedSearchModel,
+  currentTab: string
+}
 
-  async function executeSearch(url, query) {
-    if (query.start) {
-      url += "&start=" + query.start;
-    }
-    const request = await fetch(url)
-    const searchResult = await request.json();
-    model.searchResult = searchResult;
-    for (const doc of model.searchResult.response.docs) {
-      const xmlCode = doc["regest.xml"];
-      doc["regest.json"] = await XMLApi(xmlCode);
-    }
+interface ExtendedSearchModel {
+  allMeta: string | null,
+  person: string | null,
+  place: string | null,
+  initium: string | null,
+  recipient: string | null,
+  lost: boolean | null,
+  fake: boolean | null,
+  certainly: boolean | null,
+  dateRangeFrom: string | null,
+  dateRangeTo: string | null,
+  dateRangeRange: boolean | null,
+  dateText: string | null,
+  issuer: string | null
+}
+
+const model: Model = reactive(
+  {
+    searchResult: undefined,
+    count: 0,
+    start: 0,
+    personObj: null,
+    ortObj: null,
+    searchString: null,
+    extendedSearch: {
+      allMeta: null,
+      person: null,
+      place: null,
+      initium: null,
+      issuer: null,
+      recipient: null,
+      lost: null,
+      fake: null,
+      certainly: null,
+      dateRangeFrom: null,
+      dateRangeTo: null,
+      dateRangeRange: false,
+      dateText: null
+    },
+    currentTab: queryToString(route?.params.searchType) || BASIC_SEARCH_TYPE
+  });
+
+const escapeSpecialChars = (s: string) => s
+  .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
+    return '\\' + match;
+  })
+  .replace(/&&/g, '\\&\\&')
+  .replace(/\|\|/g, '\\|\\|');
+
+async function executeSearch(url: string, query: LocationQuery) {
+  if (query.start) {
+    url += "&start=" + query.start;
+  }
+  const request = await fetch(url)
+  const searchResult = await request.json();
+  model.searchResult = searchResult;
+  for (const doc of model.searchResult.response.docs) {
+    const xmlCode = doc["regest.xml"];
+    doc["regest.json"] = await XMLApi(xmlCode);
+  }
     model.count = searchResult.response.numFound;
     model.start = searchResult.response.start;
   }
 
-  async function triggerSearch(query) {
-    switch (route.params.searchType) {
-      case "":
-        break;
-      case BASIC_SEARCH_TYPE:
-        if (query.searchString) {
-          model.searchString = query.searchString;
-          model.currentTab = BASIC_SEARCH_TYPE;
-          let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(query.searchString)} AND objectType:regest AND objectProject:gpo&wt=json`;
+async function triggerSearch(query: LocationQuery) {
+  switch (route.params.searchType) {
+    case "":
+      break;
+    case BASIC_SEARCH_TYPE:
+      if (query.searchString) {
+        model.searchString = queryToString(query.searchString) || "";
+        model.currentTab = BASIC_SEARCH_TYPE;
+        let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(model.searchString)} AND objectType:regest AND objectProject:gpo&wt=json`;
 
-          await executeSearch(url, query);
-        }
-        break;
-      case EXTENDED_SEARCH_TYPE:
-        model.currentTab = EXTENDED_SEARCH_TYPE;
-        for (const key in model.extendedSearch) {
-          if (key in query) {
-            model.extendedSearch[key] = query[key];
-          } else {
-            model.extendedSearch[key] = null;
+        await executeSearch(url, query);
+      }
+      break;
+    case EXTENDED_SEARCH_TYPE:
+      model.currentTab = EXTENDED_SEARCH_TYPE;
+      for (const key in model.extendedSearch) {
+        if (key in query) {
+          (model.extendedSearch as any)[key] = query[key];
+        } else {
+          (model.extendedSearch as any)[key] = null;
           }
         }
 
@@ -205,72 +236,91 @@
           q.push(`issued.text:${dateTextEscapted}`);
         }
 
-        let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
+      let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
+      await executeSearch(url, query);
+      break;
+    case "person":
+      if (query.personObj) {
+        model.personObj = queryToString(query.personObj);
+        let url = `${$solrURL()}main/select/?q=person.obj:${model.personObj} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
-        break;
-      case "person":
-        if (query.personObj) {
-          model.personObj = query.personObj;
-          let url = `${$solrURL()}main/select/?q=${model.personObj} AND objectType:regest AND objectProject:gpo&wt=json`;
-          await executeSearch(url, query);
-        }
-        break;
-      default:
-        throwError(
-            createError({
-              statusCode: 404,
-              statusMessage: 'Not Found',
-            })
-        );
+      }
+      break;
+    case "ort":
+      if (query.ortObj) {
+        model.ortObj = queryToString(query.ortObj);
+        let url = `${$solrURL()}main/select/?q=place.obj:${model.ortObj} AND objectType:regest AND objectProject:gpo&wt=json`;
+        await executeSearch(url, query);
+      }
+      break;
+    default:
+      throwError(
+        createError({
+          statusCode: 404,
+          statusMessage: 'Not Found',
+        })
+      );
+  }
+}
+
+console.log(route.query)
+await triggerSearch(route.query);
+
+function queryToString(param: LocationQueryValue[] | string): string | null {
+  if (param == null) {
+    return null;
+  }
+  return typeof param == "string" ? param : param[0]
+}
+
+const tabChanged = (obj: any) => {
+  const {old, _new} = obj;
+}
+
+const basicSearchCallback = async (searchParameters: any) => {
+  navigateTo({
+    path: "./" + BASIC_SEARCH_TYPE,
+    query: {
+      searchString: searchParameters.searchString
     }
-  }
+  })
+}
 
-  await triggerSearch(route.query);
-
-  const tabChanged = (obj) => {
-    const {old, _new} = obj;
-  }
-
-  const basicSearchCallback = async (searchParameters) => {
-    navigateTo({
-      path: "./" + BASIC_SEARCH_TYPE,
-      query: {
-        searchString: searchParameters.searchString
-      }
-    })
-  }
-
-  const extendedSearchCallback = async (searchParameters) => {
-    navigateTo({
-      path: "./" + EXTENDED_SEARCH_TYPE,
-      query: {
-        ...searchParameters
-      }
-    })
-  }
-
-  const pageChangedCallback = async (newPage) => {
-    navigateTo({
-      path: "./" + model.currentTab,
-      query: {
-        ...route.query,
-        start: (newPage - 1) * 20
-      }
-    });
-  }
-
-  const trimString = (str) => {
-    const size = 240;
-
-    if (str.length > size) {
-      return str.substring(0, str.indexOf(' ', size)) + "…";
-    } else {
-      return str;
+async function extendedSearchCallback (searchParameters: any) {
+  navigateTo({
+    path: "./" + EXTENDED_SEARCH_TYPE,
+    query: {
+      ...searchParameters
     }
-  }
-  watch(() => route.query, async (newQueryString, old) => {
-    triggerSearch(newQueryString);
+  })
+}
+
+async function pageChangedCallback(newPage: any) {
+  navigateTo({
+    path: "./" + model.currentTab,
+    query: {
+      ...route.query,
+      start: (newPage - 1) * 20
+    }
   });
+}
+
+function trimString(str: string|null): string | null{
+  if(str == null) {
+    return null;
+  }
+  const size = 240;
+
+  if (str.length > size) {
+    return str.substring(0, str.indexOf(' ', size)) + "…";
+  } else {
+    return str;
+  }
+}
+
+watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
+  triggerSearch(newQueryString);
+});
 
 </script>
 

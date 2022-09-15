@@ -1,8 +1,13 @@
-package de.gbv.metadata;
+package de.gbv.metadata.model;
+
+import de.gbv.metadata.IdentifierType;
+import de.gbv.metadata.solr.Person2Solr;
+import de.gbv.metadata.solr.SolrConverter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SolrConverter(converter = Person2Solr.class)
 public class Person {
 
 

@@ -1,6 +1,6 @@
 {
   "home": "Home",
-  "toProject": "Zum Projekt",
+  "to_project": "Zum Projekt",
   "startPage": "Vorbemerkungen",
   "explain": "Erklärung",
   "search": "Suche",
@@ -42,10 +42,14 @@
   "regest_pontifikatPP": "PontifikatPP",
   "regest_pontifikatAEP": "PontifikatAEP",
   "regest_ueberlieferung": "Überlieferung",
+  "regest_ueberlieferungen": "Überlieferungen",
   "regest_sachkommentar": "Sachkommentar",
+  "regest_editionen": "Editionen",
+  "regest_regests": "Regesten",
   "browse_current_of": "{current} von {of}",
   "error_404": "Seite konnte nicht gefunden werden.",
   "error": "Ein unbekannter Fehler ist aufgetreten.",
   "back": "Zurück",
-  "person_index": "Personen"
+  "person_index": "Personen",
+  "place_index": "Orte",
 }

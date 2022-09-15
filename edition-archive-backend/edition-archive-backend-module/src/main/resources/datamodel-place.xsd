@@ -37,7 +37,7 @@
       <xs:any/>
       <xs:attributeGroup ref="MCRMetaXML"/>
       <xs:attributeGroup ref="notInherited"/>
-      <xs:attribute name="class" use="required" type="xs:NCName" fixed="de.gbv.metadata.model.Person"/>
+      <xs:attribute name="class" use="required" type="xs:NCName" fixed="de.gbv.metadata.model.Place"/>
       <xs:attribute name="type" type="xs:string"/>
     </xs:complexType>
   </xs:element>

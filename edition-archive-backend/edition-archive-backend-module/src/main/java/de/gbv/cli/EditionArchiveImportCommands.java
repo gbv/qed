@@ -1,9 +1,11 @@
 package de.gbv.cli;
 
 import de.gbv.metadata.CEIImporter;
-import de.gbv.metadata.Person;
-import de.gbv.metadata.PersonLink;
-import de.gbv.metadata.Regest;
+import de.gbv.metadata.model.Person;
+import de.gbv.metadata.model.PersonLink;
+import de.gbv.metadata.model.Place;
+import de.gbv.metadata.model.PlaceLink;
+import de.gbv.metadata.model.Regest;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -64,8 +66,22 @@ public class EditionArchiveImportCommands {
             }
         }
 
+      HashMap<Place, List<PlaceLink>> placeLinksHashMap = ceiImporter.getPlaceLinksHashMap();
+      for (Place place : ceiImporter.getPlaces()) {
+        MCRObject personObject = new MCRObject();
+        MCRObjectID personMyCoReId = MCRObjectID.getNextFreeId("gpo", "place");
+        personObject.setId(personMyCoReId);
+        personObject.setSchema("datamodel-place.xsd");
 
-        for (Regest regest : ceiImporter.getRegests()) {
+        Element metadata = createMetadata(place, Place.class.getName(), "place");
+        personObject.getMetadata().setFromDOM(metadata);
+        MCRMetadataManager.create(personObject);
+        for (PlaceLink link : placeLinksHashMap.get(place)) {
+          link.setMycoreId(personMyCoReId.toString());
+        }
+      }
+
+      for (Regest regest : ceiImporter.getRegests()) {
             MCRObject object = new MCRObject();
             object.setId(MCRObjectID.getNextFreeId("gpo", "regest"));
             object.setSchema("datamodel-regest.xsd");

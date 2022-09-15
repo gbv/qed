@@ -19,12 +19,22 @@
 
 <script setup lang="ts">
 const props = defineProps(['tabs', 'current', 'cardClass']);
+
+interface Tab {
+  id: string;
+  title?: string;
+  noTitle?: boolean
+}
+
 const emit = defineEmits(['tabChanged']);
-const model = reactive({currentTab: props.tabs.filter(tab => tab.id === props.current)[0]})
+console.log(props)
+const model = reactive({
+  currentTab: props.tabs.filter(tab => tab.id === props.current)[0]
+});
 
 watch(() => props.current, (newCurrent) => model.currentTab = props.tabs.filter(tab => tab.id === newCurrent)[0]);
 
-function changeToTab(tab) {
+function changeToTab(tab: Tab) {
   const old = model.currentTab;
   model.currentTab = tab;
   emit('tabChanged', {old: old, _new: model.currentTab});

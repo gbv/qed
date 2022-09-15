@@ -1,12 +1,18 @@
-package de.gbv.metadata;
+package de.gbv.metadata.model;
+
+import de.gbv.metadata.Authenticity;
+import de.gbv.metadata.ClassificationMultivalue;
+import de.gbv.metadata.DateRangeText;
+import de.gbv.metadata.solr.Regest2Solr;
+import de.gbv.metadata.solr.SolrConverter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SolrConverter(converter = Regest2Solr.class)
 public class Regest {
 
     public static final String TAG_NAME = "regest";
-
     private String idno;
 
     private ClassificationMultivalue deliveryForm;
@@ -14,7 +20,7 @@ public class Regest {
     private DateRangeText issued;
 
     // Ausstellungsort
-    private String issuedPlace;
+    private PlaceLink issuedPlace;
 
     //Aussteller
     private PersonLink issuer;
@@ -28,11 +34,12 @@ public class Regest {
 
     private String initium;
 
-    private String pontifikatPP;
+    private PersonLink pontifikatPP;
 
-    private String pontifikatAEP;
+    private PersonLink pontifikatAEP;
+  private List<PlaceLink> bodyPlaces = new ArrayList<>();
 
-    public String getIdno() {
+  public String getIdno() {
         return idno;
     }
 
@@ -56,11 +63,11 @@ public class Regest {
         this.recipient = recipient;
     }
 
-    public String getIssuedPlace() {
+    public PlaceLink getIssuedPlace() {
         return issuedPlace;
     }
 
-    public void setIssuedPlace(String issuedPlace) {
+    public void setIssuedPlace(PlaceLink issuedPlace) {
         this.issuedPlace = issuedPlace;
     }
     public String getInitium() {
@@ -87,19 +94,19 @@ public class Regest {
         this.deliveryForm = deliveryForm;
     }
 
-    public String getPontifikatPP() {
+    public PersonLink getPontifikatPP() {
         return pontifikatPP;
     }
 
-    public void setPontifikatPP(String pontifikatPP) {
+    public void setPontifikatPP(PersonLink pontifikatPP) {
         this.pontifikatPP = pontifikatPP;
     }
 
-    public String getPontifikatAEP() {
+    public PersonLink getPontifikatAEP() {
         return pontifikatAEP;
     }
 
-    public void setPontifikatAEP(String pontifikatAEP) {
+    public void setPontifikatAEP(PersonLink pontifikatAEP) {
         this.pontifikatAEP = pontifikatAEP;
     }
 
@@ -115,6 +122,10 @@ public class Regest {
     public List<PersonLink> getBodyPersons() {
         return bodyPersons;
     }
+
+  public List<PlaceLink> getBodyPlaces() {
+    return bodyPlaces;
+  }
 
     public void setBodyPersons(List<PersonLink> bodyPersons) {
         this.bodyPersons = bodyPersons;

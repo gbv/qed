@@ -1,4 +1,4 @@
-package de.gbv.metadata;
+package de.gbv.metadata.model;
 
 public class PersonLink {
 
@@ -24,4 +24,12 @@ public class PersonLink {
     public void setMycoreId(String mycoreId) {
         this.mycoreId = mycoreId;
     }
+
+  @Override
+  public String toString() {
+    return "PersonLink{" +
+      "label='" + label + '\'' +
+      ", mycoreId='" + mycoreId + '\'' +
+      '}';
+  }
 }

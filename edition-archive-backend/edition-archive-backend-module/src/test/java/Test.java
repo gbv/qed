@@ -14,17 +14,18 @@ public class Test extends MCRTestCase {
 
     @org.junit.Test
     public void testTest() throws IOException, JDOMException {
-        CEIImporter ceiImporter = new CEIImporter(Paths.get("../../import/2022-08-18_regesten_gesamt_red_v-09-formatted.xml"));
+        CEIImporter ceiImporter = new CEIImporter(Paths.get("../../import/formatted-2022-09-08_regesten_gesamt_red_vi-02.xml"));
         XMLOutputter xmlOutputter = new XMLOutputter();
         ceiImporter.runImport();
         ceiImporter.getPersons().forEach(LOGGER::info);
+        ceiImporter.getPlaces().forEach(LOGGER::info);
     }
 
     @Override
     protected Map<String, String> getTestProperties() {
         Map<String, String> testProperties = super.getTestProperties();
 
-        testProperties.put("MCR.Metadata.JSON.Type.AllowedClasses","de.gbv.metadata.Regest");
+        testProperties.put("MCR.Metadata.JSON.Type.AllowedClasses","de.gbv.metadata.model.Regest");
 
         return testProperties;
     }

@@ -32,6 +32,7 @@
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/suche">Suche</nuxt-link>
                 </li>
+                <LanguageSelector />
               </ul>
             </nav>
           </div>
