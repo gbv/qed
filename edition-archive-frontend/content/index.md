@@ -32,8 +32,9 @@
     #de
     Die »Gallia Pontificia« ist das Langzeitprojekt des DHI Paris.
     Sie wird zusammen mit der École nationale des chartes bearbeitet.
-    Ziel ist die kritische Edition aller Papsturkunden bis
-    zum Pontifikatsbeginn Innocenz’ III. (1198–1216)
+    Ihr Ziel ist es, sämtliche früh- und hochmittelalterlichen Papsturkunden,
+    die für französische Empfänger ausgestellt wurden, zu erfassen und kritisch
+    zu edieren.
     ::::
   :::
 ::
