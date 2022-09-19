@@ -1,9 +1,9 @@
 <template>
-  <template v-if="$route.params.regesten == 'reims'">
+  <template v-if="$route.params.regesten == 'reims1'">
         <nav class="navbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/">
                 {{ $t('startPage') }}
               </nuxt-link>
             </li>
@@ -18,7 +18,7 @@
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/suche/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/suche/">
                 {{ $t('search') }}
               </nuxt-link>
             </li>
@@ -43,12 +43,12 @@
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/personen/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/personen/">
                 {{ $t('person_index') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/orte/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/orte/">
                 {{ $t('place_index') }}
               </nuxt-link>
             </li>
@@ -56,11 +56,11 @@
         </nav>
   </template>
 
-  <template v-else-if="$route.params.regesten == 'genf'">
+  <template v-else-if="$route.params.regesten == 'genf1'">
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf/">
+          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">
             {{ $t('startPage') }}
           </nuxt-link>
         </li>
@@ -75,7 +75,7 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf/regest/suche/">
+          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/regest/suche/">
             {{ $t('search') }}
           </nuxt-link>
         </li>
@@ -100,7 +100,7 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf/regest/personen/">
+          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/regest/personen/">
             {{ $t('person_index') }}
           </nuxt-link>
         </li>

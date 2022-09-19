@@ -22,8 +22,8 @@
                     Regesten
                   </nuxt-link>
                   <ul class="dropdown-menu">
-                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/reims/">Reims I: Erzbischöfe</nuxt-link></li>
-                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/genf/">Genf I: Bischöfe</nuxt-link></li>
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/reims1/">Reims I: Erzbischöfe</nuxt-link></li>
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">Genf I: Bischöfe</nuxt-link></li>
                   </ul>
                 </li>
                 <li class="nav-item">
@@ -42,11 +42,11 @@
       </div>
     </div>
 
-    <div class="row" v-if="$route.params.regesten == 'reims' || $route.params.regesten == 'genf'">
+    <div class="row" v-if="$route.params.regesten == 'reims1' || $route.params.regesten == 'genf1'">
       <div class="col-12 mb-5">
         <h2>
-          <span v-if="$route.params.regesten == 'reims'">Reims I: Erzbischöfe</span>
-          <span v-else-if="$route.params.regesten == 'genf'">Genf I: Bischöfe</span>
+          <span v-if="$route.params.regesten == 'reims1'">Reims I: Erzbischöfe</span>
+          <span v-else-if="$route.params.regesten == 'genf1'">Genf I: Bischöfe</span>
           <span v-else>Subpage</span>
         </h2>
       </div>
