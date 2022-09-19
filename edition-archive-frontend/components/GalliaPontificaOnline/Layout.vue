@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col">
-        <h2 class="mb-1 px-1">Gallia Pontificia Online</h2>
+        <h2 class="mb-1 px-1">Gallia Pontificia online</h2>
       </div>
     </div>
     <div class="row">

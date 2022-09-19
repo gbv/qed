@@ -25,7 +25,7 @@
   :::ContentCard
   ---
   img-href: /images/card-back-lettre-pape.png
-  card-title: Gallia Pontificia Online
+  card-title: Gallia Pontificia online
   link: gallia-pontifica-online/
   ---
     ::::LanguageSection{fallback=de}

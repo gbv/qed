@@ -16,7 +16,7 @@
         <title>Test</title>
       </head>
       <body>
-        <h1>Gallia Pontificia Online</h1>
+        <h1>Gallia Pontificia online</h1>
         <xsl:apply-templates/>
       </body>
     </html>
