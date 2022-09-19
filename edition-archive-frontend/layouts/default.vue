@@ -21,8 +21,8 @@
       <div class="container">
         <div class="row">
           <div class="col project-header__menu">
-            <nav class="navbar navbar-expand-lg">
-              <ul class="navbar-nav">
+            <nav class="navbar navbar-expand-lg w-100">
+              <ul class="navbar-nav w-100">
                 <li class="nav-item">
                   <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
                 </li>
