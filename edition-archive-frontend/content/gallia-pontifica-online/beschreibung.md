@@ -1,6 +1,6 @@
 ::::LanguageSection{fallback=de changer=true}
 #de
-  ## Zum Projekt
+  ## Das Projekt
   Die »Gallia Pontificia« ist das einzige Langzeitprojekt des
   DHIP; sie wird zusammen mit der École nationale des chartes
   bearbeitet. Ziel ist die kritische Edition aller Papsturkunden
@@ -8,7 +8,7 @@
 #en
   ## The project
   The »Gallia Pontificia« is the only long term project of the DHIP;
-  its edited together with the École nationale des chartes. The goal 
+  its edited together with the École nationale des chartes. The goal
   is the critical edition of all papal charters up to the beginning of
   Innocenz’ III. pontificate (1198-1216).
 #fr

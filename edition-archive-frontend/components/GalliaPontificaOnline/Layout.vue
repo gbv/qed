@@ -15,25 +15,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" aria-current="page" href="/gallia-pontifica-online/">Zum Projekt</nuxt-link>
+                  <nuxt-link class="nav-link" aria-current="page" href="/gallia-pontifica-online/">
+                    {{ $t('project') }}
+                  </nuxt-link>
                 </li>
                 <li class="nav-item dropdown">
                   <nuxt-link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Regesten
+                    {{ $t('regest') }}
                   </nuxt-link>
                   <ul class="dropdown-menu">
-                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/reims1/">Reims I: Erzbischöfe</nuxt-link></li>
-                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">Genf I: Bischöfe</nuxt-link></li>
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/reims1/">{{ $t('reims1') }}</nuxt-link></li>
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">{{ $t('genf1') }}</nuxt-link></li>
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/editionen">Editionen</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/editionen">{{ $t('editions') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/publikationen">Publikationen</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/publikationen">{{ $t('publications') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/kontakt">Kontakt</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/kontakt">{{ $t('contact') }}</nuxt-link>
                 </li>
               </ul>
             </div>
@@ -45,8 +47,8 @@
     <div class="row" v-if="$route.params.regesten == 'reims1' || $route.params.regesten == 'genf1'">
       <div class="col-12 mb-5">
         <h2>
-          <span v-if="$route.params.regesten == 'reims1'">Reims I: Erzbischöfe</span>
-          <span v-else-if="$route.params.regesten == 'genf1'">Genf I: Bischöfe</span>
+          <span v-if="$route.params.regesten == 'reims1'">{{ $t('reims1') }}</span>
+          <span v-else-if="$route.params.regesten == 'genf1'">{{ $t('genf1') }}</span>
           <span v-else>Subpage</span>
         </h2>
       </div>

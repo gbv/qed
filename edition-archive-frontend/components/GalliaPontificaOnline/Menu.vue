@@ -4,17 +4,17 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/">
-                {{ $t('startPage') }}
+                {{ $t('start_page') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Historische Einführung
+                {{ $t('intro') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Regesten
+                {{ $t('regests') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
@@ -24,22 +24,22 @@
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Incipits
+                {{ $t('incipits') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Handschriften
+                {{ $t('writings') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Dekretalen
+                {{ $t('decretals') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Quellen- und Literatur
+                {{ $t('sources') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
@@ -61,17 +61,17 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">
-            {{ $t('startPage') }}
+            {{ $t('start_page') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Historische Einführung
+            {{ $t('intro') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Regesten
+            {{ $t('regests') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
@@ -81,22 +81,22 @@
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Incipits
+            {{ $t('incipits') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Handschriften
+            {{ $t('writings') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Dekretalen
+            {{ $t('decretals') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Quellen- und Literatur
+            {{ $t('sources') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
@@ -106,7 +106,7 @@
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="#">
-            Orte
+            {{ $t('place_index') }}
           </nuxt-link>
         </li>
       </ul>

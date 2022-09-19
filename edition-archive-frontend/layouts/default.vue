@@ -27,10 +27,10 @@
                   <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/ueber">About</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/suche">Suche</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('search') }}</nuxt-link>
                 </li>
                 <LanguageSelector />
               </ul>
