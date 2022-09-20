@@ -1,54 +1,54 @@
 <template>
-  <template v-if="$route.params.regesten == 'reims'">
+  <template v-if="$route.params.regesten == 'reims1'">
         <nav class="navbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/">
-                {{ $t('startPage') }}
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/">
+                {{ $t('start_page') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Historische Einführung
+                {{ $t('intro') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="#">
-                Regesten
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/1">
+                {{ $t('regests') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/suche/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/suche/">
                 {{ $t('search') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Incipits
+                {{ $t('incipits') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Handschriften
+                {{ $t('writings') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Dekretalen
+                {{ $t('decretals') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="#">
-                Quellen- und Literatur
+                {{ $t('sources') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/personen/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/personen/">
                 {{ $t('person_index') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims/regest/orte/">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/orte/">
                 {{ $t('place_index') }}
               </nuxt-link>
             </li>
@@ -56,57 +56,12 @@
         </nav>
   </template>
 
-  <template v-else-if="$route.params.regesten == 'genf'">
+  <template v-else-if="$route.params.regesten == 'genf1'">
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf/">
-            {{ $t('startPage') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Historische Einführung
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Regesten
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf/regest/suche/">
-            {{ $t('search') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Incipits
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Handschriften
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Dekretalen
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Quellen- und Literatur
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf/regest/personen/">
-            {{ $t('person_index') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            Orte
+          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">
+            {{ $t('start_page') }}
           </nuxt-link>
         </li>
       </ul>
