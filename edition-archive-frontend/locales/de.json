@@ -64,5 +64,6 @@
   "error": "Ein unbekannter Fehler ist aufgetreten.",
   "back": "Zurück",
   "person_index": "Personen",
-  "place_index": "Orte"
+  "place_index": "Orte",
+  "cite": Zitierhinweis
 }

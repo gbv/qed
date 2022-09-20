@@ -9,7 +9,7 @@
   "regest": "Regestes",
   "reims1": "Reims I: Archévêques",
   "genf1": "Genève I: Évêques",
-  "editions": "Éditions Paris",
+  "editions": "Éditions",
   "publications": "Publications",
   "intro":"Notice historique",
   "regests":"Regestes",
@@ -18,5 +18,6 @@
   "decretals":"Décrétales",
   "sources":"Bibliographie générale",
   "person_index": "Index des noms de personnes",
-  "place_index": "Index des noms de lieux"
+  "place_index": "Index des noms de lieux",
+  "cite": indication pour la citation
 }

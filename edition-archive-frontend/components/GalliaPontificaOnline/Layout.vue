@@ -28,11 +28,19 @@
                     <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/regesten/genf1/">{{ $t('genf1') }}</nuxt-link></li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/editionen">{{ $t('editions') }}</nuxt-link>
+                <li class="nav-item dropdown">
+                  <nuxt-link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ $t('editions') }}
+                  </nuxt-link>
+                  <ul class="dropdown-menu">
+                    <li><nuxt-link class="dropdown-item" active-class="active" href="/gallia-pontifica-online/editions/paris">{{ $t('paris') }}</nuxt-link></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/publikationen">{{ $t('publications') }}</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/zitieren">{{ $t('cite') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/kontakt">{{ $t('contact') }}</nuxt-link>

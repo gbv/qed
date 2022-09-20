@@ -64,51 +64,6 @@
             {{ $t('start_page') }}
           </nuxt-link>
         </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('intro') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('regests') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/regest/suche/">
-            {{ $t('search') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('incipits') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('writings') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('decretals') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('sources') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/genf1/regest/personen/">
-            {{ $t('person_index') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="#">
-            {{ $t('place_index') }}
-          </nuxt-link>
-        </li>
       </ul>
     </nav>
   </template>
