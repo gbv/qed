@@ -2,39 +2,51 @@
   <div class="body-box">
 
     <header class="project-header">
-      <div class="container-fluid project-header__logos g-0">
-        <div class="row g-0">
-          <div class="col-auto project-header__parent">
-            <a href="https://perspectivia.net">
-              <img src="/images/perspectivia_logo_p.png" class="" alt="Logo Max-Weber-Stiftung">
-            </a>
-          </div>
-          <div class="col-auto project-header__project">
-            <h1>
-              <a href="/" title="Das Quellen- und Editionsportal der Max Weber Stiftung">
-                QED
-              </a>
-            </h1>
-          </div>
+      <div class="project-header__parent">
+        <a href="https://perspectivia.net">
+          <img src="/images/perspectivia_logo_p.png" class="" alt="Logo Max-Weber-Stiftung">
+        </a>
+      </div>
+      <div class="project-header__project">
+        <h1>
+          <a href="/" title="Das Quellen- und Editionsportal der Max Weber Stiftung">
+            qed.perspectivia.net
+          </a>
+        </h1>
+        <div class="beta-batch">
+          <span class="badge bg-danger">Beta</span>
         </div>
       </div>
       <div class="container">
         <div class="row">
           <div class="col project-header__menu">
-            <nav class="navbar navbar-expand-lg w-100">
-              <ul class="navbar-nav w-100">
-                <li class="nav-item">
-                  <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
-                </li>
-                <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about') }}</nuxt-link>
-                </li>
-                <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('search') }}</nuxt-link>
-                </li>
-                <LanguageSelector />
-              </ul>
+            <nav class="navbar navbar-dark navbar-expand-md w-100 justify-content-end">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#qed-main-menu"
+                aria-controls="qed-main-menu"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="qed-main-menu">
+                <ul class="navbar-nav w-100 justify-content-end">
+                  <li class="nav-item">
+                    <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
+                  </li>
+                  <li class="nav-item">
+                    <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('globalSearch') }}</nuxt-link>
+                  </li>
+                  <li class="nav-item">
+                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about') }}</nuxt-link>
+                  </li>
+                  <LanguageSelector />
+                </ul>
+              </div>
             </nav>
+
           </div>
         </div>
       </div>

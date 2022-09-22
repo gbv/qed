@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <ul class="nav-item dropdown ms-auto">
+    <li class="nav-item dropdown">
       <a id="languageDropdown" aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
          role="button">
         <LanguageDisplay :lang="$i18n.locale" />
@@ -10,7 +10,7 @@
         <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('en')"><LanguageDisplay lang="en" /></a></li>
         <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('fr')"><LanguageDisplay lang="fr" /></a></li>
       </ul>
-    </ul>
+    </li>
   </client-only>
   <ssr-only>
 

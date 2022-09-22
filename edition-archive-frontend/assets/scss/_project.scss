@@ -16,20 +16,15 @@
 
 // header
 .project-header {
-  background-color: $grayBasic;
+  background-color: $petrol;
   position: relative;
 
-  // parent and name
-  &__logos {
-    position: absolute;
-    height: 100%;
-    .row,
-    .col-auto {
-      height: 100%;
-    }
-  }
   // parent
   &__parent {
+    position: absolute;
+    left: 0;
+    height: 40px;
+    z-index:1000;
     a {
       display: block;
       height: 100%;
@@ -41,7 +36,10 @@
   }
   // name
   &__project {
-    height: 100%;
+    position: absolute;
+    left: 0;
+    height: 40px;
+    z-index:999;
     h1 {
       margin: 0;
       height: 100%;
@@ -52,12 +50,12 @@
       display: block;
       height: 100%;
       color: white;
-      padding: 0 1rem;
+      padding: 0 1rem 0 3rem;
       text-decoration: none;
       display: flex;
       align-items: center;
       &:hover {
-        color: $orange;
+        color: $petrol;
         background-color: white;
       }
     }
@@ -74,9 +72,23 @@
     .nav-link {
       color: white;
       &:hover {
-        color: $orange;
+        color: $petrol;
         background-color: white;
       }
+      &.active {
+        color: $petrol;
+        background-color: white;
+      }
+      &[id=languageDropdown] {
+        margin-left: 5rem;
+        &:hover {
+          color: white;
+          background-color: transparent;
+        }
+      }
+    }
+    .navbar-toggler {
+      margin: 10px 0;
     }
   }
 }
@@ -99,14 +111,20 @@
 // footer
 .project-footer {
   &__menu {
-    background-color: $grayLight;
+    background-color: $petrol;
     .project-copyright {
       height: 100%;
       display: flex;
       align-items: center;
       a {
-        color: $body-color;
+        color: white;
         text-decoration: none;
+      }
+    }
+    .nav-link {
+      color: white;
+      &:hover {
+        color: white;
       }
     }
   }
@@ -114,4 +132,68 @@
     background-color: $grayDark;
     padding: 1.25rem;
   }
+}
+
+.beta-batch {
+  position: absolute;
+  top: 0;
+  right: -2rem;
+  z-index: 1001;
+}
+
+
+// ==== media queries ====
+@include media-breakpoint-down(xxl) {
+  .project-header {
+    &__logos {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-down(xl) {
+}
+
+@include media-breakpoint-down(lg) {
+  .project-header {
+    &__menu {
+      .navbar-nav {
+        .nav-link {
+          &[id=languageDropdown] {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .project-header {
+    &__project,
+    &__parent {
+      height: 60px;
+    }
+    &__project a {
+      padding-left: 4rem;
+    }
+    &__menu {
+      .navbar-nav {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        .nav-link {
+          padding-left: 1rem;
+          &[id=languageDropdown] {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+  }
+  .beta-batch {
+    top: 10px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
 }
