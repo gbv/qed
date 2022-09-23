@@ -1,59 +1,466 @@
-## Historische Einführung [in Bearbeitung]
+## Historische Einführung <small class="text-muted">(in Bearbeitung)</small>
 
 ### Erzbischöfe
 
-Die schriftlichen Nachrichten über die Anfänge des Christentums in Reims reichen noch in das dritte Jahrhundert hinauf. Die älteste Version der Bischofsliste für Reims findet sich zwar zusammen mit Nachträgen erst in ms. 84 der Bibliothèque municipale in Boulogne-sur-Mer überliefert, einer Handschrift, die noch dem ausgehenden 11. Jahrhundert angehört. Sie stammt aus der ehemaligen Bibliothek des Domkapitels in Arras und enthält außer einer Bischofsliste für Arras-Cambrai auch die älteste Version der _Gesta Atrebatensium_ zur Gründung der Diözese Arras (Nikolaus II. oder Paschalis II.? 1093-1094) (Duchesne, Fastes épiscopaux III p. 76-88; Kéry, Errichtung p. 14-15). Jedoch dürfte eine solcheVersion der Bischofsliste für Reims 870 bereits Erzbischof Hincmar vorgelegen haben, als er gegen seinen gleichnamigen Neffen und Bischof von Laon polemisierte (Opusculum LV capitulorum XVI, Migne, PL CXXVI col. 334BD; ed. R. Schieffer, MGH, Streitschriften Hinkmars von Reims p. 99, 191). Gleiches gilt wohl auch für Almann oder Altmann von Hautvillers in seiner _Vita Nivardi_ (5, ed. Levison, MGH, SS rer. Merov. V p. 163; Pietri – Neiss, Reims p. 32).
+Die schriftlichen Nachrichten über die Anfänge des Christentums in
+Reims reichen noch in das dritte Jahrhundert hinauf. Die älteste
+Version der Bischofsliste für Reims findet sich zwar zusammen mit
+Nachträgen erst in ms. 84 der Bibliothèque municipale in
+Boulogne-sur-Mer überliefert, einer Handschrift, die noch dem
+ausgehenden 11. Jahrhundert angehört. Sie stammt aus der ehemaligen
+Bibliothek des Domkapitels in Arras und enthält außer einer
+Bischofsliste für Arras-Cambrai auch die älteste Version der *Gesta
+Atrebatensium* zur Gründung der Diözese Arras (Nikolaus II. oder
+Paschalis II.? 1093-1094) (Duchesne, Fastes épiscopaux III p. 76-88;
+Kéry, Errichtung p. 14-15). Jedoch dürfte eine solche Version der
+Bischofsliste für Reims 870 bereits Erzbischof Hincmar vorgelegen
+haben, als er gegen seinen gleichnamigen Neffen und Bischof von Laon
+polemisierte (Opusculum LV capitulorum XVI, Migne, PL CXXVI col.
+334BD; ed. R. Schieffer, MGH, Streitschriften Hinkmars von Reims p.
+99, 191). Gleiches gilt wohl auch für Almann oder Altmann von
+Hautvillers in seiner *Vita Nivardi* (5, ed. Levison, MGH, SS rer.
+Merov. V p. 163; Pietri -- Neiss, Reims p. 32).
 
-Die Bischofsliste beginnt mit Syxtus, dem zwei weitere im übrigen unbekannte Namen folgen, Sinicius und Amausius. Hincmar schreibt in seiner erwähnten Steitschrift gegen seinen gleichnamigen Neffen, den Bischof von Laon, die Entsendung des Syxtus gehe auf Papst Syxtus zurück. Damit dürfte Xystus II. (257-258) gemeint sein, zu dessen Zeit nach einer Mitteilung Gregors von Tours sieben Bischöfe zur Verkündung des Glaubens nach Gallien entsandt worden seien (Libri historiarum I 30, ed. Krusch – Levison, MGH SS rer. Merov. I/I p. 22-23; Gilliard, Apostolicity of Gallic Churches p. 33; Pietri – Neiss, Reims p. 33). Demnach könnte die Kirchengründung indirekt auf eine römische Initiative zurückgehen. Erst die _Acta sanctorum Sixti et Sinnicii_ (BHL 15, AA SS Septembr. I 125-127) und Flodoard lassen dagegen Sixtus auf Geheiß des hl. Petrus nach Reims entsandt werden (Hist. Rem. eccl. I 3, ed. Lejeune I p. 16; ed. Heller – Waitz, SS XXXIII p. 414; ed. Stratmann, MGH SS XXXVI p. 66; Sot, Flodoard p. 88) und insinuieren damit sogar eine Gründung in apostolischen Zeiten.
+Die Bischofsliste beginnt mit Syxtus, dem zwei weitere im übrigen
+unbekannte Namen folgen, Sinicius und Amausius. Hincmar schreibt in
+seiner erwähnten Steitschrift gegen seinen gleichnamigen Neffen, den
+Bischof von Laon, die Entsendung des Syxtus gehe auf Papst Syxtus
+zurück. Damit dürfte Xystus II. (257-258) gemeint sein, zu dessen Zeit
+nach einer Mitteilung Gregors von Tours sieben Bischöfe zur Verkündung
+des Glaubens nach Gallien entsandt worden seien (Libri historiarum I
+30, ed. Krusch -- Levison, MGH SS rer. Merov. I/I p. 22-23; Gilliard,
+Apostolicity of Gallic Churches p. 33; Pietri -- Neiss, Reims p. 33).
+Demnach könnte die Kirchengründung indirekt auf eine römische
+Initiative zurückgehen. Erst die *Acta sanctorum Sixti et Sinnicii*
+(BHL 15, AA SS Septembr. I 125-127) und Flodoard lassen dagegen Sixtus
+auf Geheiß des hl. Petrus nach Reims entsandt werden (Hist. Rem. eccl.
+I 3, ed. Lejeune I p. 16; ed. Heller -- Waitz, SS XXXIII p. 414; ed.
+Stratmann, MGH SS XXXVI p. 66; Sot, Flodoard p. 88) und insinuieren
+damit sogar eine Gründung in apostolischen Zeiten.
 
-Der erste historisch sicher bezeugte Bischof von Reims ist indes Imbetausus, der zusammen mit seinem Diakon Primigenius 314 am Konzil von Arles teilnahm (ed. Munier, Concilia Galliae a. 314-506, p. 4, 14, 16, 18, 20-21; Pietri – Neiss, Reims p. 33). Zwischen Imbetausus und Benadius, dem Vorgänger des Remigius im 5. Jahrhundert, dessen Testament Flodoard kennt, folgen neun weitere Namen, von denen sich allein mit dem Namen des Nicasius im Gedächtnis der Kirche von Reims bestimmte Vorgänge verbinden lassen. Flodoard dagegen beruft sich dabei auf eine _Passio Nicasii_, die aber sonst nirgendwo überliefert ist (cf. BHL 6075-6080). Ihr zufolge soll Nicasius das Martyrium während eines Vandaleneinfalls (407) erlitten haben. Der Ort des Martyriums soll die Kathedrale der Gottesmutter und Jungfrau Maria gewesen sein, die er mit seinem Blut geweiht habe. Die Nachricht verdient jedoch insofern Vorsicht, als ein Marienpatrozinium vor dem Konzil von Ephesus (453) bislang nicht nachzuweisen ist. Der Bischofssitz, so Flodoard, sei dagegen zuvor seit alters die Kirche _ad Apostolos_ gewesen, die nach dem Tod des Bischofs Sonnatius 626 Empfängerin eines Legates von Edelmetall zur Fertigung eines Kelchs wurde (Flodoard, Hist. Rem. eccl. II 5, ed. Lejeune I p. 259; ed. Heller – Waitz, MGH SS XIII p. 454; ed. Stratmann, MGH SS XXXVI p. 146) und im Testament des Bischofs Lando als _basilica Sancti Simphoriani que vocatur ad Apostolos_ erwähnt wird (ibid. II 6, ed. Lejeune I p. 263; ed. Heller – Waitz, MGH SS XIII p. 454; ed. Stratmann, MGH SS XXXVI p. 148). Sie wäre damit an der Stelle der späteren Stiftskirche Saint-Symphorien zu suchen, die bis 1796 ca. 150-200 m östlich der heutigen Kathedrale lag und an die heute nur noch ein Straßenname erinnert (Sot, Flodoard p. 372-373; Pietri – Neiss, Reims p. 36).
+Der erste historisch sicher bezeugte Bischof von Reims ist indes
+Imbetausus, der zusammen mit seinem Diakon Primigenius 314 am Konzil
+von Arles teilnahm (ed. Munier, Concilia Galliae a. 314-506, p. 4, 14,
+16, 18, 20-21; Pietri -- Neiss, Reims p. 33). Zwischen Imbetausus und
+Benadius, dem Vorgänger des Remigius im 5. Jahrhundert, dessen
+Testament Flodoard kennt, folgen neun weitere Namen, von denen sich
+allein mit dem Namen des Nicasius im Gedächtnis der Kirche von Reims
+bestimmte Vorgänge verbinden lassen. Flodoard dagegen beruft sich
+dabei auf eine *Passio Nicasii*, die aber sonst nirgendwo überliefert
+ist (cf. BHL 6075-6080). Ihr zufolge soll Nicasius das Martyrium
+während eines Vandaleneinfalls (407) erlitten haben. Der Ort des
+Martyriums soll die Kathedrale der Gottesmutter und Jungfrau Maria
+gewesen sein, die er mit seinem Blut geweiht habe. Die Nachricht
+verdient jedoch insofern Vorsicht, als ein Marienpatrozinium vor dem
+Konzil von Ephesus (453) bislang nicht nachzuweisen ist. Der
+Bischofssitz, so Flodoard, sei dagegen zuvor seit alters die Kirche
+*ad Apostolos* gewesen, die nach dem Tod des Bischofs Sonnatius 626
+Empfängerin eines Legates von Edelmetall zur Fertigung eines Kelchs
+wurde (Flodoard, Hist. Rem. eccl. II 5, ed. Lejeune I p. 259; ed.
+Heller -- Waitz, MGH SS XIII p. 454; ed. Stratmann, MGH SS XXXVI p.
+146) und im Testament des Bischofs Lando als *basilica Sancti
+Simphoriani que vocatur ad Apostolos* erwähnt wird (ibid. II 6, ed.
+Lejeune I p. 263; ed. Heller -- Waitz, MGH SS XIII p. 454; ed.
+Stratmann, MGH SS XXXVI p. 148). Sie wäre damit an der Stelle der
+späteren Stiftskirche Saint-Symphorien zu suchen, die bis 1796 ca.
+150-200 m östlich der heutigen Kathedrale lag und an die heute nur
+noch ein Straßenname erinnert (Sot, Flodoard p. 372-373; Pietri --
+Neiss, Reims p. 36).
 
-Der bekannteste und berühmteste Bischof aus früher fränkischen Zeit ist Remigius (um 438 – um 533 Januar 13). Er war es, der König Chlodwig I. bei der Übernahme der Herrschaft über die Belgica secunda (482?) ein Schreiben übersandte (ed. W. Gundlach, MGH Epistolae III p. 113 n. 2 ; CC SL CXVII p. 408-409 n. 2), und nach seiner Einweisung in den neuen Glauben nahm er den König wohl 498 in den Stand der Katechumenen auf und taufte ihn und seine Anhänger zu Weihnachten dieses Jahres in Reims. Er trat als Metropolit seiner Kirchenprovinz hervor, als er nach der Reichsteilung von 511, bei der die _civitas_ Reims geteilt wurde, den neu entstandenen Teil als Diözese Laon aus der alten Diözese Reims ausgegliedert haben soll (Kaiser, Bistumsgründungen p. 10-18; zurückhaltender Gaillard – Jorrand, Laon p. 169) und zugleich die Diözesen Arras und Tournai zu gründen suchte bzw. gründete (Dabrowska – Jacques, Arras p. 93-94; Brulet, Tournai p. 113-114). Seinem Ansehen und seinem Wirken verdankt die Metropole Reims ihren Vorrang und ihre führende Rolle im künftigen Frankenreich : ihm wurde später der Ehrentitel eines _Francorum apostolus_ zuteil. Das Testament des Remigius gilt in der kürzeren Version, die in Hincmars Vita Remigii überliefert wird, heute als echt (ed. Br. Krusch, MGH SS rer. Merov. III p. 336-340 ; CC SL CXVII p. 473-479 n. 2 ; cf. Jones – Grierson – Crook, The Authenticity of the « testamentum s. Remigii » p. 356-373.
+Der bekannteste und berühmteste Bischof aus früher fränkischen Zeit
+ist Remigius (um 438 -- um 533 Januar 13). Er war es, der König
+Chlodwig I. bei der Übernahme der Herrschaft über die Belgica secunda
+(482?) ein Schreiben übersandte (ed. W. Gundlach, MGH Epistolae III p.
+113 n. 2 ; CC SL CXVII p. 408-409 n. 2), und nach seiner Einweisung in
+den neuen Glauben nahm er den König wohl 498 in den Stand der
+Katechumenen auf und taufte ihn und seine Anhänger zu Weihnachten
+dieses Jahres in Reims. Er trat als Metropolit seiner Kirchenprovinz
+hervor, als er nach der Reichsteilung von 511, bei der die *civitas*
+Reims geteilt wurde, den neu entstandenen Teil als Diözese Laon aus
+der alten Diözese Reims ausgegliedert haben soll (Kaiser,
+Bistumsgründungen p. 10-18; zurückhaltender Gaillard -- Jorrand, Laon
+p. 169) und zugleich die Diözesen Arras und Tournai zu gründen suchte
+bzw. gründete (Dabrowska -- Jacques, Arras p. 93-94; Brulet, Tournai
+p. 113-114). Seinem Ansehen und seinem Wirken verdankt die Metropole
+Reims ihren Vorrang und ihre führende Rolle im künftigen
+Frankenreich : ihm wurde später der Ehrentitel eines *Francorum
+apostolus* zuteil. Das Testament des Remigius gilt in der kürzeren
+Version, die in Hincmars Vita Remigii überliefert wird, heute als echt
+(ed. Br. Krusch, MGH SS rer. Merov. III p. 336-340 ; CC SL CXVII p.
+473-479 n. 2 ; cf. Jones -- Grierson -- Crook, The Authenticity of the
+« testamentum s. Remigii » p. 356-373.
 
-Die Dekretale, die angeblich Papst Hormisdas an Remigius, Bischof von Reims, gerichtet haben soll und die diesem im gesamten Reich seines geistlichen Sohnes Chlodwich seine Stellvertretung übertrug, vorbehaltlich der seit alters den Metropoliten zustehenden Privilegien (†JK 866: _Suscipientes plena_), ist dagegen eine Fälschung, die erstmals bei Hincmar auftaucht (Hincmari Vita S. Remigii c. 20, ed. Krusch, MGH SS rer. Merow. III p. 311-312; cf. auch Hincmari opusculum LV capitulorum adversus Hincmarum Laudunensem c. XVI; Migne PL CXXVI col. 338C-339B; ed. Rudolf Schieffer, MGH, Concilia IV, Supplementum II p. 195-196; und Hincmari De iure metropolitanorum XI, Sirmond, Hincmari archiepiscopi Remensis opera II p. 726-727, Migne, ibid. col. 195C-196B). Das Schreiben wurde gefälscht nach Vorlage des echten Briefes des Hormisdas an Bischof Sallustius von Sevilla, JK 855 (Hinschius, Decretales p. 693 n. CXIX; Krusch, Remigius-Fälschungen p. 527-528; Kéry, Entstehung p. 220).
+Die Dekretale, die angeblich Papst Hormisdas an Remigius, Bischof von
+Reims, gerichtet haben soll und die diesem im gesamten Reich seines
+geistlichen Sohnes Chlodwich seine Stellvertretung übertrug,
+vorbehaltlich der seit alters den Metropoliten zustehenden Privilegien
+(†JK 866: *Suscipientes plena*), ist dagegen eine Fälschung, die
+erstmals bei Hincmar auftaucht (Hincmari Vita S. Remigii c. 20, ed.
+Krusch, MGH SS rer. Merow. III p. 311-312; cf. auch Hincmari opusculum
+LV capitulorum adversus Hincmarum Laudunensem c. XVI; Migne PL CXXVI
+col. 338C-339B; ed. Rudolf Schieffer, MGH, Concilia IV, Supplementum
+II p. 195-196; und Hincmari De iure metropolitanorum XI, Sirmond,
+Hincmari archiepiscopi Remensis opera II p. 726-727, Migne, ibid. col.
+195C-196B). Das Schreiben wurde gefälscht nach Vorlage des echten
+Briefes des Hormisdas an Bischof Sallustius von Sevilla, JK 855
+(Hinschius, Decretales p. 693 n. CXIX; Krusch, Remigius-Fälschungen p.
+527-528; Kéry, Entstehung p. 220).
 
-Der erste Bischof in Reims indes, für den sich Beziehungen zum römischen Bischof zweifellos nachweisen lassen, ist Abel gewesen, für den Bonifatius bei seinen Bemühungen, im fränkischen Reich die Metropolitanverfassung zu verankern, von Papst Zacharias das Pallium erbat (742). Der erste Bischof, dem tatsächlich Papst Hadrian I. das Pallium verliehen hat, war jedoch erst Tilpin (779) (JE †2411, Lesne, La lettre interpolée d'Hadrien Ier p. 349-351). In der Folgezeit, in der die Quellen zwar nur spärlich fließen, darf aber allein deshalb mit Kontakten jedes Erzbischofs zum apostolischen Stuhl gerechnet werden, weil die Ausübung des Metropolitenamtes an die Verleihung des Palliums durch den römischen Bischof geknüpft war.
+Der erste Bischof in Reims indes, für den sich Beziehungen zum
+römischen Bischof zweifellos nachweisen lassen, ist Abel gewesen, für
+den Bonifatius bei seinen Bemühungen, im fränkischen Reich die
+Metropolitanverfassung zu verankern, von Papst Zacharias das Pallium
+erbat (742). Der erste Bischof, dem tatsächlich Papst Hadrian I. das
+Pallium verliehen hat, war jedoch erst Tilpin (779) (JE †2411, Lesne,
+La lettre interpolée d'Hadrien I^er^ p. 349-351). In der Folgezeit, in
+der die Quellen zwar nur spärlich fließen, darf aber allein deshalb
+mit Kontakten jedes Erzbischofs zum apostolischen Stuhl gerechnet
+werden, weil die Ausübung des Metropolitenamtes an die Verleihung des
+Palliums durch den römischen Bischof geknüpft war.
 
-Verhältnismäßig gut unterrichten zeitgenössische Quellen, vor allem Briefe der Hauptbeteiligten, über die spannungsreichen, zuweilen konfliktgeladenen Beziehungen, die der selbstbewußte und stets auf den eigenen und den Vorrang seiner Kirche bedachte Hincmar, der bekannteste Erzbischof von Reims im 9. Jahrhundert, zu den römischen Bischöfen seines Zeitalters unterhielt. Er fand indes in Papst Nicolaus I. (858-867) einen entschiedenen Gesprächspartner. Das gefälschte Schreiben des Papstes Hormisdas an Remigius (JK †866) und das großenteils interpolierte Schreiben Hadrians I. an Erzbischof Tilpin (JE †2411) zeigen indes, dass selbst Hincmars selbstbewußte Vorstellungen von seiner Amtsgewalt in der Gewissheit gründeten, Rom sei der Fels des orthodoxen Glaubens (Demouy, Génèse p. 368-369). Die Haltung, die Hincmars Nachfolger Fulco zu den römischen Bischöfen einnahm, aber auch die Überwindung der Krise in der Kirche von Reims nach der Absetzung des Erzbischofs Artold, ferner das Konzil Leos IX. in Reims (1049), die teilweise eigenwilligen Pläne des Erzbischofs Gervasius und schließlich die Reise Rainalds I. zu Papst Urban II. zwecks Empfangs des Palliums und eines Privilegs (JL 5415) bestätigen die zunehmende Stetigkeit in den Beziehungen der Kirche von Reims zu den Päpsten. Sie kam noch im Verlauf des 12. Jahrhunderts schließlich in der Verleihung des Legatenamtes an die Erzbischöfe Samson durch Eugen III. und Hadrian IV. und an Wilhelm (Guillaume aux Blanches Mains) durch Alexander III. und seine Nachfolger zum Ausdruck. Und sie bestand trotz persönlicher Belastungen in den Beziehungen Alexanders III. zu Heinrich von Frankreich während des 1159 ausgebrochenen alexandrinischen Schismas ihre Bewährung. Die zunehmend engeren Beziehung der Metropole mit ihren Erzbischöfen und Kirchen zu den Päpsten hat wohl dazu geführt, dass Leo IX. 1049, Calixt II. 1119, Innocenz II. 1131 und Eugen III. 1148 auf ihren Reisen durch das Königreich Frankreich in der Metropoöe Reims den Episkopat und Äbte zu Konzilien um sich versammelten. Die schnelle Beilegung der Krise nach der Absetzung des Erzbischofs Manasses' I. durch Gregor VII. bestätigt eindrucksvoll diese Grundhaltung.
+Verhältnismäßig gut unterrichten zeitgenössische Quellen, vor allem
+Briefe der Hauptbeteiligten, über die spannungsreichen, zuweilen
+konfliktgeladenen Beziehungen, die der selbstbewußte und stets auf den
+eigenen und den Vorrang seiner Kirche bedachte Hincmar, der
+bekannteste Erzbischof von Reims im 9. Jahrhundert, zu den römischen
+Bischöfen seines Zeitalters unterhielt. Er fand indes in Papst
+Nicolaus I. (858-867) einen entschiedenen Gesprächspartner. Das
+gefälschte Schreiben des Papstes Hormisdas an Remigius (JK †866) und
+das großenteils interpolierte Schreiben Hadrians I. an Erzbischof
+Tilpin (JE †2411) zeigen indes, dass selbst Hincmars selbstbewußte
+Vorstellungen von seiner Amtsgewalt in der Gewissheit gründeten, Rom
+sei der Fels des orthodoxen Glaubens (Demouy, Génèse p. 368-369). Die
+Haltung, die Hincmars Nachfolger Fulco zu den römischen Bischöfen
+einnahm, aber auch die Überwindung der Krise in der Kirche von Reims
+nach der Absetzung des Erzbischofs Artold, ferner das Konzil Leos IX.
+in Reims (1049), die teilweise eigenwilligen Pläne des Erzbischofs
+Gervasius und schließlich die Reise Rainalds I. zu Papst Urban II.
+zwecks Empfangs des Palliums und eines Privilegs (JL 5415) bestätigen
+die zunehmende Stetigkeit in den Beziehungen der Kirche von Reims zu
+den Päpsten. Sie kam noch im Verlauf des 12. Jahrhunderts schließlich
+in der Verleihung des Legatenamtes an die Erzbischöfe Samson durch
+Eugen III. und Hadrian IV. und an Wilhelm (Guillaume aux Blanches
+Mains) durch Alexander III. und seine Nachfolger zum Ausdruck. Und sie
+bestand trotz persönlicher Belastungen in den Beziehungen Alexanders
+III. zu Heinrich von Frankreich während des 1159 ausgebrochenen
+alexandrinischen Schismas ihre Bewährung. Die zunehmend engeren
+Beziehung der Metropole mit ihren Erzbischöfen und Kirchen zu den
+Päpsten hat wohl dazu geführt, dass Leo IX. 1049, Calixt II. 1119,
+Innocenz II. 1131 und Eugen III. 1148 auf ihren Reisen durch das
+Königreich Frankreich in der Metropoöe Reims den Episkopat und Äbte zu
+Konzilien um sich versammelten. Die schnelle Beilegung der Krise nach
+der Absetzung des Erzbischofs Manasses' I. durch Gregor VII. bestätigt
+eindrucksvoll diese Grundhaltung.
 
-Was man bis zum 10. Jahrhundert vorgebracht hat, um die Beziehungen der Kirche von Reims zur römischen Kirche als besonders eng zu erweisen und möglichst in das apostolische Alter hinauf datieren zu können, ist dem Schreiben zu entnehmen, das Erzbischof Fulco in bedrohlicher Lage (885-886) an Papst Stephan V. richtete, als die Normannen seine Kirchenprovinz zum widerholten Mal heimsuchten. Darin heißt es : auch wenn einige von ihnen wie der Bischof von Thérouanne gezwungen seien, ihre Bischofsstadt zeitweise zu verlassen, verharre er mit seinen Mitbischöfen in der Verehrung des römischen Bischofsitzes. Seine Vorgänger hätten vor allen gallikanischen Kirchen derjenigen von Reims den Primat in Sixtus, dem ersten Bischof der Gegend, der von Petrus entsandt worden sei, verliehen. Was auch immer der Kirche Gottes an Notwendigem widerfahre, würden sie mit dem Verlust ihrer Habe und ihres Leibes vollenden, wie es der Reimser Kirche gezieme, der seine, des Papstes Vorgänger vor allen gallikanischen Kirchen den Primat in Sixtus, dem ersten Bischof der Gegend, der von Petrus entsandt worden sei, verliehen hätten. Auch habe Papst Hormisdas dem hl. Remigius für ganz Gallien seine Stellvertretung erteilen wollen (cf. †JK 866) (Gousset, Actes de la province de Reims I p. 520-524; Migne PL CXXXI col. 11D-13B; Regest: Sot, Flodoard p. 157-158 n. 6). (S. 28 Fulco).
+Was man bis zum 10. Jahrhundert vorgebracht hat, um die Beziehungen
+der Kirche von Reims zur römischen Kirche als besonders eng zu
+erweisen und möglichst in das apostolische Alter hinauf datieren zu
+können, ist dem Schreiben zu entnehmen, das Erzbischof Fulco in
+bedrohlicher Lage (885-886) an Papst Stephan V. richtete, als die
+Normannen seine Kirchenprovinz zum widerholten Mal heimsuchten. Darin
+heißt es : auch wenn einige von ihnen wie der Bischof von Thérouanne
+gezwungen seien, ihre Bischofsstadt zeitweise zu verlassen, verharre
+er mit seinen Mitbischöfen in der Verehrung des römischen
+Bischofsitzes. Seine Vorgänger hätten vor allen gallikanischen Kirchen
+derjenigen von Reims den Primat in Sixtus, dem ersten Bischof der
+Gegend, der von Petrus entsandt worden sei, verliehen. Was auch immer
+der Kirche Gottes an Notwendigem widerfahre, würden sie mit dem
+Verlust ihrer Habe und ihres Leibes vollenden, wie es der Reimser
+Kirche gezieme, der seine, des Papstes Vorgänger vor allen
+gallikanischen Kirchen den Primat in Sixtus, dem ersten Bischof der
+Gegend, der von Petrus entsandt worden sei, verliehen hätten. Auch
+habe Papst Hormisdas dem hl. Remigius für ganz Gallien seine
+Stellvertretung erteilen wollen (cf. †JK 866) (Gousset, Actes de la
+province de Reims I p. 520-524; Migne PL CXXXI col. 11D-13B; Regest:
+Sot, Flodoard p. 157-158 n. 6). (S. 28 Fulco).
 
-Der besonderen Stellung der Erzbischöfe von Reims innerhalb der _ecclesia Galicana_ entspricht die Machtstellung, welche ihnen als den Inhabern von weltlichen, ja sogar hoheitlichen Rechten in ihrer Metropole zukam.
+Der besonderen Stellung der Erzbischöfe von Reims innerhalb der
+*ecclesia Galicana* entspricht die Machtstellung, welche ihnen als den
+Inhabern von weltlichen, ja sogar hoheitlichen Rechten in ihrer
+Metropole zukam.
 
 ### Zur weltlichen Macht und Stellung der Erzbischöfe von Reims
 
-Im Mittelalter waren die Erzbischöfe von Reims mit besonderer weltlicher Macht ausgestattet, die in diesem Ausmaß für das Königreich Frankreich nur selten und vereinzelt anzutreffen ist. Wie andere Bischöfe im spätantiken und fränkichen Gallien waren auch die Bischöfe von Reims zunächst als Grundherren auf den Gütern ihrer Kirche mit Immunität ausgestattet worden. Urkunden über die Verleihung der Immunität haben sich jedoch nicht erhalten. Flodoard berichtet von einer solchen Immunitätsverleihung, die Bischof Egidius von König Childebert II. erhalten habe (Hist. Rem. eccl. II 2, ed. Lejeune I p. 223; ed. Heller - Waitz, MGH SS XIII p. 447; ed. Stratmann, MGH SS XXXVI p. 133; dazu Sot, Flodoard p. 420; Demouy, Génèse p. 486). Hinzu kam bald eine Zollbefreiung. Jedoch zeigen zahlreiche Quellen aus karolingischer Zeit für Reims, dass im 8. Jahrhundert Kirchengut der Reimser Kirche in umfangreichem Ausmaß zu Leistungen für den König herangezogen wurde, und dabei erfährt man aus einer Nachricht über eine Verleihung Karlmanns, des Bruders Karls des Großen, dass bischöfliche _milites_, die auf bestimmten Gütern der Kirche von Reims saßen, vom Militärdienst für den König ausgenommen wurden. Dass es in dieser Zeit zur Entfremdung zahlreicher Kirchengüter kam, ist vor allem durch Hincmar bezeugt, der noch lange darum bemüht war, entfremdetes Kirchengut wieder in den Besitz seiner Kirche zu überführen.
+Im Mittelalter waren die Erzbischöfe von Reims mit besonderer
+weltlicher Macht ausgestattet, die in diesem Ausmaß für das Königreich
+Frankreich nur selten und vereinzelt anzutreffen ist. Wie andere
+Bischöfe im spätantiken und fränkichen Gallien waren auch die Bischöfe
+von Reims zunächst als Grundherren auf den Gütern ihrer Kirche mit
+Immunität ausgestattet worden. Urkunden über die Verleihung der
+Immunität haben sich jedoch nicht erhalten. Flodoard berichtet von
+einer solchen Immunitätsverleihung, die Bischof Egidius von König
+Childebert II. erhalten habe (Hist. Rem. eccl. II 2, ed. Lejeune I p.
+223; ed. Heller - Waitz, MGH SS XIII p. 447; ed. Stratmann, MGH SS
+XXXVI p. 133; dazu Sot, Flodoard p. 420; Demouy, Génèse p. 486). Hinzu
+kam bald eine Zollbefreiung. Jedoch zeigen zahlreiche Quellen aus
+karolingischer Zeit für Reims, dass im 8. Jahrhundert Kirchengut der
+Reimser Kirche in umfangreichem Ausmaß zu Leistungen für den König
+herangezogen wurde, und dabei erfährt man aus einer Nachricht über
+eine Verleihung Karlmanns, des Bruders Karls des Großen, dass
+bischöfliche *milites*, die auf bestimmten Gütern der Kirche von Reims
+saßen, vom Militärdienst für den König ausgenommen wurden. Dass es in
+dieser Zeit zur Entfremdung zahlreicher Kirchengüter kam, ist vor
+allem durch Hincmar bezeugt, der noch lange darum bemüht war,
+entfremdetes Kirchengut wieder in den Besitz seiner Kirche zu
+überführen.
 
-Besondere Aufmerksamkeit verdient in diesem Rahmen der Erwerb hoheitlicher Rechte und Befugnisse durch die Erzbischöfe von Reims, der sich über einen größeren Zeitraum erstreckte. Allein im Hinblick auf die weltliche Stellung der Erzbischöfe in der Metropole und in ihrer Umgebung, wie sie in dem feierlichen Privileg Alexanders III. entgegentritt, das dem Erzbischof Wilhelm (Guillaume aux Blanches Mains) nach dem III. Laterankonzil und nach seiner Erhebung zum Kardinal von S. Sabina am 13. April 1179 ausgefertigt wurde (JL 13382), muss darauf näher eingegangen werden. Das Privileg ist übrigens für das 12. Jahrhundert insofern das wichtigste Dokument für die weltliche Herrschaft, als es auch die vom Erzbischof her lehnrührigen Grafschaften aufzählt, für deren lehnrechtliche Abhängigkeit es andere Quellen sonst nicht mehr zu geben scheint.
+Besondere Aufmerksamkeit verdient in diesem Rahmen der Erwerb
+hoheitlicher Rechte und Befugnisse durch die Erzbischöfe von Reims,
+der sich über einen größeren Zeitraum erstreckte. Allein im Hinblick
+auf die weltliche Stellung der Erzbischöfe in der Metropole und in
+ihrer Umgebung, wie sie in dem feierlichen Privileg Alexanders III.
+entgegentritt, das dem Erzbischof Wilhelm (Guillaume aux Blanches
+Mains) nach dem III. Laterankonzil und nach seiner Erhebung zum
+Kardinal von S. Sabina am 13. April 1179 ausgefertigt wurde (JL
+13382), muss darauf näher eingegangen werden. Das Privileg ist
+übrigens für das 12. Jahrhundert insofern das wichtigste Dokument für
+die weltliche Herrschaft, als es auch die vom Erzbischof her
+lehnrührigen Grafschaften aufzählt, für deren lehnrechtliche
+Abhängigkeit es andere Quellen sonst nicht mehr zu geben scheint.
 
-Ein wichtiger Schritt auf dem Weg zur weltlichen Herrschaft dürfte die Übernahme missatischer Gewalt durch die Erzbischöfe zur Zeit Karls des Großen und seiner Nachfolger gewesen sein : Wulfhar, Ebo und Hincmar waren zugleich königliche _missi_, wenngleich, anders als benachbarte Metropoliten, nicht über die gesamte, sondern stets nur über Teile ihrer großen Kirchenprovinz gewesen. Das hing nicht nur mit deren enormer Ausdehnung, sondern auch mit « der Massierung des Königsgutes » in dieser Provinz zusammen (Kaiser, Bischofsherrschaft p. 543). Dazu kommt, dass Erzbischof Fulco die römische Stadtmauer angesichts der Normannengefahr wiederherstellen ließ, die man zum Teil als Steinbruch für den Neubau der Kathedrale unter Ebbo und Hincmar benutzt hatte, nachdem Ludwig der Fromme dem Erzbischof Ebo und seiner Kirche « für den Neubau und die übrigen für die Notwendigkeiten der dort Gott Dienenden zu errichtenden Bauten die gesamte Mauer mit den Stadttoren » geschenkt « und jegliche Leistung zusammen mit allen Kosten » erlassen, die man « aus den Gütern und Vermögen dieser Kirche und des Bistums Reims in unserer königliche Pfalz Aachen durchzuführen und an diese zu zahlen pflegte » (Cf. den Text des zwischen 816 und 825 redigierten Diploms, _Flodoardi Historia Remensis ecclesie,_ II, 19, ed. Johannes Heller – Georg Waitz, MGH, SS t. XIII, p. 469 ; ed. Stratmann, MHG, SS t. XXXVI, p. 180 : ... _concedimus ad hoc opus et ad caetera quaeque pro servorum dei ibidem degentium necessitatibus aedificanda, murum omnem cum portis ipsius civitatis et omnem operam cum cunctis impendiis, quae ex rebus et facultatibus ipsius ecclesiae et episcopatus Remensis Aquis palatio nostro regio peragi et exsolvi solitum fuerat, in eleemosina videlicet nostra et pro remedio animae domni ac genitoris nostri atque ceterorum predecessorum nostrorum, qui eundem epscopatum contra salutem suam aliquamdiu tenuerant et in suos usus contra ecclesiasticas regulas et res et facultates ecclesiae ipsius expenderant, et ob hoc minus quam debuerat, utilitatis sacris locis in eodem episcopatu constitutis exinde provenerat … _; Johann Friedrich Böhmer — Engelbert Mühlbacher, _Die Regesten des Kaiserreiches unter den Karolingern 751-918_ (Regesta imperii, I), Nachdruck mit Ergänzungen von Carlrichard Brühl und Hans H. Kaminsky, Hildesheim 1966, 318, No. 801; Martina Stratmann, _Die Königs- und Privaturkunden für die Reimser Kirche bis gegen 900_, Deutsches Archiv 52 (1996) 1-55, ibid. p. 19 et 38, n° 42. Sur l'authenticité du texte, voir dernièrement Philippe Depreux, Zur Echtheit einer Urkunde Kaiser Ludwigs des Frommen für die Reimser Kirche (BM 801), Deutsches Archiv 48 (1992) 1-16. Sur la construction de la nouvelle cathédrale, cf. Hans Reinhardt, _La cathédrale de Reims._ _Son histoire, sa sculpture, ses vitraux_, Paris 1963, 25-26), ferner dass die Erzbischöfe seit dem Ende des 9. Jahrhunderts an der Spitze ihrer Stiftsvasallen das Aufgebot anführten, sich dazu um die Errichtung von Kastellen auf dem Lande bemühten und die Festung Coucy(-le-Châteaux-Auffrique, arr. Laon, Aisne) errichteten, ohne dass dabei von der Zuständigkeit eines Grafen etwas verlautete.
+Ein wichtiger Schritt auf dem Weg zur weltlichen Herrschaft dürfte die
+Übernahme missatischer Gewalt durch die Erzbischöfe zur Zeit Karls des
+Großen und seiner Nachfolger gewesen sein : Wulfhar, Ebo und Hincmar
+waren zugleich königliche *missi*, wenngleich, anders als benachbarte
+Metropoliten, nicht über die gesamte, sondern stets nur über Teile
+ihrer großen Kirchenprovinz gewesen. Das hing nicht nur mit deren
+enormer Ausdehnung, sondern auch mit « der Massierung des
+Königsgutes » in dieser Provinz zusammen (Kaiser, Bischofsherrschaft
+p. 543). Dazu kommt, dass Erzbischof Fulco die römische Stadtmauer
+angesichts der Normannengefahr wiederherstellen ließ, die man zum Teil
+als Steinbruch für den Neubau der Kathedrale unter Ebbo und Hincmar
+benutzt hatte, nachdem Ludwig der Fromme dem Erzbischof Ebo und seiner
+Kirche « für den Neubau und die übrigen für die Notwendigkeiten der
+dort Gott Dienenden zu errichtenden Bauten die gesamte Mauer mit den
+Stadttoren » geschenkt « und jegliche Leistung zusammen mit allen
+Kosten » erlassen, die man « aus den Gütern und Vermögen dieser Kirche
+und des Bistums Reims in unserer königliche Pfalz Aachen durchzuführen
+und an diese zu zahlen pflegte » (Cf. den Text des zwischen 816 und
+825 redigierten Diploms, *Flodoardi Historia Remensis ecclesie,* II,
+19, ed. Johannes H[eller -- G]{.smallcaps}eorg [Waitz,]{.smallcaps}
+MGH, SS t. XIII, p. 469 ; ed. [Stratmann]{.smallcaps}, MHG, SS t.
+XXXVI, p. 180 : \... *concedimus ad hoc opus et ad caetera quaeque pro
+servorum dei ibidem degentium necessitatibus aedificanda, murum omnem
+cum portis ipsius civitatis et omnem operam cum cunctis impendiis,
+quae ex rebus et facultatibus ipsius ecclesiae et episcopatus Remensis
+Aquis palatio nostro regio peragi et exsolvi solitum fuerat, in
+eleemosina videlicet nostra et pro remedio animae domni ac genitoris
+nostri atque ceterorum predecessorum nostrorum, qui eundem epscopatum
+contra salutem suam aliquamdiu tenuerant et in suos usus contra
+ecclesiasticas regulas et res et facultates ecclesiae ipsius
+expenderant, et ob hoc minus quam debuerat, utilitatis sacris locis in
+eodem episcopatu constitutis exinde provenerat ... *; Johann Friedrich
+[Böhmer ---]{.smallcaps} Engelbert [Mühlbacher,]{.smallcaps} *Die
+Regesten des Kaiserreiches unter den Karolingern 751-918* (Regesta
+imperii, I), Nachdruck mit Ergänzungen von Carlrichard
+[Brühl]{.smallcaps} und Hans H. [Kaminsky]{.smallcaps}, Hildesheim
+1966, 318, No. 801; Martina [Stratmann,]{.smallcaps} *Die Königs- und
+Privaturkunden für die Reimser Kirche bis gegen 900*, Deutsches Archiv
+52 (1996) 1-55, ibid. p. 19 et 38, n° 42. Sur l'authenticité du texte,
+voir dernièrement Philippe [Depreux, Z]{.smallcaps}ur Echtheit einer
+Urkunde Kaiser Ludwigs des Frommen für die Reimser Kirche (BM 801),
+Deutsches Archiv 48 (1992) 1-16. Sur la construction de la nouvelle
+cathédrale, cf. Hans [Reinhardt]{.smallcaps}, *La cathédrale de Reims.
+Son histoire, sa sculpture, ses vitraux*, Paris 1963, 25-26), ferner
+dass die Erzbischöfe seit dem Ende des 9. Jahrhunderts an der Spitze
+ihrer Stiftsvasallen das Aufgebot anführten, sich dazu um die
+Errichtung von Kastellen auf dem Lande bemühten und die Festung
+Coucy(-le-Châteaux-Auffrique, arr. Laon, Aisne) errichteten, ohne dass
+dabei von der Zuständigkeit eines Grafen etwas verlautete.
 
-Entscheidend auf dem Wege zur Vollendung der weltlichen Herrschaft war die Übertragung der Grafschaft durch Ludwig IV. an Erzbischof Artold, die Flodoard zum Jahre 940 in den Annalen mitteilt : _dedit autem rex Artoldo archiepiscopo ac per eum aecclesiae Remensi, per praeceptionis regiae paginam, Remensis urbis monetam iure perpetuo possidendam, sed et omnem comitatum Remensem eidem contulit aecclesiae_ (ed. Lauer, p. 75; cf. Flodoard, Historiae Remensis ecclesiae IV 27, ed. Lejeune II p. 535 ; Heller – Waitz, MGH SS XIII p. 581; ed. Stratmann, MGH SS XXXVI p. 418-419; Lauer, Recueil des actes de Lous IV p. 37-38 n. XIII; dazu Desportes, Les archevêques de Reims et les droits comtaux p. 79-84).
+Entscheidend auf dem Wege zur Vollendung der weltlichen Herrschaft war
+die Übertragung der Grafschaft durch Ludwig IV. an Erzbischof Artold,
+die Flodoard zum Jahre 940 in den Annalen mitteilt : *dedit autem rex
+Artoldo archiepiscopo ac per eum aecclesiae Remensi, per praeceptionis
+regiae paginam, Remensis urbis monetam iure perpetuo possidendam, sed
+et omnem comitatum Remensem eidem contulit aecclesiae* (ed. Lauer, p.
+75; cf. Flodoard, Historiae Remensis ecclesiae IV 27, ed. Lejeune II
+p. 535 ; Heller -- Waitz, MGH SS XIII p. 581; ed. Stratmann, MGH SS
+XXXVI p. 418-419; Lauer, Recueil des actes de Lous IV p. 37-38 n.
+XIII; dazu Desportes, Les archevêques de Reims et les droits comtaux
+p. 79-84).
 
-Die Folgen dieser Verleihung, die zu einem Zeitpunkt erfolgte, als Ludwig IV. an einem Tiefpunkt seiner Herrschaft angelangt war, sollten erst später erkennbar werden. Zudem hat die Verleihung insofern zu Zweifeln geführt, als Heribert III. nach 968 die Grafschaft inne hatte. Deshalb hat man die Nachricht über die Verleihung des _comitatus_ als Interpolation ansehen wollen, die zwischen 998 und 1059 entstanden sei, da Richer nichts davon berichte (Bur, Formation p. 178-179). Dagegen wurde eingewandt, dies beruhe auf einem _argumentum e silentio_, da die Übertragung der Münze durch Münzprägungen bezeugt werde und auch die Übertragung von Grafenrechten durch Ludwig IV. in der für ihn besonders prekären Lage eine verständlich Handlung gewesen sei, um Bundesgenossen an sich zu binden, auch wenn Erzbischof Artold erst mit Hilfe Ottos I. Reims erneut in Besitz nehmen konnte (Kaiser, Bischofsherrschaft p. 548-551; Sot, Flodoard p. 273-274; Demouy, Génèse p. 487-489). Erst die Verleihung der Grafschaft bildete die Grundlage zur Entstehung eines kirchlichen Fürstentums, und folgerichtig tritt nach der Wiedereroberung der Metropole seit 947 im Gefolge des Erzbischofs ein wohl von ihm belehnter Graf Ragenold auf. Flodoard nennt zwar eine Grafschaft Ragenolds nicht, jedoch wird dieser in zwei zeitgenössischen Quellen als _comes Remensis_ bezeichnet. Seinen Sitz hatte Ragenold in Roucy, einer befestigten Burg nordwestl. Reims, unweit der Aisne (c. Neufchâtel-sur-Aisne, arr. Laon, Aisne). Als er 967 verstarb, hinterließ er einen Sohn Giselbert in noch jungem Alter. Dieser verzichtete 990 zugunsten der Abtei Saint-Remi – dies erfährt man erst aus einer Streitschrift, die über ein Jahrhundert danach in dem schweren Streit zwischen Saint-Remi und Saint-Nicaise entstand – auf die Hälfte der Vizegrafschaft und auf sechs Verkaufsstände (die zugleich einen Jahrmarkt bezeugen), auf Hoheitsrechte aus seinem Grafenamt im _burgus_ von Saint-Remi. Ein Laie hatte somit die Grafschaft inne und übte im _burgus_ von Saint-Remi das Amt eines Vizegrafen aus. Wenig später kaufte Erzbischof Ebalus 1023, der dem Hause der Grafen von Roucy angehörte, dem Grafen Odo der Champagne nach dessen Verzicht den _comitatus Remensis_ mit den Vizecomitat ab, zugleich akzeptierte er, dass dieser die bisher von der Kirche von Reims lehnrührigen Grafschaften wie Rethel, Porcien, Roucy mediatisierte (Desportes, Les archevêques de Reims p. 83-84; Bur, Formation p. 181; Kaiser, Bischofsherrschaft p. 554). Aber erst als Erzbischof Gervasius bei der Gründung der Mönchsabtei Saint-Nicaise (1055-1160) auch dem Grafen Theobald von Troyes seine Niederlassung abkaufte, die dieser als letztes _beneficium_ in der Vorstadt von Reims bei dieser Kirche besaß, gaben der Graf und damit zugleich das Grafenhaus der Champagne ihre Stellung in der Metropole auf. Damit war der Erzbischof alleiniger Inhaber von Grafenrechten in Reims und der gleichnamigen Grafschaft.
+Die Folgen dieser Verleihung, die zu einem Zeitpunkt erfolgte, als
+Ludwig IV. an einem Tiefpunkt seiner Herrschaft angelangt war, sollten
+erst später erkennbar werden. Zudem hat die Verleihung insofern zu
+Zweifeln geführt, als Heribert III. nach 968 die Grafschaft inne
+hatte. Deshalb hat man die Nachricht über die Verleihung des
+*comitatus* als Interpolation ansehen wollen, die zwischen 998 und
+1059 entstanden sei, da Richer nichts davon berichte (Bur, Formation
+p. 178-179). Dagegen wurde eingewandt, dies beruhe auf einem
+*argumentum e silentio*, da die Übertragung der Münze durch
+Münzprägungen bezeugt werde und auch die Übertragung von Grafenrechten
+durch Ludwig IV. in der für ihn besonders prekären Lage eine
+verständlich Handlung gewesen sei, um Bundesgenossen an sich zu
+binden, auch wenn Erzbischof Artold erst mit Hilfe Ottos I. Reims
+erneut in Besitz nehmen konnte (Kaiser, Bischofsherrschaft p. 548-551;
+Sot, Flodoard p. 273-274; Demouy, Génèse p. 487-489). Erst die
+Verleihung der Grafschaft bildete die Grundlage zur Entstehung eines
+kirchlichen Fürstentums, und folgerichtig tritt nach der
+Wiedereroberung der Metropole seit 947 im Gefolge des Erzbischofs ein
+wohl von ihm belehnter Graf Ragenold auf. Flodoard nennt zwar eine
+Grafschaft Ragenolds nicht, jedoch wird dieser in zwei
+zeitgenössischen Quellen als *comes Remensis* bezeichnet. Seinen Sitz
+hatte Ragenold in Roucy, einer befestigten Burg nordwestl. Reims,
+unweit der Aisne (c. Neufchâtel-sur-Aisne, arr. Laon, Aisne). Als er
+967 verstarb, hinterließ er einen Sohn Giselbert in noch jungem Alter.
+Dieser verzichtete 990 zugunsten der Abtei Saint-Remi -- dies erfährt
+man erst aus einer Streitschrift, die über ein Jahrhundert danach in
+dem schweren Streit zwischen Saint-Remi und Saint-Nicaise entstand --
+auf die Hälfte der Vizegrafschaft und auf sechs Verkaufsstände (die
+zugleich einen Jahrmarkt bezeugen), auf Hoheitsrechte aus seinem
+Grafenamt im *burgus* von Saint-Remi. Ein Laie hatte somit die
+Grafschaft inne und übte im *burgus* von Saint-Remi das Amt eines
+Vizegrafen aus. Wenig später kaufte Erzbischof Ebalus 1023, der dem
+Hause der Grafen von Roucy angehörte, dem Grafen Odo der Champagne
+nach dessen Verzicht den *comitatus Remensis* mit den Vizecomitat ab,
+zugleich akzeptierte er, dass dieser die bisher von der Kirche von
+Reims lehnrührigen Grafschaften wie Rethel, Porcien, Roucy
+mediatisierte (Desportes, Les archevêques de Reims p. 83-84; Bur,
+Formation p. 181; Kaiser, Bischofsherrschaft p. 554). Aber erst als
+Erzbischof Gervasius bei der Gründung der Mönchsabtei Saint-Nicaise
+(1055-1160) auch dem Grafen Theobald von Troyes seine Niederlassung
+abkaufte, die dieser als letztes *beneficium* in der Vorstadt von
+Reims bei dieser Kirche besaß, gaben der Graf und damit zugleich das
+Grafenhaus der Champagne ihre Stellung in der Metropole auf. Damit war
+der Erzbischof alleiniger Inhaber von Grafenrechten in Reims und der
+gleichnamigen Grafschaft.
 
 ### Vermögensaufteilung
 
-Bei dem historischen Abriss der Abtei Saint-Remi wird darauf näher einzugehen sei, dass Bistumsgut und Klostergut dieser Abtei bis ins 10. Jahrhundert eine Einheit bildeten. Als Erzbischof Tilpin die spätantike _basilica_ von einer Klerikergemeinschaft in eine Mönchskommunität umwandelte (Flodoard, Hist. Rem. eccl. II 17, ed. Lejeune I p. 321-322; ed. Heller - Waitz, MGH SS XIII p. 464; ed. Stratmann, MGH SS XXXVI p. 170), behielten er und seine Nachfolger gleichwohl fortan die Leitung der Abtei in Personalunion zu ihrem Amt bei, während ein _prepositus_ an der Spitze des Konvents stand. Dies sollte sich erst gegen Mitte des 10. Jahrhunderts ändern, als Erzbischof Hugo von Vermandois um 940/|945 der Abtei in der Person eines Mönchs namens Hincmar einen Abt gab (Flodoard, Hist. Rem. eccl. IV 32; ed. Lejeune II p. 548-549; ed. Waitz - Heller, MGH SS XIII p. 583; ed. Stratmann, MGH SS XXXVI p. 424; Bur, Saint-Thierry et le renouveau p. 40). Die Vermögens- und Verwaltungseinheit, die lange Zeit zwischen dem Bistumsgut und beträchtlichen Teilen des Klosterguts bestanden hatte, war ohnehin schon früher durch Trennung dieser Einheit und Schaffung zweier Vermögen aufgehoben wurde (Rouche, La destinée des biens de saint Remi p. 50).
+Bei dem historischen Abriss der Abtei Saint-Remi wird darauf näher
+einzugehen sei, dass Bistumsgut und Klostergut dieser Abtei bis ins
+10. Jahrhundert eine Einheit bildeten. Als Erzbischof Tilpin die
+spätantike *basilica* von einer Klerikergemeinschaft in eine
+Mönchskommunität umwandelte (Flodoard, Hist. Rem. eccl. II 17, ed.
+Lejeune I p. 321-322; ed. Heller - Waitz, MGH SS XIII p. 464; ed.
+Stratmann, MGH SS XXXVI p. 170), behielten er und seine Nachfolger
+gleichwohl fortan die Leitung der Abtei in Personalunion zu ihrem Amt
+bei, während ein *prepositus* an der Spitze des Konvents stand. Dies
+sollte sich erst gegen Mitte des 10. Jahrhunderts ändern, als
+Erzbischof Hugo von Vermandois um 940/\|945 der Abtei in der Person
+eines Mönchs namens Hincmar einen Abt gab (Flodoard, Hist. Rem. eccl.
+IV 32; ed. Lejeune II p. 548-549; ed. Waitz - Heller, MGH SS XIII p.
+583; ed. Stratmann, MGH SS XXXVI p. 424; Bur, Saint-Thierry et le
+renouveau p. 40). Die Vermögens- und Verwaltungseinheit, die lange
+Zeit zwischen dem Bistumsgut und beträchtlichen Teilen des Klosterguts
+bestanden hatte, war ohnehin schon früher durch Trennung dieser
+Einheit und Schaffung zweier Vermögen aufgehoben wurde (Rouche, La
+destinée des biens de saint Remi p. 50).
 
 ### Zum Amt eines Legaten des apostolischen Stuhles
 
-Erzbischof Samson de Mauvoisin hat das Amt unter Hadrian IV. wieder erhalten und bis zum Ende seines Pontifikates ausgeübt (letzter bekannter Beleg : Tardif, Monuments p. 289-290, n. 558, beurkundet den Verzicht des Grafen Hugo von Roucy auf seine Rechte in Concevreux). Ob er nach dem Tod Hadrians IV. bei Alexander III. um eine Neuverleihung des Amtes nachsuchte, ist unbekannt.
+Erzbischof Samson de Mauvoisin hat das Amt unter Hadrian IV. wieder
+erhalten und bis zum Ende seines Pontifikates ausgeübt (letzter
+bekannter Beleg : Tardif, Monuments p. 289-290, n. 558, beurkundet den
+Verzicht des Grafen Hugo von Roucy auf seine Rechte in Concevreux). Ob
+er nach dem Tod Hadrians IV. bei Alexander III. um eine Neuverleihung
+des Amtes nachsuchte, ist unbekannt.
 
-Nur ganz vereinzelt sind auch _apostoli_ überliefert worden, nämlich kurze Berichte eines Delegaten über den bisherigen Verlauf und die Ergebnisse eines von ihm geführten Prozesses, sobald dieser durch die erneute Appellation einer Partei unterbrochen wurde (Zu solchen _apostoli_ C 2.6.24 ; Sayers, Papal Judges delegate (wie Anm. 20) S. 96 ; Müller, Päpstliche Delegationsgerichtsbarkeit I S. 58-59).
+Nur ganz vereinzelt sind auch *apostoli* überliefert worden, nämlich
+kurze Berichte eines Delegaten über den bisherigen Verlauf und die
+Ergebnisse eines von ihm geführten Prozesses, sobald dieser durch die
+erneute Appellation einer Partei unterbrochen wurde (Zu solchen
+*apostoli* C 2.6.24 ; [Sayers,]{.smallcaps} Papal Judges delegate (wie
+Anm. 20) S. 96 ; [Müller]{.smallcaps}, Päpstliche
+Delegationsgerichtsbarkeit I S. 58-59).
 
-In zwei Fällen, bei denen es sich um einen Prozess zwischen der Mönchsabtei Saint-Nicolas-aux-Bois und dem Bischof Alvis von Arras wegen der Rücknahme eines _altare_ durch den Bischof handelte, dürften die Berichte des Delegaten, Erzbischof Samson de Mauvoisin, aus dem Archiv des Bischofs von Arras stammen.
+In zwei Fällen, bei denen es sich um einen Prozess zwischen der
+Mönchsabtei Saint-Nicolas-aux-Bois und dem Bischof Alvis von Arras wegen
+der Rücknahme eines *altare* durch den Bischof handelte, dürften die
+Berichte des Delegaten, Erzbischof Samson de Mauvoisin, aus dem Archiv
+des Bischofs von Arras stammen.
 
 ### Zum Archiv der Erzbischöfe
 
-Sowohl Pierre Varin, der im 19. Jahrhundert einen beträchtlichen Teil der mittelalterlichen Überlieferung aus der alten Metropole der Gallia Belgica veröffentlichte (Varin, Archives administratives de la ville de Reims I, p. CLVIII-CLIX), als auch Louis Demaison, der die Archive der Erzbischöfe und des Metropolitankapitels durch ein ausführliches Inventar erschlossen hat (Demaison, Archives ecclésiastiques, Série G, Clergé seculier I, p. I-XV), waren sich in ihren Urteilen über den Archivfonds der Erzbischöfe einig : im Vergleich zu den Fonds anderer Kirchen des mittelalterlichen Reims und gemessen an der Bedeutung, welche die Erzbischöfe für die Geschichte des mittelalterlichen Frankreich und für die engen Bindungen dieser Kirche zum apostolischen Stuhl ehemals hatten, lässt sich der heute noch vorhandene Archivbestand der Erzbischöfe in Reims nur als denkbar dürftig bezeichnen. Demaison wies darauf hin, dass allein eine Urkunde von 1172, mit der Petrus Cellensis, der Abt von Saint-Remi, dem Erzbischof Heinrich von Frankreich nach dessen Konflikt mit dem Grafen Heinrich von Troyes Land in Sept-Saulx und Villers-Marmery (c. Verzy, arr. Reims, Marne) abtrat, das der Abtei Saint-Remi und dem von ihr abhängigen Stift Saint-Timothée gehörte, das einzige erhaltene Original aus dem 12. Jahrhundert sei (G 109 n. 1; Gallia christ. X, Instr. col. 47E-48D n. XLVII). Selbst für das 13. Jahrhundert liegen außer einem Original von 1285 nur neuzeitliche Abschriften vor. Er möchte wie schon Varin die hauptsächliche Ursache dafür in einem verheerenden Brand sehen, der während des Pontifikats des Erzbischofs Regnault de Chartres am Nachmittag des 25. März 1423, das Innere der erzbischöflichen Residenz in der Festung an der Porte-Mars völlig zerstörte. Die dafür herangezogenen Quellenzeugnisse sprechen in der Tat eine deutliche Sprache.
+Sowohl Pierre Varin, der im 19. Jahrhundert einen beträchtlichen Teil
+der mittelalterlichen Überlieferung aus der alten Metropole der Gallia
+Belgica veröffentlichte (Varin, Archives administratives de la ville
+de Reims I, p. CLVIII-CLIX), als auch Louis Demaison, der die Archive
+der Erzbischöfe und des Metropolitankapitels durch ein ausführliches
+Inventar erschlossen hat (Demaison, Archives ecclésiastiques, Série G,
+Clergé seculier I, p. I-XV), waren sich in ihren Urteilen über den
+Archivfonds der Erzbischöfe einig : im Vergleich zu den Fonds anderer
+Kirchen des mittelalterlichen Reims und gemessen an der Bedeutung,
+welche die Erzbischöfe für die Geschichte des mittelalterlichen
+Frankreich und für die engen Bindungen dieser Kirche zum apostolischen
+Stuhl ehemals hatten, lässt sich der heute noch vorhandene
+Archivbestand der Erzbischöfe in Reims nur als denkbar dürftig
+bezeichnen. Demaison wies darauf hin, dass allein eine Urkunde von
+1172, mit der Petrus Cellensis, der Abt von Saint-Remi, dem Erzbischof
+Heinrich von Frankreich nach dessen Konflikt mit dem Grafen Heinrich
+von Troyes Land in Sept-Saulx und Villers-Marmery (c. Verzy, arr.
+Reims, Marne) abtrat, das der Abtei Saint-Remi und dem von ihr
+abhängigen Stift Saint-Timothée gehörte, das einzige erhaltene
+Original aus dem 12. Jahrhundert sei (G 109 n. 1; Gallia christ. X,
+Instr. col. 47E-48D n. XLVII). Selbst für das 13. Jahrhundert liegen
+außer einem Original von 1285 nur neuzeitliche Abschriften vor. Er
+möchte wie schon Varin die hauptsächliche Ursache dafür in einem
+verheerenden Brand sehen, der während des Pontifikats des Erzbischofs
+Regnault de Chartres am Nachmittag des 25. März 1423, das Innere der
+erzbischöflichen Residenz in der Festung an der Porte-Mars völlig
+zerstörte. Die dafür herangezogenen Quellenzeugnisse sprechen in der
+Tat eine deutliche Sprache.
 
-Die notorische Armut bischöflicher Archive ist für Reims keine Besonderheit (cf. Christopher R. Cheney, English Bishops' Chanceries, 1100-1250, Manchester 1950, p. 133-141; Lohrmann, Kirchengut p. 125-126; Falkenstein, Palliumverleihungen p. 220-221). Nicht ausgeschlossen ist, dass gelegentlich auch noch andere Ursachen für Verluste von Urkunden im Archiv der Erzbischöfe gesorgt haben, etwa die Ausübung des Spolienrechtes (über das Spolienrecht des Königs und seiner Amtsträger Luchaire, Histoire II p. 66-67), sobald durch den Tod des Erzbischofs das Erzbistum für die Zeit der Sedisvakanz « in die Hände des Königs » zurückgefallen war. Während es jedoch für die Ausübung des Regalienrechtes durch Beauftragte des Königs gute Beispiele aus dem 12. Jahrhundert gibt, haben sich, anders als im Fall des Bistums Châlons, authentische Zeugnisse zur Ausübung des Spolienrechts in der Kirche von Reims aus dem 12. oder 13. Jahrhundert m. W. nicht erhalten, außer einer Ansspielung in einem Brief der Bernhard von Clairvaux (Leclercq – Rochais, S. Bernardi opera VIII p. 88-89 n. CCXXII).
+Die notorische Armut bischöflicher Archive ist für Reims keine
+Besonderheit (cf. Christopher R. Cheney, English Bishops' Chanceries,
+1100-1250, Manchester 1950, p. 133-141; Lohrmann, Kirchengut p.
+125-126; Falkenstein, Palliumverleihungen p. 220-221). Nicht
+ausgeschlossen ist, dass gelegentlich auch noch andere Ursachen für
+Verluste von Urkunden im Archiv der Erzbischöfe gesorgt haben, etwa
+die Ausübung des Spolienrechtes (über das Spolienrecht des Königs und
+seiner Amtsträger Luchaire, Histoire II p. 66-67), sobald durch den
+Tod des Erzbischofs das Erzbistum für die Zeit der Sedisvakanz « in
+die Hände des Königs » zurückgefallen war. Während es jedoch für die
+Ausübung des Regalienrechtes durch Beauftragte des Königs gute
+Beispiele aus dem 12. Jahrhundert gibt, haben sich, anders als im Fall
+des Bistums Châlons, authentische Zeugnisse zur Ausübung des
+Spolienrechts in der Kirche von Reims aus dem 12. oder 13. Jahrhundert
+m. W. nicht erhalten, außer einer Ansspielung in einem Brief der
+Bernhard von Clairvaux (Leclercq -- Rochais, S. Bernardi opera VIII p.
+88-89 n. CCXXII).
 
-Dafür, dass es bereits im 9. Jahrhundert ein beträchtlich großes eigenes Archiv der Kirche von Reims gab, ist Flodoard der beste Zeuge und Gewährsmann. Es wurde unter Erzbischof Ebbo erbaut, war zusammen mit einer _cripta_ dem hl. Petrus und allen Aposteln sowie den Bekennern und Jungfrauen geweiht und bewahrte zugleich Reliquien als « Unterpfänder » (Hist. Rem. eccl. II 19, ed. Lejeune I p. 333; ed. Heller – Waitz, MGH SS XIII p. 467; ed. Stratmann, MGH SS XXXVI p. 175–176). Wie lange dieses Archiv erhalten blieb, und welche Umstände zu seinem Verlust führten, ist leider nicht bekannt. Ebenso unbekannt ist, wann genau das Metropolitankapitel als zunehmend erstarkende Korporation damit begann, ein eigenes Archiv zu führen, das von dem des Erzbischofs getrennt war. Jedoch könnten dessen Anfänge noch in das 10. Jahrhundert reichen.
+Dafür, dass es bereits im 9. Jahrhundert ein beträchtlich großes
+eigenes Archiv der Kirche von Reims gab, ist Flodoard der beste Zeuge
+und Gewährsmann. Es wurde unter Erzbischof Ebbo erbaut, war zusammen
+mit einer *cripta* dem hl. Petrus und allen Aposteln sowie den
+Bekennern und Jungfrauen geweiht und bewahrte zugleich Reliquien als
+« Unterpfänder » (Hist. Rem. eccl. II 19, ed. Lejeune I p. 333; ed.
+Heller -- Waitz, MGH SS XIII p. 467; ed. Stratmann, MGH SS XXXVI p.
+175--176). Wie lange dieses Archiv erhalten blieb, und welche Umstände
+zu seinem Verlust führten, ist leider nicht bekannt. Ebenso unbekannt
+ist, wann genau das Metropolitankapitel als zunehmend erstarkende
+Korporation damit begann, ein eigenes Archiv zu führen, das von dem
+des Erzbischofs getrennt war. Jedoch könnten dessen Anfänge noch in
+das 10. Jahrhundert reichen.
 
-Daneben ist daran zu erinnern, dass wohl schon im 11. Jahrhundert bei einzelnen Erzbischöfen damit begonnen wurde, Briefe der Päpste, die an sie gerichtet waren, in Sammlungen zu integrieren. Das Fragment einer solchen Sammlung, die man für den Pontifikat des Erzbischof Gervasius kennt, ist ein Beispiel für eine solche Initiative. Für das 12. Jahrhundert indes hat sich ein für die Überlieferung päpstlicher Schreiben und Mandate einzigartiges Zeugnis in der Sammlung des Codex 964 der heutigen Bibliothèque municipale in Arras erhalten, das über die Beziehungen des Erzbischofs Heinrich von Frankreich zu den zeitgenössischen Päpsten Eugen III. und Hadrian IV. (noch als Bischof von Beauvais), vor allem aber zu Alexander III. willkommene Auskunft gibt. Die Sammlung enthält jedoch keineswegs die Gesamtheit aller an Heinrich von Frankreich adressierten Briefe und Mandate der päpstlichen Kanzlei, sondern eher eine Auswahl, die auf ein ehemals vollständigeres Register von Eingängen aus der päpstlichen Kanzlei zurückgehen könnte. Da jedoch die Initiative zur Eingliederung solcher Eingänge in eine Sammlung schon in die Zeit hinaufreicht, in der er noch Bischof von Beauvais war, zeigt dies, dass diese Sammlung eher auf eine private Initiative aus seiner frühen Umgebung (Nicolas de Montiérramey? Philipp von L'Aumône?) als auf eine gefestigte Tradition in Beauvais oder Reims hinweisen könnte. Es dürften indes, abgesehen vom ersten Teil, vor allem juristische Interessen bei der Auswahl der päpstlichen Briefe und Mandate und beim Zustandekommen der Sammlung des Codex Arras 964 den Ausschlag gegeben haben.
+Daneben ist daran zu erinnern, dass wohl schon im 11. Jahrhundert bei
+einzelnen Erzbischöfen damit begonnen wurde, Briefe der Päpste, die an
+sie gerichtet waren, in Sammlungen zu integrieren. Das Fragment einer
+solchen Sammlung, die man für den Pontifikat des Erzbischof Gervasius
+kennt, ist ein Beispiel für eine solche Initiative. Für das 12.
+Jahrhundert indes hat sich ein für die Überlieferung päpstlicher
+Schreiben und Mandate einzigartiges Zeugnis in der Sammlung des Codex
+964 der heutigen Bibliothèque municipale in Arras erhalten, das über
+die Beziehungen des Erzbischofs Heinrich von Frankreich zu den
+zeitgenössischen Päpsten Eugen III. und Hadrian IV. (noch als Bischof
+von Beauvais), vor allem aber zu Alexander III. willkommene Auskunft
+gibt. Die Sammlung enthält jedoch keineswegs die Gesamtheit aller an
+Heinrich von Frankreich adressierten Briefe und Mandate der
+päpstlichen Kanzlei, sondern eher eine Auswahl, die auf ein ehemals
+vollständigeres Register von Eingängen aus der päpstlichen Kanzlei
+zurückgehen könnte. Da jedoch die Initiative zur Eingliederung solcher
+Eingänge in eine Sammlung schon in die Zeit hinaufreicht, in der er
+noch Bischof von Beauvais war, zeigt dies, dass diese Sammlung eher
+auf eine private Initiative aus seiner frühen Umgebung (Nicolas de
+Montiérramey? Philipp von L'Aumône?) als auf eine gefestigte Tradition
+in Beauvais oder Reims hinweisen könnte. Es dürften indes, abgesehen
+vom ersten Teil, vor allem juristische Interessen bei der Auswahl der
+päpstlichen Briefe und Mandate und beim Zustandekommen der Sammlung
+des Codex Arras 964 den Ausschlag gegeben haben.
 
-Zur Überlieferung der älteren Papsturkunden und den Inhalt der erhaltenen Chartulare der Erzbischöfe hat Meinert bereits das Nötige mitgeteilt.
+Zur Überlieferung der älteren Papsturkunden und den Inhalt der
+erhaltenen Chartulare der Erzbischöfe hat Meinert bereits das Nötige
+mitgeteilt.
 
 Ludwig Falkenstein
