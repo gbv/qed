@@ -14,7 +14,7 @@
           </a>
         </h1>
         <div class="beta-batch">
-          <span class="badge bg-danger">Beta</span>
+          <span class="badge bg-danger">beta</span>
         </div>
       </div>
       <div class="container">
@@ -59,40 +59,50 @@
     </section>
 
     <footer class="project-footer">
-      <section class="project-footer__menu">
+      <section class="project-footer__nav">
         <div class="container">
           <div class="row">
-            <div class="col">
-              <div class="project-copyright">
-                <a href="https://www.maxweberstiftung.de">
-                  © Max Weber Stiftung 2022
-                </a>
-              </div>
+            <div class="col-auto  project-footer__links">
+              <a class="mws-link" href="https://www.maxweberstiftung.de">Max Weber Stiftung</a>
+              <a class="p-link" href="https://perspectivia.net">perspectivia.net</a>
             </div>
-            <div class="col-auto">
-              <nav class="navbar navbar-expand-lg">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
-                  </li>
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
-                  </li>
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit
-                    </nuxt-link>
-                  </li>
-                </ul>
-              </nav>
+            <div class="col  project-footer__menu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/kontakt">Kontakt</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/nutzungsbedingungen">Nutzungsbedingungen</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div class="col-auto project-footer__logo">
+              <img
+                src="/images/mws_logo_standard_de_weiss.png"
+                alt="Logo Max Weber Stiftung" />
             </div>
           </div>
         </div>
       </section>
       <section class="project-footer__credits">
         <div class="container">
-          <div class="row">
+          <div class="row justify-content-between">
             <div class="col">
-              <div class="project-powered-by text-center">
+              <div class="project-copyright">
+                <a href="https://www.maxweberstiftung.de">© Max Weber Stiftung 2022</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="project-powered-by text-end">
                 <a href="http://www.mycore.de/">
                   <img alt="powered by MyCoRe" title="todo:add version number"
                        src="/images/mycore_logo_small_invert.png">

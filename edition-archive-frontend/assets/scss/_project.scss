@@ -45,7 +45,7 @@
       height: 100%;
     }
     a {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: normal;
       display: block;
       height: 100%;
@@ -59,6 +59,14 @@
         background-color: white;
       }
     }
+  }
+
+  .beta-batch {
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    right: -2rem;
+    z-index: 1001;
   }
 
   // main and language menu
@@ -96,8 +104,8 @@
 // content
 .project-content {
   min-height: 40rem;
-  padding-top: 3rem;
-  padding-bottom: 4rem;
+  padding-top: 6rem;
+  padding-bottom: 8rem;
 }
 .card-img-top.fixed-height {
   height: 20rem;
@@ -110,8 +118,41 @@
 
 // footer
 .project-footer {
-  &__menu {
+  &__nav {
+    padding: 2rem 0 3rem 0;
     background-color: $petrol;
+    .nav-link {
+      color: white;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  &__links {
+    margin-right: 5rem;
+    a {
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+    .mws-link{
+      margin-top: 0.5rem;
+    }
+    .p-link {
+      font-weight: bold;
+    }
+  }
+  &__menu {}
+  &__logo {
+    margin-top: 0.5rem;
+    text-align: right;
+    img {
+      width: 180px;
+    }
+  }
+  &__credits {
+    background-color: $grayDark;
+    padding: 1.25rem;
     .project-copyright {
       height: 100%;
       display: flex;
@@ -121,25 +162,10 @@
         text-decoration: none;
       }
     }
-    .nav-link {
-      color: white;
-      &:hover {
-        color: white;
-      }
-    }
-  }
-  &__credits {
-    background-color: $grayDark;
-    padding: 1.25rem;
   }
 }
 
-.beta-batch {
-  position: absolute;
-  top: 0;
-  right: -2rem;
-  z-index: 1001;
-}
+
 
 
 // ==== media queries ====
