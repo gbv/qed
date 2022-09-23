@@ -95,14 +95,9 @@
       </section>
       <section class="project-footer__credits">
         <div class="container">
-          <div class="row justify-content-between">
+          <div class="row">
             <div class="col">
-              <div class="project-copyright">
-                <a href="https://www.maxweberstiftung.de">© Max Weber Stiftung 2022</a>
-              </div>
-            </div>
-            <div class="col">
-              <div class="project-powered-by text-end">
+              <div class="project-powered-by text-center">
                 <a href="http://www.mycore.de/">
                   <img alt="powered by MyCoRe" title="todo:add version number"
                        src="/images/mycore_logo_small_invert.png">
