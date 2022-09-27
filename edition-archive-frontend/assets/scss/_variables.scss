@@ -6,9 +6,24 @@ $orange:      #ef7f00;
 $petrol:      #006978;
 $red:         #b4192d;
 
-$primary: $orange;
-$secondary: $petrol;
+$primary: $petrol;
+$secondary: $orange;
 $danger: $red;
 
 $font-family-sans-serif: 'Open Sans', Arial, Helvetica, sans-serif;
 $body-color: $grayMedium;
+$link-color: $petrol;
+$navbar-light-active-color: $petrol;
+$navbar-light-color: $petrol;
+$navbar-light-hover-color: darken($petrol,10%);
+$navbar-nav-link-padding-x: 1rem;
+$border-radius: 0;
+$font-size-base: 1rem;
+$dropdown-border-color: rgba($petrol, 0.5);
+$dropdown-spacer: .5rem;
+$h1-font-size:                $font-size-base * 2;
+$h2-font-size:                $font-size-base * 1.75;
+$h3-font-size:                $font-size-base * 1.5;
+$h4-font-size:                $font-size-base * 1.25;
+$h5-font-size:                $font-size-base;
+$h6-font-size:                $font-size-base;

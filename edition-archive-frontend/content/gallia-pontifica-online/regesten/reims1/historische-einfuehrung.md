@@ -1,6 +1,6 @@
-## Historische Einführung <small class="text-muted">(in Bearbeitung)</small>
+### Historische Einführung <small class="text-muted">(in Bearbeitung)</small>
 
-### Erzbischöfe
+#### Erzbischöfe
 
 Die schriftlichen Nachrichten über die Anfänge des Christentums in
 Reims reichen noch in das dritte Jahrhundert hinauf. Die älteste
@@ -179,7 +179,7 @@ Der besonderen Stellung der Erzbischöfe von Reims innerhalb der
 Inhabern von weltlichen, ja sogar hoheitlichen Rechten in ihrer
 Metropole zukam.
 
-### Zur weltlichen Macht und Stellung der Erzbischöfe von Reims
+#### Zur weltlichen Macht und Stellung der Erzbischöfe von Reims
 
 Im Mittelalter waren die Erzbischöfe von Reims mit besonderer
 weltlicher Macht ausgestattet, die in diesem Ausmaß für das Königreich
@@ -326,7 +326,7 @@ Grafenhaus der Champagne ihre Stellung in der Metropole auf. Damit war
 der Erzbischof alleiniger Inhaber von Grafenrechten in Reims und der
 gleichnamigen Grafschaft.
 
-### Vermögensaufteilung
+#### Vermögensaufteilung
 
 Bei dem historischen Abriss der Abtei Saint-Remi wird darauf näher
 einzugehen sei, dass Bistumsgut und Klostergut dieser Abtei bis ins
@@ -348,7 +348,7 @@ bestanden hatte, war ohnehin schon früher durch Trennung dieser
 Einheit und Schaffung zweier Vermögen aufgehoben wurde (Rouche, La
 destinée des biens de saint Remi p. 50).
 
-### Zum Amt eines Legaten des apostolischen Stuhles
+#### Zum Amt eines Legaten des apostolischen Stuhles
 
 Erzbischof Samson de Mauvoisin hat das Amt unter Hadrian IV. wieder
 erhalten und bis zum Ende seines Pontifikates ausgeübt (letzter
@@ -371,7 +371,7 @@ der Rücknahme eines *altare* durch den Bischof handelte, dürften die
 Berichte des Delegaten, Erzbischof Samson de Mauvoisin, aus dem Archiv
 des Bischofs von Arras stammen.
 
-### Zum Archiv der Erzbischöfe
+#### Zum Archiv der Erzbischöfe
 
 Sowohl Pierre Varin, der im 19. Jahrhundert einen beträchtlichen Teil
 der mittelalterlichen Überlieferung aus der alten Metropole der Gallia

@@ -23,22 +23,22 @@
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="#">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/incipits">
                 {{ $t('incipits') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="#">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/handschriften">
                 {{ $t('writings') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="#">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/dekretalen">
                 {{ $t('decretals') }}
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="#">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/quellen">
                 {{ $t('sources') }}
               </nuxt-link>
             </li>

@@ -3,7 +3,7 @@
     <section v-if="props.changer" class="row">
       <div class="col-2 offset-10">
         <div class="dropdown">
-          <a id="dropdownMenuLink" aria-expanded="false" class="btn btn-sm btn-secondary dropdown-toggle"
+          <a id="dropdownMenuLink" aria-expanded="false" class="btn btn-sm btn-primary dropdown-toggle"
              data-bs-toggle="dropdown"
              href="#" role="button" v-on:click.prevent="">
             <i class="bi bi-translate"></i>
