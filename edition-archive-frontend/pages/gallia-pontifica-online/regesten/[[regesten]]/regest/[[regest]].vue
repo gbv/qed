@@ -1,122 +1,132 @@
 <template>
   <GalliaPontificaOnlineLayout>
     <template #content>
-      <div v-if="viewModel" class="content">
+      <h3>{{ $t("regests") }}</h3>
+      <div v-if="viewModel" class="content regest-detail-view">
+
         <BrowseComponent :current="parseInt(regestedIdno)" :next-label="browseData.nextLabel" :of="browseData.count"
                          :prev-label="browseData.prevLabel" v-on:nextClicked="browseNextClicked"
                          v-on:prevClicked="browsePrevClicked"/>
 
-        <section class="heading mt-5">
-          <h2>{{ viewModel.idno }}</h2>
-          <div class="row">
-            <div v-if="viewModel.pontifikatPP_text" class="PontifikatPP col">
-              {{ viewModel.pontifikatPP_text }}
+        <div class="content regest-detail-view-content">
+
+          <div class="heading">
+            <h4 class="mb-3 text-center">{{ viewModel.idno }}</h4>
+            <div class="row">
+              <div  class="PontifikatPP col text-start">
+                <span v-if="viewModel.pontifikatPP_text">
+                  {{ viewModel.pontifikatPP_text }}
+                </span>
+              </div>
+              <div class="issued col text-center">
+                <span v-if="viewModel.issued">
+                  {{ viewModel.issued }}
+                </span>
+              </div>
+              <div class="PontifikatAEP col text-end">
+                <span v-if="viewModel.pontifikatAEP_text">
+                  {{ viewModel.pontifikatAEP_text }}
+                </span>
+              </div>
             </div>
-            <div v-if="viewModel.issued" class="issued col">
-              {{ viewModel.issued }}
+          </div>
+
+          <div v-if="viewModel.abstract" class="section abstract">
+            <template v-for="part in viewModel.abstract">
+              <template v-if="typeof part != 'string'">
+                <span v-if="part.name==='cei:persName'" class="person">{{ flattenElement(part) }}</span>
+                <span v-if="part.name==='cei:placeName'" class="place">{{ flattenElement(part) }}</span>
+              </template>
+              <template v-else>
+                {{ part }}
+              </template>
+            </template>
+          </div>
+
+
+          <div v-if="Object.keys(viewModel.witlist).length>0" class="section witlist">
+            <h3>{{ $t("regest_ueberlieferungen") }}</h3>
+            <dl>
+              <template v-for="(obj, head)  in viewModel.witlist">
+                <dt>{{ head }}</dt>
+                <dd>
+                  <template v-for="wit in viewModel.witlist[head]">
+                    {{ wit.msIdentifier || "" }} {{ wit.msIdentifierLabel || "" }} {{ wit.ref || "" }}<br/>
+                  </template>
+                </dd>
+              </template>
+            </dl>
+          </div>
+
+          <div v-if="viewModel.listBiblEdition.length>0" class="section listBiblEdition">
+            <h3>{{ $t("regest_editionen") }}</h3>
+            <div>
+              <template v-for="bibl in viewModel.listBiblEdition">
+                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
+                <span v-else class="xxx">{{bibl}}</span>
+              </template>
             </div>
-            <div v-if="viewModel.pontifikatAEP_text" class="PontifikatAEP col">
-              {{ viewModel.pontifikatAEP_text }}
+          </div>
+
+          <!-- Erwähnungen -->
+
+
+          <!-- Regesten -->
+          <div v-if="viewModel.listBiblRegest.length>0" class="section listBiblRegest">
+            <h3>{{ $t("regest_regests") }}</h3>
+            <div>
+              <template v-for="bibl in viewModel.listBiblRegest">
+                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
+                <span v-else>{{bibl}}</span>
+              </template>
             </div>
           </div>
-        </section>
-
-        <section v-if="viewModel.abstract" class="abstract">
-          <template v-for="part in viewModel.abstract">
-            <template v-if="typeof part != 'string'">
-              <span v-if="part.name==='cei:persName'" class="person">{{ flattenElement(part) }}</span>
-              <span v-if="part.name==='cei:placeName'" class="place">{{ flattenElement(part) }}</span>
-            </template>
-            <template v-else>
-              {{ part }}
-            </template>
-          </template>
-        </section>
 
 
-        <section v-if="Object.keys(viewModel.witlist).length>0" class="witlist">
-          <h3>{{ $t("regest_ueberlieferungen") }}</h3>
-          <dl>
-            <template v-for="(obj, head)  in viewModel.witlist">
-              <dt>{{ head }}</dt>
-              <dd>
-                <template v-for="wit in viewModel.witlist[head]">
-                  {{ wit.msIdentifier || "" }} {{ wit.msIdentifierLabel || "" }} {{ wit.ref || "" }}<br/>
-                </template>
-              </dd>
-            </template>
-          </dl>
-        </section>
-
-        <section v-if="viewModel.listBiblEdition.length>0" class="listBiblEdition">
-          <h3>{{ $t("regest_editionen") }}</h3>
-          <div>
-            <template v-for="bibl in viewModel.listBiblEdition">
-              <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-              <span v-else>{{bibl}}</span>
-            </template>
+          <!-- Sachkomentar -->
+          <div v-if="viewModel.sachkommentar.length>0" class="section sachkommentar">
+            <h3>{{ $t("regest_sachkommentar") }}</h3>
+            <div>
+              <template v-for="bibl in viewModel.sachkommentar">
+                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
+                <span v-else>{{bibl}}</span>
+              </template>
+            </div>
           </div>
-        </section>
 
-        <!-- Erwähnungen -->
-
-
-        <!-- Regesten -->
-        <section v-if="viewModel.listBiblRegest.length>0" class="listBiblRegest">
-          <h3>{{ $t("regest_regests") }}</h3>
-          <div>
-            <template v-for="bibl in viewModel.listBiblRegest">
-              <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-              <span v-else>{{bibl}}</span>
-            </template>
+          <!--
+          <div class="section ueberlieferungsform"
+                   v-if="findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))">
+            <h3>{{ $t("regest_ueberlieferungsform") }}</h3>
+            {{ flattenElement(findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))) }}
           </div>
-        </section>
 
 
-        <!-- Sachkomentar -->
-        <section v-if="viewModel.sachkommentar.length>0" class="sachkommentar">
-          <h3>{{ $t("regest_sachkommentar") }}</h3>
-          <div>
-            <template v-for="bibl in viewModel.sachkommentar">
-              <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-              <span v-else>{{bibl}}</span>
-            </template>
+          <div class="pontifikatPP section"
+                   v-for="pontifikatPP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatPP')))">
+            <h3> {{ $t("regest_pontifikatPP") }}</h3>
+            {{ flattenElement(pontifikatPP) }}
           </div>
-        </section>
-        <!--
 
-        <section class="ueberlieferungsform"
-                 v-if="findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))">
-          <h3>{{ $t("regest_ueberlieferungsform") }}</h3>
-          {{ flattenElement(findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))) }}
-        </section>
+          <div class="pontifikatAEP section"
+                   v-for="pontifikatAEP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')))">
+            <h3> {{ $t("regest_pontifikatAEP") }}</h3>
+            {{ flattenElement(pontifikatAEP) }}
+          </div>
 
+          <div class="ueberlieferung section"
+                   v-for="ueberlieferung in findElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferung')))">
+            <h3> {{ $t("regest_ueberlieferung") }}</h3>
+            {{ flattenElement(ueberlieferung) }}
+          </div>
 
-        <section class="pontifikatPP"
-                 v-for="pontifikatPP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatPP')))">
-          <h3> {{ $t("regest_pontifikatPP") }}</h3>
-          {{ flattenElement(pontifikatPP) }}
-        </section>
-
-        <section class="pontifikatAEP"
-                 v-for="pontifikatAEP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')))">
-          <h3> {{ $t("regest_pontifikatAEP") }}</h3>
-          {{ flattenElement(pontifikatAEP) }}
-        </section>
-
-        <section class="ueberlieferung"
-                 v-for="ueberlieferung in findElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferung')))">
-          <h3> {{ $t("regest_ueberlieferung") }}</h3>
-          {{ flattenElement(ueberlieferung) }}
-        </section>
-
-        <section class="sachkommentar"
-                 v-for="sachkommentar in findElement(data, and(byName('cei:p'), byAttr('type', 'Sachkommentar')))">
-          <h3> {{ $t("regest_sachkommentar") }}</h3>
-          {{ flattenElement(sachkommentar) }}
-        </section> -->
-
-
+          <div class="sachkommentar section"
+                   v-for="sachkommentar in findElement(data, and(byName('cei:p'), byAttr('type', 'Sachkommentar')))">
+            <h3> {{ $t("regest_sachkommentar") }}</h3>
+            {{ flattenElement(sachkommentar) }}
+          </div>
+          -->
+        </div>
       </div>
     </template>
 
@@ -322,33 +332,4 @@ if (error.value) {
 </script>
 
 <style scoped>
-.content {
-}
-
-.heading {
-  text-align: center;
-}
-
-.abstract {
-  text-align: left;
-}
-
-.ueberlieferungsform {
-}
-
-section {
-  margin-bottom: 1em;
-}
-
-.PontifikatPP {
-  float: left;
-}
-
-.PontifikatAEP {
-  float: right;
-}
-
-.issued {
-  clear: both;
-}
 </style>
