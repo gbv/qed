@@ -2,39 +2,51 @@
   <div class="body-box">
 
     <header class="project-header">
-      <div class="container-fluid project-header__logos g-0">
-        <div class="row g-0">
-          <div class="col-auto project-header__parent">
-            <a href="https://perspectivia.net">
-              <img src="/images/perspectivia_logo_p.png" class="" alt="Logo Max-Weber-Stiftung">
-            </a>
-          </div>
-          <div class="col-auto project-header__project">
-            <h1>
-              <a href="/" title="Das Quellen- und Editionsportal der Max Weber Stiftung">
-                QED
-              </a>
-            </h1>
-          </div>
+      <div class="project-header__parent">
+        <a href="https://perspectivia.net">
+          <img src="/images/perspectivia_logo_p.png" class="" alt="Logo Max-Weber-Stiftung">
+        </a>
+      </div>
+      <div class="project-header__project">
+        <h1>
+          <a href="/" title="Das Quellen- und Editionsportal der Max Weber Stiftung">
+            qed.perspectivia.net
+          </a>
+        </h1>
+        <div class="beta-batch">
+          <span class="badge bg-danger">beta</span>
         </div>
       </div>
       <div class="container">
         <div class="row">
           <div class="col project-header__menu">
-            <nav class="navbar navbar-expand-lg w-100">
-              <ul class="navbar-nav w-100">
-                <li class="nav-item">
-                  <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
-                </li>
-                <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about') }}</nuxt-link>
-                </li>
-                <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('search') }}</nuxt-link>
-                </li>
-                <LanguageSelector />
-              </ul>
+            <nav class="navbar navbar-dark navbar-expand-md w-100 justify-content-end">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#qed-main-menu"
+                aria-controls="qed-main-menu"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="qed-main-menu">
+                <ul class="navbar-nav w-100 justify-content-end">
+                  <li class="nav-item">
+                    <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
+                  </li>
+                  <li class="nav-item">
+                    <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('globalSearch') }}</nuxt-link>
+                  </li>
+                  <li class="nav-item">
+                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about') }}</nuxt-link>
+                  </li>
+                  <LanguageSelector />
+                </ul>
+              </div>
             </nav>
+
           </div>
         </div>
       </div>
@@ -47,31 +59,36 @@
     </section>
 
     <footer class="project-footer">
-      <section class="project-footer__menu">
+      <section class="project-footer__nav">
         <div class="container">
           <div class="row">
-            <div class="col">
-              <div class="project-copyright">
-                <a href="https://www.maxweberstiftung.de">
-                  © Max Weber Stiftung 2022
-                </a>
-              </div>
+            <div class="col-auto  project-footer__links">
+              <a class="mws-link" href="https://www.maxweberstiftung.de">Max Weber Stiftung</a>
+              <a class="p-link" href="https://perspectivia.net">perspectivia.net</a>
             </div>
-            <div class="col-auto">
-              <nav class="navbar navbar-expand-lg">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
-                  </li>
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
-                  </li>
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit
-                    </nuxt-link>
-                  </li>
-                </ul>
-              </nav>
+            <div class="col  project-footer__menu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/kontakt">Kontakt</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/nutzungsbedingungen">Nutzungsbedingungen</nuxt-link>
+                </li>
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div class="col-auto project-footer__logo">
+              <img
+                src="/images/mws_logo_standard_de_weiss.png"
+                alt="Logo Max Weber Stiftung" />
             </div>
           </div>
         </div>

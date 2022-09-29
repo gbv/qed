@@ -2,8 +2,8 @@
   <GalliaPontificaOnlineLayout>
 
     <template #content>
-          <h2>{{ $t("person_index") }}</h2>
-          <ul class="list-group list-group-flush mt-5" v-if="data">
+          <h3>{{ $t("person_index") }}</h3>
+          <ul class="list-group list-group-flush no-underline" v-if="data">
             <li v-for="doc in data.docs" class="list-group-item">
               <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/person?personObj=${doc.id}`">{{ doc.displayName.join(", ") }}</nuxt-link>
             </li>

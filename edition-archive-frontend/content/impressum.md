@@ -1,36 +1,52 @@
 ## Impressum
 
-### Adresse
-<address>
-Max Weber Stiftung –<br>
-Deutsche Geisteswissenschaftliche Institute im Ausland<br>
-Geschäftsstelle<br>
-Rheinallee 6<br>
-53173 Bonn<br>
-Tel. +49-(0)228-37786-0<br>
-Fax:+49 (0)228-37786-19<br>
-E-Mail: info(at)maxweberstiftung.de<br>
-</address>
+qed – Das Quellen- und Editionenportal der Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland (MWS) ist Teil der elektronischen Publikationsplattform perspectivia.net. Es handelt sich um einen nicht-kommerziellen Dienst der MWS.
 
 ### Vertreter
 
 Die Max Weber Stiftung (MWS) ist eine rechtsfähige bundesunmittelbare Stiftung mit Sitz in Bonn und wird vertreten durch den Geschäftsführer, Dr. Harald Rosenbach.
 
-### Redaktion und Konzeption
 
-Dr. Tina Rudersdorf (verantw.)
+### Redaktion – Leitung
+<address>
+Dr. Michael Kaiser<br>
+Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland<br>
+Rheinallee 6<br>
+D-53173 Bonn<br>
+Telefon: +49 (0)228 37786-24<br>
+E-Mail: kaiser(at)maxweberstiftung.de<br>
+</address>
 
-**Telefon:** +49-(0)228-37786-28
+### Kontakt
+Für Fragen zur Publikation von digitalen Quellen und Editionen wenden Sie sich bitte an:
+<address>
+Herrn Julian Schulz (Referent für Digital Humanities und Forschungsdatenmanagement)<br>
+E-Mail: Schulz@MaxWeberStiftung.de<br>
+Telefon: +49 (228) 377 86-30<br>
+</address>
 
-**E-Mail:** rudersdorf(at)maxweberstiftung.de
+Fragen zum Repositoryframework MyCoRe und dem Datenbankserver beantwortet Ihnen die
+<address>
+Verbundzentrale des GBV (VZG)<br>
+Platz der Göttinger Sieben 1<br>
+37073 Göttingen<br>
+Tel.: 0551 39 5207<br>
+Fax: 0551 39 13980<br>
+Digitale Bibliothek<br>
+Internet: https://www.gbv.de/informationen/Verbundzentrale/serviceangebote/service-im-bereich-digitale-bibliothek<br>
+E-Mail: dms-list@lists.gbv.de<br>
+</address>
 
 
 ### Haftungsausschluss
+qed – Das Quellen- und Editionenportal der MWS publiziert Forschungsergebnisse und Informationen auf dieser Website nach bestem Wissen und sorgfältiger Kontrolle der Inhalte. Eine Gewähr für Aktualität, Richtigkeit und Vollständigkeit der auf der Website veröffentlichten Informationen und Verweise kann aufgrund ständiger Aktualisierungen der Website nicht übernommen werden. Eine Haftung für Vermögensschäden oder Vermögensfolgeschäden, die durch Nutzung von Angeboten auf der Website entstehen, ist ausgeschlossen, sofern perspectivia.net den Eintritt solcher Schäden nicht grob fahrlässig oder vorsätzlich verursacht hat.
 
-Die veröffentlichten Informationen sind sorgfältig zusammengestellt, erheben aber keinen Anspruch auf Aktualität, sachliche Korrektheit oder Vollständigkeit; eine entsprechende Gewähr wird nicht übernommen. Alle kostenfreien Angebote sind unverbindlich. Die MWS behält es sich vor, jederzeit ohne vorherige Ankündigung das Angebot zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung einzustellen.
+Externe Links, auf die qed – Das Quellen- und Editionenportal der MWS keinen Einfluss hat, haben informativen Charakter und geben den Inhalt und die Meinung der jeweiligen Anbieter dieser Seiten wieder. qed – Das Quellen- und Editionenportal der MWS verweist auf solche Seiten nur, ohne sich den Inhalt oder die Aussagen dieser Seiten zu eigen zu machen. Für den Inhalt dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Für illegale, fehlerhafte oder unvollständige Inhalte sowie für Schäden, die durch die Nutzung oder Nichtnutzung der Informationen entstehen, haftet allein der Anbieter der Webseite, auf die verwiesen wurde. Die Haftung desjenigen, der lediglich auf die Veröffentlichung durch einen Link hinweist, ist ausgeschlossen. Die MWS entfernt unverzüglich rechtswidrige Inhalte, sobald sie von ihnen Kenntnis erlangt.
 
-Die MWS ist nicht für die Inhalte fremder Seiten verantwortlich, die über einen Link erreicht werden. Die veröffentlichten Links werden mit größtmöglicher Sorgfalt recherchiert und zusammengestellt. Die Redaktion hat keinen Einfluss auf die aktuelle und zukünftige Gestaltung und Inhalte der fremden Seiten. Die MWS ist nicht für den Inhalt der verknüpften Seiten verantwortlich und macht sich den Inhalt nicht zu eigen. Für illegale, fehlerhafte oder unvollständige Inhalte sowie für Schäden, die durch die Nutzung oder Nichtnutzung der Informationen entstehen, haftet allein der Anbieter der Webseite, auf die verwiesen wurde. Die Haftung desjenigen, der lediglich auf die Veröffentlichung durch einen Link hinweist, ist ausgeschlossen. Die MWS entfernt unverzüglich rechtswidrige Inhalte, sobald sie von ihnen Kenntnis erlangt. Hinweise auf rechtswidrige Inhalte auf verlinkten Seiten oder Angeboten können an info(at)maxweberstiftung.de gerichtet werden.
+Soweit inhaltliche, sachliche oder technische Fehler auf dieser Website bemerkt werden, bitten wir um eine E-Mail, um eine Richtigstellung vornehmen zu können.
 
-Sofern innerhalb des Internetangebotes die Möglichkeit zur Eingabe persönlicher oder geschäftlicher Daten (E-Mail-Adressen, Namen, Anschriften) besteht, so erfolgt die Preisgabe dieser Daten seitens des Nutzers auf ausdrücklich freiwilliger Basis.
 
-Dieser Haftungsausschluss ist als Teil des Internetangebotes zu betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile oder einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht, nicht mehr oder nicht vollständig entsprechen sollten, bleiben die übrigen Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon unberührt.
+### Copyright
+Sämtliche Inhalte dieser Website sind urheberrechtlich geschützt. Unerlaubte Verwendung, Reproduktion oder Weitergabe einzelner Inhalte oder Bilder können sowohl zivil- als auch strafrechtlich verfolgt werden.
+
+Die Befugnis zur Nutzung aller auf qed – Das Quellen- und Editionenportal der MWS bereitgestellten Inhalte regelt die Creative Commons-Lizenz, soweit nicht ausdrücklich ein entgegenstehender Rechtevorbehalt beim jeweiligen Inhalt erfolgt. Bitte beachten Sie: Für einzelne Inhalte können – je nach Zeitpunkt der Veröffentlichung – unterschiedliche CC-Lizenzbedingungen gelten. Die jeweils gültige CC-Lizenz wird im Zusammenhang mit dem jeweiligen Inhalt gesondert verlinkt. Die auf qed – Das Quellen- und Editionenportal der MWS bereitgestellten Digitalisate unterliegen dem Urheberrechtsmodell.

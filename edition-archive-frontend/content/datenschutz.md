@@ -1,32 +1,52 @@
-## Personenbezogene Daten
+## Datenschutz
+Die Max Weber Stiftung (MWS) nimmt den Schutz personenbezogener Daten ernst. Bitte informieren Sie sich im Folgenden über den Datenschutz auf unserem Webauftritt.
+Diese Datenschutzerklärung bezieht sich auf die Website qed.perspectiva.net.
+
+### Personenbezogene Daten
 Personenbezogene Daten sind Informationen, die dazu genutzt werden können, Ihre Identität zu erfahren. Darunter fallen Informationen wie Ihr Name, Adresse, Postanschrift, Telefonnummer und E-Mail-Adresse, aber auch die IP-Adresse, die Ihr Rechner hat, wenn Sie auf unsere Seiten zugreifen. Informationen, die nicht mit Ihrer Identität in Verbindung gebracht werden (wie zum Beispiel Anzahl der Nutzer der Site), fallen nicht darunter. Personenbezogene Daten werden auf unseren Webseiten nur im technisch notwendigen Umfang erhoben und gespeichert.
 
-## IP-Adresse
-Für den Abruf unserer Webseiten ist die Registrierung Ihrer IP-Adresse erforderlich. Eine IP-Adresse ist eine eindeutige, weltweit gültige Kennung Ihres Computers. Als privater Nutzer benutzen Sie in der Regel keine gleichbleibende IP-Adresse, da Ihr Provider Ihnen nur vorübergehend eine IP-Adresse zuweist. Dennoch ist dabei eine eindeutige Zuordnung der Nutzerdaten über dieses Merkmal im Prinzip möglich. Unsere Webserver speichern die Zugriffszeit, die IP-Adresse(vollständig), den aufgerufenen Pfad bzw. die Seite und den Browser-Agent, um Angriffe auf unsere Website analysieren und ggf. abwehren zu können. Die Speicherdauer beträgt maximal 15 Tage. Daten, die wir einem Angriff zuordnen, speichern wir so lange wie nötig.
+### IP-Adresse
+Für den Abruf unserer Webseiten ist die Registrierung Ihrer IP-Adresse erforderlich. Eine IP-Adresse ist eine eindeutige, weltweit gültige Kennung Ihres Computers. Als privater Nutzer benutzen Sie in der Regel keine gleichbleibende IP-Adresse, da Ihr Provider Ihnen nur vorübergehend eine IP-Adresse zuweist. Dennoch ist dabei eine eindeutige Zuordnung der Nutzerdaten über dieses Merkmal im Prinzip möglich. Unsere Webserver speichern die Zugriffszeit, die IP-Adresse (vollständig), den aufgerufenen Pfad bzw. die Seite und den Browser-Agent, um Angriffe auf unsere Website analysieren und ggf. abwehren zu können. Die Speicherdauer beträgt einen Monat. Daten, die wir einem Angriff zuordnen, speichern wir so lange wie nötig.
 
-## Cookies
-Diese Website verwendet keine Cookies.
+### Cookies
+Wir verwenden Sessioncookies (kleine Textdateien mit Besuchsinformationen, die zeitweise auf Ihrer Festplatte gespeichert werden), die am Ende der Sitzung ungültig werden. Sie sind für die uneingeschränkte technische Funktion der Seite erforderlich.
 
-## Kontaktaufnahme
+### Javascript
+Mit Javascript kann man den Funktionsumfang einer Website erweitern und personenbezogene Daten erheben. Wir verwenden Javascript nicht zur Erfassung personenbezogener Daten.
+
+Datenarme Nutzung, Widerspruch zur Verwendung von Cookies und Javascript
+
+Wir setzen lediglich Sessioncookies ein. Um der Nutzung von Cookies oder anderen Techniken zu widersprechen, empfehlen wir Ihnen die vom Browserhersteller dazu angebotenen Informationen über Abschaltung von Javascript und Ablehnung von Cookies abzufragen und anzuwenden (z. B. im Hilfemenü Ihres Internet-Browsers oder auf der entsprechenden Webseite), oder Sie nehmen Kontakt mit dem Browser-Lieferanten für weitere Hilfe und Instruktionen auf.
+
+Weiterhin können Sie bereits gesetzte Cookies jederzeit eigenhändig löschen, indem Sie den entsprechenden Menüpunkt in Ihrem Internet-Browser auswählen oder die Cookies in dem dafür vorgesehenen Verzeichnis auf Ihrer Festplatte löschen.
+
+### Einbindung von Diensten und Inhalten Dritter
+Es kann vorkommen, dass innerhalb dieses Onlineangebotes Inhalte von Dritten und Auftragsdatenverarbeitern (Diese Dienstleister sind vertraglich durch die Max Weber Stiftung gebunden und dürfen personenbezogene Daten, die sie in diesem Zusammenhang erhalten, nur für den beauftragten Zweck verwenden) wie zum Beispiel Videos, Kartenmaterial, RSS-Feeds, Social Media-Nachrichten, Bilder oder Grafiken von anderen Webseiten eingebunden werden. Dies setzt immer voraus, dass die Anbieter dieser Inhalte die IP-Adresse der Nutzer wahrnehmen, denn ohne die IP-Adresse können sie die Inhalte nicht an den Browser des jeweiligen Nutzers senden. Die IP-Adresse ist damit für die Darstellung dieser Inhalte erforderlich. Wir bemühen uns, nur solche Inhalte zu verwenden, deren jeweilige Anbieter die IP-Adresse lediglich zur Auslieferung der Inhalte verwenden. Jedoch haben wir keinen Einfluss darauf, falls die Dritt-Anbieter die IP-Adresse z. B. für statistische Zwecke speichern. Soweit dies uns bekannt ist, klären wir die Nutzer darüber auf. Dienste, die wir zurzeit nutzen, sind: Twitter, Vimeo, Googleapis, Here, fonts.com.
+
+### Kontaktaufnahme
 Bei der Kontaktaufnahme mit uns per E-Mail werden die Angaben des Nutzers zwecks Bearbeitung der Anfrage sowie für den Fall, dass Anschlussfragen entstehen, gespeichert.
 
-## Datenübermittlung
+### Datenübermittlung
 Ihre personenbezogenen Daten werden nur in den gesetzlich erforderlichen Fällen bzw. zur Strafverfolgung aufgrund von Angriffen auf unsere Netzinfrastruktur an staatliche Einrichtungen und Behörden übermittelt. Eine Weitergabe zu anderen als den oben beschriebenen Zwecken an Dritte findet nicht statt.
 
-## Ihre Rechte
-
+### Auskunftsrecht
 Sie haben jederzeit das Recht auf Auskunft über die bezüglich Ihrer Person gespeicherten Daten, deren Herkunft und Empfänger sowie den Zweck der Speicherung. Auskunft über die gespeicherten Daten gibt der Datenschutzbeauftragte der Max Weber Stiftung.
 
+### Berichtigung
 Sie haben das Recht, unrichtige personenbezogene Daten berichtigen zu lassen. Wenn die MWS Zweifel an der Richtigkeit der Berichtigung hat, ist sie berechtigt, bis zur Klärung des Sachverhaltes die Berichtigung nicht vorzunehmen.
 
+### Löschung
 Sie haben das Recht, personenbezogene Daten löschen zu lassen. Wenn die MWS rechtlich verpflichtet ist, die Daten zu speichern, löscht sie die Daten nicht. Wenn die MWS Zweifel an der Richtigkeit des Löschauftrages hat, ist sie berechtigt, bis zur Klärung des Sachverhaltes die Löschung nicht vorzunehmen.
 
+### Recht auf Einschränkung der Verarbeitung
 Sie haben das Recht auf Einschränkung der Verarbeitung, wenn Sie die Richtigkeit der Daten in Frage stellen (bis zur Klärung der Frage), wenn die Verarbeitung unrechtmäßig ist, wenn Sie Daten noch zur Geltendmachung von Rechtsansprüchen benötigen (nachdem sich der Zweck der Datenverarbeitung erledigt hat) oder wenn Sie Widerspruch nach Art. 21 DSGVO einlegen. Das gilt nicht, wenn die MWS zwingende schutzwürdige Gründe für die Verarbeitung hat.
 
-Sie haben das Recht, Ihre bei uns gespeicherten Daten in einem maschinenlesbaren Format mitzunehmen. Als Formate bieten wir das Txt-Format (UTF-8 oder ANSI) und PDF an.
+### Recht auf Datenübertragbarkeit
+Sie haben das Recht, Ihre bei uns gespeicherten Daten in einem maschinenlesbaren Format mitzunehmen. Als Formate bieten wir das txt-Format (UTF-8 oder ANSI) und PDF an.
 
+### Widerruf einer Einwilligung
 Sie haben jederzeit das Recht, Einwilligungen zu widerrufen. Der Widerruf erfolgt in derselben Weise wie die Einwilligung oder durch eine E-Mail an den Datenschutzbeauftragten (s.u.) mit einer Erläuterung, welche Einwilligung Sie zurückziehen. Datenverarbeitungen, die vor Widerruf der Einwilligung erfolgt sind, bleiben rechtmäßig.
 
-## Kontakt
-
-Fragen und Anregungen zum Thema Datenschutz können Sie gerne an den Datenschutzbeauftragten, R. Hiß, richten: datenschutz(at)maxweberstiftung.de
+### Kontakt
+Verantwortlich für diesen Webauftritt ist Dr. Michael Kaiser, Max Weber Stiftung, kaiser(at)maxweberstiftung.de.
+Fragen und Anregungen zum Thema Datenschutz können Sie gerne an den Datenschutzbeauftragten, Reinhard Hiß, richten: datenschutz(at)maxweberstiftung.de

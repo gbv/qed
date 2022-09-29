@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="row" v-if="model.searchResult">
-            <div class="col-12 mt-3">
+            <div class="col-12">
               <!-- Search Results -->
 
               <SolrPaginator v-on:pageChanged="pageChangedCallback"
