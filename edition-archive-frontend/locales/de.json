@@ -78,5 +78,8 @@
   "place_index": "Orte",
   "source_index": "Quellen- und Literaturverzeichniss",
   "cite": "Zitierhinweis",
-  "paris": "Paris"
+  "paris": "Paris",
+  "author": "Autor",
+  "publisher": "Herausgeber",
+  "editor": "Bearbeiter"
 }

@@ -8,7 +8,7 @@
                          :prev-label="browseData.prevLabel" v-on:nextClicked="browseNextClicked"
                          v-on:prevClicked="browsePrevClicked"/>
 
-        <div class="content regest-detail-view-content">
+        <div class="content regest-detail-view__content">
 
           <div class="heading">
             <h4 class="mb-3 text-center">{{ viewModel.idno }}</h4>
@@ -116,28 +116,49 @@
 
           <div class="pontifikatPP section"
                    v-for="pontifikatPP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatPP')))">
-            <h3> {{ $t("regest_pontifikatPP") }}</h3>
+            <h3>{{ $t("regest_pontifikatPP") }}</h3>
             {{ flattenElement(pontifikatPP) }}
           </div>
 
           <div class="pontifikatAEP section"
                    v-for="pontifikatAEP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')))">
-            <h3> {{ $t("regest_pontifikatAEP") }}</h3>
+            <h3>{{ $t("regest_pontifikatAEP") }}</h3>
             {{ flattenElement(pontifikatAEP) }}
           </div>
 
           <div class="ueberlieferung section"
                    v-for="ueberlieferung in findElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferung')))">
-            <h3> {{ $t("regest_ueberlieferung") }}</h3>
+            <h3>{{ $t("regest_ueberlieferung") }}</h3>
             {{ flattenElement(ueberlieferung) }}
           </div>
 
           <div class="sachkommentar section"
                    v-for="sachkommentar in findElement(data, and(byName('cei:p'), byAttr('type', 'Sachkommentar')))">
-            <h3> {{ $t("regest_sachkommentar") }}</h3>
+            <h3>{{ $t("regest_sachkommentar") }}</h3>
             {{ flattenElement(sachkommentar) }}
           </div>
           -->
+        </div>
+
+        <div class="row regest-detail-view__footer">
+          <div class="col footer-persons">
+            <span class="auhor">
+              {{ $t("author") }}: Ludwig Falkenstein
+            </span>
+            <span class="publisher">
+              {{ $t("publisher") }}: Rolf Große, DHI Paris
+            </span>
+            <span class="editor">
+              {{ $t("editor") }}: Robert Friedrich und Sebastian Gensicke
+            </span>
+          </div>
+          <div class="col regest-licence text-end">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="CC BY-SA 4.0">
+              <img src="/images/creative-commons.svg" alt="cc" />
+              <img src="/images/creative-commons-by.svg" alt="by" />
+              <img src="/images/creative-commons-sa.svg" alt="sa" />
+            </a>
+          </div>
         </div>
       </div>
     </template>
