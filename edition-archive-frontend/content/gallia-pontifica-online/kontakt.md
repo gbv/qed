@@ -1,8 +1,10 @@
 ## Kontakt
+<address>
+Deutsches Historisches Institut Paris<br>
+Hôtel Duret-de-Chevry<br>
+8 rue du Parc-Royal<br>
+75003 Paris<br>
+</address>
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-amet.
+Herausgeber: [Rolf Große](https://www.dhi-paris.fr/institut/team/wissenschaft/rolf-grosse.html)<br>
+Bearbeiter: Robert Friedrich und Sebastian Gensicke
