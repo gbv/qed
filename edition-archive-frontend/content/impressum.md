@@ -44,9 +44,3 @@ qed – Das Quellen- und Editionenportal der MWS publiziert Forschungsergebnisse
 Externe Links, auf die qed – Das Quellen- und Editionenportal der MWS keinen Einfluss hat, haben informativen Charakter und geben den Inhalt und die Meinung der jeweiligen Anbieter dieser Seiten wieder. qed – Das Quellen- und Editionenportal der MWS verweist auf solche Seiten nur, ohne sich den Inhalt oder die Aussagen dieser Seiten zu eigen zu machen. Für den Inhalt dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Für illegale, fehlerhafte oder unvollständige Inhalte sowie für Schäden, die durch die Nutzung oder Nichtnutzung der Informationen entstehen, haftet allein der Anbieter der Webseite, auf die verwiesen wurde. Die Haftung desjenigen, der lediglich auf die Veröffentlichung durch einen Link hinweist, ist ausgeschlossen. Die MWS entfernt unverzüglich rechtswidrige Inhalte, sobald sie von ihnen Kenntnis erlangt.
 
 Soweit inhaltliche, sachliche oder technische Fehler auf dieser Website bemerkt werden, bitten wir um eine E-Mail, um eine Richtigstellung vornehmen zu können.
-
-
-### Copyright
-Sämtliche Inhalte dieser Website sind urheberrechtlich geschützt. Unerlaubte Verwendung, Reproduktion oder Weitergabe einzelner Inhalte oder Bilder können sowohl zivil- als auch strafrechtlich verfolgt werden.
-
-Die Befugnis zur Nutzung aller auf qed – Das Quellen- und Editionenportal der MWS bereitgestellten Inhalte regelt die Creative Commons-Lizenz, soweit nicht ausdrücklich ein entgegenstehender Rechtevorbehalt beim jeweiligen Inhalt erfolgt. Bitte beachten Sie: Für einzelne Inhalte können – je nach Zeitpunkt der Veröffentlichung – unterschiedliche CC-Lizenzbedingungen gelten. Die jeweils gültige CC-Lizenz wird im Zusammenhang mit dem jeweiligen Inhalt gesondert verlinkt. Die auf qed – Das Quellen- und Editionenportal der MWS bereitgestellten Digitalisate unterliegen dem Urheberrechtsmodell.

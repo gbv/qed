@@ -4,9 +4,9 @@ Die **Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausl
 ### Stand der Vereinbarkeit mit den Anforderungen
 Das Quellen- und Editionenportal qed.perspectivia.net ist mit dem Behindertengleichstellungsgesetz Nordrhein-Westfalen (BGG NRW) und der Barrierefreie-Informationstechnik-Verordnung Nordrhein-Westfalen (BITV NRW) teilweise vereinbar.
 
-Diese Website befindet sich aktuell noch im Aufbau. Sobald die Arbeiten abgeschlossen sind, wird ein Selbsttest durchgeführt und das Testergebnis an dieser Stelle veröffentlicht.
+**Diese Website befindet sich aktuell noch im Aufbau. Sobald die Arbeiten abgeschlossen sind, wird ein Selbsttest durchgeführt und das Testergebnis an dieser Stelle veröffentlicht.**
 
-Diese Erklärung wurde am 29.09.2020 erstellt und zuletzt geprüft. 
+Diese Erklärung wurde am 29.09.2022 erstellt und zuletzt geprüft. 
 
 
 ### Kontakt und Feedback
