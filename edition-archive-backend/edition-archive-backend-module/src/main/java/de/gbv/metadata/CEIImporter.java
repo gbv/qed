@@ -5,6 +5,10 @@ import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.Place;
 import de.gbv.metadata.model.PlaceLink;
 import de.gbv.metadata.model.Regest;
+import de.gbv.metadata.model.RegestSource;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdom2.Content;
@@ -20,7 +24,10 @@ import org.jdom2.xpath.XPathFactory;
 import org.mycore.common.MCRException;
 import org.mycore.datamodel.metadata.MetaJSON;
 
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +36,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -44,7 +52,7 @@ public class CEIImporter {
     public static final String IDNO_REGEXP = "^[?*†(]*(?<" + NUMBER_GROUP_NAME + ">[0-9]+)?[)]*.*$";
     public static final String DATE_REGEXP = "^(?<" + YEAR_GROUP_NAME + ">[0-9][0-9]?[0-9]?[0-9]?)((?<" + MONTH_GROUP_NAME + ">[0-9][0-9])(?<" + DAY_GROUP_NAME + ">[0-9][0-9]))?$";
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final Namespace CEI_NAMESPACE = Namespace.getNamespace("cei", "http://www.monasterium.net/NS/cei");
+    public static final Namespace CEI_NAMESPACE = Namespace.getNamespace("cei", "http://www.monasterium.net/NS/cei");
   final Pattern datePattern = Pattern.compile(DATE_REGEXP);
   final Pattern idnoPattern = Pattern.compile(IDNO_REGEXP);
   // holds the ceiGroup which contains all cei:text
@@ -61,16 +69,42 @@ public class CEIImporter {
   HashMap<Person, List<PersonLink>> personLinksHashMap = new HashMap<>();
   HashMap<Place, List<PlaceLink>> placeLinksHashMap = new HashMap<>();
 
-  public CEIImporter(Path gesamtXML) throws IOException, JDOMException {
+  HashMap<String, RegestSource> keyRegestSourceHashMap = new HashMap<>();
+  final String RECORD_LONG_TITLE = "Langtitel";
+  final String RECORD_SHORT_TITLE_EDITION = "Kurztitel der Editionen";
+  final String RECORD_SHORT_TITLE = "Kurztitel";
+  final String RECORD_KEY = "key";
+
+  final Set<String> linkCols = Stream.of("Geschichtsquellen.de", "Arlima.net", "Link", "Band I", "Band II", "Band III", "Band IV", "Band V", "Band VI").collect(Collectors.toSet());
+
+
+  private List<CSVRecord> recordsList = new LinkedList<>();
+
+  public CEIImporter(Path gesamtXML, Path quellenUndLiteratur) throws IOException, JDOMException {
     SAXBuilder builder = new SAXBuilder();
     document = builder.build(gesamtXML.toFile());
     ceiGroup = document.getRootElement().getChild("text", CEI_NAMESPACE).getChild("group", CEI_NAMESPACE);
     textElements = ceiGroup.getChildren("text", CEI_NAMESPACE);
+
+    try(FileReader reader = new FileReader(quellenUndLiteratur.toFile(), Charset.forName("x-MacRoman"))) {
+      Iterable<CSVRecord> records = CSVFormat.EXCEL
+        .builder()
+        .setIgnoreEmptyLines(true)
+        .setDelimiter(";")
+        .setHeader()
+        .setSkipHeaderRecord(true)
+        .build().parse(reader);
+
+
+      records.forEach(record -> {
+        recordsList.add(record);
+      });
+    }
   }
 
-    public static void main(String[] args) throws IOException, JDOMException {
+  public static void main(String[] args) throws IOException, JDOMException {
 
-    }
+  }
 
     public static Element createMetadata(Object regest, String className, String type) {
         Element metadata = new Element("metadata");
@@ -146,6 +180,35 @@ public class CEIImporter {
   }
 
   public void runImport() {
+    recordsList.forEach(record-> {
+      RegestSource regestSource = new RegestSource();
+
+      Optional.ofNullable(record.get(RECORD_LONG_TITLE))
+        .filter(Predicate.not(String::isBlank))
+        .ifPresent(regestSource::setLongTitle);
+
+      Optional.ofNullable(record.get(RECORD_SHORT_TITLE))
+        .filter(Predicate.not(String::isBlank))
+        .ifPresent(regestSource::setShortTitle);
+
+      Optional.ofNullable(record.get(RECORD_SHORT_TITLE_EDITION))
+        .filter(Predicate.not(String::isBlank))
+        .ifPresent(regestSource::setEditionShortTitle);
+
+      IdentifierType recordKey = new IdentifierType("key", record.get(RECORD_KEY));
+      regestSource.getIdentifier().add(recordKey);
+
+      linkCols.forEach(linkType -> {
+        Optional.ofNullable(record.get(linkType))
+          .filter(Predicate.not(String::isBlank))
+          .ifPresent(link-> {
+            regestSource.getUrls().add(new URLType(linkType, link));
+          });
+      });
+
+      this.keyRegestSourceHashMap.put(recordKey.getIdentifier(), regestSource);
+    });
+
     textElements.forEach(currentTextElement -> {
       Element currentBodyElement = currentTextElement.getChild("body", CEI_NAMESPACE);
 
@@ -161,6 +224,7 @@ public class CEIImporter {
       extractPersonParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
       extractPersonParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
       extractOtherPersons(currentBodyElement, regest);
+
       regests.add(regest);
       Element textElement = currentTextElement.clone();
       regestTextMap.put(regest, textElement);
@@ -321,24 +385,24 @@ public class CEIImporter {
   }
 
     private void extractDeliveryForm(Element currentBodyElement, Regest regest) {
-        Element überlieferungsformP = getXpathFirst(".//cei:diplomaticAnalysis/cei:p[@type='Überlieferungsform']", currentBodyElement);
-        if (überlieferungsformP != null) {
-            String überlieferungsformList = flattenText(überlieferungsformP);
-            String[] values = überlieferungsformList.split(",");
+      Element ueberlieferungsformP = getXpathFirst(".//cei:diplomaticAnalysis/cei:p[@type='Überlieferungsform']", currentBodyElement);
+      if (ueberlieferungsformP != null) {
+        String ueberlieferungsformList = flattenText(ueberlieferungsformP);
+        String[] values = ueberlieferungsformList.split(",");
 
-            List<String> classIds = Stream.of(values).filter(Predicate.not(String::isBlank)).map(val -> switch (val.trim()) {
-                case "Kopie" -> "copy";
-                case "Deperditum oder chronikalische Notiz" -> "deperditum_oder_chronikalische_notiz";
-                case "Dekretale" -> "dekretale";
-                case "Fälschungsverdacht" -> "faelschungverdacht";
-                case "Briefsammlung" -> "briefsammlung";
-                case "Insert" -> "insert";
-                case "Original" -> "original";
-                case "Unsichere Information" -> "unsure_information";
-                default -> throw new MCRException("Unknown überlieferungsform Value: " + überlieferungsformList);
-            }).toList();
-            regest.setDeliveryForm(new ClassificationMultivalue("delivery_form", classIds));
-        }
+        List<String> classIds = Stream.of(values).filter(Predicate.not(String::isBlank)).map(val -> switch (val.trim()) {
+          case "Kopie" -> "copy";
+          case "Deperditum oder chronikalische Notiz" -> "deperditum_oder_chronikalische_notiz";
+          case "Dekretale" -> "dekretale";
+          case "Fälschungsverdacht" -> "faelschungverdacht";
+          case "Briefsammlung" -> "briefsammlung";
+          case "Insert" -> "insert";
+          case "Original" -> "original";
+          case "Unsichere Information" -> "unsure_information";
+          default -> throw new MCRException("Unknown überlieferungsform Value: " + ueberlieferungsformList);
+        }).toList();
+        regest.setDeliveryForm(new ClassificationMultivalue("delivery_form", classIds));
+      }
     }
 
     private void extractIssuedDate(Element currentBodyElement, Regest regest) {
@@ -455,4 +519,8 @@ public class CEIImporter {
         }
         return textContent;
     }
+
+  public HashMap<String, RegestSource> getKeyRegestSourceHashMap() {
+    return keyRegestSourceHashMap;
+  }
 }

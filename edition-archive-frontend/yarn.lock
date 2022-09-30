@@ -475,10 +475,10 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mycore-org/xml-json-api@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@mycore-org/xml-json-api/-/xml-json-api-0.0.4.tgz#d98e3e104207e6910869ce3c389d43f463a6a7b8"
-  integrity sha512-8mGcMG3c6KhmyiAIEtjuP8ch5sc4wucYkfOue69UJx6ZE9id2pD1lNKFyA7mX4nlByd24Lm58XUAiHiBB1DEMw==
+"@mycore-org/xml-json-api@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@mycore-org/xml-json-api/-/xml-json-api-0.0.5.tgz#21663b4da941d42c345432495f7bc2a327acc1b9"
+  integrity sha512-YPU8al0SSWdbx9Q9LBFbZmRCJU2PG4Xv2cVe5ZpJvRMJF+EGn0U3z0ZW9mkP60Zu/4XPrEkVh98GQ7YATyCQ7g==
   dependencies:
     typescript "^4.8.2"
 
@@ -1489,6 +1489,11 @@ cli-width@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-4.0.0.tgz#a5622f6a3b0a9e3e711a25f099bf2399f608caf6"
   integrity sha512-ZksGS2xpa/bYkNzN3BAw1wEjsLV/ZKOf/CCrJ/QOBsxx6fOARIkwTutxp1XIOIohi6HKmOFjMoK/XaqDVUpEEw==
+
+click-outside-vue3@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/click-outside-vue3/-/click-outside-vue3-4.0.1.tgz#81a6ac01696b301764b42db6fdbdf28e7cd8ef95"
+  integrity sha512-sbplNecrup5oGqA3o4bo8XmvHRT6q9fvw21Z67aDbTqB9M6LF7CuYLTlLvNtOgKU6W3zst5H5zJuEh4auqA34g==
 
 clipboardy@^3.0.0:
   version "3.0.0"

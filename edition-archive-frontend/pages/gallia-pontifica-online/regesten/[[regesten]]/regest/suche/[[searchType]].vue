@@ -94,6 +94,7 @@ interface Model {
   start: number,
   personObj: string | null,
   ortObj: string | null,
+  quellenKey: string | null,
   searchString: string | null,
   extendedSearch: ExtendedSearchModel,
   currentTab: string
@@ -122,6 +123,7 @@ const model: Model = reactive(
     start: 0,
     personObj: null,
     ortObj: null,
+    quellenKey: null,
     searchString: null,
     extendedSearch: {
       allMeta: null,
@@ -250,6 +252,13 @@ async function triggerSearch(query: LocationQuery) {
       if (query.ortObj) {
         model.ortObj = queryToString(query.ortObj);
         let url = `${$solrURL()}main/select/?q=place.obj:${model.ortObj} AND objectType:regest AND objectProject:gpo&wt=json`;
+        await executeSearch(url, query);
+      }
+      break;
+    case "quellen":
+      if(query.quellenKey) {
+        model.quellenKey = queryToString(query.quellenKey);
+        let url = `${$solrURL()}main/select/?q=source.key:${model.quellenKey} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
       }
       break;

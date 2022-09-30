@@ -18,5 +18,5 @@ Starts the frontend with live changes
 copy the current regest file from `import/*.xml` to `docker/backend-tmp/xml.xml`
 At localhost:8000/backend/ you can login and start the webcli and run the command:
 ``` 
-import regests from cei file /mcr/tmp/xml.xml
+import regests from cei file /mcr/tmp/xml.xml and csv /mcr/tmp/csv.csv
 ```

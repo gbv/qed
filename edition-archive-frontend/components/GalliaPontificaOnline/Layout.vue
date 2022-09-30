@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <nuxt-link class="nav-link" aria-current="page" href="/gallia-pontifica-online/">
+              <nuxt-link class="nav-link" active-class="active" aria-current="page" href="/gallia-pontifica-online/">
                 {{ $t('project') }}
               </nuxt-link>
             </li>

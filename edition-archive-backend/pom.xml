@@ -21,7 +21,7 @@
   </scm>
   <properties>
     <jetty.version>11.0.11</jetty.version>
-    <mycore.version>2022.06.0-SNAPSHOT</mycore.version>
+    <mycore.version>2022.06.1-SNAPSHOT</mycore.version>
     <java.target.version>17</java.target.version>
   </properties>
   <repositories>
@@ -58,6 +58,11 @@
   </profiles>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-csv</artifactId>
+        <version>1.9.0</version>
+      </dependency>
       <dependency>
         <groupId>org.mycore</groupId>
         <artifactId>mycore</artifactId>

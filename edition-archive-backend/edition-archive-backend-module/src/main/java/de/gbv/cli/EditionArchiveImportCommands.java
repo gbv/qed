@@ -6,6 +6,7 @@ import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.Place;
 import de.gbv.metadata.model.PlaceLink;
 import de.gbv.metadata.model.Regest;
+import de.gbv.metadata.model.RegestSource;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -36,7 +37,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,11 +49,26 @@ import static de.gbv.metadata.CEIImporter.createMetadata;
 @MCRCommandGroup(name = "Import Commands")
 public class EditionArchiveImportCommands {
 
-    @MCRCommand(syntax = "import regests from cei file {0}", help = "")
-    public static void importRegestsFromCEI(String ceiFilePath) throws IOException, JDOMException, MCRAccessException {
-        CEIImporter ceiImporter = new CEIImporter(Paths.get(ceiFilePath));
+    @MCRCommand(syntax = "import regests from cei file {0} and csv {1}", help = "")
+    public static void importRegestsFromCEI(String ceiFilePath, String csvFilePath) throws IOException, JDOMException, MCRAccessException {
+        CEIImporter ceiImporter = new CEIImporter(Paths.get(ceiFilePath), Paths.get(csvFilePath));
         ceiImporter.runImport();
-        HashMap<Regest, Element> regestTextMap = ceiImporter.getRegestTextMap();
+
+      HashMap<String, RegestSource> keyRegestSourceHashMap = ceiImporter.getKeyRegestSourceHashMap();
+
+      Set<Map.Entry<String, RegestSource>> keyRegestSourceEntries = keyRegestSourceHashMap.entrySet();
+      for (Map.Entry<String, RegestSource> entry:keyRegestSourceEntries) {
+        RegestSource source = entry.getValue();
+        MCRObject sourceObject = new MCRObject();
+        MCRObjectID sourceMyCoReId = MCRObjectID.getNextFreeId("gpo", "source");
+        sourceObject.setId(sourceMyCoReId);
+        sourceObject.setSchema("datamodel-source.xsd");
+        Element metadata = createMetadata(source, RegestSource.class.getName(), "source");
+        sourceObject.getMetadata().setFromDOM(metadata);
+        MCRMetadataManager.create(sourceObject);
+      }
+
+      HashMap<Regest, Element> regestTextMap = ceiImporter.getRegestTextMap();
         HashMap<Person, List<PersonLink>> personLinksHashMap = ceiImporter.getPersonLinksHashMap();
         for (Person person : ceiImporter.getPersons()) {
             MCRObject personObject = new MCRObject();

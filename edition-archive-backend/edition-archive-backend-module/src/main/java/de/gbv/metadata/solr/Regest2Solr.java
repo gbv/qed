@@ -5,17 +5,29 @@ import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.PlaceLink;
 import de.gbv.metadata.model.Regest;
 import org.apache.solr.common.SolrInputDocument;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.filter.Filters;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 import org.mycore.common.MCRException;
 import org.mycore.datamodel.metadata.MCRMetaLink;
 import org.mycore.datamodel.metadata.MCRObject;
 import org.mycore.datamodel.niofs.MCRPath;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+
+import static de.gbv.metadata.CEIImporter.CEI_NAMESPACE;
 
 public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
@@ -32,6 +44,23 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
     base.setField("regest.xml", xmlAsString);
     base.setField("allMeta", xmlAsString);
+
+    try(InputStream is = Files.newInputStream(path)) {
+      Document doc;
+      doc = new SAXBuilder().build(is);
+
+      XPathExpression<Element> biblXP = XPathFactory.instance().compile(".//cei:bibl", Filters.element(), null, CEI_NAMESPACE);
+      List<Element> biblList = biblXP.evaluate(doc.getRootElement());
+      for (Element bibl : biblList) {
+        String key = bibl.getAttributeValue("key");
+        if (key != null && !key.isBlank()) {
+          System.out.println("Adding key " + key);
+          base.addField("source.key", key);
+        }
+      }
+    } catch (IOException | JDOMException e) {
+      throw new MCRException(e);
+    }
   }
 
   @Override

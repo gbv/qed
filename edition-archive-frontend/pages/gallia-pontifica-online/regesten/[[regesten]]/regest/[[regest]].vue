@@ -41,11 +41,15 @@
                 {{ part }}
               </template>
             </template>
+            <span v-if="viewModel.incipit">
+              — {{ viewModel.incipit }}
+            </span>
           </div>
 
 
+
           <div v-if="Object.keys(viewModel.witlist).length>0" class="section witlist">
-            <h3>{{ $t("regest_ueberlieferungen") }}</h3>
+            <h3>{{ $t("regest_ueberlieferung") }}</h3>
             <dl>
               <template v-for="(obj, head)  in viewModel.witlist">
                 <dt>{{ head }}</dt>
@@ -69,7 +73,15 @@
           </div>
 
           <!-- Erwähnungen -->
-
+          <div v-if="viewModel.erwaehnungen.length>0" class="section listBiblRegest">
+            <h3>{{ $t("regest_erwaehnungen") }}</h3>
+            <div>
+              <template v-for="bibl in viewModel.erwaehnungen">
+                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
+                <span v-else>{{bibl}}</span>
+              </template>
+            </div>
+          </div>
 
           <!-- Regesten -->
           <div v-if="viewModel.listBiblRegest.length>0" class="section listBiblRegest">
@@ -167,9 +179,11 @@ interface RegestViewModel {
   idno: string;
   witlist: Record<string, Array<RegestWitness>>
   abstract: Array<string | XElement>
-  listBiblEdition: Array<XElement|string>
-  listBiblRegest: Array<XElement|string>
-  sachkommentar: Array<XElement|string>
+  incipit?: string;
+  listBiblEdition: Array<XElement | string>
+  listBiblRegest: Array<XElement | string>
+  erwaehnungen: Array<XElement | string>
+  sachkommentar: Array<XElement | string>
 }
 
 interface RegestWitness {
@@ -215,14 +229,19 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
   const abstractElement = findFirstElement(doc, byName("cei:abstract"));
   vm.abstract = flattenElementExcept(abstractElement, or(byName("cei:persName"), byName("cei:placeName")));
 
+  const incipit = findFirstElement(doc, byName("cei:incipit"));
+  if (incipit != null) {
+    vm.incipit = flattenElement(incipit);
+  }
+
   const witlistElement = findFirstElement(doc, byName("cei:witListPar"));
 
   vm.witlist = {};
   if (witlistElement != null) {
     const headWitnessArr = findElement(witlistElement, or(byName("cei:head"), byName("cei:witness")))
-    let lastHead:string = null
+    let lastHead: string = null
     for (let i = 0; i < headWitnessArr.length; i++) {
-      if(headWitnessArr[i].name=='cei:head') {
+      if (headWitnessArr[i].name == 'cei:head') {
         const headElement = headWitnessArr[i];
         const head = headElement == null ? null : flattenElement(headElement);
         lastHead = head;
@@ -247,6 +266,11 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
       }
     }
   }
+
+  vm.erwaehnungen = [];
+  const erwaehnungenElement = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
+  extractListBibl(erwaehnungenElement, vm.erwaehnungen);
+
 
   vm.listBiblEdition = [];
   const listBiblEditionElement = findFirstElement(doc, byName("cei:listBiblEdition"));

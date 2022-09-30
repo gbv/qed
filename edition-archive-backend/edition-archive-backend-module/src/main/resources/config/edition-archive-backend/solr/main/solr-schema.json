@@ -21,6 +21,98 @@
   },
   {
     "add-field": {
+      "name": "source.key",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Geschichtsquellen.de",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Arlima.net",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Link",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Band_I",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Band_II",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Band_III",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Band_IV",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Band_V",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Band_VI",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "shortTitle",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "longTitle",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "editionShortTitle",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
       "name": "issuer",
       "type": "text_general",
       "stored": true
