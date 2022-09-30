@@ -72,9 +72,6 @@
                   <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/kontakt">Kontakt</nuxt-link>
-                </li>
-                <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
                 </li>
                 <li class="nav-item">

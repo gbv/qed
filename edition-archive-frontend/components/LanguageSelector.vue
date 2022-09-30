@@ -12,9 +12,7 @@
       </ul>
     </li>
   </client-only>
-  <ssr-only>
 
-  </ssr-only>
 </template>
 
 <script lang="ts" setup>

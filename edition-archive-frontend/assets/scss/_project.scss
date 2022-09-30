@@ -145,6 +145,18 @@
     margin-bottom: 1rem;
   }
 }
+.content-intro {
+  .not-active {
+    .card-footer {
+      color: white;
+      background-color: $petrol;
+      opacity: .6;
+    }
+    img {
+      opacity: 0.5;
+    }
+  }
+}
 .regest-detail-view {
   .prev,
   .next,
@@ -178,9 +190,25 @@
     margin-bottom: 1rem;
   }
 }
-.regest-detail-view-content {
+.regest-detail-view__content {
   border: 1px solid #ccc;
   padding: 2rem 1rem 3rem 1rem;
+}
+.regest-detail-view__footer {
+  margin-top: .5rem;
+  color: $grayBasic;
+  .footer-persons {
+    span {
+      display: block;
+    }
+  }
+}
+.regest-licence {
+  img {
+    height: 2rem;
+    margin-left: .5rem;
+    opacity: 0.5;
+  }
 }
 
 .no-underline {
