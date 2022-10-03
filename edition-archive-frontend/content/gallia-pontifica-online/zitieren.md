@@ -4,4 +4,5 @@ Bitte geben Sie bei Nutzung die vollständige Quellenangabe an (siehe unten). Bi
 
 ### Quellenangabe:
 
-Beispiel für eine Zitation (wip)
+Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, bearbeitet von Robert Friedrich und Sebastian Gensicke, herausgegeben von Rolf Große, Paris 2022<br>
+Kurztitel: GPO Reims I: Erzbischöfe, Nr. ###.

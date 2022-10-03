@@ -11,7 +11,7 @@
         <div class="content regest-detail-view__content">
 
           <div class="heading">
-            <h4 class="mb-3 text-center">{{ viewModel.idno }}</h4>
+            <h4 class="mb-4 text-center">{{ viewModel.idno }}</h4>
             <div class="row">
               <div  class="PontifikatPP col text-start">
                 <span v-if="viewModel.pontifikatPP_text">
@@ -41,7 +41,7 @@
                 {{ part }}
               </template>
             </template>
-            <span v-if="viewModel.incipit">
+            <span class="fst-italic" v-if="viewModel.incipit">
               — {{ viewModel.incipit }}
             </span>
           </div>
@@ -49,7 +49,7 @@
 
 
           <div v-if="Object.keys(viewModel.witlist).length>0" class="section witlist">
-            <h3>{{ $t("regest_ueberlieferung") }}</h3>
+            <h5>{{ $t("regest_ueberlieferung") }}</h5>
             <dl>
               <template v-for="(obj, head)  in viewModel.witlist">
                 <dt>{{ head }}</dt>
@@ -63,7 +63,7 @@
           </div>
 
           <div v-if="viewModel.listBiblEdition.length>0" class="section listBiblEdition">
-            <h3>{{ $t("regest_editionen") }}</h3>
+            <h5>{{ $t("regest_editionen") }}</h5>
             <div>
               <template v-for="bibl in viewModel.listBiblEdition">
                 <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
@@ -74,7 +74,7 @@
 
           <!-- Erwähnungen -->
           <div v-if="viewModel.erwaehnungen.length>0" class="section listBiblRegest">
-            <h3>{{ $t("regest_erwaehnungen") }}</h3>
+            <h5>{{ $t("regest_erwaehnungen") }}</h5>
             <div>
               <template v-for="bibl in viewModel.erwaehnungen">
                 <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
@@ -85,7 +85,7 @@
 
           <!-- Regesten -->
           <div v-if="viewModel.listBiblRegest.length>0" class="section listBiblRegest">
-            <h3>{{ $t("regest_regests") }}</h3>
+            <h5>{{ $t("regest_regests") }}</h5>
             <div>
               <template v-for="bibl in viewModel.listBiblRegest">
                 <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
@@ -97,7 +97,7 @@
 
           <!-- Sachkomentar -->
           <div v-if="viewModel.sachkommentar.length>0" class="section sachkommentar">
-            <h3>{{ $t("regest_sachkommentar") }}</h3>
+            <h5>{{ $t("regest_sachkommentar") }}</h5>
             <div>
               <template v-for="bibl in viewModel.sachkommentar">
                 <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
@@ -109,32 +109,32 @@
           <!--
           <div class="section ueberlieferungsform"
                    v-if="findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))">
-            <h3>{{ $t("regest_ueberlieferungsform") }}</h3>
+            <h5>{{ $t("regest_ueberlieferungsform") }}</h5>
             {{ flattenElement(findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))) }}
           </div>
 
 
           <div class="pontifikatPP section"
                    v-for="pontifikatPP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatPP')))">
-            <h3>{{ $t("regest_pontifikatPP") }}</h3>
+            <h5>{{ $t("regest_pontifikatPP") }}</h5>
             {{ flattenElement(pontifikatPP) }}
           </div>
 
           <div class="pontifikatAEP section"
                    v-for="pontifikatAEP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')))">
-            <h3>{{ $t("regest_pontifikatAEP") }}</h3>
+            <h5>{{ $t("regest_pontifikatAEP") }}</h5>
             {{ flattenElement(pontifikatAEP) }}
           </div>
 
           <div class="ueberlieferung section"
                    v-for="ueberlieferung in findElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferung')))">
-            <h3>{{ $t("regest_ueberlieferung") }}</h3>
+            <h5>{{ $t("regest_ueberlieferung") }}</h5>
             {{ flattenElement(ueberlieferung) }}
           </div>
 
           <div class="sachkommentar section"
                    v-for="sachkommentar in findElement(data, and(byName('cei:p'), byAttr('type', 'Sachkommentar')))">
-            <h3>{{ $t("regest_sachkommentar") }}</h3>
+            <h5>{{ $t("regest_sachkommentar") }}</h5>
             {{ flattenElement(sachkommentar) }}
           </div>
           -->
