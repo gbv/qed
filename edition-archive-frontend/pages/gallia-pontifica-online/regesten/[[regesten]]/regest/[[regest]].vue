@@ -55,7 +55,7 @@
                 <dt>{{ head }}</dt>
                 <dd>
                   <template v-for="wit in viewModel.witlist[head]">
-                    {{ wit.msIdentifier || "" }} {{ wit.msIdentifierLabel || "" }} {{ wit.ref || "" }}<br/>
+                    {{ wit.msIdentifierLabel || "" }} {{ wit.ref || "" }}<br/>
                   </template>
                 </dd>
               </template>
