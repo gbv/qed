@@ -69,12 +69,12 @@
     <div class="col-3 gpo-sub-menu">
       <slot name="menu" />
     </div>
-    <div class="col-9 gpo-content">
+    <div class="col-9 gpo-content external-links">
       <slot name="content" />
     </div>
   </div>
 
-  <div v-else>
+  <div v-else class=" external-links">
     <slot name="content" />
   </div>
 </div>

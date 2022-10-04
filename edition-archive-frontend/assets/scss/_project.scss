@@ -232,6 +232,20 @@
   }
 }
 
+.external-links {
+  a[href*="//"]:not([href*="qed.perspectivia.net"]) {
+    padding-left: 1.25rem;
+    position: relative;
+    &::before {
+      content: "\F1C5";
+      font-family: bootstrap-icons;
+      position: absolute;
+      left: 0;
+      color: $secondary;
+    }
+  }
+}
+
 .nav-link.active {
   font-weight: 700;
   color: $petrol;

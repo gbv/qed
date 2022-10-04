@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col">
+    <div class="col external-links">
       <ContentRenderer v-if="data" :value="data"/>
     </div>
   </div>
