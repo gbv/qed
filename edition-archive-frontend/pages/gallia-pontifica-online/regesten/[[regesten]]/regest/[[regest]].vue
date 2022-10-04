@@ -42,7 +42,7 @@
               </template>
             </template>
             <span class="fst-italic" v-if="viewModel.incipit">
-              — {{ viewModel.incipit }}
+              — {{ viewModel.incipit }}.
             </span>
           </div>
 
@@ -146,7 +146,7 @@
               {{ $t("author") }}: Ludwig Falkenstein
             </span>
             <span class="publisher">
-              {{ $t("publisher") }}: Rolf Große, DHI Paris
+              {{ $t("publisher") }}: Rolf Große
             </span>
             <span class="editor">
               {{ $t("editor") }}: Robert Friedrich und Sebastian Gensicke
