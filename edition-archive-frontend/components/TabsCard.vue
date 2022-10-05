@@ -27,7 +27,6 @@ interface Tab {
 }
 
 const emit = defineEmits(['tabChanged']);
-console.log(props)
 const model = reactive({
   currentTab: props.tabs.filter(tab => tab.id === props.current)[0]
 });

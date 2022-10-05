@@ -2,8 +2,9 @@
   <nav class="solr-paginator" :aria-label="$t('search_pagination')" v-if="count>numPerPage">
     <ul class="pagination justify-content-center">
       <li class="page-item">
-        <a class="page-link" :class="start>0?'':'disabled'" v-on:click.prevent="pageChanged(current-1)" href="#">
-          {{ $t("search_page_prev") }}
+        <a class="page-link" :class="start>0?'':'disabled'" v-on:click.prevent="pageChanged(current-1)"
+           :title="$t('search_page_prev')" href="#">
+          &laquo;
         </a>
       </li>
       <li class="page-item" v-for="page in shownPages">
@@ -15,8 +16,8 @@
       </li>
       <li class="page-item">
         <a class="page-link" :class="(start+numPerPage)<count?'':'disabled'" v-on:click.prevent="pageChanged(current+1)"
-           href="#">
-          {{ $t("search_page_next") }}
+           :title="$t('search_page_next')" href="#">
+          &raquo;
         </a>
       </li>
     </ul>

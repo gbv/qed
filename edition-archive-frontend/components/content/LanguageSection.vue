@@ -53,7 +53,7 @@ watch(() => currentLanguage.value, (_new, old) => {
 })
 
 watch(() => i18n.locale.value, (_new, old) => {
-  console.log(["Watch", _new])
+  //console.log(["Watch", _new])
   currentLanguage.value = _new;
 
 });

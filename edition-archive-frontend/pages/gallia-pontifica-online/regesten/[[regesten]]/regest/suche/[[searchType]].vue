@@ -272,7 +272,6 @@ async function triggerSearch(query: LocationQuery) {
   }
 }
 
-console.log(route.query)
 await triggerSearch(route.query);
 
 function queryToString(param: LocationQueryValue[] | string): string | null {

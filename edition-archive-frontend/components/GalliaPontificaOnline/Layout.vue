@@ -66,10 +66,10 @@
         <span v-else>Subpage</span>
       </h2>
     </div>
-    <div class="col-3 gpo-sub-menu">
+    <div class="col-md-3 col-sm-12 gpo-sub-menu">
       <slot name="menu" />
     </div>
-    <div class="col-9 gpo-content external-links">
+    <div class="col-md-9 col-sm-12 gpo-content external-links">
       <slot name="content" />
     </div>
   </div>

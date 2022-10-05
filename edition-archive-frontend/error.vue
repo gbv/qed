@@ -47,8 +47,8 @@ const handleError = () => {
   const path = route.path;
   const urlParts = path.split("/");
   const redirect = urlParts.length < 2 ? "/" : "/" + urlParts[0];
-  console.log(urlParts);
-  console.log("TO: " + redirect);
+  //console.log(urlParts);
+  //console.log("TO: " + redirect);
   clearError({redirect: redirect});
 }
 </script>

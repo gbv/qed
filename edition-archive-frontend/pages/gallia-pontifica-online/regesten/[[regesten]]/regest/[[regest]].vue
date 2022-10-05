@@ -357,7 +357,7 @@ const browseNextClicked = () => {
 
 
 if (error.value) {
-  console.log(error.value);
+  console.error(error.value);
   if (error.value as unknown as number === 404) {
     throwError(
       createError({

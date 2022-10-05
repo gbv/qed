@@ -162,7 +162,6 @@ const submit = () => {
     }
   }
 
-  console.log(result);
   emit("search", result);
 }
 
