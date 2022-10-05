@@ -30,7 +30,11 @@ export default defineNuxtConfig({
         typeCheck: true
     },
    image: {
-
+      ipx:{
+        modifiers: {
+          format: "webp"
+        }
+      }
    }
 })
 //
