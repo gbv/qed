@@ -154,9 +154,9 @@
           </div>
           <div class="col regest-licence text-end">
             <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="CC BY-SA 4.0">
-              <img src="/images/creative-commons.svg" alt="cc" />
-              <img src="/images/creative-commons-by.svg" alt="by" />
-              <img src="/images/creative-commons-sa.svg" alt="sa" />
+              <nuxt-img src="/images/creative-commons.svg" alt="cc" />
+              <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
+              <nuxt-img src="/images/creative-commons-sa.svg" alt="sa" />
             </a>
           </div>
         </div>

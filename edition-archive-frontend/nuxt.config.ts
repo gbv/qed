@@ -4,7 +4,8 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
     modules: [
         '@nuxt/content',
-        '@intlify/nuxt3'
+        '@intlify/nuxt3',
+        '@nuxt/image-edge',
     ],
     css: [
         '@/assets/scss/prototype.scss',
@@ -27,7 +28,9 @@ export default defineNuxtConfig({
     typescript: {
         /* strict: true, */
         typeCheck: true
-    }
+    },
+   image: {
 
+   }
 })
 //

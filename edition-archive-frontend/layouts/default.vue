@@ -4,7 +4,7 @@
     <header class="project-header">
       <div class="project-header__parent">
         <a href="https://perspectivia.net">
-          <img src="/images/perspectivia_logo_p.png" class="" alt="Logo Max-Weber-Stiftung">
+          <nuxt-img src="/images/perspectivia_logo_p.png" preload class="" alt="Logo Max-Weber-Stiftung" />
         </a>
       </div>
       <div class="project-header__project">
@@ -83,7 +83,8 @@
               </ul>
             </div>
             <div class="col-auto project-footer__logo">
-              <img
+              <nuxt-img
+                preload
                 src="/images/mws_logo_standard_de_weiss.png"
                 alt="Logo Max Weber Stiftung" />
             </div>
@@ -96,8 +97,8 @@
             <div class="col">
               <div class="project-powered-by text-center">
                 <a href="http://www.mycore.de/">
-                  <img alt="powered by MyCoRe" title="todo:add version number"
-                       src="/images/mycore_logo_small_invert.png">
+                  <nuxt-img alt="powered by MyCoRe" preload title="todo:add version number"
+                       src="/images/mycore_logo_small_invert.png" />
                 </a>
               </div>
             </div>

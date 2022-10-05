@@ -5,7 +5,7 @@
       <div class="gpo-headline">
         <h1>Gallia Pontificia online</h1>
         <a href="https://www.dhi-paris.fr/home.html">
-          <img src="/images/dhi-paris-logo-460.png" alt="DHI Paris Logo" />
+          <nuxt-img src="/images/dhi-paris-logo-460.png" preload alt="DHI Paris Logo" />
         </a>
       </div>
     </div>
