@@ -6,6 +6,10 @@
   card-title: Gallia Pontificia online
   link: gallia-pontifica-online/
   card-class: active
+  cc-author: "BVMM"
+  cc-source: "https://bvmm.irht.cnrs.fr/iiif/24100/canvas/canvas-2415694/view"
+  cc-licence-text: "CC BY-NC"
+  cc-licence-link: "http://creativecommons.org/licenses/by-nc/3.0/deed.fr"
   ---
     ::::LanguageSection{fallback=de}
     #de

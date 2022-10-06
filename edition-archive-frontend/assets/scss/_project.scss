@@ -107,6 +107,9 @@
   padding-top: 6rem;
   padding-bottom: 8rem;
 }
+.card h5 {
+  font-size: 1.25rem;
+}
 .card-img-top.fixed-height {
   height: 20rem;
   object-fit: cover;
@@ -233,7 +236,7 @@
 }
 
 .external-links {
-  a[href*="//"]:not([href*="qed.perspectivia.net"]) {
+  a:not(.no-external-mark)[href*="//"]:not([href*="qed.perspectivia.net"]) {
     padding-left: 1.25rem;
     position: relative;
     &::before {
@@ -243,6 +246,18 @@
       left: 0;
       color: $secondary;
     }
+  }
+}
+.cc-by {
+  position: relative;
+  &__text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 3000;
+    background-color: rgba(255,255,255,.6);
+    padding: 0 .5rem;
+    font-size: 0.8rem;
   }
 }
 

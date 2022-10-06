@@ -20,5 +20,7 @@
   "search_page_prev": "previous page",
   "search_page_next": "next nage",
   "search_pagination": "pagination search",
-  "seach_page_go_to": "go to page {page}"
+  "seach_page_go_to": "go to page {page}",
+  "photo": "Photo",
+  "by": "by"
 }

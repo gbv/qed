@@ -81,5 +81,7 @@
   "paris": "Paris",
   "author": "Autor",
   "publisher": "Herausgeber",
-  "editor": "Bearbeiter"
+  "editor": "Bearbeiter",
+  "photo": "Foto",
+  "by": "von"
 }
