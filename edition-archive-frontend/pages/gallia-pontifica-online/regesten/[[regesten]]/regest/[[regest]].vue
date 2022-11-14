@@ -6,138 +6,93 @@
 
         <BrowseComponent :current="parseInt(regestedIdno)" :next-label="browseData.nextLabel" :of="browseData.count"
                          :prev-label="browseData.prevLabel" v-on:nextClicked="browseNextClicked"
-                         v-on:prevClicked="browsePrevClicked"/>
+                         v-on:indexEntered="browseIndexEntered" v-on:prevClicked="browsePrevClicked"/>
 
         <div class="content regest-detail-view__content">
 
           <div class="heading">
             <h4 class="mb-4 text-center">{{ viewModel.idno }}</h4>
             <div class="row">
-              <div  class="PontifikatPP col text-start">
-                <span v-if="viewModel.pontifikatPP_text">
-                  {{ viewModel.pontifikatPP_text }}
+              <div class="PontifikatAEP col text-start">
+                <span v-if="viewModel.pontifikatAEP">
+                  <template v-for="part in viewModel.pontifikatAEP">
+                    <template v-if="typeof part == 'string'">{{ part }}</template>
+                    <GalliaPontificaOnlineRegestPerson v-else :person="part"/>
+                  </template>
                 </span>
               </div>
               <div class="issued col text-center">
-                <span v-if="viewModel.issued">
-                  {{ viewModel.issued }}
-                </span>
+                <template v-for="part in viewModel.issued">
+                  <template v-if="typeof part == 'string'">{{ part }}</template>
+                  <GalliaPontificaOnlineRegestPlace v-else :place="part"/>
+                </template>
               </div>
-              <div class="PontifikatAEP col text-end">
-                <span v-if="viewModel.pontifikatAEP_text">
-                  {{ viewModel.pontifikatAEP_text }}
+              <div class="PontifikatPP col text-end">
+                <span v-if="viewModel.pontifikatPP">
+                  <template v-for="part in viewModel.pontifikatPP">
+                    <template v-if="typeof part == 'string'">{{ part }}</template>
+                    <GalliaPontificaOnlineRegestPerson v-else :person="part"/>
+                  </template>
                 </span>
               </div>
             </div>
           </div>
 
           <div v-if="viewModel.abstract" class="section abstract">
-            <template v-for="part in viewModel.abstract">
-              <template v-if="typeof part != 'string'">
-                <span v-if="part.name==='cei:persName'" class="person">{{ flattenElement(part) }}</span>
-                <span v-if="part.name==='cei:placeName'" class="place">{{ flattenElement(part) }}</span>
-              </template>
-              <template v-else>
-                {{ part }}
-              </template>
-            </template>
+            <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.abstract.content"/>
             <span class="fst-italic" v-if="viewModel.incipit">
               — {{ viewModel.incipit }}.
             </span>
           </div>
 
-
-
-          <div v-if="Object.keys(viewModel.witlist).length>0" class="section witlist">
+          <div v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" class="section witlist">
             <h5>{{ $t("regest_ueberlieferung") }}</h5>
-            <dl>
-              <template v-for="(obj, head)  in viewModel.witlist">
-                <dt>{{ head }}</dt>
-                <dd>
-                  <template v-for="wit in viewModel.witlist[head]">
-                    {{ wit.msIdentifierLabel || "" }} {{ wit.ref || "" }}<br/>
-                  </template>
-                </dd>
-              </template>
-            </dl>
+            <span>
+              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.witListPar.content"/>
+            </span>
           </div>
 
-          <div v-if="viewModel.listBiblEdition.length>0" class="section listBiblEdition">
+          <div v-if="viewModel.ueberlieferung!= null && viewModel.ueberlieferung.content.length>0"
+               class="section ueberlieferung">
+            <h5>{{ $t("regest_ueberlieferung") }}</h5>
+            <div>
+              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.ueberlieferung.content"/>
+            </div>
+          </div>
+
+          <div v-if="viewModel.listBiblEdition!=null && viewModel.listBiblEdition.content.length>0"
+               class="section listBiblEdition">
             <h5>{{ $t("regest_editionen") }}</h5>
             <div>
-              <template v-for="bibl in viewModel.listBiblEdition">
-                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-                <span v-else class="xxx">{{bibl}}</span>
-              </template>
+              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.listBiblEdition.content"/>
             </div>
           </div>
 
           <!-- Erwähnungen -->
-          <div v-if="viewModel.erwaehnungen.length>0" class="section listBiblRegest">
+          <div v-if="viewModel.erwaehnungen != null && viewModel.erwaehnungen.content.length>0" class="section listBiblRegest">
             <h5>{{ $t("regest_erwaehnungen") }}</h5>
             <div>
-              <template v-for="bibl in viewModel.erwaehnungen">
-                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-                <span v-else>{{bibl}}</span>
-              </template>
+              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.erwaehnungen.content"/>
             </div>
           </div>
 
           <!-- Regesten -->
-          <div v-if="viewModel.listBiblRegest.length>0" class="section listBiblRegest">
+          <div v-if="viewModel.listBiblRegest != null && viewModel.listBiblRegest.content.length>0"
+               class="section listBiblRegest">
             <h5>{{ $t("regest_regests") }}</h5>
             <div>
-              <template v-for="bibl in viewModel.listBiblRegest">
-                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-                <span v-else>{{bibl}}</span>
-              </template>
+              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.listBiblRegest.content"/>
             </div>
           </div>
 
 
           <!-- Sachkomentar -->
-          <div v-if="viewModel.sachkommentar.length>0" class="section sachkommentar">
+          <div v-if="viewModel.sachkommentar!=null && viewModel.sachkommentar.content.length>0" class="section sachkommentar">
             <h5>{{ $t("regest_sachkommentar") }}</h5>
             <div>
-              <template v-for="bibl in viewModel.sachkommentar">
-                <GalliaPontificaOnlineRegestBibl v-if="typeof bibl !=='string'" :bibl="bibl" />
-                <span v-else>{{bibl}}</span>
-              </template>
+              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.sachkommentar.content"/>
             </div>
           </div>
-
-          <!--
-          <div class="section ueberlieferungsform"
-                   v-if="findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))">
-            <h5>{{ $t("regest_ueberlieferungsform") }}</h5>
-            {{ flattenElement(findFirstElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferungsform')))) }}
-          </div>
-
-
-          <div class="pontifikatPP section"
-                   v-for="pontifikatPP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatPP')))">
-            <h5>{{ $t("regest_pontifikatPP") }}</h5>
-            {{ flattenElement(pontifikatPP) }}
-          </div>
-
-          <div class="pontifikatAEP section"
-                   v-for="pontifikatAEP in findElement(data, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')))">
-            <h5>{{ $t("regest_pontifikatAEP") }}</h5>
-            {{ flattenElement(pontifikatAEP) }}
-          </div>
-
-          <div class="ueberlieferung section"
-                   v-for="ueberlieferung in findElement(data, and(byName('cei:p'), byAttr('type', 'Überlieferung')))">
-            <h5>{{ $t("regest_ueberlieferung") }}</h5>
-            {{ flattenElement(ueberlieferung) }}
-          </div>
-
-          <div class="sachkommentar section"
-                   v-for="sachkommentar in findElement(data, and(byName('cei:p'), byAttr('type', 'Sachkommentar')))">
-            <h5>{{ $t("regest_sachkommentar") }}</h5>
-            {{ flattenElement(sachkommentar) }}
-          </div>
-          -->
         </div>
 
         <div class="row regest-detail-view__footer">
@@ -192,19 +147,18 @@ const route = useRoute()
 const config = useRuntimeConfig()
 
 interface RegestViewModel {
-  pontifikatPP_text: string;
-  pontifikatPP_obj: string;
-  pontifikatAEP_text: string;
-  pontifikatAEP_obj: string;
-  issued: string;
+  pontifikatPP: Array<XElement | string>;
+  pontifikatAEP: Array<XElement | string>;
+  issued: Array<XElement | string>;
   idno: string;
-  witlist: Record<string, Array<RegestWitness>>
-  abstract: Array<string | XElement>
+  witListPar?: XElement;
+  abstract?: XElement;
   incipit?: string;
-  listBiblEdition: Array<XElement | string>
-  listBiblRegest: Array<XElement | string>
-  erwaehnungen: Array<XElement | string>
-  sachkommentar: Array<XElement | string>
+  ueberlieferung?: XElement;
+  listBiblEdition?: XElement;
+  listBiblRegest?: XElement;
+  erwaehnungen?: XElement;
+  sachkommentar?: XElement;
 }
 
 interface RegestWitness {
@@ -218,14 +172,6 @@ const regestedIdno: string = typeof route.params.regest == "string" ? route.para
 
 const {$solrURL, $backendURL} = useNuxtApp();
 
-function extractListBibl(listBiblElement: XElement, list: Array<XElement|string>) {
-  if (listBiblElement != null) {
-
-    const biblList = flattenElementExcept(listBiblElement, byName("cei:bibl"));
-    biblList.forEach(le => list.push(le));
-  }
-}
-
 const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, async () => {
   const request = await fetch(`${$solrURL()}main/select/?q=idno:${regestedIdno}&wt=json`)
   const json = await request.json();
@@ -238,72 +184,26 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
 
   const vm: RegestViewModel = {} as RegestViewModel
 
-  vm.pontifikatAEP_obj = currentJsonDoc["pontifikatAEP.obj"];
-  vm.pontifikatAEP_text = currentJsonDoc["pontifikatAEP"][0];
+  vm.pontifikatAEP = flattenElementExcept(findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatAEP'))), byName('cei:persName'));
 
-  vm.pontifikatPP_obj = currentJsonDoc["pontifikatPP.obj"];
-  vm.pontifikatPP_text = currentJsonDoc["pontifikatPP"][0];
+  vm.pontifikatPP = flattenElementExcept(findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatPP'))), byName('cei:persName'));
 
-  vm.issued = currentJsonDoc["issued.text"][0];
+  vm.issued = flattenElementExcept(findFirstElement(doc, byName('cei:issued')), byName('cei:placeName'));
+
   vm.idno = flattenElement(findFirstElement(doc, byName("cei:idno")));
 
-  const abstractElement = findFirstElement(doc, byName("cei:abstract"));
-  vm.abstract = flattenElementExcept(abstractElement, or(byName("cei:persName"), byName("cei:placeName")));
+  vm.abstract = findFirstElement(doc, byName("cei:abstract"));
 
   const incipit = findFirstElement(doc, byName("cei:incipit"));
   if (incipit != null) {
     vm.incipit = flattenElement(incipit);
   }
-
-  const witlistElement = findFirstElement(doc, byName("cei:witListPar"));
-
-  vm.witlist = {};
-  if (witlistElement != null) {
-    const headWitnessArr = findElement(witlistElement, or(byName("cei:head"), byName("cei:witness")))
-    let lastHead: string = null
-    for (let i = 0; i < headWitnessArr.length; i++) {
-      if (headWitnessArr[i].name == 'cei:head') {
-        const headElement = headWitnessArr[i];
-        const head = headElement == null ? null : flattenElement(headElement);
-        lastHead = head;
-        vm.witlist[head] = new Array<RegestWitness>();
-      } else {
-        const witElement = headWitnessArr[i];
-        const msIdentifierElement = witElement == null ? null : findFirstElement(witElement, byName("cei:msIdentifier"));
-        const msIdentifier = msIdentifierElement == null ? null : getAttribute(msIdentifierElement, "n").value;
-        const msIdentifierLabel = flattenElement(msIdentifierElement);
-        const refElement = witElement == null ? null : findFirstElement(witElement, byName("cei:ref"));
-        const ref = refElement == null ? null : flattenElement(refElement);
-        const wilistEntry: RegestWitness = { msIdentifier, msIdentifierLabel, ref};
-        if(vm.witlist[lastHead] !== undefined ) {
-          vm.witlist[lastHead].push(wilistEntry);
-        } else {
-          const missinghead = "-";
-          if(vm.witlist[missinghead]==undefined){
-            vm.witlist[missinghead] = new Array<RegestWitness>();
-          }
-          vm.witlist[missinghead].push(wilistEntry);
-        }
-      }
-    }
-  }
-
-  vm.erwaehnungen = [];
-  const erwaehnungenElement = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
-  extractListBibl(erwaehnungenElement, vm.erwaehnungen);
-
-
-  vm.listBiblEdition = [];
-  const listBiblEditionElement = findFirstElement(doc, byName("cei:listBiblEdition"));
-  extractListBibl(listBiblEditionElement, vm.listBiblEdition);
-
-  vm.listBiblRegest = [];
-  const listBiblRegestElement = findFirstElement(doc, byName("cei:listBiblRegest"));
-  extractListBibl(listBiblRegestElement, vm.listBiblRegest);
-
-  vm.sachkommentar = [];
-  const sachkommentarElement = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Sachkommentar')));
-  extractListBibl(sachkommentarElement, vm.sachkommentar);
+  vm.witListPar = findFirstElement(doc, byName("cei:witListPar"));
+  vm.erwaehnungen = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
+  vm.listBiblEdition = findFirstElement(doc, byName("cei:listBiblEdition"));
+  vm.listBiblRegest = findFirstElement(doc, byName("cei:listBiblRegest"));
+  vm.sachkommentar = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Sachkommentar')));
+  vm.ueberlieferung = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Überlieferung')));
 
   return vm;
 });
@@ -349,6 +249,15 @@ const browseNextClicked = () => {
 
   navigateTo({
     path: "./" + (regestNumber + 1),
+    query: {
+      ...route.query
+    }
+  });
+}
+
+const browseIndexEntered = (index: number) => {
+  navigateTo({
+    path: "./" + (index),
     query: {
       ...route.query
     }

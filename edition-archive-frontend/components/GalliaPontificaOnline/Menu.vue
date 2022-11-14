@@ -23,7 +23,7 @@
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/incipits">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/incipits">
                 {{ $t('incipits') }}
               </nuxt-link>
             </li>

@@ -72,15 +72,28 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
     Optional.ofNullable(regest.getIssuer()).ifPresent(issuer -> {
       base.setField("issuer", issuer.getLabel());
       base.setField("issuer.obj", issuer.getLabel());
+      base.setField("issuer.facet", issuer.getLabel());
     });
 
     Optional.ofNullable(regest.getInitium()).ifPresent(initium -> {
       base.setField("initium", initium);
     });
 
+    Optional.ofNullable(regest.getUeberlieferungsform()).ifPresent(ueberlieferungsform -> {
+      if(ueberlieferungsform.isBlank()) {
+        base.setField("ueberlieferungsform", "Keine Angabe");
+        base.setField("ueberlieferungsform.facet", "Keine Angabe");
+      } else {
+        base.setField("ueberlieferungsform", ueberlieferungsform);
+        base.setField("ueberlieferungsform.facet", ueberlieferungsform);
+      }
+
+    });
+
     Optional.ofNullable(regest.getRecipient()).ifPresent(recipient -> {
       base.setField("recipient", recipient.getLabel());
       base.setField("recipient.obj", recipient.getMycoreId());
+      base.setField("recipient.facet", recipient.getLabel());
     });
 
     Optional.ofNullable(regest.getIssuedPlace()).ifPresent(issuedPlace -> {

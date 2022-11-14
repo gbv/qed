@@ -1,9 +1,6 @@
 <template>
   <span>
     <template v-for="c in $props.bibl.content">
-      <span v-if="c.type==='Text'">{{c.text}}</span>
-      <span v-if="c.type==='Element' && c.name==='cei:author'" :class="getAttribute(c, 'rend')?.value==='medieval'? '':'smallcaps'">{{ flattenElement(c) }}</span>
-      <sup v-if="c.type==='Element' && c.name==='cei:sup'">{{ flattenElement(c) }}</sup>
       <span v-if="c.type==='Element' && c.name==='cei:ref'">
         <a v-if="c.content.filter(cc => cc.type==='Attribute' && cc.name==='type' && cc.value==='external').length>0"
            :href="getAttribute(c, 'target').value"
@@ -14,7 +11,9 @@
           {{ flattenElement(c) }}
         </span>
       </span>
+      <GalliaPontificaOnlineRegestMixedContent v-else :content="c"/>
     </template>
+
     <div v-if="getAttribute($props.bibl,'key') !== null" class="popout-wrapper position-relative d-inline">
       <a :href="'#' + getAttribute($props.bibl,'key').value" v-on:click.prevent="showSource.show ? hideSource():loadSource(getAttribute($props.bibl,'key').value)"><i class="bi bi-book"></i></a>
         <div v-if="showSource.show" class="popout" v-on:blur="hideSource()">

@@ -11,6 +11,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jdom2.Attribute;
 import org.jdom2.Content;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -31,6 +32,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -77,6 +79,9 @@ public class CEIImporter {
 
   final Set<String> linkCols = Stream.of("Geschichtsquellen.de", "Arlima.net", "Link", "Band I", "Band II", "Band III", "Band IV", "Band V", "Band VI").collect(Collectors.toSet());
 
+  private final HashMap<PersonLink, List<Consumer<String>>> personLinkApplierMap = new HashMap<>();
+
+  private final HashMap<PlaceLink, List<Consumer<String>>> placeLinkApplierMap = new HashMap<>();
 
   private List<CSVRecord> recordsList = new LinkedList<>();
 
@@ -175,6 +180,14 @@ public class CEIImporter {
     return places;
   }
 
+  public HashMap<PersonLink, List<Consumer<String>>> getPersonLinkApplierMap() {
+    return personLinkApplierMap;
+  }
+
+  public HashMap<PlaceLink, List<Consumer<String>>> getPlaceLinkApplierMap() {
+    return placeLinkApplierMap;
+  }
+
   public HashMap<Regest, Element> getRegestTextMap() {
     return regestTextMap;
   }
@@ -210,7 +223,9 @@ public class CEIImporter {
     });
 
     textElements.forEach(currentTextElement -> {
-      Element currentBodyElement = currentTextElement.getChild("body", CEI_NAMESPACE);
+      Element textElement = currentTextElement.clone();
+
+      Element currentBodyElement = textElement.getChild("body", CEI_NAMESPACE);
 
       Regest regest = new Regest();
       extractIdno(currentBodyElement, regest);
@@ -220,13 +235,13 @@ public class CEIImporter {
       extractRecipient(currentBodyElement, regest);
       extractIssuedDate(currentBodyElement, regest);
       extractInitium(currentBodyElement, regest);
+      extractUeberlieferungsform(currentBodyElement, regest);
       extractDeliveryForm(currentBodyElement, regest);
       extractPersonParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
       extractPersonParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
       extractOtherPersons(currentBodyElement, regest);
 
       regests.add(regest);
-      Element textElement = currentTextElement.clone();
       regestTextMap.put(regest, textElement);
     });
     }
@@ -236,6 +251,9 @@ public class CEIImporter {
       otherPersNames.forEach(otherPersName -> {
         extractPerson(otherPersName, p -> {
           regest.getBodyPersons().add(p);
+          personLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
+            otherPersName.setAttribute("key", s);
+          });
         });
       });
     }
@@ -245,6 +263,9 @@ public class CEIImporter {
     otherPlaces.forEach(otherPlace -> {
       extractPlace(otherPlace, p -> {
         regest.getBodyPlaces().add(p);
+        placeLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
+          otherPlace.setAttribute("key", s);
+        });
       });
     });
   }
@@ -376,11 +397,23 @@ public class CEIImporter {
         }
     }
 
+    private void extractUeberlieferungsform(Element currentBodyElement, Regest regest) {
+        Element ueberlieferungsform = getXpathFirst(".//cei:diplomaticAnalysis/cei:p[@type='Überlieferungsform']", currentBodyElement);
+        if (ueberlieferungsform != null) {
+            String ueberlieferungsformText = flattenText(ueberlieferungsform);
+            regest.setUeberlieferungsform(ueberlieferungsformText);
+        }
+    }
+
   private void extractPersonParagraph(Element currentBodyElement, String pType, Consumer<PersonLink> applyFn) {
     Element paragraphElement = getXpathFirst(".//cei:p[@type='" + pType + "']", currentBodyElement);
     if (paragraphElement != null) {
       Element persName = paragraphElement.getChild("persName", CEI_NAMESPACE);
-      extractPerson(persName, applyFn);
+      extractPerson(persName, (link) -> {
+          applyFn.accept(link);
+          personLinkApplierMap.computeIfAbsent(link, (k) -> new LinkedList<>())
+              .add((id) -> persName.setAttribute("key", id));
+      });
     }
   }
 
@@ -455,7 +488,11 @@ public class CEIImporter {
         // the places might need to be extracted to an extra field
         Element issuedPlaceName = getXpathFirst(".//cei:issued/cei:placeName", currentBodyElement);
         if (issuedPlaceName != null) {
-          extractPlace(issuedPlaceName, regest::setIssuedPlace);
+          extractPlace(issuedPlaceName, (issued) -> {
+            regest.setIssuedPlace(issued);
+            placeLinkApplierMap.computeIfAbsent(issued, (k) -> new LinkedList<>())
+                .add((id) -> issuedPlaceName.setAttribute("key", id));
+          });
         }
     }
 

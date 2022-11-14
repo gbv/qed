@@ -39,7 +39,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -69,7 +71,8 @@ public class EditionArchiveImportCommands {
       }
 
       HashMap<Regest, Element> regestTextMap = ceiImporter.getRegestTextMap();
-        HashMap<Person, List<PersonLink>> personLinksHashMap = ceiImporter.getPersonLinksHashMap();
+      HashMap<PersonLink, List<Consumer<String>>> personLinkApplierMap = ceiImporter.getPersonLinkApplierMap();
+      HashMap<Person, List<PersonLink>> personLinksHashMap = ceiImporter.getPersonLinksHashMap();
         for (Person person : ceiImporter.getPersons()) {
             MCRObject personObject = new MCRObject();
             MCRObjectID personMyCoReId = MCRObjectID.getNextFreeId("gpo", "person");
@@ -80,22 +83,31 @@ public class EditionArchiveImportCommands {
             personObject.getMetadata().setFromDOM(metadata);
             MCRMetadataManager.create(personObject);
             for (PersonLink link : personLinksHashMap.get(person)) {
-                link.setMycoreId(personMyCoReId.toString());
+                Optional.ofNullable(personLinkApplierMap.get(link))
+                    .ifPresent(list -> {
+                      list.forEach(c -> c.accept(personMyCoReId.toString()));
+                    });
+              link.setMycoreId(personMyCoReId.toString());
             }
         }
 
       HashMap<Place, List<PlaceLink>> placeLinksHashMap = ceiImporter.getPlaceLinksHashMap();
+      HashMap<PlaceLink, List<Consumer<String>>> placeLinkApplierMap = ceiImporter.getPlaceLinkApplierMap();
       for (Place place : ceiImporter.getPlaces()) {
         MCRObject personObject = new MCRObject();
-        MCRObjectID personMyCoReId = MCRObjectID.getNextFreeId("gpo", "place");
-        personObject.setId(personMyCoReId);
+        MCRObjectID placeMyCoReId = MCRObjectID.getNextFreeId("gpo", "place");
+        personObject.setId(placeMyCoReId);
         personObject.setSchema("datamodel-place.xsd");
 
         Element metadata = createMetadata(place, Place.class.getName(), "place");
         personObject.getMetadata().setFromDOM(metadata);
         MCRMetadataManager.create(personObject);
         for (PlaceLink link : placeLinksHashMap.get(place)) {
-          link.setMycoreId(personMyCoReId.toString());
+            Optional.ofNullable(placeLinkApplierMap.get(link))
+                .ifPresent(list -> {
+                  list.forEach(c -> c.accept(placeMyCoReId.toString()));
+                });
+            link.setMycoreId(placeMyCoReId.toString());
         }
       }
 

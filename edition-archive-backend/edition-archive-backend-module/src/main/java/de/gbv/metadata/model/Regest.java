@@ -34,12 +34,22 @@ public class Regest {
 
     private String initium;
 
-    private PersonLink pontifikatPP;
+    private String ueberlieferungsform;
+
+  public String getUeberlieferungsform() {
+    return ueberlieferungsform;
+  }
+
+  public void setUeberlieferungsform(String ueberlieferungsform) {
+    this.ueberlieferungsform = ueberlieferungsform;
+  }
+
+  private PersonLink pontifikatPP;
 
     private PersonLink pontifikatAEP;
-  private List<PlaceLink> bodyPlaces = new ArrayList<>();
+    private final List<PlaceLink> bodyPlaces = new ArrayList<>();
 
-  public String getIdno() {
+    public String getIdno() {
         return idno;
     }
 
@@ -70,6 +80,7 @@ public class Regest {
     public void setIssuedPlace(PlaceLink issuedPlace) {
         this.issuedPlace = issuedPlace;
     }
+
     public String getInitium() {
         return initium;
     }
@@ -118,32 +129,32 @@ public class Regest {
         this.authenticityStatus = authenticityStatus;
     }
 
-
     public List<PersonLink> getBodyPersons() {
         return bodyPersons;
     }
-
-  public List<PlaceLink> getBodyPlaces() {
-    return bodyPlaces;
-  }
 
     public void setBodyPersons(List<PersonLink> bodyPersons) {
         this.bodyPersons = bodyPersons;
     }
 
+    public List<PlaceLink> getBodyPlaces() {
+        return bodyPlaces;
+    }
+
     @Override
     public String toString() {
         return "Regest{" +
-                "idno='" + idno + '\'' +
-                ", deliveryForm=" + deliveryForm +
-                ", issued=" + issued +
-                ", issuedPlace='" + issuedPlace + '\'' +
-                ", issuer='" + issuer + '\'' +
-                ", recipient='" + recipient + '\'' +
-                ", authenticityStatus=" + authenticityStatus +
-                ", initium='" + initium + '\'' +
-                ", pontifikatPP='" + pontifikatPP + '\'' +
-                ", pontifikatAEP='" + pontifikatAEP + '\'' +
-                '}';
+            "idno='" + idno + '\'' +
+            ", deliveryForm=" + deliveryForm +
+            ", issued=" + issued +
+            ", issuedPlace='" + issuedPlace + '\'' +
+            ", issuer='" + issuer + '\'' +
+            ", recipient='" + recipient + '\'' +
+            ", authenticityStatus=" + authenticityStatus +
+            ", initium='" + initium + '\'' +
+            ", pontifikatPP='" + pontifikatPP + '\'' +
+            ", pontifikatAEP='" + pontifikatAEP + '\'' +
+            ", ueberlieferungsform='" + ueberlieferungsform + '\'' +
+            '}';
     }
 }

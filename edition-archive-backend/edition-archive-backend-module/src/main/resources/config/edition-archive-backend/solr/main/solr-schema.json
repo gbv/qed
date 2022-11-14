@@ -120,6 +120,13 @@
   },
   {
     "add-field": {
+      "name": "issuer.facet",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
       "name": "issuer.obj",
       "type": "string",
       "stored": true
@@ -129,6 +136,13 @@
     "add-field": {
       "name": "recipient",
       "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "recipient.facet",
+      "type": "string",
       "stored": true
     }
   },
@@ -246,6 +260,29 @@
       "name": "initium",
       "type": "text_general",
       "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "initium.facet",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "ueberlieferungsform",
+      "type": "text_general",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "ueberlieferungsform.facet",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
     }
   },
   {

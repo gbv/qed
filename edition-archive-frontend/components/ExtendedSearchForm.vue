@@ -51,6 +51,16 @@
       </div>
     </div>
     <div class="form-group row">
+      <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search_field_issuer") }}</label>
+      <div class="col-9">
+        <input id="searchIssuer" type="search" class="form-control" v-model="model.issuer"
+               :placeholder="$t('search_field_issuer_placeholder')">
+      </div>
+      <div class="col-1">
+
+      </div>
+    </div>
+    <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchDate">{{ $t("search_field_date") }}</label>
       <div class="col-2">
         <div class="form-check mt-2 text-align-left">

@@ -6,9 +6,23 @@
         {{ prevLabel }}
       </a>
     </span>
-    <span class="index">
-      {{ $t("browse_current_of", {current, of}) }}
+    <span v-if="!model.editIndex" class="index">
+      {{ current }}
+      <i class="bi bi-pencil-square clickable" v-on:click="model.editIndex=true"></i>
+      {{ $t("browse_current_of") }}
+      {{ of }}
     </span>
+    <div v-else class="index row">
+      <div class="col-9">
+        <input class="form-control form-control-sm" :class="model.index < 1 || model.index > of ? 'is-invalid' : ''" type="number" v-model.number="model.index" v-on:keyup.enter="indexEntered"/>
+        <div class="invalid-feedback" v-if="model.index < 1 || model.index > of">
+          {{ $t("browse_index_invalid") }}
+        </div>
+      </div>
+      <div class="col-3 fs-2">
+        <i class="bi bi-check clickable" v-on:click="indexEntered" :title="$t('browser_go_to', {to:model.index})"></i>
+      </div>
+    </div>
     <span class="next">
       <a href="#next"  v-if="nextLabel" v-on:click.prevent="nextClicked">
         {{ nextLabel }}
@@ -21,7 +35,10 @@
 <script lang="ts" setup>
 const props = defineProps<{ prevLabel?: string, nextLabel?: string, current: number, of: number }>()
 
-const emit = defineEmits(["prevClicked", "nextClicked"]);
+const emit = defineEmits(["prevClicked", "nextClicked", "indexEntered"]);
+
+const model = reactive({editIndex: false, index: props.current});
+
 
 const prevClicked = () => {
   emit("prevClicked");
@@ -31,9 +48,21 @@ const nextClicked = () => {
   emit("nextClicked");
 }
 
+const indexEntered = () => {
+  if(model.index < 1 || model.index > props.of) {
+    return;
+  }
+  model.editIndex=false;
+  emit("indexEntered", model.index);
+}
+
 </script>
 
 <style scoped>
+.clickable {
+  cursor: pointer;
+}
+
 .browse {
   flex-direction: row;
   display: flex;
