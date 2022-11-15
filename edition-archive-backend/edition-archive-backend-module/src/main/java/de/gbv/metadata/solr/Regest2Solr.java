@@ -77,6 +77,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
     Optional.ofNullable(regest.getInitium()).ifPresent(initium -> {
       base.setField("initium", initium);
+      base.setField("initium.facet", initium);
     });
 
     Optional.ofNullable(regest.getUeberlieferungsform()).ifPresent(ueberlieferungsform -> {
