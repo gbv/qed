@@ -30,7 +30,21 @@
               </TabsCard>
             </div>
           </div>
-          <div class="row" v-if="model.searchResult">
+          <div class="row sort">
+            <div class="col-6">
+              <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
+                <option value="asc">{{$t("sort_asc")}}</option>
+                <option value="desc">{{$t("sort_desc")}}</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
+                <option value="relevance">{{$t("sort_relevance")}}</option>
+                <option value="idno">{{$t("sort_idno")}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row results" v-if="model.searchResult">
             <div class="col-12">
               <!-- Search Results -->
 
@@ -150,10 +164,13 @@ interface Model {
   personObj: string | null,
   ortObj: string | null,
   quellenKey: string | null,
+  handschriftenKey: string | null,
   searchString: string | null,
   extendedSearch: ExtendedSearchModel,
   facet: FacetModel,
-  currentTab: string
+  currentTab: string,
+  sort: "relevance"|"idno",
+  sortOrder: "asc"|"desc",
 }
 
 interface ExtendedSearchModel {
@@ -197,6 +214,7 @@ const model: Model = reactive(
     personObj: null,
     ortObj: null,
     quellenKey: null,
+    handschriftenKey: null,
     searchString: null,
     facet: {
       recipient: [],
@@ -224,7 +242,9 @@ const model: Model = reactive(
       dateRangeRange: false,
       dateText: null
     },
-    currentTab: queryToString(route?.params.searchType) || BASIC_SEARCH_TYPE
+    currentTab: queryToString(route?.params.searchType) || BASIC_SEARCH_TYPE,
+    sort: "relevance",
+    sortOrder: "desc"
   });
 
 const escapeSpecialChars = (s: string) => s
@@ -249,6 +269,12 @@ async function executeSearch(url: string, query: LocationQuery) {
   }
   if(model.facet.ueberlieferungsformEnabledValues.length > 0) {
     url += "&fq=ueberlieferungsform.facet:(" + model.facet.ueberlieferungsformEnabledValues.map(escapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
+  }
+
+  if (model.sort === "relevance") {
+    url += "&sort=score " + model.sortOrder+ ",idno " + model.sortOrder;
+  } else {
+    url += "&sort=idno " + model.sortOrder;
   }
 
   const request = await fetch(url)
@@ -295,6 +321,15 @@ function applyQueryFacet(query: LocationQuery) {
 
 }
 
+function applySort(query: LocationQuery) {
+  if (query.sort == "relevance" || query.sort == "idno") {
+    model.sort =  query.sort;
+  }
+  if (query.sortOrder == "asc" || query.sortOrder == "desc") {
+    model.sortOrder =  query.sortOrder;
+  }
+}
+
 async function triggerSearch(query: LocationQuery) {
   switch (route.params.searchType) {
     case "":
@@ -305,7 +340,7 @@ async function triggerSearch(query: LocationQuery) {
         model.currentTab = BASIC_SEARCH_TYPE;
         let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(model.searchString)} AND objectType:regest AND objectProject:gpo&wt=json`;
         applyQueryFacet(query);
-
+        applySort(query);
         await executeSearch(url, query);
       }
       break;
@@ -374,6 +409,7 @@ async function triggerSearch(query: LocationQuery) {
         q.push(`issued.text:${dateTextEscapted}`);
       }
       applyQueryFacet(query);
+      applySort(query);
 
       let url = `${$solrURL()}main/select/?q=${q.join(" AND ")}&wt=json`
       await executeSearch(url, query);
@@ -382,6 +418,7 @@ async function triggerSearch(query: LocationQuery) {
       if (query.personObj) {
         model.personObj = queryToString(query.personObj);
         applyQueryFacet(query);
+        applySort(query);
 
         let url = `${$solrURL()}main/select/?q=person.obj:${model.personObj} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
@@ -391,6 +428,7 @@ async function triggerSearch(query: LocationQuery) {
       if (query.ortObj) {
         model.ortObj = queryToString(query.ortObj);
         applyQueryFacet(query);
+        applySort(query);
 
         let url = `${$solrURL()}main/select/?q=place.obj:${model.ortObj} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
@@ -400,7 +438,17 @@ async function triggerSearch(query: LocationQuery) {
       if(query.quellenKey) {
         model.quellenKey = queryToString(query.quellenKey);
         applyQueryFacet(query);
+        applySort(query);
+
         let url = `${$solrURL()}main/select/?q=source.key:${model.quellenKey} AND objectType:regest AND objectProject:gpo&wt=json`;
+        await executeSearch(url, query);
+      }
+      break;
+    case "handschriften":
+      if(query.handschriftenKey) {
+        model.handschriftenKey = queryToString(query.handschriftenKey);
+        applyQueryFacet(query);
+        let url = `${$solrURL()}main/select/?q=manuscript.key:${model.handschriftenKey} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
       }
       break;
@@ -434,6 +482,17 @@ const basicSearchCallback = async (searchParameters: any) => {
       searchString: searchParameters.searchString
     }
   })
+}
+
+const sortChanged = async () => {
+  navigateTo({
+    path: "./" + model.currentTab,
+    query: {
+      ...route.query,
+      sort: model.sort,
+      sortOrder: model.sortOrder
+    }
+  });
 }
 
 async function extendedSearchCallback (searchParameters: any) {
@@ -542,4 +601,9 @@ watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuer
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.sort, .results {
+  margin-top: 10px;
+}
+
 </style>

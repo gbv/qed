@@ -1,6 +1,7 @@
 package de.gbv.cli;
 
 import de.gbv.metadata.CEIImporter;
+import de.gbv.metadata.model.Manuscript;
 import de.gbv.metadata.model.Person;
 import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.Place;
@@ -51,9 +52,12 @@ import static de.gbv.metadata.CEIImporter.createMetadata;
 @MCRCommandGroup(name = "Import Commands")
 public class EditionArchiveImportCommands {
 
-    @MCRCommand(syntax = "import regests from cei file {0} and csv {1}", help = "")
-    public static void importRegestsFromCEI(String ceiFilePath, String csvFilePath) throws IOException, JDOMException, MCRAccessException {
-        CEIImporter ceiImporter = new CEIImporter(Paths.get(ceiFilePath), Paths.get(csvFilePath));
+    @MCRCommand(syntax = "import regests from cei file {0} and source {1} and manuscript {2}", help = "")
+    public static void importRegestsFromCEI(String ceiFilePath, String sourceCSVPath, String manuscriptCSVPath)
+        throws IOException, JDOMException, MCRAccessException {
+        CEIImporter ceiImporter = new CEIImporter(Paths.get(ceiFilePath),
+            Paths.get(sourceCSVPath),
+            Paths.get(manuscriptCSVPath));
         ceiImporter.runImport();
 
       HashMap<String, RegestSource> keyRegestSourceHashMap = ceiImporter.getKeyRegestSourceHashMap();
@@ -68,6 +72,18 @@ public class EditionArchiveImportCommands {
         Element metadata = createMetadata(source, RegestSource.class.getName(), "source");
         sourceObject.getMetadata().setFromDOM(metadata);
         MCRMetadataManager.create(sourceObject);
+      }
+
+      HashMap<String, Manuscript> keyManuscriptHashMap = ceiImporter.getKeyManuscriptHashMap();
+      for (Map.Entry<String, Manuscript> entry:keyManuscriptHashMap.entrySet()) {
+        Manuscript manuscript = entry.getValue();
+        MCRObject manuscriptObject = new MCRObject();
+        MCRObjectID manuscriptMyCoReId = MCRObjectID.getNextFreeId("gpo", "manuscript");
+        manuscriptObject.setId(manuscriptMyCoReId);
+        manuscriptObject.setSchema("datamodel-manuscript.xsd");
+        Element metadata = createMetadata(manuscript, Manuscript.class.getName(), "manuscript");
+        manuscriptObject.getMetadata().setFromDOM(metadata);
+        MCRMetadataManager.create(manuscriptObject);
       }
 
       HashMap<Regest, Element> regestTextMap = ceiImporter.getRegestTextMap();

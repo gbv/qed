@@ -77,6 +77,8 @@
   "url_type_band_iv": "Band IV",
   "url_type_band_v": "Band V",
   "url_type_band_vi": "Band VI",
+  "url_type_digitalisat": "Digitalisat",
+  "url_type_katalogisat": "Katalogisat",
   "edition_short_title": "Kurztitel der Editionen",
   "browse_current_of": " von ",
   "browser_go_to": "Gehe zu {to}",
@@ -86,6 +88,7 @@
   "back": "Zurück",
   "person_index": "Personen",
   "incipit_index": "Incipits",
+  "manuscript_index": "Handschriften",
   "place_index": "Orte",
   "source_index": "Quellen- und Literaturverzeichnis",
   "cite": "Zitierhinweis",
@@ -94,5 +97,9 @@
   "publisher": "Herausgeber",
   "editor": "Bearbeiter",
   "photo": "Foto",
-  "by": "von"
+  "by": "von",
+  "sort_asc": "aufsteigend (1-9) sortieren nach",
+  "sort_desc": "absteigend (9-1) sortieren nach",
+  "sort_relevance": "Relevanz",
+  "sort_idno": "ID"
 }

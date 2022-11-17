@@ -29,6 +29,36 @@
   },
   {
     "add-field": {
+      "name": "manuscript.key",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "date.string",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Katalogisat",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "url.Digitalisat",
+      "type": "string",
+      "stored": true
+    }
+  },
+  {
+    "add-field": {
       "name": "url.Geschichtsquellen.de",
       "type": "string",
       "stored": true
@@ -280,6 +310,14 @@
   {
     "add-field": {
       "name": "ueberlieferungsform.facet",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "shelfmark",
       "type": "string",
       "stored": true,
       "multiValued": true

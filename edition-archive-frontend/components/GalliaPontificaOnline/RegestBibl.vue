@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span :class="showSource.show ? 'opened':''" class="bibl">
     <template v-for="c in $props.bibl.content">
       <span v-if="c.type==='Element' && c.name==='cei:ref'">
         <a v-if="c.content.filter(cc => cc.type==='Attribute' && cc.name==='type' && cc.value==='external').length>0"
@@ -54,6 +54,16 @@ const loadSource = async (key: string) => {
 </script>
 
 <style scoped>
+
+.bibl:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+
+.opened {
+  background-color: rgb(225, 225, 225);
+}
+
 .popout-wrapper {
   margin-right: 3px;
   margin-left: 3px;

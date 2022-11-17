@@ -1,7 +1,8 @@
 <template>
-  <span v-if="$props.person">
+  <span class="person" v-if="$props.person">
+    {{ flattenElement($props.person) }}
      <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/person?personObj=${ getAttribute($props.person, 'key')?.value }`">
-       {{ flattenElement($props.person) }} <span class="bi bi-person"> </span>
+        <span class="bi bi-person"> </span>
      </nuxt-link>
   </span>
 </template>
@@ -17,5 +18,8 @@ const {$solrURL, $backendURL} = useNuxtApp();
 </script>
 
 <style scoped>
+.person:hover {
+  background-color: rgb(225, 225, 225);
 
+}
 </style>

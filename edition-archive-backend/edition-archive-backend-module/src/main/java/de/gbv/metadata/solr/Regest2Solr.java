@@ -19,7 +19,6 @@ import org.mycore.datamodel.niofs.MCRPath;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.time.format.DateTimeFormatter;
@@ -49,17 +48,32 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
       Document doc;
       doc = new SAXBuilder().build(is);
 
-      XPathExpression<Element> biblXP = XPathFactory.instance().compile(".//cei:bibl", Filters.element(), null, CEI_NAMESPACE);
-      List<Element> biblList = biblXP.evaluate(doc.getRootElement());
-      for (Element bibl : biblList) {
-        String key = bibl.getAttributeValue("key");
-        if (key != null && !key.isBlank()) {
-          System.out.println("Adding key " + key);
-          base.addField("source.key", key);
-        }
-      }
+      extractSourceLinks(base, doc);
+      extractManuscriptLinks(base, doc);
     } catch (IOException | JDOMException e) {
       throw new MCRException(e);
+    }
+  }
+
+  private static void extractSourceLinks(SolrInputDocument base, Document doc) {
+    XPathExpression<Element> biblXP = XPathFactory.instance().compile(".//cei:bibl", Filters.element(), null, CEI_NAMESPACE);
+    List<Element> biblList = biblXP.evaluate(doc.getRootElement());
+    for (Element bibl : biblList) {
+      String key = bibl.getAttributeValue("key");
+      if (key != null && !key.isBlank()) {
+        base.addField("source.key", key);
+      }
+    }
+  }
+
+  private static void extractManuscriptLinks(SolrInputDocument base, Document doc) {
+    XPathExpression<Element> msIdentifierXP = XPathFactory.instance().compile(".//cei:msIdentifier", Filters.element(), null, CEI_NAMESPACE);
+    List<Element> manuscriptList = msIdentifierXP.evaluate(doc.getRootElement());
+    for (Element manuscriptIdentifier : manuscriptList) {
+      String key = manuscriptIdentifier.getAttributeValue("n");
+      if (key != null && !key.isBlank()) {
+        base.addField("manuscript.key", key);
+      }
     }
   }
 

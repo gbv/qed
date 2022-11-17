@@ -28,7 +28,7 @@
               </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/handschriften">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontifica-online/regesten/reims1/regest/handschriften">
                 {{ $t('writings') }}
               </nuxt-link>
             </li>

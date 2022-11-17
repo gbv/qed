@@ -1,5 +1,6 @@
 package de.gbv.metadata;
 
+import de.gbv.metadata.model.Manuscript;
 import de.gbv.metadata.model.Person;
 import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.Place;
@@ -11,7 +12,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jdom2.Attribute;
 import org.jdom2.Content;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -72,40 +72,54 @@ public class CEIImporter {
   HashMap<Place, List<PlaceLink>> placeLinksHashMap = new HashMap<>();
 
   HashMap<String, RegestSource> keyRegestSourceHashMap = new HashMap<>();
+  final String RECORD_N = "n";
   final String RECORD_LONG_TITLE = "Langtitel";
   final String RECORD_SHORT_TITLE_EDITION = "Kurztitel der Editionen";
   final String RECORD_SHORT_TITLE = "Kurztitel";
   final String RECORD_KEY = "key";
-
-  final Set<String> linkCols = Stream.of("Geschichtsquellen.de", "Arlima.net", "Link", "Band I", "Band II", "Band III", "Band IV", "Band V", "Band VI").collect(Collectors.toSet());
+  final String RECORD_SIGNATUR = "Signatur";
+  final String RECORD_DATIERUNG = "Datierung";
+  final String RECORD_KATALOGISAT = "Katalogisat";
+  final String RECORD_DIGITALISAT = "Digitalisat";
+  final Set<String> QUELLEN_LINK_COL = Stream
+      .of("Geschichtsquellen.de", "Arlima.net", "Link", "Band I", "Band II", "Band III", "Band IV", "Band V", "Band VI")
+      .collect(Collectors.toSet());
+  final Set<String> HANDSCHRIFTEN_LINK_COL
+      = Stream.of(RECORD_KATALOGISAT, RECORD_DIGITALISAT).collect(Collectors.toSet());
+  HashMap<String, Manuscript> keyManuscriptHashMap = new HashMap<>();
 
   private final HashMap<PersonLink, List<Consumer<String>>> personLinkApplierMap = new HashMap<>();
 
   private final HashMap<PlaceLink, List<Consumer<String>>> placeLinkApplierMap = new HashMap<>();
+  private final List<CSVRecord> quellenRecordsList = new LinkedList<>();
+  private final List<CSVRecord> handSchriftenRecordList = new LinkedList<>();
 
-  private List<CSVRecord> recordsList = new LinkedList<>();
-
-  public CEIImporter(Path gesamtXML, Path quellenUndLiteratur) throws IOException, JDOMException {
+  public CEIImporter(Path gesamtXML, Path quellenUndLiteratur, Path hssVerzeichnis) throws IOException, JDOMException {
     SAXBuilder builder = new SAXBuilder();
     document = builder.build(gesamtXML.toFile());
     ceiGroup = document.getRootElement().getChild("text", CEI_NAMESPACE).getChild("group", CEI_NAMESPACE);
     textElements = ceiGroup.getChildren("text", CEI_NAMESPACE);
 
-    try(FileReader reader = new FileReader(quellenUndLiteratur.toFile(), Charset.forName("x-MacRoman"))) {
-      Iterable<CSVRecord> records = CSVFormat.EXCEL
+    processCSV(quellenUndLiteratur, this.quellenRecordsList, StandardCharsets.UTF_8);
+    processCSV(hssVerzeichnis, this.handSchriftenRecordList, StandardCharsets.UTF_8);
+}
+
+private void processCSV(Path quellenUndLiteratur, List<CSVRecord> list, Charset charset) throws IOException {
+    try(FileReader reader = new FileReader(quellenUndLiteratur.toFile(), charset)) {
+      Iterable<CSVRecord> records = CSVFormat.DEFAULT
         .builder()
         .setIgnoreEmptyLines(true)
-        .setDelimiter(";")
+        .setDelimiter(",")
+        .setQuote('"')
         .setHeader()
         .setSkipHeaderRecord(true)
         .build().parse(reader);
 
 
-      records.forEach(record -> {
-        recordsList.add(record);
-      });
+      records.forEach(list::add);
     }
   }
+
 
   public static void main(String[] args) throws IOException, JDOMException {
 
@@ -193,7 +207,7 @@ public class CEIImporter {
   }
 
   public void runImport() {
-    recordsList.forEach(record-> {
+      quellenRecordsList.forEach(record -> {
       RegestSource regestSource = new RegestSource();
 
       Optional.ofNullable(record.get(RECORD_LONG_TITLE))
@@ -211,7 +225,7 @@ public class CEIImporter {
       IdentifierType recordKey = new IdentifierType("key", record.get(RECORD_KEY));
       regestSource.getIdentifier().add(recordKey);
 
-      linkCols.forEach(linkType -> {
+        QUELLEN_LINK_COL.forEach(linkType -> {
         Optional.ofNullable(record.get(linkType))
           .filter(Predicate.not(String::isBlank))
           .ifPresent(link-> {
@@ -220,6 +234,32 @@ public class CEIImporter {
       });
 
       this.keyRegestSourceHashMap.put(recordKey.getIdentifier(), regestSource);
+    });
+
+    handSchriftenRecordList.forEach(record -> {
+        Manuscript manuscript = new Manuscript();
+
+        Optional.ofNullable(record.get(RECORD_N))
+            .filter(Predicate.not(String::isBlank))
+            .ifPresent(manuscript::setId);
+
+        Optional.ofNullable(record.get(RECORD_SIGNATUR))
+            .filter(Predicate.not(String::isBlank))
+            .ifPresent(manuscript::setShelfmark);
+
+        Optional.ofNullable(record.get(RECORD_DATIERUNG))
+            .filter(Predicate.not(String::isBlank))
+            .ifPresent(manuscript::setDate);
+
+        HANDSCHRIFTEN_LINK_COL.forEach(linkType -> {
+            Optional.ofNullable(record.get(linkType))
+                .filter(Predicate.not(String::isBlank))
+                .ifPresent(link -> {
+                    manuscript.getUrls().add(new URLType(linkType, link));
+                });
+        });
+
+        this.keyManuscriptHashMap.put(manuscript.getId(), manuscript);
     });
 
     textElements.forEach(currentTextElement -> {
@@ -559,5 +599,9 @@ public class CEIImporter {
 
   public HashMap<String, RegestSource> getKeyRegestSourceHashMap() {
     return keyRegestSourceHashMap;
+  }
+
+  public HashMap<String, Manuscript> getKeyManuscriptHashMap() {
+      return keyManuscriptHashMap;
   }
 }
