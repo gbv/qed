@@ -60,7 +60,7 @@
 
               <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
                 <section class="card-body">
-                  <div><span class="issuer">
+                  <div><span class="issuer" v-if="'regest.json' in result">
                     {{
                       flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type','PontifikatAEP'))))
                     }} - {{
@@ -70,14 +70,13 @@
                              :title="$t('go_to_regest', {regest:result.idno})">
                     Nr. {{ result.idno }}. {{ [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].join(", ") }}
                   </nuxt-link>
-                  <template v-if="'regest.json' in result">
-                    <p>
+                    <p v-if="'regest.json' in result">
                     {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}
                     </p>
-                    <i class="fst-italic">
+                    <i v-if="'regest.json' in result" class="fst-italic">
                     {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:incipit")))) }}
                     </i>
-                  </template>
+
                 </section>
               </article>
 
