@@ -1,7 +1,8 @@
 <template>
   <span class="place" v-if="$props.place">
+     <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.place.content" :content="c"/>
      <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/ort?ortObj=${ getAttribute($props.place, 'key')?.value }`">
-       {{ flattenElement($props.place) }} <span class="bi bi-geo-alt"> </span>
+        <span class="bi bi-geo-alt"> </span>
      </nuxt-link>
   </span>
 </template>

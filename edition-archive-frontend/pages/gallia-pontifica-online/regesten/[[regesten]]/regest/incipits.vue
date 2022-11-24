@@ -31,7 +31,7 @@ const route = useRoute()
 const config = useRuntimeConfig()
 
   const {$solrURL, $backendURL} = useNuxtApp();
-  const {data, error} = await useAsyncData(`objectType:regest`, async () => {
+  const {data, error} = await useAsyncData(`objectType:regest,incipit`, async () => {
     const request = await fetch(`${$solrURL()}main/select/?q=objectType:regest&wt=json&rows=99999&fq=initium:*&group=true&group.field=initium.facet&group.limit=99&sort=initium.facet%20asc`)
     const json = await request.json();
 

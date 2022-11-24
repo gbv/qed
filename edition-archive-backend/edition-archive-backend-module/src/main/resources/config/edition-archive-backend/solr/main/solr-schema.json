@@ -29,6 +29,46 @@
   },
   {
     "add-field": {
+      "name": "dekretale.key",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "dekretale.text",
+      "type": "text_general",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "dekretale.keytext",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "jaffe2",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "jaffe3",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
       "name": "manuscript.key",
       "type": "string",
       "stored": true,

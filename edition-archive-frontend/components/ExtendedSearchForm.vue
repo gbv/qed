@@ -61,6 +61,26 @@
       </div>
     </div>
     <div class="form-group row">
+      <label class="col-sm-2 col-form-label mb-2" for="jaffe2">{{ $t("search_field_jaffe2") }}</label>
+      <div class="col-9">
+        <input id="jaffe2" type="search" class="form-control" v-model="model.jaffe2"
+               :placeholder="$t('search_field_jaffe2_placeholder')">
+      </div>
+      <div class="col-1">
+
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label mb-2" for="jaffe3">{{ $t("search_field_jaffe3") }}</label>
+      <div class="col-9">
+        <input id="jaffe3" type="search" class="form-control" v-model="model.jaffe3"
+               :placeholder="$t('search_field_jaffe3_placeholder')">
+      </div>
+      <div class="col-1">
+
+      </div>
+    </div>
+    <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchDate">{{ $t("search_field_date") }}</label>
       <div class="col-2">
         <div class="form-check mt-2 text-align-left">
@@ -107,7 +127,7 @@
 
 
 const emit = defineEmits(["search"])
-const props = defineProps(["person", "place", "allMeta", "initium", "issuer", "recipient", "lost", "fake", "certainly", "dateRangeRange", "dateRangeFrom", "dateRangeTo", "dateText"]);
+const props = defineProps(["person", "place", "allMeta", "initium", "issuer", "recipient", "lost", "fake", "certainly", "dateRangeRange", "dateRangeFrom", "dateRangeTo", "dateText", "jaffe2", "jaffe3"])
 
 const model = reactive({
   allMeta: props.allMeta,
@@ -122,7 +142,9 @@ const model = reactive({
   dateRangeRange: props.dateRangeRange,
   dateRangeFrom: props.dateRangeFrom,
   dateRangeTo: props.dateRangeTo,
-  dateText: props.dateText
+  dateText: props.dateText,
+  jaffe2: props.jaffe2,
+  jaffe3: props.jaffe3
 });
 
 watch(() => props.allMeta, (newAllMeta) => {
@@ -162,6 +184,14 @@ watch(() => props.dateRangeTo, (newDateRangeTo) => {
 
 watch(() => props.dateText, (newDateText) => {
   model.dateText = newDateText;
+});
+
+watch(() => props.jaffe2, (newJaffe2) => {
+  model.jaffe2 = newJaffe2;
+});
+
+watch(() => props.jaffe3, (newJaffe3) => {
+  model.jaffe3 = newJaffe3;
 });
 
 const submit = () => {

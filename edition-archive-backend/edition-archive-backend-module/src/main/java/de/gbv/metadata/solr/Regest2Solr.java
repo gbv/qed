@@ -4,6 +4,8 @@ import de.gbv.metadata.Authenticity;
 import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.PlaceLink;
 import de.gbv.metadata.model.Regest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.solr.common.SolrInputDocument;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -30,6 +32,8 @@ import static de.gbv.metadata.CEIImporter.CEI_NAMESPACE;
 
 public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
+  private static final Logger LOGGER = LogManager.getLogger();
+
   private static void bodyXML(MCRObject obj, SolrInputDocument base) {
     String derivate = obj.getStructure().getDerivates().stream().map(MCRMetaLink::getXLinkHref).findFirst().get();
     MCRPath path = MCRPath.getPath(derivate, "/regest.xml");
@@ -50,18 +54,55 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
       extractSourceLinks(base, doc);
       extractManuscriptLinks(base, doc);
+      extractDekretaleLinks(base, doc);
+      extractJaffe(base, doc);
     } catch (IOException | JDOMException e) {
       throw new MCRException(e);
     }
   }
 
+  private static void extractJaffe(SolrInputDocument base, Document doc)  {
+    LOGGER.info("Extracting Jaffe");
+    XPathFactory xpfac = XPathFactory.instance();
+    XPathExpression<Element> xp = xpfac.compile(".//cei:bibl[@key='Jaffé_2']/cei:ref", Filters.element(), null, CEI_NAMESPACE);
+    List<Element> jaffeRefElements = xp.evaluate(doc);
+    for (Element jaffe : jaffeRefElements) {
+      String textContent = jaffe.getText();
+      base.addField("jaffe2", textContent);
+      LOGGER.info("Jaffe2: " + textContent);
+    }
+
+    xpfac = XPathFactory.instance();
+    xp = xpfac.compile(".//cei:bibl[@key='J3']/cei:ref", Filters.element(), null, CEI_NAMESPACE);
+    jaffeRefElements = xp.evaluate(doc);
+    for (Element jaffe : jaffeRefElements) {
+      String textContent = jaffe.getText();
+      base.addField("jaffe3", textContent);
+      LOGGER.info("Jaffe3: " + textContent);
+    }
+  }
+
   private static void extractSourceLinks(SolrInputDocument base, Document doc) {
-    XPathExpression<Element> biblXP = XPathFactory.instance().compile(".//cei:bibl", Filters.element(), null, CEI_NAMESPACE);
+    XPathExpression<Element> biblXP = XPathFactory.instance().compile(".//cei:bibl[@type='Sigle' or @type='Kurztitel']", Filters.element(), null, CEI_NAMESPACE);
     List<Element> biblList = biblXP.evaluate(doc.getRootElement());
     for (Element bibl : biblList) {
       String key = bibl.getAttributeValue("key");
       if (key != null && !key.isBlank()) {
         base.addField("source.key", key);
+      }
+    }
+  }
+
+  private static void extractDekretaleLinks(SolrInputDocument base, Document doc) {
+    XPathExpression<Element> biblXP = XPathFactory.instance().compile(".//cei:bibl[@type='Dekretale']", Filters.element(), null, CEI_NAMESPACE);
+    List<Element> biblList = biblXP.evaluate(doc.getRootElement());
+    for (Element bibl : biblList) {
+      String key = bibl.getAttributeValue("key");
+      String text = bibl.getTextNormalize();
+      if (key != null && !key.isBlank()) {
+        base.addField("dekretale.key", key);
+        base.addField("dekretale.text", text);
+        base.addField("dekretale.keytext", key + "||" + text);
       }
     }
   }

@@ -15,7 +15,11 @@
     </template>
 
     <div v-if="getAttribute($props.bibl,'key') !== null" class="popout-wrapper position-relative d-inline">
-      <a :href="'#' + getAttribute($props.bibl,'key').value" v-on:click.prevent="showSource.show ? hideSource():loadSource(getAttribute($props.bibl,'key').value)"><i class="bi bi-book"></i></a>
+      <nuxt-link v-if="getAttribute($props.bibl,'type', 'Dekretale')!==null"
+                  :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/dekretale?dekretaleKey=${ getAttribute($props.bibl, 'key').value }`">
+        <span class="bi bi-book"> </span>
+      </nuxt-link>
+      <a v-else :href="'#' + getAttribute($props.bibl,'key').value" v-on:click.prevent="showSource.show ? hideSource():loadSource(getAttribute($props.bibl,'key').value)"><i class="bi bi-book"></i></a>
         <div v-if="showSource.show" class="popout" v-on:blur="hideSource()">
           <a class="close" href="#hide" v-on:click.prevent="hideSource()"><i class="bi bi-x-circle"></i></a>
           <template v-if="showSource.loaded">
@@ -33,6 +37,7 @@
 import {flattenElement, getAttribute} from "@mycore-org/xml-json-api"
 
 const props = defineProps(["bibl"])
+const route = useRoute()
 
 const {$solrURL, $backendURL} = useNuxtApp();
 

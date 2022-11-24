@@ -6,8 +6,9 @@
       <template v-else-if="$props.content.type==='Text'">{{ $props.content.text }}</template>
       <GalliaPontificaOnlineRegestPerson v-else-if="$props.content.name==='cei:persName'" :person="$props.content"/>
       <GalliaPontificaOnlineRegestPlace v-else-if="$props.content.name==='cei:placeName'" :place="$props.content"/>
-      <GalliaPontificaOnlineRegestBibl v-else-if="$props.content.name === 'cei:bibl'" :bibl="$props.content"/>
+      <GalliaPontificaOnlineRegestBibl v-else-if="$props.content.name=== 'cei:bibl'" :bibl="$props.content"/>
       <GalliaPontificaOnlineRegestRef v-else-if=" $props.content.name==='cei:ref'" :refE="$props.content"/>
+      <GalliaPontificaOnlineRegestMsIdentifier v-else-if="$props.content.name==='cei:msIdentifier'" :msidentifier="$props.content" />
 
       <!-- cei:head -->
       <h6 v-else-if="$props.content.type==='Element' && $props.content.name==='cei:head'" class="head">
@@ -45,5 +46,10 @@ const {$solrURL, $backendURL} = useNuxtApp();
 </script>
 
 <style scoped>
+
+.head {
+  display: inline;
+  margin-right: 0.25em;
+}
 
 </style>

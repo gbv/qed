@@ -87,6 +87,8 @@ function setDockerValues() {
     echo "jwt.secret does not exists, create it.."
     openssl rand -out "${MCR_CONFIG_DIR}jwt.secret" 4096
   fi
+
+  downloadDriver https://repo.maven.apache.org/maven2/net/sf/saxon/Saxon-HE/11.4/Saxon-HE-11.4.jar
 }
 
 function setUpMyCoRe {

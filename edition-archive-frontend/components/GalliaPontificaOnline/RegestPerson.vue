@@ -1,6 +1,6 @@
 <template>
   <span class="person" v-if="$props.person">
-    {{ flattenElement($props.person) }}
+     <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.person.content" :content="c"/>
      <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/person?personObj=${ getAttribute($props.person, 'key')?.value }`">
         <span class="bi bi-person"> </span>
      </nuxt-link>

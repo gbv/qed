@@ -22,10 +22,9 @@
                 </span>
               </div>
               <div class="issued col text-center">
-                <template v-for="part in viewModel.issued">
-                  <template v-if="typeof part == 'string'">{{ part }}</template>
-                  <GalliaPontificaOnlineRegestPlace v-else :place="part"/>
-                </template>
+                <span v-if="viewModel.issued!=null && viewModel.issued?.content?.length>0">
+                  <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.issued.content"/>
+                </span>
               </div>
               <div class="PontifikatPP col text-end">
                 <span v-if="viewModel.pontifikatPP">
@@ -40,15 +39,25 @@
 
           <div v-if="viewModel.abstract" class="section abstract">
             <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.abstract.content"/>
-            <span class="fst-italic" v-if="viewModel.incipit">
-              — {{ viewModel.incipit }}.
+            <span v-if="viewModel.incipit!=null && viewModel.incipit.length>0">
+              — <span v-for="(incipit,index) in viewModel.incipit"><GalliaPontificaOnlineRegestMixedContent  :contents="incipit.content" /><template v-if="!(index+1==viewModel.incipit.length)">; </template> </span>
+              <template v-if="!flattenElement(viewModel.incipit[viewModel.incipit.length-1]).endsWith('.')">.</template>
             </span>
+            <br v-if="viewModel?.dekretale?.content?.length>0" />
+            <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.dekretale!=null && viewModel.dekretale.content.length>0" :contents="viewModel.dekretale.content"/>
+          </div>
+
+          <div v-if="viewModel.witnessOrig != null && viewModel.witnessOrig.content.length>0">
+            <div class="section">
+              <h5>{{ $t("regest_original") }}</h5>
+              <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.witnessOrig != null && viewModel.witnessOrig.content.length>0" :contents="viewModel.witnessOrig.content"/>
+            </div>
           </div>
 
           <div v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" class="section witlist">
             <h5>{{ $t("regest_ueberlieferung") }}</h5>
             <span>
-              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.witListPar.content"/>
+              <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" :contents="viewModel.witListPar.content"/>
             </span>
           </div>
 
@@ -87,10 +96,10 @@
 
 
           <!-- Sachkomentar -->
-          <div v-if="viewModel.sachkommentar!=null && viewModel.sachkommentar.content.length>0" class="section sachkommentar">
+          <div v-if="viewModel.sachkommentar!=null && viewModel.sachkommentar.length>0" class="section sachkommentar">
             <h5>{{ $t("regest_sachkommentar") }}</h5>
-            <div>
-              <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.sachkommentar.content"/>
+            <div v-for="sachkommentar in viewModel.sachkommentar">
+              <GalliaPontificaOnlineRegestMixedContent :contents="sachkommentar.content"/>
             </div>
           </div>
         </div>
@@ -149,28 +158,35 @@ const config = useRuntimeConfig()
 interface RegestViewModel {
   pontifikatPP: Array<XElement | string>;
   pontifikatAEP: Array<XElement | string>;
-  issued: Array<XElement | string>;
+  issued: XElement;
   idno: string;
   witListPar?: XElement;
   abstract?: XElement;
-  incipit?: string;
+  incipit?: Array<XElement>;
+  dekretale?: XElement;
   ueberlieferung?: XElement;
   listBiblEdition?: XElement;
   listBiblRegest?: XElement;
   erwaehnungen?: XElement;
-  sachkommentar?: XElement;
+  sachkommentar?: Array<XElement>;
+  witnessOrig?: XElement;
 }
 
-interface RegestWitness {
-  msIdentifier?: string; // the id
-  msIdentifierLabel?: string; // the label
-  ref?: string; // cei:ref
-}
 
 
 const regestedIdno: string = typeof route.params.regest == "string" ? route.params.regest : route.params.regest[0];
 
 const {$solrURL, $backendURL} = useNuxtApp();
+
+
+const traverse = (element: XElement, nodeHandler:(XNode)=>void) => {
+  element.content.forEach((node) => {
+    nodeHandler(node);
+    if (node.type === "Element") {
+      traverse(node, nodeHandler);
+    }
+  });
+};
 
 const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, async () => {
   const request = await fetch(`${$solrURL()}main/select/?q=idno:${regestedIdno}&wt=json`)
@@ -188,21 +204,32 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
 
   vm.pontifikatPP = flattenElementExcept(findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatPP'))), byName('cei:persName'));
 
-  vm.issued = flattenElementExcept(findFirstElement(doc, byName('cei:issued')), byName('cei:placeName'));
+  vm.issued = findFirstElement(doc, byName('cei:issued'));
+
+  vm.witnessOrig = findFirstElement(doc, byName('cei:witnessOrig'));
 
   vm.idno = flattenElement(findFirstElement(doc, byName("cei:idno")));
 
   vm.abstract = findFirstElement(doc, byName("cei:abstract"));
 
-  const incipit = findFirstElement(doc, byName("cei:incipit"));
-  if (incipit != null) {
-    vm.incipit = flattenElement(incipit);
-  }
+  vm.dekretale = findFirstElement(doc, and(byName("cei:p"), byAttr("type", "Dekretale")));
+
+  vm.incipit = findElement(doc, byName("cei:incipit"));
+  vm.incipit.forEach((incipit) => {
+    traverse(incipit, (node)=> {
+      if (node.type == "Text") {
+        node.text = node.text.trim();
+      }
+    })
+  });
+
+
+
   vm.witListPar = findFirstElement(doc, byName("cei:witListPar"));
   vm.erwaehnungen = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
   vm.listBiblEdition = findFirstElement(doc, byName("cei:listBiblEdition"));
   vm.listBiblRegest = findFirstElement(doc, byName("cei:listBiblRegest"));
-  vm.sachkommentar = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Sachkommentar')));
+  vm.sachkommentar = findElement(doc, and(byName("cei:p"), byAttr('type', 'Sachkommentar')));
   vm.ueberlieferung = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Überlieferung')));
 
   return vm;
