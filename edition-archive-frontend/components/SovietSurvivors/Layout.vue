@@ -48,10 +48,9 @@
       </div>
     </div>
 
-    <div class="row" v-if="$route.params.aboutPath || $route.params.aboutPath == '' ">
-
-      <div class="col-12 gpo-sub-headline">
-        <h2>About</h2>
+    <div class="row" v-if="'menu' in $slots">
+      <div class="col-12 gpo-sub-headline" v-if="'headline' in $props">
+        <h2>{{ $props.headline }}</h2>
       </div>
 
       <div class="col-md-3 col-sm-12 gpo-sub-menu">

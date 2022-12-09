@@ -1,5 +1,5 @@
 <template>
-  <SovietSurvivorsLayout>
+  <SovietSurvivorsLayout headline="About">
 
     <template #content>
         <ContentRenderer v-if="data" :value="data"/>

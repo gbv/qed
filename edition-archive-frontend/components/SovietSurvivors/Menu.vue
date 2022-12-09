@@ -1,6 +1,6 @@
 <template>
 
-  <template v-if="$route.params.aboutPath || $route.params.aboutPath == ''">
+  <template>
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -32,7 +32,5 @@
     </nav>
   </template>
 
-  <template v-else>
-  </template>
 
 </template>
