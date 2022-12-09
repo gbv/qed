@@ -26,7 +26,7 @@
               </nuxt-link>
             </li>
             <li class="nav-item dropdown">
-              <nuxt-link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <nuxt-link class="nav-link dropdown-toggle" active-class="active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ $t('regest') }}
               </nuxt-link>
               <ul class="dropdown-menu">
