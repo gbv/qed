@@ -38,8 +38,8 @@
   ---
   img-href: /images/card-back-sovjet.jpg
   card-title: Sowjetische Zeitzeugen
-  link: https://reposis-test.gbv.de/diemawes/
-  card-class: not-active
+  link: soviet-survivors/
+  card-class: active
   ---
   Diese Website versammelt die ersten aufgezeichneten Stimmen
   von sowjetischen Überlebenden der NS-Herrschaft.
