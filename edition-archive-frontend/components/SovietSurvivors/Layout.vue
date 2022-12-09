@@ -55,29 +55,7 @@
       </div>
 
       <div class="col-md-3 col-sm-12 gpo-sub-menu">
-        <nav class="navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/annihilation">
-                Germany’s War of Annihilation
-              </nuxt-link>
-              <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/historians">
-                The Soviet Historians
-              </nuxt-link>
-              <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/team">
-                Team
-              </nuxt-link>
-              <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/contact">
-                Contact
-              </nuxt-link>
-              <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/guide">
-                User Guide
-              </nuxt-link>
-            </li>
-            </li>
-          </ul>
-        </nav>
+        <slot name="menu" />
       </div>
       <div class="col-md-9 col-sm-12 gpo-content external-links">
         <slot name="content" />

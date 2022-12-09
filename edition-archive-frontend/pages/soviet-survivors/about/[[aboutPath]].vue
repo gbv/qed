@@ -5,6 +5,10 @@
         <ContentRenderer v-if="data" :value="data"/>
     </template>
 
+    <template #menu>
+      <SovietSurvivorsMenu/>
+    </template>
+
   </SovietSurvivorsLayout>
 </template>
 
