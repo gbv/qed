@@ -22,23 +22,23 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <nuxt-link class="nav-link" active-class="active" aria-current="page" href="/soviet-survivors/">
-                  Home
+                <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/">
+                  {{ $t('home') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/">
-                  About
+                  {{ $t('about') }}
               </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/documents">
-                  Documents
+                  {{ $t('documents') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search">
-                  Search
+                  {{ $t('search') }}
                 </nuxt-link>
               </li>
             </ul>
@@ -49,8 +49,9 @@
     </div>
 
     <div class="row" v-if="'menu' in $slots">
+
       <div class="col-12 gpo-sub-headline" v-if="'headline' in $props">
-        <h2>{{ $props.headline }}</h2>
+        <h2>{{$props.headline}}</h2>
       </div>
 
       <div class="col-md-3 col-sm-12 gpo-sub-menu">
@@ -67,3 +68,7 @@
 
   </div>
 </template>
+
+<script lang="ts" setup>
+  const props = defineProps(["headline"])
+</script>
