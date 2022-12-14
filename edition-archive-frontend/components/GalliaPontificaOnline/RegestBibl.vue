@@ -84,19 +84,13 @@ i {
 }
 
 .popout {
-  position: absolute;
-  z-index: 99;
   display: block;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 7px 0px 7px 7px;
-
-  padding: 1em;
-  top: 20px;
-  right: 20px;
-  min-height: 100px;
-  max-height: 300px;
-  width: 300px;
-
+  border-radius: 7px;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  min-height: 5rem;
 }
 </style>

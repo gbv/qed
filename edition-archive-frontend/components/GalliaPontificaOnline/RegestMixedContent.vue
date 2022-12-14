@@ -46,10 +46,11 @@ const {$solrURL, $backendURL} = useNuxtApp();
 </script>
 
 <style scoped>
-
+.head:not(:first-child) {
+  margin-top: 1rem;
+}
 .head {
-  display: inline;
-  margin-right: 0.25em;
+  margin-bottom: .5rem;
 }
 
 </style>
