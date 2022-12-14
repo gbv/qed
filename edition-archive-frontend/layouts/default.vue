@@ -40,7 +40,7 @@
                     <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('globalSearch') }}</nuxt-link>
                   </li>
                   <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about') }}</nuxt-link>
+                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about_qed') }}</nuxt-link>
                   </li>
                   <LanguageSelector />
                 </ul>
