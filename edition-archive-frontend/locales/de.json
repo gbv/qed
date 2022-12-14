@@ -7,7 +7,8 @@
   "search": "Suche",
   "contact": "Kontakt",
   "language": "Sprache",
-  "about": "Über qed",
+  "about": "Über",
+  "about_qed": "Über qed",
   "project": "Das Projekt",
   "regest": "Regesten",
   "reims1": "Reims I: Erzbischöfe",
@@ -108,5 +109,11 @@
   "sort_asc": "aufsteigend (1-9) sortieren nach",
   "sort_desc": "absteigend (9-1) sortieren nach",
   "sort_relevance": "Relevanz",
-  "sort_idno": "ID"
+  "sort_idno": "ID",
+  "documents": "Dokumente",
+  "intro": "Einleitung",
+  "war_of_annihilation": "Germany’s War of Annihilation",
+  "soviet_historians": "The Soviet Historians",
+  "team": "Team",
+  "user_guide": "User Guide"
 }

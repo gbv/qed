@@ -5,6 +5,7 @@
   "explain": "Explain",
   "search": "Search",
   "about": "About",
+  "about_qed": "About qed",
   "project": "The Projekt",
   "regest": "Regesten",
   "reims1": "Reims I: Erzbischöfe",
@@ -22,5 +23,11 @@
   "search_pagination": "pagination search",
   "seach_page_go_to": "go to page {page}",
   "photo": "Photo",
-  "by": "by"
+  "by": "by",
+  "documents": "Documents",
+  "intro": "Intro",
+  "war_of_annihilation": "Germany’s War of Annihilation",
+  "soviet_historians": "The Soviet Historians",
+  "team": "Team",
+  "user_guide": "User Guide"
 }

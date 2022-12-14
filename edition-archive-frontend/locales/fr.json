@@ -5,6 +5,7 @@
   "search": "Recherche",
   "contact": "Contact",
   "about": "About",
+  "about_qed": "About qed",
   "project": "Le projet",
   "regest": "Regestes",
   "reims1": "Reims I: Archévêques",
@@ -20,5 +21,11 @@
   "person_index": "Index des noms de personnes",
   "place_index": "Index des noms de lieux",
   "cite": "Indication pour la citation",
-  "paris": "Paris"
+  "paris": "Paris",
+  "documents": "Documents",
+  "intro": "Intro",
+  "war_of_annihilation": "Germany’s War of Annihilation",
+  "soviet_historians": "The Soviet Historians",
+  "team": "Team",
+  "user_guide": "User Guide"
 }
