@@ -37,7 +37,7 @@
                 </nuxt-link>
               </li>
               <li class="nav-item">
-                <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search">
+                <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search/">
                   {{ $t('search') }}
                 </nuxt-link>
               </li>
