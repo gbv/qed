@@ -161,6 +161,9 @@
   }
 }
 .regest-detail-view {
+  a {
+    margin-left: 0.5rem;
+  }
   .prev,
   .next,
   .index {
@@ -244,11 +247,12 @@
       font-family: bootstrap-icons;
       position: absolute;
       top: -0.15625rem;
-      left: 0.3125rem;
+      left: 0;
       color: $secondary;
     }
   }
 }
+
 .cc-by {
   position: relative;
   &__text {

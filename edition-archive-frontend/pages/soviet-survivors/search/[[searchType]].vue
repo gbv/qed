@@ -11,7 +11,7 @@
               <BasicSearchForm v-on:search="basicSearchCallback" :searchString="model.searchString"/>
             </template>
             <template v-slot:erweitert>
-              <ExtendedSearchForm v-on:search="extendedSearchCallback"
+              <ExtendedSearchFormSoSu v-on:search="extendedSearchCallback"
                                   :allMeta="model.extendedSearch.allMeta"
                                   :person="model.extendedSearch.person"
                                   :place="model.extendedSearch.place"
