@@ -325,6 +325,29 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.metadata {
+  h3 {
+    margin-bottom: 2rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #ddd;
+  }
+  dt {
+    width: 20%;
+    text-align: right;
+    float: left;
+    color: #999;
+    font-weight: normal;
+    clear: both;
+    margin-bottom: 1rem;
+  }
+  dd {
+    float: left;
+    margin-left: 1rem;
+    width: 75%;
+    margin-bottom: 1rem;
+  }
+}
+
 
 // ==== media queries ====
 @include media-breakpoint-down(xxl) {
