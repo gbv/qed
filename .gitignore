@@ -30,3 +30,7 @@ target/
 
 # project
 docker
+
+# eclipse
+.project
+.settings/
