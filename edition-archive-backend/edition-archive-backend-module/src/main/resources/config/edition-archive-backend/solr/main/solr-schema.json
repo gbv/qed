@@ -84,79 +84,10 @@
     }
   },
   {
-    "add-field": {
-      "name": "url.Katalogisat",
+    "add-dynamic-field": {
+      "name": "url.*",
       "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Digitalisat",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Geschichtsquellen.de",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Arlima.net",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Link",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Band_I",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Band_II",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Band_III",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Band_IV",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Band_V",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "url.Band_VI",
-      "type": "string",
+      "multiValued": false,
       "stored": true
     }
   },
@@ -263,13 +194,6 @@
   {
     "add-field": {
       "name": "pontifikatAEP.obj",
-      "type": "string",
-      "stored": true
-    }
-  },
-  {
-    "add-field": {
-      "name": "deliveryForm",
       "type": "string",
       "stored": true
     }

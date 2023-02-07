@@ -200,9 +200,11 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
 
   const vm: RegestViewModel = {} as RegestViewModel
 
-  vm.pontifikatAEP = flattenElementExcept(findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatAEP'))), byName('cei:persName'));
+  const aep = findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')));
+  vm.pontifikatAEP = aep !== null ? flattenElementExcept(aep, byName('cei:persName')): null;
 
-  vm.pontifikatPP = flattenElementExcept(findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatPP'))), byName('cei:persName'));
+  const pp = findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatPP')));
+  vm.pontifikatPP = pp !== null ?  flattenElementExcept(pp, byName('cei:persName')): null;
 
   vm.issued = findFirstElement(doc, byName('cei:issued'));
 

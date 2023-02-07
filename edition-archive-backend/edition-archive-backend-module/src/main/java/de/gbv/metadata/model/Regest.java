@@ -97,14 +97,6 @@ public class Regest {
         this.issued = issued;
     }
 
-    public ClassificationMultivalue getDeliveryForm() {
-        return deliveryForm;
-    }
-
-    public void setDeliveryForm(ClassificationMultivalue deliveryForm) {
-        this.deliveryForm = deliveryForm;
-    }
-
     public PersonLink getPontifikatPP() {
         return pontifikatPP;
     }

@@ -168,9 +168,6 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
       base.addField("place", bodyPlace.getLabel());
     }
 
-    regest.getDeliveryForm().getCategids().forEach(id -> {
-      base.addField("deliveryForm", id);
-    });
 
     Optional.ofNullable(regest.getPontifikatAEP()).ifPresent(pontifikatAEP -> {
       base.setField("pontifikatAEP", pontifikatAEP.getLabel());
