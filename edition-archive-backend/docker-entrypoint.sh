@@ -119,5 +119,5 @@ else
   setUpMyCoRe
 fi
 
-export JAVA_OPTS="-DMCR.ConfigDir=${MCR_CONFIG_DIR} -Xmx${XMX} -Xms${XMS} -XX:+CrashOnOutOfMemoryError -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8295"
+export JAVA_OPTS="-DMCR.ConfigDir=${MCR_CONFIG_DIR} -Xmx${XMX} -Xms${XMS} -XX:+CrashOnOutOfMemoryError -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl"
 catalina.sh run
