@@ -161,6 +161,9 @@
   }
 }
 .regest-detail-view {
+  a {
+    margin-left: 0.5rem;
+  }
   .prev,
   .next,
   .index {
@@ -243,12 +246,13 @@
       content: "\F1C5";
       font-family: bootstrap-icons;
       position: absolute;
-      top: 0;
-      left: 3px;
+      top: -0.15625rem;
+      left: 0;
       color: $secondary;
     }
   }
 }
+
 .cc-by {
   position: relative;
   &__text {
@@ -318,6 +322,29 @@
 h1, h2, h3, h4, h5, h6 {
   a {
     text-decoration: none;
+  }
+}
+
+.metadata {
+  h3 {
+    margin-bottom: 2rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #ddd;
+  }
+  dt {
+    width: 20%;
+    text-align: right;
+    float: left;
+    color: #999;
+    font-weight: normal;
+    clear: both;
+    margin-bottom: 1rem;
+  }
+  dd {
+    float: left;
+    margin-left: 1rem;
+    width: 75%;
+    margin-bottom: 1rem;
   }
 }
 
