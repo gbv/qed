@@ -5,7 +5,7 @@
       <div class="col">
         <div class="gpo-headline">
           <h1>Soviet Survivors</h1>
-          <a href="https://www.dhi-paris.fr/home.html">
+          <a href="https://www.dhi-moskau.org/">
             <nuxt-img src="/images/dhi-moskau-logo-200.jpg" preload alt="DHI Moskau Logo" />
           </a>
         </div>
