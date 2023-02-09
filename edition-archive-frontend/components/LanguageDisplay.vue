@@ -13,6 +13,8 @@ function convert(langCode){
       return "Deutsch";
     case "fr":
       return "Français";
+    case "ru":
+      return "Русский";
     default:
       return langCode;
   }

@@ -9,6 +9,7 @@
         <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('de')"><LanguageDisplay lang="de" /></a></li>
         <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('en')"><LanguageDisplay lang="en" /></a></li>
         <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('fr')"><LanguageDisplay lang="fr" /></a></li>
+        <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('ru')"><LanguageDisplay lang="ru" /></a></li>
       </ul>
     </li>
   </client-only>
