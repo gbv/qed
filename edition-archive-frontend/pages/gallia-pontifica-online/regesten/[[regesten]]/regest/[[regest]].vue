@@ -43,9 +43,13 @@
               — <span v-for="(incipit,index) in viewModel.incipit"><GalliaPontificaOnlineRegestMixedContent  :contents="incipit.content" /><template v-if="!(index+1==viewModel.incipit.length)">; </template> </span>
               <template v-if="!flattenElement(viewModel.incipit[viewModel.incipit.length-1]).endsWith('.')">.</template>
             </span>
-            <br v-if="viewModel?.dekretale?.content?.length>0" />
+          </div>
+
+          <div v-if="viewModel?.dekretale?.content?.length>0" class="section dekretale">
+            <h5>{{ $t("regest_dekretale") }}</h5>
             <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.dekretale!=null && viewModel.dekretale.content.length>0" :contents="viewModel.dekretale.content"/>
           </div>
+
 
           <div v-if="viewModel.witnessOrig != null && viewModel.witnessOrig.content.length>0">
             <div class="section">
