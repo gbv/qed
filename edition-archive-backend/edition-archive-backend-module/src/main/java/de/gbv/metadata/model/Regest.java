@@ -32,7 +32,7 @@ public class Regest {
 
     private Authenticity authenticityStatus;
 
-    private String initium;
+    private List<String> initium = new ArrayList<>();
 
     private String ueberlieferungsform;
 
@@ -81,11 +81,11 @@ public class Regest {
         this.issuedPlace = issuedPlace;
     }
 
-    public String getInitium() {
+    public List<String> getInitium() {
         return initium;
     }
 
-    public void setInitium(String initium) {
+    public void setInitium(List<String> initium) {
         this.initium = initium;
     }
 

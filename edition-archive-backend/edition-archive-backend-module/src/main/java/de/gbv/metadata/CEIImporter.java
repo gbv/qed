@@ -465,11 +465,8 @@ public class CEIImporter {
     }
 
     private void extractInitium(Element currentBodyElement, Regest regest) {
-        Element foreign = getXpathFirst(".//cei:diplomaticAnalysis/cei:incipit/cei:foreign", currentBodyElement);
-        if (foreign != null) {
-            String initium = flattenText(foreign);
-            regest.setInitium(initium);
-        }
+        List<Element> foreign = getXpathList(".//cei:diplomaticAnalysis/cei:incipit/cei:foreign", currentBodyElement);
+        foreign.stream().map(this::flattenText).forEach(regest.getInitium()::add);
     }
 
     private void extractUeberlieferungsform(Element currentBodyElement, Regest regest) {

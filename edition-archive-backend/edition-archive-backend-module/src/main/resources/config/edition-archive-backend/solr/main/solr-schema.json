@@ -261,7 +261,7 @@
       "name": "initium.facet",
       "type": "string",
       "stored": true,
-      "multiValued": false
+      "multiValued": true
     }
   },
   {
