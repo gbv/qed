@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.text.MessageFormat;
+import java.text.Normalizer;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +65,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
   private static void extractJaffe(SolrInputDocument base, Document doc)  {
     LOGGER.info("Extracting Jaffe");
     XPathFactory xpfac = XPathFactory.instance();
-    XPathExpression<Element> xp = xpfac.compile(".//cei:bibl[@key='Jaffé_2']/cei:ref", Filters.element(), null, CEI_NAMESPACE);
+    XPathExpression<Element> xp = xpfac.compile(".//cei:bibl[@key='" + Normalizer.normalize("Jaffé_2", Normalizer.Form.NFC) +"']/cei:ref", Filters.element(), null, CEI_NAMESPACE);
     List<Element> jaffeRefElements = xp.evaluate(doc);
     for (Element jaffe : jaffeRefElements) {
       String textContent = jaffe.getText();

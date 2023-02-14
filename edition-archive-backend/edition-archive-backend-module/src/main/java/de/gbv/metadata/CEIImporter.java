@@ -117,7 +117,7 @@ public class CEIImporter {
       try(FileInputStream fis = new FileInputStream(file)){
         byte[] bytes = fis.readAllBytes();
         String s = new String(bytes, StandardCharsets.UTF_8);
-        String normalized = Normalizer.normalize(s, Normalizer.Form.NFD);
+        String normalized = Normalizer.normalize(s, Normalizer.Form.NFC);
         try(ByteArrayInputStream bis = new ByteArrayInputStream(normalized.getBytes(StandardCharsets.UTF_8))){
           SAXBuilder builder = new SAXBuilder();
           document = builder.build(bis);
@@ -139,7 +139,7 @@ public class CEIImporter {
             try (InputStreamReader isr = new InputStreamReader(bOMInputStream, charsetName);
                 BufferedReader br = new BufferedReader(isr)) {
                 String csvAsString = br.lines().collect(Collectors.joining("\n"));
-                String normalize = Normalizer.normalize(csvAsString, Normalizer.Form.NFD);
+                String normalize = Normalizer.normalize(csvAsString, Normalizer.Form.NFC);
                 try (StringReader sr = new StringReader(normalize)) {
                     Iterable<CSVRecord> records = CSVFormat.DEFAULT
                         .builder()

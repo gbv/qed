@@ -4,6 +4,10 @@
              :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${getAttribute($props.refE, 'target')?.value}`">
     {{ flattenElement($props.refE) }}
   </nuxt-link>
+  <a v-else-if="getAttribute($props.refE,'type', 'external')"
+     :href="getAttribute($props.refE, 'target')?.value">
+    {{ flattenElement($props.refE) }}
+  </a>
   <span v-else>
     {{ flattenElement($props.refE) }}
   </span>
