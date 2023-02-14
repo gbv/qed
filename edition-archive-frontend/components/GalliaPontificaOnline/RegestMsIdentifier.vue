@@ -18,6 +18,11 @@ const {$solrURL, $backendURL} = useNuxtApp();
 </script>
 
 <style scoped>
+/* prevents unwanted line breaks */
+.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+  display: inline;
+}
+
 .msidentifier:hover {
   background-color: rgb(225, 225, 225);
 }
