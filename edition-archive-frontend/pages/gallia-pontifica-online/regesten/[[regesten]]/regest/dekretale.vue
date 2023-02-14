@@ -5,14 +5,9 @@
           <h2>{{ $t("dekretale_index") }}</h2>
           <ul class="list-group list-group-flush mt-5" v-if="data">
             <li v-for="id in data.ids" class="list-group-item">
-              <template v-if="data.idResults[id].length > 1">
-                {{data.idText[id]}} (<nuxt-link v-for="doc in data.idResults[id]"
-                           :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${doc.idno}`"
-                >{{ doc.idno }}<template v-if="doc.idno !== data.idResults[id][ data.idResults[id].length - 1].idno">, </template></nuxt-link>)
-              </template>
-             <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${ data.idResults[id][0].idno}`" v-else>
-               {{ data.idText[id] }}
-              </nuxt-link>
+              {{data.idText[id]}} (<nuxt-link v-for="doc in data.idResults[id]"
+                         :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${doc.idno}`"
+              >{{ doc.idno }}<template v-if="doc.idno !== data.idResults[id][ data.idResults[id].length - 1].idno">, </template></nuxt-link>)
             </li>
           </ul>
     </template>
