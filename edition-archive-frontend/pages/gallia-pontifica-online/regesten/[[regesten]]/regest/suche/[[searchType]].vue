@@ -63,7 +63,7 @@
                   <div><span class="issuer" v-if="'regest.json' in result">
                     {{
                       flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type','PontifikatAEP'))))
-                    }} - {{
+                    }} – {{
                       flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type','PontifikatPP'))))
                     }}</span></div>
                   <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${result.idno}`"
@@ -71,7 +71,7 @@
                     Nr. {{ result.idno }}. {{ [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].join(", ") }}
                   </nuxt-link>
                     <p v-if="'regest.json' in result">
-                    {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}
+                    {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract"))))  }}
                     </p>
                     <i v-if="'regest.json' in result" class="fst-italic">
                     {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:incipit")))) }}
@@ -300,9 +300,15 @@ async function executeSearch(url: string, query: LocationQuery) {
   const request = await fetch(url)
   const searchResult = await request.json();
   model.searchResult = searchResult;
+  const proms = [];
   for (const doc of model.searchResult.response.docs) {
     const xmlCode = doc["regest.xml"];
-    doc["regest.json"] = await XMLApi(xmlCode);
+    proms.push(XMLApi(xmlCode));
+  }
+
+  const values = await Promise.all(proms);
+  for (let i = 0; i < values.length; i++) {
+    model.searchResult.response.docs[i]["regest.json"] = values[i];
   }
 
   for (const facetName in model.searchResult.facet_counts.facet_fields) {
@@ -612,7 +618,9 @@ function trimString(str: string | null): string | null {
   const size = 240;
 
   if (str.length > size) {
-    return str.substring(0, str.indexOf(' ', size)) + "…";
+    const trimmed = str.substring(0, size).trim();
+    const lastSpaceIndex = trimmed.lastIndexOf(' ');
+    return lastSpaceIndex === -1 ? trimmed + "…" : trimmed.substring(0, lastSpaceIndex) + "…";
   } else {
     return str;
   }
