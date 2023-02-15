@@ -15,15 +15,15 @@
     </template>
 
     <div v-if="getAttribute($props.bibl,'key') !== null" class="popout-wrapper position-relative d-inline">
-      <nuxt-link v-if="getAttribute($props.bibl,'type', 'Dekretale')!==null"
+      <nuxt-link v-if="getAttribute($props.bibl,'type', 'Dekretale')!==null" class="icon-link"
                  :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/dekretale?dekretaleKey=${ getAttribute($props.bibl, 'key').value }`">
         <span class="bi bi-book"> </span>
       </nuxt-link>
-      <a v-else :href="'#' + getAttribute($props.bibl,'key').value"
+      <a v-else :href="'#' + getAttribute($props.bibl,'key').value" class="icon-link"
          v-on:click.prevent="showSource.show ? hideSource():loadSource(getAttribute($props.bibl,'key').value)"><i
         class="bi bi-book"></i></a>
         <div v-if="showSource.show" class="popout" v-on:blur="hideSource()">
-          <a class="close" href="#hide" v-on:click.prevent="hideSource()"><i class="bi bi-x-circle"></i></a>
+          <a class="close icon-link" href="#hide" v-on:click.prevent="hideSource()"><i class="bi bi-x-circle"></i></a>
           <template v-if="showSource.loaded">
             <GalliaPontificaOnlineSource :source="showSource.source"/>
           </template>

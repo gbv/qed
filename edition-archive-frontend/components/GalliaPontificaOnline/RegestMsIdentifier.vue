@@ -1,7 +1,7 @@
 <template>
   <span class="msidentifier" v-if="$props.msidentifier">
      <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.msidentifier.content" :content="c"/>
-     <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${ getAttribute($props.msidentifier, 'n')?.value }`">
+     <nuxt-link class="icon-link" :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${ getAttribute($props.msidentifier, 'n')?.value }`">
         <span class="bi bi-book"> </span>
      </nuxt-link>
   </span>

@@ -348,6 +348,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.icon-link {
+  text-decoration: none;
+}
 
 // ==== media queries ====
 @include media-breakpoint-down(xxl) {
