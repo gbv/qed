@@ -26,7 +26,7 @@ const config = useRuntimeConfig()
 
 const {$solrURL, $backendURL} = useNuxtApp();
 const {data, error} = await useAsyncData(`objectType:manuscript`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=objectType:manuscript&wt=json&rows=99999`)
+  const request = await fetch(`${$solrURL()}main/select/?q=objectType:manuscript&wt=json&rows=99999&sort=shelfmark%20asc`)
   const json = await request.json();
   if (json.response.numFound === 0) {
     throw 404;

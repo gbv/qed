@@ -68,7 +68,7 @@
                     }}</span></div>
                   <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${result.idno}`"
                              :title="$t('go_to_regest', {regest:result.idno})">
-                    Nr. {{ result.idno }}. {{ [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].join(", ") }}
+                    Nr. {{ result.idno }}. {{ [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p=>p!==null && p!==undefined).join(", ") }}
                   </nuxt-link>
                     <p v-if="'regest.json' in result">
                     {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract"))))  }}
