@@ -95,7 +95,7 @@ public class CEIImporter {
     final String RECORD_KATALOGISAT = "Katalogisat";
     final String RECORD_DIGITALISAT = "Digitalisat";
     final Set<String> QUELLEN_LINK_COL = Stream
-        .of("Online-Zugriff", "Geschichtsquellen.de", "Arlima.net", "Band I", "Band I,1", "Band 1,2", "Band II",
+        .of("Online-Zugriff", "Geschichtsquellen.de", "Arlima.net", "Band I", "Band I,1", "Band I,2", "Band II",
             "Band III", "Band IV", "Band V", "Band VI", "Band VII", "Band VIII", "Band IX", "Band X", "Band XI",
             "Band XII", "Band XIII", "Band XIV", "Band XVI", "Band XV", "Band VII,1", "Band VII,2")
         .collect(Collectors.toSet());
