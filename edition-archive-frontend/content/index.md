@@ -18,6 +18,11 @@
     Ihr Ziel ist es, sämtliche früh- und hochmittelalterlichen Papsturkunden,
     die für französische Empfänger ausgestellt wurden, zu erfassen und kritisch
     zu edieren.
+    #en
+    The »Gallia Pontificia« is the long-term project of the DHI Paris.
+    It is being developed in cooperation with the École nationale des chartes.
+    Its goal is to collect and critically edit all early and high medieval papal
+    documents that were issued for French recipients.
     ::::
   :::
 #lod

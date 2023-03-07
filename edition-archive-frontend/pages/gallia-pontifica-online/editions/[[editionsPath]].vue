@@ -8,7 +8,6 @@
   </GalliaPontificaOnlineLayout>
 </template>
 <script setup lang="ts">
-  import {createError} from 'h3'
   const route = useRoute();
 
   const {data, error} = await useAsyncData(`content-${(route.path)}`, () => {
@@ -16,7 +15,7 @@
     return queryContent().where({_path: p1}).findOne()
   })
   if (error.value) {
-    throwError(
+    showError(
         createError({
           statusCode: 404,
           statusMessage: 'Not Found',

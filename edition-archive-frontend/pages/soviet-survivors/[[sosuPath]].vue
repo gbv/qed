@@ -2,29 +2,15 @@
   <SovietSurvivorsLayout>
 
     <template #content>
-        <ContentRenderer v-if="data" :value="data"/>
+      <CMSPage :slug="$route.path"/>
     </template>
 
   </SovietSurvivorsLayout>
 </template>
 
-<script setup lang="ts">
-import {createError} from 'h3'
+<script lang="ts" setup>
 
 const {path} = useRoute()
-
-const {data, error} = await useAsyncData(`content-${path}`, () => {
-  const p1 = path.lastIndexOf("/") === path.length - 1 ? path + "home" : path;
-  return queryContent().where({_path: p1}).findOne()
-})
-if (error.value) {
-  throwError(
-      createError({
-        statusCode: 404,
-        statusMessage: 'Not Found',
-      })
-  );
-}
 
 </script>
 <style scoped>

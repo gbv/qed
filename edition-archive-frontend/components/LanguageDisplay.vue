@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 const props = defineProps(["lang"]);
 
-function convert(langCode){
+function convert(langCode:string){
   switch (langCode){
     case "en":
       return "English";

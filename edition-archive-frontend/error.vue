@@ -1,16 +1,9 @@
 <template>
   <NuxtLayout>
     <div class="error-info-hidden">
-      <!-- typeof error.statusCode: -->
-      <!-- string from server-side -->
-      <!-- number on client-side -->
-      typeof error.statusCode =
-      <span v-html="`${typeof error.statusCode}`"> </span>
-      <hr/>
-
       <p>
-        error.statusCode: {{ error.statusCode }} <br/>
-        error.message: {{ error.message }}
+        error.statusCode: {{ error?.statusCode || ""}} <br/>
+        error.message: {{ error?.message }}
       </p>
       <hr/>
 
@@ -18,7 +11,7 @@
     <!-- customise 404 message from template section -->
 
     <div class="wrapper">
-      <section class="error 404" v-if="error.statusCode === 404 || '404'">
+      <section class="error 404" v-if="error?.statusCode === 404">
         <h3>{{ $t("error_404") }}</h3>
         <!-- {{ $t("error_404") }}-->
         <button class="btn btn-primary float-end" @click="handleError">{{ $t("back") }}</button>

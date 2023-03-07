@@ -1,8 +1,8 @@
-import { defineNuxtPlugin } from '#imports'
-
+import type { RouterConfig } from '@nuxt/schema'
+import {RouterOptions, RouteLocationNormalized} from "vue-router"
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.$router.options.scrollBehavior = async (to, from, savedPosition) => {
-    let goTo
+  (nuxtApp.$router.options as RouterOptions).scrollBehavior = async (to, from, savedPosition) => {
+    let goTo : any | null = null;
 
     if (to.hash) {
       goTo = {

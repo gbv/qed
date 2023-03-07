@@ -4,7 +4,7 @@
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/intro">
+          <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/">
             {{ $t('intro') }}
 
           </nuxt-link>

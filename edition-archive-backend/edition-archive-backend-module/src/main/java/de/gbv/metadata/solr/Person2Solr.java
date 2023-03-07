@@ -11,8 +11,8 @@ public class Person2Solr extends BasicSolrInputDocumentConverter<Person> {
 
     base.setField("displayName", person.getDisplayName());
 
-    person.getIdentifier().forEach(idenitifer -> {
-      base.addField("identifier." + idenitifer.getType(), idenitifer.getIdentifier());
+    person.getIdentifier().forEach(identifier -> {
+      base.addField("identifier." + identifier.getType(), identifier.getIdentifier());
     });
 
     return base;

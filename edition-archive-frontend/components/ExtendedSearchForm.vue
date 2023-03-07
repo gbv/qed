@@ -92,13 +92,13 @@
       </div>
       <div class="col-7">
         <div class="input-group" v-if="model.dateRangeRange">
-          <input id="searchDate" type="date" class="form-control" v-model="model.dateRangeFrom"
+          <input id="searchDate" type="number" class="form-control" v-model="model.dateRangeFrom"
                  :placeholder="$t('search_field_date_placeholder')">
           <span class="input-group-text">-</span>
-          <input id="searchDate" type="date" class="form-control" v-model="model.dateRangeTo"
+          <input id="searchDate" type="number" class="form-control" v-model="model.dateRangeTo"
                  :placeholder="$t('search_field_date_placeholder')">
         </div>
-        <input v-else id="searchDate" type="date" class="form-control" v-model="model.dateRangeFrom"
+        <input v-else id="searchDate" type="number" class="form-control" v-model="model.dateRangeFrom"
                :placeholder="$t('search_field_date_placeholder')">
       </div>
       <div class="col-1">
@@ -195,10 +195,15 @@ watch(() => props.jaffe3, (newJaffe3) => {
 });
 
 const submit = () => {
-  const result = {};
+  const result = {} as any;
+  let m = model as any;
   for (const key in model){
-    if(model[key] !== null && model[key] != ""){
-      result[key] = model[key];
+    if(m[key] !== null && m[key] != ""){
+      if(key === "dateRangeTo" && !m.dateRangeRange){
+        continue;
+      }
+
+      result[key] = m[key];
     }
   }
 

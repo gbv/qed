@@ -129,6 +129,8 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
       base.setField("issuer", issuer.getLabel());
       base.setField("issuer.obj", issuer.getLabel());
       base.setField("issuer.facet", issuer.getLabel());
+      base.addField("person.obj", issuer.getMycoreId());
+      base.addField("person", issuer.getLabel());
     });
 
     regest.getInitium().forEach(initium -> {
@@ -151,11 +153,15 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
       base.setField("recipient", recipient.getLabel());
       base.setField("recipient.obj", recipient.getMycoreId());
       base.setField("recipient.facet", recipient.getLabel());
+      base.addField("person.obj", recipient.getMycoreId());
+      base.addField("person", recipient.getLabel());
     });
 
     Optional.ofNullable(regest.getIssuedPlace()).ifPresent(issuedPlace -> {
       base.setField("issuedPlace", issuedPlace.getLabel());
       base.setField("issuedPlace.obj", issuedPlace.getMycoreId());
+      base.addField("place.obj", issuedPlace.getMycoreId());
+      base.addField("place", issuedPlace.getLabel());
     });
 
     for (PersonLink bodyPerson : regest.getBodyPersons()) {
@@ -173,11 +179,15 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
     Optional.ofNullable(regest.getPontifikatAEP()).ifPresent(pontifikatAEP -> {
       base.setField("pontifikatAEP", pontifikatAEP.getLabel());
       base.setField("pontifikatAEP.obj", pontifikatAEP.getMycoreId());
+      base.addField("person.obj", pontifikatAEP.getMycoreId());
+      base.addField("person", pontifikatAEP.getLabel());
     });
 
     Optional.ofNullable(regest.getPontifikatPP()).ifPresent(pontifikatPP -> {
       base.setField("pontifikatPP", pontifikatPP.getLabel());
       base.setField("pontifikatPP.obj", pontifikatPP.getMycoreId());
+      base.addField("person.obj", pontifikatPP.getMycoreId());
+      base.addField("person", pontifikatPP.getLabel());
     });
 
     Authenticity authenticityStatus = regest.getAuthenticityStatus();

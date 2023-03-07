@@ -95,18 +95,34 @@
       <div v-if="model.facet.ueberlieferungsform.length>0" class="facet">
         <h4 class="facet-title text-center">{{ $t('search_facet_ueberlieferungsform') }}</h4>
         <ul class="list-group">
-          <li
-            v-for="ueberlieferungsform in model.facet.ueberlieferungsformExpand ? model.facet.ueberlieferungsform: model.facet.ueberlieferungsform.slice(0,10)"
-            :class="model.facet.ueberlieferungsformEnabledValues.indexOf(ueberlieferungsform.name)>-1?'active':''"
-            class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
-            v-on:click="facetClicked('ueberlieferungsform', ueberlieferungsform.name)">
-            {{ ueberlieferungsform.name }}
-            <span class="badge bg-primary rounded-pill">{{ ueberlieferungsform.count }}</span>
+
+          <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+          v-on:click="facetClicked('lost', true)">
+           {{ $t('search_facet_spurium') }}
+            <span class="badge bg-primary rounded-pill">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
           </li>
-          <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
-             href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true">{{ $t('search_facet_show_more') }}</a>
-          <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
-             href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false">{{ $t('search_facet_show_less') }}</a>
+
+          <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+          v-on:click="facetClicked('fake', true)">
+           {{ $t('search_facet_deperditum') }}
+            <span class="badge bg-primary rounded-pill">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
+          </li>
+
+
+          <template v-if="model.facet.ueberlieferungsform.length>0">
+            <li
+              v-for="ueberlieferungsform in model.facet.ueberlieferungsformExpand ? model.facet.ueberlieferungsform: model.facet.ueberlieferungsform.slice(0,10)"
+              :class="model.facet.ueberlieferungsformEnabledValues.indexOf(ueberlieferungsform.name)>-1?'active':''"
+              class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+              v-on:click="facetClicked('ueberlieferungsform', ueberlieferungsform.name)">
+              {{ ueberlieferungsform.name }}
+              <span class="badge bg-primary rounded-pill">{{ ueberlieferungsform.count }}</span>
+            </li>
+            <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
+               href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true">{{ $t('search_facet_show_more') }}</a>
+            <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
+               href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false">{{ $t('search_facet_show_less') }}</a>
+          </template>
         </ul>
       </div>
 
@@ -152,7 +168,6 @@
 
 <script setup lang="ts">
 import {useI18n} from 'vue-i18n';
-import {createError} from "h3";
 import {XMLApi} from "~/api/XMLApi";
 import {byName, findFirstElement, flattenElement, byAttr, and} from "@mycore-org/xml-json-api"
 import SolrPaginator from "~/components/SolrPaginator.vue";
@@ -216,6 +231,14 @@ interface FacetModel {
   ueberlieferungsform: FacetEntry[],
   ueberlieferungsformExpand: boolean,
   ueberlieferungsformEnabledValues: string[],
+  lost: FacetEntry[],
+
+  lostValues: boolean,
+  fake: FacetEntry[],
+
+  fakeValues: boolean,
+
+  [key: string]: FacetEntry[]| boolean | string[]
 }
 
 interface FacetEntry {
@@ -244,6 +267,10 @@ const model: Model = reactive(
       ueberlieferungsform: [],
       ueberlieferungsformExpand: false,
       ueberlieferungsformEnabledValues: [],
+      lost: [],
+      fake: [],
+      lostValues: false,
+      fakeValues: false,
     },
     extendedSearch: {
       allMeta: null,
@@ -279,7 +306,7 @@ async function executeSearch(url: string, query: LocationQuery) {
     url += "&start=" + query.start;
   }
 
-  url += "&facet.field=recipient.facet&facet.field=issuer.facet&facet.field=ueberlieferungsform.facet&facet=on";
+  url += "&facet.field=recipient.facet&facet.field=issuer.facet&facet.field=ueberlieferungsform.facet&facet.field=lost&facet.field=fake&facet=on";
 
   if (model.facet.recipientEnabledValues.length > 0) {
     url += "&fq=recipient.facet:(" + model.facet.recipientEnabledValues.map(escapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
@@ -289,6 +316,14 @@ async function executeSearch(url: string, query: LocationQuery) {
   }
   if(model.facet.ueberlieferungsformEnabledValues.length > 0) {
     url += "&fq=ueberlieferungsform.facet:(" + model.facet.ueberlieferungsformEnabledValues.map(escapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
+  }
+
+  if(model.facet.lostValues) {
+    url += "&fq=lost:true";
+  }
+
+  if(model.facet.fakeValues) {
+    url += "&fq=fake:true";
   }
 
   if (model.sort === "relevance") {
@@ -328,22 +363,31 @@ async function executeSearch(url: string, query: LocationQuery) {
 
 function applyQueryFacet(query: LocationQuery) {
   if (typeof query.issuerFacet === "string") {
-    model.facet.issuerEnabledValues = [query.issuerFacet];
+    model.facet.issuerEnabledValues = [query.issuerFacet as string];
   } else if (Array.isArray(query.issuerFacet)) {
-    model.facet.issuerEnabledValues = query.issuerFacet;
+    model.facet.issuerEnabledValues = query.issuerFacet as string[];
   }
 
   if (typeof query.recipientFacet === "string") {
-    model.facet.recipientEnabledValues = [query.recipientFacet];
+    model.facet.recipientEnabledValues = [query.recipientFacet as string];
   } else if (Array.isArray(query.recipientFacet)) {
-    model.facet.recipientEnabledValues = query.recipientFacet;
+    model.facet.recipientEnabledValues = query.recipientFacet as string[];
   }
 
   if (typeof query.ueberlieferungsformFacet === "string") {
-    model.facet.ueberlieferungsformEnabledValues = [query.ueberlieferungsformFacet];
+    model.facet.ueberlieferungsformEnabledValues = [query.ueberlieferungsformFacet as string];
   } else if (Array.isArray(query.ueberlieferungsformFacet)) {
-    model.facet.ueberlieferungsformEnabledValues = query.ueberlieferungsformFacet;
+    model.facet.ueberlieferungsformEnabledValues = query.ueberlieferungsformFacet as string[];
   }
+
+  if(typeof query.lostFacet === "string") {
+    model.facet.lostValues = query.lostFacet === "true";
+  }
+
+  if(typeof query.fakeFacet === "string") {
+    model.facet.fakeValues = query.fakeFacet === "true";
+  }
+
 
 }
 
@@ -497,7 +541,7 @@ async function triggerSearch(query: LocationQuery) {
       }
       break;
     default:
-      throwError(
+      showError(
         createError({
           statusCode: 404,
           statusMessage: 'Not Found',
@@ -558,10 +602,23 @@ async function pageChangedCallback(newPage: any) {
   });
 }
 
-async function facetClicked(facet: string, value: string) {
+async function facetClicked(facet: string, value: string|boolean) {
   let query = null;
 
-  if (facet === "issuer") {
+  if(facet === "lost" && value === true) {
+    query = {
+      ...route.query,
+      lostFacet: (!model.facet.lostValues).toString()
+    }
+  } else if(facet === "fake" && value === true) {
+    query = {
+      ...route.query,
+      fakeFacet: (!model.facet.fakeValues).toString()
+    }
+  } else if(typeof value === "boolean") {
+
+
+  } else if (facet === "issuer") {
     if (model.facet.issuerEnabledValues.indexOf(value) > -1) {
       query = {
         ...route.query,
@@ -573,9 +630,7 @@ async function facetClicked(facet: string, value: string) {
         issuerFacet: [...model.facet.issuerEnabledValues, value]
       };
     }
-  }
-
-  if (facet === "recipient") {
+  } else if (facet === "recipient") {
     if (model.facet.recipientEnabledValues.indexOf(value) > -1) {
       query = {
         ...route.query,
@@ -587,9 +642,7 @@ async function facetClicked(facet: string, value: string) {
         recipientFacet: [...model.facet.recipientEnabledValues, value]
       };
     }
-  }
-
-  if(facet === "ueberlieferungsform") {
+  } else if(facet === "ueberlieferungsform") {
     if (model.facet.ueberlieferungsformEnabledValues.indexOf(value) > -1) {
       query = {
         ...route.query,

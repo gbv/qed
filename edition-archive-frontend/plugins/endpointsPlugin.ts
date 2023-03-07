@@ -15,4 +15,12 @@ export default defineNuxtPlugin((nuxtApp) => {
             return config.public.backendURL;
         }
     });
+
+    nuxtApp.provide('directusURL', () => {
+        if (process.server && !process.dev) {
+            return config.public.directusURLServer;
+        } else {
+            return config.public.directusURL;
+        }
+    });
 })

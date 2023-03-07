@@ -7,9 +7,7 @@
 </template>
 
 <script setup lang="ts">
-  import {createError} from 'h3'
-
-  const {path} = useRoute()
+ const {path} = useRoute()
 
   const {data, error} = await useAsyncData(`content-${path}`, () => {
     const p1 = path.lastIndexOf("/") === path.length - 1 ? path  : path;
@@ -18,7 +16,7 @@
 
   if (error.value) {
     console.error(error.value)
-    throwError(
+    showError(
         createError({
           statusCode: 404,
           statusMessage: 'Not Found',

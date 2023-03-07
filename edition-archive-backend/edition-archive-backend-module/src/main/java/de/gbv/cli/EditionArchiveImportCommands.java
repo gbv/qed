@@ -146,6 +146,9 @@ public class EditionArchiveImportCommands {
                 new XMLOutputter().output(regestDocument, os);
             }
         }
+
+        Files.writeString(Paths.get(ceiFilePath).getParent().resolve("import.log"),
+            ceiImporter.REPORT_MESSAGES.stream().collect(Collectors.joining(System.lineSeparator())));
     }
 
     private static MCRDerivate createDerivate(MCRObjectID objectID, List<MCRMetaClassification> classifications) throws MCRPersistenceException, MCRAccessException {

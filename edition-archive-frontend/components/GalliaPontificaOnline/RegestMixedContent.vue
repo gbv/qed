@@ -32,7 +32,7 @@
 
       <GalliaPontificaOnlineRegestMixedContent v-else-if="$props.content.type==='Element'" :contents="$props.content.content"/>
     </template>
-    <GalliaPontificaOnlineRegestMixedContent v-else v-for="mc in $props.contents.filter(c=> c?.type !=='Attribute')" :content="mc"/>
+    <GalliaPontificaOnlineRegestMixedContent v-else v-for="mc in $props.contents.filter((c:any)=> c?.type !=='Attribute')" :content="mc"/>
 </template>
 
 <script lang="ts" setup>

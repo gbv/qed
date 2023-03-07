@@ -41,11 +41,11 @@
             <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.abstract.content"/>
             <span v-if="viewModel.incipit!=null && viewModel.incipit.length>0">
               — <span v-for="(incipit,index) in viewModel.incipit"><GalliaPontificaOnlineRegestMixedContent  :contents="incipit.content" /><template v-if="!(index+1==viewModel.incipit.length)">; </template> </span>
-              <template v-if="!flattenElement(viewModel.incipit[viewModel.incipit.length-1]).endsWith('.')">.</template>
+              <template v-if="!(flattenElement(viewModel.incipit[viewModel.incipit.length-1])||'').endsWith('.')">.</template>
             </span>
           </div>
 
-          <div v-if="viewModel?.dekretale?.content?.length>0" class="section dekretale">
+          <div v-if="viewModel?.dekretale?.content?.length !== undefined && viewModel.dekretale.content.length>0" class="section dekretale">
             <h5>{{ $t("regest_dekretale") }}</h5>
             <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.dekretale!=null && viewModel.dekretale.content.length>0" :contents="viewModel.dekretale.content"/>
           </div>
@@ -59,7 +59,7 @@
           </div>
 
           <div v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" class="section witlist">
-            <h5>{{ $t("regest_ueberlieferung") }}</h5>
+            <h5>{{ $t("regest_kopiale_ueberlieferung") }}</h5>
             <span>
               <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" :contents="viewModel.witListPar.content"/>
             </span>
@@ -140,7 +140,6 @@
 
 <script lang="ts" setup>
 import BrowseComponent from "~/components/BrowseBar.vue";
-import {createError} from 'h3'
 import {XMLApi} from "~/api/XMLApi";
 import {
   XElement,
@@ -149,31 +148,29 @@ import {
   byName,
   flattenElementExcept,
   flattenElement,
-  or,
   findElement,
-  getAttribute,
   byAttr,
-  and
+  and, XNode
 } from "@mycore-org/xml-json-api"
 
 const route = useRoute()
 const config = useRuntimeConfig()
 
 interface RegestViewModel {
-  pontifikatPP: Array<XElement | string>;
-  pontifikatAEP: Array<XElement | string>;
-  issued: XElement;
-  idno: string;
-  witListPar?: XElement;
-  abstract?: XElement;
-  incipit?: Array<XElement>;
-  dekretale?: XElement;
-  ueberlieferung?: XElement;
-  listBiblEdition?: XElement;
-  listBiblRegest?: XElement;
-  erwaehnungen?: XElement;
-  sachkommentar?: Array<XElement>;
-  witnessOrig?: XElement;
+  pontifikatPP: Array<XElement | string>|null;
+  pontifikatAEP: Array<XElement | string>|null;
+  issued: XElement|null;
+  idno: string|null;
+  witListPar: XElement|null;
+  abstract: XElement|null;
+  incipit: Array<XElement>|null;
+  dekretale: XElement|null;
+  ueberlieferung: XElement|null;
+  listBiblEdition: XElement|null;
+  listBiblRegest: XElement|null;
+  erwaehnungen: XElement|null;
+  sachkommentar: Array<XElement>|null;
+  witnessOrig: XElement|null;
 }
 
 
@@ -183,7 +180,7 @@ const regestedIdno: string = typeof route.params.regest == "string" ? route.para
 const {$solrURL, $backendURL} = useNuxtApp();
 
 
-const traverse = (element: XElement, nodeHandler:(XNode)=>void) => {
+const traverse = (element: XElement, nodeHandler:(node:XNode)=>void) => {
   element.content.forEach((node) => {
     nodeHandler(node);
     if (node.type === "Element") {
@@ -224,7 +221,7 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
   vm.incipit.forEach((incipit) => {
     traverse(incipit, (node)=> {
       if (node.type == "Text") {
-        node.text = node.text.trim();
+        (node as XText).text = (node as XText).text.trim();
       }
     })
   });
@@ -301,14 +298,14 @@ const browseIndexEntered = (index: number) => {
 if (error.value) {
   console.error(error.value);
   if (error.value as unknown as number === 404) {
-    throwError(
+    showError(
       createError({
         statusCode: 404,
         statusMessage: 'Not Found',
       })
     );
   } else {
-    throwError(
+    showError(
       createError({
         statusCode: 500,
         statusMessage: error.value+ "",

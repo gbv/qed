@@ -28,10 +28,10 @@ interface Tab {
 
 const emit = defineEmits(['tabChanged']);
 const model = reactive({
-  currentTab: props.tabs.filter(tab => tab.id === props.current)[0]
+  currentTab: props.tabs.filter((tab:Tab) => tab.id === props.current)[0]
 });
 
-watch(() => props.current, (newCurrent) => model.currentTab = props.tabs.filter(tab => tab.id === newCurrent)[0]);
+watch(() => props.current, (newCurrent) => model.currentTab = props.tabs.filter((tab:Tab) => tab.id === newCurrent)[0]);
 
 function changeToTab(tab: Tab) {
   const old = model.currentTab;

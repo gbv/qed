@@ -22,23 +22,21 @@ import org.jdom2.Namespace;
 import org.jdom2.Text;
 import org.jdom2.filter.Filters;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
 import org.mycore.common.MCRException;
 import org.mycore.datamodel.metadata.MetaJSON;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.text.Normalizer;
@@ -85,6 +83,8 @@ public class CEIImporter {
     HashMap<Person, List<PersonLink>> personLinksHashMap = new HashMap<>();
     HashMap<Place, List<PlaceLink>> placeLinksHashMap = new HashMap<>();
 
+    public final List<String> REPORT_MESSAGES = new LinkedList<>();
+
     HashMap<String, RegestSource> keyRegestSourceHashMap = new HashMap<>();
     final String RECORD_N = "n";
     final String RECORD_LONG_TITLE = "Langtitel";
@@ -96,6 +96,7 @@ public class CEIImporter {
     final String RECORD_DIGITALISAT = "Digitalisat";
     final Set<String> QUELLEN_LINK_COL = Stream
         .of("Online-Zugriff", "Geschichtsquellen.de", "Arlima.net", "Band I", "Band I,1", "Band I,2", "Band II",
+            "Digitalisat", "Supplement",
             "Band III", "Band IV", "Band V", "Band VI", "Band VII", "Band VIII", "Band IX", "Band X", "Band XI",
             "Band XII", "Band XIII", "Band XIV", "Band XVI", "Band XV", "Band VII,1", "Band VII,2")
         .collect(Collectors.toSet());
@@ -250,6 +251,11 @@ public class CEIImporter {
                 .filter(Predicate.not(String::isBlank))
                 .ifPresent(regestSource::setShortTitle);
 
+            if (regestSource.getShortTitle() == null && regestSource.getLongTitle() == null) {
+                LOGGER.warn("RegestSource has no title: " + record);
+                return;
+            }
+
             IdentifierType recordKey = new IdentifierType("key", record.get(RECORD_KEY));
             regestSource.getIdentifier().add(recordKey);
 
@@ -270,6 +276,11 @@ public class CEIImporter {
             Optional.ofNullable(record.get(RECORD_N))
                 .filter(Predicate.not(String::isBlank))
                 .ifPresent(manuscript::setId);
+
+            if (manuscript.getId() == null) {
+                LOGGER.warn("Manuscript has no id: " + record);
+                return;
+            }
 
             Optional.ofNullable(record.get(RECORD_SIGNATUR))
                 .filter(Predicate.not(String::isBlank))
@@ -305,8 +316,8 @@ public class CEIImporter {
               extractIssuedDate(currentBodyElement, regest);
               extractInitium(currentBodyElement, regest);
               extractUeberlieferungsform(currentBodyElement, regest);
-              extractPersonParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP);
-              extractPersonParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP);
+                extractPersonParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP, regest);
+                extractPersonParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP, regest);
               extractOtherPersons(currentBodyElement, regest);
 
               regests.add(regest);
@@ -319,51 +330,47 @@ public class CEIImporter {
     }
 
     private void extractOtherPersons(Element currentBodyElement, Regest regest) {
-        List<Element> otherPersNames = getXpathList(".//cei:persName", currentBodyElement);
+        List<Element> otherPersNames = getXpathList(
+            ".//cei:persName[not(ancestor::cei:issuer) and not(ancestor::cei:recipient) and not(ancestor::cei:p[@type='PontifikatPP' or @type='PontifikatAEP'])]",
+            currentBodyElement);
         otherPersNames.forEach(otherPersName -> {
             extractPerson(otherPersName, p -> {
                 regest.getBodyPersons().add(p);
                 personLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
                     otherPersName.setAttribute("key", s);
                 });
-            });
+            }, regest.getIdno());
         });
     }
 
     private void extractOtherPlaces(Element currentBodyElement, Regest regest) {
-        List<Element> otherPlaces = getXpathList(".//cei:placeName", currentBodyElement);
+        List<Element> otherPlaces = getXpathList(".//cei:placeName[not(ancestor::cei:issued)]", currentBodyElement);
         otherPlaces.forEach(otherPlace -> {
             extractPlace(otherPlace, p -> {
                 regest.getBodyPlaces().add(p);
                 placeLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
                     otherPlace.setAttribute("key", s);
                 });
-            });
+            }, regest.getIdno());
         });
     }
 
-    private void extractPlace(Element placeName, Consumer<PlaceLink> placeApplier) {
+    private void extractPlace(Element placeName, Consumer<PlaceLink> placeApplier, String regestId) {
         String flattenName = flattenText(placeName);
+        String normalizedName = placeName.getAttributeValue("reg");
         String key = placeName.getAttributeValue("key");
 
-        List<Place> places = getPlaces().stream().filter(p -> {
-            if (key != null) {
-                Optional<IdentifierType> matchingIdentifierFound
-                    = p.getIdentifier().stream().filter(id -> id.getIdentifier().equals(key)).findFirst();
+        List<Place> places = key != null ? getPlaces().stream().filter(p -> {
+            Optional<IdentifierType> optionalId
+                = p.getIdentifier().stream().filter(id -> id.getType().equals("key")).findFirst();
 
-                if (matchingIdentifierFound.isPresent()) {
-                    LOGGER.info("FOUND Match by key: " + matchingIdentifierFound.get().getIdentifier());
-                    return true;
-                }
-            }
-
-            if (p.getDisplayName().equals(flattenName)) {
-                LOGGER.info("FOUND Match by flatten name: " + flattenName);
-                return true;
+            if (optionalId.isPresent()) {
+                IdentifierType id = optionalId.get();
+                return id.getIdentifier().equals(key);
             }
 
             return false;
-        }).toList();
+        }).toList() : List.of();
 
         PlaceLink pl = new PlaceLink();
         pl.setLabel(flattenName);
@@ -371,15 +378,25 @@ public class CEIImporter {
         Place match;
         if (places.size() == 1) {
             match = places.get(0);
+            if (normalizedName != null) {
+                match.setDisplayName(normalizedName);
+            }
+            applyIds(placeName, match.getIdentifier());
         } else if (places.size() == 0) {
             match = new Place();
-            match.setDisplayName(flattenName);
+            match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
             if (key != null) {
                 match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
             }
+            applyIds(placeName, match.getIdentifier());
             getPlaces().add(match);
         } else {
-            LOGGER.error("Can not distiguish between the persons "
+            this.REPORT_MESSAGES.add("Can not distinguish between the places "
+                + places.stream().map(
+                    place -> place.getIdentifier().stream().map(IdentifierType::toString).collect(Collectors.joining())
+                        + "-" + place.getDisplayName())
+                    .collect(Collectors.joining()));
+            LOGGER.error("Can not distinguish between the persons "
                 + places.stream().map(Place::getDisplayName).collect(Collectors.joining()));
             return;
         }
@@ -388,43 +405,63 @@ public class CEIImporter {
         placeApplier.accept(pl);
     }
 
-    private void extractPerson(Element persName, Consumer<PersonLink> regestApplier) {
+    public void applyIds(Element element, List<IdentifierType> list) {
+        String idAttr = element.getAttributeValue("id");
+        if (idAttr != null) {
+            Stream.of(idAttr.split("[|]")).forEach(idPair -> {
+                String[] split = idPair.split(":", 2);
+                String type = split[0];
+                String value = split[1];
+                IdentifierType identifierTypePair = new IdentifierType(type, value);
+                if (!list.contains(identifierTypePair)) {
+                    list.add(identifierTypePair);
+                }
+            });
+        }
+    }
+
+    private void extractPerson(Element persName, Consumer<PersonLink> regestApplier, String regestId) {
         String flattenName = flattenText(persName);
+        String normalizedName = persName.getAttributeValue("reg");
+
         String key = persName.getAttributeValue("key");
 
-        List<Person> people = getPersons().stream().filter(p -> {
-            if (key != null) {
-                Optional<IdentifierType> matchingIdentifierFound
-                    = p.getIdentifier().stream().filter(id -> id.getIdentifier().equals(key)).findFirst();
+        List<Person> people = key != null ? getPersons().stream().filter(p -> {
+            Optional<IdentifierType> optionalId
+                = p.getIdentifier().stream().filter(id -> id.getType().equals("key")).findFirst();
 
-                if (matchingIdentifierFound.isPresent()) {
-                    LOGGER.info("FOUND Match by key: " + matchingIdentifierFound.get().getIdentifier());
-                    return true;
-                }
-            }
-
-            if (p.getDisplayName().equals(flattenName)) {
-                LOGGER.info("FOUND Match by flatten name: " + flattenName);
-                return true;
+            if (optionalId.isPresent()) {
+                IdentifierType id = optionalId.get();
+                return id.getIdentifier().equals(key);
             }
 
             return false;
-        }).toList();
+        }).toList() : List.of();
+
         PersonLink pl = new PersonLink();
         pl.setLabel(flattenName);
 
         Person match;
         if (people.size() == 1) {
             match = people.get(0);
-        } else if (people.size() == 0) {
+            if (normalizedName != null) {
+                match.setDisplayName(normalizedName);
+            }
+            applyIds(persName, match.getIdentifier());
+        } else if (people.isEmpty()) {
             match = new Person();
-            match.setDisplayName(flattenName);
+            match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
+
             if (key != null) {
                 match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
             }
+            applyIds(persName, match.getIdentifier());
             getPersons().add(match);
         } else {
-            LOGGER.error("Can not distiguish between the persons "
+            this.REPORT_MESSAGES.add("Can not distinguish between the persons "
+                + people.stream().map(person -> person.getIdentifier().stream().map(IdentifierType::toString)
+                    .collect(Collectors.joining()) + "-" + person.getDisplayName()).collect(Collectors.joining()));
+            LOGGER.error("Can not distinguish between the persons "
                 + people.stream().map(Person::getDisplayName).collect(Collectors.joining()));
             return;
         }
@@ -478,7 +515,8 @@ public class CEIImporter {
         }
     }
 
-    private void extractPersonParagraph(Element currentBodyElement, String pType, Consumer<PersonLink> applyFn) {
+    private void extractPersonParagraph(Element currentBodyElement, String pType, Consumer<PersonLink> applyFn,
+        Regest regest) {
         Element paragraphElement = getXpathFirst(".//cei:p[@type='" + pType + "']", currentBodyElement);
         if (paragraphElement != null) {
             Element persName = paragraphElement.getChild("persName", CEI_NAMESPACE);
@@ -489,7 +527,7 @@ public class CEIImporter {
                 applyFn.accept(link);
                 personLinkApplierMap.computeIfAbsent(link, (k) -> new LinkedList<>())
                     .add((id) -> persName.setAttribute("key", id));
-            });
+            }, regest.getIdno());
         }
     }
 
@@ -546,7 +584,7 @@ public class CEIImporter {
                 regest.setIssuedPlace(issued);
                 placeLinkApplierMap.computeIfAbsent(issued, (k) -> new LinkedList<>())
                     .add((id) -> issuedPlaceName.setAttribute("key", id));
-            });
+            }, regest.getIdno());
         }
     }
 
@@ -563,7 +601,12 @@ public class CEIImporter {
         if (issuerPersNameElement == null) {
             LOGGER.info("NO ISSUER SET!");
         } else {
-            extractPerson(issuerPersNameElement, regest::setIssuer);
+            extractPerson(issuerPersNameElement, (p) -> {
+              regest.setIssuer(p);
+              personLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
+                issuerPersNameElement.setAttribute("key", s);
+              });
+            }, regest.getIdno());
         }
     }
 
@@ -572,7 +615,12 @@ public class CEIImporter {
         if (recipientPersNameElement == null) {
             LOGGER.info("NO recipient SET!");
         } else {
-            extractPerson(recipientPersNameElement, regest::setRecipient);
+            extractPerson(recipientPersNameElement, (p) -> {
+              regest.setRecipient(p);
+              personLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
+                recipientPersNameElement.setAttribute("key", s);
+              });
+            }, regest.getIdno());
         }
     }
 

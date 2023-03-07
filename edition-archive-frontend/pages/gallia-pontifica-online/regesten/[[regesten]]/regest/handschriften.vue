@@ -4,9 +4,9 @@
     <template #content>
       <h3>{{ $t("manuscript_index") }}</h3>
       <div v-if="data">
-        <article v-for="doc in data.docs" class="card mt-2 mb-2" :id="doc['identifier.key']">
+        <article v-for="doc in data.docs.sort(byShelfmarkLocale)" :id="doc['identifier.key']" class="card mt-2 mb-2">
           <div class="card-body">
-            <GalliaPontificaOnlineManuscript :manuscript="doc" />
+            <GalliaPontificaOnlineManuscript :manuscript="doc"/>
           </div>
         </article>
       </div>
@@ -25,8 +25,15 @@ const route = useRoute()
 const config = useRuntimeConfig()
 
 const {$solrURL, $backendURL} = useNuxtApp();
+
+const byShelfmarkLocale = (o1: any, o2: any) => {
+  const shelfmark1 = (o1['shelfmark'][0] || '').toLowerCase();
+  const shelfmark2 = (o2['shelfmark'][0] || '').toLowerCase();
+  return shelfmark1.localeCompare(shelfmark2);
+};
+
 const {data, error} = await useAsyncData(`objectType:manuscript`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=objectType:manuscript&wt=json&rows=99999&sort=shelfmark%20asc`)
+  const request = await fetch(`${$solrURL()}main/select/?q=objectType:manuscript&wt=json&rows=99999`)
   const json = await request.json();
   if (json.response.numFound === 0) {
     throw 404;

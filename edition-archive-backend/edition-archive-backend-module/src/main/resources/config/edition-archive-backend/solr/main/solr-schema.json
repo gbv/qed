@@ -8,14 +8,16 @@
   {
     "add-field": {
       "name": "displayName",
-      "type": "text_general",
-      "stored": true
+      "type": "string",
+      "stored": true,
+      "multiValued": false
     }
   },
   {
-    "add-field": {
-      "name": "identifier.key",
+    "add-dynamic-field": {
+      "name": "identifier.*",
       "type": "string",
+      "multiValued": true,
       "stored": true
     }
   },
@@ -94,22 +96,25 @@
   {
     "add-field": {
       "name": "shortTitle",
-      "type": "text_general",
-      "stored": true
+      "type": "string",
+      "stored": true,
+      "multiValued": false
     }
   },
   {
     "add-field": {
       "name": "longTitle",
-      "type": "text_general",
-      "stored": true
+      "type": "string",
+      "stored": true,
+      "multiValued": false
     }
   },
   {
     "add-field": {
       "name": "editionShortTitle",
-      "type": "text_general",
-      "stored": true
+      "type": "string",
+      "stored": true,
+      "multiValued": false
     }
   },
   {
