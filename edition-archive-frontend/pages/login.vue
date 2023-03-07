@@ -10,14 +10,12 @@
             <div class="form-group">
               <label for="email">{{ $t('login_email_label') }}</label>
               <input id="email" v-model="loginData.email" :class="!validate.server && !validate.email ? '':'is-invalid'"
-                     :placeholder="$t('login_email_placeholder')"
                      class="form-control" type="email">
             </div>
             <div class="form-group">
               <label for="password">{{ $t('login_password_label') }}</label>
               <input id="password" v-model="loginData.password"
                      :class="!validate.server && !validate.email ? '':'is-invalid'"
-                     :placeholder="$t('login_password_placeholder')"
                      class="form-control" type="password">
             </div>
             <div v-if="validate.server" class="alert alert-danger">{{ $t("login_invalid") }}</div>

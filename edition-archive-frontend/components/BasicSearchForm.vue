@@ -2,7 +2,7 @@
   <form v-on:submit.prevent="submit">
     <div class="row">
       <div class="col-10">
-        <input type="search" class="form-control" v-model="searchString" :placeholder="$t('search_placeholder')">
+        <input type="search" class="form-control" v-model="searchString">
       </div>
       <div class="col-auto">
         <button type="submit" class="btn btn-primary">{{ $t("search_submit") }}</button>

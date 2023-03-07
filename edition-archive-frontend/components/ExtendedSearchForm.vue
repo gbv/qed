@@ -3,8 +3,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchAllMeta">{{ $t("search_field_allMeta") }}</label>
       <div class="col-9">
-        <input id="searchAllMeta" type="search" class="form-control" v-model="model.allMeta"
-               :placeholder="$t('search_field_allMeta_placeholder')">
+        <input id="searchAllMeta" type="search" class="form-control" v-model="model.allMeta">
       </div>
       <div class="col-1">
 
@@ -13,8 +12,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchPerson">{{ $t("search_field_person") }}</label>
       <div class="col-9">
-        <input id="searchPerson" type="search" class="form-control" v-model="model.person"
-               :placeholder="$t('search_field_person_placeholder')">
+        <input id="searchPerson" type="search" class="form-control" v-model="model.person">
       </div>
       <div class="col-1">
 
@@ -23,8 +21,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchPlace">{{ $t("search_field_place") }}</label>
       <div class="col-9">
-        <input id="searchPlace" type="search" class="form-control" v-model="model.place"
-               :placeholder="$t('search_field_place_placeholder')">
+        <input id="searchPlace" type="search" class="form-control" v-model="model.place">
       </div>
       <div class="col-1">
 
@@ -33,8 +30,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchInitium">{{ $t("search_field_initium") }}</label>
       <div class="col-9">
-        <input id="searchInitium" type="search" class="form-control" v-model="model.initium"
-               :placeholder="$t('search_field_initium_placeholder')">
+        <input id="searchInitium" type="search" class="form-control" v-model="model.initium">
       </div>
       <div class="col-1">
 
@@ -43,8 +39,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search_field_recipient") }}</label>
       <div class="col-9">
-        <input id="searchRecipient" type="search" class="form-control" v-model="model.recipient"
-               :placeholder="$t('search_field_recipient_placeholder')">
+        <input id="searchRecipient" type="search" class="form-control" v-model="model.recipient">
       </div>
       <div class="col-1">
 
@@ -53,8 +48,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search_field_issuer") }}</label>
       <div class="col-9">
-        <input id="searchIssuer" type="search" class="form-control" v-model="model.issuer"
-               :placeholder="$t('search_field_issuer_placeholder')">
+        <input id="searchIssuer" type="search" class="form-control" v-model="model.issuer">
       </div>
       <div class="col-1">
 
@@ -63,8 +57,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="jaffe2">{{ $t("search_field_jaffe2") }}</label>
       <div class="col-9">
-        <input id="jaffe2" type="search" class="form-control" v-model="model.jaffe2"
-               :placeholder="$t('search_field_jaffe2_placeholder')">
+        <input id="jaffe2" type="search" class="form-control" v-model="model.jaffe2">
       </div>
       <div class="col-1">
 
@@ -73,8 +66,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="jaffe3">{{ $t("search_field_jaffe3") }}</label>
       <div class="col-9">
-        <input id="jaffe3" type="search" class="form-control" v-model="model.jaffe3"
-               :placeholder="$t('search_field_jaffe3_placeholder')">
+        <input id="jaffe3" type="search" class="form-control" v-model="model.jaffe3">
       </div>
       <div class="col-1">
 
@@ -92,14 +84,11 @@
       </div>
       <div class="col-7">
         <div class="input-group" v-if="model.dateRangeRange">
-          <input id="searchDate" type="number" class="form-control" v-model="model.dateRangeFrom"
-                 :placeholder="$t('search_field_date_placeholder')">
+          <input id="searchDate" type="number" class="form-control" v-model="model.dateRangeFrom">
           <span class="input-group-text">-</span>
-          <input id="searchDate" type="number" class="form-control" v-model="model.dateRangeTo"
-                 :placeholder="$t('search_field_date_placeholder')">
+          <input id="searchDate" type="number" class="form-control" v-model="model.dateRangeTo">
         </div>
-        <input v-else id="searchDate" type="number" class="form-control" v-model="model.dateRangeFrom"
-               :placeholder="$t('search_field_date_placeholder')">
+        <input v-else id="searchDate" type="number" class="form-control" v-model="model.dateRangeFrom">
       </div>
       <div class="col-1">
 
@@ -108,8 +97,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label mb-2" for="searchDateText">{{ $t("search_field_dateText") }}</label>
       <div class="col-9">
-        <input id="searchDateText" type="search" class="form-control" v-model="model.dateText"
-               :placeholder="$t('search_field_dateText_placeholder')">
+        <input id="searchDateText" type="search" class="form-control" v-model="model.dateText">
       </div>
       <div class="col-1">
 
