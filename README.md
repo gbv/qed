@@ -15,10 +15,10 @@ Starts the frontend
 Starts the frontend with live changes
 
 ## import regest file
-copy the current regest file from `import/*.xml` to `docker/backend-tmp/xml.xml`
+copy the current regest files from `import` to `docker/backend-tmp/import`
 At localhost:8000/backend/ you can login and start the webcli and run the command:
 ``` 
-import regests from cei file /mcr/tmp/xml.xml and csv /mcr/tmp/csv.csv
+import regests from cei file /mcr/tmp/import/2023-02-28_regesten_gesamt_red_vi-16.xml and source /mcr/tmp/import/2023-02-28_02_quellen-_und_literaturverzeichnis_regesten_red_vii.csv and manuscript /mcr/tmp/import/2023-02-28_01_hss-verzeichnis_regesten_red_v.csv
 ```
 
 ## Backup the cms

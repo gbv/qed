@@ -84,10 +84,16 @@ echo "Exporting schemas..."
 # get all schemas
 curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/schema/snapshot?export=json" > "${target_dir}/schemas.json"
 
-echo "Getting collection names..."
-# get all collection_names
-collection_response=$(curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/collections/")
-collections=$(echo "$collection_response" | jq -r ".data[] | .collection" | awk '!/directus_/' | grep -v "^$")
+echo "Exporting collections..."
+
+echo "Exporting page translations..."
+curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page_translations?fields=Page_id,content,id,languages_code" | jq ".data" > "${target_dir}/Page_translations.json"
+
+echo "Exporting pages..."
+curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page?fields=id,status,slug,project" | jq ".data" > "${target_dir}/Page.json"
+
+echo "Exporting languages..."
+curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/languages?fields=code,name,direction" | jq ".data" > "${target_dir}/languages.json"
 
 echo "Exporting collections..."
 # loop over all collections
@@ -134,15 +140,15 @@ else
 fi
 
 # import all collections
-collection_names=$(ls -1 ${target_dir}/*.json | grep -v "schemas.json" | sed 's/.*\///' | sed 's/.json//')
+collection_names=("languages" "Page" "Page_translations")
 
 echo "Importing collections..."
-# loop over all collections
-while read collection; do
+# loop over collections_names
+for collection in "${collection_names[@]}"; do
   echo "Importing ${collection}..."
   echo "------------------"
   curl -X POST -H "Authorization: Bearer ${token}" -H 'Content-Type: application/json' -d @${target_dir}/${collection}.json "${schema_host}/items/${collection}"
-done <<< "$collection_names"
+done
 
 echo "Importing files..."
 # get all files
