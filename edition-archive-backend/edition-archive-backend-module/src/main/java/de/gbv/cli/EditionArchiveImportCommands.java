@@ -1,11 +1,11 @@
 package de.gbv.cli;
 
 import de.gbv.metadata.CEIImporter;
+import de.gbv.metadata.model.EntityLink;
 import de.gbv.metadata.model.Manuscript;
+import de.gbv.metadata.model.Organization;
 import de.gbv.metadata.model.Person;
-import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.Place;
-import de.gbv.metadata.model.PlaceLink;
 import de.gbv.metadata.model.Regest;
 import de.gbv.metadata.model.RegestSource;
 import org.jdom2.Document;
@@ -87,8 +87,8 @@ public class EditionArchiveImportCommands {
       }
 
       HashMap<Regest, Element> regestTextMap = ceiImporter.getRegestTextMap();
-      HashMap<PersonLink, List<Consumer<String>>> personLinkApplierMap = ceiImporter.getPersonLinkApplierMap();
-      HashMap<Person, List<PersonLink>> personLinksHashMap = ceiImporter.getPersonLinksHashMap();
+      HashMap<EntityLink, List<Consumer<String>>> personLinkApplierMap = ceiImporter.getPersonLinkApplierMap();
+      HashMap<Person, List<EntityLink>> personLinksHashMap = ceiImporter.getPersonLinksHashMap();
         for (Person person : ceiImporter.getPersons()) {
             MCRObject personObject = new MCRObject();
             MCRObjectID personMyCoReId = MCRObjectID.getNextFreeId("gpo", "person");
@@ -98,7 +98,7 @@ public class EditionArchiveImportCommands {
             Element metadata = createMetadata(person, Person.class.getName(), "person");
             personObject.getMetadata().setFromDOM(metadata);
             MCRMetadataManager.create(personObject);
-            for (PersonLink link : personLinksHashMap.get(person)) {
+            for (EntityLink link : personLinksHashMap.get(person)) {
                 Optional.ofNullable(personLinkApplierMap.get(link))
                     .ifPresent(list -> {
                       list.forEach(c -> c.accept(personMyCoReId.toString()));
@@ -107,8 +107,8 @@ public class EditionArchiveImportCommands {
             }
         }
 
-      HashMap<Place, List<PlaceLink>> placeLinksHashMap = ceiImporter.getPlaceLinksHashMap();
-      HashMap<PlaceLink, List<Consumer<String>>> placeLinkApplierMap = ceiImporter.getPlaceLinkApplierMap();
+      HashMap<Place, List<EntityLink>> placeLinksHashMap = ceiImporter.getPlaceLinksHashMap();
+      HashMap<EntityLink, List<Consumer<String>>> placeLinkApplierMap = ceiImporter.getPlaceLinkApplierMap();
       for (Place place : ceiImporter.getPlaces()) {
         MCRObject personObject = new MCRObject();
         MCRObjectID placeMyCoReId = MCRObjectID.getNextFreeId("gpo", "place");
@@ -118,12 +118,32 @@ public class EditionArchiveImportCommands {
         Element metadata = createMetadata(place, Place.class.getName(), "place");
         personObject.getMetadata().setFromDOM(metadata);
         MCRMetadataManager.create(personObject);
-        for (PlaceLink link : placeLinksHashMap.get(place)) {
+        for (EntityLink link : placeLinksHashMap.get(place)) {
             Optional.ofNullable(placeLinkApplierMap.get(link))
                 .ifPresent(list -> {
                   list.forEach(c -> c.accept(placeMyCoReId.toString()));
                 });
             link.setMycoreId(placeMyCoReId.toString());
+        }
+      }
+
+      HashMap<Organization, List<EntityLink>> organizationLinksHashMap = ceiImporter.getOrganizationLinksHashMap();
+      HashMap<EntityLink, List<Consumer<String>>> organizationLinkApplierMap = ceiImporter.getOrganizationLinkApplierMap();
+      for (Organization organization : ceiImporter.getOrganizations()) {
+        MCRObject organizationObject = new MCRObject();
+        MCRObjectID organizationMyCoReId = MCRObjectID.getNextFreeId("gpo", "organization");
+        organizationObject.setId(organizationMyCoReId);
+        organizationObject.setSchema("datamodel-organization.xsd");
+
+        Element metadata = createMetadata(organization, Organization.class.getName(), "organization");
+        organizationObject.getMetadata().setFromDOM(metadata);
+        MCRMetadataManager.create(organizationObject);
+        for (EntityLink link : organizationLinksHashMap.get(organization)) {
+            Optional.ofNullable(organizationLinkApplierMap.get(link))
+                .ifPresent(list -> {
+                  list.forEach(c -> c.accept(organizationMyCoReId.toString()));
+                });
+            link.setMycoreId(organizationMyCoReId.toString());
         }
       }
 

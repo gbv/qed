@@ -20,34 +20,35 @@ public class Regest {
     private DateRangeText issued;
 
     // Ausstellungsort
-    private PlaceLink issuedPlace;
+    private EntityLink issuedPlace;
 
     //Aussteller
-    private PersonLink issuer;
+    private List<EntityLink> issuer = new ArrayList<>();
 
     //Empfänger
-    private PersonLink recipient;
+    private List<EntityLink> recipient = new ArrayList<>();
 
-    private List<PersonLink> bodyPersons = new ArrayList<>();
+    private List<EntityLink> bodyPersons = new ArrayList<>();
 
+    private List<EntityLink> bodyOrganizations = new ArrayList<>();
     private Authenticity authenticityStatus;
 
     private List<String> initium = new ArrayList<>();
 
     private String ueberlieferungsform;
 
-  public String getUeberlieferungsform() {
-    return ueberlieferungsform;
-  }
+    public String getUeberlieferungsform() {
+        return ueberlieferungsform;
+    }
 
-  public void setUeberlieferungsform(String ueberlieferungsform) {
-    this.ueberlieferungsform = ueberlieferungsform;
-  }
+    public void setUeberlieferungsform(String ueberlieferungsform) {
+        this.ueberlieferungsform = ueberlieferungsform;
+    }
 
-  private PersonLink pontifikatPP;
+    private EntityLink pontifikatPP;
 
-    private PersonLink pontifikatAEP;
-    private final List<PlaceLink> bodyPlaces = new ArrayList<>();
+    private EntityLink pontifikatAEP;
+    private final List<EntityLink> bodyPlaces = new ArrayList<>();
 
     public String getIdno() {
         return idno;
@@ -57,27 +58,21 @@ public class Regest {
         this.idno = idno;
     }
 
-    public PersonLink getIssuer() {
+    public List<EntityLink> getIssuers() {
         return issuer;
     }
 
-    public void setIssuer(PersonLink issuer) {
-        this.issuer = issuer;
-    }
 
-    public PersonLink getRecipient() {
+    public List<EntityLink> getRecipients() {
         return recipient;
     }
 
-    public void setRecipient(PersonLink recipient) {
-        this.recipient = recipient;
-    }
 
-    public PlaceLink getIssuedPlace() {
+    public EntityLink getIssuedPlace() {
         return issuedPlace;
     }
 
-    public void setIssuedPlace(PlaceLink issuedPlace) {
+    public void setIssuedPlace(EntityLink issuedPlace) {
         this.issuedPlace = issuedPlace;
     }
 
@@ -97,19 +92,19 @@ public class Regest {
         this.issued = issued;
     }
 
-    public PersonLink getPontifikatPP() {
+    public EntityLink getPontifikatPP() {
         return pontifikatPP;
     }
 
-    public void setPontifikatPP(PersonLink pontifikatPP) {
+    public void setPontifikatPP(EntityLink pontifikatPP) {
         this.pontifikatPP = pontifikatPP;
     }
 
-    public PersonLink getPontifikatAEP() {
+    public EntityLink getPontifikatAEP() {
         return pontifikatAEP;
     }
 
-    public void setPontifikatAEP(PersonLink pontifikatAEP) {
+    public void setPontifikatAEP(EntityLink pontifikatAEP) {
         this.pontifikatAEP = pontifikatAEP;
     }
 
@@ -121,16 +116,17 @@ public class Regest {
         this.authenticityStatus = authenticityStatus;
     }
 
-    public List<PersonLink> getBodyPersons() {
+    public List<EntityLink> getBodyPersons() {
         return bodyPersons;
     }
 
-    public void setBodyPersons(List<PersonLink> bodyPersons) {
-        this.bodyPersons = bodyPersons;
+    public List<EntityLink> getBodyPlaces() {
+        return bodyPlaces;
     }
 
-    public List<PlaceLink> getBodyPlaces() {
-        return bodyPlaces;
+
+    public List<EntityLink> getBodyOrganizations() {
+        return bodyOrganizations;
     }
 
     @Override

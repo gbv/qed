@@ -121,21 +121,24 @@
     "add-field": {
       "name": "issuer",
       "type": "text_general",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
     "add-field": {
       "name": "issuer.facet",
       "type": "string",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
     "add-field": {
       "name": "issuer.obj",
       "type": "string",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
@@ -149,14 +152,16 @@
     "add-field": {
       "name": "recipient.facet",
       "type": "string",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
     "add-field": {
       "name": "recipient.obj",
       "type": "string",
-      "stored": true
+      "stored": true,
+      "multiValued": true
     }
   },
   {
@@ -169,7 +174,23 @@
   },
   {
     "add-field": {
+      "name": "organization",
+      "type": "text_general",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
       "name": "person.obj",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "organization.obj",
       "type": "string",
       "stored": true,
       "multiValued": true

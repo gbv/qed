@@ -5,6 +5,7 @@
       </template>
       <template v-else-if="$props.content.type==='Text'">{{ $props.content.text }}</template>
       <GalliaPontificaOnlineRegestPerson v-else-if="$props.content.name==='cei:persName'" :person="$props.content"/>
+      <GalliaPontificaOnlineRegestOrganization v-else-if="$props.content.name==='cei:orgName'" :organization="$props.content"/>
       <GalliaPontificaOnlineRegestPlace v-else-if="$props.content.name==='cei:placeName'" :place="$props.content"/>
       <GalliaPontificaOnlineRegestBibl v-else-if="$props.content.name=== 'cei:bibl'" :bibl="$props.content"/>
       <GalliaPontificaOnlineRegestRef v-else-if=" $props.content.name==='cei:ref'" :refE="$props.content"/>

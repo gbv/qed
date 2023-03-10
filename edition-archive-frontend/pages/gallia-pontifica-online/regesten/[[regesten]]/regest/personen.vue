@@ -45,6 +45,14 @@ const {data, error} = await useAsyncData(`objectType:person`, async () => {
   if (json.response.numFound === 0) {
     throw 404;
   }
+  if(process.client){
+    window.setTimeout(() => {
+      const el = document.getElementById(highlight.value);
+      if(el){
+        el.scrollIntoView();
+      }
+    }, 100);
+  }
   return json.response;
 });
 </script>

@@ -1,10 +1,10 @@
 package de.gbv.metadata;
 
+import de.gbv.metadata.model.EntityLink;
 import de.gbv.metadata.model.Manuscript;
+import de.gbv.metadata.model.Organization;
 import de.gbv.metadata.model.Person;
-import de.gbv.metadata.model.PersonLink;
 import de.gbv.metadata.model.Place;
-import de.gbv.metadata.model.PlaceLink;
 import de.gbv.metadata.model.Regest;
 import de.gbv.metadata.model.RegestSource;
 
@@ -22,7 +22,6 @@ import org.jdom2.Namespace;
 import org.jdom2.Text;
 import org.jdom2.filter.Filters;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
@@ -78,10 +77,14 @@ public class CEIImporter {
     List<Regest> regests = new LinkedList<>();
     List<Person> persons = new LinkedList<>();
 
+    List<Organization> organizations = new LinkedList<>();
+
     List<Place> places = new LinkedList<>();
     HashMap<Regest, Element> regestTextMap = new HashMap<>();
-    HashMap<Person, List<PersonLink>> personLinksHashMap = new HashMap<>();
-    HashMap<Place, List<PlaceLink>> placeLinksHashMap = new HashMap<>();
+    HashMap<Person, List<EntityLink>> personLinksHashMap = new HashMap<>();
+    HashMap<Place, List<EntityLink>> placeLinksHashMap = new HashMap<>();
+
+    HashMap<Organization, List<EntityLink>> organizationLinksHashMap = new HashMap<>();
 
     public final List<String> REPORT_MESSAGES = new LinkedList<>();
 
@@ -104,31 +107,33 @@ public class CEIImporter {
         = Stream.of(RECORD_KATALOGISAT, RECORD_DIGITALISAT).collect(Collectors.toSet());
     HashMap<String, Manuscript> keyManuscriptHashMap = new HashMap<>();
 
-    private final HashMap<PersonLink, List<Consumer<String>>> personLinkApplierMap = new HashMap<>();
+    private final HashMap<EntityLink, List<Consumer<String>>> personLinkApplierMap = new HashMap<>();
 
-    private final HashMap<PlaceLink, List<Consumer<String>>> placeLinkApplierMap = new HashMap<>();
+    private final HashMap<EntityLink, List<Consumer<String>>> organizationLinkApplierMap = new HashMap<>();
+
+    private final HashMap<EntityLink, List<Consumer<String>>> placeLinkApplierMap = new HashMap<>();
     private final List<CSVRecord> quellenRecordsList = new LinkedList<>();
     private final List<CSVRecord> handSchriftenRecordList = new LinkedList<>();
 
     public CEIImporter(Path gesamtXML, Path quellenUndLiteratur, Path hssVerzeichnis)
         throws IOException, JDOMException {
 
-      File file = gesamtXML.toFile();
+        File file = gesamtXML.toFile();
 
-      try(FileInputStream fis = new FileInputStream(file)){
-        byte[] bytes = fis.readAllBytes();
-        String s = new String(bytes, StandardCharsets.UTF_8);
-        String normalized = Normalizer.normalize(s, Normalizer.Form.NFC);
-        try(ByteArrayInputStream bis = new ByteArrayInputStream(normalized.getBytes(StandardCharsets.UTF_8))){
-          SAXBuilder builder = new SAXBuilder();
-          document = builder.build(bis);
-          ceiGroup = document.getRootElement().getChild("text", CEI_NAMESPACE).getChild("group", CEI_NAMESPACE);
-          textElements = ceiGroup.getChildren("text", CEI_NAMESPACE);
+        try (FileInputStream fis = new FileInputStream(file)) {
+            byte[] bytes = fis.readAllBytes();
+            String s = new String(bytes, StandardCharsets.UTF_8);
+            String normalized = Normalizer.normalize(s, Normalizer.Form.NFC);
+            try (ByteArrayInputStream bis = new ByteArrayInputStream(normalized.getBytes(StandardCharsets.UTF_8))) {
+                SAXBuilder builder = new SAXBuilder();
+                document = builder.build(bis);
+                ceiGroup = document.getRootElement().getChild("text", CEI_NAMESPACE).getChild("group", CEI_NAMESPACE);
+                textElements = ceiGroup.getChildren("text", CEI_NAMESPACE);
 
-          processCSV(quellenUndLiteratur, this.quellenRecordsList);
-          processCSV(hssVerzeichnis, this.handSchriftenRecordList);
+                processCSV(quellenUndLiteratur, this.quellenRecordsList);
+                processCSV(hssVerzeichnis, this.handSchriftenRecordList);
+            }
         }
-      }
     }
 
     private void processCSV(Path quellenUndLiteratur, List<CSVRecord> list) throws IOException {
@@ -223,15 +228,23 @@ public class CEIImporter {
         return persons;
     }
 
+    public List<Organization> getOrganizations() {
+        return organizations;
+    }
+
     public List<Place> getPlaces() {
         return places;
     }
 
-    public HashMap<PersonLink, List<Consumer<String>>> getPersonLinkApplierMap() {
+    public HashMap<EntityLink, List<Consumer<String>>> getPersonLinkApplierMap() {
         return personLinkApplierMap;
     }
 
-    public HashMap<PlaceLink, List<Consumer<String>>> getPlaceLinkApplierMap() {
+    public HashMap<EntityLink, List<Consumer<String>>> getOrganizationLinkApplierMap() {
+        return organizationLinkApplierMap;
+    }
+
+    public HashMap<EntityLink, List<Consumer<String>>> getPlaceLinkApplierMap() {
         return placeLinkApplierMap;
     }
 
@@ -302,30 +315,31 @@ public class CEIImporter {
         });
 
         textElements.forEach(currentTextElement -> {
-          try {
-              Element textElement = currentTextElement.clone();
+            try {
+                Element textElement = currentTextElement.clone();
 
-              Element currentBodyElement = textElement.getChild("body", CEI_NAMESPACE);
+                Element currentBodyElement = textElement.getChild("body", CEI_NAMESPACE);
 
-              Regest regest = new Regest();
-              extractIdno(currentBodyElement, regest);
-              extractIssuedPlace(currentBodyElement, regest);
-              extractOtherPlaces(currentBodyElement, regest);
-              extractIssuer(currentBodyElement, regest);
-              extractRecipient(currentBodyElement, regest);
-              extractIssuedDate(currentBodyElement, regest);
-              extractInitium(currentBodyElement, regest);
-              extractUeberlieferungsform(currentBodyElement, regest);
+                Regest regest = new Regest();
+                extractIdno(currentBodyElement, regest);
+                extractIssuedPlace(currentBodyElement, regest);
+                extractOtherPlaces(currentBodyElement, regest);
+                extractIssuer(currentBodyElement, regest);
+                extractRecipient(currentBodyElement, regest);
+                extractIssuedDate(currentBodyElement, regest);
+                extractInitium(currentBodyElement, regest);
+                extractUeberlieferungsform(currentBodyElement, regest);
                 extractPersonParagraph(currentBodyElement, "PontifikatPP", regest::setPontifikatPP, regest);
                 extractPersonParagraph(currentBodyElement, "PontifikatAEP", regest::setPontifikatAEP, regest);
-              extractOtherPersons(currentBodyElement, regest);
+                extractOtherPersons(currentBodyElement, regest);
+                extractOtherOrganizations(currentBodyElement, regest);
 
-              regests.add(regest);
-              regestTextMap.put(regest, textElement);
-          } catch (Exception e) {
-            LOGGER.error("Error in document: {}", new XMLOutputter().outputString(currentTextElement));
-            throw e;
-          }
+                regests.add(regest);
+                regestTextMap.put(regest, textElement);
+            } catch (Exception e) {
+                LOGGER.error("Error in document: {}", new XMLOutputter().outputString(currentTextElement));
+                throw e;
+            }
         });
     }
 
@@ -355,7 +369,20 @@ public class CEIImporter {
         });
     }
 
-    private void extractPlace(Element placeName, Consumer<PlaceLink> placeApplier, String regestId) {
+  private void extractOtherOrganizations(Element currentBodyElement, Regest regest) {
+        List<Element> otherOrganizations = getXpathList(".//cei:orgName[not(ancestor::cei:issuer) and not(ancestor::cei:recipient)]", currentBodyElement);
+        otherOrganizations.forEach(otherOrganization -> {
+            extractOrganization(otherOrganization, p -> {
+                regest.getBodyOrganizations().add(p);
+                organizationLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
+                    otherOrganization.setAttribute("key", s);
+                });
+            }, regest.getIdno());
+        });
+    }
+
+
+    private void extractPlace(Element placeName, Consumer<EntityLink> placeApplier, String regestId) {
         String flattenName = flattenText(placeName);
         String normalizedName = placeName.getAttributeValue("reg");
         String key = placeName.getAttributeValue("key");
@@ -372,7 +399,7 @@ public class CEIImporter {
             return false;
         }).toList() : List.of();
 
-        PlaceLink pl = new PlaceLink();
+      EntityLink pl = new EntityLink(EntityLink.Type.PLACE);
         pl.setLabel(flattenName);
 
         Place match;
@@ -400,7 +427,7 @@ public class CEIImporter {
                 + places.stream().map(Place::getDisplayName).collect(Collectors.joining()));
             return;
         }
-        List<PlaceLink> ll = this.placeLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
+        List<EntityLink> ll = this.placeLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
         ll.add(pl);
         placeApplier.accept(pl);
     }
@@ -420,7 +447,7 @@ public class CEIImporter {
         }
     }
 
-    private void extractPerson(Element persName, Consumer<PersonLink> regestApplier, String regestId) {
+    private void extractPerson(Element persName, Consumer<EntityLink> regestApplier, String regestId) {
         String flattenName = flattenText(persName);
         String normalizedName = persName.getAttributeValue("reg");
 
@@ -438,7 +465,7 @@ public class CEIImporter {
             return false;
         }).toList() : List.of();
 
-        PersonLink pl = new PersonLink();
+      EntityLink pl = new EntityLink(EntityLink.Type.PERSON);
         pl.setLabel(flattenName);
 
         Person match;
@@ -465,7 +492,7 @@ public class CEIImporter {
                 + people.stream().map(Person::getDisplayName).collect(Collectors.joining()));
             return;
         }
-        List<PersonLink> ll = this.personLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
+        List<EntityLink> ll = this.personLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
         ll.add(pl);
         regestApplier.accept(pl);
     }
@@ -515,13 +542,13 @@ public class CEIImporter {
         }
     }
 
-    private void extractPersonParagraph(Element currentBodyElement, String pType, Consumer<PersonLink> applyFn,
+    private void extractPersonParagraph(Element currentBodyElement, String pType, Consumer<EntityLink> applyFn,
         Regest regest) {
         Element paragraphElement = getXpathFirst(".//cei:p[@type='" + pType + "']", currentBodyElement);
         if (paragraphElement != null) {
             Element persName = paragraphElement.getChild("persName", CEI_NAMESPACE);
-            if(persName==null){
-              return;
+            if (persName == null) {
+                return;
             }
             extractPerson(persName, (link) -> {
                 applyFn.accept(link);
@@ -588,41 +615,121 @@ public class CEIImporter {
         }
     }
 
-    public HashMap<Person, List<PersonLink>> getPersonLinksHashMap() {
+    public HashMap<Person, List<EntityLink>> getPersonLinksHashMap() {
         return personLinksHashMap;
     }
 
-    public HashMap<Place, List<PlaceLink>> getPlaceLinksHashMap() {
+    public HashMap<Place, List<EntityLink>> getPlaceLinksHashMap() {
         return placeLinksHashMap;
     }
 
+    public HashMap<Organization, List<EntityLink>> getOrganizationLinksHashMap() {
+        return organizationLinksHashMap;
+    }
+
     private void extractIssuer(Element currentBodyElement, Regest regest) {
-        Element issuerPersNameElement = getXpathFirst(".//cei:issuer/cei:persName", currentBodyElement);
-        if (issuerPersNameElement == null) {
-            LOGGER.info("NO ISSUER SET!");
-        } else {
-            extractPerson(issuerPersNameElement, (p) -> {
-              regest.setIssuer(p);
+        List<Element> issuerEntityElementList = getXpathList(
+            ".//cei:issuer/*[local-name()='persName' or local-name()='orgName']", currentBodyElement);
+        for(Element issuerEntityElement : issuerEntityElementList){
+          if (issuerEntityElement.getName().equals("persName")) {
+            extractPerson(issuerEntityElement, (p) -> {
+              regest.getIssuers().add(p);
               personLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
-                issuerPersNameElement.setAttribute("key", s);
+                issuerEntityElement.setAttribute("key", s);
               });
             }, regest.getIdno());
+          } else if (issuerEntityElement.getName().equals("orgName")) {
+            extractOrganization(issuerEntityElement, (o) -> {
+              regest.getIssuers().add(o);
+              organizationLinkApplierMap.computeIfAbsent(o, k -> new ArrayList<>()).add(s -> {
+                issuerEntityElement.setAttribute("key", s);
+              });
+            }, regest.getIdno());
+
+          }
+        }
+        if(issuerEntityElementList.isEmpty()){
+          LOGGER.info("NO ISSUER SET (" + regest.getIdno() + ")");
         }
     }
 
-    private void extractRecipient(Element currentBodyElement, Regest regest) {
-        Element recipientPersNameElement = getXpathFirst(".//cei:recipient/cei:persName", currentBodyElement);
-        if (recipientPersNameElement == null) {
-            LOGGER.info("NO recipient SET!");
+    private void extractOrganization(Element orgName, Consumer<EntityLink> regestApplier, String regestId) {
+        String flattenName = flattenText(orgName);
+        String normalizedName = orgName.getAttributeValue("reg");
+
+        String key = orgName.getAttributeValue("key");
+
+        List<Organization> orgs = key != null ? getOrganizations().stream().filter(p -> {
+            Optional<IdentifierType> optionalId
+                = p.getIdentifier().stream().filter(id -> id.getType().equals("key")).findFirst();
+
+            if (optionalId.isPresent()) {
+                IdentifierType id = optionalId.get();
+                return id.getIdentifier().equals(key);
+            }
+
+            return false;
+        }).toList() : List.of();
+
+      EntityLink ol = new EntityLink(EntityLink.Type.ORGANIZATION);
+        ol.setLabel(flattenName);
+
+        Organization match;
+        if (orgs.size() == 1) {
+            match = orgs.get(0);
+            if (normalizedName != null) {
+                match.setDisplayName(normalizedName);
+            }
+            applyIds(orgName, match.getIdentifier());
+        } else if (orgs.isEmpty()) {
+            match = new Organization();
+            match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
+
+            if (key != null) {
+                match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
+            }
+            applyIds(orgName, match.getIdentifier());
+            getOrganizations().add(match);
         } else {
-            extractPerson(recipientPersNameElement, (p) -> {
-              regest.setRecipient(p);
+            this.REPORT_MESSAGES.add("Can not distinguish between the Organizations"
+                + orgs.stream().map(person -> person.getIdentifier().stream().map(IdentifierType::toString)
+                    .collect(Collectors.joining()) + "-" + person.getDisplayName()).collect(Collectors.joining()));
+            LOGGER.error("Can not distinguish between the Organizations "
+                + orgs.stream().map(Organization::getDisplayName).collect(Collectors.joining()));
+            return;
+        }
+        List<EntityLink> ll = this.organizationLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
+        ll.add(ol);
+        regestApplier.accept(ol);
+    }
+
+    private void extractRecipient(Element currentBodyElement, Regest regest) {
+        List<Element> entityElementList = getXpathList(".//cei:recipient/*[local-name()='persName' or local-name()='orgName']", currentBodyElement);
+
+        if (entityElementList.isEmpty()) {
+            LOGGER.info("NO recipient SET (" + regest.getIdno() + ")");
+        }
+
+        for (Element entityElement : entityElementList) {
+          if (entityElement.getName().equals("persName")) {
+            extractPerson(entityElement, (p) -> {
+              regest.getRecipients().add(p);
               personLinkApplierMap.computeIfAbsent(p, k -> new ArrayList<>()).add(s -> {
-                recipientPersNameElement.setAttribute("key", s);
+                entityElement.setAttribute("key", s);
               });
             }, regest.getIdno());
+          } else if (entityElement.getName().equals("orgName")) {
+            extractOrganization(entityElement, (o) -> {
+              regest.getRecipients().add(o);
+              organizationLinkApplierMap.computeIfAbsent(o, k -> new ArrayList<>()).add(s -> {
+                entityElement.setAttribute("key", s);
+              });
+            }, regest.getIdno());
+          }
         }
     }
+
+
 
     private Element getXpathFirst(String xpathString, Element context) {
         XPathExpression<Element> r

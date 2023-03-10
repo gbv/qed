@@ -42,6 +42,7 @@ services:
     ports:
       - ${BACKEND_HTTP}:8080
       - ${BACKEND_AJP}:8009
+      - "8295:8295"
   frontend:
     build: edition-archive-frontend
     user: node

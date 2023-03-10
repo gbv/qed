@@ -1,8 +1,7 @@
 package de.gbv.metadata.solr;
 
 import de.gbv.metadata.Authenticity;
-import de.gbv.metadata.model.PersonLink;
-import de.gbv.metadata.model.PlaceLink;
+import de.gbv.metadata.model.EntityLink;
 import de.gbv.metadata.model.Regest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -125,12 +124,18 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
     Optional.ofNullable(regest.getIdno()).ifPresent(idno -> base.setField("idno", idno));
 
-    Optional.ofNullable(regest.getIssuer()).ifPresent(issuer -> {
-      base.setField("issuer", issuer.getLabel());
-      base.setField("issuer.obj", issuer.getLabel());
-      base.setField("issuer.facet", issuer.getLabel());
-      base.addField("person.obj", issuer.getMycoreId());
-      base.addField("person", issuer.getLabel());
+    regest.getIssuers().forEach(issuer -> {
+      base.addField("issuer", issuer.getLabel());
+      base.addField("issuer.obj", issuer.getLabel());
+      base.addField("issuer.facet", issuer.getLabel());
+
+      if(EntityLink.Type.PERSON.equals(issuer.getType())) {
+        base.addField("person.obj", issuer.getMycoreId());
+        base.addField("person", issuer.getLabel());
+      } else if (EntityLink.Type.ORGANIZATION.equals(issuer.getType())) {
+        base.addField("organization.obj", issuer.getMycoreId());
+        base.addField("organization", issuer.getLabel());
+      }
     });
 
     regest.getInitium().forEach(initium -> {
@@ -149,12 +154,17 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
     });
 
-    Optional.ofNullable(regest.getRecipient()).ifPresent(recipient -> {
-      base.setField("recipient", recipient.getLabel());
-      base.setField("recipient.obj", recipient.getMycoreId());
-      base.setField("recipient.facet", recipient.getLabel());
-      base.addField("person.obj", recipient.getMycoreId());
-      base.addField("person", recipient.getLabel());
+    regest.getRecipients().forEach(recipient -> {
+      base.addField("recipient", recipient.getLabel());
+      base.addField("recipient.obj", recipient.getMycoreId());
+      base.addField("recipient.facet", recipient.getLabel());
+      if(EntityLink.Type.PERSON==recipient.getType()) {
+        base.addField("person.obj", recipient.getMycoreId());
+        base.addField("person", recipient.getLabel());
+      } else if (EntityLink.Type.ORGANIZATION==recipient.getType()) {
+        base.addField("organization.obj", recipient.getMycoreId());
+        base.addField("organization", recipient.getLabel());
+      }
     });
 
     Optional.ofNullable(regest.getIssuedPlace()).ifPresent(issuedPlace -> {
@@ -164,13 +174,17 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
       base.addField("place", issuedPlace.getLabel());
     });
 
-    for (PersonLink bodyPerson : regest.getBodyPersons()) {
+    for (EntityLink bodyPerson : regest.getBodyPersons()) {
       base.addField("person.obj", bodyPerson.getMycoreId());
       base.addField("person", bodyPerson.getLabel());
     }
 
+    for (EntityLink bodyOrganization : regest.getBodyOrganizations()) {
+      base.addField("organization.obj", bodyOrganization.getMycoreId());
+      base.addField("organization", bodyOrganization.getLabel());
+    }
 
-    for (PlaceLink bodyPlace : regest.getBodyPlaces()) {
+    for (EntityLink bodyPlace : regest.getBodyPlaces()) {
       base.addField("place.obj", bodyPlace.getMycoreId());
       base.addField("place", bodyPlace.getLabel());
     }

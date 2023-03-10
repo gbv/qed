@@ -191,6 +191,7 @@ interface Model {
   count: number,
   start: number,
   personObj: string | null,
+  organisationObj: string | null,
   ortObj: string | null,
   quellenKey: string | null,
   handschriftenKey: string | null,
@@ -252,6 +253,7 @@ const model: Model = reactive(
     count: 0,
     start: 0,
     personObj: null,
+    organisationObj: null,
     ortObj: null,
     quellenKey: null,
     handschriftenKey: null,
@@ -504,6 +506,15 @@ async function triggerSearch(query: LocationQuery) {
         await executeSearch(url, query);
       }
       break;
+    case "organisation":
+      if(query.organisationObj){
+        model.organisationObj = queryToString(query.organisationObj);
+        applyQueryFacet(query);
+        applySort(query);
+
+        let url = `${$solrURL()}main/select/?q=organization.obj:${model.organisationObj} AND objectType:regest AND objectProject:gpo&wt=json`;
+        await executeSearch(url, query);
+      }
     case "ort":
       if (query.ortObj) {
         model.ortObj = queryToString(query.ortObj);
