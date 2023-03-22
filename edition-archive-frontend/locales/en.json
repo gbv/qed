@@ -7,8 +7,8 @@
   "about": "About",
   "globalSearch": "Portal Search",
   "about_qed": "About qed",
-  "project": "The Projekt",
-  "regest": "Regesten",
+  "project": "Projekt",
+  "regest": "Regesta",
   "reims1": "Reims I: Erzbischöfe",
   "genf1": "Genf I: Bischöfe",
   "editions": "Editions",
@@ -32,5 +32,6 @@
   "team": "Team",
   "user_guide": "User Guide",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "cite": "Citation"
 }
