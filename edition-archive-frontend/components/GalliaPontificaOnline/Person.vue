@@ -1,9 +1,9 @@
 <template>
   <span class="popout-wrapper position-relative d-inline">
-    <slot/>
     <a href="#" v-if="personLinkEnabled" v-on:click.prevent="model.show ? hidePerson():loadPerson($props.personId)">
       <i class="bi bi-person"></i>
     </a>
+    <slot/>
     <div v-if="model.show" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hidePerson()"><i class="bi bi-x-circle"></i></a>
       <span v-if="(!('skipDisplayName' in $props) || $props.skipDisplayName === false) && model.loaded && model?.person?.displayName" class="person-title">

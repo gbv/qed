@@ -1,5 +1,17 @@
 <template>
   <span :class="showSource.show ? 'opened':''" class="bibl" v-if="$props.bibl">
+
+    <div v-if="getAttribute($props.bibl,'key') !== null" class="popout-wrapper position-relative d-inline">
+      <GalliaPontificaOnlineDekretale
+        :dekretale-key="getAttribute($props.bibl,'key')?.value || ''"
+        v-if="getAttribute($props.bibl,'type', 'Dekretale')!==null">
+      </GalliaPontificaOnlineDekretale>
+      <a v-else :href="'#' + getAttribute($props.bibl,'key')?.value" class="icon-link"
+         v-on:click.prevent="showSource.show ? hideSource():loadSource(getAttribute($props.bibl,'key')?.value || '')">
+         <i class="bi bi-book"></i>
+      </a>
+    </div>
+
     <template v-for="c in $props.bibl.content">
       <span v-if="c.type==='Element' && c.name==='cei:ref'">
         <a v-if="c.content.filter((cc:any) => cc.type==='Attribute' && cc.name==='type' && cc.value==='external').length>0"
@@ -14,25 +26,16 @@
       <GalliaPontificaOnlineRegestMixedContent v-else :content="c"/>
     </template>
 
-    <div v-if="getAttribute($props.bibl,'key') !== null" class="popout-wrapper position-relative d-inline">
-      <GalliaPontificaOnlineDekretale :dekretale-key="getAttribute($props.bibl,'key')?.value || ''" v-if="getAttribute($props.bibl,'type', 'Dekretale')!==null">
-
-      </GalliaPontificaOnlineDekretale>
-
-
-      <a v-else :href="'#' + getAttribute($props.bibl,'key')?.value" class="icon-link"
-         v-on:click.prevent="showSource.show ? hideSource():loadSource(getAttribute($props.bibl,'key')?.value || '')"><i
-        class="bi bi-book"></i></a>
-        <div v-if="showSource.show" class="popout" v-on:blur="hideSource()">
-          <a class="close icon-link" href="#hide" v-on:click.prevent="hideSource()"><i class="bi bi-x-circle"></i></a>
-          <template v-if="showSource.loaded">
-            <GalliaPontificaOnlineSource :source="showSource.source"/>
-          </template>
-          <template v-else="">
-            LOADING
-          </template>
-        </div>
+    <div v-if="showSource.show" class="popout" v-on:blur="hideSource()">
+      <a class="close icon-link" href="#hide" v-on:click.prevent="hideSource()"><i class="bi bi-x-circle"></i></a>
+      <template v-if="showSource.loaded">
+        <GalliaPontificaOnlineSource :source="showSource.source"/>
+      </template>
+      <template v-else="">
+        LOADING
+      </template>
     </div>
+
   </span>
 </template>
 

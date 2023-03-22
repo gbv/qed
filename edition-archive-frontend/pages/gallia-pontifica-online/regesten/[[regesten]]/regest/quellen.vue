@@ -3,13 +3,11 @@
 
     <template #content>
       <h3>{{ $t("source_index") }}</h3>
-      <div v-if="data">
-        <article v-for="doc in data.docs" class="card mt-2 mb-2" :id="doc['identifier.key']">
-          <div class="card-body">
-            <GalliaPontificaOnlineSource :source="doc" />
-          </div>
-        </article>
-      </div>
+      <ul v-if="data" class="list-group list-group-flush mt-5">
+        <li v-for="doc in data.docs" :id="doc['identifier.key']" class="list-group-item">
+          <GalliaPontificaOnlineSource :source="doc" />
+        </li>
+      </ul>
     </template>
 
     <template #menu>

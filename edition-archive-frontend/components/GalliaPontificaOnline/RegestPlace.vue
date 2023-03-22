@@ -1,7 +1,9 @@
 <template>
-  <GalliaPontificaOnlinePlace :place-id="getAttribute($props.place, 'key')?.value">
-    <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.place.content" :content="c"/>
-  </GalliaPontificaOnlinePlace>
+  <span class="place" v-if="$props.place">
+    <GalliaPontificaOnlinePlace :place-id="getAttribute($props.place, 'key')?.value">
+      <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.place.content" :content="c"/>
+    </GalliaPontificaOnlinePlace>
+  </span>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +24,5 @@ const {$solrURL, $backendURL} = useNuxtApp();
 
 .place:hover {
   background-color: rgb(225, 225, 225);
-
 }
 </style>

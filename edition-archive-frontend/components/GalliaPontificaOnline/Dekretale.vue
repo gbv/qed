@@ -1,9 +1,9 @@
-<template>
+<template>xxx
   <span class="popout-wrapper position-relative d-inline">
-    <slot/>
     <a href="#" v-on:click.prevent="model.show ? hideDekretale():showDekretale()">
       <i class="bi bi-book"></i>
     </a>
+    <slot/>
     <div v-if="model.show" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hideDekretale()"><i class="bi bi-x-circle"></i></a>
       <div class="link-list">

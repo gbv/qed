@@ -21,7 +21,7 @@
       <nuxt-link
         :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/dekretale?dekretaleKey=${$props.refe}`"
         class="icon-link">
-        <span class="bi bi-book"> </span> <slot/>
+        <span class="bi bi-book"> </span>zzz <slot/>
       </nuxt-link>
     </span>
 
