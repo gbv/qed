@@ -1,4 +1,4 @@
-<template>xxx
+<template>
   <span class="popout-wrapper position-relative d-inline">
     <a href="#" v-on:click.prevent="model.show ? hideDekretale():showDekretale()">
       <i class="bi bi-book"></i>
