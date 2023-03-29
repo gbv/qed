@@ -7,13 +7,13 @@
       <ul class="dropdown-menu">
         <li>
           <a class="dropdown-item" href="#" v-on:click.prevent="userStore.logout()">
-            {{ $t('logout') }}
+            {{ $t('login.menu.logout') }}
           </a>
         </li>
       </ul>
     </template>
     <nuxt-link v-else :href="`/login?redirect=${route.path.toString()}`" class="nav-link">
-      <i class="bi bi-person"></i> {{ $t('login') }}
+      <i class="bi bi-person"></i> {{ $t('login.menu.login') }}
     </nuxt-link>
   </li>
 </template>

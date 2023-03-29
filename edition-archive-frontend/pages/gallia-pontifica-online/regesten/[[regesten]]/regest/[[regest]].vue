@@ -1,7 +1,7 @@
 <template>
   <GalliaPontificaOnlineLayout>
     <template #content>
-      <h3>{{ $t("regests") }}</h3>
+      <h3>{{ $t("gpo.pages.regesta.regest.headline") }}</h3>
       <div v-if="viewModel" class="content regest-detail-view">
 
         <BrowseComponent :current="parseInt(regestedIdno)" :next-label="browseData.nextLabel" :of="browseData.count"
@@ -46,20 +46,20 @@
           </div>
 
           <div v-if="viewModel?.dekretale?.content?.length !== undefined && viewModel.dekretale.content.length>0" class="section dekretale">
-            <h5>{{ $t("regest_dekretale") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.dekretale") }}</h5>
             <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.dekretale!=null && viewModel.dekretale.content.length>0" :contents="viewModel.dekretale.content"/>
           </div>
 
 
           <div v-if="viewModel.witnessOrig != null && viewModel.witnessOrig.content.length>0">
             <div class="section">
-              <h5>{{ $t("regest_original") }}</h5>
+              <h5>{{ $t("gpo.pages.regesta.regest.original") }}</h5>
               <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.witnessOrig != null && viewModel.witnessOrig.content.length>0" :contents="viewModel.witnessOrig.content"/>
             </div>
           </div>
 
           <div v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" class="section witlist">
-            <h5>{{ $t("regest_kopiale_ueberlieferung") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.kopialeUeberlieferung") }}</h5>
             <span>
               <GalliaPontificaOnlineRegestMixedContent v-if="viewModel.witListPar!= null && viewModel.witListPar.content.length>0" :contents="viewModel.witListPar.content"/>
             </span>
@@ -67,7 +67,7 @@
 
           <div v-if="viewModel.ueberlieferung!= null && viewModel.ueberlieferung.content.length>0"
                class="section ueberlieferung">
-            <h5>{{ $t("regest_ueberlieferung") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.ueberlieferung") }}</h5>
             <div>
               <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.ueberlieferung.content"/>
             </div>
@@ -75,7 +75,7 @@
 
           <div v-if="viewModel.listBiblEdition!=null && viewModel.listBiblEdition.content.length>0"
                class="section listBiblEdition">
-            <h5>{{ $t("regest_editionen") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.editionen") }}</h5>
             <div>
               <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.listBiblEdition.content"/>
             </div>
@@ -83,7 +83,7 @@
 
           <!-- Erwähnungen -->
           <div v-if="viewModel.erwaehnungen != null && viewModel.erwaehnungen.content.length>0" class="section listBiblRegest">
-            <h5>{{ $t("regest_erwaehnungen") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.erwaehnungen") }}</h5>
             <div>
               <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.erwaehnungen.content"/>
             </div>
@@ -92,7 +92,7 @@
           <!-- Regesten -->
           <div v-if="viewModel.listBiblRegest != null && viewModel.listBiblRegest.content.length>0"
                class="section listBiblRegest">
-            <h5>{{ $t("regest_regests") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.regests") }}</h5>
             <div>
               <GalliaPontificaOnlineRegestMixedContent :contents="viewModel.listBiblRegest.content"/>
             </div>
@@ -101,7 +101,7 @@
 
           <!-- Sachkomentar -->
           <div v-if="viewModel.sachkommentar!=null && viewModel.sachkommentar.length>0" class="section sachkommentar">
-            <h5>{{ $t("regest_sachkommentar") }}</h5>
+            <h5>{{ $t("gpo.pages.regesta.regest.sachkommentar") }}</h5>
             <div v-for="sachkommentar in viewModel.sachkommentar">
               <GalliaPontificaOnlineRegestMixedContent :contents="sachkommentar.content"/>
             </div>
@@ -111,13 +111,13 @@
         <div class="row regest-detail-view__footer">
           <div class="col footer-persons">
             <span class="auhor">
-              {{ $t("author") }}: Ludwig Falkenstein
+              {{ $t("gpo.pages.regesta.regest.author") }}: Ludwig Falkenstein
             </span>
             <span class="publisher">
-              {{ $t("publisher") }}: Rolf Große
+              {{ $t("gpo.pages.regesta.regest.publisher") }}: Rolf Große
             </span>
             <span class="editor">
-              {{ $t("editor") }}: Robert Friedrich und Sebastian Gensicke
+              {{ $t("gpo.pages.regesta.regest.editor") }}: Robert Friedrich und Sebastian Gensicke
             </span>
           </div>
           <div class="col regest-licence text-end">

@@ -1,5 +1,5 @@
 <template>
-  <SovietSurvivorsLayout :headline="$t('about')">
+  <SovietSurvivorsLayout :headline="$t('sosu.mainMenu.about')">
 
     <template #content>
       <CMSPage :slug="$route.path"/>

@@ -9,18 +9,18 @@
     <span v-if="!model.editIndex" class="index">
       {{ current }}
       <i class="bi bi-pencil-square clickable" v-on:click="model.editIndex=true"></i>
-      {{ $t("browse_current_of") }}
+      {{ $t("browser.currentOf") }}
       {{ of }}
     </span>
     <div v-else class="index row">
       <div class="col-9">
         <input class="form-control form-control-sm" :class="model.index < 1 || model.index > of ? 'is-invalid' : ''" type="number" v-model.number="model.index" v-on:keyup.enter="indexEntered"/>
         <div class="invalid-feedback" v-if="model.index < 1 || model.index > of">
-          {{ $t("browse_index_invalid") }}
+          {{ $t("browser.invalidIndex") }}
         </div>
       </div>
       <div class="col-3 fs-2">
-        <i class="bi bi-check clickable" v-on:click="indexEntered" :title="$t('browser_go_to', {to:model.index})"></i>
+        <i class="bi bi-check clickable" v-on:click="indexEntered" :title="$t('browser.goTo', {to:model.index})"></i>
       </div>
     </div>
     <span class="next">

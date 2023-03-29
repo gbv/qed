@@ -5,25 +5,25 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/">
-            {{ $t('intro') }}
+            {{ $t('sosu.subMenu.intro') }}
 
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/annihilation">
-            {{ $t('war_of_annihilation') }}
+            {{ $t('sosu.subMenu.warOfAnnihilation') }}
 
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/historians">
-            {{ $t('soviet_historians') }}
+            {{ $t('sosu.subMenu.sovietHistorians') }}
 
           </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/team">
-            {{ $t('team') }}
+            {{ $t('sosu.subMenu.team') }}
 
           </nuxt-link>
         </li>
@@ -36,12 +36,12 @@
       <ul class="navbar-nav">
         <li class="nav-item">
             <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search/search">
-              {{ $t('search') }}
+              {{ $t('sosu.subMenu.search') }}
             </nuxt-link>
         </li>
         <li class="nav-item">
             <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search/guide">
-              {{ $t('user_guide') }}
+              {{ $t('sosu.subMenu.userGuide') }}
             </nuxt-link>
         </li>
       </ul>

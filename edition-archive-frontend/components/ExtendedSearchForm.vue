@@ -1,7 +1,7 @@
 <template>
   <form v-on:submit.prevent="submit">
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchAllMeta">{{ $t("search_field_allMeta") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchAllMeta">{{ $t("search.field.allMeta") }}</label>
       <div class="col-9">
         <input id="searchAllMeta" type="search" class="form-control" v-model="model.allMeta">
       </div>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchPerson">{{ $t("search_field_person") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchPerson">{{ $t("search.field.person") }}</label>
       <div class="col-9">
         <input id="searchPerson" type="search" class="form-control" v-model="model.person">
       </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchPlace">{{ $t("search_field_place") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchPlace">{{ $t("search.field.place") }}</label>
       <div class="col-9">
         <input id="searchPlace" type="search" class="form-control" v-model="model.place">
       </div>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchInitium">{{ $t("search_field_initium") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchInitium">{{ $t("search.field.initium") }}</label>
       <div class="col-9">
         <input id="searchInitium" type="search" class="form-control" v-model="model.initium">
       </div>
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search_field_recipient") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search.field.recipient") }}</label>
       <div class="col-9">
         <input id="searchRecipient" type="search" class="form-control" v-model="model.recipient">
       </div>
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search_field_issuer") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchRecipient">{{ $t("search.field.issuer") }}</label>
       <div class="col-9">
         <input id="searchIssuer" type="search" class="form-control" v-model="model.issuer">
       </div>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="jaffe2">{{ $t("search_field_jaffe2") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="jaffe2">{{ $t("search.field.jaffe2") }}</label>
       <div class="col-9">
         <input id="jaffe2" type="search" class="form-control" v-model="model.jaffe2">
       </div>
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="jaffe3">{{ $t("search_field_jaffe3") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="jaffe3">{{ $t("search.field.jaffe3") }}</label>
       <div class="col-9">
         <input id="jaffe3" type="search" class="form-control" v-model="model.jaffe3">
       </div>
@@ -73,11 +73,11 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchDate">{{ $t("search_field_date") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchDate">{{ $t("search.field.date") }}</label>
       <div class="col-2">
         <div class="form-check mt-2 text-align-left">
           <label class="form-check-label" for="dateRangeLabel">
-            {{ $t("search_field_date_range_label") }}
+            {{ $t("search.field.dateRangeLabel") }}
           </label>
           <input class="form-check-input" type="checkbox" v-model="model.dateRangeRange" id="dateRangeLabel">
         </div>
@@ -95,7 +95,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label mb-2" for="searchDateText">{{ $t("search_field_dateText") }}</label>
+      <label class="col-sm-2 col-form-label mb-2" for="searchDateText">{{ $t("search.field.dateText") }}</label>
       <div class="col-9">
         <input id="searchDateText" type="search" class="form-control" v-model="model.dateText">
       </div>
@@ -105,7 +105,7 @@
     </div>
     <div class="row">
       <div class="col-12 text-end">
-        <button type="submit" class="btn btn-primary">{{ $t("search_submit") }}</button>
+        <button type="submit" class="btn btn-primary">{{ $t("search.submit") }}</button>
       </div>
     </div>
   </form>

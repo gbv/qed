@@ -13,8 +13,8 @@
           <a v-for="viaf in model.organization?.['identifier.VIAF']" :href="'https://viaf.org/viaf/' + viaf">VIAF</a>
           <a v-for="gnd in model.organization?.['identifier.GND']" :href="'https://d-nb.info/gnd/' + gnd">GND</a>
           <a v-for="idref in model.organization?.['identifier.IDREF']" :href="'https://www.idref.fr/' + idref">IDREF</a>
-          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/organisation?organisationObj=${model.organization.id}`">{{$t('search')}}</nuxt-link>
-          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/orte/#${model.organization.id}`">{{$t('regest_place_index')}}</nuxt-link>
+          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/organisation?organisationObj=${model.organization.id}`">{{$t('search.label')}}</nuxt-link>
+          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/orte/#${model.organization.id}`">{{$t('pages.regesta.regest.placeIndex')}}</nuxt-link>
       </div>
       <template v-else>
         <div class="spinner-border" role="status">

@@ -1,132 +1,206 @@
 {
-  "about_qed": "About qed",
-  "about": "À propos de qed",
-  "author": "Autor",
-  "back": "Zurück",
-  "browse_current_of": " von ",
-  "browse_index_invalid": "Ungültige Nummer",
-  "browser_go_to": "Gehe zu {to}",
-  "by": "von",
-  "cite": "Indication pour la citation",
-  "cms_page_edit_translation": "Übersetzung bearbeiten",
-  "cms_page_editor_bibl_defaultText": "Referenz",
-  "cms_page_editor_bibl_dialog_cancel": "Abbrechen",
-  "cms_page_editor_bibl_dialog_refe": "Schlüssel",
-  "cms_page_editor_bibl_dialog_save": "Speichern",
-  "cms_page_editor_bibl_dialog_title": "Referenz einfügen",
-  "cms_page_editor_bibl_dialog_type_dekretale": "Dekretale",
-  "cms_page_editor_bibl_dialog_type_external": "Externe Referenz",
-  "cms_page_editor_bibl_dialog_type_person": "Person",
-  "cms_page_editor_bibl_dialog_type_place": "Ort",
-  "cms_page_editor_bibl_dialog_type_source": "Quelle",
-  "cms_page_editor_bibl_dialog_type": "Typ",
-  "cms_page_editor_bibl": "Referenz",
-  "cms_page_editor_capitalize": "Kapitälchen",
-  "cms_page_loading": "Lade Seite...",
-  "cms_page_new_translation": "Neue Übersetzung",
-  "cms_page_translation_content_new": "Neue Übersetzung",
-  "cms_page_translation_delete_confirm": "Soll die Übersetzung wirklich gelöscht werden?",
-  "cms_page_translation_delete": "Übersetzung löschen",
-  "contact": "Contact",
-  "decretals":"Décrétales",
-  "dekretale_index": "Dekretalen",
-  "edition_short_title": "Kurztitel der Editionen",
-  "editions": "Éditions",
-  "editor": "Bearbeiter",
-  "error_404": "Seite konnte nicht gefunden werden.",
-  "error": "Ein unbekannter Fehler ist aufgetreten.",
-  "explain": "Erklärung",
-  "genf1": "Genève I: Évêques",
-  "globalSearch": "Recherche de portail",
-  "go_to_regest": "Gehe zu Regest {regest}",
-  "home": "Home",
-  "incipit_index": "Incipits",
-  "incipits":"Incipit",
-  "intro":"Notice historique",
-  "language": "Sprache",
-  "login_email_label": "Email",
-  "login_error": "Unbekannter Fehler beim Login",
-  "login_invalid": "Ungültige Email oder Passwort",
-  "login_password_label": "Password",
-  "login_submit_button": "Login",
-  "login_title": "Login",
-  "login": "Login",
-  "logout": "Logout",
-  "manuscript_index": "Sources manuscrites",
-  "paris": "Paris",
-  "person_index": "Index des noms de personnes",
-  "photo": "Foto",
-  "place_index": "Index des noms de lieux",
-  "project": "Projet",
-  "publications": "Publications",
-  "publisher": "Herausgeber",
-  "regest_dekretale_index": "Dekretalenindex",
-  "regest_dekretale": "Dekretalen",
-  "regest_editionen": "Editionen",
-  "regest_erwaehnungen": "Erwähnungen",
-  "regest_kopiale_ueberlieferung": "Kopiale Überlieferung",
-  "regest_original": "Original",
-  "regest_person_index": "Personenindex",
-  "regest_place_index": "Ortsindex",
-  "regest_pontifikatAEP": "PontifikatAEP",
-  "regest_pontifikatPP": "PontifikatPP",
-  "regest_regests": "Regesten",
-  "regest_sachkommentar": "Sachkommentar",
-  "regest_ueberlieferung": "Überlieferung",
-  "regest_ueberlieferungsform": "Überlieferungsform",
-  "regest": "Regestes",
-  "regests":"Regestes",
-  "reims1": "Reims I: Archévêques",
-  "seach_page_go_to": "Gehe zu Seite {page}",
-  "search_basic": "Recherche simple",
-  "search_extended": "Recherche avancée",
-  "search_facet_deperditum": "Deperditum/historiographische Notiz ( * )",
-  "search_facet_issuer": "Auteur",
-  "search_facet_recipient": "Destinataire",
-  "search_facet_show_less": "Weniger anzeigen",
-  "search_facet_show_more": "Voir plus",
-  "search_facet_spurium": "Spurium (†)",
-  "search_facet_ueberlieferungsform": "Mode de transmission",
-  "search_field_allMeta_help": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
-  "search_field_allMeta": "Recherche libre",
-  "search_field_date_help": "",
-  "search_field_date_range_label": "Période",
-  "search_field_date": "Date",
-  "search_field_dateText_help": "",
-  "search_field_dateText": "Date (Text)",
-  "search_field_initium_help": "",
-  "search_field_initium": "Incipit",
-  "search_field_issuer_help": "",
-  "search_field_issuer": "Aussteller",
-  "search_field_jaffe2": "Jaffé 2",
-  "search_field_jaffe3": "Jaffé 3",
-  "search_field_person_help": "Durchsucht die Metadaten nach einer Person",
-  "search_field_person": "Personne",
-  "search_field_place_help": "Durchsucht die Metadaten nach einem Ort",
-  "search_field_place": "Lieu",
-  "search_field_recipient_help": "",
-  "search_field_recipient": "Destinataire",
-  "search_hit_count": "{count} résultat(s) trouvé(s)",
-  "search_no_hits": "Keine Treffer",
-  "search_page_next": "nächste Seite",
-  "search_page_prev": "vorherige Seite",
-  "search_pagination": "Paginierung Suche",
-  "search_submit": "Rechercher",
-  "search": "Recherche",
-  "sort_asc": "Trier par ordre croissant (1-9)",
-  "sort_desc": "Trier par ordre décroissant (9-1)",
-  "sort_idno": "Numéro du regest",
-  "sort_relevance": "Pertinence",
-  "sosu_documents": "Dokumente",
-  "sosu_intro": "Einleitung",
-  "sosu_soviet_historians": "The Soviet Historians",
-  "sosu_team": "Team",
-  "sosu_user_guide": "User Guide",
-  "sosu_war_of_annihilation": "Germany’s War of Annihilation",
-  "source_index": "Quellen- und Literaturverzeichnis",
-  "sources":"Bibliographie générale",
-  "start_page": "Remarques préliminaires",
-  "to_project": "Au projet",
+  "documentation": {
+    "conventionDeNommage": {
+      "sections": "comme cas de chameau",
+      "espaceBlanc": "comme cas de chameau"
+    }
+  },
+  "qed": {
+    "mainMenu": {
+      "home": "Home",
+      "search": "Recherche de portail",
+      "about": "À propos de qed"
+    }
+  },
+  "gpo": {
+    "mainMenu": {
+      "project": "Projet",
+      "regesta": {
+        "label":"Regestes",
+        "reims1": "Reims I: Archévêques"
+      },
+      "publications": "Publications",
+      "citation": "Indication pour la citation",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "reims1": {
+        "home": "Remarques préliminaires",
+        "intro": "Notice historique",
+        "regests": "Regesten",
+        "search": "Suche",
+        "incipits": "Incipits",
+        "writings": "Manuscrites",
+        "decretals": "Décrétales",
+        "sources": "Bibliographie générale",
+        "persons": "Personen",
+        "places": "Orte"
+      }
+    },
+    "pages": {
+      "regesta": {
+        "reims1": {
+          "headline": "Reims I: Erzbischöfe"
+        },
+        "genf1": {
+          "headline": "Genf I: Bischöfe"
+        },
+        "regest": {
+          "headline": "Regesten",
+          "dekretaleIndex": "Dekretalenindex",
+          "dekretale": "Dekretalen",
+          "editionen": "Editionen",
+          "erwaehnungen": "Erwähnungen",
+          "kopialeUeberlieferung": "Kopiale Überlieferung",
+          "original": "Original",
+          "pontifikatAEP": "PontifikatAEP",
+          "pontifikatPP": "PontifikatPP",
+          "sachkommentar": "Sachkommentar",
+          "ueberlieferung": "Überlieferung",
+          "ueberlieferungsform": "Überlieferungsform",
+          "regests": "Regesten",
+          "author": "auteur",
+          "publisher": "éditeur",
+          "editor": "beiter",
+          "personIndex": "Index des noms de personnes",
+          "placeIndex": "Index des noms de lieux"
+        },
+        "sources": {
+          "editionShortTitle": "Kurztitel der Editionen"
+        }
+      }
+    }
+  },
+  "sosu": {
+    "mainMenu": {
+      "home": "Home",
+      "about": "À propos",
+      "documents": "Documents",
+      "search": "Recherche",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "intro": "Einleitung",
+      "search": "Suche",
+      "sovietHistorians": "The Soviet Historians",
+      "team": "Team",
+      "userGuide": "User Guide",
+      "warOfAnnihilation": "Germany’s War of Annihilation"
+    }
+  },
+  "search": {
+    "label": "Recherche",
+    "basic": "Recherche simple",
+    "extended": "Recherche avancée",
+    "pageGoTo": "Gehe zu Seite {page}",
+    "hitCount": "{count} résultat(s) trouvé(s)",
+    "noHits": "Keine Treffer",
+    "pageNext": "nächste Seite",
+    "pagePrev": "vorherige Seite",
+    "pagination": "Paginierung Suche",
+    "submit": "Rechercher",
+    "goToRegest": "Gehe zu Regest {regest}",
+    "sort": {
+      "idno": "Numéro du regest",
+      "sort_relevance": "Pertinence",
+      "asc": "Trier par ordre croissant (1-9)",
+      "desc": "Trier par ordre décroissant (9-1)"
+    },
+    "facet": {
+      "deperditum": "Deperditum/historiographische Notiz ( * )",
+      "issuer": "Auteur",
+      "recipient": "Destinataire",
+      "showLess": "Weniger anzeigen",
+      "showMore": "Voir plus",
+      "spurium": "Spurium (†)",
+      "ueberlieferungsform": "Mode de transmission"
+    },
+    "field": {
+      "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
+      "allMeta": "Recherche libre",
+      "dateHelp": "",
+      "dateRangeLabel": "Période",
+      "date": "Date",
+      "dateTextHelp": "",
+      "dateText": "Date (Text)",
+      "initiumHelp": "",
+      "initium": "Incipit",
+      "issuerHelp": "",
+      "issuer": "Aussteller",
+      "jaffe2": "Jaffé 2",
+      "jaffe3": "Jaffé 3",
+      "personHelp": "Durchsucht die Metadaten nach einer Person",
+      "person": "Personne",
+      "placeHelp": "Durchsucht die Metadaten nach einem Ort",
+      "place": "Lieu",
+      "recipientHelp": "",
+      "recipient": "Destinataire"
+    }
+  },
+  "browser": {
+    "currentOf": " von ",
+    "invalidIndex": "Ungültige Nummer",
+    "goTo": "Gehe zu {to}"
+  },
+  "cms": {
+    "page": {
+      "loading": "Lade Seite...",
+      "newTranslation": "Neue Übersetzung",
+      "editTranslation": "Übersetzung bearbeiten",
+      "translation": {
+        "new": "Neue Übersetzung",
+        "delete": "Übersetzung löschen",
+        "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
+      },
+      "editor": {
+        "capitalize": "Kapitälchen",
+        "bibl": {
+          "label": "Referenz",
+          "defaultText": "Referenz",
+          "dialog": {
+            "cancel": "Abbrechen",
+            "reference": "Schlüssel",
+            "save": "Speichern",
+            "title": "Referenz einfügen",
+            "type" : {
+              "label": "Typ",
+              "dekretale": "Dekretale",
+              "external": "Externe Referenz",
+              "person": "Person",
+              "place": "Ort",
+              "source": "Quelle"
+            }
+          }
+        }
+      }
+    }
+  },
+  "error": {
+    "message": {
+      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
+      "404": "Seite konnte nicht gefunden werden."
+    }
+  },
+  "button":{
+    "back": "Zurück",
+    "toProject": "Au projet"
+  },
+  "cc": {
+    "by": "von",
+    "photo": "Foto"
+  },
+  "login": {
+    "email": "Email",
+    "error": "Unbekannter Fehler beim Login",
+    "invalid": "Ungültige Email oder Passwort",
+    "password": "Password",
+    "submit": "Login",
+    "title": "Login",
+    "menu": {
+      "login": "Login",
+      "logout": "Logout"
+    }
+  },
   "url_type_arlima.net": "Arlima.net",
   "url_type_band_i,1": "Band I,1",
   "url_type_band_i,2": "Band I,2",
@@ -153,6 +227,5 @@
   "url_type_katalogisat": "Katalogisat",
   "url_type_link": "Link",
   "url_type_online-zugriff": "Online-Zugriff",
-  "url_type_supplement": "Supplement",
-  "writings":"Sources manuscrites"
+  "url_type_supplement": "Supplement"
 }

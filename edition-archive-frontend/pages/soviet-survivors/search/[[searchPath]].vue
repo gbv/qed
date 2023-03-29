@@ -1,5 +1,5 @@
 <template>
-  <SovietSurvivorsLayout :headline="$t('search')">
+  <SovietSurvivorsLayout :headline="$t('search.label')">
 
     <template #content>
     </template>

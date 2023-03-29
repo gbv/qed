@@ -34,13 +34,13 @@
               <div class="collapse navbar-collapse" id="qed-main-menu">
                 <ul class="navbar-nav w-100 justify-content-end">
                   <li class="nav-item">
-                    <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('home') }}</nuxt-link>
+                    <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('qed.mainMenu.home') }}</nuxt-link>
                   </li>
                   <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('globalSearch') }}</nuxt-link>
+                    <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('qed.mainMenu.search') }}</nuxt-link>
                   </li>
                   <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about_qed') }}</nuxt-link>
+                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('qed.mainMenu.about') }}</nuxt-link>
                   </li>
                   <!--
                     <LoginMenuComponent />

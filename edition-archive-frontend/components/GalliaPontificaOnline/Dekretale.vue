@@ -7,8 +7,8 @@
     <div v-if="model.show" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hideDekretale()"><i class="bi bi-x-circle"></i></a>
       <div class="link-list">
-          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/dekretale?dekretaleKey=${props.dekretaleKey}`">{{$t('search')}}</nuxt-link>
-          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/dekretale/#${props.dekretaleKey}`">{{$t('regest_dekretale_index')}}</nuxt-link>
+          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/dekretale?dekretaleKey=${props.dekretaleKey}`">{{$t('search.label')}}</nuxt-link>
+          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/dekretale/#${props.dekretaleKey}`">{{$t('gpo.pages.regesta.regest.dekretaleIndex')}}</nuxt-link>
       </div>
     </div>
   </span>
