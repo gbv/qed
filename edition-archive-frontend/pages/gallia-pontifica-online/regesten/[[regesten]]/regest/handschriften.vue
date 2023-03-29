@@ -3,13 +3,11 @@
 
     <template #content>
       <h3>{{ $t("manuscript_index") }}</h3>
-      <div v-if="data">
-        <article v-for="doc in data.docs.sort(byShelfmarkLocale)" :id="doc['identifier.key']" class="card mt-2 mb-2">
-          <div class="card-body">
-            <GalliaPontificaOnlineManuscript :manuscript="doc"/>
-          </div>
-        </article>
-      </div>
+      <ul v-if="data" class="list-group list-group-flush mt-5">
+        <li v-for="doc in data.docs.sort(byShelfmarkLocale)" :id="doc['identifier.key']" class="list-group-item">
+          <GalliaPontificaOnlineManuscript :manuscript="doc"/>
+        </li>
+      </ul>
     </template>
 
     <template #menu>

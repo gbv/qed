@@ -2,7 +2,7 @@
   <div>
     <nuxt-link
       :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${$props.manuscript['identifier.key']}`">
-      <p v-if="$props.manuscript['shelfmark']" class="shelfmark">{{ $props.manuscript['shelfmark']?.join() }}</p>
+      <span v-if="$props.manuscript['shelfmark']" class="shelfmark">{{ $props.manuscript['shelfmark']?.join() }}</span>
     </nuxt-link>
     <div class="link-list">
       <a v-for="key in Object.keys($props.manuscript).filter(str=> str.indexOf('url.') !== -1).sort()"
@@ -19,9 +19,4 @@ const props = defineProps(["manuscript"])
 </script>
 
 <style scoped>
-
- .link-list a {
-   margin-left: 1em;
-  }
-
 </style>

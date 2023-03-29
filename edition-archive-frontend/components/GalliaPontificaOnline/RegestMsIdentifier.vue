@@ -1,10 +1,10 @@
 <template>
   <span class="msidentifier" v-if="$props.msidentifier">
-     <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.msidentifier.content" :content="c"/>
      <nuxt-link class="icon-link" :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${ getAttribute($props.msidentifier, 'n')?.value }`">
         <span class="bi bi-book"> </span>
      </nuxt-link>
-  </span>
+     <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.msidentifier.content" :content="c"/>
+</span>
 </template>
 
 <script setup lang="ts">
@@ -29,5 +29,6 @@ const {$solrURL, $backendURL} = useNuxtApp();
 
 a {
   margin-left: 0.25em;
+  margin-right: 0.25em;
 }
 </style>

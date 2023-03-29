@@ -24,6 +24,5 @@ const {$solrURL, $backendURL} = useNuxtApp();
 
 .person:hover {
   background-color: rgb(225, 225, 225);
-
 }
 </style>

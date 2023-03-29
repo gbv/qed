@@ -42,7 +42,9 @@
                   <li class="nav-item">
                     <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('about_qed') }}</nuxt-link>
                   </li>
-                  <LoginMenuComponent />
+                  <!--
+                    <LoginMenuComponent />
+                  -->
                   <LanguageSelector />
                 </ul>
               </div>
