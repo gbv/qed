@@ -44,32 +44,33 @@
         },
         "genf1": {
           "headline": "Genf I: Bischöfe"
-        },
-        "regest": {
-          "headline": "Regesten",
-          "dekretaleIndex": "Dekretalenindex",
-          "dekretale": "Dekretalen",
-          "editionen": "Editionen",
-          "erwaehnungen": "Erwähnungen",
-          "kopialeUeberlieferung": "Kopiale Überlieferung",
-          "original": "Original",
-          "pontifikatAEP": "PontifikatAEP",
-          "pontifikatPP": "PontifikatPP",
-          "sachkommentar": "Sachkommentar",
-          "ueberlieferung": "Überlieferung",
-          "ueberlieferungsform": "Überlieferungsform",
-          "regests": "Regesten",
-          "author": "Autor",
-          "publisher": "Herausgeber",
-          "editor": "Bearbeiter",
-          "personIndex": "Personenindex",
-          "placeIndex": "Ortsindex"
-        },
-        "sources": {
-          "editionShortTitle": "Kurztitel der Editionen"
         }
-      }
-    }
+      },
+      "regest": {
+        "headline": "Regesten",
+        "dekretale": "Dekretalen",
+        "editionen": "Editionen",
+        "erwaehnungen": "Erwähnungen",
+        "kopialeUeberlieferung": "Kopiale Überlieferung",
+        "original": "Original",
+        "pontifikatAEP": "PontifikatAEP",
+        "pontifikatPP": "PontifikatPP",
+        "sachkommentar": "Sachkommentar",
+        "ueberlieferung": "Überlieferung",
+        "ueberlieferungsform": "Überlieferungsform",
+        "regests": "Regesten",
+        "author": "Autor",
+        "publisher": "Herausgeber",
+        "editor": "Bearbeiter"
+      },
+      "incipitIndex": "Incipits",
+      "manuscriptIndex": "Handschriften",
+      "dekretaleIndex": "Dekretalenindex",
+      "sourceIndex": "Quellen- und Literaturverzeichnis",
+      "personIndex": "Personenindex",
+      "placeIndex": "Ortsindex"
+    },
+    "editionShortTitle": "Kurztitel der Editionen"
   },
   "sosu": {
     "mainMenu": {
@@ -102,7 +103,7 @@
     "goToRegest": "Gehe zu Regest {regest}",
     "sort": {
       "idno": "Nummer des Regests",
-      "sort_relevance": "Relevanz",
+      "relevance": "Relevanz",
       "asc": "aufsteigend (1-9) sortieren nach",
       "desc": "absteigend (9-1) sortieren nach"
     },

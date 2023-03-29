@@ -44,32 +44,33 @@
         },
         "genf1": {
           "headline": "Genf I: Bischöfe"
-        },
-        "regest": {
-          "headline": "Regesten",
-          "dekretaleIndex": "Dekretalenindex",
-          "dekretale": "Dekretalen",
-          "editionen": "Editionen",
-          "erwaehnungen": "Erwähnungen",
-          "kopialeUeberlieferung": "Kopiale Überlieferung",
-          "original": "Original",
-          "pontifikatAEP": "PontifikatAEP",
-          "pontifikatPP": "PontifikatPP",
-          "sachkommentar": "Sachkommentar",
-          "ueberlieferung": "Überlieferung",
-          "ueberlieferungsform": "Überlieferungsform",
-          "regests": "Regesten",
-          "author": "auteur",
-          "publisher": "éditeur",
-          "editor": "beiter",
-          "personIndex": "Index des noms de personnes",
-          "placeIndex": "Index des noms de lieux"
-        },
-        "sources": {
-          "editionShortTitle": "Kurztitel der Editionen"
         }
-      }
-    }
+      },
+      "regest": {
+        "headline": "Regesten",
+        "dekretale": "Dekretalen",
+        "editionen": "Editionen",
+        "erwaehnungen": "Erwähnungen",
+        "kopialeUeberlieferung": "Kopiale Überlieferung",
+        "original": "Original",
+        "pontifikatAEP": "PontifikatAEP",
+        "pontifikatPP": "PontifikatPP",
+        "sachkommentar": "Sachkommentar",
+        "ueberlieferung": "Überlieferung",
+        "ueberlieferungsform": "Überlieferungsform",
+        "regests": "Regesten",
+        "author": "auteur",
+        "publisher": "éditeur",
+        "editor": "beiter",
+        },
+        "incipitIndex": "Incipits",
+        "manuscriptIndex": "Handschriften",
+        "dekretaleIndex": "Dekretalenindex",
+        "sourceIndex": "Quellen- und Literaturverzeichnis",
+        "personIndex": "Index des noms de personnes",
+        "placeIndex": "Index des noms de lieux"
+    },
+    "editionShortTitle": "Kurztitel der Editionen"
   },
   "sosu": {
     "mainMenu": {
@@ -102,7 +103,7 @@
     "goToRegest": "Gehe zu Regest {regest}",
     "sort": {
       "idno": "Numéro du regest",
-      "sort_relevance": "Pertinence",
+      "relevance": "Pertinence",
       "asc": "Trier par ordre croissant (1-9)",
       "desc": "Trier par ordre décroissant (9-1)"
     },

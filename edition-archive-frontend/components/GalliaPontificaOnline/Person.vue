@@ -14,7 +14,7 @@
           <a v-for="gnd in model.person?.['identifier.GND']" :href="'https://d-nb.info/gnd/' + gnd">GND</a>
           <a v-for="idref in model.person?.['identifier.IDREF']" :href="'https://www.idref.fr/' + idref">IDREF</a>
           <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/person?personObj=${model.person.id}`">{{$t('search.label')}}</nuxt-link>
-          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/personen/#${model.person.id}`">{{$t('regest_person_index')}}</nuxt-link>
+          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/personen/#${model.person.id}`">{{$t('gpo.pages.personIndex')}}</nuxt-link>
       </div>
       <template v-else>
         <div class="spinner-border" role="status">

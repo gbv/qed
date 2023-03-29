@@ -2,7 +2,7 @@
   <GalliaPontificaOnlineLayout>
 
     <template #content>
-      <h3>{{ $t("source_index") }}</h3>
+      <h3>{{ $t("gpo.pages.sourceIndex") }}</h3>
       <ul v-if="data" class="list-group list-group-flush mt-5">
         <li v-for="doc in data.docs" :id="doc['identifier.key']" class="list-group-item">
           <GalliaPontificaOnlineSource :source="doc" />

@@ -2,7 +2,7 @@
   <GalliaPontificaOnlineLayout>
 
     <template #content>
-      <h2>{{ $t("dekretale_index") }}</h2>
+      <h2>{{ $t("gpo.pages.dekretaleIndex") }}</h2>
       <ul v-if="data" class="list-group list-group-flush mt-5">
         <li v-for="id in data.ids" :id="id" class="list-group-item" :class="highlight===id? 'text-secondary' : ''">
           {{ data.idText[id] }} (

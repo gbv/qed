@@ -5,7 +5,7 @@
       {{ $props.source["shortTitle"] }}
     </nuxt-link>
     <p v-if="$props.source['longTitle']" class="longTitle">{{ $props.source['longTitle'] }}</p>
-    <p v-if="$props.source['editionShortTitle']" class="editionShort">{{ $t("sources.editionShortTitle") }}:
+    <p v-if="$props.source['editionShortTitle']" class="editionShort">{{ $t("gpo.editionShortTitle") }}:
       {{ $props.source['editionShortTitle'] }}</p>
     <div class="link-list">
       <a v-for="key in Object.keys($props.source).filter(str=> str.indexOf('url.') !== -1).sort(sortCompare)"

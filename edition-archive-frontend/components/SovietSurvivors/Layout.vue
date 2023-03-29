@@ -23,27 +23,27 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/">
-                  {{ $t('home') }}
+                  {{ $t('sosu.mainMenu.home') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/">
-                  {{ $t('about') }}
+                  {{ $t('sosu.mainMenu.about') }}
               </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/documents/">
-                  {{ $t('documents') }}
+                  {{ $t('sosu.mainMenu.documents') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search/">
-                  {{ $t('search.label') }}
+                  {{ $t('sosu.mainMenu.search') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/contact">
-                  {{ $t('contact') }}
+                  {{ $t('sosu.mainMenu.contact') }}
                 </nuxt-link>
               </li>
             </ul>

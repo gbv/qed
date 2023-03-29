@@ -13,7 +13,7 @@
           <a v-for="viaf in model.place?.['identifier.VIAF']" :href="'https://viaf.org/viaf/' + viaf">VIAF</a>
           <a v-for="gnd in model.place?.['identifier.GEONAMES']" :href="'https://www.geonames.org/' + gnd">GEONAMES</a>
           <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/ort?ortObj=${model.place.id}`">{{$t('search.label')}}</nuxt-link>
-          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/orte/#${model.place.id}`">{{$t('gpo.pages.regesta.regest.placeIndex')}}</nuxt-link>
+          <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/orte/#${model.place.id}`">{{$t('gpo.pages.placeIndex')}}</nuxt-link>
       </div>
       <template v-else>
         <div class="spinner-border" role="status">

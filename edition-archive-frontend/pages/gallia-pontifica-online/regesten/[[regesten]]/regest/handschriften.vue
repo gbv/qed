@@ -2,7 +2,7 @@
   <GalliaPontificaOnlineLayout>
 
     <template #content>
-      <h3>{{ $t("manuscript_index") }}</h3>
+      <h3>{{ $t("gpo.pages.manuscriptIndex") }}</h3>
       <ul v-if="data" class="list-group list-group-flush mt-5">
         <li v-for="doc in data.docs.sort(byShelfmarkLocale)" :id="doc['identifier.key']" class="list-group-item">
           <GalliaPontificaOnlineManuscript :manuscript="doc"/>

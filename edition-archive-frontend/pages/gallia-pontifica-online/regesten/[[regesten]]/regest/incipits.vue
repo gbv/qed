@@ -2,7 +2,7 @@
   <GalliaPontificaOnlineLayout>
 
     <template #content>
-      <h2>{{ $t("incipit_index") }}</h2>
+      <h2>{{ $t("gpo.pages.incipitIndex") }}</h2>
       <ul v-if="data" class="list-group list-group-flush mt-5">
         <li v-for="incip in data.incipitsSorted" class="list-group-item">
 
