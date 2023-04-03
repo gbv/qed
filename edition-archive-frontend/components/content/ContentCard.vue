@@ -3,8 +3,8 @@
     <div class="cc-by">
       <nuxt-picture :src="imgHref" loading="lazy" :imgAttrs="{ class: 'cc-by__image card-img-top fixed-height', alt:imgAlt }" />
       <div v-if="ccAuthor" class="cc-by__text" >
-        <nuxt-link :href="ccSource" class="no-external-mark">{{$t("photo")}}</nuxt-link>
-        {{$t("by")}} {{ccAuthor}} /
+        <nuxt-link :href="ccSource" class="no-external-mark">{{$t("cc.photo")}}</nuxt-link>
+        {{$t("cc.by")}} {{ccAuthor}} /
         <nuxt-link :href="ccLicenceLink" class="no-external-mark">{{ccLicenceText}}</nuxt-link>
       </div>
     </div>
@@ -13,7 +13,7 @@
       <div class="card-text"><slot /></div>
     </div>
     <div class="card-footer text-center no-back mt-3 mb-3" v-if="cardClass == 'active'">
-      <nuxt-link :href="link" class="btn btn-secondary text-white">{{$t("to_project")}}</nuxt-link>
+      <nuxt-link :href="link" class="btn btn-secondary text-white">{{$t("button.toProject")}}</nuxt-link>
     </div>
     <div class="card-footer text-center no-back mt-3 mb-3" v-else>
       coming soon

@@ -1,9 +1,9 @@
 <template>
-  <nav class="solr-paginator" :aria-label="$t('search_pagination')" v-if="count>numPerPage">
+  <nav class="solr-paginator" :aria-label="$t('search.pagination')" v-if="count>numPerPage">
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <a class="page-link" :class="start>0?'':'disabled'" v-on:click.prevent="pageChanged(current-1)"
-           :title="$t('search_page_prev')" href="#">
+           :title="$t('search.pagePrev')" href="#">
           &laquo;
         </a>
       </li>
@@ -11,12 +11,12 @@
         <a class="page-link"
            :class="current === page ?'active':''"
            v-on:click.prevent="pageChanged(page)"
-           :title="$t('seach_page_go_to', {page})"
+           :title="$t('seach.pageGoTo', {page})"
            href="#">{{ page }}</a>
       </li>
       <li class="page-item">
         <a class="page-link" :class="(start+numPerPage)<count?'':'disabled'" v-on:click.prevent="pageChanged(current+1)"
-           :title="$t('search_page_next')" href="#">
+           :title="$t('search.pageNext')" href="#">
           &raquo;
         </a>
       </li>

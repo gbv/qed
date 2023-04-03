@@ -2,32 +2,32 @@ export const EDITOR_LINK_ELEMENT_NAME = "gallia-pontifica-online-editor-link";
 export const registerEditorLink = (editor:any, i18n:any) => {
 
   const biblButton = editor.ui.registry.addButton('bibl', {
-    text: i18n.t('cms_page_editor_bibl'),
+    text: i18n.t('cms.page.editor.bibl.label'),
     onAction: () => {
 
       const selection = editor?.selection?.getNode();
       const [refe, type] = [selection?.getAttribute('refe') || "", selection.getAttribute('type') || "external"];
       const dialog = editor.windowManager.open({
-        title: i18n.t("cms_page_editor_bibl_dialog_title"),
+        title: i18n.t("cms.page.editor.bibl.dialog.title"),
         body: {
           type: 'panel',
           items: [
             {
               type: 'selectbox',
               name: 'type',
-              label: i18n.t("cms_page_editor_bibl_dialog_type"),
+              label: i18n.t("cms.page.editor.bibl.dialog.type.label"),
               items: [
-                {text: i18n.t("cms_page_editor_bibl_dialog_type_external"), value: 'external'},
-                {text: i18n.t("cms_page_editor_bibl_dialog_type_dekretale"), value: 'dekretale'},
-                {text: i18n.t("cms_page_editor_bibl_dialog_type_source"), value: 'source'},
-                {text: i18n.t("cms_page_editor_bibl_dialog_type_person"), value: 'person'},
-                {text: i18n.t("cms_page_editor_bibl_dialog_type_place"), value: 'place'},
+                {text: i18n.t("cms.page.editor.bibl.dialog.type.external"), value: 'external'},
+                {text: i18n.t("cms.page.editor.bibl.dialog.type.dekretale"), value: 'dekretale'},
+                {text: i18n.t("cms.page.editor.bibl.dialog.type.source"), value: 'source'},
+                {text: i18n.t("cms.page.editor.bibl.dialog.type.person"), value: 'person'},
+                {text: i18n.t("cms.page.editor.bibl.dialog.type.place"), value: 'place'},
               ]
             },
             {
               type: 'input',
               name: 'refe',
-              label: i18n.t("cms_page_editor_bibl_dialog_refe"),
+              label: i18n.t("cms.page.editor.bibl.dialog.reference"),
             },
           ]
         },
@@ -35,12 +35,12 @@ export const registerEditorLink = (editor:any, i18n:any) => {
           {
             type: 'cancel',
             name: 'cancel',
-            text: i18n.t("cms_page_editor_bibl_dialog_cancel"),
+            text: i18n.t("cms.page.editor.bibl.dialog.cancel"),
           },
           {
             type: 'submit',
             name: 'save',
-            text: i18n.t("cms_page_editor_bibl_dialog_save"),
+            text: i18n.t("cms.page.editor.bibl.dialog.save"),
             primary: true
           }
         ],
@@ -54,7 +54,7 @@ export const registerEditorLink = (editor:any, i18n:any) => {
             currentNode.setAttribute("type", data.type);
             currentNode.setAttribute("refe", data.refe);
           } else if (editor.selection.getContent() == "") {
-            editor.insertContent(`<gallia-pontifica-online-editor-link type="${data.type}" refe="${data.refe}">${i18n.t('cms_page_editor_bibl_defaultText')}</gallia-pontifica-online-editor-link>`);
+            editor.insertContent(`<gallia-pontifica-online-editor-link type="${data.type}" refe="${data.refe}">${i18n.t('cms.page.editor.bibl.defaultText')}</gallia-pontifica-online-editor-link>`);
           } else {
             const content = editor.selection.getContent();
             editor.selection.setContent(`<gallia-pontifica-online-editor-link type="${data.type}" refe="${data.refe}">${content}</gallia-pontifica-online-editor-link>`);

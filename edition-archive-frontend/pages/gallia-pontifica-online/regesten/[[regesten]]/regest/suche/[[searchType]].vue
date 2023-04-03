@@ -33,19 +33,19 @@
             </div>
           </div>
           <div class="row hit-count">
-            <h2>{{ $t('search_hit_count', { count: model.count }) }}</h2>
+            <h2>{{ $t('search.hitCount', { count: model.count }) }}</h2>
           </div>
           <div class="row sort">
             <div class="col-6">
               <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
-                <option value="asc">{{$t("sort_asc")}}</option>
-                <option value="desc">{{$t("sort_desc")}}</option>
+                <option value="asc">{{$t("search.sort.asc")}}</option>
+                <option value="desc">{{$t("search.sort.desc")}}</option>
               </select>
             </div>
             <div class="col-6">
               <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
-                <option value="relevance">{{$t("sort_relevance")}}</option>
-                <option value="idno">{{$t("sort_idno")}}</option>
+                <option value="relevance">{{$t("search.sort.relevance")}}</option>
+                <option value="idno">{{$t("search.sort.idno")}}</option>
               </select>
             </div>
           </div>
@@ -67,7 +67,7 @@
                       flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type','PontifikatPP'))))
                     }}</span></div>
                   <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${result.idno}`"
-                             :title="$t('go_to_regest', {regest:result.idno})">
+                             :title="$t('search.goToRegest', {regest:result.idno})">
                     Nr. {{ result.idno }}. {{ [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p=>p!==null && p!==undefined).join(", ") }}
                   </nuxt-link>
                     <p v-if="'regest.json' in result">
@@ -80,7 +80,7 @@
                 </section>
               </article>
 
-              <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search_no_hits') }}</h2>
+              <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search.noHits') }}</h2>
 
               <SolrPaginator v-on:pageChanged="pageChangedCallback"
                              :count="model.count"
@@ -93,18 +93,18 @@
       <GalliaPontificaOnlineMenu/>
 
       <div v-if="model.facet.ueberlieferungsform.length>0" class="facet">
-        <h4 class="facet-title text-center">{{ $t('search_facet_ueberlieferungsform') }}</h4>
+        <h4 class="facet-title text-center">{{ $t('search.facet.ueberlieferungsform') }}</h4>
         <ul class="list-group">
 
           <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
           v-on:click="facetClicked('lost', true)">
-           {{ $t('search_facet_spurium') }}
+           {{ $t('search.facet.spurium') }}
             <span class="badge bg-primary rounded-pill">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
           </li>
 
           <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
           v-on:click="facetClicked('fake', true)">
-           {{ $t('search_facet_deperditum') }}
+           {{ $t('search.facet.deperditum') }}
             <span class="badge bg-primary rounded-pill">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
           </li>
 
@@ -119,15 +119,15 @@
               <span class="badge bg-primary rounded-pill">{{ ueberlieferungsform.count }}</span>
             </li>
             <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
-               href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true">{{ $t('search_facet_show_more') }}</a>
+               href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true">{{ $t('search.facet.showMore') }}</a>
             <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
-               href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false">{{ $t('search_facet_show_less') }}</a>
+               href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false">{{ $t('search.facet.showLess') }}</a>
           </template>
         </ul>
       </div>
 
       <div v-if="model.facet.issuer.length>0" class="facet">
-        <h4 class="facet-title text-center">{{ $t('search_facet_issuer') }}</h4>
+        <h4 class="facet-title text-center">{{ $t('search.facet.issuer') }}</h4>
         <ul class="list-group">
           <li v-for="issuer in model.facet.issuerExpand ? model.facet.issuer: model.facet.issuer.slice(0,10)"
               :class="model.facet.issuerEnabledValues.indexOf(issuer.name)>-1?'active':''"
@@ -140,13 +140,13 @@
           </li>
         </ul>
         <a v-if="model.facet.issuerExpand===false && model.facet.issuer.length>10"
-           href="#more" v-on:click.prevent="model.facet.issuerExpand=true">{{ $t('search_facet_show_more') }}</a>
+           href="#more" v-on:click.prevent="model.facet.issuerExpand=true">{{ $t('search.facet.showMore') }}</a>
         <a v-if="model.facet.issuerExpand===true && model.facet.issuer.length>10"
-           href="#less" v-on:click.prevent="model.facet.issuerExpand=false">{{ $t('search_facet_show_less') }}</a>
+           href="#less" v-on:click.prevent="model.facet.issuerExpand=false">{{ $t('search.facet.showLess') }}</a>
       </div>
 
       <div v-if="model.facet.recipient.length>0" class="facet">
-        <h4 class="facet-title text-center">{{ $t('search_facet_recipient') }}</h4>
+        <h4 class="facet-title text-center">{{ $t('search.facet.recipient') }}</h4>
         <ul class="list-group">
           <li
             v-for="recipient in model.facet.recipientExpand ? model.facet.recipient: model.facet.recipient.slice(0,10)"
@@ -158,9 +158,9 @@
           </li>
         </ul>
         <a v-if="model.facet.recipientExpand===false && model.facet.recipient.length>10"
-           href="#more" v-on:click.prevent="model.facet.recipientExpand=true">{{ $t('search_facet_show_more') }}</a>
+           href="#more" v-on:click.prevent="model.facet.recipientExpand=true">{{ $t('search.facet.showMore') }}</a>
         <a v-if="model.facet.recipientExpand===true && model.facet.recipient.length>10"
-           href="#less" v-on:click.prevent="model.facet.recipientExpand=false">{{ $t('search_facet_show_less') }}</a>
+           href="#less" v-on:click.prevent="model.facet.recipientExpand=false">{{ $t('search.facet.showLess') }}</a>
       </div>
     </template>
   </GalliaPontificaOnlineLayout>
@@ -180,8 +180,8 @@ const BASIC_SEARCH_TYPE = "einfach";
 const EXTENDED_SEARCH_TYPE = "erweitert";
 
 const tabData = ref([
-  {id: BASIC_SEARCH_TYPE, title: i18n.t('search_basic')},
-  {id: EXTENDED_SEARCH_TYPE, title: i18n.t('search_extended')}
+  {id: BASIC_SEARCH_TYPE, title: i18n.t('search.basic')},
+  {id: EXTENDED_SEARCH_TYPE, title: i18n.t('search.extended')}
 ]);
 const {$solrURL, $backendURL} = useNuxtApp();
 const solrURL = $solrURL();

@@ -4,11 +4,11 @@
       <div class="btn-block d-flex flex-nowrap flex-row justify-content-end">
         <div v-if="model.authHeader && !model.edit" class="btn-group" role="group">
           <button class="btn btn-primary" type="button" @click="editPage"><i class="bi bi-pencil-square"> </i>
-            {{ isNewTranslation ? $t("cms_page_new_translation") : $t("cms_page_edit_translation") }}
+            {{ isNewTranslation ? $t("cms.page.newTranslation") : $t("cms.page.editTranslation") }}
           </button>
           <button v-if="!isNewTranslation" class="btn btn-danger" type="button" @click="deletePage"><i
             class="bi bi-trash"> </i>
-            {{ $t("cms_page_translation_delete") }}
+            {{ $t("cms.page.translation.delete") }}
           </button>
         </div>
       </div>
@@ -16,7 +16,7 @@
     <div v-if="model">
       <div v-if="model.loading">
         <div class="spinner-border" role="status">
-          <span class="visually-hidden">{{ $t("cms_page_loading") }}</span>
+          <span class="visually-hidden">{{ $t("cms.page.loading") }}</span>
         </div>
       </div>
       <div v-else-if="!model.edit && currentTranslation!=null">
@@ -187,7 +187,7 @@ const saveContent = async (content: string) => {
 };
 
 const deletePage = async () => {
-  if (confirm(i18n.t("cms_page_translation_delete_confirm"))) {
+  if (confirm(i18n.t("cms.page.translation.confirmDelete"))) {
     await deletePageConfirmed();
   }
 }
@@ -235,7 +235,7 @@ const editPage = () => {
     const newTranslation = {
       Page_id: model.pageID,
       languages_code: i18n.localeProperties.value.iso,
-      content: `<div><h3>${i18n.t('cms_page_translation_content_new')}</h3></div>`,
+      content: `<div><h3>${i18n.t('cms.page.translation.new')}</h3></div>`,
     };
     model.translations.push(newTranslation);
   }

@@ -1,87 +1,221 @@
 {
-  "home": "Startseite",
-  "to_project": "Zum Projekt",
-  "start_page": "Vorbemerkungen",
-  "explain": "Erklärung",
-  "globalSearch": "Portalsuche",
-  "search": "Suche",
-  "contact": "Kontakt",
-  "language": "Sprache",
-  "about": "Über",
-  "about_qed": "Über qed",
-  "project": "Das Projekt",
-  "regest": "Regesten",
-  "reims1": "Reims I: Erzbischöfe",
-  "genf1": "Genf I: Bischöfe",
-  "editions": "Editionen",
-  "publications": "Publikationen",
-  "intro":"Historische Einführung",
-  "regests":"Regesten",
-  "incipits":"Incipits",
-  "writings":"Handschriften",
-  "decretals":"Dekretalen",
-  "sources":"Quellen und Literatur",
-  "search_basic": "Einfache Suche",
-  "search_extended": "Erweiterte Suche",
-  "search_submit": "Suchen",
-  "search_page_prev": "vorherige Seite",
-  "search_page_next": "nächste Seite",
-  "search_pagination": "Paginierung Suche",
-  "seach_page_go_to": "Gehe zu Seite {page}",
-  "search_no_hits": "Keine Treffer",
-  "go_to_regest": "Gehe zu Regest {regest}",
-  "search_field_allMeta": "Freie Suche",
-  "search_field_allMeta_help": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
-  "search_field_person": "Person",
-  "search_field_person_help": "Durchsucht die Metadaten nach einer Person",
-  "search_field_place": "Ort",
-  "search_field_place_help": "Durchsucht die Metadaten nach einem Ort",
-  "search_field_initium": "Incipit",
-  "search_field_initium_help": "",
-  "search_field_recipient": "Empfänger",
-  "search_facet_spurium": "Spurium (†)",
-  "search_facet_deperditum": "Deperditum/historiographische Notiz ( * )",
-  "search_facet_recipient": "Empfänger",
-  "search_field_recipient_help": "",
-  "search_facet_issuer": "Aussteller",
-  "search_field_issuer": "Aussteller",
-  "search_field_issuer_help": "",
-  "search_facet_ueberlieferungsform": "Überlieferungsform",
-  "search_facet_show_more": "Mehr anzeigen",
-  "search_facet_show_less": "Weniger anzeigen",
-  "search_field_date": "Datum",
-  "search_field_date_help": "",
-  "search_field_date_range_label": "Zeitraum",
-  "search_field_dateText": "Datum (Text)",
-  "search_field_dateText_help": "",
-  "search_field_jaffe2": "Jaffé 2",
-  "search_field_jaffe3": "Jaffé 3",
-  "regest_dekretale": "Dekretalen",
-  "regest_ueberlieferungsform": "Überlieferungsform",
-  "regest_pontifikatPP": "PontifikatPP",
-  "regest_pontifikatAEP": "PontifikatAEP",
-  "regest_ueberlieferung": "Überlieferung",
-  "regest_kopiale_ueberlieferung": "Kopiale Überlieferung",
-  "regest_erwaehnungen": "Erwähnungen",
-  "regest_sachkommentar": "Sachkommentar",
-  "regest_editionen": "Editionen",
-  "regest_person_index": "Personenindex",
-  "regest_place_index": "Ortsindex",
-  "regest_dekretale_index": "Dekretalenindex",
-  "regest_regests": "Regesten",
-  "regest_original": "Original",
-  "url_type_geschichtsquellen.de": "Geschichtsquellen.de",
+  "Dokumentation": {
+    "Namenskonvention": {
+      "Abschnitte": "als Array gliedern",
+      "Leerzeichen": "als Kamelhöcker schreiben"
+    }
+  },
+  "qed": {
+    "mainMenu": {
+      "home": "Startseite",
+      "search": "Portalsuche",
+      "about": "Über qed"
+    }
+  },
+  "gpo": {
+    "mainMenu": {
+      "project": "Projekt",
+      "regesta": {
+        "label":"Regesten",
+        "reims1": "Reims I: Erzbischöfe"
+      },
+      "publications": "Publikationen",
+      "citation": "Zitierhinweis",
+      "contact": "Kontakt"
+    },
+    "subMenu": {
+      "reims1": {
+        "home": "Vorbemerkungen",
+        "intro": "Historische Einführung",
+        "regests": "Regesten",
+        "search": "Suche",
+        "incipits": "Incipits",
+        "writings": "Handschriften",
+        "decretals": "Dekretalen",
+        "sources": "Quellen und Literatur",
+        "persons": "Personen",
+        "places": "Orte"
+      }
+    },
+    "pages": {
+      "regesta": {
+        "reims1": {
+          "headline": "Reims I: Erzbischöfe"
+        },
+        "genf1": {
+          "headline": "Genf I: Bischöfe"
+        }
+      },
+      "regest": {
+        "headline": "Regesten",
+        "dekretale": "Dekretalen",
+        "editionen": "Editionen",
+        "erwaehnungen": "Erwähnungen",
+        "kopialeUeberlieferung": "Kopiale Überlieferung",
+        "original": "Original",
+        "pontifikatAEP": "PontifikatAEP",
+        "pontifikatPP": "PontifikatPP",
+        "sachkommentar": "Sachkommentar",
+        "ueberlieferung": "Überlieferung",
+        "ueberlieferungsform": "Überlieferungsform",
+        "regests": "Regesten",
+        "author": "Autor",
+        "publisher": "Herausgeber",
+        "editor": "Bearbeiter"
+      },
+      "incipitIndex": "Incipits",
+      "manuscriptIndex": "Handschriften",
+      "dekretaleIndex": "Dekretalenindex",
+      "sourceIndex": "Quellen- und Literaturverzeichnis",
+      "personIndex": "Personenindex",
+      "placeIndex": "Ortsindex"
+    },
+    "editionShortTitle": "Kurztitel der Editionen"
+  },
+  "sosu": {
+    "mainMenu": {
+      "home": "Startseite",
+      "about": "Über",
+      "documents": "Dokumente",
+      "search": "Suche",
+      "contact": "Kontakt"
+    },
+    "subMenu": {
+      "intro": "Einleitung",
+      "search": "Suche",
+      "sovietHistorians": "The Soviet Historians",
+      "team": "Team",
+      "userGuide": "User Guide",
+      "warOfAnnihilation": "Germany’s War of Annihilation"
+    }
+  },
+  "search": {
+    "label": "Suche",
+    "basic": "Einfache Suche",
+    "extended": "Erweiterte Suche",
+    "pageGoTo": "Gehe zu Seite {page}",
+    "hitCount": "{count} Objekt(e) gefunden",
+    "noHits": "Keine Treffer",
+    "pageNext": "nächste Seite",
+    "pagePrev": "vorherige Seite",
+    "pagination": "Paginierung Suche",
+    "submit": "Suchen",
+    "goToRegest": "Gehe zu Regest {regest}",
+    "sort": {
+      "idno": "Nummer des Regests",
+      "relevance": "Relevanz",
+      "asc": "aufsteigend (1-9) sortieren nach",
+      "desc": "absteigend (9-1) sortieren nach"
+    },
+    "facet": {
+      "deperditum": "Deperditum/historiographische Notiz ( * )",
+      "issuer": "Aussteller",
+      "recipient": "Empfänger",
+      "showLess": "Weniger anzeigen",
+      "showMore": "Mehr anzeigen",
+      "spurium": "Spurium (†)",
+      "ueberlieferungsform": "Überlieferungsform"
+    },
+    "field": {
+      "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
+      "allMeta": "Freie Suche",
+      "dateHelp": "",
+      "dateRangeLabel": "Zeitraum",
+      "date": "Datum",
+      "dateTextHelp": "",
+      "dateText": "Datum (Text)",
+      "initiumHelp": "",
+      "initium": "Incipit",
+      "issuerHelp": "",
+      "issuer": "Aussteller",
+      "jaffe2": "Jaffé 2",
+      "jaffe3": "Jaffé 3",
+      "personHelp": "Durchsucht die Metadaten nach einer Person",
+      "person": "Person",
+      "placeHelp": "Durchsucht die Metadaten nach einem Ort",
+      "place": "Ort",
+      "recipientHelp": "",
+      "recipient": "Empfänger"
+    }
+  },
+  "browser": {
+    "currentOf": " von ",
+    "invalidIndex": "Ungültige Nummer",
+    "goTo": "Gehe zu {to}"
+  },
+  "cms": {
+    "page": {
+      "loading": "Lade Seite...",
+      "newTranslation": "Neue Übersetzung",
+      "editTranslation": "Übersetzung bearbeiten",
+      "translation": {
+        "new": "Neue Übersetzung",
+        "delete": "Übersetzung löschen",
+        "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
+      },
+      "editor": {
+        "capitalize": "Kapitälchen",
+        "bibl": {
+          "label": "Referenz",
+          "defaultText": "Referenz",
+          "dialog": {
+            "cancel": "Abbrechen",
+            "reference": "Schlüssel",
+            "save": "Speichern",
+            "title": "Referenz einfügen",
+            "type" : {
+              "label": "Typ",
+              "dekretale": "Dekretale",
+              "external": "Externe Referenz",
+              "person": "Person",
+              "place": "Ort",
+              "source": "Quelle"
+            }
+          }
+        }
+      }
+    }
+  },
+  "error": {
+    "message": {
+      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
+      "404": "Seite konnte nicht gefunden werden."
+    }
+  },
+  "button":{
+    "back": "Zurück",
+    "toProject": "Zum Projekt"
+  },
+  "cc": {
+    "by": "von",
+    "photo": "Foto"
+  },
+  "login": {
+    "email": "Email",
+    "error": "Unbekannter Fehler beim Login",
+    "invalid": "Ungültige Email oder Passwort",
+    "password": "Password",
+    "submit": "Login",
+    "title": "Login",
+    "menu": {
+      "login": "Login",
+      "logout": "Logout"
+    }
+  },
   "url_type_arlima.net": "Arlima.net",
-  "url_type_link": "Link",
+  "url_type_band_i,1": "Band I,1",
+  "url_type_band_i,2": "Band I,2",
   "url_type_band_i": "Band I",
   "url_type_band_ii": "Band II",
   "url_type_band_iii": "Band III",
   "url_type_band_iv": "Band IV",
+  "url_type_band_ix": "Band IX",
   "url_type_band_v": "Band V",
   "url_type_band_vi": "Band VI",
+  "url_type_band_vii,1": "Band VII,1",
+  "url_type_band_vii,2": "Band VII,2",
   "url_type_band_vii": "Band VII",
   "url_type_band_viii": "Band VIII",
-  "url_type_band_ix": "Band IX",
   "url_type_band_x": "Band X",
   "url_type_band_xi": "Band XI",
   "url_type_band_xii": "Band XII",
@@ -89,70 +223,10 @@
   "url_type_band_xiv": "Band XIV",
   "url_type_band_xv": "Band XV",
   "url_type_band_xvi": "Band XVI",
-  "url_type_band_vii,1": "Band VII,1",
-  "url_type_band_vii,2": "Band VII,2",
-  "url_type_band_i,1": "Band I,1",
-  "url_type_band_i,2": "Band I,2",
-  "url_type_supplement": "Supplement",
-  "url_type_online-zugriff": "Online-Zugriff",
   "url_type_digitalisat": "Digitalisat",
+  "url_type_geschichtsquellen.de": "Geschichtsquellen.de",
   "url_type_katalogisat": "Katalogisat",
-  "edition_short_title": "Kurztitel der Editionen",
-  "browse_current_of": " von ",
-  "browser_go_to": "Gehe zu {to}",
-  "browse_index_invalid": "Ungültige Nummer",
-  "error_404": "Seite konnte nicht gefunden werden.",
-  "error": "Ein unbekannter Fehler ist aufgetreten.",
-  "back": "Zurück",
-  "person_index": "Personen",
-  "incipit_index": "Incipits",
-  "manuscript_index": "Handschriften",
-  "place_index": "Orte",
-  "source_index": "Quellen- und Literaturverzeichnis",
-  "dekretale_index": "Dekretalen",
-  "search_hit_count": "{count} Objekt(e) gefunden",
-  "cite": "Zitierhinweis",
-  "paris": "Paris",
-  "author": "Autor",
-  "publisher": "Herausgeber",
-  "editor": "Bearbeiter",
-  "photo": "Foto",
-  "by": "von",
-  "sort_asc": "aufsteigend (1-9) sortieren nach",
-  "sort_desc": "absteigend (9-1) sortieren nach",
-  "sort_relevance": "Relevanz",
-  "sort_idno": "ID",
-  "sosu_documents": "Dokumente",
-  "sosu_intro": "Einleitung",
-  "sosu_war_of_annihilation": "Germany’s War of Annihilation",
-  "sosu_soviet_historians": "The Soviet Historians",
-  "sosu_team": "Team",
-  "sosu_user_guide": "User Guide",
-  "login": "Login",
-  "logout": "Logout",
-  "login_email_label": "Email",
-  "login_password_label": "Password",
-  "login_submit_button": "Login",
-  "login_invalid": "Ungültige Email oder Passwort",
-  "login_error": "Unbekannter Fehler beim Login",
-  "login_title": "Login",
-  "cms_page_loading": "Lade Seite...",
-  "cms_page_translation_content_new": "Neue Übersetzung",
-  "cms_page_editor_capitalize": "Kapitälchen",
-  "cms_page_new_translation": "Neue Übersetzung",
-  "cms_page_edit_translation": "Übersetzung bearbeiten",
-  "cms_page_translation_delete": "Übersetzung löschen",
-  "cms_page_translation_delete_confirm": "Soll die Übersetzung wirklich gelöscht werden?",
-  "cms_page_editor_bibl": "Referenz",
-  "cms_page_editor_bibl_dialog_title": "Referenz einfügen",
-  "cms_page_editor_bibl_dialog_type": "Typ",
-  "cms_page_editor_bibl_dialog_type_external": "Externe Referenz",
-  "cms_page_editor_bibl_dialog_type_dekretale": "Dekretale",
-  "cms_page_editor_bibl_dialog_type_source": "Quelle",
-  "cms_page_editor_bibl_dialog_type_place": "Ort",
-  "cms_page_editor_bibl_dialog_type_person": "Person",
-  "cms_page_editor_bibl_dialog_refe": "Schlüssel",
-  "cms_page_editor_bibl_dialog_cancel": "Abbrechen",
-  "cms_page_editor_bibl_dialog_save": "Speichern",
-  "cms_page_editor_bibl_defaultText": "Referenz"
+  "url_type_link": "Link",
+  "url_type_online-zugriff": "Online-Zugriff",
+  "url_type_supplement": "Supplement"
 }

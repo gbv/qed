@@ -2,7 +2,7 @@
   <GalliaPontificaOnlineLayout>
 
     <template #content>
-          <h3>{{ $t("person_index") }}</h3>
+          <h3>{{ $t("gpo.pages.personIndex") }}</h3>
           <ul class="list-group list-group-flush no-underline" v-if="data">
             <li v-for="doc in data.docs" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
                 class="list-group-item">

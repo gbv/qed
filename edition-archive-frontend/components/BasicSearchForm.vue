@@ -5,7 +5,7 @@
         <input type="search" class="form-control" v-model="searchString">
       </div>
       <div class="col-auto">
-        <button type="submit" class="btn btn-primary">{{ $t("search_submit") }}</button>
+        <button type="submit" class="btn btn-primary">{{ $t("search.submit") }}</button>
       </div>
     </div>
   </form>

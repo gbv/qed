@@ -12,12 +12,11 @@
 
     <div class="wrapper">
       <section class="error 404" v-if="error?.statusCode === 404">
-        <h3>{{ $t("error_404") }}</h3>
-        <!-- {{ $t("error_404") }}-->
-        <button class="btn btn-primary float-end" @click="handleError">{{ $t("back") }}</button>
+        <h3>{{ $t("error.message.404") }}</h3>
+        <button class="btn btn-primary float-end" @click="handleError">{{ $t("button.back") }}</button>
       </section>
       <section class="error" v-else>
-        <h3>{{ $t("error") }}</h3>
+        <h3>{{ $t("error.message.unknown") }}</h3>
       </section>
     </div>
 

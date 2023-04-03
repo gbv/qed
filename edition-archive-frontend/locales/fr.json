@@ -1,34 +1,232 @@
 {
-  "home": "Home",
-  "to_project": "Au projet",
-  "start_page": "Remarques préliminaire",
-  "search": "Recherche",
-  "contact": "Contact",
-  "about": "À propos de qed",
-  "globalSearch": "Recherche de portail",
-  "about_qed": "About qed",
-  "project": "Le projet",
-  "regest": "Regestes",
-  "reims1": "Reims I: Archévêques",
-  "genf1": "Genève I: Évêques",
-  "editions": "Éditions",
-  "publications": "Publications",
-  "intro":"Notice historique",
-  "regests":"Regestes",
-  "incipits":"Incipit",
-  "writings":"Sources manuscrites",
-  "decretals":"Décrétales",
-  "sources":"Bibliographie générale",
-  "person_index": "Index des noms de personnes",
-  "place_index": "Index des noms de lieux",
-  "cite": "Indication pour la citation",
-  "paris": "Paris",
-  "documents": "Documents",
-  "intro": "Intro",
-  "war_of_annihilation": "Germany’s War of Annihilation",
-  "soviet_historians": "The Soviet Historians",
-  "team": "Team",
-  "user_guide": "User Guide",
-  "login": "Login",
-  "logout": "Logout"
+  "documentation": {
+    "conventionDeNommage": {
+      "sections": "comme cas de chameau",
+      "espaceBlanc": "comme cas de chameau"
+    }
+  },
+  "qed": {
+    "mainMenu": {
+      "home": "Home",
+      "search": "Recherche de portail",
+      "about": "À propos de qed"
+    }
+  },
+  "gpo": {
+    "mainMenu": {
+      "project": "Projet",
+      "regesta": {
+        "label":"Regestes",
+        "reims1": "Reims I: Archévêques"
+      },
+      "publications": "Publications",
+      "citation": "Indication pour la citation",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "reims1": {
+        "home": "Remarques préliminaires",
+        "intro": "Notice historique",
+        "regests": "Regesten",
+        "search": "Suche",
+        "incipits": "Incipits",
+        "writings": "Manuscrites",
+        "decretals": "Décrétales",
+        "sources": "Bibliographie générale",
+        "persons": "Personen",
+        "places": "Orte"
+      }
+    },
+    "pages": {
+      "regesta": {
+        "reims1": {
+          "headline": "Reims I: Erzbischöfe"
+        },
+        "genf1": {
+          "headline": "Genf I: Bischöfe"
+        }
+      },
+      "regest": {
+        "headline": "Regesten",
+        "dekretale": "Dekretalen",
+        "editionen": "Editionen",
+        "erwaehnungen": "Erwähnungen",
+        "kopialeUeberlieferung": "Kopiale Überlieferung",
+        "original": "Original",
+        "pontifikatAEP": "PontifikatAEP",
+        "pontifikatPP": "PontifikatPP",
+        "sachkommentar": "Sachkommentar",
+        "ueberlieferung": "Überlieferung",
+        "ueberlieferungsform": "Überlieferungsform",
+        "regests": "Regesten",
+        "author": "auteur",
+        "publisher": "éditeur",
+        "editor": "beiter",
+        },
+        "incipitIndex": "Incipits",
+        "manuscriptIndex": "Handschriften",
+        "dekretaleIndex": "Dekretalenindex",
+        "sourceIndex": "Quellen- und Literaturverzeichnis",
+        "personIndex": "Index des noms de personnes",
+        "placeIndex": "Index des noms de lieux"
+    },
+    "editionShortTitle": "Kurztitel der Editionen"
+  },
+  "sosu": {
+    "mainMenu": {
+      "home": "Home",
+      "about": "À propos",
+      "documents": "Documents",
+      "search": "Recherche",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "intro": "Einleitung",
+      "search": "Suche",
+      "sovietHistorians": "The Soviet Historians",
+      "team": "Team",
+      "userGuide": "User Guide",
+      "warOfAnnihilation": "Germany’s War of Annihilation"
+    }
+  },
+  "search": {
+    "label": "Recherche",
+    "basic": "Recherche simple",
+    "extended": "Recherche avancée",
+    "pageGoTo": "Gehe zu Seite {page}",
+    "hitCount": "{count} résultat(s) trouvé(s)",
+    "noHits": "Keine Treffer",
+    "pageNext": "nächste Seite",
+    "pagePrev": "vorherige Seite",
+    "pagination": "Paginierung Suche",
+    "submit": "Rechercher",
+    "goToRegest": "Gehe zu Regest {regest}",
+    "sort": {
+      "idno": "Numéro du regest",
+      "relevance": "Pertinence",
+      "asc": "Trier par ordre croissant (1-9)",
+      "desc": "Trier par ordre décroissant (9-1)"
+    },
+    "facet": {
+      "deperditum": "Deperditum/historiographische Notiz ( * )",
+      "issuer": "Auteur",
+      "recipient": "Destinataire",
+      "showLess": "Weniger anzeigen",
+      "showMore": "Voir plus",
+      "spurium": "Spurium (†)",
+      "ueberlieferungsform": "Mode de transmission"
+    },
+    "field": {
+      "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
+      "allMeta": "Recherche libre",
+      "dateHelp": "",
+      "dateRangeLabel": "Période",
+      "date": "Date",
+      "dateTextHelp": "",
+      "dateText": "Date (Text)",
+      "initiumHelp": "",
+      "initium": "Incipit",
+      "issuerHelp": "",
+      "issuer": "Aussteller",
+      "jaffe2": "Jaffé 2",
+      "jaffe3": "Jaffé 3",
+      "personHelp": "Durchsucht die Metadaten nach einer Person",
+      "person": "Personne",
+      "placeHelp": "Durchsucht die Metadaten nach einem Ort",
+      "place": "Lieu",
+      "recipientHelp": "",
+      "recipient": "Destinataire"
+    }
+  },
+  "browser": {
+    "currentOf": " von ",
+    "invalidIndex": "Ungültige Nummer",
+    "goTo": "Gehe zu {to}"
+  },
+  "cms": {
+    "page": {
+      "loading": "Lade Seite...",
+      "newTranslation": "Neue Übersetzung",
+      "editTranslation": "Übersetzung bearbeiten",
+      "translation": {
+        "new": "Neue Übersetzung",
+        "delete": "Übersetzung löschen",
+        "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
+      },
+      "editor": {
+        "capitalize": "Kapitälchen",
+        "bibl": {
+          "label": "Referenz",
+          "defaultText": "Referenz",
+          "dialog": {
+            "cancel": "Abbrechen",
+            "reference": "Schlüssel",
+            "save": "Speichern",
+            "title": "Referenz einfügen",
+            "type" : {
+              "label": "Typ",
+              "dekretale": "Dekretale",
+              "external": "Externe Referenz",
+              "person": "Person",
+              "place": "Ort",
+              "source": "Quelle"
+            }
+          }
+        }
+      }
+    }
+  },
+  "error": {
+    "message": {
+      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
+      "404": "Seite konnte nicht gefunden werden."
+    }
+  },
+  "button":{
+    "back": "Zurück",
+    "toProject": "Au projet"
+  },
+  "cc": {
+    "by": "von",
+    "photo": "Foto"
+  },
+  "login": {
+    "email": "Email",
+    "error": "Unbekannter Fehler beim Login",
+    "invalid": "Ungültige Email oder Passwort",
+    "password": "Password",
+    "submit": "Login",
+    "title": "Login",
+    "menu": {
+      "login": "Login",
+      "logout": "Logout"
+    }
+  },
+  "url_type_arlima.net": "Arlima.net",
+  "url_type_band_i,1": "Band I,1",
+  "url_type_band_i,2": "Band I,2",
+  "url_type_band_i": "Band I",
+  "url_type_band_ii": "Band II",
+  "url_type_band_iii": "Band III",
+  "url_type_band_iv": "Band IV",
+  "url_type_band_ix": "Band IX",
+  "url_type_band_v": "Band V",
+  "url_type_band_vi": "Band VI",
+  "url_type_band_vii,1": "Band VII,1",
+  "url_type_band_vii,2": "Band VII,2",
+  "url_type_band_vii": "Band VII",
+  "url_type_band_viii": "Band VIII",
+  "url_type_band_x": "Band X",
+  "url_type_band_xi": "Band XI",
+  "url_type_band_xii": "Band XII",
+  "url_type_band_xiii": "Band XIII",
+  "url_type_band_xiv": "Band XIV",
+  "url_type_band_xv": "Band XV",
+  "url_type_band_xvi": "Band XVI",
+  "url_type_digitalisat": "Digitalisat",
+  "url_type_geschichtsquellen.de": "Geschichtsquellen.de",
+  "url_type_katalogisat": "Katalogisat",
+  "url_type_link": "Link",
+  "url_type_online-zugriff": "Online-Zugriff",
+  "url_type_supplement": "Supplement"
 }
