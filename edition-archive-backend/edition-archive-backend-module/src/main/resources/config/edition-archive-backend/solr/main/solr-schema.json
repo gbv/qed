@@ -6,6 +6,96 @@
     }
   },
   {
+    "add-field-type": {
+      "name": "dea_text_de",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "analyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.StopFilterFactory",
+            "format": "snowball",
+            "words": "lang/stopwords_de.txt",
+            "ignoreCase": "true"
+          },
+          {
+            "class": "solr.GermanNormalizationFilterFactory"
+          },
+          {
+            "class": "solr.GermanLightStemFilterFactory"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "add-field-type": {
+      "name": "dea_text_en",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "analyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.StopFilterFactory",
+            "words": "lang/stopwords_en.txt",
+            "ignoreCase": "true"
+          },
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.EnglishPossessiveFilterFactory"
+          },
+          {
+            "class": "solr.KeywordMarkerFilterFactory",
+            "protected": "protwords.txt"
+          },
+          {
+            "class": "solr.PorterStemFilterFactory"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "add-field-type": {
+      "name": "dea_text_fr",
+      "class": "solr.TextField",
+      "positionIncrementGap": "100",
+      "analyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
+        },
+        "filters": [
+          {
+            "class": "solr.ElisionFilterFactory"
+          },
+          {
+            "class": "solr.LowerCaseFilterFactory"
+          },
+          {
+            "class": "solr.StopFilterFactory",
+            "format": "snowball",
+            "words": "lang/stopwords_fr.txt",
+            "ignoreCase": "true"
+          },
+          {
+            "class": "solr.FrenchLightStemFilterFactory"
+          }
+        ]
+      }
+     }
+  },
+  {
     "add-field": {
       "name": "displayName",
       "type": "string",
@@ -143,9 +233,94 @@
   },
   {
     "add-field": {
+      "name": "issuer.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "issuer",
+      "dest": "issuer.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuer.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "issuer",
+      "dest": "issuer.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuer.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "issuer",
+      "dest": "issuer.fr"
+    }
+  },
+  {
+    "add-field": {
       "name": "recipient",
       "type": "text_general",
-      "stored": true
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "recipient.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "recipient",
+      "dest": "recipient.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "recipient.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "recipient",
+      "dest": "recipient.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "recipient.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "recipient",
+      "dest": "recipient.fr"
     }
   },
   {
@@ -170,6 +345,48 @@
       "type": "text_general",
       "stored": true,
       "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "person.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "person",
+      "dest": "person.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "person.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "person",
+      "dest": "person.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "person.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "person",
+      "dest": "person.fr"
     }
   },
   {
@@ -249,7 +466,50 @@
     "add-field": {
       "name": "issuedPlace",
       "type": "text_general",
-      "stored": true
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuedPlace.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "issuedPlace",
+      "dest": "issuedPlace.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuedPlace.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "issuedPlace",
+      "dest": "issuedPlace.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "issuedPlace.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "issuedPlace",
+      "dest": "issuedPlace.fr"
     }
   },
   {

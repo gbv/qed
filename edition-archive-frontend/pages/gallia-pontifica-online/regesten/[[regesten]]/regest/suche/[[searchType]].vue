@@ -438,12 +438,12 @@ async function triggerSearch(query: LocationQuery) {
 
       if (model.extendedSearch.person != null && model.extendedSearch.person != "") {
         const escapedPerson = escapeSpecialChars(model.extendedSearch.person);
-        q.push(`person:${escapedPerson}`);
+        q.push(`(person:${escapedPerson} OR person.de:${escapedPerson} OR person.en:${escapedPerson} OR person.fr:${escapedPerson})`);
       }
 
       if (model.extendedSearch.place != null && model.extendedSearch.place != "") {
         const escapedPlace = escapeSpecialChars(model.extendedSearch.place);
-        q.push(`issuedPlace:${escapedPlace}`);
+        q.push(`(issuedPlace:${escapedPlace} OR issuedPlace.de:${escapedPlace} OR issuedPlace.en:${escapedPlace} OR issuedPlace.fr:${escapedPlace})`);
       }
 
       if (model.extendedSearch.initium != null && model.extendedSearch.initium != "") {
@@ -453,12 +453,12 @@ async function triggerSearch(query: LocationQuery) {
 
       if (model.extendedSearch.recipient != null && model.extendedSearch.recipient != "") {
         const escapedRecipient = escapeSpecialChars(model.extendedSearch.recipient);
-        q.push(`recipient:${escapedRecipient}`);
+        q.push(`(recipient:${escapedRecipient} OR recipient.de:${escapedRecipient} OR recipient.en:${escapedRecipient} OR recipient.fr:${escapedRecipient})`);
       }
 
       if (model.extendedSearch.issuer != null && model.extendedSearch.issuer != "") {
         const escapedIssuer = escapeSpecialChars(model.extendedSearch.issuer);
-        q.push(`issuer:${escapedIssuer}`);
+        q.push(`(issuer:${escapedIssuer} OR issuer.de:${escapedIssuer} OR issuer.en:${escapedIssuer} OR issuer.fr:${escapedIssuer})`);
       }
 
       if(model.extendedSearch.jaffe2 != null && model.extendedSearch.jaffe2 != "") {
