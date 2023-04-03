@@ -4,7 +4,7 @@
     <template #content>
           <h3>{{ $t("gpo.pages.personIndex") }}</h3>
           <ul class="list-group list-group-flush no-underline" v-if="data">
-            <li v-for="doc in data.docs" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
+            <li v-for="doc in data" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
                 class="list-group-item">
               <GalliaPontificaOnlinePerson :personId="doc.id" :skipDisplayName="true">
                 {{ doc.displayName }} <i v-if="hasExternalIdentifier(doc) || hasKey(doc)"
@@ -40,12 +40,18 @@ const hasKey = (doc: any) => {
 }
 
 const {data, error} = await useAsyncData(`objectType:person`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=objectType:person&wt=json&rows=99999&sort=displayName%20asc`)
+  const request = await fetch(`${$solrURL()}main/select/?q=objectType:person&wt=json&rows=99999`)
   const json = await request.json();
   if (json.response.numFound === 0) {
     throw 404;
   }
-  if(process.client){
+
+  const docs = json.response.docs;
+  docs.sort((a: any, b: any) => {
+    return a.displayName.localeCompare(b.displayName);
+  });
+
+  if(process?.client){
     window.setTimeout(() => {
       const el = document.getElementById(highlight.value);
       if(el){
@@ -53,7 +59,8 @@ const {data, error} = await useAsyncData(`objectType:person`, async () => {
       }
     }, 100);
   }
-  return json.response;
+
+  return docs;
 });
 </script>
 

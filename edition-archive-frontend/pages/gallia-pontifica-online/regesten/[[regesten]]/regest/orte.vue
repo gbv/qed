@@ -4,7 +4,7 @@
     <template #content>
       <h3>{{ $t("gpo.pages.placeIndex") }}</h3>
       <ul class="list-group list-group-flush no-underline" v-if="data">
-        <li v-for="doc in data.docs" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
+        <li v-for="doc in data" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
             class="list-group-item">
           <GalliaPontificaOnlinePlace v-if="doc.objectType=='place'" :placeId="doc.id" :skipDisplayName="true">
             {{ doc.displayName }} <i v-if="hasExternalIdentifier(doc) || hasKey(doc)"
@@ -44,11 +44,17 @@ const hasKey = (doc: any) => {
 
 const {$solrURL, $backendURL} = useNuxtApp();
 const {data, error} = await useAsyncData(`objectType:place or objectType:organization`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=objectType:place%20OR%20objectType:organization&wt=json&rows=99999&sort=displayName%20asc`)
+  const request = await fetch(`${$solrURL()}main/select/?q=objectType:place%20OR%20objectType:organization&wt=json&rows=99999`)
   const json = await request.json();
   if (json.response.numFound === 0) {
     throw 404;
   }
+
+  const docs = json.response.docs;
+  docs.sort((a: any, b: any) => {
+    return a.displayName.localeCompare(b.displayName);
+  });
+
   if(process.client){
     window.setTimeout(() => {
       const el = document.getElementById(highlight.value);
@@ -57,7 +63,7 @@ const {data, error} = await useAsyncData(`objectType:place or objectType:organiz
       }
     }, 100);
   }
-  return json.response;
+  return docs;
 });
 </script>
 
