@@ -1,8 +1,7 @@
 <template>
   <span class="msidentifier" v-if="$props.msidentifier">
-     <nuxt-link class="icon-link" :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${ getAttribute($props.msidentifier, 'n')?.value }`">
-        <span class="bi bi-book"> </span>
-     </nuxt-link>
+    <GalliaPontificaOnlineMsIdentifier :handschriften-key="identifier">
+    </GalliaPontificaOnlineMsIdentifier>
      <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.msidentifier.content" :content="c"/>
 </span>
 </template>
@@ -14,6 +13,10 @@ const route = useRoute()
 const props = defineProps(["msidentifier"])
 
 const {$solrURL, $backendURL} = useNuxtApp();
+
+const identifier = computed(() => {
+  return getAttribute(props.msidentifier, 'n')?.value || ''
+});
 
 </script>
 
