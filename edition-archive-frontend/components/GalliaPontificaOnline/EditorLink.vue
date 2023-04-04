@@ -18,11 +18,9 @@
     </span>
 
     <span v-if="$props.type === 'dekretale'" class="popout-wrapper position-relative d-inline">
-      <nuxt-link
-        :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/dekretale?dekretaleKey=${$props.refe}`"
-        class="icon-link">
-        <span class="bi bi-book"> </span> <slot/>
-      </nuxt-link>
+      <GalliaPontificaOnlineDekretale :dekretale-key="`${$props.refe}`">
+        <slot />
+      </GalliaPontificaOnlineDekretale>
     </span>
 
     <a v-else-if="$props.type === 'source'" :href="'#' + $props.refe" class="icon-link"
