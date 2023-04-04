@@ -1,0 +1,924 @@
+{
+	"version": 1,
+	"directus": "9.23.1",
+	"vendor": "sqlite",
+	"collections": [
+		{
+			"collection": "Page",
+			"meta": {
+				"accountability": "all",
+				"archive_app_filter": true,
+				"archive_field": "status",
+				"archive_value": "archived",
+				"collapse": "open",
+				"collection": "Page",
+				"color": null,
+				"display_template": null,
+				"group": null,
+				"hidden": false,
+				"icon": null,
+				"item_duplication_fields": null,
+				"note": null,
+				"singleton": false,
+				"sort": null,
+				"sort_field": null,
+				"translations": null,
+				"unarchive_value": "draft"
+			},
+			"schema": {
+				"name": "Page"
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"meta": {
+				"accountability": "all",
+				"archive_app_filter": true,
+				"archive_field": null,
+				"archive_value": null,
+				"collapse": "open",
+				"collection": "Page_translations",
+				"color": null,
+				"display_template": "{{Page_id.slug}}",
+				"group": null,
+				"hidden": false,
+				"icon": "import_export",
+				"item_duplication_fields": null,
+				"note": null,
+				"singleton": false,
+				"sort": null,
+				"sort_field": null,
+				"translations": null,
+				"unarchive_value": null
+			},
+			"schema": {
+				"name": "Page_translations"
+			}
+		},
+		{
+			"collection": "languages",
+			"meta": {
+				"accountability": "all",
+				"archive_app_filter": true,
+				"archive_field": null,
+				"archive_value": null,
+				"collapse": "open",
+				"collection": "languages",
+				"color": null,
+				"display_template": null,
+				"group": null,
+				"hidden": false,
+				"icon": null,
+				"item_duplication_fields": null,
+				"note": null,
+				"singleton": false,
+				"sort": null,
+				"sort_field": null,
+				"translations": null,
+				"unarchive_value": null
+			},
+			"schema": {
+				"name": "languages"
+			}
+		}
+	],
+	"fields": [
+		{
+			"collection": "Page",
+			"field": "contents",
+			"type": "alias",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "contents",
+				"group": null,
+				"hidden": false,
+				"interface": "translations",
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": [
+					"translations"
+				],
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "fill"
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "date_created",
+			"type": "timestamp",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": "datetime",
+				"display_options": {
+					"relative": true
+				},
+				"field": "date_created",
+				"group": null,
+				"hidden": true,
+				"interface": "datetime",
+				"note": null,
+				"options": null,
+				"readonly": true,
+				"required": false,
+				"sort": 4,
+				"special": [
+					"cast-timestamp",
+					"date-created"
+				],
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "half"
+			},
+			"schema": {
+				"name": "date_created",
+				"table": "Page",
+				"data_type": "datetime",
+				"default_value": null,
+				"max_length": null,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "date_updated",
+			"type": "timestamp",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": "datetime",
+				"display_options": {
+					"relative": true
+				},
+				"field": "date_updated",
+				"group": null,
+				"hidden": true,
+				"interface": "datetime",
+				"note": null,
+				"options": null,
+				"readonly": true,
+				"required": false,
+				"sort": 6,
+				"special": [
+					"cast-timestamp",
+					"date-updated"
+				],
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "half"
+			},
+			"schema": {
+				"name": "date_updated",
+				"table": "Page",
+				"data_type": "datetime",
+				"default_value": null,
+				"max_length": null,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "id",
+			"type": "integer",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "id",
+				"group": null,
+				"hidden": true,
+				"interface": "input",
+				"note": null,
+				"options": null,
+				"readonly": true,
+				"required": false,
+				"sort": 1,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "id",
+				"table": "Page",
+				"data_type": "integer",
+				"default_value": null,
+				"max_length": null,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": false,
+				"is_unique": false,
+				"is_primary_key": true,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": true,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "project",
+			"type": "string",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "project",
+				"group": null,
+				"hidden": false,
+				"interface": "input",
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": 8,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "project",
+				"table": "Page",
+				"data_type": "varchar",
+				"default_value": null,
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "slug",
+			"type": "string",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "slug",
+				"group": null,
+				"hidden": false,
+				"interface": "input",
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": 7,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "slug",
+				"table": "Page",
+				"data_type": "varchar",
+				"default_value": null,
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": false,
+				"is_unique": true,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "status",
+			"type": "string",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": "labels",
+				"display_options": {
+					"choices": [
+						{
+							"text": "$t:published",
+							"value": "published",
+							"foreground": "#FFFFFF",
+							"background": "var(--primary)"
+						},
+						{
+							"text": "$t:draft",
+							"value": "draft",
+							"foreground": "#18222F",
+							"background": "#D3DAE4"
+						},
+						{
+							"text": "$t:archived",
+							"value": "archived",
+							"foreground": "#FFFFFF",
+							"background": "var(--warning)"
+						}
+					],
+					"showAsDot": true
+				},
+				"field": "status",
+				"group": null,
+				"hidden": false,
+				"interface": "select-dropdown",
+				"note": null,
+				"options": {
+					"choices": [
+						{
+							"text": "$t:published",
+							"value": "published"
+						},
+						{
+							"text": "$t:draft",
+							"value": "draft"
+						},
+						{
+							"text": "$t:archived",
+							"value": "archived"
+						}
+					]
+				},
+				"readonly": false,
+				"required": false,
+				"sort": 2,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "status",
+				"table": "Page",
+				"data_type": "varchar",
+				"default_value": "draft",
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": false,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "user_created",
+			"type": "string",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": "user",
+				"display_options": null,
+				"field": "user_created",
+				"group": null,
+				"hidden": true,
+				"interface": "select-dropdown-m2o",
+				"note": null,
+				"options": {
+					"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+				},
+				"readonly": true,
+				"required": false,
+				"sort": 3,
+				"special": [
+					"user-created"
+				],
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "half"
+			},
+			"schema": {
+				"name": "user_created",
+				"table": "Page",
+				"data_type": "char",
+				"default_value": null,
+				"max_length": 36,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": "directus_users",
+				"foreign_key_column": "id"
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "user_updated",
+			"type": "string",
+			"meta": {
+				"collection": "Page",
+				"conditions": null,
+				"display": "user",
+				"display_options": null,
+				"field": "user_updated",
+				"group": null,
+				"hidden": true,
+				"interface": "select-dropdown-m2o",
+				"note": null,
+				"options": {
+					"template": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+				},
+				"readonly": true,
+				"required": false,
+				"sort": 5,
+				"special": [
+					"user-updated"
+				],
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "half"
+			},
+			"schema": {
+				"name": "user_updated",
+				"table": "Page",
+				"data_type": "char",
+				"default_value": null,
+				"max_length": 36,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": "directus_users",
+				"foreign_key_column": "id"
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"field": "Page_id",
+			"type": "integer",
+			"meta": {
+				"collection": "Page_translations",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "Page_id",
+				"group": null,
+				"hidden": false,
+				"interface": null,
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "Page_id",
+				"table": "Page_translations",
+				"data_type": "integer",
+				"default_value": null,
+				"max_length": null,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": "Page",
+				"foreign_key_column": "id"
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"field": "content",
+			"type": "text",
+			"meta": {
+				"collection": "Page_translations",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "content",
+				"group": null,
+				"hidden": false,
+				"interface": "input-rich-text-html",
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "content",
+				"table": "Page_translations",
+				"data_type": "text",
+				"default_value": null,
+				"max_length": null,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"field": "id",
+			"type": "integer",
+			"meta": {
+				"collection": "Page_translations",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "id",
+				"group": null,
+				"hidden": true,
+				"interface": null,
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "id",
+				"table": "Page_translations",
+				"data_type": "integer",
+				"default_value": null,
+				"max_length": null,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": false,
+				"is_unique": false,
+				"is_primary_key": true,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": true,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"field": "languages_code",
+			"type": "string",
+			"meta": {
+				"collection": "Page_translations",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "languages_code",
+				"group": null,
+				"hidden": true,
+				"interface": null,
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "languages_code",
+				"table": "Page_translations",
+				"data_type": "varchar",
+				"default_value": null,
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": "languages",
+				"foreign_key_column": "code"
+			}
+		},
+		{
+			"collection": "languages",
+			"field": "code",
+			"type": "string",
+			"meta": {
+				"collection": "languages",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "code",
+				"group": null,
+				"hidden": false,
+				"interface": null,
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "code",
+				"table": "languages",
+				"data_type": "varchar",
+				"default_value": null,
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": false,
+				"is_unique": true,
+				"is_primary_key": true,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "languages",
+			"field": "direction",
+			"type": "string",
+			"meta": {
+				"collection": "languages",
+				"conditions": null,
+				"display": "labels",
+				"display_options": {
+					"choices": [
+						{
+							"text": "$t:left_to_right",
+							"value": "ltr"
+						},
+						{
+							"text": "$t:right_to_left",
+							"value": "rtl"
+						}
+					],
+					"format": false
+				},
+				"field": "direction",
+				"group": null,
+				"hidden": false,
+				"interface": "select-dropdown",
+				"note": null,
+				"options": {
+					"choices": [
+						{
+							"text": "$t:left_to_right",
+							"value": "ltr"
+						},
+						{
+							"text": "$t:right_to_left",
+							"value": "rtl"
+						}
+					]
+				},
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "direction",
+				"table": "languages",
+				"data_type": "varchar",
+				"default_value": "ltr",
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		},
+		{
+			"collection": "languages",
+			"field": "name",
+			"type": "string",
+			"meta": {
+				"collection": "languages",
+				"conditions": null,
+				"display": null,
+				"display_options": null,
+				"field": "name",
+				"group": null,
+				"hidden": false,
+				"interface": null,
+				"note": null,
+				"options": null,
+				"readonly": false,
+				"required": false,
+				"sort": null,
+				"special": null,
+				"translations": null,
+				"validation": null,
+				"validation_message": null,
+				"width": "full"
+			},
+			"schema": {
+				"name": "name",
+				"table": "languages",
+				"data_type": "varchar",
+				"default_value": null,
+				"max_length": 255,
+				"numeric_precision": null,
+				"numeric_scale": null,
+				"is_nullable": true,
+				"is_unique": false,
+				"is_primary_key": false,
+				"is_generated": false,
+				"generation_expression": null,
+				"has_auto_increment": false,
+				"foreign_key_table": null,
+				"foreign_key_column": null
+			}
+		}
+	],
+	"relations": [
+		{
+			"collection": "Page",
+			"field": "user_created",
+			"related_collection": "directus_users",
+			"meta": {
+				"junction_field": null,
+				"many_collection": "Page",
+				"many_field": "user_created",
+				"one_allowed_collections": null,
+				"one_collection": "directus_users",
+				"one_collection_field": null,
+				"one_deselect_action": "nullify",
+				"one_field": null,
+				"sort_field": null
+			},
+			"schema": {
+				"table": "Page",
+				"column": "user_created",
+				"foreign_key_table": "directus_users",
+				"foreign_key_column": "id",
+				"constraint_name": null,
+				"on_update": "NO ACTION",
+				"on_delete": "NO ACTION"
+			}
+		},
+		{
+			"collection": "Page",
+			"field": "user_updated",
+			"related_collection": "directus_users",
+			"meta": {
+				"junction_field": null,
+				"many_collection": "Page",
+				"many_field": "user_updated",
+				"one_allowed_collections": null,
+				"one_collection": "directus_users",
+				"one_collection_field": null,
+				"one_deselect_action": "nullify",
+				"one_field": null,
+				"sort_field": null
+			},
+			"schema": {
+				"table": "Page",
+				"column": "user_updated",
+				"foreign_key_table": "directus_users",
+				"foreign_key_column": "id",
+				"constraint_name": null,
+				"on_update": "NO ACTION",
+				"on_delete": "NO ACTION"
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"field": "Page_id",
+			"related_collection": "Page",
+			"meta": {
+				"junction_field": "languages_code",
+				"many_collection": "Page_translations",
+				"many_field": "Page_id",
+				"one_allowed_collections": null,
+				"one_collection": "Page",
+				"one_collection_field": null,
+				"one_deselect_action": "nullify",
+				"one_field": "contents",
+				"sort_field": null
+			},
+			"schema": {
+				"table": "Page_translations",
+				"column": "Page_id",
+				"foreign_key_table": "Page",
+				"foreign_key_column": "id",
+				"constraint_name": null,
+				"on_update": "NO ACTION",
+				"on_delete": "SET NULL"
+			}
+		},
+		{
+			"collection": "Page_translations",
+			"field": "languages_code",
+			"related_collection": "languages",
+			"meta": {
+				"junction_field": "Page_id",
+				"many_collection": "Page_translations",
+				"many_field": "languages_code",
+				"one_allowed_collections": null,
+				"one_collection": "languages",
+				"one_collection_field": null,
+				"one_deselect_action": "nullify",
+				"one_field": null,
+				"sort_field": null
+			},
+			"schema": {
+				"table": "Page_translations",
+				"column": "languages_code",
+				"foreign_key_table": "languages",
+				"foreign_key_column": "code",
+				"constraint_name": null,
+				"on_update": "NO ACTION",
+				"on_delete": "SET NULL"
+			}
+		}
+	]
+}
