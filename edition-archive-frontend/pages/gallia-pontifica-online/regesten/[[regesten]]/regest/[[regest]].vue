@@ -4,8 +4,8 @@
       <h3>{{ $t("gpo.pages.regest.headline") }}</h3>
       <div v-if="viewModel" class="content regest-detail-view">
 
-        <BrowseComponent :current="parseInt(regestedIdno)" :next-label="browseData.nextLabel" :of="browseData.count"
-                         :prev-label="browseData.prevLabel" v-on:nextClicked="browseNextClicked"
+        <BrowseComponent :current="parseInt(regestedIdno)" :next-label="viewModel.nextLabel" :of="viewModel.count"
+                         :prev-label="viewModel.prevLabel" v-on:nextClicked="browseNextClicked"
                          v-on:indexEntered="browseIndexEntered" v-on:prevClicked="browsePrevClicked"/>
 
         <div class="content regest-detail-view__content">
@@ -157,16 +157,19 @@ const route = useRoute()
 const config = useRuntimeConfig()
 
 interface RegestViewModel {
-  pontifikatPP: Array<XElement | string>|null;
-  pontifikatAEP: Array<XElement | string>|null;
-  issued: XElement|null;
-  idno: string|null;
-  witListPar: XElement|null;
-  abstract: XElement|null;
-  incipit: Array<XElement>|null;
-  dekretale: XElement|null;
-  ueberlieferung: XElement|null;
-  listBiblEdition: XElement|null;
+  nextLabel: string | null;
+  prevLabel: string | null;
+  count: number | null;
+  pontifikatPP: Array<XElement | string> | null;
+  pontifikatAEP: Array<XElement | string> | null;
+  issued: XElement | null;
+  idno: string | null;
+  witListPar: XElement | null;
+  abstract: XElement | null;
+  incipit: Array<XElement> | null;
+  dekretale: XElement | null;
+  ueberlieferung: XElement | null;
+  listBiblEdition: XElement | null;
   listBiblRegest: XElement|null;
   erwaehnungen: XElement|null;
   sachkommentar: Array<XElement>|null;
@@ -190,8 +193,12 @@ const traverse = (element: XElement, nodeHandler:(node:XNode)=>void) => {
 };
 
 const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=idno:${regestedIdno}&wt=json`)
-  const json = await request.json();
+  const [request, countRequest] = await Promise.all([
+    fetch(`${$solrURL()}main/select/?q=idno:${regestedIdno}&wt=json`),
+    fetch(`${$solrURL()}main/select/?q=objectType:regest&wt=json&rows=0`)]);
+
+  const [json, countJson] = await Promise.all([request.json(), countRequest.json()]);
+
   if (json.response.numFound === 0) {
     throw 404;
   }
@@ -201,11 +208,17 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
 
   const vm: RegestViewModel = {} as RegestViewModel
 
+  vm.prevLabel = parseInt(regestedIdno) > 1 ? (parseInt(regestedIdno) - 1).toString() : null;
+
+  vm.nextLabel = parseInt(regestedIdno) < countJson.response.numFound ? (parseInt(regestedIdno) + 1).toString() : null;
+
+  vm.count = countJson.response.numFound;
+
   const aep = findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatAEP')));
-  vm.pontifikatAEP = aep !== null ? flattenElementExcept(aep, byName('cei:persName')): null;
+  vm.pontifikatAEP = aep !== null ? flattenElementExcept(aep, byName('cei:persName')) : null;
 
   const pp = findFirstElement(doc, and(byName('cei:p'), byAttr('type', 'PontifikatPP')));
-  vm.pontifikatPP = pp !== null ?  flattenElementExcept(pp, byName('cei:persName')): null;
+  vm.pontifikatPP = pp !== null ? flattenElementExcept(pp, byName('cei:persName')) : null;
 
   vm.issued = findFirstElement(doc, byName('cei:issued'));
 
@@ -238,30 +251,6 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
   return vm;
 });
 
-
-const {data: browseData} = await useAsyncData(`idno-count-follow:${regestedIdno}`, async () => {
-  const [prevRequest, nextRequest] = await Promise.all([
-    fetch(`${$solrURL()}main/select/?q=idno:[* TO ${regestedIdno}]&wt=json&rows=2&sort=idno desc`),
-    fetch(`${$solrURL()}main/select/?q=idno:[${regestedIdno} TO *]&wt=json&rows=2&sort=idno asc`)
-  ]);
-
-  const [prevJson, nextJson] = await Promise.all(
-    [prevRequest.json(), nextRequest.json()]
-  );
-  const result: any = {
-    count: prevJson.response.numFound + nextJson.response.numFound - 1,
-  };
-
-  if (prevJson.response.docs.length > 1) {
-    result.prevLabel = prevJson.response.docs[1].idno + "";
-  }
-
-  if (nextJson.response.docs.length > 1) {
-    result.nextLabel = nextJson.response.docs[1].idno + "";
-  }
-
-  return result;
-});
 
 const browsePrevClicked = () => {
   const regestNumber = parseInt(regestedIdno as string);
