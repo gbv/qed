@@ -98,13 +98,13 @@
 
           <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
           v-on:click="facetClicked('lost', true)">
-           {{ $t('search.facet.spurium') }}
+           {{ $t('search.facet.deperditum') }}
             <span class="badge bg-primary rounded-pill">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
           </li>
 
           <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
           v-on:click="facetClicked('fake', true)">
-           {{ $t('search.facet.deperditum') }}
+           {{ $t('search.facet.spurium') }}
             <span class="badge bg-primary rounded-pill">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
           </li>
 
