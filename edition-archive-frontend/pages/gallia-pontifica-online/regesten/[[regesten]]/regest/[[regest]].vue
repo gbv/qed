@@ -4,8 +4,8 @@
       <h3>{{ $t("gpo.pages.regest.headline") }}</h3>
       <div v-if="viewModel" class="content regest-detail-view">
 
-        <BrowseComponent :current="parseInt(regestedIdno)" :next-label="viewModel.nextLabel" :of="viewModel.count"
-                         :prev-label="viewModel.prevLabel" v-on:nextClicked="browseNextClicked"
+        <BrowseComponent :current="parseInt(regestedIdno)" :next-label="viewModel.nextLabel || ''" :of="viewModel.count || 0"
+                         :prev-label="viewModel.prevLabel||''" v-on:nextClicked="browseNextClicked"
                          v-on:indexEntered="browseIndexEntered" v-on:prevClicked="browsePrevClicked"/>
 
         <div class="content regest-detail-view__content">
