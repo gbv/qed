@@ -23,4 +23,20 @@ export default defineNuxtPlugin((nuxtApp) => {
             return config.public.directusURL;
         }
     });
+
+    nuxtApp.provide('sovietSurviorsURL', () => {
+        if (process.server && !process.dev) {
+            return config.public.sovietSurvivorsURLServer;
+        } else {
+            return config.public.sovietSurvivorsURL;
+        }
+    });
+
+    nuxtApp.provide('sovietSurvivorsSolrURL', () => {
+        if (process.server && !process.dev) {
+            return config.public.sovietSurvivorsSolrURLServer;
+        } else {
+            return config.public.sovietSurvivorsSolrURL;
+        }
+    });
 })

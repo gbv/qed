@@ -19,7 +19,6 @@ const currentLanguage = ref(i18n.locale.value)
 const currentSlot = ref(calcCurrentSlot());
 
 function calcCurrentSlot(): string {
-  console.log(currentLanguage.value);
   return currentLanguage.value in slots ? currentLanguage.value : props.fallback;
 }
 

@@ -172,6 +172,7 @@ import {XMLApi} from "~/api/XMLApi";
 import {byName, findFirstElement, flattenElement, byAttr, and} from "@mycore-org/xml-json-api"
 import SolrPaginator from "~/components/SolrPaginator.vue";
 import {LocationQuery, LocationQueryValue} from "vue-router";
+import {trimString} from "~/api/Utils";
 
 const i18n = useI18n();
 const route = useRoute();
@@ -675,20 +676,7 @@ async function facetClicked(facet: string, value: string|boolean) {
   }
 }
 
-function trimString(str: string | null): string | null {
-  if (str == null) {
-    return null;
-  }
-  const size = 240;
 
-  if (str.length > size) {
-    const trimmed = str.substring(0, size).trim();
-    const lastSpaceIndex = trimmed.lastIndexOf(' ');
-    return lastSpaceIndex === -1 ? trimmed + "…" : trimmed.substring(0, lastSpaceIndex) + "…";
-  } else {
-    return str;
-  }
-}
 
 watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
   triggerSearch(newQueryString);

@@ -39,6 +39,10 @@ export default defineNuxtConfig({
             solrURLServer: 'http://solr:8983/solr/',
             directusURL: 'http://localhost:8000/cms/',
             directusURLServer: 'http://cms:8055/',
+            sovietSurvivorsURLServer: 'https://qed.perspectivia.net/soviet-survivors-backend/',
+            sovietSurvivorsURL: 'https://qed.perspectivia.net/soviet-survivors-backend/',
+            sovietSurvivorsSolrURL: 'https://qed.perspectivia.net/soviet-survivors-solr/',
+            sovietSurvivorsSolrURLServer: 'https://qed.perspectivia.net/soviet-survivors-solr/'
         }
     },
     typescript: {
