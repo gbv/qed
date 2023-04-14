@@ -1,13 +1,12 @@
 <template>
   <div>
-    <nuxt-link
-      :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/quellen?quellenKey=${$props.source['identifier.key']}`">
-      {{ $props.source["shortTitle"] }}
-    </nuxt-link>
+    <span class="source-title">{{ $props.source["shortTitle"] }}</span>
     <p v-if="$props.source['longTitle']" class="longTitle">{{ $props.source['longTitle'] }}</p>
     <p v-if="$props.source['editionShortTitle']" class="editionShort">{{ $t("gpo.editionShortTitle") }}:
-      {{ $props.source['editionShortTitle'] }}</p>
+    {{ $props.source['editionShortTitle'] }}</p>
     <div class="link-list">
+      <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/quellen?quellenKey=${$props.source['identifier.key']}`">{{$t('search.label')}}</nuxt-link>
+      <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/quellen/#${$props.source['identifier.key']}`">{{$t('gpo.pages.sourceIndex')}}</nuxt-link>
       <a v-for="key in Object.keys($props.source).filter(str=> str.indexOf('url.') !== -1).sort(sortCompare)"
          :href="$props.source[key]">{{ $t('url_type_' + key.substring('url.'.length).toLowerCase()) }}</a>
     </div>
@@ -70,5 +69,9 @@ const sortCompare = (a: string, b: string) => {
 </script>
 
 <style scoped>
+
+.source-title {
+  font-weight: bold;
+}
 
 </style>

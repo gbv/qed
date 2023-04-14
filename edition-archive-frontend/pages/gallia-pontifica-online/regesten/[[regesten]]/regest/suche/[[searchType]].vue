@@ -172,7 +172,7 @@ import {XMLApi} from "~/api/XMLApi";
 import {byName, findFirstElement, flattenElement, byAttr, and} from "@mycore-org/xml-json-api"
 import SolrPaginator from "~/components/SolrPaginator.vue";
 import {LocationQuery, LocationQueryValue} from "vue-router";
-import {trimString} from "~/api/Utils";
+import {escapeSpecialChars, trimString} from "~/api/Utils";
 
 const i18n = useI18n();
 const route = useRoute();
@@ -297,12 +297,6 @@ const model: Model = reactive(
     sortOrder: "asc"
   });
 
-const escapeSpecialChars = (s: string) => s
-  .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
-    return '\\' + match;
-  })
-  .replace(/&&/g, '\\&\\&')
-  .replace(/\|\|/g, '\\|\\|');
 
 async function executeSearch(url: string, query: LocationQuery) {
   if (query.start) {

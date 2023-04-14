@@ -51,16 +51,32 @@ const {data, error} = await useAsyncData(`objectType:person`, async () => {
     return a.displayName.localeCompare(b.displayName);
   });
 
-  if(process?.client){
-    window.setTimeout(() => {
-      const el = document.getElementById(highlight.value);
-      if(el){
-        el.scrollIntoView();
-      }
-    }, 100);
-  }
-
   return docs;
+});
+
+onMounted(()=>{
+  if (process?.client && highlight.value!=='') {
+    const elPresentInterval = window.setInterval(() => {
+      const el = document.getElementById(highlight.value);
+
+      if (el) {
+        window.clearInterval(elPresentInterval);
+        let count = 0;
+        const interval = setInterval(() => {
+          if (count > 2) {
+            clearInterval(interval);
+          }
+
+          if(el.classList.contains("bg-secondary")){
+            el.classList.remove("bg-secondary");
+          } else {
+            el.classList.add("bg-secondary");
+          }
+          count++;
+        }, 300);
+      }
+    }, 200);
+  }
 });
 </script>
 

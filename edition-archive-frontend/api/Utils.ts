@@ -18,3 +18,12 @@ export function trimString(str: string | null): string | null {
     return str;
   }
 }
+
+export function escapeSpecialChars(s: string) {
+  return s
+    .replace(/([\+\-!\(\)\{\}\[\]\^"~\*\?:\\\/])/g, function (match) {
+      return '\\' + match;
+    })
+    .replace(/&&/g, '\\&\\&')
+    .replace(/\|\|/g, '\\|\\|');
+}
