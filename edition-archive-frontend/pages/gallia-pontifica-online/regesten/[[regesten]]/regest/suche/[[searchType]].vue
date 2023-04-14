@@ -609,57 +609,48 @@ async function pageChangedCallback(newPage: any) {
 }
 
 async function facetClicked(facet: string, value: string|boolean) {
-  let query = null;
+  let query = {} as any;
 
-  if(facet === "lost" && value === true) {
-    query = {
-      ...route.query,
-      lostFacet: (!model.facet.lostValues).toString()
+  for(let key in route.query) {
+    if(key === "start") {
+      continue;
     }
-  } else if(facet === "fake" && value === true) {
-    query = {
-      ...route.query,
-      fakeFacet: (!model.facet.fakeValues).toString()
-    }
-  } else if(typeof value === "boolean") {
+    query[key] = route.query[key];
+  }
 
+  if(facet!=="lost" && facet!=="fake" && typeof value === "boolean") {
+    return;
+  }
+  value=value as string;
 
-  } else if (facet === "issuer") {
-    if (model.facet.issuerEnabledValues.indexOf(value) > -1) {
-      query = {
-        ...route.query,
-        issuerFacet: [...model.facet.issuerEnabledValues.filter((v: string) => v !== value)]
+  switch (facet) {
+    case "lost":
+      query.lostFacet = (!model.facet.lostValues).toString()
+      break;
+    case "fake":
+      query.fakeFacet = (!model.facet.fakeValues).toString()
+      break;
+    case "issuer":
+      if (model.facet.issuerEnabledValues.indexOf(value) > -1) {
+        query.issuerFacet = [...model.facet.issuerEnabledValues.filter((v: string) => v !== value)]
+      } else {
+        query.issuerFacet = [...model.facet.issuerEnabledValues, value];
       }
-    } else {
-      query = {
-        ...route.query,
-        issuerFacet: [...model.facet.issuerEnabledValues, value]
-      };
-    }
-  } else if (facet === "recipient") {
-    if (model.facet.recipientEnabledValues.indexOf(value) > -1) {
-      query = {
-        ...route.query,
-        recipientFacet: [...model.facet.recipientEnabledValues.filter((v: string) => v !== value)]
+      break;
+    case "recipient":
+      if(model.facet.recipientEnabledValues.indexOf(value) > -1) {
+        query.recipientFacet = [...model.facet.recipientEnabledValues.filter((v: string) => v !== value)]
+      } else {
+        query.recipientFacet = [...model.facet.recipientEnabledValues, value];
       }
-    } else {
-      query = {
-        ...route.query,
-        recipientFacet: [...model.facet.recipientEnabledValues, value]
-      };
-    }
-  } else if(facet === "ueberlieferungsform") {
-    if (model.facet.ueberlieferungsformEnabledValues.indexOf(value) > -1) {
-      query = {
-        ...route.query,
-        ueberlieferungsformFacet: [...model.facet.ueberlieferungsformEnabledValues.filter((v: string) => v !== value)]
+      break;
+    case "ueberlieferungsform":
+      if(model.facet.ueberlieferungsformEnabledValues.indexOf(value) > -1) {
+        query.ueberlieferungsformFacet = [...model.facet.ueberlieferungsformEnabledValues.filter((v: string) => v !== value)]
+      } else {
+        query.ueberlieferungsformFacet = [...model.facet.ueberlieferungsformEnabledValues, value];
       }
-    } else {
-      query = {
-        ...route.query,
-        ueberlieferungsformFacet: [...model.facet.ueberlieferungsformEnabledValues, value]
-      };
-    }
+      break;
   }
 
   if (query != null) {

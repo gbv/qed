@@ -59,6 +59,8 @@ watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuer
   model.searchString = newQueryString.q as string || "*";
   if (newQueryString.start) {
     model.start = parseInt(newQueryString.start as string);
+  } else {
+    model.start = 0;
   }
   await search();
 });
