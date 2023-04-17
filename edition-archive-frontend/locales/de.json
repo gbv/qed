@@ -81,6 +81,10 @@
       "typeOfResource": "Ressourcentyp",
       "extent": "Umfang",
       "shelfLocator": "Archivsignatur",
+      "abstract": {
+        "showMore": "Mehr anzeigen",
+        "showLess": "Weniger anzeigen"
+      },
       "subject": {
         "topic": "Schlagwörter",
         "geographic": "Orte",
