@@ -87,6 +87,40 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Germany’s War of Annihilation"
+    },
+    "metadata": {
+      "counts": "{start} of {numFound}",
+      "genre": "Genre",
+      "unknownGenre": "Unknown",
+      "dateIssued": "Date Issued",
+      "typeOfResource": "Type of Resource",
+      "extent": "Extent",
+      "shelfLocator": "Shelf Locator",
+      "subject": {
+        "topic": "Topic",
+        "geographic": "Geographic",
+        "coordinates": "Coordinates",
+        "hideMap": "Hide Map",
+        "showMap": "Show Map"
+      },
+      "related": {
+        "original": "Original"
+      },
+      "name": {
+        "family": "Family Name",
+        "given": "Given Name",
+        "termsOfAddress": "Terms of Address",
+        "date": "Date of Birth/Death",
+        "affiliation": "Affiliation",
+        "role": {
+          "isb": "Issuing Body",
+          "ivr": "Interviewer",
+          "ive": "Interviewee",
+          "aut": "Author",
+          "scr": "Scribe",
+          "rcp": "Recipient"
+        }
+      }
     }
   },
   "search": {

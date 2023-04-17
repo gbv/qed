@@ -32,20 +32,7 @@
   </template>
 
   <template v-else-if="$route.params.searchPath == '' || $route.params.searchPath">
-    <nav class="navbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-            <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search/search">
-              {{ $t('sosu.subMenu.search') }}
-            </nuxt-link>
-        </li>
-        <li class="nav-item">
-            <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/search/guide">
-              {{ $t('sosu.subMenu.userGuide') }}
-            </nuxt-link>
-        </li>
-      </ul>
-    </nav>
+
   </template>
 
   <template v-else>

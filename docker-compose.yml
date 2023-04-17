@@ -73,7 +73,7 @@ services:
        cd /directus &&
        npx directus bootstrap && npx directus start"
     environment:
-      KEY: ${CMS_KEY}MCR.User.Shibboleth.Mapper.UserIdAttribute=eppn
+      KEY: ${CMS_KEY}
       SECRET: ${CMS_SECRET}
       PUBLIC_URL: ${CMS_PUBLIC_URL}
       #DB_CLIENT: 'sqlite3'

@@ -73,6 +73,40 @@
     "editionShortTitle": "Kurztitel der Editionen"
   },
   "sosu": {
+    "metadata": {
+      "counts":  "{start} von {numFound}",
+      "genre": "Genre",
+      "unknownGenre": "Unbekannt",
+      "dateIssued": "Datum der Veröffentlichung",
+      "typeOfResource": "Ressourcentyp",
+      "extent": "Umfang",
+      "shelfLocator": "Archivsignatur",
+      "subject": {
+        "topic": "Schlagwörter",
+        "geographic": "Orte",
+        "coordinates": "Koordinaten",
+        "hideMap": "Karte ausblenden",
+        "showMap": "Karte einblenden"
+      },
+      "related": {
+        "original": "Original"
+      },
+      "name": {
+        "family": "Familienname",
+        "given": "Vorname",
+        "termsOfAddress": "Anrede",
+        "date": "Geburts- und Sterbedatum",
+        "affiliation": "Zugehörigkeit",
+        "role": {
+          "isb": "Herausgebendes Organ",
+          "ivr": "Interviewer",
+          "ive": "Interviewpartner",
+          "aut": "Autor",
+          "scr": "Schreiber",
+          "rcp": "Empfänger"
+        }
+      }
+    },
     "mainMenu": {
       "home": "Startseite",
       "about": "Über",
