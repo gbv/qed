@@ -7,6 +7,24 @@
       </template>
     </h2>
 
+    <div class="abstract" v-if="fullAbstract?.length">
+      <span v-if="fullAbstract?.length < 200">
+        {{ fullAbstract }}
+      </span>
+      <span v-else-if="!model.showFullAbstract">
+        {{ shortAbstract }}
+        <a href="#" @click="model.showFullAbstract = true">
+          {{ $t("sosu.metadata.abstract.showMore") }}
+        </a>
+      </span>
+      <span v-else>
+        {{ fullAbstract }}
+        <a href="#" @click="model.showFullAbstract = false">
+          {{ $t("sosu.metadata.abstract.showLess") }}
+        </a>
+      </span>
+    </div>
+
     <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no"/>
 
     <div class="metadata mt-3">
@@ -158,18 +176,19 @@ import {
   findFirstElement,
   flattenElement,
   getAttribute,
-  XElement
+  XElement, XNode
 } from "@mycore-org/xml-json-api";
 
 import {getGenre, getNames, getSubjects, getTitles, Name} from "~/api/Mods";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import Classification from "~/components/MODS/Classification.vue";
+import {trimString} from "~/api/Utils";
 
 
 const {$sovietSurviorsURL} = useNuxtApp();
 const sovietSurviorsURL = $sovietSurviorsURL();
 
-const model = reactive({showCoordinates: [] as string[]});
+const model = reactive({showCoordinates: [] as string[], showFullAbstract: false as boolean});
 
 const mapVisible = (coord: string) => {
   return model.showCoordinates.indexOf(coord) > -1;
@@ -194,6 +213,17 @@ const mods = computed(() => {
 
 const titles = computed(() => {
   return getTitles(mods.value);
+});
+
+
+
+const fullAbstract = computed(() => {
+  return flattenElement(findFirstElement(mods.value, and(byName("mods:abstract"), (el:XNode) => !byAttr("altFormat")(el)))) || undefined;
+});
+
+const excerptLength = 200;
+const shortAbstract = computed(() => {
+  return trimString(fullAbstract.value || null, excerptLength);
 });
 
 const names = computed(() => {
