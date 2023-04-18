@@ -1,10 +1,11 @@
 <template>
-  <span class="popout-wrapper position-relative d-inline">
-    <a href="#" v-on:click.prevent="model.show ? hideHandschrift():showHandschrift()">
+
+  <span :class="`${popoverClass}`">
+    <a class="popout-wrapper" href="#" v-on:click.prevent="model.show ? hideHandschrift():showHandschrift()">
       <i class="bi bi-book"></i>
     </a>
-    <slot/>
-    <div v-if="model.show && model.manuscript" class="popout text-start">
+     <slot/>
+    <div v-if="model.show && model.manuscript"  class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hideHandschrift()"><i
         class="bi bi-x-circle"></i></a>
       <div class="shelfmark" v-if="model.manuscript['shelfmark']?.length>0">{{ model.manuscript['shelfmark']?.join() }}</div>
@@ -36,6 +37,10 @@ const route = useRoute();
 const model = reactive({show: false, manuscript: null as any, loading: false});
 
 const {$solrURL, $backendURL} = useNuxtApp();
+
+const popoverClass = computed(() => {
+  return (model.show ? 'opened ' : '') + "popout-wrapper position-relative d-inline";
+});
 
 const loadData = async () => {
   const request = await fetch(`${$solrURL()}main/select/?q=objectType:manuscript&wt=json&fq=identifier.key:${escapeSpecialChars(props.handschriftenKey)}&fl=*&rows=1`);
@@ -72,6 +77,19 @@ const showHandschrift = () => {
   margin-top: 1rem;
   margin-bottom: 1rem;
   min-height: 5rem;
+}
+
+
+.popout-wrapper {
+  margin-right: 3px;
+}
+
+i {
+  margin-right: 3px;
+}
+
+.opened {
+  background-color: rgb(225, 225, 225);
 }
 
 ol{

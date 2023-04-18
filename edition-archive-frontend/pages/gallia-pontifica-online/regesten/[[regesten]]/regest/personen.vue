@@ -4,7 +4,7 @@
     <template #content>
           <h3>{{ $t("gpo.pages.personIndex") }}</h3>
           <ul class="list-group list-group-flush no-underline" v-if="data">
-            <li v-for="doc in data" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
+            <li v-for="doc in data" :id="`${doc.id}`" :class="highlight===doc.id?'text-secondary':''"
                 class="list-group-item">
               <GalliaPontificaOnlinePerson :personId="doc.id" :skipDisplayName="true">
                 {{ doc.displayName }} <i v-if="hasExternalIdentifier(doc) || hasKey(doc)"
@@ -55,25 +55,12 @@ const {data, error} = await useAsyncData(`objectType:person`, async () => {
 });
 
 onMounted(()=>{
-  if (process?.client && highlight.value!=='') {
+  if (highlight.value !== '') {
     const elPresentInterval = window.setInterval(() => {
       const el = document.getElementById(highlight.value);
-
       if (el) {
         window.clearInterval(elPresentInterval);
-        let count = 0;
-        const interval = setInterval(() => {
-          if (count > 2) {
-            clearInterval(interval);
-          }
-
-          if(el.classList.contains("bg-secondary")){
-            el.classList.remove("bg-secondary");
-          } else {
-            el.classList.add("bg-secondary");
-          }
-          count++;
-        }, 300);
+        window.scrollTo({top: el.offsetTop})
       }
     }, 200);
   }

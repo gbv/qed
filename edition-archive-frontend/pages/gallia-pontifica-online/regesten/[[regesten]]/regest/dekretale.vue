@@ -63,25 +63,12 @@ const {data, error} = await useAsyncData(`objectType:regest,dekretale.key`, asyn
 });
 
 onMounted(()=>{
-  if (process?.client && highlight.value!=='') {
+  if (highlight.value !== '') {
     const elPresentInterval = window.setInterval(() => {
       const el = document.getElementById(highlight.value);
-
       if (el) {
         window.clearInterval(elPresentInterval);
-        let count = 0;
-        const interval = setInterval(() => {
-          if (count > 2) {
-            clearInterval(interval);
-          }
-
-          if(el.classList.contains("bg-secondary")){
-            el.classList.remove("bg-secondary");
-          } else {
-            el.classList.add("bg-secondary");
-          }
-          count++;
-        }, 300);
+        window.scrollTo({top: el.offsetTop})
       }
     }, 200);
   }

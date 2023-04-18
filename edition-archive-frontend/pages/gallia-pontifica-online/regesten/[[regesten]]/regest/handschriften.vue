@@ -4,7 +4,8 @@
     <template #content>
       <h3>{{ $t("gpo.pages.manuscriptIndex") }}</h3>
       <ul v-if="data" class="list-group list-group-flush mt-5">
-        <li v-for="doc in data.docs.sort(byShelfmarkLocale)" :id="doc['identifier.key'][0]" class="list-group-item">
+        <li v-for="doc in data.docs.sort(byShelfmarkLocale)" :id="doc['identifier.key'][0]" :class="highlight===doc.id?'text-secondary':''"
+            class="list-group-item">
           <GalliaPontificaOnlineManuscript :manuscript="doc"/>
         </li>
       </ul>
@@ -42,25 +43,12 @@ const {data, error} = await useAsyncData(`objectType:manuscript`, async () => {
 
 
 onMounted(()=>{
-  if (process?.client && highlight.value!=='') {
+  if (highlight.value!=='') {
     const elPresentInterval = window.setInterval(() => {
       const el = document.getElementById(highlight.value);
-
       if (el) {
         window.clearInterval(elPresentInterval);
-        let count = 0;
-        const interval = setInterval(() => {
-          if (count > 2) {
-            clearInterval(interval);
-          }
-
-          if(el.classList.contains("bg-secondary")){
-            el.classList.remove("bg-secondary");
-          } else {
-            el.classList.add("bg-secondary");
-          }
-          count++;
-        }, 300);
+        window.scrollTo({top:el.offsetTop})
       }
     }, 200);
   }

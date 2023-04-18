@@ -1,8 +1,8 @@
 <template>
   <span class="msidentifier" v-if="$props.msidentifier">
     <GalliaPontificaOnlineMsIdentifier :handschriften-key="identifier">
+      <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.msidentifier.content" :content="c"/>
     </GalliaPontificaOnlineMsIdentifier>
-    <GalliaPontificaOnlineRegestMixedContent v-for="c in $props.msidentifier.content" :content="c"/>
 </span>
 </template>
 
