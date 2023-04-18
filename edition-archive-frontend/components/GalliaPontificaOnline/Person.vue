@@ -26,6 +26,8 @@
 </template>
 <script lang="ts" setup>
 
+import {escapeSpecialChars} from "~/api/Utils";
+
 const props = defineProps<{
   personId?: string,
   skipDisplayName?: boolean,
@@ -53,7 +55,7 @@ const loadPerson = async (key?: string) => {
   }
   model.show = true;
   if (!model.loaded) {
-    const personSearchResp = await fetch(`${$solrURL()}main/select/?q=id:${key}%20AND%20objectType:person&wt=json`);
+    const personSearchResp = await fetch(`${$solrURL()}main/select/?q=id:${escapeSpecialChars(key)}%20AND%20objectType:person&wt=json`);
     model.person = (await personSearchResp.json()).response.docs[0];
     model.loaded = true;
   }

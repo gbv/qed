@@ -58,16 +58,20 @@ const {data, error} = await useAsyncData(`objectType:regest,dekretale.key`, asyn
 
   ids.sort((a, b) => idText[a].localeCompare(idText[b]));
 
-  if(process.client){
-    window.setTimeout(() => {
-      const el = document.getElementById(highlight.value);
-      if(el){
-        el.scrollIntoView();
-      }
-    }, 100);
-  }
 
   return {ids, idResults, idText};
+});
+
+onMounted(()=>{
+  if (highlight.value !== '') {
+    const elPresentInterval = window.setInterval(() => {
+      const el = document.getElementById(highlight.value);
+      if (el) {
+        window.clearInterval(elPresentInterval);
+        window.scrollTo({top: el.offsetTop})
+      }
+    }, 200);
+  }
 });
 </script>
 

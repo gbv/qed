@@ -4,7 +4,7 @@
     <template #content>
       <h3>{{ $t("gpo.pages.placeIndex") }}</h3>
       <ul class="list-group list-group-flush no-underline" v-if="data">
-        <li v-for="doc in data" :id="doc.id" :class="highlight===doc.id?'text-secondary':''"
+        <li v-for="doc in data" :id="`${doc.id}`" :class="highlight===doc.id?'text-secondary':''"
             class="list-group-item">
           <GalliaPontificaOnlinePlace v-if="doc.objectType=='place'" :placeId="doc.id" :skipDisplayName="true">
             {{ doc.displayName }} <i v-if="hasExternalIdentifier(doc) || hasKey(doc)"
@@ -55,15 +55,19 @@ const {data, error} = await useAsyncData(`objectType:place or objectType:organiz
     return a.displayName.localeCompare(b.displayName);
   });
 
-  if(process.client){
-    window.setTimeout(() => {
-      const el = document.getElementById(highlight.value);
-      if(el){
-        el.scrollIntoView();
-      }
-    }, 100);
-  }
   return docs;
+});
+
+onMounted(()=>{
+  if (highlight.value!=='') {
+    const elPresentInterval = window.setInterval(() => {
+      const el = document.getElementById(highlight.value);
+      if (el) {
+        window.clearInterval(elPresentInterval);
+        window.scrollTo({top:el.offsetTop})
+      }
+    }, 200);
+  }
 });
 </script>
 

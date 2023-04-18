@@ -41,6 +41,7 @@
 
 <script lang="ts" setup>
 import {flattenElement, getAttribute} from "@mycore-org/xml-json-api"
+import {escapeSpecialChars} from "~/api/Utils";
 
 const props = defineProps(["refe", "type"])
 const route = useRoute()
@@ -59,7 +60,7 @@ const loadSource = async (key?: string) => {
   }
   showSource.show = true;
   if (!showSource.loaded) {
-    const sourceSearchResp = await fetch(`${$solrURL()}main/select/?q=identifier.key:${key}%20AND%20objectType:source&wt=json`);
+    const sourceSearchResp = await fetch(`${$solrURL()}main/select/?q=identifier.key:${escapeSpecialChars(key)}%20AND%20objectType:source&wt=json`);
     showSource.source = (await sourceSearchResp.json()).response.docs[0];
     showSource.loaded = true;
   }
