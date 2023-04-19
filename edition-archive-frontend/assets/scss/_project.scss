@@ -380,6 +380,29 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid $grayBorder;
 }
 
+.link-note {
+  vertical-align: super;
+  font-size: 80%;
+  padding-left: .2rem;
+}
+
+.note {
+  display: flex;
+  margin-bottom: .5rem;
+  border-bottom: 1px solid #ccc;
+  div {
+    flex-basis: 90%;
+    &.notenumber {
+      flex-basis: 2rem;
+    }
+  }
+
+}
+#note-1 {
+  margin-top: 2rem;
+  border-top: 2px solid #a3a3a3;
+  padding-top: 1rem;
+}
 
 // ==== media queries ====
 @include media-breakpoint-down(xxl) {
