@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "status": "published",
+    "slug": "/gallia-pontifica-online/regesten/reims1/historische-einfuehrung",
+    "project": "gpo"
+  },
+  {
+    "id": 2,
+    "status": "published",
+    "slug": "/gallia-pontifica-online/",
+    "project": "gpo"
+  },
+  {
+    "id": 3,
+    "status": "published",
+    "slug": "/gallia-pontifica-online/publikationen",
+    "project": "gpo"
+  },
+  {
+    "id": 4,
+    "status": "published",
+    "slug": "/gallia-pontifica-online/zitieren",
+    "project": "gpo"
+  },
+  {
+    "id": 5,
+    "status": "published",
+    "slug": "/gallia-pontifica-online/kontakt",
+    "project": "gpo"
+  },
+  {
+    "id": 6,
+    "status": "published",
+    "slug": "/gallia-pontifica-online/regesten/reims1/",
+    "project": "gpo"
+  },
+  {
+    "id": 7,
+    "status": "published",
+    "slug": "/soviet-survivors/",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 8,
+    "status": "published",
+    "slug": "/soviet-survivors/about/",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 9,
+    "status": "published",
+    "slug": "/soviet-survivors/about/annihilation",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 10,
+    "status": "published",
+    "slug": "/soviet-survivors/about/historians",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 11,
+    "status": "published",
+    "slug": "/soviet-survivors/about/team",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 13,
+    "status": "published",
+    "slug": "/soviet-survivors/contact",
+    "project": "soviet-survivors"
+  }
+]
