@@ -109,24 +109,26 @@
         </div>
 
         <div class="row regest-detail-view__footer">
+
           <div class="col footer-persons">
-            <span class="auhor">
-              {{ $t("gpo.pages.regest.author") }}: Ludwig Falkenstein
+            <span class="cite-long mb-2">
+              {{ $t("gpo.pages.regest.cite.long") }}
+               {{ regestedIdno }}
             </span>
-            <span class="publisher">
-              {{ $t("gpo.pages.regest.publisher") }}: Rolf Große
-            </span>
-            <span class="editor">
-              {{ $t("gpo.pages.regest.editor") }}: Robert Friedrich und Sebastian Gensicke
+            <span class="cite-short">
+              {{ $t("gpo.pages.regest.cite.short") }}
+              {{ regestedIdno }}
             </span>
           </div>
-          <div class="col regest-licence text-end">
+
+          <div class="col-auto regest-licence text-end">
             <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="CC BY-SA 4.0" class="no-external-mark">
               <nuxt-img src="/images/creative-commons.svg" alt="cc" />
               <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
               <nuxt-img src="/images/creative-commons-sa.svg" alt="sa" />
             </a>
           </div>
+
         </div>
       </div>
     </template>
