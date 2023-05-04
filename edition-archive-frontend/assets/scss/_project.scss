@@ -216,12 +216,24 @@
 .regest-detail-view__footer {
   margin-top: .5rem;
   color: $grayBasic;
-  .footer-persons {
-    span {
-      display: block;
-    }
+}
+
+.cite {
+  margin-right: 1rem;
+  &__hidden {
+    display: none;
   }
 }
+
+.cite-switch {
+  cursor: pointer;
+  color: white;
+  background-color: $primary;
+  &__hidden {
+    display: none;
+  }
+}
+
 .regest-licence {
   img {
     height: 2rem;
