@@ -6,7 +6,7 @@
     {{ $props.source['editionShortTitle'] }}</p>
     <div class="link-list">
       <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/quellen?quellenKey=${$props.source['identifier.key']}`">{{$t('search.label')}}</nuxt-link>
-      <nuxt-link :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/quellen/#${$props.source['identifier.key']}`">{{$t('gpo.pages.sourceIndex')}}</nuxt-link>
+      <nuxt-link v-if="$props.hideIndexLink !== true" :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/quellen/#${$props.source['identifier.key']}`">{{$t('gpo.pages.sourceIndex')}}</nuxt-link>
       <a v-for="key in Object.keys($props.source).filter(str=> str.indexOf('url.') !== -1).sort(sortCompare)"
          :href="$props.source[key]">{{ $t('url_type_' + key.substring('url.'.length).toLowerCase()) }}</a>
     </div>
@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 const route = useRoute()
-const props = defineProps(["source"])
+const props = defineProps(["source", "hideIndexLink"])
 
 const sortRegexp = /url\.Band_([IVXLCDM]+),?([0-9]+)?/
 
