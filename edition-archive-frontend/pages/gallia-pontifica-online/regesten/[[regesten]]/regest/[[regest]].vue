@@ -110,23 +110,43 @@
 
         <div class="row regest-detail-view__footer">
           <div class="col footer-persons">
-            <span class="auhor">
-              {{ $t("gpo.pages.regest.author") }}: Ludwig Falkenstein
+
+            <span id="citeShort" class="cite cite__short">
+              {{ $t("gpo.pages.regest.cite.short") }}
+              {{ regestedIdno }}.
+              {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
             </span>
-            <span class="publisher">
-              {{ $t("gpo.pages.regest.publisher") }}: Rolf Große
+            <span
+              id="citeSwitchLong"
+              v-on:click.prevent="toggleCiteVersion('long')"
+              class="badge rounded-pill cite-switch cite-switch__long"
+              :title="$t('gpo.pages.regest.cite.switch.long.title')">
+              {{ $t("gpo.pages.regest.cite.switch.long.text") }}
             </span>
-            <span class="editor">
-              {{ $t("gpo.pages.regest.editor") }}: Robert Friedrich und Sebastian Gensicke
+
+            <span id="citeLong" class="cite cite__long cite__hidden">
+              {{ $t("gpo.pages.regest.cite.long") }}
+              {{ regestedIdno }}.
+              {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
             </span>
+            <span
+              id="citeSwitchShort"
+              v-on:click.prevent="toggleCiteVersion('short')"
+              class="badge rounded-pill cite-switch cite-switch__short cite-switch__hidden"
+              :title="$t('gpo.pages.regest.cite.switch.short.title')">
+              {{ $t("gpo.pages.regest.cite.switch.short.text") }}
+            </span>
+
           </div>
-          <div class="col regest-licence text-end">
+
+          <div class="col-auto regest-licence text-end">
             <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="CC BY-SA 4.0" class="no-external-mark">
               <nuxt-img src="/images/creative-commons.svg" alt="cc" />
               <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
               <nuxt-img src="/images/creative-commons-sa.svg" alt="sa" />
             </a>
           </div>
+
         </div>
       </div>
     </template>
@@ -302,7 +322,28 @@ if (error.value) {
     );
   }
 }
+
+function toggleCiteVersion(citeVersion: string) {
+  const shortCite = document.getElementById("citeShort");
+  const longCite = document.getElementById("citeLong");
+  const longCiteSwitch = document.getElementById("citeSwitchLong");
+  const shortCiteSwitch = document.getElementById("citeSwitchShort");
+  const citeInactiveClass = 'cite__hidden';
+  const switchInactiveClass = 'cite-switch__hidden';
+  if ( citeVersion == 'long' ) {
+    shortCite?.classList.add(citeInactiveClass);
+    longCiteSwitch?.classList.add(switchInactiveClass);
+    longCite?.classList.remove(citeInactiveClass);
+    shortCiteSwitch?.classList.remove(switchInactiveClass);
+  } else {
+    shortCite?.classList.remove(citeInactiveClass);
+    longCiteSwitch?.classList.remove(switchInactiveClass);
+    longCite?.classList.add(citeInactiveClass);
+    shortCiteSwitch?.classList.add(switchInactiveClass);
+  }
+}
 </script>
 
 <style scoped>
+
 </style>

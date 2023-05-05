@@ -59,9 +59,21 @@
         "ueberlieferung": "Überlieferung",
         "ueberlieferungsform": "Überlieferungsform",
         "regests": "Regesten",
-        "author": "Autor",
-        "publisher": "Herausgeber",
-        "editor": "Bearbeiter"
+        "cite": {
+          "short": "GPO Reims I: Erzbischöfe, Nr.",
+          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, bearbeitet von Robert Friedrich und Sebastian Gensicke, herausgegeben von Rolf Große, Paris 2022, Nr.",
+          "url": "https://qed.perspectivia.net/gallia-pontifica-online/regesten/reims1/regest/",
+          "switch": {
+            "long": {
+              "text": "zeige Langform",
+              "title": "Zitierstil auf Langform umschalten"
+            },
+            "short": {
+              "text": "zeige Kurzform",
+              "title": "Zitierstil auf Kurzform umschalten"
+            }
+          }
+        }
       },
       "incipitIndex": "Incipits",
       "manuscriptIndex": "Handschriften",
