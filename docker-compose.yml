@@ -52,7 +52,7 @@ services:
       - ${FRONTEND_PORT}:3000
   cms:
     container_name: directus
-    image: directus/directus:latest
+    image: directus/directus:9.23.1
     ports:
       - ${CMS_PORT}:8055
     user: root
@@ -69,7 +69,7 @@ services:
     command: >
        "find /directus/database \! -user "node" -exec chown node:node '{}' + &&
        find /directus/uploads \! -user node -exec chown node:node '{}' + &&
-       su node && 
+       su node &&
        cd /directus &&
        npx directus bootstrap && npx directus start"
     environment:
@@ -97,5 +97,3 @@ services:
       - 4430:443
     volumes:
       - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
-
-
