@@ -1,9 +1,6 @@
 <template>
   <div>
-    <nuxt-link
-      :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${$props.manuscript['identifier.key']}`">
-      <span v-if="$props.manuscript['shelfmark']" class="shelfmark">{{ $props.manuscript['shelfmark']?.join() }}</span>
-    </nuxt-link>
+    <span v-if="$props.manuscript['shelfmark']" class="shelfmark">{{ $props.manuscript['shelfmark']?.join() }}</span>
     <div class="link-list">
       <nuxt-link
         :to="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/handschriften?handschriftenKey=${$props.manuscript['identifier.key']}`">{{ $t('search.label') }}</nuxt-link>
@@ -22,4 +19,7 @@ const props = defineProps(["manuscript"])
 </script>
 
 <style scoped>
+.shelfmark {
+  font-weight: bold;
+}
 </style>
