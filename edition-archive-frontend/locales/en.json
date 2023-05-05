@@ -27,20 +27,20 @@
       "reims1": {
         "home": "Preliminary remarks",
         "intro": "Historical introduction",
-        "regests": "Regesten",
-        "search": "Suche",
+        "regests": "Regesta",
+        "search": "Search",
         "incipits": "Incipits",
-        "writings": "Handschriften",
+        "writings": "Manuscripts",
         "decretals": "Decretals",
         "sources": "General bibliography",
-        "persons": "Personen",
-        "places": "Orte"
+        "persons": "Index of persons",
+        "places": "Index of places"
       }
     },
     "pages": {
       "regesta": {
         "reims1": {
-          "headline": "Reims I: Erzbischöfe"
+          "headline": "Reims I: Archbishops"
         },
         "genf1": {
           "headline": "Genf I: Bischöfe"
@@ -124,16 +124,16 @@
     }
   },
   "search": {
-    "label": "Suche",
+    "label": "Search",
     "basic": "Simple search",
     "extended": "Advanced search",
-    "pageGoTo": "go to page {page}",
+    "pageGoTo": "Go to page {page}",
     "hitCount": "{count} found hit(s)",
     "noHits": "Keine Treffer",
-    "pageNext": "next nage",
-    "pagePrev": "previous page",
+    "pageNext": "Next nage",
+    "pagePrev": "Previous page",
     "pagination": "pagination search",
-    "submit": "search",
+    "submit": "Search",
     "goToRegest": "Gehe zu Regest {regest}",
     "sort": {
       "idno": "Regesta number",
@@ -161,9 +161,9 @@
       "initiumHelp": "",
       "initium": "Incipit",
       "issuerHelp": "",
-      "issuer": "Aussteller",
-      "jaffe2": "Jaffé 2",
-      "jaffe3": "Jaffé 3",
+      "issuer": "Issuer",
+      "jaffe2": "JK, JE, JL",
+      "jaffe3": "J³",
       "personHelp": "Durchsucht die Metadaten nach einer Person",
       "person": "Person",
       "placeHelp": "Durchsucht die Metadaten nach einem Ort",

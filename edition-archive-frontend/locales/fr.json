@@ -27,20 +27,20 @@
       "reims1": {
         "home": "Remarques préliminaires",
         "intro": "Notice historique",
-        "regests": "Regesten",
-        "search": "Suche",
-        "incipits": "Incipits",
-        "writings": "Manuscrites",
+        "regests": "Regestes",
+        "search": "Recherche",
+        "incipits": "Incipit",
+        "writings": "Sources manuscrites",
         "decretals": "Décrétales",
         "sources": "Bibliographie générale",
-        "persons": "Personen",
-        "places": "Orte"
+        "persons": "Index des noms de personnes",
+        "places": "Index des noms de lieux"
       }
     },
     "pages": {
       "regesta": {
         "reims1": {
-          "headline": "Reims I: Erzbischöfe"
+          "headline": "Reims I: Archévêques"
         },
         "genf1": {
           "headline": "Genf I: Bischöfe"
@@ -61,7 +61,7 @@
         "regests": "Regesten",
         "author": "auteur",
         "publisher": "éditeur",
-        "editor": "beiter",
+        "editor": "beiter"
         },
         "incipitIndex": "Incipits",
         "manuscriptIndex": "Handschriften",
@@ -127,9 +127,9 @@
       "initiumHelp": "",
       "initium": "Incipit",
       "issuerHelp": "",
-      "issuer": "Aussteller",
-      "jaffe2": "Jaffé 2",
-      "jaffe3": "Jaffé 3",
+      "issuer": "Auteur",
+      "jaffe2": "JK, JE, JL",
+      "jaffe3": "J³",
       "personHelp": "Durchsucht die Metadaten nach einer Person",
       "person": "Personne",
       "placeHelp": "Durchsucht die Metadaten nach einem Ort",
