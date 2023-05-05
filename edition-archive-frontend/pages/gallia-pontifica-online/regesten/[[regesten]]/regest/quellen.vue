@@ -4,9 +4,9 @@
     <template #content>
       <h3>{{ $t("gpo.pages.sourceIndex") }}</h3>
       <ul v-if="data" class="list-group list-group-flush mt-5">
-        <li v-for="doc in data.docs" :id="doc['identifier.key'][0]" :class="highlight===doc.id?'text-secondary':''"
+        <li v-for="doc in data" :id="doc['identifier.key'][0]" :class="highlight===doc.id?'text-secondary':''"
             class="list-group-item">
-          <GalliaPontificaOnlineSource :source="doc"/>
+          <GalliaPontificaOnlineSource :source="doc" :hide-index-link="true" />
         </li>
       </ul>
     </template>
@@ -26,13 +26,13 @@ const highlight = computed(() => route.hash.substring(1));
 
 const {$solrURL, $backendURL} = useNuxtApp();
 const {data, error} = await useAsyncData(`objectType:source`, async () => {
-  const request = await fetch(`${$solrURL()}main/select/?q=objectType:source&wt=json&rows=99999&sort=shortTitle%20asc`);
+  const request = await fetch(`${$solrURL()}main/select/?q=objectType:source&wt=json&rows=99999`);
   const json = await request.json();
+
   if (json.response.numFound === 0) {
     throw 404;
   }
-
-  return json.response;
+  return json.response.docs.sort((a:any,b:any) => a.shortTitle.localeCompare(b.shortTitle));
 });
 
 onMounted(()=>{
