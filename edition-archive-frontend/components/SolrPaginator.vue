@@ -11,7 +11,7 @@
         <a class="page-link"
            :class="current === page ?'active':''"
            v-on:click.prevent="pageChanged(page)"
-           :title="$t('seach.pageGoTo', {page})"
+           :title="$t('search.pageGoTo', {page})"
            href="#">{{ page }}</a>
       </li>
       <li class="page-item">
