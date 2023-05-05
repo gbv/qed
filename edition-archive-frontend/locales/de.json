@@ -134,16 +134,16 @@
     "pageGoTo": "Gehe zu Seite {page}",
     "hitCount": "{count} Objekt(e) gefunden",
     "noHits": "Keine Treffer",
-    "pageNext": "nächste Seite",
-    "pagePrev": "vorherige Seite",
+    "pageNext": "Nächste Seite",
+    "pagePrev": "Vorherige Seite",
     "pagination": "Paginierung Suche",
     "submit": "Suchen",
     "goToRegest": "Gehe zu Regest {regest}",
     "sort": {
       "idno": "Nummer des Regests",
       "relevance": "Relevanz",
-      "asc": "aufsteigend (1-9) sortieren nach",
-      "desc": "absteigend (9-1) sortieren nach"
+      "asc": "Aufsteigend (1-9) sortieren nach",
+      "desc": "Absteigend (9-1) sortieren nach"
     },
     "facet": {
       "deperditum": "Deperditum/historiographische Notiz ( * )",
@@ -166,8 +166,8 @@
       "initium": "Incipit",
       "issuerHelp": "",
       "issuer": "Aussteller",
-      "jaffe2": "Jaffé 2",
-      "jaffe3": "Jaffé 3",
+      "jaffe2": "JK, JE, JL",
+      "jaffe3": "J³",
       "personHelp": "Durchsucht die Metadaten nach einer Person",
       "person": "Person",
       "placeHelp": "Durchsucht die Metadaten nach einem Ort",
