@@ -1,7 +1,10 @@
 package de.gbv.metadata.solr;
 
 import de.gbv.metadata.Authenticity;
+import de.gbv.metadata.MetaJSONHelper;
 import de.gbv.metadata.model.EntityLink;
+import de.gbv.metadata.model.Organization;
+import de.gbv.metadata.model.Person;
 import de.gbv.metadata.model.Regest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +18,9 @@ import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
 import org.mycore.common.MCRException;
 import org.mycore.datamodel.metadata.MCRMetaLink;
+import org.mycore.datamodel.metadata.MCRMetadataManager;
 import org.mycore.datamodel.metadata.MCRObject;
+import org.mycore.datamodel.metadata.MCRObjectID;
 import org.mycore.datamodel.niofs.MCRPath;
 
 import java.io.IOException;
@@ -124,19 +129,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
     Optional.ofNullable(regest.getIdno()).ifPresent(idno -> base.setField("idno", idno));
 
-    regest.getIssuers().forEach(issuer -> {
-      base.addField("issuer", issuer.getLabel());
-      base.addField("issuer.obj", issuer.getLabel());
-      base.addField("issuer.facet", issuer.getLabel());
-
-      if(EntityLink.Type.PERSON.equals(issuer.getType())) {
-        base.addField("person.obj", issuer.getMycoreId());
-        base.addField("person", issuer.getLabel());
-      } else if (EntityLink.Type.ORGANIZATION.equals(issuer.getType())) {
-        base.addField("organization.obj", issuer.getMycoreId());
-        base.addField("organization", issuer.getLabel());
-      }
-    });
+    indexIssuers(regest, base);
 
     regest.getInitium().forEach(initium -> {
       base.addField("initium", initium);
@@ -154,18 +147,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
     });
 
-    regest.getRecipients().forEach(recipient -> {
-      base.addField("recipient", recipient.getLabel());
-      base.addField("recipient.obj", recipient.getMycoreId());
-      base.addField("recipient.facet", recipient.getLabel());
-      if(EntityLink.Type.PERSON==recipient.getType()) {
-        base.addField("person.obj", recipient.getMycoreId());
-        base.addField("person", recipient.getLabel());
-      } else if (EntityLink.Type.ORGANIZATION==recipient.getType()) {
-        base.addField("organization.obj", recipient.getMycoreId());
-        base.addField("organization", recipient.getLabel());
-      }
-    });
+    indexRecipient(regest, base);
 
     Optional.ofNullable(regest.getIssuedPlace()).ifPresent(issuedPlace -> {
       base.setField("issuedPlace", issuedPlace.getLabel());
@@ -215,6 +197,67 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
 
     return base;
+  }
+
+  private void indexRecipient(Regest regest, SolrInputDocument base) {
+    regest.getRecipients().forEach(recipient -> {
+      indexEntityLink(base, recipient, "recipient");
+    });
+  }
+
+  private void indexIssuers(Regest regest, SolrInputDocument base) {
+    regest.getIssuers().forEach(issuer -> {
+      indexEntityLink(base, issuer, "issuer");
+    });
+  }
+
+  private void indexEntityLink(SolrInputDocument base, EntityLink entityLink, String prefix) {
+    String issuerObjectId = entityLink.getMycoreId();
+    MCRObject entityObject = getObject(issuerObjectId);
+    base.addField(prefix, entityLink.getLabel());
+    base.addField(prefix+".obj", issuerObjectId);
+
+    if(EntityLink.Type.PERSON.equals(entityLink.getType())) {
+      if(entityObject != null) {
+        Person person = MetaJSONHelper.getMetaJsonObject(entityObject, "person");
+        String displayName = person.getDisplayName();
+        if(displayName != null && !displayName.isBlank()) {
+          base.addField(prefix+".facet", displayName);
+        }
+      }
+
+      base.addField("person.obj", issuerObjectId);
+      base.addField("person", entityLink.getLabel());
+    } else if (EntityLink.Type.ORGANIZATION.equals(entityLink.getType())) {
+      if(entityObject != null) {
+        Organization organization = MetaJSONHelper.getMetaJsonObject(entityObject, "organization");
+        String displayName = organization.getDisplayName();
+        if(displayName != null && !displayName.isBlank()) {
+          base.addField(prefix + ".facet", displayName);
+        }
+      }
+
+      base.addField("organization.obj", issuerObjectId);
+      base.addField("organization", entityLink.getLabel());
+    }
+  }
+
+  /**
+   * returns the MCRObject for the given idString or null if the idString is not valid
+   * @param idString the object id as string
+   * @return the MCRObject or null
+   */
+  private MCRObject getObject(String idString) {
+    if(idString == null) {
+      return null;
+    }
+
+    if(!MCRObjectID.isValid(idString)){
+      return null;
+    }
+
+    MCRObjectID objectId = MCRObjectID.getInstance(idString);
+    return MCRMetadataManager.retrieveMCRObject(objectId);
   }
 
   private static void issuedDate(Regest regest, SolrInputDocument base) {
