@@ -151,6 +151,7 @@
     "pagination": "Paginierung Suche",
     "submit": "Suchen",
     "goToRegest": "Gehe zu Nr. {regest}",
+    "error": "Fehler bei der Suche: {error}",
     "sort": {
       "idno": "Nummer des Regests",
       "relevance": "Relevanz",

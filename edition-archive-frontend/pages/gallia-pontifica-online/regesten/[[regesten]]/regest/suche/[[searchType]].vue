@@ -39,45 +39,59 @@
             <div class="col-6">
               <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
                 <option value="asc">{{$t("search.sort.asc")}}</option>
-                <option value="desc">{{$t("search.sort.desc")}}</option>
+                <option value="desc">{{ $t("search.sort.desc") }}</option>
               </select>
             </div>
             <div class="col-6">
               <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
-                <option value="relevance">{{$t("search.sort.relevance")}}</option>
-                <option value="idno">{{$t("search.sort.idno")}}</option>
+                <option value="relevance">{{ $t("search.sort.relevance") }}</option>
+                <option value="idno">{{ $t("search.sort.idno") }}</option>
               </select>
             </div>
           </div>
-          <div class="row results" v-if="model.searchResult">
-            <div class="col-12">
-              <!-- Search Results -->
+      <div class="row" v-if="model.error!=null">
+        <div class="col-12 mt-4">
+          <div class="alert alert-danger" role="alert">
+            {{ $t("search.error", {error: model.error}) }}
+          </div>
+        </div>
+      </div>
+      <div class="row results" v-else-if="model.searchResult">
+        <div class="col-12">
+          <!-- Search Results -->
 
-              <SolrPaginator v-on:pageChanged="pageChangedCallback"
-                              :count="model.count"
-                              :start="model.start"
-                              :numPerPage="20"/>
+          <SolrPaginator v-on:pageChanged="pageChangedCallback"
+                         :count="model.count"
+                         :start="model.start"
+                         :numPerPage="20"/>
 
-              <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
-                <section class="card-body">
-                  <div><span class="issuer" v-if="'regest.json' in result">
+          <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
+            <section class="card-body">
+              <div><span class="issuer" v-if="'regest.json' in result">
                     {{
-                      flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type','PontifikatAEP'))))
-                    }} – {{
-                      flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type','PontifikatPP'))))
-                    }}</span></div>
-                  <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${result.idno}`"
-                             :title="$t('search.goToRegest', {regest:result.idno})">
-                    Nr. <GalliaPontificaOnlineRegestId :idno="result.idno" :certainly="result.certainly" :fake="result.fake" :lost="result.lost" />. {{ [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p=>p!==null && p!==undefined).join(", ") }}
-                  </nuxt-link>
-                    <p v-if="'regest.json' in result">
-                    {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract"))))  }}
-                    </p>
-                    <i v-if="'regest.json' in result" class="fst-italic">
-                    {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:incipit")))) }}
-                    </i>
+                  flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type', 'PontifikatAEP'))))
+                }} – {{
+                  flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type', 'PontifikatPP'))))
+                }}</span></div>
+              <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/${result.idno}`"
+                         :title="$t('search.goToRegest', {regest:result.idno})">
+                Nr.
+                <GalliaPontificaOnlineRegestId :idno="result.idno" :certainly="result.certainly" :fake="result.fake"
+                                               :lost="result.lost"/>
+                . {{
+                  [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p => p !== null && p !== undefined).join(", ")
+                }}
+              </nuxt-link>
+              <p v-if="'regest.json' in result">
+                {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}
+              </p>
+              <i v-if="'regest.json' in result" class="fst-italic">
+                {{
+                  trimString(findElement(result['regest.json'], byName('cei:incipit')).map(flattenElement).join("; "))
+                }}
+              </i>
 
-                </section>
+            </section>
               </article>
 
               <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search.noHits') }}</h2>
@@ -133,7 +147,6 @@
               :class="model.facet.issuerEnabledValues.indexOf(issuer.name)>-1?'active':''"
               class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
               v-on:click="facetClicked('issuer', issuer.name)">
-            <!-- <nuxt-link :href="`/gallia-pontifica-online/regesten/${route.params.regesten}/regest/suche/erweitert?issuer=${issuer.value}`"> -->
             {{ issuer.name }}
             <span class="badge bg-primary rounded-pill">{{ issuer.count }}</span>
             <!-- </nuxt-link> -->
@@ -169,10 +182,10 @@
 <script setup lang="ts">
 import {useI18n} from 'vue-i18n';
 import {XMLApi} from "~/api/XMLApi";
-import {byName, findFirstElement, flattenElement, byAttr, and} from "@mycore-org/xml-json-api"
+import {byName, findFirstElement, flattenElement, byAttr, and, findElement} from "@mycore-org/xml-json-api"
 import SolrPaginator from "~/components/SolrPaginator.vue";
 import {LocationQuery, LocationQueryValue} from "vue-router";
-import {escapeSpecialChars, trimString} from "~/api/Utils";
+import {partialEscapeSpecialChars, trimString} from "~/api/Utils";
 
 const i18n = useI18n();
 const route = useRoute();
@@ -201,8 +214,9 @@ interface Model {
   extendedSearch: ExtendedSearchModel,
   facet: FacetModel,
   currentTab: string,
-  sort: "relevance"|"idno",
-  sortOrder: "asc"|"desc",
+  sort: "relevance" | "idno",
+  sortOrder: "asc" | "desc",
+  error: string | null,
 }
 
 interface ExtendedSearchModel {
@@ -294,68 +308,79 @@ const model: Model = reactive(
     },
     currentTab: queryToString(route?.params.searchType) || BASIC_SEARCH_TYPE,
     sort: "relevance",
-    sortOrder: "asc"
+    sortOrder: "desc",
+    error: null,
   });
 
 
 async function executeSearch(url: string, query: LocationQuery) {
-  if (query.start) {
-    url += "&start=" + query.start;
-  }
-
-  url += "&facet.field=recipient.facet&facet.field=issuer.facet&facet.field=ueberlieferungsform.facet&facet.field=lost&facet.field=fake&facet=on";
-
-  if (model.facet.recipientEnabledValues.length > 0) {
-    url += "&fq=recipient.facet:(" + model.facet.recipientEnabledValues.map(escapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
-  }
-  if (model.facet.issuerEnabledValues.length > 0) {
-    url += "&fq=issuer.facet:(" + model.facet.issuerEnabledValues.map(escapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
-  }
-  if(model.facet.ueberlieferungsformEnabledValues.length > 0) {
-    url += "&fq=ueberlieferungsform.facet:(" + model.facet.ueberlieferungsformEnabledValues.map(escapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
-  }
-
-  if(model.facet.lostValues) {
-    url += "&fq=lost:true";
-  }
-
-  if(model.facet.fakeValues) {
-    url += "&fq=fake:true";
-  }
-
-  if (model.sort === "relevance") {
-    url += "&sort=score " + model.sortOrder+ ",idno " + model.sortOrder;
-  } else {
-    url += "&sort=idno " + model.sortOrder;
-  }
-
-  const request = await fetch(url)
-  const searchResult = await request.json();
-  model.searchResult = searchResult;
-  const proms = [];
-  for (const doc of model.searchResult.response.docs) {
-    const xmlCode = doc["regest.xml"];
-    proms.push(XMLApi(xmlCode));
-  }
-
-  const values = await Promise.all(proms);
-  for (let i = 0; i < values.length; i++) {
-    model.searchResult.response.docs[i]["regest.json"] = values[i];
-  }
-
-  for (const facetName in model.searchResult.facet_counts.facet_fields) {
-    const facetValues = model.searchResult.facet_counts.facet_fields[facetName];
-    const facetEntries: FacetEntry[] = [];
-    for (let i = 0; i < facetValues.length; i += 2) {
-      if (facetValues[i + 1] !== 0) {
-        facetEntries.push({name: facetValues[i], count: facetValues[i + 1]});
-      }
+  try {
+    if (query.start) {
+      url += "&start=" + query.start;
     }
-    model.facet[facetName.split(".")[0]] = facetEntries;
-  }
 
-  model.count = searchResult.response.numFound;
-  model.start = searchResult.response.start;
+    url += "&q.op=AND&facet.field=recipient.facet&facet.field=issuer.facet&facet.field=ueberlieferungsform.facet&facet.field=lost&facet.field=fake&facet=on";
+
+    if (model.facet.recipientEnabledValues.length > 0) {
+      url += "&fq=recipient.facet:(" + model.facet.recipientEnabledValues.map(partialEscapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
+    }
+    if (model.facet.issuerEnabledValues.length > 0) {
+      url += "&fq=issuer.facet:(" + model.facet.issuerEnabledValues.map(partialEscapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
+    }
+    if (model.facet.ueberlieferungsformEnabledValues.length > 0) {
+      url += "&fq=ueberlieferungsform.facet:(" + model.facet.ueberlieferungsformEnabledValues.map(partialEscapeSpecialChars).map((q) => `"${q}"`).join(" AND ") + ")";
+    }
+
+    if (model.facet.lostValues) {
+      url += "&fq=lost:true";
+    }
+
+    if (model.facet.fakeValues) {
+      url += "&fq=fake:true";
+    }
+
+    if (model.sort === "relevance") {
+      url += "&sort=score " + model.sortOrder + ",idno " + model.sortOrder;
+    } else {
+      url += "&sort=idno " + model.sortOrder;
+    }
+
+    const request = await fetch(url)
+
+    if (request.status != 200) {
+      model.error = request.statusText;
+      return;
+    }
+
+    const searchResult = await request.json();
+    model.searchResult = searchResult;
+    const proms = [];
+    for (const doc of model.searchResult.response.docs) {
+      const xmlCode = doc["regest.xml"];
+      proms.push(XMLApi(xmlCode));
+    }
+
+    const values = await Promise.all(proms);
+    for (let i = 0; i < values.length; i++) {
+      model.searchResult.response.docs[i]["regest.json"] = values[i];
+    }
+
+    for (const facetName in model.searchResult.facet_counts.facet_fields) {
+      const facetValues = model.searchResult.facet_counts.facet_fields[facetName];
+      const facetEntries: FacetEntry[] = [];
+      for (let i = 0; i < facetValues.length; i += 2) {
+        if (facetValues[i + 1] !== 0) {
+          facetEntries.push({name: facetValues[i], count: facetValues[i + 1]});
+        }
+      }
+      model.facet[facetName.split(".")[0]] = facetEntries;
+    }
+    model.error = null;
+    model.count = searchResult.response.numFound;
+    model.start = searchResult.response.start;
+  } catch (e) {
+    model.error = (e as any).toString();
+  }
 }
 
 function applyQueryFacet(query: LocationQuery) {
@@ -405,7 +430,15 @@ async function triggerSearch(query: LocationQuery) {
       if (query.searchString) {
         model.searchString = queryToString(query.searchString) || "";
         model.currentTab = BASIC_SEARCH_TYPE;
-        let url = `${$solrURL()}main/select/?q=allMeta:${query.searchString === "" ? "*" : escapeSpecialChars(model.searchString)} AND objectType:regest AND objectProject:gpo&wt=json`;
+
+        let url: string;
+        if (model.searchString === "") {
+          url = `${$solrURL()}main/select/?q=allMeta:* AND objectType:regest AND objectProject:gpo&wt=json`;
+        } else {
+          let escapedAllMeta = partialEscapeSpecialChars(model.searchString);
+          url = `${$solrURL()}main/select/?q=(allMeta:${escapedAllMeta} OR allMeta.de:${escapedAllMeta} OR allMeta.en:${escapedAllMeta} OR allMeta.fr:${escapedAllMeta}) AND objectType:regest AND objectProject:gpo&wt=json`;
+        }
+
         applyQueryFacet(query);
         applySort(query);
         await executeSearch(url, query);
@@ -428,41 +461,42 @@ async function triggerSearch(query: LocationQuery) {
         if (allMeta == "") {
           allMeta = "*";
         }
-        q.push(`allMeta:${escapeSpecialChars(allMeta)}`);
+        let escapedAllMeta = partialEscapeSpecialChars(allMeta);
+        q.push(`(allMeta:${escapedAllMeta} OR allMeta.de:${escapedAllMeta} OR allMeta.en:${escapedAllMeta} OR allMeta.fr:${escapedAllMeta})`);
       }
 
       if (model.extendedSearch.person != null && model.extendedSearch.person != "") {
-        const escapedPerson = escapeSpecialChars(model.extendedSearch.person);
+        const escapedPerson = partialEscapeSpecialChars(model.extendedSearch.person);
         q.push(`(person:${escapedPerson} OR person.de:${escapedPerson} OR person.en:${escapedPerson} OR person.fr:${escapedPerson})`);
       }
 
       if (model.extendedSearch.place != null && model.extendedSearch.place != "") {
-        const escapedPlace = escapeSpecialChars(model.extendedSearch.place);
+        const escapedPlace = partialEscapeSpecialChars(model.extendedSearch.place);
         q.push(`(issuedPlace:${escapedPlace} OR issuedPlace.de:${escapedPlace} OR issuedPlace.en:${escapedPlace} OR issuedPlace.fr:${escapedPlace})`);
       }
 
       if (model.extendedSearch.initium != null && model.extendedSearch.initium != "") {
-        const escapedInitium = escapeSpecialChars(model.extendedSearch.initium);
+        const escapedInitium = partialEscapeSpecialChars(model.extendedSearch.initium);
         q.push(`initium:${escapedInitium}`);
       }
 
       if (model.extendedSearch.recipient != null && model.extendedSearch.recipient != "") {
-        const escapedRecipient = escapeSpecialChars(model.extendedSearch.recipient);
+        const escapedRecipient = partialEscapeSpecialChars(model.extendedSearch.recipient);
         q.push(`(recipient:${escapedRecipient} OR recipient.de:${escapedRecipient} OR recipient.en:${escapedRecipient} OR recipient.fr:${escapedRecipient})`);
       }
 
       if (model.extendedSearch.issuer != null && model.extendedSearch.issuer != "") {
-        const escapedIssuer = escapeSpecialChars(model.extendedSearch.issuer);
+        const escapedIssuer = partialEscapeSpecialChars(model.extendedSearch.issuer);
         q.push(`(issuer:${escapedIssuer} OR issuer.de:${escapedIssuer} OR issuer.en:${escapedIssuer} OR issuer.fr:${escapedIssuer})`);
       }
 
       if(model.extendedSearch.jaffe2 != null && model.extendedSearch.jaffe2 != "") {
-        const escapedJaffe2 = escapeSpecialChars(model.extendedSearch.jaffe2);
+        const escapedJaffe2 = partialEscapeSpecialChars(model.extendedSearch.jaffe2);
         q.push(`jaffe2:*${escapedJaffe2}*`);
       }
 
       if(model.extendedSearch.jaffe3 != null && model.extendedSearch.jaffe3 != "") {
-        const escapedJaffe3 = escapeSpecialChars(model.extendedSearch.jaffe3);
+        const escapedJaffe3 = partialEscapeSpecialChars(model.extendedSearch.jaffe3);
         q.push(`jaffe3:*${escapedJaffe3}*`);
       }
 
@@ -482,7 +516,7 @@ async function triggerSearch(query: LocationQuery) {
       }
 
       if (model.extendedSearch.dateText != null && model.extendedSearch.dateText != "") {
-        const dateTextEscapted = escapeSpecialChars(model.extendedSearch.dateText);
+        const dateTextEscapted = partialEscapeSpecialChars(model.extendedSearch.dateText);
         q.push(`issued.text:${dateTextEscapted}`);
       }
       applyQueryFacet(query);

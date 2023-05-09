@@ -5,7 +5,7 @@ export function pad(num: number, size: number) {
 }
 
 function* trimStringTokens(abstract: string) {
-  const regex = /(?<content>[^, .!?]+)(?<seperator>[, .!?]+)/g;
+  const regex = /(?<content>[^, .!?]+)(?<seperator>[, .!?]*)/g;
 
   let m: any;
   while ((m = regex.exec(abstract)) !== null) {
@@ -45,6 +45,15 @@ export function trimString(str: string | null, maxLength = 200): string | null {
     lastSep = sep;
   }
   return result;
+}
+
+export function partialEscapeSpecialChars(s: string) {
+  return s
+    .replace(/([\+\-\(\)\{\}\[\]\^\:\\\/])/g, function (match) {
+      return '\\' + match;
+    })
+    .replace(/&&/g, '\\&\\&')
+    .replace(/\|\|/g, '\\|\\|');
 }
 
 export function escapeSpecialChars(s: string) {

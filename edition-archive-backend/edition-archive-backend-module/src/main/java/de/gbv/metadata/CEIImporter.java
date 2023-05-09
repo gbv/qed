@@ -66,7 +66,7 @@ public class CEIImporter {
         + MONTH_GROUP_NAME + ">[0-9][0-9])(?<" + DAY_GROUP_NAME + ">[0-9][0-9]))?$";
     private static final Logger LOGGER = LogManager.getLogger();
     public static final Namespace CEI_NAMESPACE = Namespace.getNamespace("cei", "http://www.monasterium.net/NS/cei");
-    final Pattern datePattern = Pattern.compile(DATE_REGEXP);
+    public static final Pattern datePattern = Pattern.compile(DATE_REGEXP);
     final Pattern idnoPattern = Pattern.compile(IDNO_REGEXP);
     // holds the ceiGroup which contains all cei:text
     private final Element ceiGroup;
@@ -568,9 +568,6 @@ public class CEIImporter {
 
             String from = dateRange.getAttributeValue("from");
             String to = dateRange.getAttributeValue("to");
-            if (from != null && from.equals(to)) {
-                to = null;
-            }
 
             if (from != null) {
                 final Matcher fromMatcher = datePattern.matcher(from);

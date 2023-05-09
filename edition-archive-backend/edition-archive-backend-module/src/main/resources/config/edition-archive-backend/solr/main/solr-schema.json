@@ -97,6 +97,48 @@
   },
   {
     "add-field": {
+      "name": "allMeta.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "allMeta",
+      "dest": "allMeta.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "allMeta.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "allMeta",
+      "dest": "allMeta.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "allMeta.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "allMeta",
+      "dest": "allMeta.fr"
+    }
+  },
+  {
+    "add-field": {
       "name": "displayName",
       "type": "string",
       "stored": true,

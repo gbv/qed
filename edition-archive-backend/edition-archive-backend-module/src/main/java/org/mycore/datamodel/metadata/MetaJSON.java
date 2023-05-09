@@ -64,7 +64,7 @@ public class MetaJSON<T> extends MCRMetaDefault {
         GsonBuilder gson = new GsonBuilder();
         typeAdapterMap.forEach((key, value) -> value.forEach(adapter -> gson.registerTypeAdapter(key, adapter)));
 
-        return gson.setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        return gson.setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             .setPrettyPrinting()
             .create();
     }

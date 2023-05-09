@@ -28,10 +28,16 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalQueries;
+import java.time.temporal.TemporalQuery;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static de.gbv.metadata.CEIImporter.CEI_NAMESPACE;
 
@@ -157,8 +163,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
     });
 
     for (EntityLink bodyPerson : regest.getBodyPersons()) {
-      base.addField("person.obj", bodyPerson.getMycoreId());
-      base.addField("person", bodyPerson.getLabel());
+      this.indexEntityLink(base, bodyPerson, null);
     }
 
     for (EntityLink bodyOrganization : regest.getBodyOrganizations()) {
@@ -167,8 +172,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
     }
 
     for (EntityLink bodyPlace : regest.getBodyPlaces()) {
-      base.addField("place.obj", bodyPlace.getMycoreId());
-      base.addField("place", bodyPlace.getLabel());
+      this.indexEntityLink(base, bodyPlace, null);
     }
 
 
@@ -214,15 +218,20 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
   private void indexEntityLink(SolrInputDocument base, EntityLink entityLink, String prefix) {
     String issuerObjectId = entityLink.getMycoreId();
     MCRObject entityObject = getObject(issuerObjectId);
-    base.addField(prefix, entityLink.getLabel());
-    base.addField(prefix+".obj", issuerObjectId);
+    if(prefix != null){
+      base.addField(prefix, entityLink.getLabel());
+      base.addField(prefix+".obj", issuerObjectId);
+    }
 
     if(EntityLink.Type.PERSON.equals(entityLink.getType())) {
       if(entityObject != null) {
         Person person = MetaJSONHelper.getMetaJsonObject(entityObject, "person");
         String displayName = person.getDisplayName();
         if(displayName != null && !displayName.isBlank()) {
-          base.addField(prefix+".facet", displayName);
+          if(prefix != null) {
+            base.addField(prefix+".facet", displayName);
+          }
+          base.addField("person", displayName);
         }
       }
 
@@ -233,7 +242,10 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
         Organization organization = MetaJSONHelper.getMetaJsonObject(entityObject, "organization");
         String displayName = organization.getDisplayName();
         if(displayName != null && !displayName.isBlank()) {
-          base.addField(prefix + ".facet", displayName);
+          if(prefix != null){
+            base.addField(prefix + ".facet", displayName);
+          }
+          base.addField("organization", displayName);
         }
       }
 
@@ -269,14 +281,16 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
 
       Date from = issued.getFrom();
       Date to = issued.getTo();
+      SimpleDateFormat solrFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
       String dateRange;
       if(from != null || to != null){
         if (from != null && to != null) {
-          dateRange = MessageFormat.format("[{0} TO {1}]", DateTimeFormatter.ISO_INSTANT.format(from.toInstant()), DateTimeFormatter.ISO_INSTANT.format(to.toInstant()));
+          dateRange = MessageFormat.format("[{0} TO {1}]",solrFormat.format(from), solrFormat.format(to));
         } else if (from != null) {
-          dateRange = MessageFormat.format("[{0} TO *]", DateTimeFormatter.ISO_INSTANT.format(from.toInstant()));
+          dateRange = MessageFormat.format("[{0} TO *]", solrFormat.format(from));
         } else {
-          dateRange = MessageFormat.format("[* TO {0}]", DateTimeFormatter.ISO_INSTANT.format(to.toInstant()));
+          dateRange = MessageFormat.format("[* TO {0}]", solrFormat.format(to));
         }
         base.setField("issued.range", dateRange);
       }

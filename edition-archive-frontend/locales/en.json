@@ -147,6 +147,7 @@
     "pagination": "pagination search",
     "submit": "Search",
     "goToRegest": "Go to No. {regest}",
+    "error": "Error while Searching: {error}",
     "sort": {
       "idno": "Regesta number",
       "relevance": "Relevance",
