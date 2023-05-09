@@ -116,6 +116,7 @@
     "pagination": "Paginierung Suche",
     "submit": "Rechercher",
     "goToRegest": "Aller au n° {regest}",
+    "error": "Erreur lors de la recherche : {error}",
     "sort": {
       "idno": "Numéro du regest",
       "relevance": "Pertinence",

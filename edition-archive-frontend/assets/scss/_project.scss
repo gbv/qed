@@ -220,18 +220,12 @@
 
 .cite {
   margin-right: 1rem;
-  &__hidden {
-    display: none;
-  }
 }
 
 .cite-switch {
   cursor: pointer;
   color: white;
   background-color: $primary;
-  &__hidden {
-    display: none;
-  }
 }
 
 .regest-licence {

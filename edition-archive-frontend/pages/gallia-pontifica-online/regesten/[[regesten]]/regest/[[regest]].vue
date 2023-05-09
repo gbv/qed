@@ -110,33 +110,23 @@
 
         <div class="row regest-detail-view__footer">
           <div class="col footer-persons">
-
-            <span id="citeShort" class="cite cite__short">
-              {{ $t("gpo.pages.regest.cite.short") }}
+            <span :class="`cite cite__${citeForm.citeVersion}`"
+                  :title="$t(citeForm.citeVersion=='short' ?'gpo.pages.regest.cite.switch.long.title': 'gpo.pages.regest.cite.switch.long.title')">
+              <template v-if="citeForm.citeVersion=='short'">
+                {{ $t("gpo.pages.regest.cite.short") }}
+              </template>
+              <template v-else>
+               {{ $t("gpo.pages.regest.cite.long") }}
+              </template>
               {{ regestedIdno }}.
               {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
             </span>
-            <span
-              id="citeSwitchLong"
-              v-on:click.prevent="toggleCiteVersion('long')"
-              class="badge rounded-pill cite-switch cite-switch__long"
-              :title="$t('gpo.pages.regest.cite.switch.long.title')">
-              {{ $t("gpo.pages.regest.cite.switch.long.text") }}
+            <span v-on:click.prevent="toggleCiteVersion()" class="badge rounded-pill cite-switch"
+                  :title="$t(citeForm.citeVersion!=='short' ? 'gpo.pages.regest.cite.switch.short.title': 'gpo.pages.regest.cite.switch.long.title')">
+                {{ $t(citeForm.citeVersion !== 'short' ?
+                  "gpo.pages.regest.cite.switch.short.text" : "gpo.pages.regest.cite.switch.long.text")
+                }}
             </span>
-
-            <span id="citeLong" class="cite cite__long cite__hidden">
-              {{ $t("gpo.pages.regest.cite.long") }}
-              {{ regestedIdno }}.
-              {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
-            </span>
-            <span
-              id="citeSwitchShort"
-              v-on:click.prevent="toggleCiteVersion('short')"
-              class="badge rounded-pill cite-switch cite-switch__short cite-switch__hidden"
-              :title="$t('gpo.pages.regest.cite.switch.short.title')">
-              {{ $t("gpo.pages.regest.cite.switch.short.text") }}
-            </span>
-
           </div>
 
           <div class="col-auto regest-licence text-end">
@@ -323,24 +313,12 @@ if (error.value) {
   }
 }
 
-function toggleCiteVersion(citeVersion: string) {
-  const shortCite = document.getElementById("citeShort");
-  const longCite = document.getElementById("citeLong");
-  const longCiteSwitch = document.getElementById("citeSwitchLong");
-  const shortCiteSwitch = document.getElementById("citeSwitchShort");
-  const citeInactiveClass = 'cite__hidden';
-  const switchInactiveClass = 'cite-switch__hidden';
-  if ( citeVersion == 'long' ) {
-    shortCite?.classList.add(citeInactiveClass);
-    longCiteSwitch?.classList.add(switchInactiveClass);
-    longCite?.classList.remove(citeInactiveClass);
-    shortCiteSwitch?.classList.remove(switchInactiveClass);
-  } else {
-    shortCite?.classList.remove(citeInactiveClass);
-    longCiteSwitch?.classList.remove(switchInactiveClass);
-    longCite?.classList.add(citeInactiveClass);
-    shortCiteSwitch?.classList.add(switchInactiveClass);
-  }
+const citeForm = reactive({
+  citeVersion: "short" as "short" | "long",
+});
+
+function toggleCiteVersion() {
+  citeForm.citeVersion = citeForm.citeVersion == "short" ? "long" : "short";
 }
 </script>
 
