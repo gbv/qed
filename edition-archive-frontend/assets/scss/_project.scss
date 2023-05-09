@@ -301,6 +301,10 @@ p {
   hyphenate-limit-chars: 10 3 4;
 }
 
+.facet-item {
+  overflow-wrap: anywhere;
+}
+
 // footer
 .project-footer {
   &__nav {
