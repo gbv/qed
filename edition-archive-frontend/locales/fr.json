@@ -47,7 +47,7 @@
         }
       },
       "regest": {
-        "headline": "Regesten",
+        "headline": "Regestes",
         "dekretale": "Dekretalen",
         "editionen": "Editionen",
         "erwaehnungen": "Erwähnungen",
@@ -63,29 +63,29 @@
         "publisher": "éditeur",
         "editor": "beiter",
         "cite": {
-          "short": "GPO Reims I: Erzbischöfe, Nr.",
-          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, bearbeitet von Robert Friedrich und Sebastian Gensicke, herausgegeben von Rolf Große, Paris 2022, Nr.",
+          "short": "GPO Reims I: Archévêques, n°",
+          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Archévêques, travaillé par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Große, Paris 2023, n°",
           "url": "https://qed.perspectivia.net/gallia-pontifica-online/regesten/reims1/regest/",
           "switch": {
             "long": {
-              "text": "zeige Langform",
-              "title": "Zitierstil auf Langform umschalten"
+              "text": "Afficher citation complète",
+              "title": "Afficher la citation complète"
             },
             "short": {
-              "text": "zeige Kurzform",
-              "title": "Zitierstil auf Kurzform umschalten"
+              "text": "Afficher titre abrégé",
+              "title": "Afficher le titre abrégé"
             }
           }
         }
       },
-      "incipitIndex": "Incipits",
-      "manuscriptIndex": "Handschriften",
-      "dekretaleIndex": "Dekretalenindex",
-      "sourceIndex": "Quellen- und Literaturverzeichnis",
+      "incipitIndex": "Incipit",
+      "manuscriptIndex": "Sources manuscrites",
+      "dekretaleIndex": "Décrétales",
+      "sourceIndex": "Bibliographie générale",
       "personIndex": "Index des noms de personnes",
       "placeIndex": "Index des noms de lieux"
     },
-    "editionShortTitle": "Kurztitel der Editionen"
+    "editionShortTitle": "Titre abrégé des éditions"
   },
   "sosu": {
     "mainMenu": {
@@ -115,7 +115,7 @@
     "pagePrev": "vorherige Seite",
     "pagination": "Paginierung Suche",
     "submit": "Rechercher",
-    "goToRegest": "Gehe zu Regest {regest}",
+    "goToRegest": "Aller au n° {regest}",
     "sort": {
       "idno": "Numéro du regest",
       "relevance": "Pertinence",
@@ -123,10 +123,10 @@
       "desc": "Trier par ordre décroissant (9-1)"
     },
     "facet": {
-      "deperditum": "Deperditum/historiographische Notiz ( * )",
+      "deperditum": "Déperditum/note historiographique ( * )",
       "issuer": "Auteur",
       "recipient": "Destinataire",
-      "showLess": "Weniger anzeigen",
+      "showLess": "Voir moins",
       "showMore": "Voir plus",
       "spurium": "Spurium (†)",
       "ueberlieferungsform": "Mode de transmission"
@@ -138,7 +138,7 @@
       "dateRangeLabel": "Période",
       "date": "Date",
       "dateTextHelp": "",
-      "dateText": "Date (Text)",
+      "dateText": "Date (Texte)",
       "initiumHelp": "",
       "initium": "Incipit",
       "issuerHelp": "",
@@ -155,8 +155,8 @@
   },
   "browser": {
     "currentOf": " von ",
-    "invalidIndex": "Ungültige Nummer",
-    "goTo": "Gehe zu {to}"
+    "invalidIndex": "Numéro invalide",
+    "goTo": "Aller au {to}"
   },
   "cms": {
     "page": {
@@ -198,7 +198,7 @@
     }
   },
   "button":{
-    "back": "Zurück",
+    "back": "Retour",
     "toProject": "Au projet"
   },
   "cc": {
@@ -218,30 +218,30 @@
     }
   },
   "url_type_arlima.net": "Arlima.net",
-  "url_type_band_i,1": "Band I,1",
-  "url_type_band_i,2": "Band I,2",
-  "url_type_band_i": "Band I",
-  "url_type_band_ii": "Band II",
-  "url_type_band_iii": "Band III",
-  "url_type_band_iv": "Band IV",
-  "url_type_band_ix": "Band IX",
-  "url_type_band_v": "Band V",
-  "url_type_band_vi": "Band VI",
-  "url_type_band_vii,1": "Band VII,1",
-  "url_type_band_vii,2": "Band VII,2",
-  "url_type_band_vii": "Band VII",
-  "url_type_band_viii": "Band VIII",
-  "url_type_band_x": "Band X",
-  "url_type_band_xi": "Band XI",
-  "url_type_band_xii": "Band XII",
-  "url_type_band_xiii": "Band XIII",
-  "url_type_band_xiv": "Band XIV",
-  "url_type_band_xv": "Band XV",
-  "url_type_band_xvi": "Band XVI",
-  "url_type_digitalisat": "Digitalisat",
+  "url_type_band_i,1": "Volume I,1",
+  "url_type_band_i,2": "Volume I,2",
+  "url_type_band_i": "Volume I",
+  "url_type_band_ii": "Volume II",
+  "url_type_band_iii": "Volume III",
+  "url_type_band_iv": "Volume IV",
+  "url_type_band_ix": "Volume IX",
+  "url_type_band_v": "Volume V",
+  "url_type_band_vi": "Volume VI",
+  "url_type_band_vii,1": "Volume VII,1",
+  "url_type_band_vii,2": "Volume VII,2",
+  "url_type_band_vii": "Volume VII",
+  "url_type_band_viii": "Volume VIII",
+  "url_type_band_x": "Volume X",
+  "url_type_band_xi": "Volume XI",
+  "url_type_band_xii": "Volume XII",
+  "url_type_band_xiii": "Volume XIII",
+  "url_type_band_xiv": "Volume XIV",
+  "url_type_band_xv": "Volume XV",
+  "url_type_band_xvi": "Volume XVI",
+  "url_type_digitalisat": "Version numérique",
   "url_type_geschichtsquellen.de": "Geschichtsquellen.de",
-  "url_type_katalogisat": "Katalogisat",
-  "url_type_link": "Link",
-  "url_type_online-zugriff": "Online-Zugriff",
+  "url_type_katalogisat": "Catalogue",
+  "url_type_link": "Lien",
+  "url_type_online-zugriff": "Accès en ligne",
   "url_type_supplement": "Supplement"
 }

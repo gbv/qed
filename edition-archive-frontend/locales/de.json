@@ -61,15 +61,15 @@
         "regests": "Regesten",
         "cite": {
           "short": "GPO Reims I: Erzbischöfe, Nr.",
-          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, bearbeitet von Robert Friedrich und Sebastian Gensicke, herausgegeben von Rolf Große, Paris 2022, Nr.",
+          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, bearbeitet von Robert Friedrich und Sebastian Gensicke, herausgegeben von Rolf Große, Paris 2023, Nr.",
           "url": "https://qed.perspectivia.net/gallia-pontifica-online/regesten/reims1/regest/",
           "switch": {
             "long": {
-              "text": "zeige Langform",
+              "text": "Zeige Zitationshinweis",
               "title": "Zitierstil auf Langform umschalten"
             },
             "short": {
-              "text": "zeige Kurzform",
+              "text": "Zeige Kurztitel",
               "title": "Zitierstil auf Kurzform umschalten"
             }
           }
@@ -77,10 +77,10 @@
       },
       "incipitIndex": "Incipits",
       "manuscriptIndex": "Handschriften",
-      "dekretaleIndex": "Dekretalenindex",
-      "sourceIndex": "Quellen- und Literaturverzeichnis",
-      "personIndex": "Personenindex",
-      "placeIndex": "Ortsindex"
+      "dekretaleIndex": "Dekretalen",
+      "sourceIndex": "Quellen- und Literatur",
+      "personIndex": "Personen",
+      "placeIndex": "Orte"
     },
     "editionShortTitle": "Kurztitel der Editionen"
   },
@@ -150,7 +150,7 @@
     "pagePrev": "Vorherige Seite",
     "pagination": "Paginierung Suche",
     "submit": "Suchen",
-    "goToRegest": "Gehe zu Regest {regest}",
+    "goToRegest": "Gehe zu Nr. {regest}",
     "sort": {
       "idno": "Nummer des Regests",
       "relevance": "Relevanz",
