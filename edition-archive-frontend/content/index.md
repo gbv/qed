@@ -33,9 +33,8 @@
   link: http://qed.perspectivia.net/index.php?id=593
   card-class: not-active
   ---
-  This special issue is conceived within gthe framework of a German-Russian research project “The Languages of
-  Diplomacy
-  in Russia in the Eihteenth Century in the European Context”
+  This special issue is conceived within the framework of a German-Russian research project “The Languages of
+  Diplomacy in Russia in the Eighteenth Century in the European Context”
   (2022-2024).
   :::
 #sovs
@@ -44,7 +43,7 @@
   img-href: /images/card-back-sovjet.jpg
   card-title: Sowjetische Zeitzeugen
   link: soviet-survivors/
-  card-class: active
+  card-class: not-active
   ---
   Diese Website versammelt die ersten aufgezeichneten Stimmen
   von sowjetischen Überlebenden der NS-Herrschaft.
