@@ -17,7 +17,7 @@
       "project": "Projet",
       "regesta": {
         "label":"Regestes",
-        "reims1": "Reims I: Archévêques"
+        "reims1": "Reims I: Archevêques"
       },
       "publications": "Publications",
       "citation": "Indication pour la citation",
@@ -40,7 +40,7 @@
     "pages": {
       "regesta": {
         "reims1": {
-          "headline": "Reims I: Archévêques"
+          "headline": "Reims I: Archevêques"
         },
         "genf1": {
           "headline": "Genf I: Bischöfe"
@@ -63,8 +63,8 @@
         "publisher": "éditeur",
         "editor": "beiter",
         "cite": {
-          "short": "GPO Reims I: Archévêques, n°",
-          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Archévêques, travaillé par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Große, Paris 2023, n°",
+          "short": "GPO Reims I: Archevêques, n°",
+          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Archevêques, travaillé par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Große, Paris 2023, n°",
           "url": "https://qed.perspectivia.net/gallia-pontifica-online/regesten/reims1/regest/",
           "switch": {
             "long": {
