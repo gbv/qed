@@ -77,8 +77,7 @@
                          :title="$t('search.goToRegest', {regest:result.idno})">
                 Nr.
                 <GalliaPontificaOnlineRegestId :idno="result.idno" :certainly="result.certainly" :fake="result.fake"
-                                               :lost="result.lost"/>
-                . {{
+                                               :lost="result.lost"/>. {{
                   [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p => p !== null && p !== undefined).join(", ")
                 }}
               </nuxt-link>
@@ -472,7 +471,11 @@ async function triggerSearch(query: LocationQuery) {
 
       if (model.extendedSearch.place != null && model.extendedSearch.place != "") {
         const escapedPlace = partialEscapeSpecialChars(model.extendedSearch.place);
-        q.push(`(issuedPlace:${escapedPlace} OR issuedPlace.de:${escapedPlace} OR issuedPlace.en:${escapedPlace} OR issuedPlace.fr:${escapedPlace})`);
+        q.push(`(issuedPlace:${escapedPlace} OR issuedPlace.de:${escapedPlace} OR issuedPlace.en:${escapedPlace} OR issuedPlace.fr:${escapedPlace}`
+        + `OR place:${escapedPlace} OR place.de:${escapedPlace} OR place.en:${escapedPlace} OR place.fr:${escapedPlace}`
+        + `OR organization:${escapedPlace} OR organization.de:${escapedPlace} OR organization.en:${escapedPlace} OR organization.fr:${escapedPlace}`
+        + `)`);
+
       }
 
       if (model.extendedSearch.initium != null && model.extendedSearch.initium != "") {
@@ -544,6 +547,7 @@ async function triggerSearch(query: LocationQuery) {
         let url = `${$solrURL()}main/select/?q=organization.obj:${model.organisationObj} AND objectType:regest AND objectProject:gpo&wt=json`;
         await executeSearch(url, query);
       }
+      break;
     case "ort":
       if (query.ortObj) {
         model.ortObj = queryToString(query.ortObj);
