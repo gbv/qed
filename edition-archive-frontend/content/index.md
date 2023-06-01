@@ -19,10 +19,15 @@
     die für französische Empfänger ausgestellt wurden, zu erfassen und kritisch
     zu edieren.
     #en
-    The »Gallia Pontificia« is the long-term project of the DHI Paris.
+    The »Gallia Pontificia« is the long-term project of the GHI Paris.
     It is being developed in cooperation with the École nationale des chartes.
     Its goal is to collect and critically edit all early and high medieval papal
     documents that were issued for French recipients.
+    #fr
+    La »Gallia Pontificia« est le projet à long terme de l’IHA de Paris, réalisé
+    en coopération avec l’École nationale des chartes. Son objectif est le
+    récolement et l’édition critique des actes pontificaux antérieurs à Innocent
+    III (1198–1216), destinés à des églises françaises.
     ::::
   :::
 #lod

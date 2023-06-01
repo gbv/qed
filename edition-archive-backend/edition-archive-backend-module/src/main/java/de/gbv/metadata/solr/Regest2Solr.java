@@ -163,7 +163,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
     });
 
     for (EntityLink bodyPerson : regest.getBodyPersons()) {
-      this.indexEntityLink(base, bodyPerson, null);
+      this.indexEntityLink(base, bodyPerson, "person");
     }
 
     for (EntityLink bodyOrganization : regest.getBodyOrganizations()) {
@@ -172,7 +172,7 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
     }
 
     for (EntityLink bodyPlace : regest.getBodyPlaces()) {
-      this.indexEntityLink(base, bodyPlace, null);
+      this.indexEntityLink(base, bodyPlace, "place");
     }
 
 
