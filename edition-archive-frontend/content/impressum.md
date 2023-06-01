@@ -20,8 +20,8 @@ E-Mail: kaiser(at)maxweberstiftung.de<br>
 ## Kontakt
 Für Fragen zur Publikation von digitalen Quellen und Editionen wenden Sie sich bitte an:
 <address>
-Herrn Julian Schulz (Referent für Digital Humanities und Forschungsdatenmanagement)<br>
-E-Mail: Schulz@MaxWeberStiftung.de<br>
+Frau Dr. Nanette Rißler-Pipka (Digital Humanities und Forschungsdatenmanagement)<br>
+E-Mail: Rissler-Pipka@MaxWeberStiftung.de<br>
 Telefon: +49 (228) 377 86-30<br>
 </address>
 
