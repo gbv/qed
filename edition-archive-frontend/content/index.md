@@ -43,7 +43,7 @@
   img-href: /images/card-back-sovjet.jpg
   card-title: Sowjetische Zeitzeugen
   link: soviet-survivors/
-  card-class: active
+  card-class: not-active
   ---
   Diese Website versammelt die ersten aufgezeichneten Stimmen
   von sowjetischen Überlebenden der NS-Herrschaft.
