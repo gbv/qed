@@ -663,14 +663,6 @@
   },
   {
     "add-field": {
-      "name": "place.obj",
-      "type": "string",
-      "stored": true,
-      "multiValued": true
-    }
-  },
-  {
-    "add-field": {
       "name": "initium",
       "type": "text_general",
       "stored": true
