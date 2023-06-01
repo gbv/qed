@@ -441,6 +441,56 @@
   },
   {
     "add-field": {
+      "name": "organization.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "organization",
+      "dest": "organization.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "organization.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "organization",
+      "dest": "organization.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "organization.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "organization",
+      "dest": "organization.fr"
+    }
+  },
+  {
+    "add-field": {
+      "name": "place.obj",
+      "type": "string",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-field": {
       "name": "person.obj",
       "type": "string",
       "stored": true,
@@ -567,6 +617,48 @@
       "type": "text_general",
       "stored": true,
       "multiValued": true
+    }
+  },
+  {
+    "add-field": {
+      "name": "place.de",
+      "type": "dea_text_de",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "place",
+      "dest": "place.de"
+    }
+  },
+  {
+    "add-field": {
+      "name": "place.en",
+      "type": "dea_text_en",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "place",
+      "dest": "place.en"
+    }
+  },
+  {
+    "add-field": {
+      "name": "place.fr",
+      "type": "dea_text_fr",
+      "stored": true,
+      "multiValued": true
+    }
+  },
+  {
+    "add-copy-field": {
+      "source": "place",
+      "dest": "place.fr"
     }
   },
   {

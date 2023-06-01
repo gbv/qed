@@ -402,7 +402,7 @@ public class CEIImporter {
       EntityLink pl = new EntityLink(EntityLink.Type.PLACE);
         pl.setLabel(flattenName);
 
-        Place match;
+        Place match = null;
         if (places.size() == 1) {
             match = places.get(0);
             if (normalizedName != null) {
@@ -410,13 +410,13 @@ public class CEIImporter {
             }
             applyIds(placeName, match.getIdentifier());
         } else if (places.size() == 0) {
-            match = new Place();
-            match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
             if (key != null) {
+                match = new Place();
+                match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
                 match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
+                applyIds(placeName, match.getIdentifier());
+                getPlaces().add(match);
             }
-            applyIds(placeName, match.getIdentifier());
-            getPlaces().add(match);
         } else {
             this.REPORT_MESSAGES.add("Can not distinguish between the places "
                 + places.stream().map(
@@ -426,6 +426,10 @@ public class CEIImporter {
             LOGGER.error("Can not distinguish between the persons "
                 + places.stream().map(Place::getDisplayName).collect(Collectors.joining()));
             return;
+        }
+        if (match == null) {
+          LOGGER.info("Place(" + flattenName + ") has no key in regest (" + regestId + "), no object created");
+          return;
         }
         List<EntityLink> ll = this.placeLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
         ll.add(pl);
@@ -468,7 +472,7 @@ public class CEIImporter {
       EntityLink pl = new EntityLink(EntityLink.Type.PERSON);
         pl.setLabel(flattenName);
 
-        Person match;
+        Person match = null;
         if (people.size() == 1) {
             match = people.get(0);
             if (normalizedName != null) {
@@ -476,20 +480,23 @@ public class CEIImporter {
             }
             applyIds(persName, match.getIdentifier());
         } else if (people.isEmpty()) {
-            match = new Person();
-            match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
-
             if (key != null) {
+                match = new Person();
+                match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
                 match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
+                applyIds(persName, match.getIdentifier());
+                getPersons().add(match);
             }
-            applyIds(persName, match.getIdentifier());
-            getPersons().add(match);
         } else {
             this.REPORT_MESSAGES.add("Can not distinguish between the persons "
                 + people.stream().map(person -> person.getIdentifier().stream().map(IdentifierType::toString)
                     .collect(Collectors.joining()) + "-" + person.getDisplayName()).collect(Collectors.joining()));
             LOGGER.error("Can not distinguish between the persons "
                 + people.stream().map(Person::getDisplayName).collect(Collectors.joining()));
+            return;
+        }
+        if (match == null) {
+            LOGGER.info("Person (" + flattenName + ") has no key in regest (" + regestId + "), no object created");
             return;
         }
         List<EntityLink> ll = this.personLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
@@ -671,7 +678,7 @@ public class CEIImporter {
       EntityLink ol = new EntityLink(EntityLink.Type.ORGANIZATION);
         ol.setLabel(flattenName);
 
-        Organization match;
+        Organization match = null;
         if (orgs.size() == 1) {
             match = orgs.get(0);
             if (normalizedName != null) {
@@ -679,20 +686,23 @@ public class CEIImporter {
             }
             applyIds(orgName, match.getIdentifier());
         } else if (orgs.isEmpty()) {
-            match = new Organization();
-            match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
-
             if (key != null) {
+                match = new Organization();
+                match.setDisplayName(Objects.requireNonNullElse(normalizedName, flattenName));
                 match.setIdentifier(Stream.of(key).map(k -> new IdentifierType("key", k)).collect(Collectors.toList()));
+                applyIds(orgName, match.getIdentifier());
+                getOrganizations().add(match);
             }
-            applyIds(orgName, match.getIdentifier());
-            getOrganizations().add(match);
         } else {
             this.REPORT_MESSAGES.add("Can not distinguish between the Organizations"
                 + orgs.stream().map(person -> person.getIdentifier().stream().map(IdentifierType::toString)
                     .collect(Collectors.joining()) + "-" + person.getDisplayName()).collect(Collectors.joining()));
             LOGGER.error("Can not distinguish between the Organizations "
                 + orgs.stream().map(Organization::getDisplayName).collect(Collectors.joining()));
+            return;
+        }
+        if (match == null) {
+            LOGGER.info("Organization(" + flattenName + ") has no key in regest (" + regestId + "), no object created");
             return;
         }
         List<EntityLink> ll = this.organizationLinksHashMap.computeIfAbsent(match, (a) -> new LinkedList<>());
