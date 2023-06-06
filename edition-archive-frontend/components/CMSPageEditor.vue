@@ -83,9 +83,9 @@ const editorOptions: Ref<any> = ref({
   "images_upload_handler": fileUpload as any,
   "setup": setup,
   "external_plugins": {} as Record<string, string>,
-  "custom_elements": "~gallia-pontifica-online-editor-regest-bibl",
-  "extended_valid_elements": "gallia-pontifica-online-editor-link[type|refe]",
-  "content_style": "gallia-pontifica-online-editor-link { display: inline-block; color: #0000ff; }",
+  "custom_elements": "~gallia-pontificia-online-regest-bibl",
+  "extended_valid_elements": "gallia-pontificia-online-editor-link[type|refe]",
+  "content_style": "gallia-pontificia-online-editor-link { display: inline-block; color: #0000ff; }",
   "save_enablewhendirty": false
 });
 
