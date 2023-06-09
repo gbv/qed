@@ -9,7 +9,13 @@ export const useUserStore = defineStore('userStore', () => {
   const userCookie = useCookie('user', {watch: "shallow"});
 
 
-  const accessToken = computed(() => accessTokenCookie.value);
+  const accessToken = computed(() => {
+    if(isExpired()){
+      logout();
+    }
+    return accessTokenCookie.value;
+  });
+
   const refreshToken = computed(() => refreshTokenCookie.value);
   const expires = computed(() => expiresCookie.value);
   const user = computed(() => {

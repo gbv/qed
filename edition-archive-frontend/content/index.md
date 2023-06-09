@@ -4,7 +4,7 @@
   ---
   img-href: /images/card-back-lettre-pape.png
   card-title: Gallia Pontificia online
-  link: gallia-pontifica-online/
+  link: gallia-pontificia-online/
   card-class: active
   cc-author: "BVMM"
   cc-source: "https://bvmm.irht.cnrs.fr/iiif/24100/canvas/canvas-2415694/view"

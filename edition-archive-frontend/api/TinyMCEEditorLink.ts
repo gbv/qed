@@ -1,4 +1,4 @@
-export const EDITOR_LINK_ELEMENT_NAME = "gallia-pontifica-online-editor-link";
+export const EDITOR_LINK_ELEMENT_NAME = "gallia-pontificia-online-editor-link";
 export const registerEditorLink = (editor:any, i18n:any) => {
 
   const biblButton = editor.ui.registry.addButton('bibl', {
@@ -54,10 +54,10 @@ export const registerEditorLink = (editor:any, i18n:any) => {
             currentNode.setAttribute("type", data.type);
             currentNode.setAttribute("refe", data.refe);
           } else if (editor.selection.getContent() == "") {
-            editor.insertContent(`<gallia-pontifica-online-editor-link type="${data.type}" refe="${data.refe}">${i18n.t('cms.page.editor.bibl.defaultText')}</gallia-pontifica-online-editor-link>`);
+            editor.insertContent(`<gallia-pontificia-online-editor-link type="${data.type}" refe="${data.refe}">${i18n.t('cms.page.editor.bibl.defaultText')}</gallia-pontificia-online-editor-link>`);
           } else {
             const content = editor.selection.getContent();
-            editor.selection.setContent(`<gallia-pontifica-online-editor-link type="${data.type}" refe="${data.refe}">${content}</gallia-pontifica-online-editor-link>`);
+            editor.selection.setContent(`<gallia-pontificia-online-editor-link type="${data.type}" refe="${data.refe}">${content}</gallia-pontificia-online-editor-link>`);
           }
 
           dialogApi.close();
