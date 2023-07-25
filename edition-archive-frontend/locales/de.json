@@ -34,7 +34,9 @@
         "decretals": "Dekretalen",
         "sources": "Quellen und Literatur",
         "persons": "Personen",
-        "places": "Orte"
+        "places": "Orte",
+        "citation":"Zitierhinweis",
+        "export":"Datenexport"
       }
     },
     "pages": {
