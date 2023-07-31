@@ -18,6 +18,7 @@ export const registerEditorLink = (editor:any, i18n:any) => {
               label: i18n.t("cms.page.editor.bibl.dialog.type.label"),
               items: [
                 {text: i18n.t("cms.page.editor.bibl.dialog.type.external"), value: 'external'},
+                {text: i18n.t("cms.page.editor.bibl.dialog.type.external"), value: 'internal'},
                 {text: i18n.t("cms.page.editor.bibl.dialog.type.dekretale"), value: 'dekretale'},
                 {text: i18n.t("cms.page.editor.bibl.dialog.type.source"), value: 'source'},
                 {text: i18n.t("cms.page.editor.bibl.dialog.type.person"), value: 'person'},

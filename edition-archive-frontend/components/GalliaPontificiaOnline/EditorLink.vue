@@ -5,6 +5,10 @@
       <slot/>
     </a>
 
+    <nuxt-link v-if="$props.type === 'internal'" :href="$props.refe">
+      <slot/>
+    </nuxt-link>
+
     <span v-if="$props.type === 'person'">
       <GalliaPontificiaOnlinePerson :person-id="$props.refe">
         <slot/>
