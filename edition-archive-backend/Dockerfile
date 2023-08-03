@@ -15,7 +15,7 @@ COPY --chown=maven:maven edition-archive-backend-module /opt/edition-archive-bac
 COPY --chown=maven:maven edition-archive-backend-webapp /opt/edition-archive-backend/edition-archive-backend-webapp
 RUN mvn --version && \
     mvn clean install -DskipTests
-FROM tomcat:jdk17-temurin-focal
+FROM tomcat:10-jdk17-temurin-jammy
 COPY --from=maven --chown=root:root /opt/edition-archive-backend/edition-archive-backend-webapp/target/edition-archive-backend-0.1-SNAPSHOT.war webapps/backend.war
 COPY --from=maven --chown=root:root /opt/edition-archive-backend/edition-archive-backend-cli/target/edition-archive-backend-cli-0.1-SNAPSHOT.tar.gz /opt/mycore/cli.tar.gz
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh

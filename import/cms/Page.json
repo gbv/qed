@@ -70,5 +70,17 @@
     "status": "published",
     "slug": "/soviet-survivors/contact",
     "project": "soviet-survivors"
+  },
+  {
+    "id": 14,
+    "status": "published",
+    "slug": "/gallia-pontificia-online/regesten/reims1/zitierhinweis",
+    "project": "gpo"
+  },
+  {
+    "id": 15,
+    "status": "published",
+    "slug": "/gallia-pontificia-online/regesten/reims1/datenexport",
+    "project": "gpo"
   }
 ]

@@ -1,0 +1,221 @@
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://datacite.org/schema/kernel-4"
+          xsi:schemaLocation="http://datacite.org/schema/kernel-4 https://schema.datacite.org/meta/kernel-4.4/metadata.xsd">
+  <identifier identifierType="DOI">10.58137/001-2023-52</identifier>
+  <creators>
+    <creator>
+      <creatorName nameType="Personal">Falkenstein, Ludwig</creatorName>
+      <givenName>Ludwig</givenName>
+      <familyName>Falkenstein</familyName>
+      <nameIdentifier nameIdentifierScheme="GND" schemeURI="http://d-nb.info/gnd/">120353709</nameIdentifier>
+      <affiliation xml:lang="de">Rheinisch-Westfälische Technische Hochschule Aachen</affiliation>
+    </creator>
+  </creators>
+  <titles>
+    <title xml:lang="de">Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, bearbeitet von Robert
+      Friedrich und Sebastian Gensicke, herausgegeben von Rolf Große, Paris 2023, Nr. <nrReplace />
+    </title>
+    <title xml:lang="de" titleType="AlternativeTitle">GPO Reims I: Erzbischöfe, Nr. <nrReplace /></title>
+  </titles>
+  <publisher>Deutsches Historisches Institut Paris</publisher>
+  <publicationYear>2023</publicationYear>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <subjects>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/4044562-8">Papsturkunde
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/4049007-5">Regest
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q1933248">Regest
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/4062135-2">Diplomatik
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q378426">Diplomatik
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/4044561-6">Papst
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q12829728">Papsttum
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/7503821-3">Frühmittelalter
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q202763">Frühmittelalter
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/7503822-5">Hochmittelalter
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q212685">Hochmittelalter
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q1559826">Göttinger Papsturkundenwerk
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/118721461">Paul Fridolin Kehr
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q108748">Paul Fridolin Kehr
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/118551280">Erzbischof Hinkmar von Reims
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q712257">Hinkmar von Reims
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/104353503">Henricus, Remensis
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q966305">Heinrich von Frankreich, Erzbischof von Reims
+    </subject>
+    <subject xml:lang="de" schemeURI="http://d-nb.info/gnd/" subjectScheme="GND"
+             valueURI="http://d-nb.info/gnd/118819712">Alexander III., Papst
+    </subject>
+    <subject xml:lang="de" schemeURI="https://www.wikidata.org/wiki/" subjectScheme="Wikidata"
+             valueURI="https://www.wikidata.org/wiki/Q160116">Alexander III., Papst
+    </subject>
+    <subject xml:lang="de" schemeURI="http://www.geonames.org/" subjectScheme="Geonames"
+             valueURI="http://www.geonames.org/3017382">Frankreich
+    </subject>
+    <subject xml:lang="de" schemeURI="http://www.geonames.org/" subjectScheme="Geonames"
+             valueURI="http://www.geonames.org/3027258">Champagne
+    </subject>
+    <subject xml:lang="de" schemeURI="http://www.geonames.org/" subjectScheme="Geonames"
+             valueURI="http://www.geonames.org/2984114">Reims
+    </subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="Researcher">
+      <contributorName nameType="Personal">Friedrich, Robert</contributorName>
+      <givenName>Robert</givenName>
+      <familyName>Friedrich</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="https://orcid.org/">0000-0003-0230-8917</nameIdentifier>
+      <affiliation xml:lang="de">Universität Greifswald</affiliation>
+    </contributor>
+    <contributor contributorType="Researcher">
+      <contributorName nameType="Personal">Gensicke, Sebastian</contributorName>
+      <givenName>Sebastian</givenName>
+      <familyName>Gensicke</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="https://orcid.org/">0000-0002-7479-307X</nameIdentifier>
+      <affiliation xml:lang="de">Deutsches Historisches Institut Paris</affiliation>
+    </contributor>
+    <contributor contributorType="Editor">
+      <contributorName nameType="Personal">Große, Rolf</contributorName>
+      <givenName>Rolf</givenName>
+      <familyName>Große</familyName>
+      <nameIdentifier nameIdentifierScheme="GND" schemeURI="http://d-nb.info/gnd/">130539767</nameIdentifier>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="https://orcid.org/">0000-0001-7651-7362</nameIdentifier>
+      <affiliation xml:lang="de">Deutsches Historisches Institut Paris</affiliation>
+    </contributor>
+    <contributor contributorType="HostingInstitution">
+      <contributorName>Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland</contributorName>
+      <nameIdentifier nameIdentifierScheme="ROR" schemeURI="https://ror.org/">02esxtn62</nameIdentifier>
+    </contributor>
+  </contributors>
+  <descriptions>
+    <description xml:lang="fr" descriptionType="Abstract">Les regestes pontificaux concernant les archevêques de Reims,
+      1&#160;162 numéros au total, constituent le premier corpus de sources rendu accessible aux chercheurs dans le
+      cadre de la »Gallia Pontificia online« (GPO). C’est donc la première fois que l’on dispose d’une documentation
+      complète sur les relations qu’a entretenu le plus important des archevêques français avec la curie durant le haut
+      Moyen Âge et le Moyen Âge central.
+      Le matériel provient du fonds de Ludwig Falkenstein, décédé le 29 novembre 2015. Ce médiéviste d’Aix-la-Chapelle
+      fut sans aucun doute l’un des plus grands spécialistes de l’histoire de Reims au Moyen Âge. Jean-Loup Lemaitre lui
+      a consacré une nécrologie très fournie (Francia 43 [2016], S. 469–473). Sa veuve, Ruth Falkenstein, a cédé le
+      droit d’exploiter et de publier son legs scientifique à Rolf Große.
+      Ludwig Falkenstein a commencé ses recherches sur les actes pontificaux de Reims dès 1965 et s’y est consacré
+      jusqu’à la veille de sa mort. Malheureusement, il ne lui fut pas donné de les achever définitivement pour la
+      publication. C’est pourquoi il était nécessaire de les relire en profondeur et de les remanier pour la publication
+      numérique.
+      Robert Friedrich et Sebastian Gensicke ont joué un rôle décisif dans ce processus. En poste à l’IHA en tant que
+      doctorants, ils ont, sous la direction de Rolf Große, non seulement adapté les regestes sur le plan rédactionnel,
+      mais ils les ont aussi balisés en langage XML selon le schéma CEI/TEI, en plus d’avoir ajouté une trentaine de
+      numéros. La bibliographie a été complétée par de nouvelles références, sans que cela soit exhaustif. De plus, des
+      liens vers les éditions, les regestes, la littérature secondaire et les manuscrits numérisés ont été ajoutés.
+      Ils ont été aidés par des stagiaires de l’IHA, notamment par Sarah Anabel Lang, ainsi que par Thomas Billard,
+      Isabel Dillenberger, Ronja Fischer, Leonhard Fleischer, Paul Förder, Hilda Hetz, Michaela Kästl, Thomas Lebrun,
+      Colombe le Roy, Maria Weidel et Simon Wellner.
+    </description>
+    <description xml:lang="de" descriptionType="Abstract">Die Papstregesten der Erzbischöfe von Reims, insgesamt 1&#160;162
+      Nummern, sind das erste Quellencorpus, das im Rahmen der »Gallia Pontificia online« (GPO) der Forschung zugänglich
+      gemacht wird. Somit liegt erstmals die umfassende Dokumentation der Kurialbeziehungen des wichtigsten
+      französischen Erzbischofs im frühen und hohen Mittelalter vor.
+      Das Material stammt aus dem Nachlass des am 29. November 2015 verstorbenen Aachener Mediävisten Ludwig
+      Falkenstein, eines der besten Kenner der Reimser Geschichte im Mittelalter. Jean-Loup Lemaitre hat ihm einen
+      ausführlichen Nachruf gewidmet (Francia 43 [2016], S. 469–473). Das Recht, seinen wissenschaftlichen Nachlass
+      auszuwerten und zu veröffentlichen, übertrug die Witwe, Ruth Falkenstein, an Rolf Große.
+      Ludwig Falkenstein begann seine Arbeit an den Reimser Papsturkunden bereits 1965 und widmete sich ihnen bis kurz
+      vor seinem Tod. Leider blieb es ihm nicht vergönnt, die Arbeit für die Veröffentlichung endgültig abzuschließen.
+      Deshalb war es nötig, die Texte einer erneuten Durchsicht zu unterziehen und für die digitale Publikation
+      aufzubereiten.
+      An diesem Vorgang tragen Robert Friedrich und Sebastian Gensicke entscheidenden Anteil. Als Doktoranden am DHIP
+      beschäftigt, haben sie die Regesten, unter Leitung von Rolf Große, nicht nur redaktionell bearbeitet, sondern auch
+      um ca. 30 Nummern ergänzt und nach dem CEI/TEI-Schema in XML ausgezeichnet. Neuere Editionen, Regestenwerke und
+      Literatur wurden nachgetragen; dabei konnte allerdings keine Vollständigkeit erreicht werden. Zudem wurden Links
+      zu Digitalisaten von Literatur und Handschriften eingefügt.
+      Unterstützt wurden sie von Praktikantinnen und Praktikanten am DHIP, vor allem von Sarah Anabel Lang, ferner von
+      Thomas Billard, Isabel Dillenberger, Ronja Fischer, Leonhard Fleischer, Paul Förder, Hilda Hetz, Michaela Kästl,
+      Thomas Lebrun, Colombe le Roy, Maria Weidel und Simon Wellner.
+    </description>
+    <description xml:lang="en" descriptionType="Abstract">The regesta of the Archbishops of Reims, a total of 1.162
+      numbers, are the first source corpus to be made available to researchers within the framework of »Gallia
+      Pontificia online« (GPO). Thus, for the first time, the comprehensive documentation of the curial relations of the
+      most important French archbishop in the early and high Middle Ages is made available.
+      The material comes from the estate of the Aachen medievalist Ludwig Falkenstein, who was one of the best experts
+      on the history of Reims in the Middle Ages. He died on 29 November 2015. Jean-Loup Lemaitre dedicated an extensive
+      obituary to him (Francia 43 [2016], p. 469–473). The right to evaluate and publish his scholarly estate was
+      transferred by his widow, Ruth Falkenstein, to Rolf Große.
+      Ludwig Falkenstein began his work on the Reims papal documents as early as 1965 and devoted himself to them until
+      shortly before his death. Unfortunately, he was not able to finally complete the work for publication. It was
+      therefore necessary to review the texts again and prepare them for digital publication.
+      Robert Friedrich and Sebastian Gensicke played a decisive role in this process. As doctoral students at the GHIP,
+      they not only edited the registers under the supervision of Rolf Große, but also added about 30 numbers and marked
+      them up in XML according to the CEI/TEI scheme. Newer editions, editions of regesta and literature were added. It
+      was, however, not possible to achieve completeness. In addition, links to digital copies of literature and
+      manuscripts were inserted.
+      They were supported by interns at the GHIP, especially Sarah Anabel Lang, as well as Thomas Billard, Isabel
+      Dillenberger, Ronja Fischer, Leonhard Fleischer, Paul Förder, Hilda Hetz, Michaela Kästl, Thomas Lebrun, Colombe
+      le Roy, Maria Weidel and Simon Wellner.
+    </description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Reims</geoLocationPlace>
+      <geoLocationPoint>
+        <pointLatitude>49.265278</pointLatitude>
+        <pointLongitude>4.028611</pointLongitude>
+      </geoLocationPoint>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPlace>Champagne</geoLocationPlace>
+      <geoLocationPoint>
+        <pointLatitude>49.0000</pointLatitude>
+        <pointLongitude>4.3000</pointLongitude>
+      </geoLocationPoint>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPlace>Frankreich</geoLocationPlace>
+      <geoLocationPoint>
+        <pointLatitude>46.0000</pointLatitude>
+        <pointLongitude>2.0000</pointLongitude>
+      </geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+  <language>de</language>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsPartOf">10.58137/001-2023-0</relatedIdentifier>
+  </relatedIdentifiers>
+  <formats>
+    <format>tei+xml</format>
+  </formats>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution Share
+      Alike 4.0 International
+    </rights>
+  </rightsList>
+</resource>

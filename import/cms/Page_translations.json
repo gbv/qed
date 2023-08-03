@@ -13,7 +13,7 @@
   },
   {
     "Page_id": 4,
-    "content": "<h2 id=\"zitierhinweis\">Zitierhinweis</h2>\n<p>Bitte geben Sie bei Nutzung die vollst&auml;ndige Quellenangabe an (siehe unten). Bitte schicken Sie uns bei der Verwendung auf Webseiten zur Information den Link auf die entsprechende Stelle per E-Mail. Wir w&uuml;rden uns freuen, wenn Sie uns bei der Verwendung in wissenschaftlichen Publikationen ein Belegexemplar der Publikation zusenden k&ouml;nnten.</p>\n<h3 id=\"quellenangabe\">Quellenangabe</h3>\n<p>Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbisch&ouml;fe, bearbeitet von Robert Friedrich und Sebastian Gensicke, herausgegeben von Rolf Gro&szlig;e, Paris 2023.<br />Kurztitel: GPO Reims I: Erzbisch&ouml;fe, Nr. ###.</p>",
+    "content": "<h2 id=\"zitierhinweis\">Zitierhinweis</h2>\n<p>Bitte geben Sie bei Nutzung die vollst&auml;ndige Quellenangabe an (siehe unten). Bitte schicken Sie uns bei der Verwendung auf Webseiten zur Information den Link auf die entsprechende Stelle per E-Mail. Wir w&uuml;rden uns freuen, wenn Sie uns bei der Verwendung in wissenschaftlichen Publikationen ein Belegexemplar der Publikation zusenden k&ouml;nnten.</p>\n<h3 id=\"quellenangabe\">Quellenangabe</h3>\n<p>Gallia Pontificia online, unter Leitung von Rolf Gro&szlig;e herausgegeben vom Deutschen Historischen Institut Paris, URL: <a href=\"https://qed.perspectivia.net/gallia-pontificia-online/\" target=\"_blank\" rel=\"noopener\">https://qed.perspectivia.net/gallia-pontificia-online/</a></p>",
     "id": 5,
     "languages_code": "de-DE"
   },
@@ -109,7 +109,7 @@
   },
   {
     "Page_id": 4,
-    "content": "<div>\n<h2 id=\"zitierhinweis\">Indication pour la citation</h2>\n<p>En cas d&rsquo;utilisation, veuillez mentionner la r&eacute;f&eacute;rence compl&egrave;te (voir ci-dessous); pour les pages web, veuillez nous envoyer par courriel le lien vers le site correspondant, &agrave; titre d&rsquo;information; pour les publications scientifiques, nous serions heureux que vous nous fassiez parvenir un exemplaire.</p>\n<h3 id=\"quellenangabe\">Indication de la source</h3>\n<p>Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbisch&ouml;fe, travaill&eacute; par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Gro&szlig;e, Paris 2023.<br />Titre abr&eacute;g&eacute;: GPO Reims I: Erzbisch&ouml;fe, n<sup>o</sup> ###.</p>\n</div>",
+    "content": "<div>\n<h2 id=\"zitierhinweis\">Indication pour la citation</h2>\n<p>En cas d&rsquo;utilisation, veuillez mentionner la r&eacute;f&eacute;rence compl&egrave;te (voir ci-dessous); pour les pages web, veuillez nous envoyer par courriel le lien vers le site correspondant, &agrave; titre d&rsquo;information; pour les publications scientifiques, nous serions heureux que vous nous fassiez parvenir un exemplaire.</p>\n<h3 id=\"quellenangabe\">Indication de la source</h3>\n<p>Gallia Pontificia online, publi&eacute;e sous la direction de Rolf Gro&szlig;e par l&rsquo;Institut historique allemand, URL: <a href=\"https://qed.perspectivia.net/gallia-pontificia-online/\" target=\"_blank\" rel=\"noopener\">https://qed.perspectivia.net/gallia-pontificia-online/</a></p>\n</div>",
     "id": 43,
     "languages_code": "fr-FR"
   },
@@ -127,8 +127,44 @@
   },
   {
     "Page_id": 4,
-    "content": "<div>\n<h2 id=\"zitierhinweis\">Information on citing</h2>\n<p>Please give full credit (see below). If used on websites, please email us the link to the relevant post for information purposes. We would be grateful if you could send us a copy of the publication if it is used in scientific publications.</p>\n<h3 id=\"quellenangabe\">Source reference</h3>\n<p>Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbisch&ouml;fe, edited by Robert Friedrich and Sebastian Gensicke, under the direction of Rolf Gro&szlig;e, Paris 2023.<br />Short title: GPO Reims I: Erzbisch&ouml;fe, No. ###.</p>\n</div>",
+    "content": "<div>\n<h2 id=\"zitierhinweis\">Information on citing</h2>\n<p>Please give full credit (see below). If used on websites, please email us the link to the relevant post for information purposes. We would be grateful if you could send us a copy of the publication if it is used in scientific publications.</p>\n<h3 id=\"quellenangabe\">Source reference</h3>\n<p>Gallia Pontificia online, published under the direction of Rolf Gro&szlig;e by the German Historical Institute Paris, URL: <a href=\"https://qed.perspectivia.net/gallia-pontificia-online/\" target=\"_blank\" rel=\"noopener\">https://qed.perspectivia.net/gallia-pontificia-online/</a></p>\n</div>",
     "id": 46,
     "languages_code": "en-US"
+  },
+  {
+    "Page_id": 14,
+    "content": "<h3>Zitierhinweis</h3>\n<p>Gallia Pontificia online. Reims I: Erzbisch&ouml;fe, bearbeitet von Ludwig Falkenstein. Digitale Edition bearbeitet von Robert Friedrich und Sebastian Gensicke unter Leitung von Rolf Gro&szlig;e, Paris 2023, DOI: <a href=\"https://doi.org/10.58137/001-2023-0\" target=\"_blank\" rel=\"noopener\">10.58137/001-2023-0</a></p>\n<p>Kurztitel: GPO Reims I: Erzbisch&ouml;fe, DOI: <a href=\"https://doi.org/10.58137/001-2023-0\" target=\"_blank\" rel=\"noopener\">10.58137/001-2023-0</a></p>",
+    "id": 47,
+    "languages_code": "de-DE"
+  },
+  {
+    "Page_id": 14,
+    "content": "<h3>Citation</h3>\n<p>Gallia Pontificia online. Reims I: Erzbisch&ouml;fe, edited by Ludwig Falkenstein. Digital edition by Robert Friedrich and Sebastian Gensicke, under the direction of Rolf Gro&szlig;e, Paris 2023, DOI: <a href=\"https://doi.org/10.58137/001-2023-0\" target=\"_blank\" rel=\"noopener\">10.58137/001-2023-0</a></p>\n<p>Abbreviated title: GPO Reims I: Erzbisch&ouml;fe, DOI: <a href=\"https://doi.org/10.58137/001-2023-0\" target=\"_blank\" rel=\"noopener\">10.58137/001-2023-0</a></p>",
+    "id": 48,
+    "languages_code": "en-US"
+  },
+  {
+    "Page_id": 14,
+    "content": "<h3>Indication pour la citation</h3>\n<p>Gallia Pontificia online. Reims I: Erzbisch&ouml;fe, par Ludwig Falkenstein. &Eacute;dition &eacute;lectronique par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Gro&szlig;e, Paris 2023, DOI: <a href=\"https://doi.org/10.58137/001-2023-0\" target=\"_blank\" rel=\"noopener\">10.58137/001-2023-0</a></p>\n<p>Titre abr&eacute;g&eacute;: GPO Reims I: Erzbisch&ouml;fe, DOI: <a href=\"https://doi.org/10.58137/001-2023-0\" target=\"_blank\" rel=\"noopener\">10.58137/001-2023-0</a></p>",
+    "id": 49,
+    "languages_code": "fr-FR"
+  },
+  {
+    "Page_id": 15,
+    "content": "<h3>Datenexport</h3>\n<p>Bisher ist kein Datenexport f&uuml;r einzelne Regesten verf&uuml;gbar. Stattdessen k&ouml;nnen Sie hier eine XML-Datei mit allen Reimser Regesten, das verwendete CEI-Schema sowie das Handschriftenverzeichnis und die Bibliografie im CSV-Format herunterladen.</p>\n<ul>\n<li><a href=\"../../../data/2023-07-26_regesten_reims_1_gesamt.xml\">2023-07-26_regesten_reims_1_gesamt.xml</a></li>\n<li><a href=\"../../../data/2016-05-28_cei_monasterium.xsd\">2016-05-28_cei_monasterium.xsd</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_handschriftenverzeichnis.csv\">2023-07-26_reims_1_handschriftenverzeichnis.csv</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_bibliografie.csv\">2023-07-26_reims_1_bibliografie.csv</a></li>\n</ul>",
+    "id": 50,
+    "languages_code": "de-DE"
+  },
+  {
+    "Page_id": 15,
+    "content": "<h3>Data export</h3>\n<p>It is not yet possible to export data of individual regesta. However, here you can download an XML file of all the Reims regesta and the CEI components that were used. The manuscript index and the bibliography are also available in CSV format here.</p>\n<ul>\n<li><a href=\"../../../data/2023-07-26_regesten_reims_1_gesamt.xml\">2023-07-26_regesten_reims_1_gesamt.xml</a></li>\n<li><a href=\"../../../data/2016-05-28_cei_monasterium.xsd\">2016-05-28_cei_monasterium.xsd</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_handschriftenverzeichnis.csv\">2023-07-26_reims_1_handschriftenverzeichnis.csv</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_bibliografie.csv\">2023-07-26_reims_1_bibliografie.csv</a></li>\n</ul>",
+    "id": 51,
+    "languages_code": "en-US"
+  },
+  {
+    "Page_id": 15,
+    "content": "<h3>Exportation des donn&eacute;es</h3>\n<p>&Agrave; ce jour, aucune exportation de donn&eacute;es n&rsquo;est disponible pour les regestes individuels. En revanche, vous pouvez t&eacute;l&eacute;charger ici un fichier XML contenant tous les regestes de Reims, le sch&eacute;ma CEI utilis&eacute; ainsi que le r&eacute;pertoire des sources manuscrites et la bibliographie au format CSV.</p>\n<ul>\n<li><a href=\"../../../data/2023-07-26_regesten_reims_1_gesamt.xml\">2023-07-26_regesten_reims_1_gesamt.xml</a></li>\n<li><a href=\"../../../data/2016-05-28_cei_monasterium.xsd\">2016-05-28_cei_monasterium.xsd</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_handschriftenverzeichnis.csv\">2023-07-26_reims_1_handschriftenverzeichnis.csv</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_bibliografie.csv\">2023-07-26_reims_1_bibliografie.csv</a></li>\n</ul>",
+    "id": 52,
+    "languages_code": "fr-FR"
   }
 ]

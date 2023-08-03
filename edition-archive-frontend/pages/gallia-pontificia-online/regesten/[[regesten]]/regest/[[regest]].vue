@@ -119,7 +119,9 @@
                {{ $t("gpo.pages.regest.cite.long") }}
               </template>
               {{ regestedIdno }}.
-              {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
+              <a :href="$t('gpo.pages.regest.cite.url')+regestedIdno">
+                {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
+              </a>
             </span>
             <span v-on:click.prevent="toggleCiteVersion()" class="badge rounded-pill cite-switch"
                   :title="$t(citeForm.citeVersion!=='short' ? 'gpo.pages.regest.cite.switch.short.title': 'gpo.pages.regest.cite.switch.long.title')">

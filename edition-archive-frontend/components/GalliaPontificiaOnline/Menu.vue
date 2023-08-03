@@ -52,6 +52,16 @@
                 {{ $t('gpo.subMenu.reims1.places') }}
               </nuxt-link>
             </li>
+            <li class="nav-item">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontificia-online/regesten/reims1/zitierhinweis">
+                {{ $t('gpo.subMenu.reims1.citation') }}
+              </nuxt-link>
+            </li>
+            <li class="nav-item">
+              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontificia-online/regesten/reims1/datenexport">
+                {{ $t('gpo.subMenu.reims1.export') }}
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
   </template>

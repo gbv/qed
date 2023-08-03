@@ -37,6 +37,16 @@ public class Regest {
 
     private String ueberlieferungsform;
 
+    private String doi;
+
+    public String getDoi() {
+        return doi;
+    }
+
+    public void setDoi(String doi) {
+        this.doi = doi;
+    }
+
     public String getUeberlieferungsform() {
         return ueberlieferungsform;
     }
@@ -133,6 +143,7 @@ public class Regest {
     public String toString() {
         return "Regest{" +
             "idno='" + idno + '\'' +
+            ", doi=" + doi +
             ", deliveryForm=" + deliveryForm +
             ", issued=" + issued +
             ", issuedPlace='" + issuedPlace + '\'' +

@@ -18,7 +18,7 @@ Starts the frontend with live changes
 copy the current regest files from `import` to `docker/backend-tmp/import`
 At localhost:8000/backend/ you can login and start the webcli and run the command:
 ``` 
-import regests from cei file /mcr/tmp/import/2023-03-03_regesten_gesamt_red_vi-22.xml and source /mcr/tmp/import/2023-03-03_02_quellen-_und_literaturverzeichnis_regesten_red_viii.csv and manuscript /mcr/tmp/import/2023-03-03_01_hss-verzeichnis_regesten_red_vi.csv
+import regests from cei file /mcr/tmp/import/2023-07-26_regesten_gesamt_red_vii-03.xml and source /mcr/tmp/import/2023-07-26_02_quellen-_und_literaturverzeichnis_regesten_red_xi.csv and manuscript /mcr/tmp/import/2023-07-26_01_hss-verzeichnis_regesten_red_vi-04.csv
 ```
 
 ## delete old content

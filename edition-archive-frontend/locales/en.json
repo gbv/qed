@@ -34,7 +34,9 @@
         "decretals": "Decretals",
         "sources": "General bibliography",
         "persons": "Index of persons",
-        "places": "Index of places"
+        "places": "Index of places",
+        "citation":"Citation",
+        "export":"Data export"
       }
     },
     "pages": {
@@ -60,8 +62,8 @@
         "ueberlieferungsform": "Überlieferungsform",
         "regests": "Regesten",
         "cite": {
-          "short": "GPO Reims I: Archbishops, No.",
-          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, edited by Robert Friedrich and Sebastian Gensicke, under the direction of Rolf Große, Paris 2023, No.",
+          "short": "GPO Reims I: Erzbischöfe, no.",
+          "long": "Gallia Pontificia online: Ludwig Falkenstein, Reims I: Erzbischöfe, edited by Robert Friedrich and Sebastian Gensicke, under the direction of Rolf Große, Paris 2023, no.",
           "url": "https://qed.perspectivia.net/gallia-pontificia-online/regesten/reims1/regest/",
           "switch": {
             "long": {
@@ -146,7 +148,7 @@
     "pagePrev": "Previous page",
     "pagination": "pagination search",
     "submit": "Search",
-    "goToRegest": "Go to No. {regest}",
+    "goToRegest": "Go to no. {regest}",
     "error": "Error while Searching: {error}",
     "sort": {
       "idno": "Regesta number",
