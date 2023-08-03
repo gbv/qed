@@ -157,7 +157,7 @@
   },
   {
     "Page_id": 15,
-    "content": "<h3>Data export</h3>\n<p>Up to now, no data export is available for individual regests. Instead, you can download an XML file with all Reims registers, the CEI scheme used as well as the manuscript index and the bibliography in CSV format here.</p>\n<ul>\n<li><a href=\"../../../data/2023-07-26_regesten_reims_1_gesamt.xml\">2023-07-26_regesten_reims_1_gesamt.xml</a></li>\n<li><a href=\"../../../data/2016-05-28_cei_monasterium.xsd\">2016-05-28_cei_monasterium.xsd</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_handschriftenverzeichnis.csv\">2023-07-26_reims_1_handschriftenverzeichnis.csv</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_bibliografie.csv\">2023-07-26_reims_1_bibliografie.csv</a></li>\n</ul>",
+    "content": "<h3>Data export</h3>\n<p>It is not yet possible to export data of individual regesta. However, here you can download an XML file of all the Reims regesta and the CEI components that were used. The manuscript index and the bibliography are also available in CSV format here.</p>\n<ul>\n<li><a href=\"../../../data/2023-07-26_regesten_reims_1_gesamt.xml\">2023-07-26_regesten_reims_1_gesamt.xml</a></li>\n<li><a href=\"../../../data/2016-05-28_cei_monasterium.xsd\">2016-05-28_cei_monasterium.xsd</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_handschriftenverzeichnis.csv\">2023-07-26_reims_1_handschriftenverzeichnis.csv</a></li>\n<li><a href=\"../../../data/2023-07-26_reims_1_bibliografie.csv\">2023-07-26_reims_1_bibliografie.csv</a></li>\n</ul>",
     "id": 51,
     "languages_code": "en-US"
   },
