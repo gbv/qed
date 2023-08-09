@@ -119,7 +119,7 @@
                {{ $t("gpo.pages.regest.cite.long") }}
               </template>
               {{ regestedIdno }}.
-              <a :href="$t('gpo.pages.regest.cite.url')+regestedIdno">
+              URL: <a :href="$t('gpo.pages.regest.cite.url')+regestedIdno">
                 {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
               </a>
             </span>
