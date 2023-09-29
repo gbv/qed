@@ -26,13 +26,7 @@ import org.mycore.datamodel.classifications2.MCRCategoryDAO;
 import org.mycore.datamodel.classifications2.MCRCategoryDAOFactory;
 import org.mycore.datamodel.classifications2.MCRCategoryID;
 import org.mycore.datamodel.common.MCRXMLMetadataManager;
-import org.mycore.datamodel.metadata.MCRDerivate;
-import org.mycore.datamodel.metadata.MCRMetaClassification;
-import org.mycore.datamodel.metadata.MCRMetaIFS;
-import org.mycore.datamodel.metadata.MCRMetaLinkID;
-import org.mycore.datamodel.metadata.MCRMetadataManager;
-import org.mycore.datamodel.metadata.MCRObject;
-import org.mycore.datamodel.metadata.MCRObjectID;
+import org.mycore.datamodel.metadata.*;
 import org.mycore.datamodel.niofs.MCRPath;
 import org.mycore.frontend.cli.annotation.MCRCommand;
 import org.mycore.frontend.cli.annotation.MCRCommandGroup;
@@ -74,6 +68,30 @@ public class EditionArchiveImportCommands {
     String newFlagContent = getGson().toJson(pi);
     mcrObject.getService().addFlag(newFlagContent);
     MCRXMLMetadataManager.instance().update(id, mcrObject.createXML(), new Date());
+  }
+
+  @MCRCommand(syntax = "correct servflag {0}")
+  public static void correctServFlag(String regestId) throws MCRAccessException, MCRPersistenceException {
+    MCRObjectID id = MCRObjectID.getInstance(regestId);
+    MCRObject mcrObject = MCRMetadataManager.retrieveMCRObject(id);
+    MCRObjectService service = mcrObject.getService();
+
+    // fuck this shit api
+    int flagSize = service.getFlagSize();
+    int flagIndex = -1;
+    for (int i = 0; i < flagSize; i++) {
+      String flag = service.getFlag(i);
+      if(flag.contains("GPO-Datacite")) {
+        flagIndex = i;
+      }
+    }
+    
+    if(flagIndex != -1){
+      String flagContent = service.getFlag(flagIndex);
+      service.removeFlag(flagIndex);
+      service.addFlag("MyCoRe-PI", flagContent);
+      MCRXMLMetadataManager.instance().update(id, mcrObject.createXML(), new Date());
+    }
   }
 
   protected static Gson getGson() {
