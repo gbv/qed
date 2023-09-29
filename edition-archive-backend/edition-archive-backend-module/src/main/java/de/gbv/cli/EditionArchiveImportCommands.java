@@ -1,6 +1,11 @@
 package de.gbv.cli;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import de.gbv.metadata.CEIImporter;
+import de.gbv.metadata.MetaJSONHelper;
 import de.gbv.metadata.model.EntityLink;
 import de.gbv.metadata.model.Manuscript;
 import de.gbv.metadata.model.Organization;
@@ -14,11 +19,13 @@ import org.jdom2.JDOMException;
 import org.jdom2.output.XMLOutputter;
 import org.mycore.access.MCRAccessException;
 import org.mycore.common.MCRException;
+import org.mycore.common.MCRGsonUTCDateAdapter;
 import org.mycore.common.MCRPersistenceException;
 import org.mycore.common.config.MCRConfiguration2;
 import org.mycore.datamodel.classifications2.MCRCategoryDAO;
 import org.mycore.datamodel.classifications2.MCRCategoryDAOFactory;
 import org.mycore.datamodel.classifications2.MCRCategoryID;
+import org.mycore.datamodel.common.MCRXMLMetadataManager;
 import org.mycore.datamodel.metadata.MCRDerivate;
 import org.mycore.datamodel.metadata.MCRMetaClassification;
 import org.mycore.datamodel.metadata.MCRMetaIFS;
@@ -29,19 +36,16 @@ import org.mycore.datamodel.metadata.MCRObjectID;
 import org.mycore.datamodel.niofs.MCRPath;
 import org.mycore.frontend.cli.annotation.MCRCommand;
 import org.mycore.frontend.cli.annotation.MCRCommandGroup;
+import org.mycore.pi.MCRPIManager;
+import org.mycore.pi.MCRPIMetadataService;
+import org.mycore.pi.backend.MCRPI;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -51,6 +55,44 @@ import static de.gbv.metadata.CEIImporter.createMetadata;
 
 @MCRCommandGroup(name = "Import Commands")
 public class EditionArchiveImportCommands {
+
+  @MCRCommand(syntax = "correct regest doi {0}")
+  public static void correctRegestDOI(String regestId) throws MCRAccessException, MCRPersistenceException {
+    MCRObjectID id = MCRObjectID.getInstance(regestId);
+    MCRObject mcrObject = MCRMetadataManager.retrieveMCRObject(id);
+
+    Regest regest = MetaJSONHelper.getMetaJsonObject(mcrObject, "regest");
+    String newPI = "10.58137/001-2023-" + regest.getIdno();
+    regest.setDoi(newPI);
+    MetaJSONHelper.setMetaJsonObject(mcrObject, "regest", regest);
+
+    ArrayList<String> flag = mcrObject.getService().getFlags("MyCoRe-PI");
+    String oldFlagContent = flag.get(0);
+    mcrObject.getService().removeFlags("MyCoRe-PI");
+    MCRPI pi = getGson().fromJson(oldFlagContent, MCRPI.class);
+    pi.setIdentifier(newPI);
+    String newFlagContent = getGson().toJson(pi);
+    mcrObject.getService().addFlag(newFlagContent);
+    MCRXMLMetadataManager.instance().update(id, mcrObject.createXML(), new Date());
+  }
+
+  protected static Gson getGson() {
+    return new GsonBuilder().registerTypeAdapter(Date.class, new MCRGsonUTCDateAdapter())
+      .setExclusionStrategies(new ExclusionStrategy() {
+        @Override
+        public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+          String name = fieldAttributes.getName();
+
+          return Stream.of("mcrRevision", "mycoreID", "id", "mcrVersion")
+            .anyMatch(field -> field.equals(name));
+        }
+
+        @Override
+        public boolean shouldSkipClass(Class<?> aClass) {
+          return false;
+        }
+      }).create();
+  }
 
     @MCRCommand(syntax = "import regests from cei file {0} and source {1} and manuscript {2}", help = "")
     public static void importRegestsFromCEI(String ceiFilePath, String sourceCSVPath, String manuscriptCSVPath)
