@@ -66,33 +66,11 @@ public class EditionArchiveImportCommands {
     MCRPI pi = getGson().fromJson(oldFlagContent, MCRPI.class);
     pi.setIdentifier(newPI);
     String newFlagContent = getGson().toJson(pi);
-    mcrObject.getService().addFlag(newFlagContent);
+    mcrObject.getService().addFlag("MyCoRe-PI", newFlagContent);
     MCRXMLMetadataManager.instance().update(id, mcrObject.createXML(), new Date());
   }
 
-  @MCRCommand(syntax = "correct servflag {0}")
-  public static void correctServFlag(String regestId) throws MCRAccessException, MCRPersistenceException {
-    MCRObjectID id = MCRObjectID.getInstance(regestId);
-    MCRObject mcrObject = MCRMetadataManager.retrieveMCRObject(id);
-    MCRObjectService service = mcrObject.getService();
 
-    // fuck this shit api
-    int flagSize = service.getFlagSize();
-    int flagIndex = -1;
-    for (int i = 0; i < flagSize; i++) {
-      String flag = service.getFlag(i);
-      if(flag.contains("GPO-Datacite")) {
-        flagIndex = i;
-      }
-    }
-    
-    if(flagIndex != -1){
-      String flagContent = service.getFlag(flagIndex);
-      service.removeFlag(flagIndex);
-      service.addFlag("MyCoRe-PI", flagContent);
-      MCRXMLMetadataManager.instance().update(id, mcrObject.createXML(), new Date());
-    }
-  }
 
   protected static Gson getGson() {
     return new GsonBuilder().registerTypeAdapter(Date.class, new MCRGsonUTCDateAdapter())
