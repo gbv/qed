@@ -252,7 +252,7 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
     })
   });
 
-  vm.doi = currentJsonDoc['identifier.doi'];
+  vm.doi = currentJsonDoc['identifier.doi'].join();
 
   vm.witListPar = findFirstElement(doc, byName("cei:witListPar"));
   vm.erwaehnungen = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
