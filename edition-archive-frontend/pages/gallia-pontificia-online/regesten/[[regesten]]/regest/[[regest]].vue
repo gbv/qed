@@ -119,9 +119,7 @@
                {{ $t("gpo.pages.regest.cite.long") }}
               </template>
               {{ regestedIdno }}.
-              DOI: <a v-if="viewModel.doi" :href="'https://doi.org/' + viewModel.doi">
-               https://doi.org/{{ viewModel.doi }}
-              </a>
+              DOI:&nbsp;<a v-if="viewModel.doi" :href="'https://doi.org/' + viewModel.doi">{{ viewModel.doi }}</a>
             </span>
             <span v-on:click.prevent="toggleCiteVersion()" class="badge rounded-pill cite-switch"
                   :title="$t(citeForm.citeVersion!=='short' ? 'gpo.pages.regest.cite.switch.short.title': 'gpo.pages.regest.cite.switch.long.title')">
