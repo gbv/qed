@@ -175,6 +175,9 @@ public class Regest2Solr extends BasicSolrInputDocumentConverter<Regest> {
       this.indexEntityLink(base, bodyPlace, "place");
     }
 
+    if(regest.getDoi() != null){
+      base.setField("identifier.doi", regest.getDoi());
+    }
 
     Optional.ofNullable(regest.getPontifikatAEP()).ifPresent(pontifikatAEP -> {
       base.setField("pontifikatAEP", pontifikatAEP.getLabel());
