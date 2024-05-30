@@ -3,6 +3,7 @@ $grayMedium:  #495353;
 $grayBasic:   #87888a;
 $grayBorder:  #bfbebe;
 $grayLight:   #ebe8e5;
+$grayBack:    #F7F7F9;
 $orange:      #ef7f00;
 $petrol:      #006978;
 $red:         #b4192d;
@@ -11,12 +12,16 @@ $primary: $petrol;
 $secondary: $orange;
 $danger: $red;
 
-$font-family-sans-serif: 'Open Sans', Arial, Helvetica, sans-serif;
+$font-family-sans-serif: 'Inter', Arial, Helvetica, sans-serif;
 $body-color: $grayMedium;
 $link-color: $petrol;
-$navbar-light-active-color: $petrol;
-$navbar-light-color: $petrol;
-$navbar-light-hover-color: darken($petrol,10%);
+
+$navbar-toggler-focus-width: 0;
+$navbar-light-color: $orange;
+$navbar-light-active-color: $orange;
+$navbar-light-hover-color: darken($orange,10%);
+$navbar-light-toggler-border-color: transparent;
+
 $navbar-nav-link-padding-x: 1rem;
 $border-radius: 0;
 $font-size-base: 1rem;

@@ -2,55 +2,55 @@
   <div class="body-box">
 
     <header class="project-header">
-      <div class="project-header__parent">
-        <a href="https://perspectivia.net">
-          <nuxt-img src="/images/perspectivia_logo_p.png" preload class="" alt="Logo Max-Weber-Stiftung" />
-        </a>
-      </div>
-      <div class="project-header__project">
-        <h1>
-          <a href="/" title="Das Quellen- und Editionsportal der Max Weber Stiftung">
-            qed.perspectivia.net
-          </a>
-        </h1>
-        <div class="beta-batch">
-          <span class="badge bg-danger">beta</span>
-        </div>
-      </div>
       <div class="container">
-        <div class="row">
-          <div class="col project-header__menu">
-            <nav class="navbar navbar-dark navbar-expand-md w-100 justify-content-end">
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#qed-main-menu"
-                aria-controls="qed-main-menu"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="qed-main-menu">
-                <ul class="navbar-nav w-100 justify-content-end">
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('qed.mainMenu.home') }}</nuxt-link>
-                  </li>
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('qed.mainMenu.search') }}</nuxt-link>
-                  </li>
-                  <li class="nav-item">
-                    <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('qed.mainMenu.about') }}</nuxt-link>
-                  </li>
-                  <!--
-                    <LoginMenuComponent />
-                  -->
-                  <LanguageSelector />
-                </ul>
-              </div>
-            </nav>
 
+        <div class="project-header__box project-header__box--logo">
+
+          <div class="project-header__logo">
+            <a href="/">
+              <nuxt-img src="/images/qed-logo.svg" preload class="" alt="Logo QED" />
+            </a>
+            <div class="beta-batch">
+              <a href="/">
+                <nuxt-img src="/images/beta.svg" preload class="" alt="Beta" />
+              </a>
+            </div>
           </div>
+
+          <div class="project-header__box project-header__box--menu">
+
+            <LanguageSelector />
+
+            <div class="project-header__menu">
+              <nav class="navbar navbar-light w-100 justify-content-end">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#qed-main-menu"
+                  aria-controls="qed-main-menu"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler__label">Menü</span>
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="qed-main-menu">
+                  <ul class="navbar-nav w-100 justify-content-end">
+                    <li class="nav-item">
+                      <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('qed.mainMenu.home') }}</nuxt-link>
+                    </li>
+                    <li class="nav-item">
+                      <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('qed.mainMenu.search') }}</nuxt-link>
+                    </li>
+                    <li class="nav-item">
+                      <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('qed.mainMenu.about') }}</nuxt-link>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+
         </div>
       </div>
     </header>
@@ -65,11 +65,15 @@
       <section class="project-footer__nav">
         <div class="container">
           <div class="row">
-            <div class="col-auto  project-footer__links">
-              <a class="mws-link" href="https://www.maxweberstiftung.de">Max Weber Stiftung</a>
-              <a class="p-link" href="https://perspectivia.net">perspectivia.net</a>
+
+            <div class="col-4 project-footer__logo">
+              <nuxt-img
+                preload
+                src="/images/max-weber-stiftung-de.svg"
+                alt="Logo Max Weber Stiftung" />
             </div>
-            <div class="col  project-footer__menu">
+
+            <div class="col-4  project-footer__menu">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
@@ -85,19 +89,50 @@
                 </li>
               </ul>
             </div>
-            <div class="col-auto project-footer__logo">
-              <nuxt-img
-                preload
-                src="/images/mws_logo_standard_de_weiss.png"
-                alt="Logo Max Weber Stiftung" />
+
+            <div class="col-4 project-footer__social">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a
+                    href="https://twitter.com/perspectivia"
+                    class="nav-link twitter">
+                    <i class="bi bi-twitter"></i>
+                    <span class="d-none d-xl-inline">@perspectivia folgen</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="https://www.facebook.com/maxweberstiftung"
+                    class="nav-link facebook">
+                    <i class="bi bi-facebook"></i>
+                    <span class="d-none d-xl-inline">Like Max Weber Stiftung</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="http://vimeo.com/maxweberstiftung"
+                    class="nav-link vimeo-mws">
+                    <i class="bi bi-vimeo"></i>
+                    <span class="d-none d-xl-inline">Max Weber Stiftung Videos folgen</span>
+                  </a>
+                </li>
+              </ul>
             </div>
+
           </div>
         </div>
       </section>
       <section class="project-footer__credits">
         <div class="container">
           <div class="row">
-            <div class="col">
+
+            <div class="col-md-4">
+              <div class="copyright_by">
+                <a class="mws-link" href="https://www.maxweberstiftung.de">© Max Weber Stiftung 2024</a>
+              </div>
+            </div>
+
+            <div class="col-md-4">
               <div class="project-powered-by text-center">
                 <a href="http://www.mycore.de/">
                   <nuxt-img alt="powered by MyCoRe" preload title="todo:add version number"
@@ -105,6 +140,7 @@
                 </a>
               </div>
             </div>
+
           </div>
         </div>
       </section>

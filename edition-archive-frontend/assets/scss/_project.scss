@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  padding-top: calc(13.5rem + 71px);
   & > header {
     flex-shrink: 0;
   }
@@ -16,90 +17,75 @@
 
 // header
 .project-header {
-  background-color: $petrol;
-  position: relative;
+  box-shadow: 0px 4px 3px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  z-index: 1001;
+  right: 0;
+  width: 100%;
+  min-width: 320px;
+  background-color: white;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
 
-  // parent
-  &__parent {
-    position: absolute;
-    left: 0;
-    height: 40px;
-    z-index:1000;
-    a {
-      display: block;
-      height: 100%;
-    }
-    img {
-      height: 100%;
-      border-right: 2px solid white;
-    }
-  }
-  // name
-  &__project {
-    position: absolute;
-    left: 0;
-    height: 40px;
-    z-index:999;
-    h1 {
-      margin: 0;
-      height: 100%;
-    }
-    a {
-      font-size: 1.2rem;
-      font-weight: normal;
-      display: block;
-      height: 100%;
-      color: white;
-      padding: 0 1rem 0 3rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      &:hover {
-        color: $petrol;
-        background-color: white;
-      }
-    }
-  }
-
-  .beta-batch {
-    font-size: 1rem;
-    position: absolute;
-    top: 0;
-    right: -2.4rem;
-    z-index: 1001;
-  }
-
-  // main and language menu
-  &__menu,
-  &__language {
+  &__box {
     display: flex;
     align-items: center;
-    nav {
-      padding: 0;
-    }
-    .nav-link {
-      color: white;
-      &:hover {
-        color: $petrol;
-        background-color: white;
+    justify-content: space-between;
+    &--menu {
+      ul {
+        margin-right: 3rem;
       }
-      &.active {
-        color: $petrol;
-        background-color: white;
-      }
-      &[id=languageDropdown] {
-        margin-left: 5rem;
-        &:hover {
-          color: white;
-          background-color: transparent;
-        }
-      }
-    }
-    .navbar-toggler {
-      margin: 10px 0;
     }
   }
+  &__logo {
+    align-self: center;
+    position: relative;
+    img {
+      width: 460px;
+    }
+  }
+  .beta-batch {
+    position: absolute;
+    top: 0;
+    right: -32px;
+    z-index: 1001;
+    img {
+      width:32px;
+    }
+  }
+  &__menu {
+    .navbar-toggler {
+      &__label {
+        font-size: 18px;
+        margin-right: 0.5rem;
+        color: $grayMedium;
+      }
+      &-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+    .navbar-toggler[aria-expanded=true] {
+      .navbar-toggler-icon {
+        background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ef7f00'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/0.6em auto no-repeat;
+      }
+    }
+  }
+  #qed-main-menu {
+    position: absolute;
+    top: 5rem;
+    right: 0px;
+    padding: 1rem;
+
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 6px #00000029;
+    border-radius: 0px 0px 25px 25px;
+    opacity: 1;
+  }
 }
+
 
 // content
 .project-content {
@@ -268,7 +254,6 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 3000;
     background-color: rgba(255,255,255,.6);
     padding: 0 .5rem;
     font-size: 0.8rem;
@@ -301,41 +286,56 @@ p {
 
 // footer
 .project-footer {
+  border-top: 3px solid $grayLight;
+  background-color: $grayBack;
   &__nav {
     padding: 2rem 0 3rem 0;
-    background-color: $petrol;
     .nav-link {
-      color: white;
+      color: $grayMedium;
+      text-decoration: none;
+      display: block;
+      font-weight: 700;
       &:hover {
-        color: white;
+        color: $grayMedium;
       }
     }
   }
   &__links {
     margin-right: 5rem;
-    a {
-      color: white;
-      text-decoration: none;
-      display: block;
-    }
-    .mws-link{
-      margin-top: 0.5rem;
-    }
     .p-link {
       font-weight: bold;
     }
   }
   &__menu {}
+  &__social {
+    i {
+      font-size: 20px;
+      color: $orange;
+      margin-right: 1rem;
+    }
+  }
   &__logo {
     margin-top: 0.5rem;
-    text-align: right;
     img {
       width: 180px;
     }
   }
   &__credits {
-    background-color: darken($petrol,10%);
+    background-color: #191C1C;
     padding: 1.25rem;
+    .copyright_by {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .mws-link {
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+      &:hover {
+        color: white;
+      }
+    }
   }
 }
 
