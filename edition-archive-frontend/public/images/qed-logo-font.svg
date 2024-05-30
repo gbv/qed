@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="459" height="69.228" viewBox="0 0 459 69.228">
+  <g id="Gruppe_620" data-name="Gruppe 620" transform="translate(-240 -27.584)">
+    <g id="Gruppe_173" data-name="Gruppe 173" transform="translate(240 27.584)">
+      <g id="Gruppe_1" data-name="Gruppe 1" transform="translate(8.372)">
+        <path id="Pfad_1" data-name="Pfad 1" d="M82.453,0H43.1V60.817a8.414,8.414,0,0,0,8.411,8.411H61.922V11.985h4.526v3.671A12.805,12.805,0,0,1,76.782,11.4c5.983.583,10.1,5.3,10.237,15.306.136,10.625-4.293,16.627-11.13,17.152a11.2,11.2,0,0,1-9.421-4.176V69.208H90.728V8.255A8.277,8.277,0,0,0,82.453,0Z" transform="translate(-43.1)" fill="#ef7f01"/>
+        <path id="Pfad_2" data-name="Pfad 2" d="M172.138,103.11c5.109-.1,7.148-5.245,7.323-11.849.194-7.653-2.253-12.062-6.857-12.82-3.788-.622-7.614,2.234-9.265,4.409L163.3,98.584C166.388,102.566,169.71,103.168,172.138,103.11Z" transform="translate(-139.952 -63.135)" fill="#ef7f01"/>
+      </g>
+      <rect id="Rechteck_1" data-name="Rechteck 1" width="4.468" height="69.228" fill="#ef7f01"/>
+    </g>
+    <text id="qed.perspectivia.net" transform="translate(311 75)" fill="#ef7f02" font-size="40" font-family="Inter-Regular, Inter"><tspan x="0" y="0">qed</tspan><tspan y="0" fill="#191c1c">.perspectivia</tspan><tspan y="0" fill="#ef7f01">.net</tspan></text>
+  </g>
+</svg>

@@ -1,16 +1,18 @@
 <template>
   <client-only>
-    <li class="nav-item dropdown">
-      <a id="languageDropdown" aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-         role="button">
-        {{ i18n.localeProperties.value.name }}
-      </a>
-      <ul aria-labelledby="languageDropdown" class="dropdown-menu">
-        <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('de')"><LanguageDisplay lang="de" /></a></li>
-        <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('en')"><LanguageDisplay lang="en" /></a></li>
-        <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('fr')"><LanguageDisplay lang="fr" /></a></li>
-      </ul>
-    </li>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a id="languageDropdown" aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+           role="button">
+          {{ i18n.localeProperties.value.name }}
+        </a>
+        <ul aria-labelledby="languageDropdown" class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('de')"><LanguageDisplay lang="de" /></a></li>
+          <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('en')"><LanguageDisplay lang="en" /></a></li>
+          <li><a class="dropdown-item" href="#" v-on:click.prevent="changeLanguage('fr')"><LanguageDisplay lang="fr" /></a></li>
+        </ul>
+      </li>
+    </ul>
   </client-only>
 
 </template>
