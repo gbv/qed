@@ -54,3 +54,35 @@
   von sowjetischen Überlebenden der NS-Herrschaft.
   :::
 ::
+::Rows
+#latour
+  :::ContentCard
+  ---
+  img-href: /images/cover-latour.png
+  card-title: Briefwechsel zwischen Henri Fantin-Latour und Otto Scholderer (1858-1902)
+  link: https://quellen.perspectivia.net/de/fantin-scholderer/start
+  card-class: active
+  ---
+  Kritische Online-Ausgabe 2014.
+  :::
+#friedrich
+  :::ContentCard
+  ---
+  img-href: /images/cover-friedrich.png
+  card-title: “… gantz unvergleichlich …”
+  link: https://quellen.perspectivia.net/de/borchward/start
+  card-class: active
+  ---
+  Ernst Samuel Jacob Borchwards Reise ins Potsdam Friedrichs des Großen 1749.
+  :::
+#juden
+  :::ContentCard
+  ---
+  img-href: /images/cover-juden.png
+  card-title: Das “Judenporzellan”
+  link: https://quellen.perspectivia.net/de/judenporzellan/start
+  card-class: active
+  ---
+  Eine kommentierte Quellenpräsentation zur Rechts- und Sozialgeschichte der Juden im friderizianischen Preußen (1769–1788).
+  :::
+::

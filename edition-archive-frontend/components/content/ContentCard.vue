@@ -2,6 +2,9 @@
   <div :class="'card h-100 ' + cardClass">
     <div class="cc-by">
       <nuxt-picture :src="imgHref" loading="lazy" :imgAttrs="{ class: 'cc-by__image card-img-top fixed-height', alt:imgAlt }" />
+      <div class="badge--coming-soon" v-if="cardClass != 'active'">
+        coming soon
+      </div>
       <div v-if="ccAuthor" class="cc-by__text" >
         <nuxt-link :href="ccSource" class="no-external-mark">{{$t("cc.photo")}}</nuxt-link>
         {{$t("cc.by")}} {{ccAuthor}} /
@@ -12,11 +15,8 @@
       <h5 class="card-title mb-5">{{ cardTitle }}</h5>
       <div class="card-text"><slot /></div>
     </div>
-    <div class="card-footer text-center no-back mt-3 mb-3" v-if="cardClass == 'active'">
-      <nuxt-link :href="link" class="btn btn-secondary text-white">{{$t("button.toProject")}}</nuxt-link>
-    </div>
-    <div class="card-footer text-center no-back mt-3 mb-3" v-else>
-      coming soon
+    <div class="card-footer no-back mt-3 mb-3" v-if="cardClass == 'active'">
+      <nuxt-link :href="link" class="btn btn-primary text-white no-external-mark">{{$t("button.toProject")}}</nuxt-link>
     </div>
   </div>
 </template>

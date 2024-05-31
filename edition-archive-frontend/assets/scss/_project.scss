@@ -174,8 +174,15 @@
   padding-top: 6rem;
   padding-bottom: 8rem;
 }
-.card h5 {
-  font-size: 1.25rem;
+.card {
+  &-title {
+    margin-top: 2rem;
+    color: $petrol;
+    font-weight: 700;
+  }
+  h5 {
+    font-size: 1.25rem;
+  }
 }
 .card-img-top.fixed-height {
   height: 20rem;
@@ -184,6 +191,15 @@
 .card-footer.no-back {
   border-top: none;
   background-color: white;
+}
+.badge {
+  &--coming-soon {
+    position: absolute;
+    bottom: 2rem;
+    background: $orange;
+    color: white;
+    padding: .4rem 2rem;
+  }
 }
 #navbarSupportedContent {
   border: 1px solid $petrol;
@@ -220,10 +236,10 @@
     .card-footer {
       color: white;
       background-color: $petrol;
-      opacity: .6;
+      //opacity: .6;
     }
     img {
-      opacity: 0.5;
+      //opacity: 0.5;
     }
   }
 }
@@ -333,11 +349,11 @@
   position: relative;
   &__text {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -1rem;
+    left: 1rem;
     background-color: rgba(255,255,255,.6);
     padding: 0 .5rem;
-    font-size: 0.8rem;
+    font-size: 0.625rem;
   }
 }
 
