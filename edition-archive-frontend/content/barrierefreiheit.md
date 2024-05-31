@@ -1,4 +1,4 @@
-# Erklärung zur Barrierefreiheit <small class="text-muted">(Stand der Erklärung: 29.09.2022)</small>
+# Erklärung zur Barrierefreiheit <small class="text-muted">(Stand der Erklärung: 31.05.2024)</small>
 Die **Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland** (MWS) ist bemüht, die Internetseite https://qed.perspectivia.net/ (im Folgenden: Quellen- und Editionenportal) im Einklang mit den nationalen Rechtsvorschriften zur Umsetzung der Richtlinie (EU) 2016/2102 des Europäischen Parlaments barrierefrei zugänglich zu machen.
 
 ## Stand der Vereinbarkeit mit den Anforderungen
@@ -6,7 +6,7 @@ Das Quellen- und Editionenportal qed.perspectivia.net ist mit dem Behindertengle
 
 **Diese Website befindet sich aktuell noch im Aufbau. Sobald die Arbeiten abgeschlossen sind, wird ein Selbsttest durchgeführt und das Testergebnis an dieser Stelle veröffentlicht.**
 
-Diese Erklärung wurde am 29.09.2022 erstellt und zuletzt geprüft. 
+Diese Erklärung wurde am 29.09.2022 erstellt und am 31.05.2024 zuletzt aktualisiert. 
 
 
 ## Kontakt und Feedback

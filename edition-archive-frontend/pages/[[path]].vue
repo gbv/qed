@@ -22,14 +22,13 @@
             </div>
             <div class="intro-text">
               <p>
-                Die digitale Publikationsplattform perspectivia.net ist ein internationales,
-                epochenübergreifendes und interdisziplinäres Portal für geisteswissenschaftliche
-                Publikationen. Als Teil der Forschungsinfrastruktur der <a href="https://www.maxweberstiftung.de/">Max Weber Stiftung - Deutsche
-                Geisteswissenschaftliche Institute im Ausland</a> werden hier von den Instituten und ihren
-                Kooperationspartnern herausgegebene Publikationen und Forschungsdaten frei zugänglich
-                gemacht. Die Max Weber Stiftung ist den Prinzipien des Open Access verpflichtet und
-                begleitet die Transformation der Geisteswissenschaften in Richtung einer offenen
-                Wissenschaft.
+                Mit QED stellt die <a href="https://www.maxweberstiftung.de/">Max Weber Stiftung (MWS)</a> unter dem Dach von
+                <a href="https://perspectivia.net/">perspectivia.net</a> ein eigenes Portal für die Veröffentlichung von
+                digitalen Quellensammlungen und Editionen bereit. Die MWS reagiert damit auf den Bedarf innerhalb der Stiftung,
+                für die wachsende Zahl editorisch ausgerichteter Projekte eine stabile, nachhaltige und nutzerfreundliche Lösung
+                anzubieten. Der inhaltliche, methodische und konzeptionelle Rahmen, der durch die Projekte aufgespannt wird, ist
+                dabei ebenso facettenreich wie die Forschung an den Instituten der Stiftung selbst: international,
+                epochenübergreifend und interdisziplinär.
               </p>
             </div>
             <div class="decoration">
