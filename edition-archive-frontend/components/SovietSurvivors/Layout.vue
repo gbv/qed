@@ -1,5 +1,10 @@
 <template>
-  <div>
+
+  <div class="page-headline">
+    Kopfbild SoSu
+  </div>
+
+  <div class="container">
 
     <div class="row">
       <div class="col">
