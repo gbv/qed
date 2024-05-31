@@ -1,6 +1,6 @@
 <template>
 
-  <div :class="`page-headline ${ $route.params.path == '' ? 'page-headline--home' : 'page-headline--'+$route.params.path }`">
+  <div :class="`page-headline ${ $route.params.path == '' ? 'page-headline--home' : 'page-headline--hidden' }`">
     <!--Kopfbild Default {{ $route.params.path }} -->
 
     <div class="container">

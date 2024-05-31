@@ -93,8 +93,52 @@
   background-color: $grayBack;
   padding-top: 8rem;
   padding-bottom: 7rem;
-  &:not(.page-headline--home) {
+  &--hidden {
     display: none;
+  }
+}
+.project-headline {
+  margin-top: -6rem;
+  margin-bottom: 1rem;
+  background-color: $grayBack;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  overflow: hidden;
+  .container {
+    position: relative;
+  }
+  &__back {
+    position:absolute;
+    top: 0;
+    img {
+      height: 20rem;
+    }
+    &--start {
+      left: -26.6875rem; //459px image width on 20 rem height
+      img {
+        filter: brightness(0) saturate(100%) invert(16%) sepia(96%) saturate(3506%) hue-rotate(176deg) brightness(90%) contrast(101%);
+      }
+    }
+    &--end {
+      right: -26.6875rem;
+    }
+  }
+  .row {
+    justify-content: space-between;
+  }
+  &__title {
+    align-self: flex-end;
+    color: $petrol;
+  }
+  &__figure {
+    align-self: flex-end;
+    text-align: right;
+    margin-right: 3rem;
+    img {
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+    }
   }
 }
 
@@ -209,12 +253,16 @@
 .gpo-headline {
   display: flex;
   justify-content: space-between;
+  position: relative;
   h1 {
     color: $grayMedium;
     margin-bottom: 1rem;
     color: $grayMedium;
   }
   img {
+    position: absolute;
+    right:0;
+    top:0;
     height: 50px;
   }
 }
