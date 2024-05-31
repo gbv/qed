@@ -56,9 +56,9 @@
     </header>
 
     <section class="project-content content-intro">
-      <div class="container">
+      <!--div class="container"-->
         <slot/>
-      </div>
+      <!--/div-->
     </section>
 
     <footer class="project-footer">
