@@ -9,6 +9,7 @@
           <div class="project-header__logo">
             <a href="/">
               <nuxt-img src="/images/qed-logo.svg" preload class="" alt="Logo QED" />
+              <a href="https://perspectivia.net" class="link-to-perspectivia"></a>
             </a>
             <div class="beta-batch">
               <a href="/">
@@ -67,10 +68,12 @@
           <div class="row">
 
             <div class="col-4 project-footer__logo">
-              <nuxt-img
-                preload
-                src="/images/max-weber-stiftung-de.svg"
-                alt="Logo Max Weber Stiftung" />
+              <a href="https://www.maxweberstiftung.de">
+                <nuxt-img
+                  preload
+                  src="/images/max-weber-stiftung-de.svg"
+                  alt="Logo Max Weber Stiftung" />
+              </a>
             </div>
 
             <div class="col-4  project-footer__menu">
@@ -91,7 +94,7 @@
             </div>
 
             <div class="col-4 project-footer__social">
-              <ul class="nav flex-column">
+              <ul class="nav flex-column d-none">
                 <li class="nav-item">
                   <a
                     href="https://twitter.com/perspectivia"
@@ -117,6 +120,13 @@
                   </a>
                 </li>
               </ul>
+              <a href="https://perspectivia.net/" title="perspectivia.net" class="d-block text-end">
+                <nuxt-img
+                  preload
+                  class="img-fluid"
+                  src="/images/perspectivia_logo_p.png"
+                  alt="Logo perspectivia.net" />
+              </a>
             </div>
 
           </div>
