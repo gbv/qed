@@ -61,7 +61,7 @@
   img-href: /images/cover-latour.png
   card-title: Briefwechsel zwischen Henri Fantin-Latour und Otto Scholderer (1858-1902)
   link: https://quellen.perspectivia.net/de/fantin-scholderer/start
-  card-class: active
+  card-class: old-project
   ---
   Kritische Online-Ausgabe 2014.
   :::
@@ -71,7 +71,7 @@
   img-href: /images/cover-friedrich.png
   card-title: “… gantz unvergleichlich …”
   link: https://quellen.perspectivia.net/de/borchward/start
-  card-class: active
+  card-class: old-project
   ---
   Ernst Samuel Jacob Borchwards Reise ins Potsdam Friedrichs des Großen 1749.
   :::
@@ -81,7 +81,7 @@
   img-href: /images/cover-juden.png
   card-title: Das “Judenporzellan”
   link: https://quellen.perspectivia.net/de/judenporzellan/start
-  card-class: active
+  card-class: old-project
   ---
   Eine kommentierte Quellenpräsentation zur Rechts- und Sozialgeschichte der Juden im friderizianischen Preußen (1769–1788).
   :::

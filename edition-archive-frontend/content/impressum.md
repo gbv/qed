@@ -1,6 +1,7 @@
 # Impressum
+Stand: 03.05.2024
 
-qed – Das Quellen- und Editionenportal der Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland (MWS) ist Teil der elektronischen Publikationsplattform perspectivia.net. Es handelt sich um einen nicht-kommerziellen Dienst der MWS.
+QED – Das Portal für Quellen und Editionen der Max Weber Stiftung – Deutsche Geisteswis-senschaftliche Institute im Ausland (MWS) ist Teil der elektronischen Publikationsplattform perspectivia.net. Es handelt sich um einen nicht-kommerziellen Dienst der MWS.
 
 ## Vertreter
 
@@ -14,15 +15,14 @@ Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland<br
 Rheinallee 6<br>
 D-53173 Bonn<br>
 Telefon: +49 (0)228 37786-24<br>
-E-Mail: kaiser(at)maxweberstiftung.de<br>
+E-Mail: kaiser@maxweberstiftung.de<br>
 </address>
 
 ## Kontakt
 Für Fragen zur Publikation von digitalen Quellen und Editionen wenden Sie sich bitte an:
+
 <address>
-Frau Dr. Nanette Rißler-Pipka (Digital Humanities und Forschungsdatenmanagement)<br>
-E-Mail: Rissler-Pipka@MaxWeberStiftung.de<br>
-Telefon: +49 (228) 377 86-30<br>
+E-Mail: fdm-perspectivia@maxweberstiftung.de
 </address>
 
 Fragen zum Repositoryframework MyCoRe und dem Datenbankserver beantwortet Ihnen die
@@ -39,8 +39,8 @@ E-Mail: dms-list@lists.gbv.de<br>
 
 
 ## Haftungsausschluss
-qed – Das Quellen- und Editionenportal der MWS publiziert Forschungsergebnisse und Informationen auf dieser Website nach bestem Wissen und sorgfältiger Kontrolle der Inhalte. Eine Gewähr für Aktualität, Richtigkeit und Vollständigkeit der auf der Website veröffentlichten Informationen und Verweise kann aufgrund ständiger Aktualisierungen der Website nicht übernommen werden. Eine Haftung für Vermögensschäden oder Vermögensfolgeschäden, die durch Nutzung von Angeboten auf der Website entstehen, ist ausgeschlossen, sofern perspectivia.net den Eintritt solcher Schäden nicht grob fahrlässig oder vorsätzlich verursacht hat.
+QED – das Portal für Quellen und Editionen der MWS publiziert Forschungsergebnisse und Informationen auf dieser Website nach bestem Wissen und sorgfältiger Kontrolle der Inhalte. Eine Gewähr für Aktualität, Richtigkeit und Vollständigkeit der auf der Website veröffent-lichten Informationen und Verweise kann aufgrund ständiger Aktualisierungen der Website nicht übernommen werden. Eine Haftung für Vermögensschäden oder Vermögensfolgeschä-den, die durch Nutzung von Angeboten auf der Website entstehen, ist ausgeschlossen, sofern perspectivia.net den Eintritt solcher Schäden nicht grob fahrlässig oder vorsätzlich verursacht hat.
 
-Externe Links, auf die qed – Das Quellen- und Editionenportal der MWS keinen Einfluss hat, haben informativen Charakter und geben den Inhalt und die Meinung der jeweiligen Anbieter dieser Seiten wieder. qed – Das Quellen- und Editionenportal der MWS verweist auf solche Seiten nur, ohne sich den Inhalt oder die Aussagen dieser Seiten zu eigen zu machen. Für den Inhalt dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Für illegale, fehlerhafte oder unvollständige Inhalte sowie für Schäden, die durch die Nutzung oder Nichtnutzung der Informationen entstehen, haftet allein der Anbieter der Webseite, auf die verwiesen wurde. Die Haftung desjenigen, der lediglich auf die Veröffentlichung durch einen Link hinweist, ist ausgeschlossen. Die MWS entfernt unverzüglich rechtswidrige Inhalte, sobald sie von ihnen Kenntnis erlangt.
+Externe Links, auf die QED keinen Einfluss hat, haben informativen Charakter und geben den Inhalt und die Meinung der jeweiligen Anbieter dieser Seiten wieder. QED verweist auf sol-che Seiten nur, ohne sich den Inhalt oder die Aussagen dieser Seiten zu eigen zu machen. Für den Inhalt dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Für illegale, fehlerhafte oder unvollständige Inhalte sowie für Schäden, die durch die Nutzung oder Nichtnutzung der Informationen entstehen, haftet allein der Anbieter der Webseite, auf die verwiesen wurde. Die Haftung desjenigen, der lediglich auf die Veröffentlichung durch einen Link hinweist, ist ausgeschlossen. Die MWS entfernt unverzüglich rechtswidrige Inhal-te, sobald sie von ihnen Kenntnis erlangt.
 
 Soweit inhaltliche, sachliche oder technische Fehler auf dieser Website bemerkt werden, bitten wir um eine E-Mail, um eine Richtigstellung vornehmen zu können.
