@@ -7,15 +7,15 @@
         <div class="project-header__box project-header__box--logo">
 
           <div class="project-header__logo">
-            <a href="/">
-              <nuxt-img src="/images/qed-logo.svg" preload class="" alt="Logo QED" />
-              <a href="https://perspectivia.net" class="link-to-perspectivia"></a>
+            <a href="https://perspectivia.net" class="project-header__logo--p">
+              <nuxt-img src="/images/p-logo-solo.svg" preload class="" alt="Logo perspectivia" />
             </a>
-            <div class="beta-batch">
-              <a href="/">
-                <nuxt-img src="/images/beta.svg" preload class="" alt="Beta" />
-              </a>
-            </div>
+            <a href="/"  class="project-header__logo--qed">
+              <nuxt-img src="/images/qed-logo-solo.svg" preload class="" alt="Logo QED" />
+            </a>
+            <a href="/"  class="project-header__logo--beta">
+              <nuxt-img src="/images/beta.svg" preload class="" alt="Beta" />
+            </a>
           </div>
 
           <div class="project-header__box project-header__box--menu">

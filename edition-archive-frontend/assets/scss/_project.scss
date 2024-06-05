@@ -42,26 +42,22 @@
   &__logo {
     align-self: center;
     position: relative;
-    img {
-      width: 460px;
+    &--p {
+      margin-right: 1rem;
     }
-    .link-to-perspectivia {
+    &--qed {
+    }
+    &--beta {
       position: absolute;
       top: 0;
-      left: 0;
-      width: 60px;
-      height: 70px;
+      right: -32px;
+      z-index: 1001;
+      img {
+        width:38px;
+      }
     }
   }
-  .beta-batch {
-    position: absolute;
-    top: 0;
-    right: -32px;
-    z-index: 1001;
-    img {
-      width:32px;
-    }
-  }
+
   &__menu {
     .navbar-toggler {
       &__label {
