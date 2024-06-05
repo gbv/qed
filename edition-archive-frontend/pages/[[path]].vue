@@ -30,6 +30,12 @@
                 dabei ebenso facettenreich wie die Forschung an den Instituten der Stiftung selbst: international,
                 epochenübergreifend und interdisziplinär.
               </p>
+              <p class="text-end">
+                <a href="/ueber" >
+                  Mehr über QED
+                </a>
+              </p>
+
             </div>
             <div class="decoration">
               <img src="https://perspectivia.net/images/backgrounds/PatternSchlangenlinenGross.svg" alt="flieder" class="image-embed-item">
