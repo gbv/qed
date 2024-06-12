@@ -67,7 +67,7 @@
         <div class="container">
           <div class="row">
 
-            <div class="col-4 project-footer__logo">
+            <div class="col-6 col-lg-3 project-footer__logo">
               <a href="https://www.maxweberstiftung.de">
                 <nuxt-img
                   preload
@@ -76,7 +76,7 @@
               </a>
             </div>
 
-            <div class="col-4  project-footer__menu">
+            <div class="col-6 col-lg-3  project-footer__menu">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
@@ -84,8 +84,13 @@
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
                 </li>
+                <!--
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/nutzungsbedingungen">Nutzungsbedingungen</nuxt-link>
+                </li>
+                -->
+                <li class="nav-item">
+                  <nuxt-link class="nav-link" active-class="active" href="/kontakt">Kontakt</nuxt-link>
                 </li>
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit</nuxt-link>
@@ -93,38 +98,43 @@
               </ul>
             </div>
 
-            <div class="col-4 project-footer__social">
-              <ul class="nav flex-column d-none">
+            <div class="col-6 col-lg-3 project-footer__social">
+
+              <ul class="nav flex-column">
                 <li class="nav-item">
                   <a
-                    href="https://twitter.com/perspectivia"
-                    class="nav-link twitter">
-                    <i class="bi bi-twitter"></i>
-                    <span class="d-none d-xl-inline">@perspectivia folgen</span>
+                    href="https://wisskomm.social/@MaxWeberStiftung"
+                    class="nav-link mastodon">
+                    <i class="bi bi-mastodon"></i>
+                    <span>Mastadon</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a
-                    href="https://www.facebook.com/maxweberstiftung"
-                    class="nav-link facebook">
-                    <i class="bi bi-facebook"></i>
-                    <span class="d-none d-xl-inline">Like Max Weber Stiftung</span>
+                    href="https://www.instagram.com/maxweberstiftung/"
+                    class="nav-link instagram">
+                    <i class="bi bi-instagram"></i>
+                    <span>Instagram</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a
-                    href="http://vimeo.com/maxweberstiftung"
-                    class="nav-link vimeo-mws">
-                    <i class="bi bi-vimeo"></i>
-                    <span class="d-none d-xl-inline">Max Weber Stiftung Videos folgen</span>
+                    href="https://de.linkedin.com/company/max-weber-stiftung"
+                    class="nav-link linkedin">
+                    <i class="bi bi-linkedin"></i>
+                    <span>LinkedIn</span>
                   </a>
                 </li>
               </ul>
+
+            </div>
+
+            <div class="col-6 col-lg-3 project-footer__perspectivia">
               <a href="https://perspectivia.net/" title="perspectivia.net" class="d-block text-end">
                 <nuxt-img
                   preload
                   class="img-fluid"
-                  src="/images/perspectivia_logo_p.png"
+                  src="/images/perspectivia.net.svg"
                   alt="Logo perspectivia.net" />
               </a>
             </div>

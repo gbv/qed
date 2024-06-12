@@ -6,7 +6,7 @@
         coming soon
       </div>
       <div class="badge--old-project" v-if="cardClass == 'old-project'">
-        Quellenportal
+        Migration geplant
       </div>
       <div v-if="ccAuthor" class="cc-by__text" >
         <nuxt-link :href="ccSource" class="no-external-mark">{{$t("cc.photo")}}</nuxt-link>
@@ -18,8 +18,11 @@
       <h5 class="card-title mb-5">{{ cardTitle }}</h5>
       <div class="card-text"><slot /></div>
     </div>
-    <div class="card-footer no-back mt-3 mb-3" v-if="cardClass != 'not-active'">
+    <div class="card-footer no-back mt-3 mb-3" v-if="cardClass == 'active'">
       <nuxt-link :href="link" class="btn btn-primary text-white no-external-mark">{{$t("button.toProject")}}</nuxt-link>
+    </div>
+    <div class="card-footer no-back mt-3 mb-3" v-if="cardClass == 'old-project'">
+      <nuxt-link :href="link" class="btn btn-primary text-white no-external-mark">Quellen und Datenbanken bis 2018</nuxt-link>
     </div>
   </div>
 </template>

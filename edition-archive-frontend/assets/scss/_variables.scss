@@ -19,13 +19,14 @@ $link-color: $petrol;
 $link-decoration: none;
 
 $navbar-toggler-focus-width: 0;
-$navbar-light-color: $orange;
-$navbar-light-active-color: $orange;
-$navbar-light-hover-color: darken($orange,10%);
+$navbar-light-color: $grayMedium;
+$navbar-light-active-color: $petrol;
+$navbar-light-hover-color: $grayDark;
 $navbar-light-toggler-border-color: transparent;
 
 $navbar-nav-link-padding-x: 1rem;
 $border-radius: 0;
+$nav-pills-border-radius: 4rem;
 $font-size-base: 1rem;
 $dropdown-border-color: rgba($petrol, 0.5);
 $dropdown-spacer: .5rem;
