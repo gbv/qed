@@ -50,7 +50,7 @@
     &--beta {
       position: absolute;
       top: 0;
-      right: -32px;
+      right: -48px;
       z-index: 1001;
       img {
         width:38px;
@@ -250,14 +250,10 @@
   &--old-project {
     position: absolute;
     bottom: 2rem;
-    background: $petrol;
+    background: $orange;
     color: white;
     padding: .4rem 2rem;
   }
-}
-#navbarSupportedContent {
-  border: 1px solid $petrol;
-  border-width: 1px 0;
 }
 
 .gpo-headline {
@@ -276,11 +272,17 @@
     height: 50px;
   }
 }
-.gpo-main-menu {
+.project-main-menu {
   margin-bottom: 4rem;
 }
-.gpo-sub-menu {}
-.gpo-sub-headline {
+.project-sub-menu {
+  nav {
+    background-color: $grayBack;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+}
+.project-sub-headline {
   margin-bottom: 2rem;
 }
 .gpo-content {
@@ -578,6 +580,36 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem;
   border-top: 2px solid #a3a3a3;
   padding-top: 1rem;
+}
+
+.qed-sub-menu {
+  margin-bottom: 5rem;
+  .nav-link,
+  .dropdown-item {
+    color: $grayMedium;
+    background-color: $grayBorder;
+    margin-right: 1rem;
+    box-shadow: 0px 0px .5rem 0.5rem rgba(255,255,255,0.9); // shift-right shift-down width blur
+    border-radius: 4rem;
+    &:hover {
+      color: white;
+      background-color: $grayMedium;
+    }
+  }
+  .nav-link.active,
+  .dropdown-item.active,
+  .nav-link.show {
+    color: white;
+    background-color: $petrol;
+    font-weight: normal;
+  }
+  .dropdown-menu {
+    border: none;
+    background-color: transparent;
+    .dropdown-item {
+      margin-bottom: .5rem;
+    }
+  }
 }
 
 // ==== media queries ====

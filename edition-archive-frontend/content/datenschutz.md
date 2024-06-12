@@ -1,5 +1,5 @@
 # Datenschutz
-Stand: 14.05.2024
+<!--Stand: 14.05.2024-->
 
 Die Max Weber Stiftung (MWS) nimmt den Schutz personenbezogener Daten ernst. Bitte informieren Sie sich im Folgenden über den Datenschutz auf unserem Webauftritt. Diese Da-tenschutzerklärung bezieht sich auf die Website qed.perspectiva.net.
 

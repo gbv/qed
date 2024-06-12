@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-      <div class="col gpo-main-menu">
+      <div class="col project-main-menu">
         <nav class="navbar navbar-expand-lg">
 
           <button
@@ -47,7 +47,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
+            <ul class="nav nav-pills qed-sub-menu">
               <li class="nav-item">
                 <nuxt-link
                   class="nav-link"
@@ -61,7 +61,7 @@
                 <nuxt-link
                   class="nav-link dropdown-toggle"
                   active-class="active"
-                  href="#"
+                  href="/gallia-pontificia-online/regesten/reims1/"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -111,7 +111,7 @@
     <div
       class="row"
       v-if="$route.params.regesten == 'reims1' || $route.params.regesten == 'genf1'">
-      <div class="col-12 gpo-sub-headline">
+      <div class="col-12 project-sub-headline">
         <h2>
           <span v-if="$route.params.regesten == 'reims1'">
             {{ $t('gpo.pages.regesta.reims1.headline') }}
@@ -122,7 +122,7 @@
           <span v-else>Subpage</span>
         </h2>
       </div>
-      <div class="col-md-3 col-sm-12 gpo-sub-menu">
+      <div class="col-md-3 col-sm-12 project-sub-menu">
         <slot name="menu" />
       </div>
       <div class="col-md-9 col-sm-12 gpo-content external-links">
