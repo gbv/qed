@@ -1,7 +1,6 @@
 <template>
 
   <div :class="`page-headline ${ $route.params.path == '' ? 'page-headline--home' : 'page-headline--hidden' }`">
-    <!--Kopfbild Default {{ $route.params.path }} -->
 
     <div class="container">
       <div class="row">
@@ -74,8 +73,6 @@
         })
     );
   }
-  console.log("default");
-  //document.body.classList.add("basic-page");
 </script>
 
 <style scoped>

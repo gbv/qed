@@ -43,6 +43,7 @@
                     <li class="nav-item">
                       <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('qed.mainMenu.search') }}</nuxt-link>
                     </li>
+                    <li><hr class="dropdown-divider"></li>
                     <li class="nav-item">
                       <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('qed.mainMenu.about') }}</nuxt-link>
                     </li>

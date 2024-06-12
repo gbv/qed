@@ -1,5 +1,24 @@
 <template>
   <client-only>
+
+    <div class="qed-lang-menu">
+      <a
+        :class="`dropdown-item ${ i18n.locale.value == 'de' ? 'active' : 'not-active' }`"
+        href="#"
+        v-on:click.prevent="changeLanguage('de')">DE</a>
+      <span>|</span>
+      <a
+        :class="`dropdown-item ${ i18n.locale.value == 'en' ? 'active' : 'not-active' }`"
+        href="#"
+        v-on:click.prevent="changeLanguage('en')">EN</a>
+      <span>|</span>
+      <a
+        :class="`dropdown-item ${ i18n.locale.value == 'fr' ? 'active' : 'not-active' }`"
+        href="#"
+        v-on:click.prevent="changeLanguage('fr')">FR</a>
+    </div>
+
+    <!--
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a id="languageDropdown" aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
@@ -13,6 +32,7 @@
         </ul>
       </li>
     </ul>
+    -->
   </client-only>
 
 </template>

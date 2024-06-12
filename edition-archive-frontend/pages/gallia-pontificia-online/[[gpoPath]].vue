@@ -10,8 +10,6 @@
 
 <script setup lang="ts">
   const {path} = useRoute()
-  console.log("gpo");
-  //document.body.classList.add("gpo-page");
 </script>
 <style scoped>
 
