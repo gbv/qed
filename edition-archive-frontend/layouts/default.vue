@@ -7,10 +7,10 @@
         <div class="project-header__box project-header__box--logo">
 
           <div class="project-header__logo">
-            <a href="https://perspectivia.net" class="project-header__logo--p">
+            <a href="https://perspectivia.net" class="project-header__logo--p"  title="perspectivia.net Startseite">
               <nuxt-img src="/images/p-logo-solo.svg" preload class="" alt="Logo perspectivia" />
             </a>
-            <a href="/"  class="project-header__logo--qed">
+            <a href="/"  class="project-header__logo--qed" title="QED Startseite">
               <nuxt-img src="/images/qed-logo-solo.svg" preload class="" alt="Logo QED" />
             </a>
             <a href="/"  class="project-header__logo--beta">
