@@ -20,17 +20,6 @@
   </div>
 
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="gpo-headline">
-          <a href="https://www.dhi-paris.fr/home.html">
-            <nuxt-img
-              src="/images/dhi-paris-logo-460.png"
-              preload alt="DHI Paris Logo" />
-          </a>
-        </div>
-      </div>
-    </div>
 
     <div class="row">
       <div class="col project-main-menu">
@@ -106,13 +95,27 @@
           </div>
         </nav>
       </div>
+
+      <div class="col-auto">
+        <div class="project-institute">
+          <a href="https://www.dhi-paris.fr/home.html">
+            <nuxt-img
+              src="/images/dhi-paris-logo-460.png"
+              preload alt="DHI Paris Logo" />
+          </a>
+        </div>
+      </div>
+
     </div>
 
     <div
       class="row"
       v-if="$route.params.regesten == 'reims1' || $route.params.regesten == 'genf1'">
-      <div class="col-12 project-sub-headline">
-        <h2>
+      <div class="col-md-3 col-sm-12 project-sub-menu">
+        <slot name="menu" />
+      </div>
+      <div class="col-md-9 col-sm-12 gpo-content external-links">
+        <h2 class="project-sub-headline">
           <span v-if="$route.params.regesten == 'reims1'">
             {{ $t('gpo.pages.regesta.reims1.headline') }}
           </span>
@@ -121,11 +124,6 @@
           </span>
           <span v-else>Subpage</span>
         </h2>
-      </div>
-      <div class="col-md-3 col-sm-12 project-sub-menu">
-        <slot name="menu" />
-      </div>
-      <div class="col-md-9 col-sm-12 gpo-content external-links">
         <slot name="content" />
       </div>
     </div>

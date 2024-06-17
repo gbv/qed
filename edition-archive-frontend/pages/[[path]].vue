@@ -10,13 +10,14 @@
             <div class="slogan">
               <div class="slogan__imagebox">
                 <img src="https://perspectivia.net/images/backgrounds/PatternStrichpunktGrossKreisViertel.svg" alt="flieder" class="slogan__image">
-                <div class="slogan__text">
-                  Quellen<br /> und Editionen
-                  <div class="slogan__subtext">
-                    der Max Weber Stiftung
+                <div class="slogan__textbox">
+                  <div class="slogan__text">
+                    Quellen<br /> und Editionen
+                    <div class="slogan__subtext">
+                      der Max Weber Stiftung
+                    </div>
                   </div>
                 </div>
-
               </div>
             </div>
             <div class="intro-text">
