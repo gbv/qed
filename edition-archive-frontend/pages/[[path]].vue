@@ -30,8 +30,10 @@
                 dabei ebenso facettenreich wie die Forschung an den Instituten der Stiftung selbst: international,
                 epochenübergreifend und interdisziplinär.
               </p>
-              <p class="text-end">
-                <a href="/ueber" >
+              <p>
+                <a
+                  href="/ueber"
+                  class="btn btn-primary text-white no-external-mark mt-3">
                   Mehr über QED
                 </a>
               </p>
