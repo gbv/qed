@@ -125,6 +125,7 @@ Als technisches Framework wird MyCoRe verwendet, das innerhalb einer erprobten u
 
 ### QED für Forschungsprojekte der MWS und ihrer Partner
 *Wie können Projekte das Portal für Quellen und Editionen für eigene Veröffentlichungen nutzen?*
+
 Grundlegende Funktionen des Portals werden für alle Projekte in gleicher Weise umgesetzt. Somit wird eine Anbindung an übergeordnete und interne Kataloge gewährleistet.
 Im Angebot (für alle Institute der MWS und ihre Partner) enthalten ist:
 - der Betrieb der Plattform
@@ -145,6 +146,7 @@ Ausführliche Informationen werden auch im [FDM-Handbuch der MWS](https://projec
 
 ### QED für fachlich relevante Daten aus dem Umfeld der MWS
 *Wie kann ich meine Daten in QED veröffentlichen, wenn ich nicht Teil der MWS und ihrer Partner bin?*
+
 Die Redaktion von perspectivia.net entscheidet im Einzelfall in Rücksprache mit dem [wissenschaftlichen Beirat](https://perspectivia.net/content/about/beirat.xml) nach inhaltlichen und organisatorischen Kriterien über die Aufnahme von externen Daten. Insbesondere fachlich relevante Daten aus dem Arbeitsgebiet der MWS sind für QED von Interesse. Für neu geplante Projekte empfiehlt sich eine frühzeitige Kontaktaufnahme vor der Beantragung von Drittmitteln, um ggf. projektspezifische Wünsche erfüllen zu können. Hier spielen auch laufende Kooperationen im Rahmen der NFDI, europäischer und internationaler Projektzusammenhänge eine Rolle.
 
   </div>
@@ -157,6 +159,7 @@ Die Redaktion von perspectivia.net entscheidet im Einzelfall in Rücksprache mit
 
 ### QED Daten nachnutzen
 *Wie kann ich die Daten aus QED für die eigene Forschung weiterverwenden?*
+
 Alle Daten werden – soweit keine urheberrechtlichen Einschränkungen bestehen – zur freien Nachnutzung zur Verfügung gestellt. Der Weg zu den Daten ist einfach möglich:
 a.  über die jeweilige Projektseite
 b.  via Identifier (DOI) z. B. aus einem Katalog heraus
