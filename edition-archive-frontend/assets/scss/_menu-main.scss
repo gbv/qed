@@ -1,0 +1,108 @@
+/*  main menu
+ *  - settings for the qed menus
+ */
+
+// set the defaults for all responsive levels here
+// desktop first (>1400px)
+
+
+  .project-header__menu {
+    .navbar-toggler {
+      &__label {
+        font-size: 18px;
+        margin-right: 1rem;
+        color: $grayMedium;
+      }
+      &-icon {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+    }
+    .navbar-toggler {
+      .navbar-toggler-icon {
+        background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ef7f00' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+    }
+    .navbar-toggler[aria-expanded=true] {
+      .navbar-toggler-icon {
+        background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ef7f00'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/0.6em auto no-repeat;
+      }
+    }
+  }
+
+  #qed-main-menu {
+    position: absolute;
+    top: 5rem;
+    right: 0px;
+    padding: 3rem;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 6px #00000029;
+    border-radius: 0px 0px 25px 25px;
+    opacity: 1;
+    .nav-link {
+      font-size: 1.25rem;
+      &.active {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .qed-lang-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: 4rem;
+    align-items: center;
+    .dropdown-item {
+      &.active {
+        color: $orange;
+      }
+      &:hover {
+        color: $orange;
+      }
+    }
+    span {
+      padding: 0 .2rem;
+      font-size: 1rem;
+    }
+  }
+
+  .dropdown-divider {
+    height: 0;
+    margin: 1rem 0;
+    border-top: 1px solid $grayBasic;
+  }
+
+  .nav-link.active {
+    font-weight: 700;
+    color: $petrol;
+    &:hover {
+      font-weight: 700;
+      color: $petrol;
+    }
+  }
+
+// Extra large devices (large desktops) and below: <= 1400px
+@include media-breakpoint-down(xxl) {
+  // add/overwrite styles for responsive level xxl and lower
+}
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(xl) {
+  // add/overwrite styles for responsive level xl and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}

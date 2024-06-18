@@ -1,0 +1,79 @@
+/*  tiles
+ *  - settings for all kine of tiles
+ */
+
+// set the defaults for all responsive levels here
+// desktop first (>1400px)
+
+  .card {
+    &-title {
+      margin-top: 2rem;
+      color: $petrol;
+      font-weight: 700;
+    }
+    h5 {
+      font-size: 1.25rem;
+    }
+  }
+  .card-img-top.fixed-height {
+    height: 20rem;
+    object-fit: cover;
+  }
+  .card-footer.no-back {
+    border-top: none;
+    background-color: white;
+  }
+
+  .badge {
+    &--coming-soon {
+      position: absolute;
+      bottom: 2rem;
+      background: $orange;
+      color: white;
+      padding: .4rem 2rem;
+    }
+    &--old-project {
+      position: absolute;
+      bottom: 2rem;
+      background: $orange;
+      color: white;
+      padding: .4rem 2rem;
+    }
+  }
+
+  .cc-by {
+    position: relative;
+    &__text {
+      position: absolute;
+      bottom: -1rem;
+      left: 1rem;
+      background-color: rgba(255,255,255,.6);
+      padding: 0 .5rem;
+      font-size: 0.625rem;
+    }
+  }
+
+// Extra large devices (large desktops) and below: <= 1400px
+@include media-breakpoint-down(xxl) {
+  // add/overwrite styles for responsive level xxl and lower
+}
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(xl) {
+  // add/overwrite styles for responsive level xl and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}
