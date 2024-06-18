@@ -158,10 +158,18 @@
     align-self: flex-end;
     text-align: right;
     margin-right: 3rem;
+
     img {
       width: 20rem;
       height: 20rem;
       border-radius: 50%;
+      object-fit: cover;
+    }
+
+    &--sosu {
+      img {
+        object-position: 10%;
+      }
     }
   }
 }
@@ -288,6 +296,12 @@
   padding: .5rem 0;
   img {
     width: 10rem;
+  }
+  &--sosu {
+    img {
+      height: 5.5rem;
+      width: auto;
+    }
   }
 }
 
