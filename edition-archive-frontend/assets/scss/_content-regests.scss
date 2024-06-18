@@ -1,0 +1,189 @@
+/*  regests
+ *  - settings for the regest section
+ */
+
+// set the defaults for all responsive levels here
+// desktop first (>1400px)
+
+
+  .regest-detail-view {
+    a {
+      //margin-left: 0.5rem;
+    }
+    .prev,
+    .next,
+    .index {
+      a {
+        display: block;
+        text-decoration: none;
+        padding: 0.5rem;
+        &:hover {
+          color: white;
+          background-color: $primary;
+        }
+      }
+    }
+    .prev {
+      border-right: none;
+    }
+    .index {
+      padding: 0.5rem;
+      border: 1px solid $grayBorder;
+      margin-bottom: -1px;
+      border-bottom: 1px solid white;
+    }
+    .next {
+      border-left: none;
+    }
+    .heading {
+      margin-bottom: 1.25rem;
+      h4 {
+        font-size: 1.5rem;
+      }
+    }
+    .section {
+      margin-bottom: 1rem;
+      dt {
+        font-weight: normal;
+      }
+      dd {
+        padding-left: 2rem;
+      }
+    }
+  }
+  .regest-detail-view__content {
+    border: 1px solid $grayBorder;
+    padding: 2rem 1rem 3rem 1rem;
+    h5 {
+      font-weight: 700;
+    }
+  }
+  .regest-detail-view__footer {
+    margin-top: .5rem;
+    color: $grayBasic;
+  }
+
+  .cite {
+    margin-right: 1rem;
+  }
+
+  .cite-switch {
+    cursor: pointer;
+    color: white;
+    background-color: $primary;
+  }
+
+  .regest-licence {
+    img {
+      height: 2rem;
+      margin-left: .5rem;
+      opacity: 0.5;
+    }
+  }
+
+
+  .facet-item {
+    overflow-wrap: anywhere;
+  }
+
+  .metadata {
+    h3 {
+      margin-bottom: 2rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid $grayBorder;
+    }
+    dt {
+      width: 20%;
+      text-align: right;
+      float: left;
+      color: #999;
+      font-weight: normal;
+      clear: both;
+      margin-bottom: 1rem;
+    }
+    dd {
+      float: left;
+      margin-left: 1rem;
+      width: 75%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .icon-link {
+    text-decoration: none;
+  }
+
+  .popout-wrapper {
+    .bi {
+      margin-right: .25rem;
+    }
+  }
+  .regest-detail-view {
+    .popout-wrapper {
+      .bi {
+        margin-right: .1rem;
+      }
+    }
+  }
+
+  .link-list {
+    a {
+      margin-top: .5rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .list-group-item {
+    padding: 1rem;
+    border-bottom: 1px solid $grayBorder;
+  }
+
+  .link-note {
+    vertical-align: super;
+    font-size: 80%;
+    padding-left: .2rem;
+  }
+
+  .note {
+    display: flex;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid #ccc;
+    div {
+      flex-basis: 90%;
+      &.notenumber {
+        flex-basis: 2rem;
+      }
+    }
+
+  }
+
+  #note-1 {
+    margin-top: 2rem;
+    border-top: 2px solid #a3a3a3;
+    padding-top: 1rem;
+  }
+
+// Extra large devices (large desktops) and below: <= 1400px
+@include media-breakpoint-down(xxl) {
+  // add/overwrite styles for responsive level xxl and lower
+}
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(xl) {
+  // add/overwrite styles for responsive level xl and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}

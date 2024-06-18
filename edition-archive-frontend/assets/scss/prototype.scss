@@ -2,4 +2,16 @@
 
 @import "_variables";
 @import  "../node_modules/bootstrap/scss/bootstrap";
-@import "_project";
+
+@import "_common";
+@import "_basic-layout";
+@import "_typo";
+@import "_header";
+@import "_menu-main";
+@import "_menu-project";
+@import "_tiles";
+@import "_footer";
+
+@import "page-home";
+@import "page-project";
+@import "content-regests";

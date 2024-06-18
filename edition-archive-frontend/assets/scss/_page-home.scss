@@ -1,0 +1,131 @@
+/*  home-page
+ *  - settings for the start page
+ */
+
+// set the defaults for all responsive levels here
+// desktop first (>1400px)
+
+  .intro-box {
+    border: 1px solid $grayBasic;
+    display: flex;
+    align-items: stretch;
+    .slogan {
+      flex-basis: 25%;
+      position: relative;
+      &__imagebox {
+        position:absolute;
+        top: 2rem;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 434.04669px;
+        height: 360px;
+      }
+      &__image {
+        position:absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        filter: invert(78%) sepia(72%) saturate(493%) hue-rotate(264deg) brightness(76%) contrast(80%);
+        filter: brightness(0) saturate(100%) invert(16%) sepia(96%) saturate(3506%) hue-rotate(176deg) brightness(90%) contrast(101%);
+      }
+      &__textbox {
+        position:absolute;
+        top: 0;
+        left: 0;
+        z-index: 500;
+        width: 353px;
+        height: 360px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &__text {
+        font-size: 2.75rem;
+        line-height: 3.5rem;
+        color: white;
+      }
+      &__subtext {
+        font-size: 25px;
+      }
+    }
+    .intro-text {
+      flex-basis: 60%;
+      padding: 5rem 2rem 5.5rem 2rem;
+      font-size: 1.25rem;
+      line-height: 2.25rem;
+      &__slogan {
+        display: none;
+      }
+    }
+    .decoration {
+      flex-basis: 15%;
+      position: relative;
+      img {
+        position:absolute;
+        top: 2rem;
+        left: 0;
+        height: 360px;
+        filter: invert(47%) sepia(97%) saturate(1322%) hue-rotate(5deg) brightness(98%) contrast(102%);
+      }
+      &::before {
+        content: '';
+        position:absolute;
+        top: 2rem;
+        right: -5px;
+        height: 360px;
+        background-color: $grayBack;
+        width: 10px;
+      }
+    }
+  }
+
+  .page-headline {
+    margin-top: -6rem;
+    margin-bottom: 7rem;
+    background-color: $grayBack;
+    padding-top: 8rem;
+    padding-bottom: 7rem;
+    &--hidden {
+      display: none;
+    }
+  }
+
+  .content-intro {
+    .not-active {
+      .card-footer {
+        color: white;
+        background-color: $petrol;
+        //opacity: .6;
+      }
+      img {
+        //opacity: 0.5;
+      }
+    }
+  }
+
+// Extra large devices (large desktops) and below: <= 1400px
+@include media-breakpoint-down(xxl) {
+  // add/overwrite styles for responsive level xxl and lower
+}
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(xl) {
+  // add/overwrite styles for responsive level xl and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}

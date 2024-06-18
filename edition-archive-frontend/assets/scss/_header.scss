@@ -1,0 +1,128 @@
+/*  header
+ *  - settings for the header
+ */
+
+// set the defaults for all responsive levels here
+// desktop first (>1400px)
+
+.project-header {
+  box-shadow: 0px 4px 3px rgba(0,0,0,0.1);
+  top: 0;
+  z-index: 1001;
+  right: 0;
+  width: 100%;
+  min-width: 320px;
+  background-color: white;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &--menu {
+      ul {
+        margin-right: 3rem;
+      }
+    }
+  }
+  &__logo {
+    align-self: center;
+    position: relative;
+    &--p {
+      margin-right: .5rem;
+      img {
+        box-shadow: 5px 5px 15px 5px rgba(255,255,255,0);
+        &:hover {
+          box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+        }
+      }
+    }
+    &--qed {
+      img {
+        padding: .5rem;
+        border: 1px solid white;
+        border-radius: .5rem;
+        &:hover {
+          border: 1px dotted $grayDark;
+        }
+      }
+    }
+    &--beta {
+      position: absolute;
+      top: 0;
+      right: -48px;
+      z-index: 1001;
+      img {
+        width:38px;
+      }
+    }
+  }
+
+
+}
+
+// Extra large devices (large desktops) and below: <= 1400px
+@include media-breakpoint-down(xxl) {
+  // add/overwrite styles for responsive level xxl and lower
+  .project-header {
+    &__logos {
+      display: none;
+    }
+  }
+}
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(xl) {
+  // add/overwrite styles for responsive level xl and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+  .project-header {
+    &__menu {
+      .navbar-nav {
+        .nav-link {
+          &[id=languageDropdown] {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+  .beta-batch {
+    top: 10px;
+  }
+  .project-header {
+    &__project,
+    &__parent {
+      height: 60px;
+    }
+    &__project a {
+      padding-left: 4rem;
+    }
+    &__menu {
+      .navbar-nav {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        .nav-link {
+          padding-left: 1rem;
+          &[id=languageDropdown] {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}

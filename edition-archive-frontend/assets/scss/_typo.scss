@@ -1,0 +1,78 @@
+/*  typo
+ *  - all about typography
+ */
+
+// set the defaults for all responsive levels here
+// desktop first (>1400px)
+
+  .smallcaps {
+    font-variant: small-caps;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  p {
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+
+    -webkit-hyphenate-limit-before: 3; /* For Safari */
+    -webkit-hyphenate-limit-after: 4; /* For Safari */
+    -ms-hyphenate-limit-chars: 10 3 4;
+    hyphenate-limit-chars: 10 3 4;
+  }
+
+  .no-underline {
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .external-links {
+    a:not(.no-external-mark)[href*="//"]:not([href*="qed.perspectivia.net"]) {
+      padding-right: 1.4rem;
+      position: relative;
+      display:inline-block;
+      &::after {
+        content: "\F1C5";
+        font-family: bootstrap-icons;
+        position: absolute;
+        bottom: 0;
+        right: auto;
+        color: $secondary;
+        margin-left: .25rem;
+      }
+    }
+  }
+
+// Extra large devices (large desktops) and below: <= 1400px
+@include media-breakpoint-down(xxl) {
+  // add/overwrite styles for responsive level xxl and lower
+}
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(xl) {
+  // add/overwrite styles for responsive level xl and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}
