@@ -5,6 +5,12 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
+  .project-content {
+    padding-top: 1rem;
+    h3 {
+      margin-bottom: 1rem;
+    }
+  }
 
   .project-headline {
     margin-top: -6rem;
@@ -59,12 +65,6 @@
     }
   }
 
-  .project-content {
-    min-height: 40rem;
-    padding-top: 6rem;
-    padding-bottom: 8rem;
-  }
-
   .project-institute {
     padding: .5rem 0;
     img {
@@ -78,12 +78,7 @@
     }
   }
 
-  .gpo-content {
-    padding-top: 1rem;
-    h3 {
-      margin-bottom: 1rem;
-    }
-  }
+
 
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {

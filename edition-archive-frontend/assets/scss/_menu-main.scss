@@ -5,8 +5,22 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
+  .nav-link.active {
+    font-weight: 700;
+    color: $petrol;
+    &:hover {
+      font-weight: 700;
+      color: $petrol;
+    }
+  }
 
-  .project-header__menu {
+  .dropdown-divider {
+    height: 0;
+    margin: 1rem 0;
+    border-top: 1px solid $grayBasic;
+  }
+
+  .qed-header__menu {
     .navbar-toggler {
       &__label {
         font-size: 18px;
@@ -36,7 +50,7 @@
     right: 0px;
     padding: 3rem;
     background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+    background: white 0% 0% no-repeat padding-box;
     box-shadow: 0px 5px 6px #00000029;
     border-radius: 0px 0px 25px 25px;
     opacity: 1;
@@ -67,20 +81,9 @@
     }
   }
 
-  .dropdown-divider {
-    height: 0;
-    margin: 1rem 0;
-    border-top: 1px solid $grayBasic;
-  }
 
-  .nav-link.active {
-    font-weight: 700;
-    color: $petrol;
-    &:hover {
-      font-weight: 700;
-      color: $petrol;
-    }
-  }
+
+
 
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {

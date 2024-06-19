@@ -5,7 +5,7 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
-.project-header {
+.qed-header {
   box-shadow: 0px 4px 3px rgba(0,0,0,0.1);
   top: 0;
   z-index: 1001;
@@ -26,6 +26,7 @@
       }
     }
   }
+
   &__logo {
     align-self: center;
     position: relative;
@@ -34,10 +35,11 @@
       img {
         box-shadow: 5px 5px 15px 5px rgba(255,255,255,0);
         &:hover {
-          box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+          box-shadow: 0px 10px 13px -7px black, 5px 5px 15px 5px rgba(0,0,0,0);
         }
       }
     }
+
     &--qed {
       img {
         padding: .5rem;
@@ -48,6 +50,7 @@
         }
       }
     }
+
     &--beta {
       position: absolute;
       top: 0;
@@ -65,7 +68,7 @@
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {
   // add/overwrite styles for responsive level xxl and lower
-  .project-header {
+  .qed-header {
     &__logos {
       display: none;
     }
@@ -80,7 +83,7 @@
 // Medium devices (tablets) and below: <= 992px
 @include media-breakpoint-down(lg) {
   // add/overwrite styles for responsive level lg and lower
-  .project-header {
+  .qed-header {
     &__menu {
       .navbar-nav {
         .nav-link {
@@ -96,10 +99,12 @@
 // Small devices (landscape phones) and below: <= 768px
 @include media-breakpoint-down(md) {
   // add/overwrite styles for responsive level md and lower
+
   .beta-batch {
     top: 10px;
   }
-  .project-header {
+
+  .qed-header {
     &__project,
     &__parent {
       height: 60px;
@@ -120,6 +125,7 @@
       }
     }
   }
+
 }
 
 // Extra small devices (portrait phones): <= 576px

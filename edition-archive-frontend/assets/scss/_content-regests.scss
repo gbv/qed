@@ -5,11 +5,7 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
-
   .regest-detail-view {
-    a {
-      //margin-left: 0.5rem;
-    }
     .prev,
     .next,
     .index {
@@ -51,6 +47,7 @@
       }
     }
   }
+
   .regest-detail-view__content {
     border: 1px solid $grayBorder;
     padding: 2rem 1rem 3rem 1rem;
@@ -58,6 +55,7 @@
       font-weight: 700;
     }
   }
+
   .regest-detail-view__footer {
     margin-top: .5rem;
     color: $grayBasic;
@@ -80,7 +78,6 @@
       opacity: 0.5;
     }
   }
-
 
   .facet-item {
     overflow-wrap: anywhere;
@@ -154,7 +151,6 @@
         flex-basis: 2rem;
       }
     }
-
   }
 
   #note-1 {
