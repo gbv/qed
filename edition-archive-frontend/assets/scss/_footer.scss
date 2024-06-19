@@ -5,9 +5,10 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
-  .project-footer {
+  .qed-footer {
     border-top: 3px solid $grayLight;
     background-color: $grayBack;
+
     &__nav {
       padding: 2rem 0 3rem 0;
       .nav-link {
@@ -20,13 +21,14 @@
         }
       }
     }
+
     &__links {
       margin-right: 5rem;
       .p-link {
         font-weight: bold;
       }
     }
-    &__menu {}
+
     &__social {
       i {
         font-size: 20px;
@@ -34,14 +36,16 @@
         margin-right: 1rem;
       }
     }
+
     &__logo {
       margin-top: 0.5rem;
       img {
         width: 180px;
       }
     }
+
     &__credits {
-      background-color: #191C1C;
+      background-color: $creditBlack;
       padding: 1.25rem;
       .copyright_by {
         display: flex;
@@ -57,6 +61,7 @@
         }
       }
     }
+
   }
 
 // Extra large devices (large desktops) and below: <= 1400px

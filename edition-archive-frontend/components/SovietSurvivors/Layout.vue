@@ -100,7 +100,7 @@
       <div class="col-md-3 col-sm-12 project-sub-menu">
         <slot name="menu" />
       </div>
-      <div class="col-md-9 col-sm-12 gpo-content external-links">
+      <div class="col-md-9 col-sm-12 project-content external-links">
         <slot name="content" />
       </div>
     </div>

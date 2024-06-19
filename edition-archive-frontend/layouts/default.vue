@@ -1,28 +1,28 @@
 <template>
   <div class="body-box">
 
-    <header class="project-header">
+    <header class="qed-header">
       <div class="container">
 
-        <div class="project-header__box project-header__box--logo">
+        <div class="qed-header__box qed-header__box--logo">
 
-          <div class="project-header__logo">
-            <a href="https://perspectivia.net" class="project-header__logo--p"  title="perspectivia.net Startseite">
+          <div class="qed-header__logo">
+            <a href="https://perspectivia.net" class="qed-header__logo--p"  title="perspectivia.net Startseite">
               <nuxt-img src="/images/p-logo-solo.svg" preload class="" alt="Logo perspectivia" />
             </a>
-            <a href="/"  class="project-header__logo--qed" title="QED Startseite">
+            <a href="/"  class="qed-header__logo--qed" title="QED Startseite">
               <nuxt-img src="/images/qed-logo-solo.svg" preload class="" alt="Logo QED" />
             </a>
-            <a href="/"  class="project-header__logo--beta">
+            <a href="/"  class="qed-header__logo--beta">
               <nuxt-img src="/images/beta.svg" preload class="" alt="Beta" />
             </a>
           </div>
 
-          <div class="project-header__box project-header__box--menu">
+          <div class="qed-header__box qed-header__box--menu">
 
             <LanguageSelector />
 
-            <div class="project-header__menu">
+            <div class="qed-header__menu">
               <nav class="navbar navbar-light w-100 justify-content-end">
                 <button
                   class="navbar-toggler"
@@ -57,18 +57,18 @@
       </div>
     </header>
 
-    <section class="project-content content-intro">
+    <section class="qed-content content-intro">
       <!--div class="container"-->
         <slot/>
       <!--/div-->
     </section>
 
-    <footer class="project-footer">
-      <section class="project-footer__nav">
+    <footer class="qed-footer">
+      <section class="qed-footer__nav">
         <div class="container">
           <div class="row">
 
-            <div class="col-6 col-lg-3 project-footer__logo">
+            <div class="col-6 col-lg-3 qed-footer__logo">
               <a href="https://www.maxweberstiftung.de">
                 <nuxt-img
                   preload
@@ -77,7 +77,7 @@
               </a>
             </div>
 
-            <div class="col-6 col-lg-3  project-footer__menu">
+            <div class="col-6 col-lg-3  qed-footer__menu">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
@@ -99,7 +99,7 @@
               </ul>
             </div>
 
-            <div class="col-6 col-lg-3 project-footer__social">
+            <div class="col-6 col-lg-3 qed-footer__social">
 
               <ul class="nav flex-column">
                 <li class="nav-item">
@@ -130,7 +130,7 @@
 
             </div>
 
-            <div class="col-6 col-lg-3 project-footer__perspectivia">
+            <div class="col-6 col-lg-3 qed-footer__perspectivia">
               <a href="https://perspectivia.net/" title="perspectivia.net" class="d-block text-end">
                 <nuxt-img
                   preload
@@ -143,7 +143,7 @@
           </div>
         </div>
       </section>
-      <section class="project-footer__credits">
+      <section class="qed-footer__credits">
         <div class="container">
           <div class="row">
 
