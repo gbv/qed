@@ -13,16 +13,17 @@
             <a href="/"  class="qed-header__logo--qed" title="QED Startseite">
               <nuxt-img src="/images/qed-logo-solo.svg" preload class="" alt="Logo QED" />
             </a>
-            <a href="/"  class="qed-header__logo--beta">
+            <div class="qed-header__logo--beta">
               <nuxt-img src="/images/beta.svg" preload class="" alt="Beta" />
-            </a>
+            </div>
+
           </div>
 
           <div class="qed-header__box qed-header__box--menu">
 
             <LanguageSelector />
 
-            <div class="qed-header__menu">
+            <div class="qed-header__menu" v-click-outside="closeMenu">
               <nav class="navbar navbar-light w-100 justify-content-end">
                 <button
                   class="navbar-toggler"
@@ -35,17 +36,32 @@
                   <span class="navbar-toggler__label">Menü</span>
                   <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="qed-main-menu">
+                <div class="collapse navbar-collapse" id="qed-main-menu" ref="mainmenu">
                   <ul class="navbar-nav w-100 justify-content-end">
                     <li class="nav-item">
-                      <nuxt-link class="nav-link js-close-gpo" active-class="active" href="/">{{ $t('qed.mainMenu.home') }}</nuxt-link>
+                      <nuxt-link
+                        class="nav-link"
+                        @click="closeMenu"
+                        active-class="active"
+                        href="/">{{ $t('qed.mainMenu.home') }}
+                      </nuxt-link>
                     </li>
                     <li class="nav-item">
-                      <nuxt-link class="nav-link" active-class="active" href="/suche">{{ $t('qed.mainMenu.search') }}</nuxt-link>
+                      <nuxt-link
+                        class="nav-link"
+                        @click="closeMenu"
+                        active-class="active"
+                        href="/suche">{{ $t('qed.mainMenu.search') }}
+                      </nuxt-link>
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li class="nav-item">
-                      <nuxt-link class="nav-link" active-class="active" href="/ueber">{{ $t('qed.mainMenu.about') }}</nuxt-link>
+                      <nuxt-link
+                        class="nav-link"
+                        @click="closeMenu"
+                        active-class="active"
+                        href="/ueber">{{ $t('qed.mainMenu.about') }}
+                      </nuxt-link>
                     </li>
                   </ul>
                 </div>
@@ -178,5 +194,13 @@
       lang: i18n.locale
     }
   })
+
+  const { $bootstrap } = useNuxtApp();
+  const mainmenu = ref(null);
+  const closeMenu = () => {
+    if (mainmenu.value.classList.contains('show')) {
+      $bootstrap.Collapse.getOrCreateInstance(mainmenu.value).hide();
+    }
+  };
 
 </script>

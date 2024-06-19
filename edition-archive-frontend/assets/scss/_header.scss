@@ -13,8 +13,8 @@
   width: 100%;
   min-width: 320px;
   background-color: white;
-  padding-top: 1.75rem;
-  padding-bottom: 1.75rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 
   &__box {
     display: flex;
@@ -30,16 +30,7 @@
   &__logo {
     align-self: center;
     position: relative;
-    &--p {
-      margin-right: .5rem;
-      img {
-        box-shadow: 5px 5px 15px 5px rgba(255,255,255,0);
-        &:hover {
-          box-shadow: 0px 10px 13px -7px black, 5px 5px 15px 5px rgba(0,0,0,0);
-        }
-      }
-    }
-
+    &--p,
     &--qed {
       img {
         padding: .5rem;
@@ -50,10 +41,9 @@
         }
       }
     }
-
     &--beta {
       position: absolute;
-      top: 0;
+      top: 0.5rem;
       right: -48px;
       z-index: 1001;
       img {
@@ -61,7 +51,6 @@
       }
     }
   }
-
 
 }
 
