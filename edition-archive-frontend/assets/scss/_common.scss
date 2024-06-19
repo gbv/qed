@@ -5,6 +5,28 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
+  .back-to-top {
+    position: fixed;
+    bottom: 5rem;
+    right: 2.5rem;
+    font-size: 2.5rem;
+    z-index: 3000;
+    border-radius: 50%;
+    color: white;
+    background-color: $petrol;
+    padding: 0.5rem;
+    line-height: 0;
+    opacity: 1;
+    transition: opacity 1s;
+    &:hover {
+      color: white;
+      background-color: darken($petrol,10%);
+    }
+    &.faded {
+      opacity: 0;
+    }
+  }
+
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {
   // add/overwrite styles for responsive level xxl and lower
