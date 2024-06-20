@@ -3,7 +3,7 @@
   <div class="project-headline">
     <div class="container">
       <div class="row ">
-        <div class="col project-headline__title">
+        <div id="gpo-headline" class="col project-headline__title">
           <h1>Gallia Pontificia online</h1>
         </div>
         <div class="col project-headline__figure">
@@ -42,7 +42,7 @@
                   class="nav-link"
                   active-class="active"
                   aria-current="page"
-                  href="/gallia-pontificia-online/">
+                  href="/gallia-pontificia-online/#gpo-headline">
                   {{ $t('gpo.mainMenu.project') }}
                 </nuxt-link>
               </li>
@@ -50,7 +50,7 @@
                 <nuxt-link
                   class="nav-link dropdown-toggle"
                   active-class="active"
-                  href="/gallia-pontificia-online/regesten/reims1/"
+                  href="/gallia-pontificia-online/regesten/reims1/#gpo-headline"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -61,7 +61,7 @@
                     <nuxt-link
                       class="dropdown-item"
                       active-class="active"
-                      href="/gallia-pontificia-online/regesten/reims1/">
+                      href="/gallia-pontificia-online/regesten/reims1/#gpo-headline">
                       {{ $t('gpo.mainMenu.regesta.reims1') }}
                     </nuxt-link>
                   </li>
@@ -71,7 +71,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gallia-pontificia-online/publikationen">
+                  href="/gallia-pontificia-online/publikationen#gpo-headline">
                   {{ $t('gpo.mainMenu.publications') }}
                 </nuxt-link>
               </li>
@@ -79,7 +79,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gallia-pontificia-online/zitieren">
+                  href="/gallia-pontificia-online/zitieren#gpo-headline">
                   {{ $t('gpo.mainMenu.citation') }}
                 </nuxt-link>
               </li>
@@ -87,7 +87,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gallia-pontificia-online/kontakt">
+                  href="/gallia-pontificia-online/kontakt#gpo-headline">
                   {{ $t('gpo.mainMenu.contact') }}
                 </nuxt-link>
               </li>
