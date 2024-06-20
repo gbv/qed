@@ -19,8 +19,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 434.04669px;
-        height: 360px;
+        width: 29.06542rem; //434.04669px;
+        height: 24rem;      //360px;
       }
       &__image {
         position:absolute;
@@ -35,8 +35,8 @@
         top: 0;
         left: 0;
         z-index: 500;
-        width: 353px;
-        height: 360px;
+        width: 24rem; //353px;
+        height: 24rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -66,7 +66,7 @@
         position:absolute;
         top: 2rem;
         left: 0;
-        height: 360px;
+        height: 24rem;
         filter: invert(47%) sepia(97%) saturate(1322%) hue-rotate(5deg) brightness(98%) contrast(102%);
       }
       &::before {
@@ -74,7 +74,7 @@
         position:absolute;
         top: 2rem;
         right: -5px;
-        height: 360px;
+        height: 24rem;
         background-color: $grayBack;
         width: 10px;
       }
