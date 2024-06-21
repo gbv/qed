@@ -58,17 +58,19 @@ const {data, error} = await useAsyncData(`objectType:place or objectType:organiz
   return docs;
 });
 
+/*
 onMounted(()=>{
   if (highlight.value!=='') {
     const elPresentInterval = window.setInterval(() => {
       const el = document.getElementById(highlight.value);
       if (el) {
         window.clearInterval(elPresentInterval);
-        window.scrollTo({top:el.offsetTop})
+        //window.scrollTo({top:el.offsetTop})
       }
     }, 200);
   }
 });
+*/
 </script>
 
 <style scoped></style>

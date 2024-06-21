@@ -41,7 +41,7 @@ const {data, error} = await useAsyncData(`objectType:manuscript`, async () => {
   return json.response;
 });
 
-
+/*
 onMounted(()=>{
   if (highlight.value!=='') {
     const elPresentInterval = window.setInterval(() => {
@@ -53,6 +53,7 @@ onMounted(()=>{
     }, 200);
   }
 });
+*/
 </script>
 
 <style scoped>
