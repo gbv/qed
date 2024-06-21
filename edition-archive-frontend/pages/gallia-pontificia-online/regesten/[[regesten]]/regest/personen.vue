@@ -54,17 +54,19 @@ const {data, error} = await useAsyncData(`objectType:person`, async () => {
   return docs;
 });
 
+/*
 onMounted(()=>{
   if (highlight.value !== '') {
     const elPresentInterval = window.setInterval(() => {
       const el = document.getElementById(highlight.value);
       if (el) {
         window.clearInterval(elPresentInterval);
-        window.scrollTo({top: el.offsetTop})
+        //window.scrollTo({top: el.offsetTop})
       }
     }, 200);
   }
 });
+*/
 </script>
 
 <style scoped>
