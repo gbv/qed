@@ -201,15 +201,15 @@
   // hide menu when it is visible and a click happend outside
   // every link in the menu will close the menu also
   const { $bootstrap } = useNuxtApp();
-  const mainmenu = ref(null);
+  const mainmenu = ref<HTMLInputElement | null>(null);
   const closeMenu = () => {
-    if (mainmenu.value.classList.contains('show')) {
+    if (mainmenu.value?.classList.contains('show')) {
       $bootstrap.Collapse.getOrCreateInstance(mainmenu.value).hide();
     }
   };
 
   // method to go to top
-  const scrolltopbutton = ref(null);
+  const scrolltopbutton = ref<HTMLInputElement | null>(null);
   const goTop = () => {
     window.scrollTo(0, 0)
   };
@@ -221,10 +221,10 @@
   function handleScroll(){
     if (window.scrollY > 100) {
       //fade in
-      scrolltopbutton.value.classList.remove('faded');
+      scrolltopbutton.value?.classList.remove('faded');
     } else {
       //fade out
-      scrolltopbutton.value.classList.add("faded");
+      scrolltopbutton.value?.classList.add("faded");
     }
   }
 
