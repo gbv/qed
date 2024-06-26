@@ -1,6 +1,6 @@
 <template>
 
-  <div class="project-headline">
+  <div :class="$route.params.gpoPath == '' ? 'project-headline project-headline--home':'project-headline'">
     <div class="container">
       <div class="row ">
         <div id="gpo-headline" class="col project-headline__title">
@@ -13,7 +13,7 @@
       <div class="project-headline__back project-headline__back--start">
         <nuxt-img src="/images/PatternStrichpunktGrossKreisViertel.svg" preload class="" alt="xxx" />
       </div>
-      <div class="project-headline__back project-headline__back--end">
+      <div class="project-headline__back project-headline__back--end d-none d-lg-block">
         <nuxt-img src="/images/PatternStrichpunktGrossKreisViertel.svg" preload class="" alt="xxx" />
       </div>
     </div>
@@ -111,10 +111,43 @@
     <div
       class="row"
       v-if="$route.params.regesten == 'reims1' || $route.params.regesten == 'genf1'">
-      <div class="col-md-3 col-sm-12 project-sub-menu">
-        <slot name="menu" />
+      <div class="col-12 col-lg-3 project-sub-menu">
+        <!--slot name="menu" /-->
+
+        <button
+          class="btn btn-light d-lg-none side-menu-button"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample">
+          <i class="bi bi-chevron-right"></i>
+          Seitenmenü öffnen
+        </button>
+
+        <div
+          class="offcanvas-lg offcanvas-start"
+          data-bs-scroll="true"
+          data-bs-backdrop="true"
+          tabindex="-1"
+          id="offcanvasExample"
+          aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Seitenmenü</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-target="#offcanvasExample"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close">
+            </button>
+          </div>
+          <div class="offcanvas-body">
+            <slot name="menu" />
+          </div>
+        </div>
+
       </div>
-      <div class="col-md-9 col-sm-12 project-content external-links">
+      <div class="col-12 col-lg-9 project-content external-links">
         <h2 class="project-sub-headline">
           <span v-if="$route.params.regesten == 'reims1'">
             {{ $t('gpo.pages.regesta.reims1.headline') }}

@@ -5,6 +5,10 @@
 // set the defaults for all responsive levels here
 // desktop first (>1400px)
 
+  .container {
+    min-width: 320px;
+  }
+
   // always use full screen height
   .body-box {
     display: flex;

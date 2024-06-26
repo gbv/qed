@@ -6,21 +6,25 @@
       <div class="row">
         <div class="col">
           <div class="intro-box">
-            <h1 class="d-none">perspectivia.net</h1>
             <div class="slogan">
               <div class="slogan__imagebox">
                 <img src="https://perspectivia.net/images/backgrounds/PatternStrichpunktGrossKreisViertel.svg" alt="flieder" class="slogan__image">
                 <div class="slogan__textbox">
-                  <div class="slogan__text">
-                    Quellen<br /> und Editionen
-                    <div class="slogan__subtext">
-                      der Max Weber Stiftung
+                  <h1 class="d-none d-xl-block">
+                    <div class="slogan__text">
+                      Quellen<br /> und Editionen
+                      <div class="slogan__subtext">
+                        der Max Weber Stiftung
+                      </div>
                     </div>
-                  </div>
+                  </h1>
                 </div>
               </div>
             </div>
             <div class="intro-text">
+              <h1 class="d-block d-xl-none mb-3">
+                Quellen und Editionen der Max Weber Stiftung
+              </h1>
               <p>
                 Mit QED stellt die <a href="https://www.maxweberstiftung.de/">Max Weber Stiftung (MWS)</a> unter dem Dach von
                 <a href="https://perspectivia.net/">perspectivia.net</a> ein eigenes Portal für die Veröffentlichung von
