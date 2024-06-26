@@ -24,7 +24,7 @@
     }
     &__back {
       position:absolute;
-      top: 0;
+      bottom: 0;
       img {
         height: 20rem;
       }
@@ -38,18 +38,16 @@
         right: -26.6875rem;
       }
     }
-    .row {
-      justify-content: space-between;
-    }
     &__title {
       align-self: flex-end;
       color: $petrol;
     }
     &__figure {
-      align-self: flex-end;
+      align-self: flex-start;
       text-align: right;
       margin-right: 3rem;
-
+      position: absolute;
+      bottom: 0;
       img {
         width: 20rem;
         height: 20rem;
@@ -63,17 +61,29 @@
         }
       }
     }
+    &--home {
+      .project-headline{
+        &__figure {
+          position: static;
+          img {
+            width: 20rem;
+            height: 20rem;
+            object-fit: cover;
+          }
+        }
+      }
+    }
   }
 
   .project-institute {
-    padding: .5rem 0;
+    padding: 1.5rem 0;
     img {
       width: 10rem;
     }
     &--sosu {
       img {
-        height: 5.5rem;
         width: auto;
+        max-width: 250px;
       }
     }
   }
@@ -93,6 +103,39 @@
 // Medium devices (tablets) and below: <= 992px
 @include media-breakpoint-down(lg) {
   // add/overwrite styles for responsive level lg and lower
+
+  .project-institute {
+    padding: 0 0;
+    margin-bottom: 2rem;
+  }
+
+  .project-headline {
+    &__figure {
+      right: -15rem;
+    }
+  }
+
+  .project-headline {
+    &--home {
+      .project-headline {
+        &__title {
+          display: flex;
+          align-items: end;
+          &::after {
+            content: " ";
+            display: block;
+            height: 20rem;
+            width: 1px;
+          }
+        }
+        &__figure {
+          position: absolute;
+          bottom: 0;
+          right: -15rem;
+        }
+      }
+    }
+  }
 }
 
 // Small devices (landscape phones) and below: <= 768px

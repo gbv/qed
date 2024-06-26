@@ -12,6 +12,15 @@
     .slogan {
       flex-basis: 25%;
       position: relative;
+      &::before {
+        content: '';
+        position:absolute;
+        top: 1.75rem;
+        left: -.25rem;
+        height: 24.5rem;
+        background-color: $grayBack;
+        width: 1rem;
+      }
       &__imagebox {
         position:absolute;
         top: 2rem;
@@ -40,9 +49,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        h1 {
+          margin-bottom: 0;
+        }
       }
       &__text {
         font-size: 2.75rem;
+        font-weight: normal;
         line-height: 3.5rem;
         color: white;
       }
@@ -72,11 +85,11 @@
       &::before {
         content: '';
         position:absolute;
-        top: 2rem;
-        right: -5px;
-        height: 24rem;
+        top: 1.75rem;
+        right: -.25rem;
+        height: 24.5rem;
         background-color: $grayBack;
-        width: 10px;
+        width: 1rem;
       }
     }
   }
@@ -87,6 +100,7 @@
     background-color: $grayBack;
     padding-top: 8rem;
     padding-bottom: 7rem;
+    overflow: hidden;
     &--hidden {
       display: none;
     }
@@ -101,27 +115,96 @@
     }
   }
 
+  @media (max-width: 1500px) {
+    .intro-box {
+      .slogan {
+        flex-basis: 30%;
+      }
+      .intro-text {
+        flex-basis: 55%;
+      }
+      .decoration {
+        flex-basis: 15%;
+      }
+    }
+  }
+
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {
   // add/overwrite styles for responsive level xxl and lower
+  .intro-box {
+    .slogan {
+      flex-basis: 35%;
+    }
+    .intro-text {
+      flex-basis: 55%;
+    }
+    .decoration {
+      flex-basis: 10%;
+    }
+  }
 }
 
 // Large devices (desktops) and below: <= 1200px
 @include media-breakpoint-down(xl) {
   // add/overwrite styles for responsive level xl and lower
+  .intro-box {
+    .slogan {
+      flex-basis: 20%;
+    }
+    .intro-text {
+      flex-basis: 70%;
+    }
+    .decoration {
+      flex-basis: 10%;
+    }
+  }
 }
 
 // Medium devices (tablets) and below: <= 992px
 @include media-breakpoint-down(lg) {
   // add/overwrite styles for responsive level lg and lower
+  .intro-box {
+    .slogan {
+      flex-basis: 10%;
+    }
+    .intro-text {
+      flex-basis: 80%;
+    }
+    .decoration {
+      flex-basis: 10%;
+    }
+  }
 }
 
 // Small devices (landscape phones) and below: <= 768px
 @include media-breakpoint-down(md) {
   // add/overwrite styles for responsive level md and lower
+  .intro-box {
+    .slogan {
+      flex-basis: 1%;
+    }
+    .intro-text {
+      flex-basis: 98%;
+    }
+    .decoration {
+      flex-basis: 1%;
+    }
+  }
 }
 
 // Extra small devices (portrait phones): <= 576px
 @include media-breakpoint-down(sm) {
   // add/overwrite styles for responsive level sm and lower
+  .intro-box {
+    .slogan {
+      display: none;
+    }
+    .intro-text {
+      flex-basis: 100%;
+    }
+    .decoration {
+      display: none;
+    }
+  }
 }

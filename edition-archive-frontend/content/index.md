@@ -53,8 +53,6 @@
   Diese Website versammelt die ersten aufgezeichneten Stimmen
   von sowjetischen Überlebenden der NS-Herrschaft.
   :::
-::
-::Rows
 #latour
   :::ContentCard
   ---

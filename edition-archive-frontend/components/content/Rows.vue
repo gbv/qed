@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div v-for="(content, slot) in $slots" :class="`col-md-${12/Object.keys($slots).length} col-xs-12 mt-3 mb-5`">
+    <div v-for="(content, slot) in $slots" :class="`col-xl-4 col-lg-6 col-12 mt-3 mb-5`">
       <slot :name="slot"/>
     </div>
   </div>

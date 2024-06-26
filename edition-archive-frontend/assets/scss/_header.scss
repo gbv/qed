@@ -13,8 +13,8 @@
   width: 100%;
   min-width: 320px;
   background-color: white;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
   &__box {
     display: flex;
@@ -30,6 +30,7 @@
   &__logo {
     align-self: center;
     position: relative;
+    white-space: nowrap;
     &--p,
     &--qed {
       img {
@@ -73,6 +74,16 @@
 @include media-breakpoint-down(lg) {
   // add/overwrite styles for responsive level lg and lower
   .qed-header {
+    &__box {
+      flex-wrap: wrap;
+      &--logo,
+      &--menu {
+        flex: 1 0 100%;
+      }
+      &--menu {
+        margin-top: 2rem;
+      }
+    }
     &__menu {
       .navbar-nav {
         .nav-link {
@@ -82,6 +93,8 @@
         }
       }
     }
+  }
+  .qed-lang-menu {
   }
 }
 
@@ -120,4 +133,44 @@
 // Extra small devices (portrait phones): <= 576px
 @include media-breakpoint-down(sm) {
   // add/overwrite styles for responsive level sm and lower
+  .qed-header {
+    &__logo {
+      &--p {
+        img {
+          padding: .2rem;
+          width:50px; //74
+        }
+      }
+      &--qed {
+        img {
+          padding: .2rem;
+          width: 300px; //400.1
+        }
+      }
+      &--beta {
+        top: 0rem;
+        right: -35px;
+        img {
+          width: 30px; //38
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .qed-header {
+    &__logo {
+      &--qed {
+        img {
+          padding: .2rem;
+          width: 250px; //400.1
+        }
+      }
+      &--beta {
+        top: -.5rem;
+        right: .25rem;
+      }
+    }
+  }
 }

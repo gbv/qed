@@ -29,7 +29,20 @@
       }
     }
 
+    &__logo {
+      order: 1;
+      margin-top: 0.5rem;
+      img {
+        width: 180px;
+      }
+    }
+
+    &__menu {
+      order: 2;
+    }
+
     &__social {
+      order: 3;
       i {
         font-size: 20px;
         color: $orange;
@@ -37,10 +50,15 @@
       }
     }
 
-    &__logo {
+    &__perspectivia {
+      order: 4;
       margin-top: 0.5rem;
-      img {
-        width: 180px;
+      .perspectivia-box {
+        max-width: 350px;
+      }
+      a {
+        display: block;
+        text-align: end;
       }
     }
 
@@ -77,14 +95,59 @@
 // Medium devices (tablets) and below: <= 992px
 @include media-breakpoint-down(lg) {
   // add/overwrite styles for responsive level lg and lower
+  .qed-footer {
+    &__perspectivia {
+      margin-top: 2rem;
+    }
+  }
 }
 
 // Small devices (landscape phones) and below: <= 768px
 @include media-breakpoint-down(md) {
   // add/overwrite styles for responsive level md and lower
+  .qed-footer {
+    &__logo {
+      order:3;
+      margin-top: 2rem;
+    }
+    &__menu {
+      order: 1;
+      ul {
+        margin-left: -1rem;
+      }
+    }
+    &__social {
+      order:2;
+      ul {
+        margin-left: -1rem;
+      }
+    }
+    &__perspectivia {
+      order: 4;
+    }
+  }
+  .project-powered-by {
+    margin-top: 2rem;
+  }
 }
 
 // Extra small devices (portrait phones): <= 576px
 @include media-breakpoint-down(sm) {
   // add/overwrite styles for responsive level sm and lower
+  .qed-footer {
+    &__logo,
+    &__menu,
+    &__social,
+    &__perspectivia {
+      display: flex;
+      justify-content: center;
+    }
+    &__perspectivia {
+      margin-top: 3rem;
+      a {
+        display: block;
+        text-align: start;
+      }
+    }
+  }
 }
