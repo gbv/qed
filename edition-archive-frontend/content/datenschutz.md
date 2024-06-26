@@ -49,7 +49,7 @@ Sie haben das Recht, Ihre bei uns gespeicherten Daten in einem maschinenlesbaren
 Sie haben jederzeit das Recht, Einwilligungen zu widerrufen. Der Widerruf erfolgt in derselben Weise wie die Einwilligung oder durch eine E-Mail an den Datenschutzbeauftragten (s.u.) mit einer Erläuterung, welche Einwilligung Sie zurückziehen. Datenverarbeitungen, die vor Widerruf der Einwilligung erfolgt sind, bleiben rechtmäßig.
 
 ## Kontakt
-Verantwortlich für diesen Webauftritt ist Dr. Michael Kaiser, Max Weber Stiftung, kaiser@maxweberstiftung.de. Fragen und Anregungen zum Thema Datenschutz können Sie gerne an den Datenschutzbeauftragten, Reinhard Hiß, richten: daten-schutz@maxweberstiftung.de
+Verantwortlich für diesen Webauftritt ist Dr. Michael Kaiser, Max Weber Stiftung, kaiser@maxweberstiftung.de. Fragen und Anregungen zum Thema Datenschutz können Sie gerne an den Datenschutzbeauftragten, Reinhard Hiß, richten: datenschutz@maxweberstiftung.de
 
 Die zuständige Aufsichtsbehörde und den Bundesbeauftragten für den Datenschutz und die Informationsfreiheit (BfDI) erreichen Sie unter folgender Adresse:
 
