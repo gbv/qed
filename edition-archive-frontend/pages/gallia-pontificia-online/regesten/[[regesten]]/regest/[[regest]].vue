@@ -119,9 +119,7 @@
                {{ $t("gpo.pages.regest.cite.long") }}
               </template>
               {{ regestedIdno }}.
-              URL: <a :href="$t('gpo.pages.regest.cite.url')+regestedIdno">
-                {{ $t("gpo.pages.regest.cite.url") }}{{ regestedIdno }}
-              </a>
+              DOI:&nbsp;<a v-if="viewModel.doi" :href="'https://doi.org/' + viewModel.doi">{{ viewModel.doi }}</a>
             </span>
             <span v-on:click.prevent="toggleCiteVersion()" class="badge rounded-pill cite-switch"
                   :title="$t(citeForm.citeVersion!=='short' ? 'gpo.pages.regest.cite.switch.short.title': 'gpo.pages.regest.cite.switch.long.title')">
@@ -186,6 +184,7 @@ interface RegestViewModel {
   erwaehnungen: XElement|null;
   sachkommentar: Array<XElement>|null;
   witnessOrig: XElement|null;
+  doi: string;
 }
 
 
@@ -251,7 +250,7 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
     })
   });
 
-
+  vm.doi = currentJsonDoc['identifier.doi'].join();
 
   vm.witListPar = findFirstElement(doc, byName("cei:witListPar"));
   vm.erwaehnungen = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
