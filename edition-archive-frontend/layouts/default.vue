@@ -31,7 +31,7 @@
                   aria-controls="qed-main-menu"
                   aria-expanded="false"
                   aria-label="Toggle navigation">
-                  <span class="navbar-toggler__label">Menü</span>
+                  <span class="navbar-toggler__label">{{ $t('qed.mainMenu.menu') }}</span>
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="qed-main-menu" ref="mainmenu">
@@ -97,21 +97,21 @@
             <div class="col col-sm-6 col-md-4 col-lg-3  qed-footer__menu">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/impressum">Impressum</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/impressum">{{ $t('qed.footerMenu.imprint') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/datenschutz">Datenschutz</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/datenschutz">{{ $t('qed.footerMenu.privacy') }}</nuxt-link>
                 </li>
                 <!--
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/nutzungsbedingungen">Nutzungsbedingungen</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/nutzungsbedingungen">{{ $t('qed.footerMenu.terms') }}</nuxt-link>
                 </li>
                 -->
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/kontakt">Kontakt</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/kontakt">{{ $t('qed.footerMenu.contact') }}</nuxt-link>
                 </li>
                 <li class="nav-item">
-                  <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">Barrierefreiheit</nuxt-link>
+                  <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">{{ $t('qed.footerMenu.accessibility') }}</nuxt-link>
                 </li>
               </ul>
             </div>

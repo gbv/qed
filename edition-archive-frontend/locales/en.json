@@ -7,9 +7,20 @@
   },
   "qed": {
     "mainMenu": {
+      "menu":"Menu",
       "home": "Home",
       "search": "Portal Search",
       "about": "About qed"
+    },
+    "homePage": {
+      "more": "More about QED"
+    },
+    "footerMenu": {
+      "imprint": "Imprint",
+      "privacy": "Privacy policy",
+      "terms": "Terms of use",
+      "contact": "Contact",
+      "accessibility": "Accessibility"
     }
   },
   "gpo": {
