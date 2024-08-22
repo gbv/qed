@@ -114,7 +114,7 @@
       .project-headline {
         &__title {
           display: flex;
-          align-items: end;
+          align-items: flex-end;
           &::after {
             content: " ";
             display: block;
