@@ -110,8 +110,7 @@
 
         <div class="row regest-detail-view__footer">
           <div class="col footer-persons">
-            <span :class="`cite cite__${citeForm.citeVersion}`"
-                  :title="$t(citeForm.citeVersion=='short' ?'gpo.pages.regest.cite.switch.long.title': 'gpo.pages.regest.cite.switch.long.title')">
+            <span :class="`cite cite__${citeForm.citeVersion}`">
               <template v-if="citeForm.citeVersion=='short'">
                 {{ $t("gpo.pages.regest.cite.short") }}
               </template>
@@ -250,7 +249,9 @@ const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, asyn
     })
   });
 
-  vm.doi = currentJsonDoc['identifier.doi'].join();
+  if ( currentJsonDoc['identifier.doi'] ) {
+    vm.doi = currentJsonDoc['identifier.doi'].join();
+  }
 
   vm.witListPar = findFirstElement(doc, byName("cei:witListPar"));
   vm.erwaehnungen = findFirstElement(doc, and(byName("cei:p"), byAttr('type', 'Erwähnungen')));
