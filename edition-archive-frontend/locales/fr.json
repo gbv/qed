@@ -169,8 +169,9 @@
   },
   "browser": {
     "currentOf": " von ",
-    "invalidIndex": "Numéro invalide",
-    "goTo": "Aller au {to}"
+    "invalidIndex": "Invalide",
+    "goTo": "Aller à l'entrée {to}",
+    "changeRegest": "Choisis une entrée spécifique"
   },
   "cms": {
     "page": {

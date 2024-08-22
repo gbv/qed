@@ -204,8 +204,9 @@
   },
   "browser": {
     "currentOf": " von ",
-    "invalidIndex": "Ungültige Nummer",
-    "goTo": "Gehe zu {to}"
+    "invalidIndex": "Ungültig",
+    "goTo": "Gehe zu Eintrag {to}",
+    "changeRegest": "Wähle gezielt einen Eintrag"
   },
   "cms": {
     "page": {

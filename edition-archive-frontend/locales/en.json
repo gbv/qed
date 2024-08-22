@@ -153,7 +153,7 @@
     "basic": "Simple search",
     "extended": "Advanced search",
     "pageGoTo": "Go to page {page}",
-    "hitCount": "{count} found hit(s)",
+    "hitCount": "{count} entries found",
     "noHits": "Keine Treffer",
     "pageNext": "Next nage",
     "pagePrev": "Previous page",
@@ -200,8 +200,9 @@
   },
   "browser": {
     "currentOf": " von ",
-    "invalidIndex": "Invalid number",
-    "goTo": "Go to {to}"
+    "invalidIndex": "Invalid",
+    "goTo": "Go to entry {to}",
+    "changeRegest": "Select a specific entry"
   },
   "cms": {
     "page": {
