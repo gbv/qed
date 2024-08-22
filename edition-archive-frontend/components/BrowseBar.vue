@@ -6,21 +6,27 @@
         {{ prevLabel }}
       </a>
     </span>
-    <span v-if="!model.editIndex" class="index">
-      {{ current }}
-      <i class="bi bi-pencil-square clickable" v-on:click="model.editIndex=true"></i>
-      {{ $t("browser.currentOf") }}
-      {{ of }}
-    </span>
-    <div v-else class="index row">
-      <div class="col-9">
-        <input class="form-control form-control-sm" :class="model.index < 1 || model.index > of ? 'is-invalid' : ''" type="number" v-model.number="model.index" v-on:keyup.enter="indexEntered"/>
+    <div class="regest-index">
+      <div class="regest-index__current">
+        <input
+          class="form-control form-control-sm"
+          :class="model.index < 1 || model.index > of ? 'is-invalid' : ''"
+          v-model.number="model.index"
+          :title="$t('browser.changeRegest')"
+          v-on:keyup.enter="indexEntered" />
         <div class="invalid-feedback" v-if="model.index < 1 || model.index > of">
           {{ $t("browser.invalidIndex") }}
         </div>
       </div>
-      <div class="col-3 fs-2">
-        <i class="bi bi-check clickable" v-on:click="indexEntered" :title="$t('browser.goTo', {to:model.index})"></i>
+      <div class="regest-index__overall">
+        {{ $t("browser.currentOf") }}
+        {{ of }}
+      </div>
+      <div class="regest-index__goto" v-if="model.index != current && model.index > 1 && model.index < of">
+        <i
+          class="bi bi-arrow-clockwise clickable"
+          v-on:click="indexEntered"
+          :title="$t('browser.goTo', {to:model.index})"></i>
       </div>
     </div>
     <span class="next">
@@ -75,7 +81,7 @@ const indexEntered = () => {
   text-align: left;
 }
 
-.index {
+.regest-index {
   flex: 1;
   text-align: center;
 }

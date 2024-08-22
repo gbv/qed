@@ -8,11 +8,12 @@
   .regest-detail-view {
     .prev,
     .next,
-    .index {
+    .regest-index {
       a {
         display: block;
         text-decoration: none;
         padding: 0.5rem;
+        height: 100%;
         &:hover {
           color: white;
           background-color: $primary;
@@ -22,11 +23,33 @@
     .prev {
       border-right: none;
     }
-    .index {
+    .regest-index {
       padding: 0.5rem;
       border: 1px solid $grayBorder;
       margin-bottom: -1px;
       border-bottom: 1px solid white;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__current {
+        display: flex;
+        .form-control {
+          width: 80px;
+          text-align: right;
+        }
+        .invalid-feedback {
+          margin-left: .5rem;
+        }
+      }
+      &__overall {
+        margin-left: .5rem;
+        margin-right: .5rem;
+      }
+      &__goto {
+        color: $petrol;
+        font-size: 1.2rem;
+      }
     }
     .next {
       border-left: none;
@@ -158,6 +181,8 @@
     border-top: 2px solid #a3a3a3;
     padding-top: 1rem;
   }
+
+
 
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {
