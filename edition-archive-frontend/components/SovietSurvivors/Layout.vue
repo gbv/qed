@@ -84,10 +84,10 @@
 
       <div class="col-auto">
         <div class="project-institute project-institute--sosu">
-          <a href="https://www.dhi-moskau.org/">
+          <a href="https://mwsosteuropa.hypotheses.org/">
             <nuxt-img
-              src="/images/dhi-moskau-logo.png"
-              preload alt="DHI Moskau Logo" />
+              src="/images/mwno-logo-de.svg"
+              preload alt="Max Weber Netzwerk Osteuropa Logo" />
           </a>
         </div>
       </div>
