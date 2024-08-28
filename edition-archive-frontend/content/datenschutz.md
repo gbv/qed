@@ -104,7 +104,7 @@ You have the right to have incorrect personal data corrected. If the MWS has dou
 ## Deletion
 You have the right to have personal data deleted. If the MWS is legally obliged to store the data, it will not erase the data. If the MWS has doubts about the correctness of the deletion request, it is authorised not to delete the data until the facts of the case have been clarified.
 
-## Recht auf Einschränkung der Verarbeitung
+## Right to restriction of processing
 You have the right to request the restriction of the processing of your personal data. The right to restriction of processing exists in the following cases:
  - If you dispute the accuracy of your personal data stored by us, we generally need time to verify this. For the duration of the review, you have the right to request that the processing of your personal data be restricted.
  - If the processing of your personal data was/is unlawful, you can request the restriction of data processing instead of erasure.
