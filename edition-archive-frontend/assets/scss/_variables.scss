@@ -9,6 +9,14 @@ $petrol:      #006978;
 $red:         #b4192d;
 $creditBlack: #191C1C;
 
+$light_neutral: $grayBorder;
+$dark_neutral:  $grayBasic;
+$white:         white;
+$warning:       $red;
+$success:       green;
+$highlight:     $orange;
+
+
 $primary: $petrol;
 $secondary: $orange;
 $danger: $red;
@@ -47,3 +55,12 @@ $card-border-color: $petrol;
 $btn-border-radius: 1rem;
 $btn-border-radius-sm: 1rem;
 $btn-border-radius-lg: 1rem;
+
+$pagination-border-width: 0;
+$pagination-font-size: 1rem;
+$pagination-padding-y: .5rem;
+$pagination-color: $grayMedium;
+$pagination-bg: white;
+$pagination-active-color: white;
+$pagination-active-bg: $grayMedium;
+$pagination-active-border-color: white;

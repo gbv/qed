@@ -2,53 +2,72 @@
   <GalliaPontificiaOnlineLayout>
 
     <template #content>
-      <div class="row" v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
+      <!-- search form-->
+      <div
+        class="row"
+        v-if="model.currentTab === BASIC_SEARCH_TYPE || model.currentTab === EXTENDED_SEARCH_TYPE">
+
         <div class="col-12" v-if="tabData">
-          <!-- Search Form -->
-          <TabsCard :tabs="tabData" card-class="text-center" :current="model.currentTab"
-                    v-on:tabChanged="tabChanged">
+
+          <TabsCard
+            :tabs="tabData"
+            card-class="text-center"
+            :current="model.currentTab"
+            v-on:tabChanged="tabChanged">
+
             <template v-slot:einfach>
-              <BasicSearchForm v-on:search="basicSearchCallback" :searchString="model.searchString"/>
+              <BasicSearchForm
+                v-on:search="basicSearchCallback"
+                :searchString="model.searchString"/>
             </template>
+
             <template v-slot:erweitert>
-              <ExtendedSearchForm v-on:search="extendedSearchCallback"
-                                  :allMeta="model.extendedSearch.allMeta"
-                                  :person="model.extendedSearch.person"
-                                  :place="model.extendedSearch.place"
-                                  :initium="model.extendedSearch.initium"
-                                  :issuer="model.extendedSearch.issuer"
-                                  :recipient="model.extendedSearch.recipient"
-                                  :lost="model.extendedSearch.lost"
-                                  :fake="model.extendedSearch.fake"
-                                  :certainly="model.extendedSearch.certainly"
-                                  :dateRangeRange="model.extendedSearch.dateRangeRange"
-                                  :dateRangeFrom="model.extendedSearch.dateRangeFrom"
-                                  :dateRangeTo="model.extendedSearch.dateRangeTo"
-                                  :dateText="model.extendedSearch.dateText"
-                                  :jaffe2="model.extendedSearch.jaffe2"
-                                  :jaffe3="model.extendedSearch.jaffe3"
-                  />
-                </template>
-              </TabsCard>
-            </div>
-          </div>
-          <div class="row hit-count">
-            <h2>{{ $t('search.hitCount', { count: model.count }) }}</h2>
-          </div>
-          <div class="row sort">
-            <div class="col-6">
-              <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
-                <option value="asc">{{$t("search.sort.asc")}}</option>
-                <option value="desc">{{ $t("search.sort.desc") }}</option>
-              </select>
-            </div>
-            <div class="col-6">
-              <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
-                <option value="relevance">{{ $t("search.sort.relevance") }}</option>
-                <option value="idno">{{ $t("search.sort.idno") }}</option>
-              </select>
-            </div>
-          </div>
+              <ExtendedSearchForm
+                v-on:search="extendedSearchCallback"
+                :allMeta="model.extendedSearch.allMeta"
+                :person="model.extendedSearch.person"
+                :place="model.extendedSearch.place"
+                :initium="model.extendedSearch.initium"
+                :issuer="model.extendedSearch.issuer"
+                :recipient="model.extendedSearch.recipient"
+                :lost="model.extendedSearch.lost"
+                :fake="model.extendedSearch.fake"
+                :certainly="model.extendedSearch.certainly"
+                :dateRangeRange="model.extendedSearch.dateRangeRange"
+                :dateRangeFrom="model.extendedSearch.dateRangeFrom"
+                :dateRangeTo="model.extendedSearch.dateRangeTo"
+                :dateText="model.extendedSearch.dateText"
+                :jaffe2="model.extendedSearch.jaffe2"
+                :jaffe3="model.extendedSearch.jaffe3"
+              />
+            </template>
+
+          </TabsCard>
+        </div>
+      </div>
+
+      <!-- results headline -->
+      <div class="row hit-count">
+        <h2>{{ $t('search.hitCount', { count: model.count }) }}</h2>
+      </div>
+
+      <!-- sort results -->
+      <div class="row sort">
+        <div class="col-6">
+          <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
+            <option value="asc">{{$t("search.sort.asc")}}</option>
+            <option value="desc">{{ $t("search.sort.desc") }}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
+            <option value="relevance">{{ $t("search.sort.relevance") }}</option>
+            <option value="idno">{{ $t("search.sort.idno") }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- error message-->
       <div class="row" v-if="model.error!=null">
         <div class="col-12 mt-4">
           <div class="alert alert-danger" role="alert">
@@ -57,45 +76,116 @@
         </div>
       </div>
 
+<<<<<<< HEAD
       <div class="row results" v-else-if="model.searchResult">
         <div class="col-9">
           <!-- Search Results -->
+=======
+      <!-- result list and filter -->
+      <div class="row results" v-else-if="model.searchResult">
+
+        <!-- results -->
+        <div class="col-9">
+
+          <div class="result_list">
+            <div id="hit_list">
+
+              <div
+                class="hit_item"
+                v-for="result in model.searchResult.response.docs">
+
+                <div class="row hit_item_head">
+                  <div class="col-12">
+                    <div class="hit_counter">&nbsp;</div>
+                  </div>
+                </div>
+
+                <div class="row hit_item_body">
+                  <div class="col-12">
+                    <div class="hit_download_box">
+                      <a title="Sammelwerk"
+                        href=""
+                        class="hit_option hit_download">
+                        <div class="hit_icon"
+                          style="background-image: url('')">
+                        </div>
+                      </a>
+                    </div>
+
+                    <h3 class="hit_title">
+                      <span class="issuer" v-if="'regest.json' in result">
+                        {{
+                          flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type', 'PontifikatAEP'))))
+                        }}
+                        –
+                        {{
+                          flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type', 'PontifikatPP'))))
+                        }}
+                      </span>
+                    </h3>
+                    <div class="hit_number">
+                      <nuxt-link
+                        :href="`/gallia-pontificia-online/regesten/${route.params.regesten}/regest/${result.idno}`"
+                        :title="$t('search.goToRegest', {regest:result.idno})">
+                        Nr.
+                        <GalliaPontificiaOnlineRegestId
+                          :idno="result.idno"
+                          :certainly="result.certainly"
+                          :fake="result.fake"
+                          :lost="result.lost"/>
+                        . {{
+                          [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p => p !== null && p !== undefined).join(", ")
+                        }}
+                      </nuxt-link>
+                    </div>
+                    <div class="hit_abstract">
+
+                      <p v-if="'regest.json' in result">
+                        {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}
+                      </p>
+                      <i v-if="'regest.json' in result" class="fst-italic">
+                        {{
+                          trimString(findElement(result['regest.json'], byName('cei:incipit')).map(flattenElement).join("; "))
+                        }}
+                      </i>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search.noHits') }}</h2>
+>>>>>>> c18f6af (QUED-99 adjusts resultlist in a first iteration)
 
           <SolrPaginator v-on:pageChanged="pageChangedCallback"
                          :count="model.count"
                          :start="model.start"
                          :numPerPage="20"/>
+        </div>
 
-          <article class="search-result card mt-2 mb-2" v-for="result in model.searchResult.response.docs">
-            <section class="card-body">
-              <div><span class="issuer" v-if="'regest.json' in result">
-                    {{
-                  flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type', 'PontifikatAEP'))))
-                }} – {{
-                  flattenElement(findFirstElement(result['regest.json'], and(byName("cei:p"), byAttr('type', 'PontifikatPP'))))
-                }}</span></div>
-              <nuxt-link :href="`/gallia-pontificia-online/regesten/${route.params.regesten}/regest/${result.idno}`"
-                         :title="$t('search.goToRegest', {regest:result.idno})">
-                Nr.
-                <GalliaPontificiaOnlineRegestId :idno="result.idno" :certainly="result.certainly" :fake="result.fake"
-                                               :lost="result.lost"/>. {{
-                  [result.issuedPlace?.join(", "), result['issued.text']?.join(", ")].filter(p => p !== null && p !== undefined).join(", ")
-                }}
-              </nuxt-link>
-              <p v-if="'regest.json' in result">
-                {{ trimString(flattenElement(findFirstElement(result['regest.json'], byName("cei:abstract")))) }}
-              </p>
-              <i v-if="'regest.json' in result" class="fst-italic">
-                {{
-                  trimString(findElement(result['regest.json'], byName('cei:incipit')).map(flattenElement).join("; "))
-                }}
-              </i>
+        <!-- facetts -->
+        <div class="col-3">
+          <div v-if="model.facet.ueberlieferungsform.length>0" class="facet">
+            <h4 class="facet-title text-center">{{ $t('search.facet.ueberlieferungsform') }}</h4>
+            <ul class="list-group">
 
-            </section>
-              </article>
+              <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+              v-on:click="facetClicked('lost', true)">
+               {{ $t('search.facet.deperditum') }}
+                <span class="badge bg-primary rounded-pill">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
+              </li>
 
-              <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search.noHits') }}</h2>
+              <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+              v-on:click="facetClicked('fake', true)">
+               {{ $t('search.facet.spurium') }}
+                <span class="badge bg-primary rounded-pill">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
+              </li>
 
+<<<<<<< HEAD
               <SolrPaginator v-on:pageChanged="pageChangedCallback"
                              :count="model.count"
                              :start="model.start"
@@ -174,6 +264,62 @@
             </div>
           </div>
 
+=======
+              <template v-if="model.facet.ueberlieferungsform.length>0">
+                <li
+                  v-for="ueberlieferungsform in model.facet.ueberlieferungsformExpand ? model.facet.ueberlieferungsform: model.facet.ueberlieferungsform.slice(0,10)"
+                  :class="model.facet.ueberlieferungsformEnabledValues.indexOf(ueberlieferungsform.name)>-1?'active':''"
+                  class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+                  v-on:click="facetClicked('ueberlieferungsform', ueberlieferungsform.name)">
+                  {{ ueberlieferungsform.name }}
+                  <span class="badge bg-primary rounded-pill">{{ ueberlieferungsform.count }}</span>
+                </li>
+                <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
+                   href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true">{{ $t('search.facet.showMore') }}</a>
+                <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
+                   href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false">{{ $t('search.facet.showLess') }}</a>
+              </template>
+            </ul>
+          </div>
+
+          <div v-if="model.facet.issuer.length>0" class="facet">
+            <h4 class="facet-title text-center">{{ $t('search.facet.issuer') }}</h4>
+            <ul class="list-group">
+              <li v-for="issuer in model.facet.issuerExpand ? model.facet.issuer: model.facet.issuer.slice(0,10)"
+                  :class="model.facet.issuerEnabledValues.indexOf(issuer.name)>-1?'active':''"
+                  class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+                  v-on:click="facetClicked('issuer', issuer.name)">
+                {{ issuer.name }}
+                <span class="badge bg-primary rounded-pill">{{ issuer.count }}</span>
+                <!-- </nuxt-link> -->
+              </li>
+            </ul>
+            <a v-if="model.facet.issuerExpand===false && model.facet.issuer.length>10"
+               href="#more" v-on:click.prevent="model.facet.issuerExpand=true">{{ $t('search.facet.showMore') }}</a>
+            <a v-if="model.facet.issuerExpand===true && model.facet.issuer.length>10"
+               href="#less" v-on:click.prevent="model.facet.issuerExpand=false">{{ $t('search.facet.showLess') }}</a>
+          </div>
+
+          <div v-if="model.facet.recipient.length>0" class="facet">
+            <h4 class="facet-title text-center">{{ $t('search.facet.recipient') }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="recipient in model.facet.recipientExpand ? model.facet.recipient: model.facet.recipient.slice(0,10)"
+                :class="model.facet.recipientEnabledValues.indexOf(recipient.name)>-1?'active':''"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+                v-on:click="facetClicked('recipient', recipient.name)">
+                {{ recipient.name }}
+                <span class="badge bg-primary rounded-pill">{{ recipient.count }}</span>
+              </li>
+            </ul>
+            <a v-if="model.facet.recipientExpand===false && model.facet.recipient.length>10"
+               href="#more" v-on:click.prevent="model.facet.recipientExpand=true">{{ $t('search.facet.showMore') }}</a>
+            <a v-if="model.facet.recipientExpand===true && model.facet.recipient.length>10"
+               href="#less" v-on:click.prevent="model.facet.recipientExpand=false">{{ $t('search.facet.showLess') }}</a>
+          </div>
+        </div>
+      </div>
+>>>>>>> c18f6af (QUED-99 adjusts resultlist in a first iteration)
     </template>
 
     <template #menu>
