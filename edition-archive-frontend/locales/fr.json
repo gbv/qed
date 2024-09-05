@@ -119,8 +119,8 @@
   },
   "search": {
     "label": "Recherche",
-    "basic": "Recherche simple",
-    "extended": "Recherche avancée",
+    "basic": "Simple",
+    "extended": "Avancée",
     "pageGoTo": "Gehe zu Seite {page}",
     "hitCount": "{count} résultat(s) trouvé(s)",
     "noHits": "Keine Treffer",
@@ -131,10 +131,10 @@
     "goToRegest": "Aller au n° {regest}",
     "error": "Erreur lors de la recherche : {error}",
     "sort": {
-      "idno": "Numéro du regest",
+      "idno": "Numéro",
       "relevance": "Pertinence",
-      "asc": "Trier par ordre croissant (1-9)",
-      "desc": "Trier par ordre décroissant (9-1)"
+      "asc": "Croissant",
+      "desc": "Décroissant"
     },
     "facet": {
       "deperditum": "Déperditum/note historiographique ( * )",

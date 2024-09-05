@@ -1,14 +1,18 @@
 <template>
-  <form v-on:submit.prevent="submit">
-    <div class="row">
-      <div class="col-10">
-        <input type="search" class="form-control" v-model="searchString">
-      </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary">{{ $t("search.submit") }}</button>
-      </div>
+  <div class="row">
+    <div class="col-12">
+      <form v-on:submit.prevent="submit" >
+        <div class="input-group">
+          <input type="search" class="form-control" v-model="searchString">
+          <button type="submit" class="btn btn-primary">
+            {{ $t("search.submit") }}
+            <i class="bi bi-search ms-1"></i>
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+
 </template>
 
 <script setup>

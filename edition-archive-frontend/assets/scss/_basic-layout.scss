@@ -31,6 +31,29 @@
     padding-bottom: 8rem;
   }
 
+  // moves the submenu outside of the container
+  // and use full container width
+  .project-sub-menu {
+    width: 20%;
+    margin-left: -20%;
+  }
+  .project-content {
+    width: 100%;
+  }
+
+// Full HD devices and below: <= 1920px
+@include media-breakpoint-down(fhd) {
+  // add/overwrite styles for responsive level fhd and lower
+
+  // restore bs default behaviour
+  .project-sub-menu {
+    margin-left: 0;
+  }
+  .project-content {
+    width: 75%;
+  }
+}
+
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {
   // add/overwrite styles for responsive level xxl and lower

@@ -10,8 +10,7 @@
         </li>
       </ul>
     </div>
-    <div class="card-body" v-if="model.currentTab">
-      <h5 v-if="!model.currentTab.noTitle" class="card-title">{{ model.currentTab.title }}</h5>
+    <div class="card-body mt-3" v-if="model.currentTab">
       <slot :name="model.currentTab.id"></slot>
     </div>
   </div>

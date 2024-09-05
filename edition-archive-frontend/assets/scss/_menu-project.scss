@@ -56,6 +56,13 @@
     flex-wrap: wrap;
   }
 
+  .nav-item-search {
+    border-bottom: 1px solid $grayBorder;
+    i {
+      margin-right: .5rem;
+    }
+  }
+
 
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {

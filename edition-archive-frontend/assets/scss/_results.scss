@@ -88,6 +88,9 @@
         background-repeat: no-repeat;
         border: 1px solid $light_neutral;
         border-bottom-left-radius: 25px;
+        background-image: url('../../public/images/card-back-lettre-pape.png');
+        background-size: cover;
+        opacity: .5;
       }
       .hit_icon_overlay {
         position: absolute;
@@ -273,6 +276,91 @@
   .hit_abstract,
   .hit_pub_name {
     padding-left: 88px;
+  }
+
+  .card-tab-search {
+    border: none;
+    border-radius: 0;
+    .card-header {
+      background-color: white;
+      border-color: #dee2e6;
+    }
+  }
+
+  .result-options {
+    margin: 2rem 0;
+  }
+  .hit-count {
+    align-self: center;
+    h2 {
+      font-size: 1rem;
+      color: $petrol;
+    }
+  }
+  .results {
+    &__list {
+    }
+    &__facets {
+      margin-top:2rem;
+    }
+  }
+
+  .facet {
+    background-color: $grayBack;
+    border-radius: 10px;
+    margin-left: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 2rem;
+    a {
+      padding: 1rem;
+    }
+  }
+
+  .badge-facet {
+    color: $grayMedium;
+    background-color: transparent;
+    border: 1px solid $grayMedium;
+  }
+
+  .facet-title {
+    color: $grayMedium;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid $grayBorder;
+    margin-bottom: 0;
+  }
+
+  .facet-item {
+    overflow-wrap: anywhere;
+    .bi {
+      margin-right: .5rem;
+    }
+    .bi-check-square {
+      display: none;
+    }
+    .bi-square {
+      display: inline;
+    }
+    &.active {
+      .bi-check-square {
+        display: inline;
+      }
+      .bi-square {
+        display: none;
+      }
+      .badge-facet {
+        color: white;
+        border-color: white;
+      }
+    }
+  }
+
+  .list-group-item {
+    color: $grayMedium;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
   }
 
 // Extra large devices (large desktops) and below: <= 1400px

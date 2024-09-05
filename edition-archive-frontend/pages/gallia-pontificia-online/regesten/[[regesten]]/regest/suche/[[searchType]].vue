@@ -2,6 +2,7 @@
   <GalliaPontificiaOnlineLayout>
 
     <template #content>
+      <h3>{{$t("search.label")}}</h3>
       <!-- search form-->
       <div
         class="row"
@@ -11,7 +12,7 @@
 
           <TabsCard
             :tabs="tabData"
-            card-class="text-center"
+            card-class="text-center card-tab-search"
             :current="model.currentTab"
             v-on:tabChanged="tabChanged">
 
@@ -46,27 +47,6 @@
         </div>
       </div>
 
-      <!-- results headline -->
-      <div class="row hit-count">
-        <h2>{{ $t('search.hitCount', { count: model.count }) }}</h2>
-      </div>
-
-      <!-- sort results -->
-      <div class="row sort">
-        <div class="col-6">
-          <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
-            <option value="asc">{{$t("search.sort.asc")}}</option>
-            <option value="desc">{{ $t("search.sort.desc") }}</option>
-          </select>
-        </div>
-        <div class="col-6">
-          <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
-            <option value="relevance">{{ $t("search.sort.relevance") }}</option>
-            <option value="idno">{{ $t("search.sort.idno") }}</option>
-          </select>
-        </div>
-      </div>
-
       <!-- error message-->
       <div class="row" v-if="model.error!=null">
         <div class="col-12 mt-4">
@@ -80,18 +60,37 @@
       <div class="row results" v-else-if="model.searchResult">
 
         <!-- results -->
-        <div class="col-9">
+        <div class="col-8 results__list">
+
+          <!-- results: headline and sorting-->
+          <div class="row g-0 result-options">
+            <div class="col hit-count ms-3">
+              <h2>{{ $t('search.hitCount', { count: model.count }) }}</h2>
+            </div>
+            <div class="col-auto sort-value me-3">
+              <select class="form-select icon-hack" v-model="model.sortOrder" v-on:change="sortChanged">
+                <option class="testi" value="asc">{{$t("search.sort.asc")}}</option>
+                <option value="desc">{{ $t("search.sort.desc") }}</option>
+              </select>
+            </div>
+            <div class="col-auto sort-relevance">
+              <select class="form-select" v-model="model.sort" v-on:change="sortChanged">
+                <option class="testi" value="relevance">{{ $t("search.sort.relevance") }}</option>
+                <option value="idno">{{ $t("search.sort.idno") }}</option>
+              </select>
+            </div>
+          </div>
 
           <div class="result_list">
             <div id="hit_list">
 
               <div
                 class="hit_item"
-                v-for="result in model.searchResult.response.docs">
+                v-for="(result, index) in model.searchResult.response.docs">
 
                 <div class="row hit_item_head">
                   <div class="col-12">
-                    <div class="hit_counter">&nbsp;</div>
+                    <div class="hit_counter">{{index + 1 + model.start}}</div>
                   </div>
                 </div>
 
@@ -101,8 +100,7 @@
                       <a title="Sammelwerk"
                         href=""
                         class="hit_option hit_download">
-                        <div class="hit_icon"
-                          style="background-image: url('')">
+                        <div class="hit_icon">
                         </div>
                       </a>
                     </div>
@@ -161,75 +159,94 @@
                          :numPerPage="20"/>
         </div>
 
-        <!-- facetts -->
-        <div class="col-3">
+        <!-- facets -->
+        <div class="col-4 results__facets">
           <div v-if="model.facet.ueberlieferungsform.length>0" class="facet">
-            <h4 class="facet-title text-center">{{ $t('search.facet.ueberlieferungsform') }}</h4>
+            <h4 class="facet-title">{{ $t('search.facet.ueberlieferungsform') }}</h4>
             <ul class="list-group">
 
-              <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+              <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
               v-on:click="facetClicked('lost', true)">
-               {{ $t('search.facet.deperditum') }}
-                <span class="badge bg-primary rounded-pill">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
+                <div class="d-flex">
+                  <i class="bi bi-check-square"></i>
+                  <i class="bi bi-square"></i>
+                  {{ $t('search.facet.deperditum') }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
               </li>
 
-              <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+              <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
               v-on:click="facetClicked('fake', true)">
-               {{ $t('search.facet.spurium') }}
-                <span class="badge bg-primary rounded-pill">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
+                <div class="d-flex">
+                  <i class="bi bi-check-square"></i>
+                  <i class="bi bi-square"></i>
+                  {{ $t('search.facet.spurium') }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
               </li>
 
               <template v-if="model.facet.ueberlieferungsform.length>0">
                 <li
                   v-for="ueberlieferungsform in model.facet.ueberlieferungsformExpand ? model.facet.ueberlieferungsform: model.facet.ueberlieferungsform.slice(0,10)"
                   :class="model.facet.ueberlieferungsformEnabledValues.indexOf(ueberlieferungsform.name)>-1?'active':''"
-                  class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+                  class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
                   v-on:click="facetClicked('ueberlieferungsform', ueberlieferungsform.name)">
-                  {{ ueberlieferungsform.name }}
-                  <span class="badge bg-primary rounded-pill">{{ ueberlieferungsform.count }}</span>
+                  <div class="d-flex">
+                    <i class="bi bi-check-square"></i>
+                    <i class="bi bi-square"></i>
+                    {{ ueberlieferungsform.name }}
+                  </div>
+                  <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ ueberlieferungsform.count }}</span>
                 </li>
                 <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
-                   href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true">{{ $t('search.facet.showMore') }}</a>
+                   href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
                 <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
-                   href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false">{{ $t('search.facet.showLess') }}</a>
+                   href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
               </template>
             </ul>
           </div>
 
           <div v-if="model.facet.issuer.length>0" class="facet">
-            <h4 class="facet-title text-center">{{ $t('search.facet.issuer') }}</h4>
+            <h4 class="facet-title">{{ $t('search.facet.issuer') }}</h4>
             <ul class="list-group">
               <li v-for="issuer in model.facet.issuerExpand ? model.facet.issuer: model.facet.issuer.slice(0,10)"
                   :class="model.facet.issuerEnabledValues.indexOf(issuer.name)>-1?'active':''"
-                  class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+                  class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
                   v-on:click="facetClicked('issuer', issuer.name)">
-                {{ issuer.name }}
-                <span class="badge bg-primary rounded-pill">{{ issuer.count }}</span>
-                <!-- </nuxt-link> -->
+                <div class="d-flex">
+                  <i class="bi bi-check-square"></i>
+                  <i class="bi bi-square"></i>
+                  {{ issuer.name }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ issuer.count }}</span>
               </li>
             </ul>
             <a v-if="model.facet.issuerExpand===false && model.facet.issuer.length>10"
-               href="#more" v-on:click.prevent="model.facet.issuerExpand=true">{{ $t('search.facet.showMore') }}</a>
+               href="#more" v-on:click.prevent="model.facet.issuerExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
             <a v-if="model.facet.issuerExpand===true && model.facet.issuer.length>10"
-               href="#less" v-on:click.prevent="model.facet.issuerExpand=false">{{ $t('search.facet.showLess') }}</a>
+               href="#less" v-on:click.prevent="model.facet.issuerExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
           </div>
 
           <div v-if="model.facet.recipient.length>0" class="facet">
-            <h4 class="facet-title text-center">{{ $t('search.facet.recipient') }}</h4>
+            <h4 class="facet-title">{{ $t('search.facet.recipient') }}</h4>
             <ul class="list-group">
               <li
                 v-for="recipient in model.facet.recipientExpand ? model.facet.recipient: model.facet.recipient.slice(0,10)"
                 :class="model.facet.recipientEnabledValues.indexOf(recipient.name)>-1?'active':''"
-                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
+                class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
                 v-on:click="facetClicked('recipient', recipient.name)">
-                {{ recipient.name }}
-                <span class="badge bg-primary rounded-pill">{{ recipient.count }}</span>
+                <div>
+                  <i class="bi bi-check-square"></i>
+                  <i class="bi bi-square"></i>
+                  {{ recipient.name }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ recipient.count }}</span>
               </li>
             </ul>
             <a v-if="model.facet.recipientExpand===false && model.facet.recipient.length>10"
-               href="#more" v-on:click.prevent="model.facet.recipientExpand=true">{{ $t('search.facet.showMore') }}</a>
+               href="#more" v-on:click.prevent="model.facet.recipientExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
             <a v-if="model.facet.recipientExpand===true && model.facet.recipient.length>10"
-               href="#less" v-on:click.prevent="model.facet.recipientExpand=false">{{ $t('search.facet.showLess') }}</a>
+               href="#less" v-on:click.prevent="model.facet.recipientExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
           </div>
         </div>
       </div>
@@ -773,25 +790,12 @@ watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuer
 
 
 <style scoped>
-.hit-count {
-  margin-top: 1em;
-}
-
 .clickable {
   cursor: pointer;
 }
 
 .issuer {
   font-weight: bold;
-}
-
-.facet {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.sort, .results {
-  margin-top: 10px;
 }
 
 </style>

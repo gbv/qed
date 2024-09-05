@@ -64,3 +64,15 @@ $pagination-bg: white;
 $pagination-active-color: white;
 $pagination-active-bg: $grayMedium;
 $pagination-active-border-color: white;
+
+$input-border-radius: 1rem;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  fhd: 1920px
+);

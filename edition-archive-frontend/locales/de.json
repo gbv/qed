@@ -154,8 +154,8 @@
   },
   "search": {
     "label": "Suche",
-    "basic": "Einfache Suche",
-    "extended": "Erweiterte Suche",
+    "basic": "Einfach",
+    "extended": "Erweitert",
     "pageGoTo": "Gehe zu Seite {page}",
     "hitCount": "{count} Objekt(e) gefunden",
     "noHits": "Keine Treffer",
@@ -166,10 +166,10 @@
     "goToRegest": "Gehe zu Nr. {regest}",
     "error": "Fehler bei der Suche: {error}",
     "sort": {
-      "idno": "Nummer des Regests",
+      "idno": "Nummer",
       "relevance": "Relevanz",
-      "asc": "Aufsteigend (1-9) sortieren nach",
-      "desc": "Absteigend (9-1) sortieren nach"
+      "asc": "Aufsteigend",
+      "desc": "Absteigend"
     },
     "facet": {
       "deperditum": "Deperditum/historiographische Notiz ( * )",
