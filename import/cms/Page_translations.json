@@ -73,6 +73,12 @@
   },
   {
     "Page_id": 7,
+    "content": "<h1>Soviet Survivors of Nazi Occupation: The First Testimonies</h1>\n<p>Nous sommes désolées il n’y pas encore une version française de cette page Web. Utilisez la version anglaise svp.</p>",
+    "id": 36,
+    "languages_code": "fr-FR"
+  },
+  {
+    "Page_id": 7,
     "content": "<h1>Soviet Survivors of Nazi Occupation: The First Testimonies</h1>\n<p>Scholars agree that Germany&rsquo;s war of annihilation against the Soviet Union and its people ranks among the most harrowing chapters of the Second World War. And yet, how Soviet citizens experienced German rule remains a largely unexplored question &ndash; up until now.</p>\n<p>An international team of historians has recovered from archives in Russia, Ukraine, and Belarus the voices of hundreds of Soviet survivors of Nazi rule. The survivors spoke with historians from Moscow, Kyiv, and Minsk who trailed the Red Army on its path of re-conquest of German-occupied soil between 1942 and 1945. Small teams of one interviewer and one stenographer each visited smoldering towns and villages in Russia, Ukraine, and Belarus, where they sat down to speak with eyewitnesses, stenographing each of their words.</p>\n<p>The historians were determined to create a comprehensive ground-level documentation for a future history of the Soviet war against Nazi Germany. But they were not able to write this history, and the precious records that they assembled in wartime fell into oblivion. This website seeks to recover for interested scholars and general readers the work of the Soviet historians. It presents more than 700 interviews with a wide range of survivors ranging from partisans and underground fighters to rural and industrial workers, scientists, teachers, students, and housewives.</p>\n<p>The documents are presented in the original Russian, Ukrainian, and Belarusian languages. A selection of the interviews is also available in English and German translation.</p>",
     "id": 37,
     "languages_code": "en-US"
@@ -175,7 +181,7 @@
   },
   {
     "Page_id": 7,
-    "content": "<h1>Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews</h1>\n<p>Diese Website versammelt die ersten aufgezeichneten Stimmen von sowjetischen &Uuml;berlebenden der NS-Herrschaft. Die Schaffung dieser Zeitzeugenberichte war vornehmlich das Werk von Moskauer Historikern, die von 1942 bis zum Kriegsende der Roten Armee auf ihrem Vormarsch nach Westen folgten. In zerst&ouml;rten Ortschaften in Russland, der Ukraine und in Belarus befragten sie &Uuml;berlebende nach ihren Erfahrungen und stenografierten jedes ihrer Worte.</p>\n<p>Die Zeitzeugenberichte werden hier im russischen Original und in deutscher und englischer &Uuml;bersetzung gezeigt.</p>",
+    "content": "<h1>Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews</h1>\n<p>Diese Website versammelt die ersten aufgezeichneten Stimmen von sowjetischen &Uuml;berlebenden der NS-Herrschaft. Die Schaffung dieser Zeitzeugenberichte war vornehmlich das Werk von Moskauer Historikern, die von 1942 bis zum Kriegsende der Roten Armee auf ihrem Vormarsch nach Westen folgten. In zerst&ouml;rten Ortschaften in Russland, der Ukraine und in Belarus befragten sie &Uuml;berlebende nach ihren Erfahrungen und stenografierten jedes ihrer Worte.</p>",
     "id": 54,
     "languages_code": "de-DE"
   },
