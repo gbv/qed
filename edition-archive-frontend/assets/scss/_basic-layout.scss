@@ -48,6 +48,7 @@
   // restore bs default behaviour
   .project-sub-menu {
     margin-left: 0;
+    width: 25%;
   }
   .project-content {
     width: 75%;
@@ -62,6 +63,13 @@
 // Large devices (desktops) and below: <= 1200px
 @include media-breakpoint-down(xl) {
   // add/overwrite styles for responsive level xl and lower
+  // restore bs default behaviour
+  .project-sub-menu {
+    width: 100%;
+  }
+  .project-content {
+    width: 100%;
+  }
 }
 
 // Medium devices (tablets) and below: <= 992px

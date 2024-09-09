@@ -35,6 +35,8 @@
       "contact": "Contact"
     },
     "subMenu": {
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "reims1": {
         "home": "Remarques préliminaires",
         "intro": "Notice historique",
@@ -109,6 +111,8 @@
       "contact": "Contact"
     },
     "subMenu": {
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "intro": "Introduction",
       "search": "Recherche",
       "sovietHistorians": "The Soviet Historians",
@@ -137,6 +141,8 @@
       "desc": "Décroissant"
     },
     "facet": {
+      "openFacet": "Open facette",
+      "facet": "Ouvrir le Facette",
       "deperditum": "Déperditum/note historiographique ( * )",
       "issuer": "Auteur",
       "recipient": "Destinataire",

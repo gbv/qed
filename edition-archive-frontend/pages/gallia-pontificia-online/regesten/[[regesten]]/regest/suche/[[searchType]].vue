@@ -60,7 +60,7 @@
       <div class="row results" v-else-if="model.searchResult">
 
         <!-- results -->
-        <div class="col-8 results__list">
+        <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
 
           <!-- results: headline and sorting-->
           <div class="row g-0 result-options">
@@ -160,94 +160,130 @@
         </div>
 
         <!-- facets -->
-        <div class="col-4 results__facets">
-          <div v-if="model.facet.ueberlieferungsform.length>0" class="facet">
-            <h4 class="facet-title">{{ $t('search.facet.ueberlieferungsform') }}</h4>
-            <ul class="list-group">
+        <div class="col-12 col-lg-4 order-1 order-lg-2 text-end text-lg-start results__facets">
 
-              <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
-              v-on:click="facetClicked('lost', true)">
-                <div class="d-flex">
-                  <i class="bi bi-check-square"></i>
-                  <i class="bi bi-square"></i>
-                  {{ $t('search.facet.deperditum') }}
-                </div>
-                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
-              </li>
+          <button
+            class="btn btn-light d-lg-none side-menu-button"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#resultfacet"
+            aria-controls="resultFacet">
+            <i class="bi bi-chevron-left"></i>
+            {{ $t('search.facet.openFacet') }}
+          </button>
 
-              <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
-              v-on:click="facetClicked('fake', true)">
-                <div class="d-flex">
-                  <i class="bi bi-check-square"></i>
-                  <i class="bi bi-square"></i>
-                  {{ $t('search.facet.spurium') }}
-                </div>
-                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
-              </li>
+          <div
+            class="offcanvas-lg offcanvas-end text-start"
+            data-bs-scroll="true"
+            data-bs-backdrop="true"
+            tabindex="-1"
+            id="resultfacet"
+            aria-labelledby="resultFacetLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                {{ $t('search.facet.facet') }}
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-target="#resultfacet"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close">
+              </button>
+            </div>
+            <div class="offcanvas-body">
 
-              <template v-if="model.facet.ueberlieferungsform.length>0">
-                <li
-                  v-for="ueberlieferungsform in model.facet.ueberlieferungsformExpand ? model.facet.ueberlieferungsform: model.facet.ueberlieferungsform.slice(0,10)"
-                  :class="model.facet.ueberlieferungsformEnabledValues.indexOf(ueberlieferungsform.name)>-1?'active':''"
-                  class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
-                  v-on:click="facetClicked('ueberlieferungsform', ueberlieferungsform.name)">
-                  <div class="d-flex">
-                    <i class="bi bi-check-square"></i>
-                    <i class="bi bi-square"></i>
-                    {{ ueberlieferungsform.name }}
-                  </div>
-                  <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ ueberlieferungsform.count }}</span>
-                </li>
-                <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
-                   href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
-                <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
-                   href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
-              </template>
-            </ul>
+              <div v-if="model.facet.ueberlieferungsform.length>0" class="facet">
+                <h4 class="facet-title">{{ $t('search.facet.ueberlieferungsform') }}</h4>
+                <ul class="list-group">
+
+                  <li v-if=" model.facet?.lost?.find((s)=> s.name==='true')?.count" :class="model.facet.lostValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
+                  v-on:click="facetClicked('lost', true)">
+                    <div class="d-flex">
+                      <i class="bi bi-check-square"></i>
+                      <i class="bi bi-square"></i>
+                      <span>{{ $t('search.facet.deperditum') }}</span>
+                    </div>
+                    <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ model.facet?.lost?.find((s)=> s.name==="true")?.count || 0 }}</span>
+                  </li>
+
+                  <li v-if="model.facet?.fake?.find((s)=> s.name==='true')?.count" :class="model.facet.fakeValues===true ? 'active':''" class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
+                  v-on:click="facetClicked('fake', true)">
+                    <div class="d-flex">
+                      <i class="bi bi-check-square"></i>
+                      <i class="bi bi-square"></i>
+                      <span>{{ $t('search.facet.spurium') }}</span>
+                    </div>
+                    <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ model.facet?.fake?.find((s)=> s.name==="true")?.count || 0 }}</span>
+                  </li>
+
+                  <template v-if="model.facet.ueberlieferungsform.length>0">
+                    <li
+                      v-for="ueberlieferungsform in model.facet.ueberlieferungsformExpand ? model.facet.ueberlieferungsform: model.facet.ueberlieferungsform.slice(0,10)"
+                      :class="model.facet.ueberlieferungsformEnabledValues.indexOf(ueberlieferungsform.name)>-1?'active':''"
+                      class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
+                      v-on:click="facetClicked('ueberlieferungsform', ueberlieferungsform.name)">
+                      <div class="d-flex">
+                        <i class="bi bi-check-square"></i>
+                        <i class="bi bi-square"></i>
+                        <span>{{ ueberlieferungsform.name }}</span>
+                      </div>
+                      <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ ueberlieferungsform.count }}</span>
+                    </li>
+                    <a v-if="model.facet.ueberlieferungsformExpand===false && model.facet.ueberlieferungsform.length>10"
+                       href="#more" v-on:click.prevent="model.facet.ueberlieferungsformExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+                    <a v-if="model.facet.ueberlieferungsformExpand===true && model.facet.ueberlieferungsform.length>10"
+                       href="#less" v-on:click.prevent="model.facet.ueberlieferungsformExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
+                  </template>
+                </ul>
+              </div>
+
+              <div v-if="model.facet.issuer.length>0" class="facet">
+                <h4 class="facet-title">{{ $t('search.facet.issuer') }}</h4>
+                <ul class="list-group">
+                  <li v-for="issuer in model.facet.issuerExpand ? model.facet.issuer: model.facet.issuer.slice(0,10)"
+                      :class="model.facet.issuerEnabledValues.indexOf(issuer.name)>-1?'active':''"
+                      class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
+                      v-on:click="facetClicked('issuer', issuer.name)">
+                    <div class="d-flex">
+                      <i class="bi bi-check-square"></i>
+                      <i class="bi bi-square"></i>
+                      <span>{{ issuer.name }}</span>
+                    </div>
+                    <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ issuer.count }}</span>
+                  </li>
+                </ul>
+                <a v-if="model.facet.issuerExpand===false && model.facet.issuer.length>10"
+                   href="#more" v-on:click.prevent="model.facet.issuerExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+                <a v-if="model.facet.issuerExpand===true && model.facet.issuer.length>10"
+                   href="#less" v-on:click.prevent="model.facet.issuerExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
+              </div>
+
+              <div v-if="model.facet.recipient.length>0" class="facet">
+                <h4 class="facet-title">{{ $t('search.facet.recipient') }}</h4>
+                <ul class="list-group">
+                  <li
+                    v-for="recipient in model.facet.recipientExpand ? model.facet.recipient: model.facet.recipient.slice(0,10)"
+                    :class="model.facet.recipientEnabledValues.indexOf(recipient.name)>-1?'active':''"
+                    class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
+                    v-on:click="facetClicked('recipient', recipient.name)">
+                    <div>
+                      <i class="bi bi-check-square"></i>
+                      <i class="bi bi-square"></i>
+                      <span>{{ recipient.name }}</span>
+                    </div>
+                    <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ recipient.count }}</span>
+                  </li>
+                </ul>
+                <a v-if="model.facet.recipientExpand===false && model.facet.recipient.length>10"
+                   href="#more" v-on:click.prevent="model.facet.recipientExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+                <a v-if="model.facet.recipientExpand===true && model.facet.recipient.length>10"
+                   href="#less" v-on:click.prevent="model.facet.recipientExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
+              </div>
+
+            </div>
           </div>
 
-          <div v-if="model.facet.issuer.length>0" class="facet">
-            <h4 class="facet-title">{{ $t('search.facet.issuer') }}</h4>
-            <ul class="list-group">
-              <li v-for="issuer in model.facet.issuerExpand ? model.facet.issuer: model.facet.issuer.slice(0,10)"
-                  :class="model.facet.issuerEnabledValues.indexOf(issuer.name)>-1?'active':''"
-                  class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
-                  v-on:click="facetClicked('issuer', issuer.name)">
-                <div class="d-flex">
-                  <i class="bi bi-check-square"></i>
-                  <i class="bi bi-square"></i>
-                  {{ issuer.name }}
-                </div>
-                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ issuer.count }}</span>
-              </li>
-            </ul>
-            <a v-if="model.facet.issuerExpand===false && model.facet.issuer.length>10"
-               href="#more" v-on:click.prevent="model.facet.issuerExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
-            <a v-if="model.facet.issuerExpand===true && model.facet.issuer.length>10"
-               href="#less" v-on:click.prevent="model.facet.issuerExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
-          </div>
-
-          <div v-if="model.facet.recipient.length>0" class="facet">
-            <h4 class="facet-title">{{ $t('search.facet.recipient') }}</h4>
-            <ul class="list-group">
-              <li
-                v-for="recipient in model.facet.recipientExpand ? model.facet.recipient: model.facet.recipient.slice(0,10)"
-                :class="model.facet.recipientEnabledValues.indexOf(recipient.name)>-1?'active':''"
-                class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
-                v-on:click="facetClicked('recipient', recipient.name)">
-                <div>
-                  <i class="bi bi-check-square"></i>
-                  <i class="bi bi-square"></i>
-                  {{ recipient.name }}
-                </div>
-                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ recipient.count }}</span>
-              </li>
-            </ul>
-            <a v-if="model.facet.recipientExpand===false && model.facet.recipient.length>10"
-               href="#more" v-on:click.prevent="model.facet.recipientExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
-            <a v-if="model.facet.recipientExpand===true && model.facet.recipient.length>10"
-               href="#less" v-on:click.prevent="model.facet.recipientExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
-          </div>
         </div>
       </div>
     </template>

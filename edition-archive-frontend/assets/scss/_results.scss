@@ -381,6 +381,10 @@
 // Small devices (landscape phones) and below: <= 768px
 @include media-breakpoint-down(md) {
   // add/overwrite styles for responsive level md and lower
+  .facet {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
 }
 
 // Extra small devices (portrait phones): <= 576px

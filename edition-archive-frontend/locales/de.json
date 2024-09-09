@@ -35,6 +35,8 @@
       "contact": "Kontakt"
     },
     "subMenu": {
+      "subMenu": "Seitenmenü",
+      "openSubMenu": "Seitenmenü öffnen",
       "reims1": {
         "home": "Vorbemerkungen",
         "intro": "Historische Einführung",
@@ -144,6 +146,8 @@
       "contact": "Kontakt"
     },
     "subMenu": {
+      "subMenu": "Seitenmenü",
+      "openSubMenu": "Seitenmenü öffnen",
       "intro": "Einleitung",
       "search": "Suche",
       "sovietHistorians": "Die Historikerkommission",
@@ -172,6 +176,8 @@
       "desc": "Absteigend"
     },
     "facet": {
+      "openFacet": "Filter öffnen",
+      "facet": "Filter",
       "deperditum": "Deperditum/historiographische Notiz ( * )",
       "issuer": "Aussteller",
       "recipient": "Empfänger",
