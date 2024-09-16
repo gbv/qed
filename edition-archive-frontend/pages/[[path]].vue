@@ -14,19 +14,19 @@
                     <div class="slogan__text" v-if="i18n.locale.value == 'en'">
                       Sources<br /> and Editions
                       <div class="slogan__subtext">
-                        of the Max Weber Foundation
+                        Max Weber Foundation
                       </div>
                     </div>
                     <div class="slogan__text" v-else-if="i18n.locale.value == 'fr'">
                       Sources<br /> et éditions
                       <div class="slogan__subtext">
-                        de la Fondation Max Weber
+                        Fondation Max Weber
                       </div>
                     </div>
                     <div class="slogan__text" v-else>
                       Quellen<br /> und Editionen
                       <div class="slogan__subtext">
-                        der Max Weber Stiftung
+                        Max Weber Stiftung
                       </div>
                     </div>
                   </h1>
@@ -35,9 +35,9 @@
             </div>
             <div class="intro-text">
               <h1 class="d-block d-xl-none mb-3">
-                <span v-if="i18n.locale.value == 'en'">Sources and Editions of the Max Weber Foundation</span>
-                <span v-else-if="i18n.locale.value == 'fr'">Sources et éditions de la Fondation Max Weber</span>
-                <span v-else>Quellen und Editionen der Max Weber Stiftung</span>
+                <span v-if="i18n.locale.value == 'en'">Sources and Editions Max Weber Foundation</span>
+                <span v-else-if="i18n.locale.value == 'fr'">Sources et éditions Fondation Max Weber</span>
+                <span v-else>Quellen und Editionen Max Weber Stiftung</span>
               </h1>
 
               <p v-if="i18n.locale.value == 'en'">

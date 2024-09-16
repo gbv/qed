@@ -69,9 +69,9 @@ The authorisation to use all content provided on QED, the portal for sources and
 #fr
 <!-- fr -------------------------------------------------------------------- -->
 # Mentions légales
-<!-- Stand: 11.05.2024 -->
+<!-- Stand: 14.08.2024 -->
 
-QED - Le portail pour des sources et des éditions numériques de la Fondation Max Weber - Deutsche Geisteswissenschaftliche Institute im Ausland (MWS) qui fait partie de l'infrastructure pour des publications numérique perspectivia.net. Il s'agit d'un service non commercial de la MWS.
+QED - Le portail pour des sources et des éditions numériques de la Fondation Max Weber - Deutsche Geisteswissenschaftliche Institute im Ausland (MWS) qui fait partie de l’infrastructure pour des publications numérique perspectivia.net. Il s’agit d’un service non commercial de la MWS.
 
 ## Représentant légal
 
@@ -89,15 +89,15 @@ E-mail: kaiser@maxweberstiftung.de<br>
 </address>
 
 ## Clause de non-responsabilité
-QED - le portail pour des sources et des éditions numérique de la MWS publie des résultats de recherche et des informations sur ce site web en toute bonne foi et en contrôlant soigneusement les contenus. En raison des mises à jour permanentes du site, aucune garantie ne peut être donnée quant à l'actualité, l'exactitude et l'exhaustivité des informations et des références publiées sur le site. Toute responsabilité pour des dommages pécuniaires ou des dommages consécutifs pécuniaires résultant de l'utilisation d'offres sur le site web est exclue, sauf si perspectivia.net a causé la survenance de tels dommages par négligence grave ou inten-tionnellement.
+QED - le portail pour des sources et des éditions numérique de la MWS publie des résultats de recherche et des informations sur ce site web en toute bonne foi et en contrôlant soigneusement les contenus. En raison des mises à jour permanentes du site, aucune garantie ne peut être donnée quant à l’actualité, l’exactitude et l’exhaustivité des informations et des références publiées sur le site. Toute responsabilité pour des dommages pécuniaires ou des dommages consécutifs pécuniaires résultant de l’utilisation d’offres sur le site web est exclue, sauf si perspectivia.net a causé la survenance de tels dommages par négligence grave ou inten-tionnellement.
 
-Les liens externes, sur lesquels la QED n'a aucune influence, ont un caractère informatif et reflètent le contenu et l'opinion des fournisseurs respectifs de ces sites. La QED ne fait que renvoyer à de tels sites sans s'approprier leur contenu ou leurs déclarations. Seuls les exploi-tants de ces pages liées sont responsables de leur contenu. Seul le fournisseur du site web auquel il a été fait référence est responsable des contenus illégaux, erronés ou incomplets ainsi que des dommages résultant de l'utilisation ou de la non-utilisation des informations. La responsabilité de celui qui ne fait que renvoyer à la publication par un lien est exclue. La MWS supprime immédiatement les contenus illégaux dès qu'elle en a connaissance.
+Les liens externes, sur lesquels la QED n’a aucune influence, ont un caractère informatif et reflètent le contenu et l’opinion des fournisseurs respectifs de ces sites. La QED ne fait que renvoyer à de tels sites sans s’approprier leur contenu ou leurs déclarations. Seuls les exploi-tants de ces pages liées sont responsables de leur contenu. Seul le fournisseur du site web auquel il a été fait référence est responsable des contenus illégaux, erronés ou incomplets ainsi que des dommages résultant de l’utilisation ou de la non-utilisation des informations. La responsabilité de celui qui ne fait que renvoyer à la publication par un lien est exclue. La MWS supprime immédiatement les contenus illégaux dès qu’elle en a connaissance.
 
 Si des erreurs de contenu, factuelles ou techniques sont constatées sur ce site, nous vous pri-ons de nous envoyer un e-mail afin que nous puissions procéder à une rectification.
 
 ## Copyright
-Sämtliche Inhalte dieser Website sind urheberrechtlich geschützt. Unerlaubte Verwendung, Reproduktion oder Weitergabe einzelner Inhalte oder Bilder können sowohl zivil- als auch strafrechtlich verfolgt werden.
+Tous les contenus de ce site web sont protégés par le droit d’auteur. L’utilisation, la reproduction ou la transmission non autorisées de contenu ou d’images individuels peuvent faire l’objet de poursuites civiles et pénales.
 
-Die Befugnis zur Nutzung aller auf QED, dem Portal für Quellen und Editionen der Max Weber Stiftung – Deutsche Geisteswissenschaftliche Institute im Ausland (MWS), bereitgestellten Inhalte regelt die Creative Commons-Lizenz, soweit nicht ausdrücklich ein entgegenstehender Rechtevorbehalt beim jeweiligen Inhalt erfolgt. Bitte beachten Sie: Für einzelne Inhalte können – je nach Zeitpunkt der Veröffentlichung – unterschiedliche CC-Lizenzbedingungen gelten. Die jeweils gültige CC-Lizenz wird im Zusammenhang mit dem jeweiligen Inhalt gesondert verlinkt.
+L’autorisation d’utiliser tout le contenu mis à disposition sur QED, le portail des sources et des éditions numériques de la MWS, est régie par une licence Creative Commons, dans la mesure où la loi le permet. Veuillez noter que les conditions de licence CC différentes peuvent s’appliquer à certains contenus, selon le moment de la publication. La licence CC en vigueur est indiquée séparément en lien avec le contenu concerné.
 
 ::::
