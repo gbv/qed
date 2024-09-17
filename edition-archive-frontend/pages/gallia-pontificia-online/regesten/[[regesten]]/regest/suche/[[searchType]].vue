@@ -267,7 +267,7 @@
                     :class="model.facet.recipientEnabledValues.indexOf(recipient.name)>-1?'active':''"
                     class="list-group-item facet-item d-flex justify-content-between align-items-start clickable"
                     v-on:click="facetClicked('recipient', recipient.name)">
-                    <div>
+                    <div class="d-flex">
                       <i class="bi bi-check-square"></i>
                       <i class="bi bi-square"></i>
                       <span>{{ recipient.name }}</span>

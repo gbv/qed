@@ -9,6 +9,8 @@ $petrol:      #006978;
 $red:         #b4192d;
 $creditBlack: #191C1C;
 
+$mwsText:     #212529;
+
 $light_neutral: $grayBorder;
 $dark_neutral:  $grayBasic;
 $white:         white;
@@ -23,7 +25,7 @@ $danger: $red;
 $light: $grayBack;
 
 $font-family-sans-serif: 'Inter', Arial, Helvetica, sans-serif;
-$body-color: $grayMedium;
+$body-color: $mwsText;
 
 $link-color: $petrol;
 $link-decoration: none;
@@ -48,6 +50,8 @@ $h3-font-size:                $font-size-base * 1.5;
 $h4-font-size:                $font-size-base * 1.25;
 $h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
+
+$headings-font-weight: 700;
 
 $card-border-radius: 1rem;
 $card-border-color: $petrol;
