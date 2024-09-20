@@ -42,20 +42,21 @@
 
               <p v-if="i18n.locale.value == 'en'">
                 With QED, the <a href="https://www.maxweberstiftung.de/">Max Weber Foundation (MWS)</a> is providing its own
-                portal for the publication of digital source collections and editions under the umbrella of
+                portal for the publication of digital sources and editions under the umbrella of
                 <a href="https://perspectivia.net/">perspectivia.net</a>. The MWS is thus responding to the need within the
                 Foundation to offer a stable, sustainable and user-friendly solution for the growing number of editorially
                 orientated projects. The content, methodological and conceptual framework provided by the projects is just
-                as multifaceted as the research at the Foundation's institutes themselves: international, cross-epochal and
+                as multifaceted as the research at the Foundation’s institutes themselves: international, cross-epochal and
                 interdisciplinary.
               </p>
               <p v-else-if="i18n.locale.value == 'fr'">
-                Avec QED, <a href="https://www.maxweberstiftung.de/">la Fondation Max Weber (MWS)</a> met à disposition,
-                sous l'égide de <a href="https://perspectivia.net/">perspectivia.net</a>, son propre portail pour la publication
-                de collections de sources et d'éditions numériques. La MWS répond ainsi à la nécessité, au sein de la fondation,
-                de proposer une solution stable, durable et conviviale pour le nombre croissant de projets à vocation éditoriale.
-                Le cadre thématique, méthodologique et conceptuel dans lequel s'inscrivent les projets est aussi diversifié que
-                la recherche menée dans les instituts de la fondation : international, inter-époques et interdisciplinaire.
+                QED, la plateforme de la <a href="https://www.maxweberstiftung.de/">la Fondation Max Weber (MWS)</a>  met à
+                disposition, dans le cadre de <a href="https://perspectivia.net/">perspectivia.net</a>, son propre infrastructure
+                pour la publication de sources et d’éditions numériques. La MWS répond ainsi à la nécessité, au sein de la
+                fondation, de créer une infrastructure stable, durable et facile à utiliser pour le nombre croissant de projets
+                à vocation éditoriale. Le cadre thématique, méthodologique et conceptuel dans lequel s’inscrivent les projets
+                reflète la diversité de la recherche menée dans les instituts de la fondation : international, dépassant les
+                époques et interdisciplinaire.
               </p>
               <p v-else>
                 Mit QED stellt die <a href="https://www.maxweberstiftung.de/">Max Weber Stiftung (MWS)</a> unter dem Dach von

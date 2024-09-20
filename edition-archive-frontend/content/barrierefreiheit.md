@@ -1,3 +1,6 @@
+::::LanguageSection{fallback=de}
+#de
+<!-- de -------------------------------------------------------------------- -->
 # Erklärung zur Barrierefreiheit
 <!--Stand: 31.05.2024-->
 
@@ -34,3 +37,16 @@ Fürstenwall 25<br>
 
 Sie erreichen die Ombudsstelle unter der folgenden E-Mail-Adresse:<br>
 Ombudsstelle-barrierefreie-IT@mags.nrw.de.
+
+#en
+<!-- en -------------------------------------------------------------------- -->
+# Accessibility
+
+We are sorry, this web page is only available in the German version.
+
+
+#fr
+<!-- fr -------------------------------------------------------------------- -->
+# Accessibilité
+
+Nous sommes désolées il n’y pas encore une version française de cette page Web. Utilisez la version allemande svp.
