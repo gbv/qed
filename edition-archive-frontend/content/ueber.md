@@ -346,6 +346,7 @@ All data is made available for free re-use, provided there are no copyright rest
 
 #fr
 <!-- fr -------------------------------------------------------------------- -->
+<!--Stand: 14.08.2024-->
 <ul class="qed-sub-menu nav nav-pills" role="tablist">
   <li
     class="nav-item"
@@ -386,7 +387,7 @@ All data is made available for free re-use, provided there are no copyright rest
       role="button"
       data-bs-toggle="dropdown"
       aria-expanded="false">
-      Conditions d'utilisation
+      Conditions d’utilisation
     </a>
     <ul class="dropdown-menu">
       <li>
@@ -443,7 +444,7 @@ All data is made available for free re-use, provided there are no copyright rest
     tabindex="0">
 
 # Sur nous
-QED, la plateforme de la [Fondation Max Weber (MWS)](https://www.maxweberstiftung.de/startseite.html) met à disposition, sous l'égide de [perspectivia.net](https://perspectivia.net/), son propre infrastructure pour la publication de sources et d'éditions numériques. La MWS répond ainsi à la nécessité, au sein de la fondation, de créer une infrastructure stable, durable et conviviale pour le nombre croissant de projets à vocation éditoriale. Le cadre thématique, méthodologique et conceptuel dans lequel s'inscrivent les projets reflète la  diversité de la recherche menée dans les instituts de la fondation : international, dépassant les époques et interdisciplinaire.
+QED, la plateforme de la [Fondation Max Weber (MWS)](https://www.maxweberstiftung.de/startseite.html) met à disposition, dans le cadre de [perspectivia.net](https://perspectivia.net/), son propre infrastructure pour la publication de sources et d’éditions numériques. La MWS répond ainsi à la nécessité, au sein de la fondation, de créer une infrastructure stable, durable et facile à utiliser pour le nombre croissant de projets à vocation éditoriale. Le cadre thématique, méthodologique et conceptuel dans lequel s’inscrivent les projets reflète la diversité de la recherche menée dans les instituts de la fondation : international, dépassant les époques et interdisciplinaire.
 
   </div>
   <div
@@ -454,10 +455,10 @@ QED, la plateforme de la [Fondation Max Weber (MWS)](https://www.maxweberstiftun
     tabindex="0">
 
 ## La mission
-Au même titre que la plateforme de publication [perspectivia.net](https://perspectivia.net), la plateforme pour les sources et les éditions numériques (QED) de la Fondation Max Weber (MWS) accompli la mission d'offre "l'accès libre au savoir". Cela correspond aux principes de l'Open Access et de l'Open Science, qui sont également à la base du [guide à propos les données de recherche de la MWS](https://zenodo.org/records/10219503). En conséquence, les sources et les éditions numériques élaborées dans le cadre des nombreux projets de recherche dans tous les instituts de la MWS seront mises à disposition pour une réutilisation conformément aux principes FAIR et aux autres normes internationales. L'objectif de QED est d'offrir une solution durable à tous les projets orientés vers l'édition ainsi qu'à tous les projets de la MWS qui produisent des données en format TEI-XML. Aussi les projets déjà en cours ou terminés trouvent ainsi avec QED une solution de publication qui offre une perspective à long-terme.
-Toutes les ressources publiées sur QED sont, dans la mesure où la loi le permet, publiées sous licence CC-BY 4.0 et disponibles au téléchargement au format TEI-XML pour les transcriptions. Dans la mesure où la loi le permet, les sources sont également proposées sous forme de facsimilé ou, selon le matériel, dans d'autres formats standard.
-En tant que fournisseur d'infrastructure pour la recherche en sciences humaines et sociales dans un contexte mondiale, la MWS peut garantir, avec son partenaire VZG (gbv), l'opération durable de la plateforme. L'identification de ressources stable (DOI) est attribuée à toutes les sources et éditions publiées, ce qui permet en même temps d'associer les metadonnées à l'identifiant de la chose à gérer selon le schéma DataCite. Toutes les publications sur QED sont en outre indexées et peuvent ainsi être trouvées via la bibliothèque numérique de la MWS ainsi que via des catalogues des bibliothèques de niveau supérieur.
-Le cadre technique utilisé est MyCoRe, qui est développé en permanence au sein d'une communauté expérimentée et vivante avec la participation de MWS et VZG (gbv).
+Au même titre que la plateforme de publication [perspectivia.net](https://perspectivia.net), la plateforme pour les sources et les éditions numériques (QED) de la Fondation Max Weber (MWS) accompli la mission d’offre “l’accès libre au savoir”. Cela correspond aux principes de l’Open Access et de l’Open Science, qui sont également à la base du [guide à propos les données de recherche de la MWS](https://zenodo.org/records/10219503). En conséquence, les sources et les éditions numériques élaborées dans le cadre des nombreux projets de recherche dans tous les instituts de la MWS seront mises à disposition pour une réutilisation conformément aux principes FAIR et aux autres normes internationales. L’objectif de QED est d’offrir une solution durable à tous les projets orientés vers l’édition ainsi qu’à tous les projets de la MWS qui produisent des données en format TEI-XML. Aussi les projets déjà en cours ou terminés trouvent ainsi avec QED une solution de publication qui offre une perspective à long-terme.
+Toutes les ressources publiées sur QED sont, dans la mesure où la loi le permet, publiées sous licence CC-BY 4.0 et disponibles au téléchargement au format TEI-XML pour les transcriptions. Dans la mesure où la loi le permet, les sources sont également proposées sous forme de facsimilé ou, selon le matériel, dans d’autres formats standard.
+En tant que fournisseur d’infrastructure pour la recherche en sciences humaines et sociales dans un contexte mondiale, la MWS peut garantir, avec son partenaire VZG (GBV), l’opération durable de la plateforme. L’identification de ressources stable (DOI) est attribuée à toutes les sources et éditions publiées, ce qui permet en même temps d’associer les metadonnées à l’identifiant de la chose à gérer selon le schéma DataCite. Toutes les publications sur QED sont en outre indexées et peuvent ainsi être trouvées via la bibliothèque numérique de la MWS ainsi que via des catalogues des bibliothèques de niveau supérieur.
+Le cadre technique utilisé est MyCoRe, qui est développé en permanence au sein d’une communauté expérimentée et vivante avec la participation de MWS et VZG (GBV).
 
   </div>
   <div
@@ -468,17 +469,16 @@ Le cadre technique utilisé est MyCoRe, qui est développé en permanence au sei
     tabindex="0">
 
 ### Utiliser QED pour les projets de recherche de la MWS et de ses partenaires
-*Comment les projets de recherche peuvent-ils utiliser le portail pour la publication de sources et d'éditions numériques?*
-
+*Comment les projets de recherche peuvent-ils utiliser le portail pour la publication de sources et d’éditions numériques?*
 Les fonctions de base du portail sont mises en œuvre de la même manière pour tous les projets. Ainsi, une connexion aux catalogues supérieurs et internes est garantie.
-L'offre (pour tous les instituts de la MWS et leurs partenaires) comprend:
--	l'opération de la plateforme
--	la présentation de documents TEI-XML (DTABf) avec leur facsimilé (manuscrits, documents d'archives),
+L’offre (pour tous les instituts de la MWS et leurs partenaires) comprend:
+-	l’opération de la plateforme
+-	la présentation de documents TEI-XML (DTABf) avec leur facsimilé (manuscrits, documents d’archives),
 -	la présentation de métadonnées du fichier (généralement contenues dans le teiHeader),
--	l'attribution d'identifiant numérique d'objet (DOI), une citation fiable et la mise à disposition durable à long-terme,
--	l'indexation des publications dans [perspectivia.net](https://perspectivia.net), la bibliothèque numérique de la MWS et les bibliothèques des instituts (ainsi que dans d'autres catalogues global comme [BASE](https://www.base-search.net/))
+-	l’attribution d’identifiant numérique d’objet (DOI), une citation fiable et la mise à disposition durable à long-terme,
+-	l’indexation des publications dans [perspectivia.net](https://perspectivia.net), la bibliothèque numérique de la MWS et les bibliothèques des instituts (ainsi que dans d’autres catalogues global comme [BASE](https://www.base-search.net/))
 
-Des informations détaillées sont également disponibles dans [le manuel FDM de la MWS](https://projects.academiccloud.de/projects/fdm-praxis-in-der-mws/wiki/portal-fur-quellen-und-editionen-qed) et sur demande.
+Des informations détaillées sont également disponibles dans le manuel FDM de la MWS et sur demande.
   </div>
   <div
     class="tab-pane fade"
@@ -490,7 +490,7 @@ Des informations détaillées sont également disponibles dans [le manuel FDM de
 ### QED pour les données importantes au cadre des domaines scientifiques de la MWS
 *Comment puis-je publier mes données dans QED si je ne fais pas partie de la MWS et de ses partenaires?*
 
-Le conseil scientifique de [perspectivia.net](https://perspectivia.net) décide au cas par cas sur l'intégration de données externes selon des critères de contenu et d'organisation. Ce sont en particulier les données intéressantes sur le plan technique et thématique dans les domaines scientifiques de la MWS qui seront sélectionnées pour QED. Pour les projets dans la phase d'étude, il est recommandé de prendre contact suffisamment tôt, avant la soumission du projet, afin de pouvoir satisfaire, le cas échéant, les souhaits spécifiques du projet. Les coopérations en cours dans le cadre de la [NFDI (infrastructure nationale pour les données de recherche)](https://www.nfdi.de/?lang=en) ainsi que les contextes de projets européens et internationaux jouent également un rôle à cet égard.
+Le conseil scientifique de [perspectivia.net](https://perspectivia.net) décide au cas par cas sur l’intégration de données externes selon des critères de contenu et d’organisation. Ce sont en particulier les données intéressantes sur le plan technique et thématique dans les domaines scientifiques de la MWS qui seront sélectionnées pour QED. Pour les projets dans la phase d’étude, il est recommandé de prendre contact suffisamment tôt, avant la soumission du projet, afin de pouvoir satisfaire, le cas échéant, les souhaits spécifiques du projet. Les coopérations en cours dans le cadre de la [NFDI (infrastructure nationale pour les données de recherche)](https://www.nfdi.de/?lang=en) ainsi que les contextes de projets européens et internationaux jouent également un rôle à cet égard.
 
   </div>
   <div
@@ -503,12 +503,12 @@ Le conseil scientifique de [perspectivia.net](https://perspectivia.net) décide 
 ### Réutiliser les données QED
 *Comment puis-je réutiliser les données de QED pour ma propre recherche?*
 
-Toutes les données sont mises à disposition pour une libre réutilisation, dans la mesure où la loi le permet (par ex. la restrictions en matière de droits d'auteur). Il est facile d'accéder aux données:
+Toutes les données sont mises à disposition pour une libre réutilisation, dans la mesure où la loi le permet (par ex. la restrictions en matière de droits d’auteur). Il est facile d’accéder aux données:
 
 -	via la page du projet concerné
--	via un identifiant (DOI), par exemple à partir d'un catalogue
+-	via un identifiant (DOI), par exemple à partir d’un catalogue
 -	via la recherche sur le portail (en préparation)
--	via l'interface OAI-PMH (en préparation)
+-	via l’interface OAI-PMH (en préparation)
 
   </div>
 </div>

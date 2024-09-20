@@ -131,7 +131,7 @@ https://www.bfdi.bund.de/DE/Service/Kontakt/kontakt_node.html
 #fr
 <!-- fr -------------------------------------------------------------------- -->
 # Protection des données
-<!--Stand: 14.05.2024-->
+<!--Stand: 14.08.2024-->
 
 La Fondation Max Weber (MWS) attache une grande importance à la protection des données à caractère personnel. À cet effet, veuillez s’il vous plait vous informer dans les lignes qui suivent sur la protection des données sur notre site internet.
 Les informations qui suivent se réfèrent au domaine [qed.perspectiva.net](https://qed.perspectivia.net/).
@@ -142,20 +142,20 @@ Les données à caractère personnel sont des informations qui peuvent être uti
 Les données personnelles ne sont collectées et enregistrées par nous que dans un cadre strictement nécessaire au plan technique.
 
 ## Adresse IP
-L'enregistrement de votre adresse IP est nécessaire pour pouvoir consulter nos pages web. Une adresse IP est un identifiant unique de votre ordinateur, valable dans le monde entier. En tant qu'utilisateur privé, vous n'utilisez généralement pas une adresse IP constante, car votre fournisseur d'accès ne vous attribue une adresse IP que temporairement. Néanmoins, il est en principe possible d'attribuer clairement les données de l'utilisateur à cette caractéristique. Nos serveurs web enregistrent l'heure d'accès, l'adresse IP (complète), le chemin ou la page consultée et l'agent du navigateur afin de pouvoir analyser et, le cas échéant, repousser les attaques contre notre site web. La durée de stockage est d'un mois. Nous conservons les données que nous attribuons à une attaque aussi longtemps que nécessaire.
+L’enregistrement de votre adresse IP est nécessaire pour pouvoir consulter nos pages web. Une adresse IP est un identifiant unique de votre ordinateur, valable dans le monde entier. En tant qu’utilisateur privé, vous n’utilisez généralement pas une adresse IP constante, car votre fournisseur d’accès ne vous attribue une adresse IP que temporairement. Néanmoins, il est en principe possible d’attribuer clairement les données de l’utilisateur à cette caractéristique. Nos serveurs web enregistrent l’heure d’accès, l’adresse IP (complète), le chemin ou la page consultée et l’agent du navigateur afin de pouvoir analyser et, le cas échéant, repousser les attaques contre notre site web. La durée de stockage est d’un mois. Nous conservons les données que nous attribuons à une attaque aussi longtemps que nécessaire.
 
 ## Cookies
 Nous utilisons des cookies de session qui expirent à la fin de la session. Ils sont nécessaires au fonctionnement technique illimité du site.
 
 ## Javascript
-Javascript permet d'étendre les fonctionnalités d'un site web et de collecter des données personnelles. Nous n'utilisons pas Javascript pour collecter des données personnelles.
+Javascript permet d’étendre les fonctionnalités d’un site web et de collecter des données personnelles. Nous n’utilisons pas Javascript pour collecter des données personnelles.
 
-Utilisation pauvre en données, opposition à l'utilisation de cookies et de Javascript
-Nous n'utilisons que des cookies de session. Pour vous opposer à l'utilisation de cookies ou d'autres techniques, nous vous recommandons de consulter et d'appliquer les informations proposées à cet effet par le fabricant du navigateur sur la désactivation de Javascript et le refus des cookies (par exemple dans le menu d'aide de votre navigateur Internet ou sur le site Internet correspondant), ou de prendre contact avec le fournisseur du navigateur pour obtenir une aide et des instructions supplémentaires.
+Utilisation pauvre en données, opposition à l’utilisation de cookies et de Javascript
+Nous n’utilisons que des cookies de session. Pour vous opposer à l’utilisation de cookies ou d’autres techniques, nous vous recommandons de consulter et d’appliquer les informations proposées à cet effet par le fabricant du navigateur sur la désactivation de Javascript et le refus des cookies (par exemple dans le menu d’aide de votre navigateur Internet ou sur le site Internet correspondant), ou de prendre contact avec le fournisseur du navigateur pour obtenir une aide et des instructions supplémentaires.
 
-En outre, vous pouvez à tout moment supprimer vous-même les cookies déjà installés en sélectionnant l'option de menu correspondante dans votre navigateur Internet ou en suppri-mant les cookies dans le répertoire prévu à cet effet sur votre disque dur.
+En outre, vous pouvez à tout moment supprimer vous-même les cookies déjà installés en sélectionnant l’option de menu correspondante dans votre navigateur Internet ou en suppri-mant les cookies dans le répertoire prévu à cet effet sur votre disque dur.
 
-## Intégration de services et de contenus d'acteurs tiers
+## Intégration de services et de contenus d’acteurs tiers
 Dans le cadre de notre offre en ligne, il peut arriver que nous intégrions des contenus d’acteurs tiers et de sous-traitants (ceux-ci sont liés par contrat à la Fondation Max Weber et ne sont habilités à utiliser les données personnelles qu’ils collectent incidemment qu’aux fins prescrites) comme par exemple vidéos, matériel cartographique, RSS-Feeds, informations des réseaux sociaux, images ou graphiques d’autres sites internet. Ceci suppose cependant toujours que les fournisseurs de ces contenus identifient l’adresse IP de l’utilisateur car sans cette adresse IP ils ne peuvent pas communiquer leurs contenus au navigateur de l’utilisateur. L’adresse IP est de ce fait indispensable à l’affichage de ces contenus. Nous nous efforçons de n’employer que des contenus pour lesquels les fournisseurs n’utilisent l’adresse IP qu’à des fins de transmission. Pour autant, nous ne pouvons pas garantir que des tiers n’enregistrent pas l’adresse IP à des fins statistiques. Quand nous en avons connaissance, nous en informons immédiatement nos utilisateurs.
 
 ## Prise de contact
@@ -164,7 +164,7 @@ Lors d’une prise de contact avec nos services par courrier électronique, les 
 ## Transmission des données
 Vos données personnelles ne seront transmises à des instances publiques et administrations d’État que si la loi l’exige comme par exemple en cas de poursuite pénale suite à une ingérence dans notre système informatique. En dehors de ce cadre, nous ne transmettons pas vos données personnelles à des tiers.
 
-## Droit d'accès
+## Droit d’accès
 Vous avez à tout moment le droit d’être informés sur vos données personnelles enregistrées, leur origine et destination ainsi que la finalité de l’enregistrement. Pour obtenir des renseignements sur vos données enregistrées, vous pouvez nous contacter à une des adresses électroniques mentionnées ci-dessous.
 
 ## Rectification
@@ -179,14 +179,16 @@ Vous avez le droit de limiter le traitement des données si vous mettez en cause
 ## Droit à la transférabilité des données
 Vous avez le droit d’emporter vos données personnelles enregistrées sous un format permettant une lecture automatisée. Nous mettons à disposition le format txt (UTF-8 ou ANSI) et le format PDF.
 
-## Révocation d'un consentement
+## Révocation d’un consentement
 Vous avez à tout moment le droit de révoquer un consentement. La révocation s’effectue de la même manière que le consentement ou par courrier au délégué à la protection des données personnelles de la MWS (adresse voir ci-dessous) en lui précisant quelle autorisation vous voulez annuler. Les traitements de données effectués avant la demande de révocation de consentement demeurent licites.
 
 ## Contact
-Le responsable de ce site web est le Dr Michael Kaiser, Max Weber Stiftung, kai-ser@maxweberstiftung.de.
-Vous pouvez adresser vos questions et suggestions sur le thème de la protection des données au délégué à la protection des données personnelles de la MWS, Reinhard Hiss : datenschutz@maxweberstiftung.de
-Vous pouvez aussi contacter l'autorité de surveillance compétente et le commissaire fédéral à la protection des données et à la liberté d'information (BfDI) à l'adresse suivante :
+Le responsable de ce site web est le Dr. Michael Kaiser, Max Weber Stiftung:<br />
+kaiser@maxweberstiftung.de.
+Vous pouvez adresser vos questions et suggestions sur le thème de la protection des données au délégué à la protection des données personnelles de la MWS, Reinhard Hiss:<br />
+datenschutz@maxweberstiftung.de
 
+Vous pouvez aussi contacter l’autorité de surveillance compétente et le commissaire fédéral à la protection des données et à la liberté d’information (BfDI) à l’adresse suivante:<br />
 Graurheindorfer Str. 153,<br>
 53117 Bonn,<br>
 poststelle@bfdi.bund.de,<br>

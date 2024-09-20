@@ -42,9 +42,9 @@ Email: dms-list@lists.gbv.de
 #fr
 <!-- fr -------------------------------------------------------------------- -->
 # Contact
-<!--Stand: 16.07.2024-->
+<!--Stand: 14.08.2024-->
 
-Pour toute question concernant la publication de sources et d'éditions numériques, veuillez vous adresser à:<br />
+Pour toute question concernant la publication de sources et d’éditions numériques, veuillez vous adresser à:<br />
 fdm-perspectivia@maxweberstiftung.de
 
 Pour toute question concernant le Repositoryframework MyCoRe et le serveur de base de données, veuillez vous adresser au
