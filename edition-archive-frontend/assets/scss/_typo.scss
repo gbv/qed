@@ -65,6 +65,12 @@
     }
   }
 
+  .list-group-item {
+    a:hover {
+      background-color: rgb(225, 225, 225);
+    }
+  }
+
 // Extra large devices (large desktops) and below: <= 1400px
 @include media-breakpoint-down(xxl) {
   // add/overwrite styles for responsive level xxl and lower

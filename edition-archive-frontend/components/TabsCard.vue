@@ -6,7 +6,14 @@
           <a class="nav-link"
              :class="tab === model.currentTab ? 'active' : ''"
              v-on:click="changeToTab(tab)"
-             href="#">{{ tab.title }}</a>
+             href="#">
+             <span v-if="tab.id == 'einfach'">
+              {{ $t("search.basic")}}
+             </span>
+             <span v-else>
+              {{ $t("search.extended")}}
+             </span>
+          </a>
         </li>
       </ul>
     </div>

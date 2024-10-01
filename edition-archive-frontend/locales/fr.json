@@ -91,7 +91,8 @@
               "title": "Afficher le titre abrégé"
             }
           }
-        }
+        },
+        "nummer": "N°"
       },
       "incipitIndex": "Incipit",
       "manuscriptIndex": "Sources manuscrites",
