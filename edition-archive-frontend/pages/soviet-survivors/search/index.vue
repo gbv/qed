@@ -10,17 +10,8 @@
         </div>
       </div>
 
-      <!-- error message-->
-      <div class="row" v-if="model.error!=null">
-        <div class="col-12 mt-4">
-          <div class="alert alert-danger" role="alert">
-            {{ $t("search.error", {error: model.error}) }}
-          </div>
-        </div>
-      </div>
-
       <!-- result list and filter -->
-      <div class="row results" v-else-if="model.result?.response?.docs?.length>0">
+      <div class="row results" v-if="model.result?.response?.docs?.length>0">
 
         <!-- results -->
         <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
