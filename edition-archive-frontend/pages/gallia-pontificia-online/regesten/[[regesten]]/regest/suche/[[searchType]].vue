@@ -313,6 +313,20 @@ const tabData = ref([
   {id: BASIC_SEARCH_TYPE, title: i18n.t('search.basic')},
   {id: EXTENDED_SEARCH_TYPE, title: i18n.t('search.extended')}
 ]);
+
+watch(i18n.locale, () => {
+ for(const td of tabData.value){
+   switch (td.id) {
+      case BASIC_SEARCH_TYPE:
+        td.title = i18n.t('search.basic');
+        break;
+      case EXTENDED_SEARCH_TYPE:
+        td.title = i18n.t('search.extended');
+        break;
+    }
+  }
+});
+
 const {$solrURL, $backendURL} = useNuxtApp();
 const solrURL = $solrURL();
 

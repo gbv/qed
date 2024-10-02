@@ -7,12 +7,7 @@
              :class="tab === model.currentTab ? 'active' : ''"
              v-on:click="changeToTab(tab)"
              href="#">
-             <span v-if="tab.id == 'einfach'">
-              {{ $t("search.basic")}}
-             </span>
-             <span v-else>
-              {{ $t("search.extended")}}
-             </span>
+             {{ tab.title }}
           </a>
         </li>
       </ul>
