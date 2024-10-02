@@ -101,31 +101,18 @@
     "editionShortTitle": "Short titles of editions"
   },
   "sosu": {
-    "mainMenu": {
-      "home": "Home",
-      "about": "About",
-      "documents": "Documents",
-      "search": "Search",
-      "contact": "Contact"
-    },
-    "subMenu": {
-      "subMenu": "Page menu",
-      "openSubMenu": "Open page menu",
-      "intro": "Introduction",
-      "search": "Search",
-      "sovietHistorians": "The Soviet Historians",
-      "team": "Team",
-      "userGuide": "User Guide",
-      "warOfAnnihilation": "Germany’s War of Annihilation"
-    },
     "metadata": {
-      "counts": "{start} of {numFound}",
+      "counts":  "{start} of {numFound}",
       "genre": "Genre",
       "unknownGenre": "Unknown",
       "dateIssued": "Date Issued",
       "typeOfResource": "Type of Resource",
       "extent": "Extent",
       "shelfLocator": "Shelf Locator",
+      "abstract": {
+        "showMore": "Show more",
+        "showLess": "Show less"
+      },
       "subject": {
         "topic": "Topic",
         "geographic": "Geographic",
@@ -151,6 +138,23 @@
           "rcp": "Recipient"
         }
       }
+    },
+    "mainMenu": {
+      "home": "Home",
+      "about": "About",
+      "documents": "Documents",
+      "search": "Search",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "subMenu": "Page menu",
+      "openSubMenu": "Open page menu",
+      "intro": "Introduction",
+      "search": "Search",
+      "sovietHistorians": "The Soviet Historians",
+      "team": "Team",
+      "userGuide": "User Guide",
+      "warOfAnnihilation": "Germany’s War of Annihilation"
     }
   },
   "search": {
@@ -160,7 +164,7 @@
     "pageGoTo": "Go to page {page}",
     "hitCount": "{count} entries found",
     "noHits": "Keine Treffer",
-    "pageNext": "Next nage",
+    "pageNext": "Next page",
     "pagePrev": "Previous page",
     "pagination": "pagination search",
     "submit": "Search",

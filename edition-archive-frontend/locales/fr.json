@@ -74,9 +74,6 @@
         "ueberlieferung": "Überlieferung",
         "ueberlieferungsform": "Überlieferungsform",
         "regests": "Regesten",
-        "author": "auteur",
-        "publisher": "éditeur",
-        "editor": "beiter",
         "cite": {
           "short": "GPO Reims I: Erzbischöfe, n°",
           "long": "Gallia Pontificia online. Reims I: Erzbischöfe, par Ludwig Falkenstein. Édition électronique par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Große, Paris 2023, n°",
@@ -104,6 +101,44 @@
     "editionShortTitle": "Titre abrégé des éditions"
   },
   "sosu": {
+    "metadata": {
+      "counts":  "{start} of {numFound}",
+      "genre": "Genre",
+      "unknownGenre": "Unknown",
+      "dateIssued": "Date Issued",
+      "typeOfResource": "Type of Resource",
+      "extent": "Extent",
+      "shelfLocator": "Shelf Locator",
+      "abstract": {
+        "showMore": "Show more",
+        "showLess": "Show less"
+      },
+      "subject": {
+        "topic": "Topic",
+        "geographic": "Geographic",
+        "coordinates": "Coordinates",
+        "hideMap": "Hide Map",
+        "showMap": "Show Map"
+      },
+      "related": {
+        "original": "Original"
+      },
+      "name": {
+        "family": "Family Name",
+        "given": "Given Name",
+        "termsOfAddress": "Terms of Address",
+        "date": "Date of Birth/Death",
+        "affiliation": "Affiliation",
+        "role": {
+          "isb": "Issuing Body",
+          "ivr": "Interviewer",
+          "ive": "Interviewee",
+          "aut": "Author",
+          "scr": "Scribe",
+          "rcp": "Recipient"
+        }
+      }
+    },
     "mainMenu": {
       "home": "Home",
       "about": "À propos",
@@ -126,12 +161,12 @@
     "label": "Recherche",
     "basic": "Simple",
     "extended": "Avancée",
-    "pageGoTo": "Gehe zu Seite {page}",
+    "pageGoTo": "Go to page {page}",
     "hitCount": "{count} résultat(s) trouvé(s)",
     "noHits": "Keine Treffer",
-    "pageNext": "nächste Seite",
-    "pagePrev": "vorherige Seite",
-    "pagination": "Paginierung Suche",
+    "pageNext": "Next page",
+    "pagePrev": "Previous page",
+    "pagination": "pagination search",
     "submit": "Rechercher",
     "goToRegest": "Aller au n° {regest}",
     "error": "Erreur lors de la recherche : {error}",
