@@ -35,6 +35,8 @@
       "contact": "Contact"
     },
     "subMenu": {
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "reims1": {
         "home": "Remarques préliminaires",
         "intro": "Notice historique",
@@ -72,9 +74,6 @@
         "ueberlieferung": "Überlieferung",
         "ueberlieferungsform": "Überlieferungsform",
         "regests": "Regesten",
-        "author": "auteur",
-        "publisher": "éditeur",
-        "editor": "beiter",
         "cite": {
           "short": "GPO Reims I: Erzbischöfe, n°",
           "long": "Gallia Pontificia online. Reims I: Erzbischöfe, par Ludwig Falkenstein. Édition électronique par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Große, Paris 2023, n°",
@@ -89,7 +88,8 @@
               "title": "Afficher le titre abrégé"
             }
           }
-        }
+        },
+        "nummer": "N°"
       },
       "incipitIndex": "Incipit",
       "manuscriptIndex": "Sources manuscrites",
@@ -101,6 +101,44 @@
     "editionShortTitle": "Titre abrégé des éditions"
   },
   "sosu": {
+    "metadata": {
+      "counts":  "{start} of {numFound}",
+      "genre": "Genre",
+      "unknownGenre": "Unknown",
+      "dateIssued": "Date Issued",
+      "typeOfResource": "Type of Resource",
+      "extent": "Extent",
+      "shelfLocator": "Shelf Locator",
+      "abstract": {
+        "showMore": "Show more",
+        "showLess": "Show less"
+      },
+      "subject": {
+        "topic": "Topic",
+        "geographic": "Geographic",
+        "coordinates": "Coordinates",
+        "hideMap": "Hide Map",
+        "showMap": "Show Map"
+      },
+      "related": {
+        "original": "Original"
+      },
+      "name": {
+        "family": "Family Name",
+        "given": "Given Name",
+        "termsOfAddress": "Terms of Address",
+        "date": "Date of Birth/Death",
+        "affiliation": "Affiliation",
+        "role": {
+          "isb": "Issuing Body",
+          "ivr": "Interviewer",
+          "ive": "Interviewee",
+          "aut": "Author",
+          "scr": "Scribe",
+          "rcp": "Recipient"
+        }
+      }
+    },
     "mainMenu": {
       "home": "Home",
       "about": "À propos",
@@ -109,6 +147,8 @@
       "contact": "Contact"
     },
     "subMenu": {
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "intro": "Introduction",
       "search": "Recherche",
       "sovietHistorians": "The Soviet Historians",
@@ -119,24 +159,27 @@
   },
   "search": {
     "label": "Recherche",
-    "basic": "Recherche simple",
-    "extended": "Recherche avancée",
-    "pageGoTo": "Gehe zu Seite {page}",
+    "basic": "Simple",
+    "extended": "Avancée",
+    "pageGoTo": "Go to page {page}",
     "hitCount": "{count} résultat(s) trouvé(s)",
     "noHits": "Keine Treffer",
-    "pageNext": "nächste Seite",
-    "pagePrev": "vorherige Seite",
-    "pagination": "Paginierung Suche",
+    "pageNext": "Next page",
+    "pagePrev": "Previous page",
+    "pagination": "pagination search",
     "submit": "Rechercher",
     "goToRegest": "Aller au n° {regest}",
     "error": "Erreur lors de la recherche : {error}",
+    "preview":"Aperçu",
     "sort": {
-      "idno": "Numéro du regest",
+      "idno": "Numéro",
       "relevance": "Pertinence",
-      "asc": "Trier par ordre croissant (1-9)",
-      "desc": "Trier par ordre décroissant (9-1)"
+      "asc": "Croissant",
+      "desc": "Décroissant"
     },
     "facet": {
+      "openFacet": "Open facette",
+      "facet": "Ouvrir le Facette",
       "deperditum": "Déperditum/note historiographique ( * )",
       "issuer": "Auteur",
       "recipient": "Destinataire",

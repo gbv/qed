@@ -53,14 +53,3 @@ const pageChanged = (page) => {
 };
 
 </script>
-
-<style scoped>
-li.page-item {
-  flex-grow: 1;
-  text-align: center;
-}
-
-ul.pagination {
-  justify-content: stretch;
-}
-</style>

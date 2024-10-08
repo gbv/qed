@@ -9,13 +9,23 @@ $petrol:      #006978;
 $red:         #b4192d;
 $creditBlack: #191C1C;
 
+$mwsText:     #212529;
+
+$light_neutral: $grayBorder;
+$dark_neutral:  $grayBasic;
+$white:         white;
+$warning:       $red;
+$success:       green;
+$highlight:     $orange;
+
+
 $primary: $petrol;
 $secondary: $orange;
 $danger: $red;
 $light: $grayBack;
 
 $font-family-sans-serif: 'Inter', Arial, Helvetica, sans-serif;
-$body-color: $grayMedium;
+$body-color: $mwsText;
 
 $link-color: $petrol;
 $link-decoration: none;
@@ -41,9 +51,32 @@ $h4-font-size:                $font-size-base * 1.25;
 $h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
 
+$headings-font-weight: 700;
+
 $card-border-radius: 1rem;
 $card-border-color: $petrol;
 
 $btn-border-radius: 1rem;
 $btn-border-radius-sm: 1rem;
 $btn-border-radius-lg: 1rem;
+
+$pagination-border-width: 0;
+$pagination-font-size: 1rem;
+$pagination-padding-y: .5rem;
+$pagination-color: $grayMedium;
+$pagination-bg: white;
+$pagination-active-color: white;
+$pagination-active-bg: $grayMedium;
+$pagination-active-border-color: white;
+
+$input-border-radius: 1rem;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  fhd: 1920px
+);

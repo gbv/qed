@@ -2,36 +2,89 @@
   <SovietSurvivorsLayout :headline="$t('search.label')">
 
     <template #content>
-      <div class="card text-center mb-2">
-        <div class="card-body">
-          <h5 class="card-title">{{ $t("search.basic") }}</h5>
+      <h3>{{$t("search.label")}}</h3>
+      <!-- search form-->
+      <div  class="row">
+        <div class="col-12 col-lg-8">
           <BasicSearchForm :searchString="model.searchString" v-on:search="changeURL"/>
         </div>
       </div>
 
-      <SolrPaginator v-on:pageChanged="pageChangedCallback"
-                     :count="model.count"
-                     :start="model.start"
-                     :numPerPage="20"/>
+      <!-- result list and filter -->
+      <div class="row results" v-if="model.result?.response?.docs?.length>0">
 
-      <div v-if="model.result?.response?.docs?.length>0">
-        <div class="search-result card mt-2 mb-2" v-for="(doc, index) in model.result.response.docs" :key="doc.id">
+        <!-- results -->
+        <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
 
-
-          <div class="card-body">
-            <nuxt-link :to="`/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?search=${model.searchString}&start=${model.start + index}`" class="main-title">
-              {{ doc["mods.title.main"] }}
-            </nuxt-link>
-            <div v-if="doc['mods.abstract']?.length>0">{{ trimString(doc["mods.abstract"][0]) }}</div>
+          <!-- results: headline and sorting-->
+          <div class="row g-0 result-options">
+            <div class="col hit-count ms-3">
+              <h2>{{ $t('search.hitCount', { count: model.count }) }}</h2>
+            </div>
           </div>
 
+          <div class="result_list">
+            <div id="hit_list">
+
+              <div
+                class="hit_item"
+                v-for="(doc, index) in model.result.response.docs" :key="doc.id">
+
+
+                <div class="row hit_item_head">
+                  <div class="col-12">
+                    <div class="hit_counter">{{index + 1 + model.start}}</div>
+                  </div>
+                </div>
+
+                <div class="row hit_item_body">
+                  <div class="col-12">
+                    <div class="hit_download_box">
+                      <a
+                        :title="$t('search.preview')"
+                        href=""
+                        class="hit_option hit_download">
+                        <div class="hit_icon"
+                          :style="'background-image: url(&quot;' + $sovietSurviorsURL() + '/api/iiif/image/v2/thumbnail/sovsurv_mods_' + getMyCoReIdNumber(doc['id']) + '/full/!300,300/0/default.jpg&quot;)'">
+                        </div>
+                      </a>
+                    </div>
+
+                    <h3 class="hit_title">
+                      <nuxt-link
+                        :to="`/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?search=${model.searchString}&start=${model.start + index}`"
+                        class="main-title">
+                        {{ doc["mods.title.main"] }}
+                      </nuxt-link>
+                    </h3>
+                    <div class="hit_number">
+                    </div>
+                    <div class="hit_abstract">
+                      <div v-if="doc['mods.abstract']?.length>0">
+                        {{ trimString(doc["mods.abstract"][0]) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <h2 v-if="model.count===0" class="text-center mt-5">{{ $t('search.noHits') }}</h2>
+
+          <SolrPaginator v-on:pageChanged="pageChangedCallback"
+                         :count="model.count"
+                         :start="model.start"
+                         :numPerPage="20"/>
+        </div>
+
+        <!-- facets -->
+        <div class="col-12 col-lg-4 order-1 order-lg-2 text-end text-lg-start results__facets">
         </div>
       </div>
 
-      <SolrPaginator v-on:pageChanged="pageChangedCallback"
-                     :count="model.count"
-                     :start="model.start"
-                     :numPerPage="20"/>
     </template>
 
   </SovietSurvivorsLayout>
@@ -45,8 +98,10 @@ import {trimString} from "~/api/Utils";
 import {buildSOSUSearchRequestURL} from "~/api/SearchHelper";
 
 const {$sovietSurvivorsSolrURL} = useNuxtApp();
+const {$sovietSurviorsURL} = useNuxtApp();
 const route = useRoute();
 const sovietSurviorsSolrURL = $sovietSurvivorsSolrURL();
+const sovietSurviorsURL = $sovietSurviorsURL();
 
 const model = reactive({
   searchString: route.query.q as string || "*",

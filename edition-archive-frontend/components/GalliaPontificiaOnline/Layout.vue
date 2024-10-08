@@ -111,28 +111,30 @@
     <div
       class="row"
       v-if="$route.params.regesten == 'reims1' || $route.params.regesten == 'genf1'">
-      <div class="col-12 col-lg-3 project-sub-menu">
+      <div class="col-12 col-xl-3 project-sub-menu">
         <!--slot name="menu" /-->
 
         <button
-          class="btn btn-light d-lg-none side-menu-button"
+          class="btn btn-light d-xl-none side-menu-button"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasExample"
           aria-controls="offcanvasExample">
+          {{ $t('gpo.subMenu.openSubMenu') }}
           <i class="bi bi-chevron-right"></i>
-          Seitenmenü öffnen
         </button>
 
         <div
-          class="offcanvas-lg offcanvas-start"
+          class="offcanvas-xl offcanvas-start"
           data-bs-scroll="true"
           data-bs-backdrop="true"
           tabindex="-1"
           id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Seitenmenü</h5>
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+              {{ $t('gpo.subMenu.subMenu') }}
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -147,7 +149,7 @@
         </div>
 
       </div>
-      <div class="col-12 col-lg-9 project-content external-links">
+      <div class="col-12 col-xl-9 project-content external-links">
         <h2 class="project-sub-headline">
           <span v-if="$route.params.regesten == 'reims1'">
             {{ $t('gpo.pages.regesta.reims1.headline') }}

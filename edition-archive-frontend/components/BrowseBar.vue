@@ -22,7 +22,7 @@
         {{ $t("browser.currentOf") }}
         {{ of }}
       </div>
-      <div class="regest-index__goto" v-if="model.index != current && model.index > 1 && model.index < of">
+      <div class="regest-index__goto" v-if="model.index != current && model.index >= 1 && model.index < of">
         <i
           class="bi bi-arrow-clockwise clickable"
           v-on:click="indexEntered"

@@ -7,9 +7,9 @@
         <li v-for="incip in data.incipitsSorted" class="list-group-item">
 
           {{ incip }}
-          (<nuxt-link v-for="doc in data.incipitsMap.get(incip)" :key="doc.idno" :href="`/gallia-pontificia-online/regesten/${route.params.regesten}/regest/${doc.idno}`"
+          ( <nuxt-link v-for="doc in data.incipitsMap.get(incip)" :key="doc.idno" :href="`/gallia-pontificia-online/regesten/${route.params.regesten}/regest/${doc.idno}`"
                      class="regest-link-seperated"
-          >{{ doc.idno }}</nuxt-link>)
+          >{{$t("gpo.pages.regest.nummer")}} {{ doc.idno }}</nuxt-link> )
         </li>
       </ul>
     </template>

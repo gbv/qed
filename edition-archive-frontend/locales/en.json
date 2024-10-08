@@ -35,6 +35,8 @@
       "contact": "Contact"
     },
     "subMenu": {
+      "subMenu": "Page menu",
+      "openSubMenu": "Open page menu",
       "reims1": {
         "home": "Preliminary remarks",
         "intro": "Historical introduction",
@@ -86,7 +88,8 @@
               "title": "Switch citation style to short form"
             }
           }
-        }
+        },
+        "nummer": "No."
       },
       "incipitIndex": "Incipits",
       "manuscriptIndex": "Manuscripts",
@@ -98,29 +101,18 @@
     "editionShortTitle": "Short titles of editions"
   },
   "sosu": {
-    "mainMenu": {
-      "home": "Home",
-      "about": "About",
-      "documents": "Documents",
-      "search": "Search",
-      "contact": "Contact"
-    },
-    "subMenu": {
-      "intro": "Introduction",
-      "search": "Search",
-      "sovietHistorians": "The Soviet Historians",
-      "team": "Team",
-      "userGuide": "User Guide",
-      "warOfAnnihilation": "Germany’s War of Annihilation"
-    },
     "metadata": {
-      "counts": "{start} of {numFound}",
+      "counts":  "{start} of {numFound}",
       "genre": "Genre",
       "unknownGenre": "Unknown",
       "dateIssued": "Date Issued",
       "typeOfResource": "Type of Resource",
       "extent": "Extent",
       "shelfLocator": "Shelf Locator",
+      "abstract": {
+        "showMore": "Show more",
+        "showLess": "Show less"
+      },
       "subject": {
         "topic": "Topic",
         "geographic": "Geographic",
@@ -146,28 +138,48 @@
           "rcp": "Recipient"
         }
       }
+    },
+    "mainMenu": {
+      "home": "Home",
+      "about": "About",
+      "documents": "Documents",
+      "search": "Search",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "subMenu": "Page menu",
+      "openSubMenu": "Open page menu",
+      "intro": "Introduction",
+      "search": "Search",
+      "sovietHistorians": "The Soviet Historians",
+      "team": "Team",
+      "userGuide": "User Guide",
+      "warOfAnnihilation": "Germany’s War of Annihilation"
     }
   },
   "search": {
     "label": "Search",
-    "basic": "Simple search",
-    "extended": "Advanced search",
+    "basic": "Simple",
+    "extended": "Advanced",
     "pageGoTo": "Go to page {page}",
     "hitCount": "{count} entries found",
     "noHits": "Keine Treffer",
-    "pageNext": "Next nage",
+    "pageNext": "Next page",
     "pagePrev": "Previous page",
     "pagination": "pagination search",
     "submit": "Search",
     "goToRegest": "Go to no. {regest}",
     "error": "Error while Searching: {error}",
+    "preview":"Preview",
     "sort": {
-      "idno": "Regesta number",
+      "idno": "Number",
       "relevance": "Relevance",
-      "asc": "Sort in ascending order (1-9)",
-      "desc": "Sort in descending order (9-1)"
+      "asc": "Ascending",
+      "desc": "Descending"
     },
     "facet": {
+      "openFacet": "Open facet",
+      "facet": "Facet",
       "deperditum": "Deperditum/historiographical note ( * )",
       "issuer": "Issuer",
       "recipient": "Recipient",

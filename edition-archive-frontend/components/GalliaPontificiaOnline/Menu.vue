@@ -2,6 +2,15 @@
   <template v-if="$route.params.regesten == 'reims1'">
         <nav class="navbar">
           <ul class="navbar-nav">
+            <li class="nav-item nav-item-search">
+              <nuxt-link
+                class="nav-link"
+                active-class="active"
+                href="/gallia-pontificia-online/regesten/reims1/regest/suche/einfach?searchString=*#gpo-headline">
+                <i class="bi bi-search"></i>
+                {{ $t("gpo.subMenu.reims1.search") }}
+              </nuxt-link>
+            </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="/gallia-pontificia-online/regesten/reims1/#gpo-headline">
                 {{ $t('gpo.subMenu.reims1.home') }}
@@ -15,11 +24,6 @@
             <li class="nav-item">
               <nuxt-link class="nav-link" active-class="active" href="/gallia-pontificia-online/regesten/reims1/regest/1#gpo-headline">
                 {{ $t('gpo.subMenu.reims1.regests') }}
-              </nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link class="nav-link" active-class="active" href="/gallia-pontificia-online/regesten/reims1/regest/suche/einfach?searchString=*#gpo-headline">
-                {{ $t("gpo.subMenu.reims1.search") }}
               </nuxt-link>
             </li>
             <li class="nav-item">
