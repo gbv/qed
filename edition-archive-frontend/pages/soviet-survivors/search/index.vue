@@ -40,10 +40,12 @@
                 <div class="row hit_item_body">
                   <div class="col-12">
                     <div class="hit_download_box">
-                      <a title="Sammelwerk"
+                      <a
+                        :title="$t('search.preview')"
                         href=""
                         class="hit_option hit_download">
-                        <div class="hit_icon">
+                        <div class="hit_icon"
+                          :style="'background-image: url(&quot;' + $sovietSurviorsURL() + '/api/iiif/image/v2/thumbnail/sovsurv_mods_' + getMyCoReIdNumber(doc['id']) + '/full/!300,300/0/default.jpg&quot;)'">
                         </div>
                       </a>
                     </div>
@@ -96,8 +98,10 @@ import {trimString} from "~/api/Utils";
 import {buildSOSUSearchRequestURL} from "~/api/SearchHelper";
 
 const {$sovietSurvivorsSolrURL} = useNuxtApp();
+const {$sovietSurviorsURL} = useNuxtApp();
 const route = useRoute();
 const sovietSurviorsSolrURL = $sovietSurvivorsSolrURL();
+const sovietSurviorsURL = $sovietSurviorsURL();
 
 const model = reactive({
   searchString: route.query.q as string || "*",

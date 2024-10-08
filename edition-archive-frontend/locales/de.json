@@ -170,6 +170,7 @@
     "submit": "Suchen",
     "goToRegest": "Gehe zu Nr. {regest}",
     "error": "Fehler bei der Suche: {error}",
+    "preview":"Vorschau",
     "sort": {
       "idno": "Nummer",
       "relevance": "Relevanz",
