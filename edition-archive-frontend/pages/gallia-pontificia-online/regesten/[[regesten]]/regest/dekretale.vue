@@ -8,7 +8,7 @@
           {{ data.idText[id] }} (
           <nuxt-link v-for="doc in data.idResults[id]"
                      :href="`/gallia-pontificia-online/regesten/${route.params.regesten}/regest/${doc.idno}`"
-          >{{ doc.idno }}
+          >{{$t("gpo.pages.regest.nummer")}} {{ doc.idno }}
             <template v-if="doc.idno !== data.idResults[id][ data.idResults[id].length - 1].idno">,</template>
           </nuxt-link>
           )
