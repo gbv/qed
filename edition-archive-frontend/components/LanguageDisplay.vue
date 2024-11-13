@@ -15,6 +15,8 @@ function convert(langCode:string){
       return "Français";
     case "ru":
       return "Русский";
+    case "uk":
+      return "Українська";
     default:
       return langCode;
   }

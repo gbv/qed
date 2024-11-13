@@ -27,7 +27,7 @@
       </div>
       <div class="row">
         <div class="col-12 mt-5">
-          <MODSDocument v-if="data?.xml" :xml="data?.xml"/>
+          <MODSDocument v-if="data?.xml" :xml="data?.xml" :id="mycoreId"/>
         </div>
       </div>
     </template>
@@ -39,9 +39,8 @@
 
 
 import {XMLApi} from "~/api/XMLApi";
-import {XElement} from "@mycore-org/xml-json-api";
 import {getMyCoReId, getMyCoReIdNumber} from "~/api/MyCoRe";
-import {buildSOSUSearchRequestURL} from "~/api/SearchHelper";
+import {buildSOSUSearchRequestURL, TranslationMode} from "~/api/SearchHelper";
 
 const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
 const route = useRoute();
@@ -75,7 +74,11 @@ const {data, error} = await useAsyncData(mycoreId, async () => {
     startParam = parseInt(start as string);
     searchStartParam = startParam > 0 ? startParam - 1 : 0;
 
-    promises.push(fetch(buildSOSUSearchRequestURL(sovietSurviorsSolrURL, search, searchStartParam), {
+    promises.push(fetch(buildSOSUSearchRequestURL(sovietSurviorsSolrURL, search, {
+      translationMode: TranslationMode.ALL,
+      genres: [],
+      languages: []
+    }, searchStartParam), {
       method: "GET",
       headers: {
         "Accept": "application/json",

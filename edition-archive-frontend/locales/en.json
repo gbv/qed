@@ -113,6 +113,7 @@
         "showMore": "Show more",
         "showLess": "Show less"
       },
+      "download": "Download",
       "subject": {
         "topic": "Topic",
         "geographic": "Geographic",
@@ -121,7 +122,8 @@
         "showMap": "Show Map"
       },
       "related": {
-        "original": "Original"
+        "original": "Original",
+        "translation": "Translation"
       },
       "name": {
         "family": "Family Name",
@@ -186,7 +188,13 @@
       "showLess": "Show less",
       "showMore": "Show more",
       "spurium": "Spurium (†)",
-      "ueberlieferungsform": "Form of tradition"
+      "ueberlieferungsform": "Form of tradition",
+      "translationOnly": "Only translations",
+      "originalOnly": "Only original",
+      "all": "All",
+      "translationMode": "Show translations",
+      "genre": "Document type",
+      "language": "Language"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",

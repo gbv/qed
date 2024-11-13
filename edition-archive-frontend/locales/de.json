@@ -109,6 +109,7 @@
       "typeOfResource": "Ressourcentyp",
       "extent": "Umfang",
       "shelfLocator": "Archivsignatur",
+      "download": "Download",
       "abstract": {
         "showMore": "Mehr anzeigen",
         "showLess": "Weniger anzeigen"
@@ -121,7 +122,8 @@
         "showMap": "Karte einblenden"
       },
       "related": {
-        "original": "Original"
+        "original": "Original",
+        "translation": "Übersetzung"
       },
       "name": {
         "family": "Familienname",
@@ -186,7 +188,13 @@
       "showLess": "Weniger anzeigen",
       "showMore": "Mehr anzeigen",
       "spurium": "Spurium (†)",
-      "ueberlieferungsform": "Überlieferungsform"
+      "ueberlieferungsform": "Überlieferungsform",
+      "translationOnly": "Übersetzungen",
+      "originalOnly": "Nur Original",
+      "all": "Alle",
+      "translationMode": "Übersetzungen Anzeigen",
+      "genre": "Dokumententyp",
+      "language": "Sprache"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",

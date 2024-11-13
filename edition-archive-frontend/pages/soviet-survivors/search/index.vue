@@ -6,7 +6,7 @@
       <!-- search form-->
       <div  class="row">
         <div class="col-12 col-lg-8">
-          <BasicSearchForm :searchString="model.searchString" v-on:search="changeURL"/>
+          <BasicSearchForm :searchString="model.searchString" v-on:search="changeSearchString"/>
         </div>
       </div>
 
@@ -82,6 +82,76 @@
 
         <!-- facets -->
         <div class="col-12 col-lg-4 order-1 order-lg-2 text-end text-lg-start results__facets">
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.translationMode") }}</h4>
+            <form class="row p-3">
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="translationMode" type="radio"
+                         :checked="model.filters.translationMode == TranslationMode.ALL" id="facetTranslationAll"
+                         v-on:change="changeTranslationMode(TranslationMode.ALL)">
+                  <label class="form-check-label" for="facetTranslationAll">
+                    {{ $t("search.facet.all") }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="translationMode" type="radio"
+                         :checked="model.filters.translationMode == TranslationMode.TRANSLATION_ONLY" id="facetTranslationOnly"
+                         v-on:change="changeTranslationMode(TranslationMode.TRANSLATION_ONLY)">
+                  <label class="form-check-label" for="facetTranslationOnly">
+                    {{ $t("search.facet.translationOnly") }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="translationMode" type="radio"
+                         :checked="model.filters.translationMode == TranslationMode.ORIGINAL_ONLY" id="facetOriginalOnly"
+                         v-on:change="changeTranslationMode(TranslationMode.ORIGINAL_ONLY)">
+                  <label class="form-check-label" for="facetOriginalOnly">
+                    {{ $t("search.facet.originalOnly") }}
+                  </label>
+                </div>
+              </div>
+
+            </form>
+
+
+          </div>
+
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.genre") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="genre in model.facets.genres"
+                :class="model.filters.genres.indexOf(genre.name) > -1 ? 'active' : ''"
+                v-on:click="clickGenreFacet(genre.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <MODSClassification class-id="mir_genres" :categ-id="genre.name" />
+                <span class="badge bg-primary rounded-pill">{{ genre.count }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.language") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="language in model.facets.languages"
+                :class="model.filters.languages.indexOf(language.name) > -1 ? 'active' : ''"
+                v-on:click="clickLanguageFacet(language.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <MODSClassification class-id="rfc5646" :categ-id="language.name" />
+                <span class="badge bg-primary rounded-pill">{{ language.count }}</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
 
@@ -95,7 +165,8 @@
 import {LocationQuery} from "vue-router";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
-import {buildSOSUSearchRequestURL} from "~/api/SearchHelper";
+import {buildSOSUSearchRequestURL, Filters, TranslationMode} from "~/api/SearchHelper";
+
 
 const {$sovietSurvivorsSolrURL} = useNuxtApp();
 const {$sovietSurviorsURL} = useNuxtApp();
@@ -103,26 +174,89 @@ const route = useRoute();
 const sovietSurviorsSolrURL = $sovietSurvivorsSolrURL();
 const sovietSurviorsURL = $sovietSurviorsURL();
 
+interface FacetEntry {
+  name: string,
+  count: number
+}
+
 const model = reactive({
   searchString: route.query.q as string || "*",
   result: null as any,
   count: 0,
   start: parseInt(route.query.start as string) || 0,
+  filters: { // enabled
+    genres: [],
+    languages: [],
+    translationMode: TranslationMode.ALL,
+  } as Filters,
+  facets: {
+    genres: [] as FacetEntry[],
+    languages: [] as FacetEntry[],
+  }
 });
 
-watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
-  model.searchString = newQueryString.q as string || "*";
-  if (newQueryString.start) {
-    model.start = parseInt(newQueryString.start as string);
+const modelToQuery = (model: any): any => {
+  const query: any = {
+    q: model.searchString,
+  }
+
+  if (model.start > 0) {
+    query.start = model.start.toString();
+  }
+
+  if (model.filters.genres.length > 0) {
+    query.genres = model.filters.genres.slice();
+  }
+
+  if (model.filters.languages.length > 0) {
+    query.languages = model.filters.languages;
+  }
+
+  if (model.filters.translationMode !== TranslationMode.ALL) {
+    query.translationMode = model.filters.translationMode;
+  }
+
+  return query;
+};
+
+const queryToModel = (query: LocationQuery) => {
+  model.searchString = query.q as string || "*";
+  if (query.start) {
+    model.start = parseInt(query.start as string);
   } else {
     model.start = 0;
   }
+
+  if (query.genres) {
+    if (Array.isArray(query.genres)) {
+      model.filters.genres = query.genres as string[];
+    } else {
+      model.filters.genres = [query.genres as string];
+    }
+  }
+
+  if (query.languages) {
+    if (Array.isArray(query.languages)) {
+      model.filters.languages = query.languages as string[];
+    } else {
+      model.filters.languages = [query.languages as string];
+    }
+  }
+
+  if (query.translationMode) {
+    model.filters.translationMode = query.translationMode as TranslationMode;
+  }
+}
+
+watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
+  queryToModel(newQueryString);
+  console.log(["searching", newQueryString]);
   await search();
 });
 
 
 const search = async () => {
-  const url = buildSOSUSearchRequestURL(sovietSurviorsSolrURL, model.searchString, model.start);
+  const url = buildSOSUSearchRequestURL(sovietSurviorsSolrURL, model.searchString, model.filters, model.start);
 
   model.result = await fetch(url, {
     method: "GET",
@@ -132,26 +266,76 @@ const search = async () => {
   }).then((resp) => resp.json());
 
   model.count = model.result.response.numFound;
+  const genreFacet = model.result?.facet_counts?.facet_fields["mods.genre"] || [];
+  model.facets.genres = [];
+  for (let i = 0; i < genreFacet.length; i += 2) {
+    model.facets.genres.push({
+      name: genreFacet[i],
+      count: genreFacet[i + 1]
+    });
+  }
+
+  const languageFacet = model.result?.facet_counts?.facet_fields["survivors.mods.language"] || [];
+  model.facets.languages = [];
+  for (let i = 0; i < languageFacet.length; i += 2) {
+    model.facets.languages.push({
+      name: languageFacet[i],
+      count: languageFacet[i + 1]
+    });
+  }
+
 }
 
-const pageChangedCallback = (page: number) => {
-  navigateTo({
+const clickGenreFacet = async (genre: string) => {
+  await navigateTo({
     query: {
-      ...route.query,
+      ...modelToQuery(model),
+      genres: model.filters.genres.indexOf(genre) > -1 ? model.filters.genres.filter((g) => g !== genre) : [...model.filters.genres, genre],
+      start: 0
+    }
+  })
+}
+
+const clickLanguageFacet = async (language: string) => {
+  await navigateTo({
+    query: {
+      ...modelToQuery(model),
+      languages: model.filters.languages.indexOf(language) > -1 ? model.filters.languages.filter((g) => g !== language) : [...model.filters.languages, language],
+      start: 0
+    }
+  })
+}
+
+const pageChangedCallback = async (page: number) => {
+  await navigateTo({
+    query: {
+      ...modelToQuery(model),
       start: (page - 1) * 20
     }
   })
 }
 
-const changeURL = (event: { searchString: string }) => {
-  navigateTo({
+const changeTranslationMode = async (tm: TranslationMode) => {
+  await navigateTo({
     query: {
-      q: event.searchString
+      ...modelToQuery(model),
+      translationMode: tm,
+      start: 0
     }
   })
 }
 
+const changeSearchString = async (event: { searchString: string }) => {
+  await navigateTo({
+    query: {
+      ...modelToQuery(model),
+      q: event.searchString,
+      start: 0
+    }
+  })
+}
 
+queryToModel(route.query);
 await search();
 
 
@@ -159,5 +343,8 @@ await search();
 
 <style scoped>
 
+.clickable {
+  cursor: pointer;
+}
 
 </style>
