@@ -32,10 +32,10 @@ export function buildSOSUSearchRequestURL(url: string, search: string | null, fi
     case TranslationMode.ALL:
       // empty filter
       break;
-    case TranslationMode.ORIGINAL_ONLY:
+    case TranslationMode.TRANSLATION_ONLY:
       translationFilter = "fq=mods.relatedItem.original:*";
       break;
-    case TranslationMode.TRANSLATION_ONLY:
+    case TranslationMode.ORIGINAL_ONLY:
       translationFilter = "fq=NOT%28mods.relatedItem.original:*%29";
       break;
   }
