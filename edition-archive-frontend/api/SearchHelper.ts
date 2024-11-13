@@ -23,7 +23,6 @@ export interface Filters {
 }
 
 export function buildSOSUSearchRequestURL(url: string, search: string | null, filters: Filters, start: number, rows = 20) {
-  console.log(["buildSOSUSearchRequestURL", url, search, filters, start, rows]);
   const query = `allMeta:${search || "*"}`
   const genreFilter = filters?.genres?.length > 0 ? `fq=mods.genre:(${filters.genres.join("%20AND%20")})` : '';
   const languageFilter = filters?.languages?.length > 0 ? `fq=survivors.mods.language:${filters.languages.join("%20AND%20")}` : '';

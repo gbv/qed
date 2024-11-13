@@ -5,7 +5,7 @@
       <li class="nav-item" v-for="lang in titleAndAbstracts.keys()">
         <a :href="`#${lang}`" :class="`nav-link${currentAbstractLanguage == lang ? ' active' : ''}`"
            v-on:click.prevent="model.currentAbstractLang = lang">
-          <language-display :lang="lang"/>
+          <MODSClassification class-id="rfc5646" :categ-id="lang"/>
         </a>
       </li>
     </ul>
@@ -217,6 +217,7 @@ import {getGenre, getNames, getSubjects, getTitles} from "~/api/Mods";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
 import {xml} from "property-information/lib/xml";
+import {SoSuFilterParams} from "~/api/SearchHelper";
 
 
 const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
@@ -238,7 +239,7 @@ const model = reactive({
 );
 
 const searchOriginals = async () => {
-  const json = await fetch(`${sovietSurvivorsSolrURL}mir/select?q=mods.relatedItem.original:${props.id}&wt=json`, {
+  const json = await fetch(`${sovietSurvivorsSolrURL}mir/select?q=mods.relatedItem.original:${props.id}&wt=json&fq=${SoSuFilterParams.join("%20AND%20")}`, {
     method: "GET",
     headers: {
       "Accept": "application/json",
