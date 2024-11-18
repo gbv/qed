@@ -104,6 +104,7 @@
     "metadata": {
       "counts":  "{start} von {numFound}",
       "genre": "Genre",
+      "language": "Sprache",
       "unknownGenre": "Unbekannt",
       "dateIssued": "Datum der Veröffentlichung",
       "typeOfResource": "Ressourcentyp",

@@ -11,6 +11,7 @@ import Genre from "~/components/MODS/Genre.vue";
 
 export interface Title {
   language?: string;
+  type?: string;
   title: string;
   subtitle?: string;
 }
@@ -49,9 +50,10 @@ export function getTitles(modsOrRelatedItem: XElement): Title[] {
     const title = flattenElement(findFirstElement(titleInfoElement, byName("mods:title")));
     const subtitle = flattenElement(findFirstElement(titleInfoElement, byName("mods:subTitle"))) || undefined;
     const language = getAttribute(titleInfoElement, "xml:lang")?.value;
+    const type = getAttribute(titleInfoElement, "type")?.value;
 
     if (title != null) {
-      titles.push({language, title, subtitle});
+      titles.push({language, title, subtitle, type});
     }
   }
 

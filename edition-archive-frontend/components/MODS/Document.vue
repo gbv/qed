@@ -1,7 +1,14 @@
 <template>
   <div>
 
-    <ul class="nav nav-tabs">
+    <h2 v-if="mainTitle">
+      {{ mainTitle.title }}
+      <template v-if="mainTitle.subtitle">
+        : {{ mainTitle.subtitle }}
+      </template>
+    </h2>
+
+    <ul class="nav nav-tabs mt-4">
       <li class="nav-item" v-for="lang in titleAndAbstracts.keys()">
         <a :href="`#${lang}`" :class="`nav-link${currentAbstractLanguage == lang ? ' active' : ''}`"
            v-on:click.prevent="model.currentAbstractLang = lang">
@@ -11,9 +18,9 @@
     </ul>
 
 
-    <h2 class="mt-4" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
+    <h2 class="mt-4" v-if="mainTitle.title != currentTitle" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
 
-    <div class="abstract" v-if="fullAbstract?.length">
+    <div class="abstract" :class="mainTitle.title == currentTitle? 'mt-4' : ''" v-if="fullAbstract?.length">
       <span v-if="fullAbstract?.length < 200">
         {{ fullAbstract }}
       </span>
@@ -44,6 +51,19 @@
           <ol class="genreList">
             <li class="genre" v-for="genre in genres">
               <MODSClassification :classId="genre.classId" :categId="genre.categId" />
+            </li>
+          </ol>
+        </template>
+      </SovietSurvivorsMetaKeyValue>
+
+      <SovietSurvivorsMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
+        <template #key>
+          {{ $t("sosu.metadata.language") }}
+        </template>
+        <template #value>
+          <ol class="languageList">
+            <li class="language" v-for="language in documentLanguages">
+              <MODSClassification class-id="rfc5646" :categ-id="language"/>
             </li>
           </ol>
         </template>
@@ -216,7 +236,6 @@ import type {Name} from "~/api/Mods";
 import {getGenre, getNames, getSubjects, getTitles} from "~/api/Mods";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
-import {xml} from "property-information/lib/xml";
 import {SoSuFilterParams} from "~/api/SearchHelper";
 
 
@@ -284,6 +303,10 @@ interface TitleAbstractSubtitle {
   subtitle?: string|null;
   abstract?: string|null;
 }
+
+const mainTitle = computed(() => {
+  return getTitles(mods.value).find((title) => !title.type);
+});
 
 const titleAndAbstracts = computed(() => {
   const abstracts = findElement(mods.value, and(byName("mods:abstract"), (el: XNode) => !byAttr("altFormat")(el)));
@@ -501,7 +524,7 @@ const viewerLink = computed(() => {
 }
 
 /* display topic list elements as normal text */
-.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li {
+.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li {
   list-style-type: none;
   display: block;
 }
@@ -509,7 +532,7 @@ const viewerLink = computed(() => {
 
 
 /* remove padding and margin from list elements */
-.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList {
+.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList {
   padding: 0;
   margin: 0;
 }
