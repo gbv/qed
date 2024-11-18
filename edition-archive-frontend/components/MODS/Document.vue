@@ -18,9 +18,9 @@
     </ul>
 
 
-    <h2 class="mt-4" v-if="mainTitle.title != currentTitle" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
+    <h2 class="mt-4" v-if="mainTitle?.title != currentTitle" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
 
-    <div class="abstract" :class="mainTitle.title == currentTitle? 'mt-4' : ''" v-if="fullAbstract?.length">
+    <div class="abstract" :class="mainTitle?.title == currentTitle? 'mt-4' : ''" v-if="fullAbstract?.length">
       <span v-if="fullAbstract?.length < 200">
         {{ fullAbstract }}
       </span>
