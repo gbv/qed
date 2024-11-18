@@ -132,8 +132,12 @@
                 :class="model.filters.genres.indexOf(genre.name) > -1 ? 'active' : ''"
                 v-on:click="clickGenreFacet(genre.name)"
                 class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
-                <MODSClassification class-id="mir_genres" :categ-id="genre.name" />
-                <span class="badge bg-primary rounded-pill">{{ genre.count }}</span>
+                <div class="d-flex">
+                  <i v-if="model.filters.genres.indexOf(genre.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                  <MODSClassification class-id="mir_genres" :categ-id="genre.name" />
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ genre.count }}</span>
               </li>
             </ul>
           </div>
@@ -146,8 +150,12 @@
                 :class="model.filters.languages.indexOf(language.name) > -1 ? 'active' : ''"
                 v-on:click="clickLanguageFacet(language.name)"
                 class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
-                <MODSClassification class-id="rfc5646" :categ-id="language.name" />
-                <span class="badge bg-primary rounded-pill">{{ language.count }}</span>
+                <div class="d-flex">
+                  <i v-if="model.filters.languages.indexOf(language.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                  <MODSClassification class-id="rfc5646" :categ-id="language.name" />
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ language.count }}</span>
               </li>
             </ul>
           </div>
