@@ -40,7 +40,7 @@
 
 import {XMLApi} from "~/api/XMLApi";
 import {getMyCoReId, getMyCoReIdNumber} from "~/api/MyCoRe";
-import {buildSOSUSearchRequestURL, TranslationMode} from "~/api/SearchHelper";
+import {buildSOSUSearchRequestURL, Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
 
 const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
 const route = useRoute();
@@ -57,28 +57,27 @@ interface LinkInfo {
   link: string;
 }
 
-const {data, error} = await useAsyncData(mycoreId, async () => {
-  const search = route.query.search as string;
-  const start = route.query.start;
-
+const {data, error} = await useAsyncData(route.fullPath, async () => {
+  const q = route.query.q as string;
   const promises : Array<Promise<any>> = [ fetch(sovietSurviorsURL + `api/v2/objects/${mycoreId}`, {
     method: "GET",
   })
     .then((resp) => resp.text())
     .then((text) => XMLApi(text))];
 
-  let startParam: number = 0;
-  let searchStartParam: number = 0;
 
-  if(search && start){
-    startParam = parseInt(start as string);
-    searchStartParam = startParam > 0 ? startParam - 1 : 0;
-
-    promises.push(fetch(buildSOSUSearchRequestURL(sovietSurviorsSolrURL, search, {
-      translationMode: TranslationMode.ALL,
+  const model = {
+    filters: { // enabled
       genres: [],
-      languages: []
-    }, searchStartParam), {
+      languages: [],
+      translationMode: TranslationMode.ALL,
+    } as Filters,
+    start: 0
+  };
+  queryToModel(route.query, model);
+
+  if(q){
+    promises.push(fetch(buildSOSUSearchRequestURL(sovietSurviorsSolrURL, q, model.filters, model.start == 0 ? model.start: model.start-1), {
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -88,24 +87,34 @@ const {data, error} = await useAsyncData(mycoreId, async () => {
 
   const [xml, searchResult] = await Promise.all(promises);
 
-  if(searchResult && search && start){
+  console.log(["Data" ,xml, searchResult] )
+
+  if(searchResult && q){
     const docs = searchResult.response.docs;
 
-    const prev = startParam == 0 ? undefined : docs[0];
-    const next = startParam == 0 ? docs[1] : docs[2];
+    const prev = model.start == 0 ? undefined : docs[0];
+    const next = model.start == 0 ? docs[1] : docs[2];
+
+    const query = modelToQuery(model);
+
+    query.start =  (model.start-1)+"";
+    const queryStrPrev = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+    query.start =  (model.start +1)+"";
+    const queryStrNext = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+
 
     return {
       xml,
       prev: prev ? {
         title: prev["mods.title.main"],
-        link: `/soviet-survivors/documents/${getMyCoReIdNumber(prev["id"])}?search=${search}&start=${startParam-1}`
+        link: `/soviet-survivors/documents/${getMyCoReIdNumber(prev["id"])}?${queryStrPrev}`
       } : undefined,
       next: next ? {
         title: next["mods.title.main"],
-        link: `/soviet-survivors/documents/${getMyCoReIdNumber(next["id"])}?search=${search}&start=${startParam+1}`
+        link: `/soviet-survivors/documents/${getMyCoReIdNumber(next["id"])}?${queryStrNext}`
       } : undefined,
       counts: {
-        start: startParam+1,
+        start: model.start+1,
         numFound: searchResult.response.numFound
       }
     }

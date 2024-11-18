@@ -57,7 +57,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/soviet-survivors/documents/41?search=*&start=0">
+                  href="/soviet-survivors/documents/41?q=*&start=0">
                   {{ $t('sosu.mainMenu.documents') }}
                 </nuxt-link>
               </li>

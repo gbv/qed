@@ -11,7 +11,7 @@
       </div>
 
       <!-- result list and filter -->
-      <div class="row results" v-if="model.result?.response?.docs?.length>0">
+      <div class="row results">
 
         <!-- results -->
         <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
@@ -52,7 +52,7 @@
 
                     <h3 class="hit_title">
                       <nuxt-link
-                        :to="`/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?search=${model.searchString}&start=${model.start + index}`"
+                        :to="hitLink(doc, index)"
                         class="main-title">
                         {{ doc["mods.title.main"] }}
                       </nuxt-link>
@@ -173,7 +173,7 @@
 import {LocationQuery} from "vue-router";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
-import {buildSOSUSearchRequestURL, Filters, TranslationMode} from "~/api/SearchHelper";
+import {buildSOSUSearchRequestURL, Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
 
 
 const {$sovietSurvivorsSolrURL} = useNuxtApp();
@@ -203,61 +203,10 @@ const model = reactive({
   }
 });
 
-const modelToQuery = (model: any): any => {
-  const query: any = {
-    q: model.searchString,
-  }
 
-  if (model.start > 0) {
-    query.start = model.start.toString();
-  }
-
-  if (model.filters.genres.length > 0) {
-    query.genres = model.filters.genres.slice();
-  }
-
-  if (model.filters.languages.length > 0) {
-    query.languages = model.filters.languages;
-  }
-
-  if (model.filters.translationMode !== TranslationMode.ALL) {
-    query.translationMode = model.filters.translationMode;
-  }
-
-  return query;
-};
-
-const queryToModel = (query: LocationQuery) => {
-  model.searchString = query.q as string || "*";
-  if (query.start) {
-    model.start = parseInt(query.start as string);
-  } else {
-    model.start = 0;
-  }
-
-  if (query.genres) {
-    if (Array.isArray(query.genres)) {
-      model.filters.genres = query.genres as string[];
-    } else {
-      model.filters.genres = [query.genres as string];
-    }
-  }
-
-  if (query.languages) {
-    if (Array.isArray(query.languages)) {
-      model.filters.languages = query.languages as string[];
-    } else {
-      model.filters.languages = [query.languages as string];
-    }
-  }
-
-  if (query.translationMode) {
-    model.filters.translationMode = query.translationMode as TranslationMode;
-  }
-}
 
 watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
-  queryToModel(newQueryString);
+  queryToModel(newQueryString, model);
   console.log(["searching", newQueryString]);
   await search();
 });
@@ -343,7 +292,14 @@ const changeSearchString = async (event: { searchString: string }) => {
   })
 }
 
-queryToModel(route.query);
+const hitLink = (doc: any, index: number) => {
+  const query = modelToQuery(model);
+  query.start =  model.start + index;
+  const queryStr = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+  return `/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
+}
+
+queryToModel(route.query, model);
 await search();
 
 
