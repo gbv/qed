@@ -198,7 +198,7 @@
       "language": "Language"
     },
     "field": {
-      "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
+      "allMetaHelp": "Searches all metadata for the entered search term",
       "allMeta": "Free search",
       "dateHelp": "",
       "dateRangeLabel": "Date Span",

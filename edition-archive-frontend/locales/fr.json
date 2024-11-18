@@ -117,7 +117,6 @@
       "download": "Télécharger",
       "subject": {
         "topic": "Sujet",
-
         "geographic": "Lieu",
         "coordinates": "Coordonnées",
         "hideMap": "Masquer la carte",
@@ -189,10 +188,16 @@
       "showLess": "Voir moins",
       "showMore": "Voir plus",
       "spurium": "Spurium (†)",
-      "ueberlieferungsform": "Mode de transmission"
+      "ueberlieferungsform": "Mode de transmission",
+      "translationOnly": "traductions uniquement",
+      "originalOnly": "Originaux uniquement",
+      "all": "Tous les",
+      "translationMode": "Afficher les traductions",
+      "genre": "Genre",
+      "language": "Langue"
     },
     "field": {
-      "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
+      "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",
       "allMeta": "Recherche libre",
       "dateHelp": "",
       "dateRangeLabel": "Période",
