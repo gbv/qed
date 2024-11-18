@@ -102,41 +102,44 @@
   },
   "sosu": {
     "metadata": {
-      "counts":  "{start} of {numFound}",
+      "counts":  "{start} de {numFound}",
       "genre": "Genre",
       "language": "Langue",
-      "unknownGenre": "Unknown",
-      "dateIssued": "Date Issued",
-      "typeOfResource": "Type of Resource",
-      "extent": "Extent",
-      "shelfLocator": "Shelf Locator",
+      "unknownGenre": "Inconnu",
+      "dateIssued": "Date de publication",
+      "typeOfResource": "Type de ressource",
+      "extent": "Étendue",
+      "shelfLocator": "Cote",
       "abstract": {
-        "showMore": "Show more",
-        "showLess": "Show less"
+        "showMore": "Afficher plus",
+        "showLess": "Afficher moins"
       },
+      "download": "Télécharger",
       "subject": {
-        "topic": "Topic",
-        "geographic": "Geographic",
-        "coordinates": "Coordinates",
-        "hideMap": "Hide Map",
-        "showMap": "Show Map"
+        "topic": "Sujet",
+
+        "geographic": "Lieu",
+        "coordinates": "Coordonnées",
+        "hideMap": "Masquer la carte",
+        "showMap": "Afficher la carte"
       },
       "related": {
         "original": "Original"
       },
       "name": {
-        "family": "Family Name",
-        "given": "Given Name",
-        "termsOfAddress": "Terms of Address",
-        "date": "Date of Birth/Death",
+
+        "family": "Nom de famille",
+        "given": "Prénom",
+        "termsOfAddress": "Titre",
+        "date": "Date de naissance/décès",
         "affiliation": "Affiliation",
         "role": {
-          "isb": "Issuing Body",
+          "isb": "Organe émetteur",
           "ivr": "Interviewer",
-          "ive": "Interviewee",
-          "aut": "Author",
+          "ive": "Interviewé",
+          "aut": "Auteur",
           "scr": "Scribe",
-          "rcp": "Recipient"
+          "rcp": "Destinataire"
         }
       }
     },
