@@ -123,7 +123,8 @@
         "showMap": "Afficher la carte"
       },
       "related": {
-        "original": "Original"
+        "original": "Base de la traduction",
+        "translation": "Traductions disponibles"
       },
       "name": {
         "family": "Nom de famille",
@@ -139,7 +140,9 @@
           "scr": "Scribe",
           "rcp": "Destinataire"
         }
-      }
+      },
+      "copyright": "Tous droits réservés sur l'image",
+      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2024."
     },
     "mainMenu": {
       "home": "Home",

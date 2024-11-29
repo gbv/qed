@@ -7,6 +7,29 @@
         : {{ mainTitle.subtitle }}
       </template>
     </h2>
+    <div v-if="model.translations?.length > 0">
+      {{ $t("sosu.metadata.related.translation") }}:
+      <span
+        class="sosu-document-translations"
+        v-for="translation in model.translations">
+        <nuxt-link
+          :to="`/soviet-survivors/documents/${getMyCoReIdNumber(translation.id)}`">
+          {{ translation.title }}
+        </nuxt-link>
+      </span>
+    </div>
+
+    <div v-if="relatedItemsOriginal?.length > 0">
+      {{ $t("sosu.metadata.related.original") }}:
+      <span
+        class="sosu-document-original"
+        v-for="relatedItem in relatedItemsOriginal">
+        <nuxt-link
+          :to="`/soviet-survivors/documents/${getMyCoReIdNumber(getAttribute(relatedItem, 'xlink:href')?.value)}`">
+          {{ getTitles(relatedItem)[0].title }}
+        </nuxt-link>
+      </span>
+    </div>
 
     <ul class="nav nav-tabs mt-4">
       <li class="nav-item" v-for="lang in titleAndAbstracts.keys()">
@@ -39,6 +62,10 @@
     </div>
 
     <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no"/>
+
+    <div class="sosu-detail-view__copyrights--images" v-if="model.translations?.length > 0">
+      {{ $t("sosu.metadata.copyright") }}
+    </div>
 
     <div class="metadata mt-3">
       <h3>Metadaten</h3>
@@ -82,6 +109,7 @@
         </template>
       </SovietSurvivorsMetaKeyValue>
 
+      <!--
       <SovietSurvivorsMetaKeyValue v-if="relatedItemsOriginal?.length > 0">
         <template #key>
           {{ $t("sosu.metadata.related.original") }}
@@ -101,7 +129,7 @@
           {{ $t("sosu.metadata.related.translation") }}
         </template>
         <template #value>
-          <span v-for="translation in model.translations">
+          <span v-for="translation in model.translations" class="sosu-document-translations">
             <nuxt-link
               :to="`/soviet-survivors/documents/${getMyCoReIdNumber(translation.id)}`">
               {{ translation.title }}
@@ -109,6 +137,7 @@
           </span>
         </template>
       </SovietSurvivorsMetaKeyValue>
+      -->
 
       <SovietSurvivorsMetaKeyValue v-if="dateIssued?.length > 0">
         <template #key>

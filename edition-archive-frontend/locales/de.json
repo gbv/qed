@@ -123,8 +123,8 @@
         "showMap": "Karte einblenden"
       },
       "related": {
-        "original": "Original",
-        "translation": "Übersetzung"
+        "original": "Original dieser Übersetzung",
+        "translation": "Verfügbare Übersetzungen"
       },
       "name": {
         "family": "Familienname",
@@ -140,7 +140,9 @@
           "scr": "Schreiber",
           "rcp": "Empfänger"
         }
-      }
+      },
+      "copyright": "Alle Rechte am Bild vorbehalten",
+      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2024."
     },
     "mainMenu": {
       "home": "Startseite",

@@ -3,7 +3,8 @@
 
     <template #content>
       <div class="row">
-        <div class="col-12">
+
+        <div class="col-12 sosu-detail-view__navigation">
           <div class="top-nav d-flex row">
             <div class="col-5 text-start">
               <nuxt-link :to="data?.prev?.link"
@@ -25,10 +26,24 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 mt-5">
+
+      <div class="row sosu-detail-view__metadata">
+        <div class="col-12">
           <MODSDocument v-if="data?.xml" :xml="data?.xml" :id="mycoreId"/>
         </div>
+      </div>
+      <div class="row sosu-detail-view__copyrights">
+        <div class="col">
+          {{ $t("sosu.metadata.cite") }}
+        </div>
+
+        <div class="col-auto regest-licence text-end">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="CC BY-SA 4.0" class="no-external-mark">
+              <nuxt-img src="/images/creative-commons.svg" alt="cc" />
+              <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
+              <nuxt-img src="/images/creative-commons-sa.svg" alt="sa" />
+            </a>
+          </div>
       </div>
     </template>
 
