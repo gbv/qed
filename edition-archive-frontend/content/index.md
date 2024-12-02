@@ -50,9 +50,15 @@
   link: soviet-survivors/
   card-class: active
   ---
-  Mit dieser Edition soll die Arbeit der sowjetischen Historiker für Interessierte
-  wieder zugänglich gemacht werden. Sie präsentiert mehr als 700 Interviews mit einem
-  breiten Spektrum.
+  ::::LanguageSection{fallback=en}
+    #de
+    Diese Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
+    Sie macht die Arbeit der sowjetischen Historikerkommission für Interessierte für die breitere Öffentlichkeit
+    zugänglich. Es werden mehr als 700 Dokumente (Interviews, Briefe, Memoiren etc.) präsentiert
+    #en
+    This scholarly edition features some of the earliest recorded voices of Soviet survivors of Nazi occupation.
+    It presents more than 700 documents (interviews, letters, memoirs, etc.) of the Soviet historians to the wider
+    public. 
   :::
 #latour
   :::ContentCard
