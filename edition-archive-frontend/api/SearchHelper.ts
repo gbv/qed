@@ -1,4 +1,4 @@
-import {LocationQuery} from "vue-router";
+import type {LocationQuery} from "vue-router";
 
 export const SoSuFilterParams = [
   "objectKind:mycoreobject",

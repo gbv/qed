@@ -109,6 +109,7 @@
       "dateIssued": "Date Issued",
       "typeOfResource": "Type of Resource",
       "extent": "Extent",
+      "archive": "Archive",
       "shelfLocator": "Shelf Locator",
       "abstract": {
         "showMore": "Show more",

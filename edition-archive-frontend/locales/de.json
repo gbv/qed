@@ -109,6 +109,7 @@
       "dateIssued": "Datum der Veröffentlichung",
       "typeOfResource": "Ressourcentyp",
       "extent": "Umfang",
+      "archive": "Archiv",
       "shelfLocator": "Archivsignatur",
       "download": "Download",
       "abstract": {

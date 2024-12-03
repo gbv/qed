@@ -61,9 +61,9 @@
       </span>
     </div>
 
-    <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no"/>
+    <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
 
-    <div class="sosu-detail-view__copyrights--images" v-if="model.translations?.length > 0">
+    <div class="sosu-detail-view__copyrights--images" v-if="relatedItemsOriginal?.length == 0">
       {{ $t("sosu.metadata.copyright") }}
     </div>
 
@@ -222,6 +222,16 @@
           </client-only>
         </div>
       </template>
+
+      <!-- hier -->
+      <SovietSurvivorsMetaKeyValue v-if="archive">
+        <template #key>
+          {{ $t("sosu.metadata.archive") }}
+        </template>
+        <template #value>
+          <MODSClassification :classId="archive.classId" :categId="archive.categId" />
+        </template>
+      </SovietSurvivorsMetaKeyValue>
 
       <SovietSurvivorsMetaKeyValue v-if="shelfLocator">
         <template #key>
@@ -496,6 +506,20 @@ const topicSubjects = computed(() => {
 const geographicSubjects = computed(() => {
   let subjects = getSubjects(mods.value);
   return subjects.filter(subject => subject.geographic.length > 0 || subject.coordinates.length > 0);
+});
+
+const archive = computed( ()=> {
+  const el = findFirstElement(mods.value, and(byName('mods:classification'), byAttr('authorityURI', 'https://qed.perspectivia.net/soviet-survivors-backend/classifications/sursurv_archives')));
+  if(el == null) {
+    return undefined;
+  }
+  const valueURI = getAttribute(el, 'valueURI')?.value;
+  if(!valueURI) {
+    return undefined;
+  }
+  const categValue = valueURI.substring(valueURI.lastIndexOf("#")+1);
+
+  return {classId: 'sursurv_archives', categId: categValue};
 });
 
 const shelfLocator = computed(() => {

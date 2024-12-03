@@ -109,6 +109,7 @@
       "dateIssued": "Date de publication",
       "typeOfResource": "Type de ressource",
       "extent": "Étendue",
+      "archive": "Archive",
       "shelfLocator": "Cote",
       "abstract": {
         "showMore": "Afficher plus",
