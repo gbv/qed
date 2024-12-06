@@ -199,6 +199,25 @@
             </ol>
           </template>
         </SovietSurvivorsMetaKeyValue>
+
+        <SovietSurvivorsMetaKeyValue v-if="creationDate">
+          <template #key>
+            {{ $t("sosu.metadata.creationDate") }}
+          </template>
+          <template #value>
+            {{ creationDate }}
+          </template>
+        </SovietSurvivorsMetaKeyValue>
+
+        <SovietSurvivorsMetaKeyValue v-if="creationPlace">
+          <template #key>
+            {{ $t("sosu.metadata.creationPlace") }}
+          </template>
+          <template #value>
+            {{ creationPlace }}
+          </template>
+        </SovietSurvivorsMetaKeyValue>
+
         <SovietSurvivorsMetaKeyValue v-if="geoSubject.coordinates.length>0">
           <template #key>
             {{ $t("sosu.metadata.subject.coordinates") }}
@@ -538,6 +557,21 @@ const genres = computed(() => {
   return getGenre(mods.value);
 });
 
+const creationPlace = computed(() => {
+  const originInfo = findFirstElement(mods.value, and(byName("mods:originInfo"), byAttr("eventType", "creation")));
+  if (originInfo == null) {
+    return null;
+  }
+  return flattenElement(findFirstElement(originInfo, byName("mods:placeTerm")));
+});
+
+const creationDate = computed(() => {
+  const originInfo = findFirstElement(mods.value, and(byName("mods:originInfo"), byAttr("eventType", "creation")));
+  if (originInfo == null) {
+    return null;
+  }
+  return flattenElement(findFirstElement(originInfo, byName("mods:dateCreated")));
+});
 
 const viewerLink = computed(() => {
   let firstDerivate = findFirstElement(props.xml, byName("derobject"));

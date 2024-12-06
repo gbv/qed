@@ -123,6 +123,8 @@
         "hideMap": "Masquer la carte",
         "showMap": "Afficher la carte"
       },
+      "creationDate": "Date de création",
+      "creationPlace": "Lieu de création",
       "related": {
         "original": "Original de cette traduction",
         "translation": "Traductions disponibles"
