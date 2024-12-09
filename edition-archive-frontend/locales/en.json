@@ -116,6 +116,7 @@
         "showLess": "Show less"
       },
       "download": "Download",
+      "downloadText": "Transcript",
       "subject": {
         "topic": "Topic",
         "geographic": "Geographic",
@@ -159,10 +160,12 @@
       "openSubMenu": "Open page menu",
       "intro": "Introduction",
       "search": "Search",
-      "sovietHistorians": "The Soviet Historians",
+      "sovietHistorians": "Тhe Historical Commission",
+      "learningEnvironment": "Learning Environment",
+      "furtherLiterature": "Further Literature",
       "team": "Team",
       "userGuide": "User Guide",
-      "warOfAnnihilation": "Germany’s War of Annihilation"
+      "warOfAnnihilation": "Germany’s War of Extermination"
     }
   },
   "search": {

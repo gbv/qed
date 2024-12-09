@@ -178,7 +178,10 @@
         <template #value>
           <ol class="subjectTopicList">
             <li class="subjectTopic" v-for="topic in topicSubject.topic">
-              {{ topic }}
+              <nuxt-link
+                :to="`/soviet-survivors/search?q=%22${topic}%22`">
+                {{ topic }}
+              </nuxt-link>
             </li>
           </ol>
 
@@ -268,7 +271,7 @@
         </template>
         <template #value>
           <a :href="downloadLink" target="_blank">
-            {{ $t("sosu.metadata.download") }}
+            <span class="bi bi-file-earmark-zip" />{{ $t("sosu.metadata.downloadText") }}
           </a>
         </template>
       </SovietSurvivorsMetaKeyValue>

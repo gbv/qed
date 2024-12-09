@@ -112,6 +112,7 @@
       "archive": "Archiv",
       "shelfLocator": "Archivsignatur",
       "download": "Download",
+      "downloadText": "Transkript",
       "abstract": {
         "showMore": "Mehr anzeigen",
         "showLess": "Weniger anzeigen"
@@ -160,6 +161,8 @@
       "intro": "Einleitung",
       "search": "Suche",
       "sovietHistorians": "Die Historikerkommission",
+      "learningEnvironment": "Lernumgebung",
+      "furtherLiterature": "Weiterführende Literatur",
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Deutscher Vernichtungskrieg"
