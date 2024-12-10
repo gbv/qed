@@ -10,6 +10,12 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/team">
+            {{ $t('sosu.subMenu.team') }}
+
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/annihilation">
             {{ $t('sosu.subMenu.warOfAnnihilation') }}
 
@@ -28,8 +34,8 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/team">
-            {{ $t('sosu.subMenu.team') }}
+          <nuxt-link class="nav-link" active-class="active" href="/soviet-survivors/about/further-literature">
+            {{ $t('sosu.subMenu.furtherLiterature') }}
 
           </nuxt-link>
         </li>
