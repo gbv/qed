@@ -84,8 +84,8 @@ const editorOptions: Ref<any> = ref({
   "setup": setup,
   "external_plugins": {} as Record<string, string>,
   "custom_elements": "~gallia-pontificia-online-regest-bibl",
-  "extended_valid_elements": "gallia-pontificia-online-editor-link[type|refe]",
-  "content_style": "gallia-pontificia-online-editor-link { display: inline-block; color: #0000ff; }",
+  "extended_valid_elements": "gallia-pontificia-online-editor-link[type|refe],change-language[lang]",
+  "content_style": "gallia-pontificia-online-editor-link { display: inline-block; color: #0000ff; } change-language { display: inline-block; color: #0000ff; }",
   "save_enablewhendirty": false
 });
 

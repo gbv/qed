@@ -104,11 +104,15 @@
     "metadata": {
       "counts":  "{start} von {numFound}",
       "genre": "Genre",
+      "language": "Sprache",
       "unknownGenre": "Unbekannt",
       "dateIssued": "Datum der Veröffentlichung",
       "typeOfResource": "Ressourcentyp",
       "extent": "Umfang",
+      "archive": "Archiv",
       "shelfLocator": "Archivsignatur",
+      "download": "Download",
+      "downloadText": "Transkript",
       "abstract": {
         "showMore": "Mehr anzeigen",
         "showLess": "Weniger anzeigen"
@@ -120,8 +124,11 @@
         "hideMap": "Karte ausblenden",
         "showMap": "Karte einblenden"
       },
+      "creationDate": "Erstellungsdatum",
+      "creationPlace": "Erstellungsort",
       "related": {
-        "original": "Original"
+        "original": "Original dieser Übersetzung",
+        "translation": "Verfügbare Übersetzungen"
       },
       "name": {
         "family": "Familienname",
@@ -137,7 +144,9 @@
           "scr": "Schreiber",
           "rcp": "Empfänger"
         }
-      }
+      },
+      "copyright": "© Copyright 2024 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
+      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2024."
     },
     "mainMenu": {
       "home": "Startseite",
@@ -152,6 +161,8 @@
       "intro": "Einleitung",
       "search": "Suche",
       "sovietHistorians": "Die Historikerkommission",
+      "learningEnvironment": "Lernumgebung",
+      "furtherLiterature": "Weiterführende Literatur",
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Deutscher Vernichtungskrieg"
@@ -186,7 +197,13 @@
       "showLess": "Weniger anzeigen",
       "showMore": "Mehr anzeigen",
       "spurium": "Spurium (†)",
-      "ueberlieferungsform": "Überlieferungsform"
+      "ueberlieferungsform": "Überlieferungsform",
+      "translationOnly": "Nur Übersetzungen",
+      "originalOnly": "Nur Originale",
+      "all": "Alle",
+      "translationMode": "Übersetzungen anzeigen",
+      "genre": "Dokumententyp",
+      "language": "Sprache"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",

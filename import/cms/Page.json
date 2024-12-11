@@ -42,12 +42,6 @@
     "project": "soviet-survivors"
   },
   {
-    "id": 8,
-    "status": "published",
-    "slug": "/soviet-survivors/about/",
-    "project": "soviet-survivors"
-  },
-  {
     "id": 9,
     "status": "published",
     "slug": "/soviet-survivors/about/annihilation",
@@ -82,5 +76,23 @@
     "status": "published",
     "slug": "/gallia-pontificia-online/regesten/reims1/datenexport",
     "project": "gpo"
+  },
+  {
+    "id": 16,
+    "status": "published",
+    "slug": "/soviet-survivors/about/",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 17,
+    "status": "published",
+    "slug": "/soviet-survivors/about/learning-environment",
+    "project": "soviet-survivors"
+  },
+  {
+    "id": 18,
+    "status": "published",
+    "slug": "/soviet-survivors/about/further-literature",
+    "project": "soviet-survivors"
   }
 ]

@@ -1,13 +1,20 @@
 <template>
   <div>
+    <a href="#"
+      v-if="namePartGiven || namePartFamily || date || affiliation"
+      :class="`bi bi-${icon} bi-interactive`"
+      v-on:click.prevent="model.show=!model.show"> </a>
+    <span
+      v-else
+      :class="`bi bi-${icon}`"
+      v-on:click.prevent="model.show=!model.show" > </span>
+
     <span v-if="$props.name.displayForm != null">
       {{ $props.name.displayForm }}
     </span>
     <span v-else>
       {{ $props.name.nameParts.join(", ") }}
     </span>
-    <span :class="`bi bi-${icon}`" v-on:click="model.show=!model.show"> </span>
-
 
     <div v-if="model.show && (namePartGiven || namePartFamily || date || affiliation)" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>

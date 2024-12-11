@@ -4,10 +4,11 @@
 
 case $1 in
 backend)
-    docker-compose up --build backend db solr apache
+    (cd edition-archive-backend && mvn clean install) &&
+    docker compose up --build backend db solr apache
   ;;
 frontend)
-    docker-compose up --build frontend
+    docker compose up --build frontend
   ;;
 dev-frontend)
   (
@@ -15,7 +16,8 @@ dev-frontend)
   )
   ;;
 all)
-    docker-compose up --build
+    (cd edition-archive-backend && mvn clean install) &&
+    docker compose up --build
   ;;
 *) ;;
 esac

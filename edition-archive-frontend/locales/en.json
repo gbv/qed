@@ -104,15 +104,19 @@
     "metadata": {
       "counts":  "{start} of {numFound}",
       "genre": "Genre",
+      "language": "Language",
       "unknownGenre": "Unknown",
       "dateIssued": "Date Issued",
       "typeOfResource": "Type of Resource",
       "extent": "Extent",
+      "archive": "Archive",
       "shelfLocator": "Shelf Locator",
       "abstract": {
         "showMore": "Show more",
         "showLess": "Show less"
       },
+      "download": "Download",
+      "downloadText": "Transcript",
       "subject": {
         "topic": "Topic",
         "geographic": "Geographic",
@@ -120,8 +124,11 @@
         "hideMap": "Hide Map",
         "showMap": "Show Map"
       },
+      "creationDate": "Creation Date",
+      "creationPlace": "Creation Place",
       "related": {
-        "original": "Original"
+        "original": "Original of this translation",
+        "translation": "Available translations"
       },
       "name": {
         "family": "Family Name",
@@ -137,7 +144,9 @@
           "scr": "Scribe",
           "rcp": "Recipient"
         }
-      }
+      },
+      "copyright": "© Copyright 2024 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
+      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2024."
     },
     "mainMenu": {
       "home": "Home",
@@ -151,10 +160,12 @@
       "openSubMenu": "Open page menu",
       "intro": "Introduction",
       "search": "Search",
-      "sovietHistorians": "The Soviet Historians",
+      "sovietHistorians": "Тhe Historical Commission",
+      "learningEnvironment": "Learning Environment",
+      "furtherLiterature": "Further Literature",
       "team": "Team",
       "userGuide": "User Guide",
-      "warOfAnnihilation": "Germany’s War of Annihilation"
+      "warOfAnnihilation": "Germany’s War of Extermination"
     }
   },
   "search": {
@@ -186,10 +197,16 @@
       "showLess": "Show less",
       "showMore": "Show more",
       "spurium": "Spurium (†)",
-      "ueberlieferungsform": "Form of tradition"
+      "ueberlieferungsform": "Form of tradition",
+      "translationOnly": "Only translations",
+      "originalOnly": "Only original",
+      "all": "All",
+      "translationMode": "Show translations",
+      "genre": "Document type",
+      "language": "Language"
     },
     "field": {
-      "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
+      "allMetaHelp": "Searches all metadata for the entered search term",
       "allMeta": "Free search",
       "dateHelp": "",
       "dateRangeLabel": "Date Span",

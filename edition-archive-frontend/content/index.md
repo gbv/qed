@@ -48,10 +48,18 @@
   img-href: /images/card-back-sovjet.jpg
   card-title: Sowjetische Zeitzeugen
   link: soviet-survivors/
-  card-class: not-active
+  card-class: active
   ---
-  Diese Website versammelt die ersten aufgezeichneten Stimmen
-  von sowjetischen Überlebenden der NS-Herrschaft.
+    ::::LanguageSection{fallback=en}
+    #de
+    Diese Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
+    Sie macht die Arbeit der sowjetischen Historikerkommission für die breitere Öffentlichkeit zugänglich. Es
+    werden mehr als 700 Dokumente (Interviews, Briefe, Memoiren etc.) präsentiert.
+    #en
+    This scholarly edition features some of the earliest recorded voices of Soviet survivors of Nazi occupation.
+    It presents more than 700 documents (interviews, letters, memoirs, etc.) of the Soviet historians to the wider
+    public.
+    ::::
   :::
 #latour
   :::ContentCard

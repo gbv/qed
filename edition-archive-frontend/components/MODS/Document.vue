@@ -1,13 +1,49 @@
 <template>
   <div>
-    <h2 v-for="title in titles" :lang="title.language">
-      {{ title.title }}
-      <template v-if="title.subtitle">
-        : {{ title.subtitle }}
+
+    <h2 v-if="mainTitle">
+      {{ mainTitle.title }}
+      <template v-if="mainTitle.subtitle">
+        : {{ mainTitle.subtitle }}
       </template>
     </h2>
+    <div v-if="model.translations?.length > 0">
+      {{ $t("sosu.metadata.related.translation") }}:
+      <span
+        class="sosu-document-translations"
+        v-for="translation in model.translations">
+        <nuxt-link
+          :to="`/soviet-survivors/documents/${getMyCoReIdNumber(translation.id)}`">
+          {{ translation.title }}
+        </nuxt-link>
+      </span>
+    </div>
 
-    <div class="abstract" v-if="fullAbstract?.length">
+    <div v-if="relatedItemsOriginal?.length > 0">
+      {{ $t("sosu.metadata.related.original") }}:
+      <span
+        class="sosu-document-original"
+        v-for="relatedItem in relatedItemsOriginal">
+        <nuxt-link
+          :to="`/soviet-survivors/documents/${getMyCoReIdNumber(getAttribute(relatedItem, 'xlink:href')?.value)}`">
+          {{ getTitles(relatedItem)[0].title }}
+        </nuxt-link>
+      </span>
+    </div>
+
+    <ul class="nav nav-tabs mt-4">
+      <li class="nav-item" v-for="lang in titleAndAbstracts.keys()">
+        <a :href="`#${lang}`" :class="`nav-link${currentAbstractLanguage == lang ? ' active' : ''}`"
+           v-on:click.prevent="model.currentAbstractLang = lang">
+          <MODSClassification class-id="rfc5646" :categ-id="lang"/>
+        </a>
+      </li>
+    </ul>
+
+
+    <h2 class="mt-4" v-if="mainTitle?.title != currentTitle" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
+
+    <div class="abstract" :class="mainTitle?.title == currentTitle? 'mt-4' : ''" v-if="fullAbstract?.length">
       <span v-if="fullAbstract?.length < 200">
         {{ fullAbstract }}
       </span>
@@ -25,7 +61,11 @@
       </span>
     </div>
 
-    <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no"/>
+    <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
+
+    <div class="sosu-detail-view__copyrights--images" v-if="viewerLink">
+      {{ $t("sosu.metadata.copyright") }}
+    </div>
 
     <div class="metadata mt-3">
       <h3>Metadaten</h3>
@@ -38,6 +78,19 @@
           <ol class="genreList">
             <li class="genre" v-for="genre in genres">
               <MODSClassification :classId="genre.classId" :categId="genre.categId" />
+            </li>
+          </ol>
+        </template>
+      </SovietSurvivorsMetaKeyValue>
+
+      <SovietSurvivorsMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
+        <template #key>
+          {{ $t("sosu.metadata.language") }}
+        </template>
+        <template #value>
+          <ol class="languageList">
+            <li class="language" v-for="language in documentLanguages">
+              <MODSClassification class-id="rfc5646" :categ-id="language"/>
             </li>
           </ol>
         </template>
@@ -56,6 +109,7 @@
         </template>
       </SovietSurvivorsMetaKeyValue>
 
+      <!--
       <SovietSurvivorsMetaKeyValue v-if="relatedItemsOriginal?.length > 0">
         <template #key>
           {{ $t("sosu.metadata.related.original") }}
@@ -69,6 +123,21 @@
           </span>
         </template>
       </SovietSurvivorsMetaKeyValue>
+
+      <SovietSurvivorsMetaKeyValue v-if="model.translations?.length > 0">
+        <template #key>
+          {{ $t("sosu.metadata.related.translation") }}
+        </template>
+        <template #value>
+          <span v-for="translation in model.translations" class="sosu-document-translations">
+            <nuxt-link
+              :to="`/soviet-survivors/documents/${getMyCoReIdNumber(translation.id)}`">
+              {{ translation.title }}
+            </nuxt-link>
+          </span>
+        </template>
+      </SovietSurvivorsMetaKeyValue>
+      -->
 
       <SovietSurvivorsMetaKeyValue v-if="dateIssued?.length > 0">
         <template #key>
@@ -109,7 +178,10 @@
         <template #value>
           <ol class="subjectTopicList">
             <li class="subjectTopic" v-for="topic in topicSubject.topic">
-              {{ topic }}
+              <nuxt-link
+                :to="`/soviet-survivors/search?q=%22${topic}%22`">
+                {{ topic }}
+              </nuxt-link>
             </li>
           </ol>
 
@@ -130,6 +202,25 @@
             </ol>
           </template>
         </SovietSurvivorsMetaKeyValue>
+
+        <SovietSurvivorsMetaKeyValue v-if="creationDate">
+          <template #key>
+            {{ $t("sosu.metadata.creationDate") }}
+          </template>
+          <template #value>
+            {{ creationDate }}
+          </template>
+        </SovietSurvivorsMetaKeyValue>
+
+        <SovietSurvivorsMetaKeyValue v-if="creationPlace">
+          <template #key>
+            {{ $t("sosu.metadata.creationPlace") }}
+          </template>
+          <template #value>
+            {{ creationPlace }}
+          </template>
+        </SovietSurvivorsMetaKeyValue>
+
         <SovietSurvivorsMetaKeyValue v-if="geoSubject.coordinates.length>0">
           <template #key>
             {{ $t("sosu.metadata.subject.coordinates") }}
@@ -154,12 +245,34 @@
         </div>
       </template>
 
+      <!-- hier -->
+      <SovietSurvivorsMetaKeyValue v-if="archive">
+        <template #key>
+          {{ $t("sosu.metadata.archive") }}
+        </template>
+        <template #value>
+          <MODSClassification :classId="archive.classId" :categId="archive.categId" />
+        </template>
+      </SovietSurvivorsMetaKeyValue>
+
       <SovietSurvivorsMetaKeyValue v-if="shelfLocator">
         <template #key>
           {{ $t("sosu.metadata.shelfLocator") }}
         </template>
         <template #value>
           {{ shelfLocator}}
+        </template>
+      </SovietSurvivorsMetaKeyValue>
+
+
+      <SovietSurvivorsMetaKeyValue v-if="downloadLink">
+        <template #key>
+          {{ $t("sosu.metadata.download") }}
+        </template>
+        <template #value>
+          <a :href="downloadLink" target="_blank">
+            <span class="bi bi-file-earmark-zip" />{{ $t("sosu.metadata.downloadText") }}
+          </a>
         </template>
       </SovietSurvivorsMetaKeyValue>
     </div>
@@ -176,19 +289,53 @@ import {
   findFirstElement,
   flattenElement,
   getAttribute,
-  XElement, XNode
+  XElement,
+  XNode
 } from "@mycore-org/xml-json-api";
 
-import {getGenre, getNames, getSubjects, getTitles, Name} from "~/api/Mods";
+import type {Name} from "~/api/Mods";
+import {getGenre, getNames, getSubjects, getTitles} from "~/api/Mods";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
-import Classification from "~/components/MODS/Classification.vue";
 import {trimString} from "~/api/Utils";
+import {SoSuFilterParams} from "~/api/SearchHelper";
 
 
-const {$sovietSurviorsURL} = useNuxtApp();
+const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
 const sovietSurviorsURL = $sovietSurviorsURL();
+const sovietSurvivorsSolrURL = $sovietSurvivorsSolrURL();
 
-const model = reactive({showCoordinates: [] as string[], showFullAbstract: false as boolean});
+
+interface Translation {
+  title: string;
+  id: string;
+}
+
+const model = reactive({
+    showCoordinates: [] as string[],
+    showFullAbstract: false as boolean,
+    currentAbstractLang: null as string | null,
+    translations: [] as Translation[]
+  }
+);
+
+const searchOriginals = async () => {
+  const json = await fetch(`${sovietSurvivorsSolrURL}mir/select?q=mods.relatedItem.original:${props.id}&wt=json&fq=${SoSuFilterParams.join("%20AND%20")}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+    }
+  }).then((resp) => resp.json());
+
+  const translations = [] as Translation[];
+
+  for (const doc of json?.response?.docs) {
+    translations.push({id: doc["id"], title: doc["mods.title.main"]});
+  }
+
+  return translations;
+};
+
+model.translations = await searchOriginals();
 
 const mapVisible = (coord: string) => {
   return model.showCoordinates.indexOf(coord) > -1;
@@ -203,7 +350,8 @@ const toggleShowMap = (coord: string) => {
 }
 
 const props = defineProps<{
-  xml: XElement
+  xml: XElement,
+  id: string
 }>()
 
 
@@ -211,20 +359,106 @@ const mods = computed(() => {
   return findFirstElement(props.xml, byName("mods:mods")) as XElement;
 });
 
-const titles = computed(() => {
-  return getTitles(mods.value);
+interface TitleAbstractSubtitle {
+  title?: string|null;
+  subtitle?: string|null;
+  abstract?: string|null;
+}
+
+const mainTitle = computed(() => {
+  return getTitles(mods.value).find((title) => !title.type);
 });
 
+const titleAndAbstracts = computed(() => {
+  const abstracts = findElement(mods.value, and(byName("mods:abstract"), (el: XNode) => !byAttr("altFormat")(el)));
+  const map = new Map<string, TitleAbstractSubtitle>();
 
+  abstracts.forEach((abstract => {
+    const lang = getAttribute(abstract, "xml:lang")?.value;
+    if (lang) {
+      if (map.has(lang)) {
+        const obj = map.get(lang) as TitleAbstractSubtitle;
+        obj.abstract = flattenElement(abstract);
+      } else {
+        map.set(lang, {abstract: flattenElement(abstract)});
+      }
+    }
+  }));
+
+  getTitles(mods.value).forEach((title) => {
+    const lang = title.language;
+    if (lang) {
+      if (map.has(lang)) {
+        const obj = map.get(lang) as TitleAbstractSubtitle;
+        obj.title = title.title;
+        obj.subtitle = title.subtitle;
+      } else {
+        map.set(lang, {
+          title: title.title,
+          subtitle: title.subtitle
+        });
+      }
+    }
+  });
+
+  return map;
+})
+
+const documentLanguages = computed(() => {
+  const modsLanguage = findElement(mods.value, byName("mods:language"));
+  const langs = [] as string[];
+  for (const lang of modsLanguage) {
+    const langTerm = findElement(lang, byName("mods:languageTerm"));
+    if (langTerm != null) {
+      langTerm.forEach((term) => {
+        const lang = flattenElement(term);
+        if (lang != null) {
+          langs.push(lang);
+        }
+      });
+    }
+  }
+  return langs;
+});
+
+const currentAbstractLanguage = computed(() => {
+  if (model.currentAbstractLang) {
+    return model.currentAbstractLang;
+  }
+
+  const avail = documentLanguages.value
+    .filter((lang) => titleAndAbstracts.value.has(lang));
+
+  if (avail.length > 0) {
+    return avail[0];
+  }
+
+  return titleAndAbstracts.value.keys().next().value;
+
+});
+
+const currentTitle = computed(() => {
+  return titleAndAbstracts.value.get(currentAbstractLanguage.value)?.title;
+});
+
+const currentAbstract = computed(() => {
+  return titleAndAbstracts.value.get(currentAbstractLanguage.value)?.abstract;
+});
 
 const fullAbstract = computed(() => {
-  return flattenElement(findFirstElement(mods.value, and(byName("mods:abstract"), (el:XNode) => !byAttr("altFormat")(el)))) || undefined;
+  return currentAbstract.value || "";
 });
 
 const excerptLength = 200;
+
 const shortAbstract = computed(() => {
-  return trimString(fullAbstract.value || null, excerptLength);
+  const abstract = currentAbstract.value;
+  if (abstract) {
+    return trimString(currentAbstract.value, excerptLength);
+  }
+  return "";
 });
+
 
 const names = computed(() => {
   return getNames(mods.value);
@@ -296,15 +530,51 @@ const geographicSubjects = computed(() => {
   return subjects.filter(subject => subject.geographic.length > 0 || subject.coordinates.length > 0);
 });
 
+const archive = computed( ()=> {
+  const el = findFirstElement(mods.value, and(byName('mods:classification'), byAttr('authorityURI', 'https://qed.perspectivia.net/soviet-survivors-backend/classifications/sursurv_archives')));
+  if(el == null) {
+    return undefined;
+  }
+  const valueURI = getAttribute(el, 'valueURI')?.value;
+  if(!valueURI) {
+    return undefined;
+  }
+  const categValue = valueURI.substring(valueURI.lastIndexOf("#")+1);
+
+  return {classId: 'sursurv_archives', categId: categValue};
+});
+
 const shelfLocator = computed(() => {
   return flattenElement(findFirstElement(mods.value, byName("mods:shelfLocator")));
 });
 
-const genres = computed(() => {
-  return getGenre(mods.value);
+const downloadLink = computed(() => {
+  if (findFirstElement(props.xml, byName("derobject")) != null) {
+    return `${sovietSurviorsURL}servlets/SovietSurvivorsExportServlet/?id=${props.id}`;
+  } else {
+    return undefined;
+  }
 })
 
+const genres = computed(() => {
+  return getGenre(mods.value);
+});
 
+const creationPlace = computed(() => {
+  const originInfo = findFirstElement(mods.value, and(byName("mods:originInfo"), byAttr("eventType", "creation")));
+  if (originInfo == null) {
+    return null;
+  }
+  return flattenElement(findFirstElement(originInfo, byName("mods:placeTerm")));
+});
+
+const creationDate = computed(() => {
+  const originInfo = findFirstElement(mods.value, and(byName("mods:originInfo"), byAttr("eventType", "creation")));
+  if (originInfo == null) {
+    return null;
+  }
+  return flattenElement(findFirstElement(originInfo, byName("mods:dateCreated")));
+});
 
 const viewerLink = computed(() => {
   let firstDerivate = findFirstElement(props.xml, byName("derobject"));
@@ -327,7 +597,7 @@ const viewerLink = computed(() => {
     return undefined;
   }
 
-  return sovietSurviorsURL + "rsc/viewer/" + href.value + "/" + maindoc + "&embedded=true&XSL.Style=frame";
+  return sovietSurviorsURL + "rsc/viewer/" + href.value + "/" + maindoc ;
 
 });
 
@@ -344,7 +614,7 @@ const viewerLink = computed(() => {
 }
 
 /* display topic list elements as normal text */
-.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li {
+.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li {
   list-style-type: none;
   display: block;
 }
@@ -352,7 +622,7 @@ const viewerLink = computed(() => {
 
 
 /* remove padding and margin from list elements */
-.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList {
+.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList {
   padding: 0;
   margin: 0;
 }

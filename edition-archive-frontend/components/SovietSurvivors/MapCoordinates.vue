@@ -19,6 +19,11 @@
       <ol-source-vector>
         <ol-feature>
           <ol-geom-point :coordinates="center" />
+          <ol-style>
+            <ol-style-circle :radius="6">
+              <ol-style-fill color="rgb(0, 105, 120)"></ol-style-fill>
+            </ol-style-circle>
+          </ol-style>
         </ol-feature>
       </ol-source-vector>
     </ol-vector-layer>
