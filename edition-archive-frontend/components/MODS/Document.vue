@@ -63,7 +63,7 @@
 
     <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
 
-    <div class="sosu-detail-view__copyrights--images" v-if="relatedItemsOriginal?.length == 0">
+    <div class="sosu-detail-view__copyrights--images" v-if="viewerLink">
       {{ $t("sosu.metadata.copyright") }}
     </div>
 
