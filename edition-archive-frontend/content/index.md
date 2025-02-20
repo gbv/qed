@@ -38,9 +38,19 @@
   link: http://qed.perspectivia.net/index.php?id=593
   card-class: not-active
   ---
-  This special issue is conceived within the framework of a German-Russian research project “The Languages of
-  Diplomacy in Russia in the Eighteenth Century in the European Context”
-  (2022-2024).
+    ::::LanguageSection{fallback=en}
+    #de
+    Die digitale Edition wird im Rahmen des Forschungsprojekts „Die Sprachen der Diplomatie in Russland im
+    achtzehnten Jahrhundert im europäischen Kontext“ erstellt, das von der Deutschen Forschungsgemeinschaft
+    gefördert wird (2022–2026).
+    #en
+    The digital edition is prepared as part of the research project “The Languages of Diplomacy in Russia in
+    the Eighteenth Century in the European Context” funded by the German Research Foundation (2022-2026).
+    #fr
+    L’édition numérique est élaborée dans le cadre du projet de recherche « Les langues de la diplomatie en
+    Russie au XVIIIe siècle dans le contexte européen », financé par la Fondation allemande pour la recherche
+    (2022-2026).
+    ::::
   :::
 #sovs
   :::ContentCard
