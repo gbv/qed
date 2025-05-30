@@ -120,7 +120,7 @@
       "subject": {
         "topic": "Schlagwörter",
         "geographic": "Orte",
-        "coordinates": "Koordinaten",
+        "coordinates": "Entstehungsort des Dokuments",
         "hideMap": "Karte ausblenden",
         "showMap": "Karte einblenden"
       },
@@ -145,14 +145,13 @@
           "rcp": "Empfänger"
         }
       },
-      "copyright": "© Copyright 2024 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
-      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2024."
+      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
+      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     },
     "mainMenu": {
       "home": "Startseite",
       "about": "Über",
-      "documents": "Dokumente",
-      "search": "Suche",
+      "search": "Dokumente",
       "contact": "Kontakt"
     },
     "subMenu": {

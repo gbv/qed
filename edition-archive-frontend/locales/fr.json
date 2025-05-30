@@ -120,7 +120,7 @@
       "subject": {
         "topic": "Sujet",
         "geographic": "Lieu",
-        "coordinates": "Coordonnées",
+        "coordinates": "Lieu d’origine du document",
         "hideMap": "Masquer la carte",
         "showMap": "Afficher la carte"
       },
@@ -145,14 +145,13 @@
           "rcp": "Destinataire"
         }
       },
-      "copyright": "© Copyright 2024 - Toutes les images sont protégées par des droits d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
-      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2024."
+      "copyright": "© Copyright 2025 - Toutes les images sont protégées par des droits d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
+      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     },
     "mainMenu": {
       "home": "Home",
       "about": "À propos",
-      "documents": "Documents",
-      "search": "Recherche",
+      "search": "Documents",
       "contact": "Contact"
     },
     "subMenu": {
