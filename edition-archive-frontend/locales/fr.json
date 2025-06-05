@@ -142,7 +142,8 @@
           "ive": "Interviewé",
           "aut": "Auteur",
           "scr": "Scribe",
-          "rcp": "Destinataire"
+          "rcp": "Destinataire",
+          "trl": "Traducteur"
         }
       },
       "copyright": "© Copyright 2025 - Toutes les images sont protégées par des droits d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",

@@ -142,7 +142,8 @@
           "ive": "Interviewee",
           "aut": "Author",
           "scr": "Scribe",
-          "rcp": "Recipient"
+          "rcp": "Recipient",
+          "trl": "Translator"
         }
       },
       "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
