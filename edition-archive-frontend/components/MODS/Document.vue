@@ -311,7 +311,7 @@ interface Translation {
 }
 
 const model = reactive({
-    showCoordinates: [] as string[],
+    hideCoordinates: [] as string[],
     showFullAbstract: false as boolean,
     currentAbstractLang: null as string | null,
     translations: [] as Translation[]
@@ -338,14 +338,14 @@ const searchOriginals = async () => {
 model.translations = await searchOriginals();
 
 const mapVisible = (coord: string) => {
-  return model.showCoordinates.indexOf(coord) > -1;
+  return model.hideCoordinates.indexOf(coord) == -1;
 }
 
 const toggleShowMap = (coord: string) => {
-  if (model.showCoordinates.indexOf(coord) > -1) {
-    model.showCoordinates.splice(model.showCoordinates.indexOf(coord), 1)
+  if (model.hideCoordinates.indexOf(coord) > -1) {
+    model.hideCoordinates.splice(model.hideCoordinates.indexOf(coord), 1)
   } else {
-    model.showCoordinates.push(coord);
+    model.hideCoordinates.push(coord);
   }
 }
 

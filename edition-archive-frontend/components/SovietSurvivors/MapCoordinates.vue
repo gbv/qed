@@ -33,6 +33,7 @@
 
 <script setup lang="ts">
 
+import {transform} from 'ol/proj';
 
 
 const props = defineProps<{
@@ -41,12 +42,13 @@ const props = defineProps<{
 
 const center = computed(() => {
   const coordinates = props.coordinates.split(" ");
-  return [parseFloat(coordinates[0]), parseFloat(coordinates[1])];
+
+  return transform([parseFloat(coordinates[0]), parseFloat(coordinates[1])], 'EPSG:4326', 'EPSG:3857');
 });
 
 
 const model = reactive({
-  projection: "EPSG:4326",
+  projection: "EPSG:3857",
   zoom: 8,
   rotation: 0
 });
