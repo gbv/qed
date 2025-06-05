@@ -597,7 +597,7 @@ const viewerLink = computed(() => {
     return undefined;
   }
 
-  return sovietSurviorsURL + "rsc/viewer/" + href.value + "/" + maindoc ;
+  return sovietSurviorsURL + "rsc/viewer/" + href.value + "/" + maindoc +"?frame=true&embedded=true";
 
 });
 
