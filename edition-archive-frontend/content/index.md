@@ -30,6 +30,48 @@
     III (1198–1216), destinés à des églises françaises.
     ::::
   :::
+#sovs
+  :::ContentCard
+  ---
+  img-href: /images/card-back-sovjet.jpg
+  card-title: Sowjetische Zeitzeugen
+  link: soviet-survivors/
+  card-class: active
+  ---
+    ::::LanguageSection{fallback=en}
+    #de
+    Diese Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
+    Sie macht die Arbeit der sowjetischen Historikerkommission für die breitere Öffentlichkeit zugänglich. Es
+    werden mehr als 700 Dokumente (Interviews, Briefe, Memoiren etc.) präsentiert.
+    #en
+    This scholarly edition features some of the earliest recorded voices of Soviet survivors of Nazi occupation.
+    It presents more than 700 documents (interviews, letters, memoirs, etc.) of the Soviet historians to the wider
+    public.
+    ::::
+  :::
+#gazin
+  :::ContentCard
+  ---
+  img-href: /images/card-back-gazin.jpg
+  card-title: "Dengbêj Gazin: Songs of a Kurdish Woman"
+  link: gazin/
+  card-class: not-active
+  ---
+    ::::LanguageSection{fallback=de}
+    #de
+    <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
+    Eine kritische Edition von Liedern aus dem Repertoire der kurdischen Dengbêj-Sängerin
+    Gazin (1959-2018) in Kurmanji mit türkischen Übersetzungen.
+    #en
+    <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
+    A critical edition of songs from the repertoire of the Kurdish singer Dengbêj Gazin
+    (1959-2018) in Kurmanji with Turkish translations.
+    #fr
+    <!-- Dengbêj Gazin : les chansons d'une kurde -->
+    Une édition critique de chansons du répertoire de la chanteuse kurde Dengbêj Gazin
+    1959-2018) en kurmanji avec des traductions en turc.
+    ::::
+  :::
 #lod
   :::ContentCard
   ---
@@ -52,25 +94,6 @@
     (2022-2026).
     ::::
   :::
-#sovs
-  :::ContentCard
-  ---
-  img-href: /images/card-back-sovjet.jpg
-  card-title: Sowjetische Zeitzeugen
-  link: soviet-survivors/
-  card-class: active
-  ---
-    ::::LanguageSection{fallback=en}
-    #de
-    Diese Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
-    Sie macht die Arbeit der sowjetischen Historikerkommission für die breitere Öffentlichkeit zugänglich. Es
-    werden mehr als 700 Dokumente (Interviews, Briefe, Memoiren etc.) präsentiert.
-    #en
-    This scholarly edition features some of the earliest recorded voices of Soviet survivors of Nazi occupation.
-    It presents more than 700 documents (interviews, letters, memoirs, etc.) of the Soviet historians to the wider
-    public.
-    ::::
-  :::
 #latour
   :::ContentCard
   ---
@@ -91,7 +114,8 @@
   ---
   Ernst Samuel Jacob Borchwards Reise ins Potsdam Friedrichs des Großen 1749.
   :::
-#juden
+<!-- #juden -->
+<!--
   :::ContentCard
   ---
   img-href: /images/cover-juden.png
@@ -101,4 +125,5 @@
   ---
   Eine kommentierte Quellenpräsentation zur Rechts- und Sozialgeschichte der Juden im friderizianischen Preußen (1769–1788).
   :::
+-->
 ::
