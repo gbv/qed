@@ -100,6 +100,14 @@
     },
     "editionShortTitle": "Kurztitel der Editionen"
   },
+  "lod": {
+    "mainMenu": {
+      "home": "Startseite",
+      "project": "Projekt",
+      "search": "Dokumente",
+      "contact": "Kontakt"
+    }
+  },
   "sosu": {
     "metadata": {
       "counts":  "{start} von {numFound}",
