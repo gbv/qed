@@ -94,5 +94,23 @@
     "status": "published",
     "slug": "/soviet-survivors/about/further-literature",
     "project": "soviet-survivors"
+  },
+  {
+    "id": 19,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/",
+    "project": "lod"
+  },
+  {
+    "id": 20,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/project/team",
+    "project": "lod"
+  },
+  {
+    "id": 21,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/project",
+    "project": "lod"
   }
 ]
