@@ -55,20 +55,20 @@
   img-href: /images/card-back-gazin.jpg
   card-title: "Dengbêj Gazin: Songs of a Kurdish Woman"
   link: gazin/
-  card-class: active
+  card-class: not-active
   ---
     ::::LanguageSection{fallback=de}
     #de
     <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
-    Eine kritische Edition von Liedern aus dem Repertoire der kurdischen Dengbêj-Sängerin 
+    Eine kritische Edition von Liedern aus dem Repertoire der kurdischen Dengbêj-Sängerin
     Gazin (1959-2018) in Kurmanji mit türkischen Übersetzungen.
     #en
     <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
-    A critical edition of songs from the repertoire of the Kurdish singer Dengbêj Gazin 
+    A critical edition of songs from the repertoire of the Kurdish singer Dengbêj Gazin
     (1959-2018) in Kurmanji with Turkish translations.
     #fr
     <!-- Dengbêj Gazin : les chansons d'une kurde -->
-    Une édition critique de chansons du répertoire de la chanteuse kurde Dengbêj Gazin 
+    Une édition critique de chansons du répertoire de la chanteuse kurde Dengbêj Gazin
     1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
@@ -114,8 +114,8 @@
   ---
   Ernst Samuel Jacob Borchwards Reise ins Potsdam Friedrichs des Großen 1749.
   :::
+<!-- #juden -->
 <!--
-#juden
   :::ContentCard
   ---
   img-href: /images/cover-juden.png
