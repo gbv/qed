@@ -54,8 +54,12 @@
         border-radius: 50%;
         object-fit: cover;
       }
-
       &--sosu {
+        img {
+          object-position: 10%;
+        }
+      }
+      &--lod {
         img {
           object-position: 10%;
         }

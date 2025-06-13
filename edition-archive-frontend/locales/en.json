@@ -100,6 +100,22 @@
     },
     "editionShortTitle": "Short titles of editions"
   },
+  "lod": {
+    "mainMenu": {
+      "home": "Startseite",
+      "project": "Project",
+      "search": "Documents",
+      "contact": "Contact"
+    },
+    "subMenu": {
+      "subMenu": "Page menu",
+      "openSubMenu": "Open page menu",
+      "intro": "Introduction",
+      "team": "Team",
+      "projectPartner": "Partner",
+      "editionGuidelines":"Guidelines"
+    }
+  },
   "sosu": {
     "metadata": {
       "counts":  "{start} of {numFound}",

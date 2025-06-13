@@ -77,8 +77,8 @@
   ---
   img-href: /images/card-back-golovkin-mikhail.jpg
   card-title: The Languages of Diplomacy
-  link: http://qed.perspectivia.net/index.php?id=593
-  card-class: not-active
+  link: languages-of-diplomacy/
+  card-class: active
   ---
     ::::LanguageSection{fallback=en}
     #de
