@@ -120,12 +120,12 @@
       "subject": {
         "topic": "Schlagwörter",
         "geographic": "Orte",
-        "coordinates": "Entstehungsort des Dokuments",
+        "coordinates": "Koordinaten des Erstellungsorts",
         "hideMap": "Karte ausblenden",
         "showMap": "Karte einblenden"
       },
       "creationDate": "Erstellungsdatum",
-      "creationPlace": "Erstellungsort",
+      "creationPlace": "Erstellungsort des Dokuments",
       "related": {
         "original": "Original dieser Übersetzung",
         "translation": "Verfügbare Übersetzungen"
