@@ -106,6 +106,14 @@
       "project": "Projekt",
       "search": "Dokumente",
       "contact": "Kontakt"
+    },
+    "subMenu": {
+      "subMenu": "Seitenmenü",
+      "openSubMenu": "Seitenmenü öffnen",
+      "intro": "Einleitung",
+      "team": "Team",
+      "projectPartner": "Partner",
+      "editionGuidelines":"Richtlinien"
     }
   },
   "sosu": {

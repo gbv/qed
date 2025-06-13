@@ -1,5 +1,5 @@
 <template>
-  <LoDLayout :headline="$t('sosu.mainMenu.about')">
+  <LoDLayout :headline="$t('lod.mainMenu.about')">
 
     <template #content>
       <CMSPage :slug="$route.path"/>
