@@ -4,7 +4,7 @@
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project/">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project">
             {{ $t('lod.subMenu.intro') }}
 
           </nuxt-link>
