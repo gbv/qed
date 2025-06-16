@@ -112,5 +112,29 @@
     "status": "published",
     "slug": "/languages-of-diplomacy/project",
     "project": "lod"
+  },
+  {
+    "id": 23,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/project/partner",
+    "project": "lod"
+  },
+  {
+    "id": 24,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/project/edition-guidelines",
+    "project": "lod"
+  },
+  {
+    "id": 25,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/contact",
+    "project": "lod"
+  },
+  {
+    "id": 26,
+    "status": "published",
+    "slug": "/languages-of-diplomacy/search/",
+    "project": "lod"
   }
 ]
