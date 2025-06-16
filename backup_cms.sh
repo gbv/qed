@@ -95,13 +95,6 @@ curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page?field
 echo "Exporting languages..."
 curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/languages?fields=code,name,direction" | jq ".data" > "${target_dir}/languages.json"
 
-echo "Exporting collections..."
-# loop over all collections
-while read collection; do
-  echo "Exporting ${collection}..."
-  curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/${collection}" | jq ".data" > "${target_dir}/${collection}.json"
-done <<< "$collections"
-
 echo "Exporting files..."
 # get all files
 file_result=$(curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/files/")
@@ -114,7 +107,7 @@ mkdir -p "${target_dir}/files"
 # loop over all files
 while read file; do
   # get file id and name
-  file_id=$(echo "$file" | sed -r 's/(.+)_splitme_.*/\\1/')
+  file_id=$(echo "$file" | sed -r 's/(.+)_splitme_.*/\1/')
 
   # download file
   curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/assets/${file_id}" > "${target_dir}/files/${file}"
