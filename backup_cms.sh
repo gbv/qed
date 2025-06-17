@@ -152,7 +152,8 @@ while read file_id_name; do
   file_id=$(echo "$file_id_name" | sed -r 's/(.+)_splitme_.*/\1/')
   file_name=$(echo "$file_id_name" | sed -r 's/.+_splitme_(.+)/\1/')
   echo "Importing file ${file_name} with id ${file_id}..."
-  curl -X POST -H "Authorization: Bearer ${token}" -F "title=${file_name}" -F "id=${file_id}" -F "file=@${target_dir}/files/${file_id_name}" "${schema_host}/files"
+  curl -X POST -H "Authorization: Bearer ${token}" -F "title=${file_name}" -F "id=${file_id}" -F "file=@${target_dir}/files/${file_id_name};filename=${file_name}" "${schema_host}/files"
+
 done <<< "$file_id_names"
 
 
