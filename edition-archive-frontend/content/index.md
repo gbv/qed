@@ -54,8 +54,8 @@
   ---
   img-href: /images/card-back-gazin.jpg
   card-title: "Dengbêj Gazin: Songs of a Kurdish Woman"
-  link: gazin/
-  card-class: not-active
+  link: gazin
+  card-class: active
   ---
     ::::LanguageSection{fallback=de}
     #de

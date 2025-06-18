@@ -168,6 +168,21 @@
       "warOfAnnihilation": "Germany’s War of Extermination"
     }
   },
+  "gazin": {
+    "mainMenu": {
+      "home": "Home",
+      "introduction": "Introduction",
+      "dengbejGazin": "Dengbêj Gazin",
+      "editionGuidelines": "Edition-Guidelines"
+    },
+    "subMenu": {
+      "subMenu": "Seitenmenü",
+      "openSubMenu": "Seitenmenü öffnen",
+      "editionGuidelines": "Edition-Guidelines",
+      "transcriptionNotes": "Transcription-Notes",
+      "translationNotes": "Translation-Notes"
+    }
+  },
   "search": {
     "label": "Recherche",
     "basic": "Simple",
