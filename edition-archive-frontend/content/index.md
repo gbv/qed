@@ -49,6 +49,28 @@
     public.
     ::::
   :::
+#lod
+  :::ContentCard
+  ---
+  img-href: /images/card-back-golovkin-mikhail.jpg
+  card-title: The Languages of Diplomacy
+  link: http://qed.perspectivia.net/index.php?id=593
+  card-class: not-active
+  ---
+    ::::LanguageSection{fallback=en}
+    #de
+    Die digitale Edition wird im Rahmen des Forschungsprojekts „Die Sprachen der Diplomatie in Russland im
+    achtzehnten Jahrhundert im europäischen Kontext“ erstellt, das von der Deutschen Forschungsgemeinschaft
+    gefördert wird (2022–2026).
+    #en
+    The digital edition is prepared as part of the research project “The Languages of Diplomacy in Russia in
+    the Eighteenth Century in the European Context” funded by the German Research Foundation (2022-2026).
+    #fr
+    L’édition numérique est élaborée dans le cadre du projet de recherche « Les langues de la diplomatie en
+    Russie au XVIIIe siècle dans le contexte européen », financé par la Fondation allemande pour la recherche
+    (2022-2026).
+    ::::
+  :::
 #gazin
   :::ContentCard
   ---
@@ -70,28 +92,6 @@
     <!-- Dengbêj Gazin : les chansons d'une kurde -->
     Une édition critique de chansons du répertoire de la chanteuse kurde Dengbêj Gazin
     1959-2018) en kurmanji avec des traductions en turc.
-    ::::
-  :::
-#lod
-  :::ContentCard
-  ---
-  img-href: /images/card-back-golovkin-mikhail.jpg
-  card-title: The Languages of Diplomacy
-  link: http://qed.perspectivia.net/index.php?id=593
-  card-class: not-active
-  ---
-    ::::LanguageSection{fallback=en}
-    #de
-    Die digitale Edition wird im Rahmen des Forschungsprojekts „Die Sprachen der Diplomatie in Russland im
-    achtzehnten Jahrhundert im europäischen Kontext“ erstellt, das von der Deutschen Forschungsgemeinschaft
-    gefördert wird (2022–2026).
-    #en
-    The digital edition is prepared as part of the research project “The Languages of Diplomacy in Russia in
-    the Eighteenth Century in the European Context” funded by the German Research Foundation (2022-2026).
-    #fr
-    L’édition numérique est élaborée dans le cadre du projet de recherche « Les langues de la diplomatie en
-    Russie au XVIIIe siècle dans le contexte européen », financé par la Fondation allemande pour la recherche
-    (2022-2026).
     ::::
   :::
 #latour
