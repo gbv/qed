@@ -136,5 +136,41 @@
     "status": "published",
     "slug": "/languages-of-diplomacy/search/",
     "project": "lod"
+  },
+  {
+    "id": 27,
+    "status": "published",
+    "slug": "/gazin",
+    "project": "gazin"
+  },
+  {
+    "id": 28,
+    "status": "published",
+    "slug": "/gazin/edition-guidelines",
+    "project": "gazin"
+  },
+  {
+    "id": 29,
+    "status": "published",
+    "slug": "/gazin/introduction",
+    "project": "gazin"
+  },
+  {
+    "id": 30,
+    "status": "published",
+    "slug": "/gazin/dengbej-gazin",
+    "project": "gazin"
+  },
+  {
+    "id": 31,
+    "status": "published",
+    "slug": "/gazin/edition-guidelines/transcription-notes",
+    "project": "gazon"
+  },
+  {
+    "id": 32,
+    "status": "published",
+    "slug": "/gazin/edition-guidelines/translation-notes",
+    "project": "gazin"
   }
 ]
