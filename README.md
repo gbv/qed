@@ -33,11 +33,17 @@ Directus CMS web frontend. Credentials from .env
 http://localhost:8000/login
 After login you can edit the content directly in web frontend.
 
-
 ## Backup the cms
 The instance of the restore cms should not have any entries in the database. The script will not delete any entries.
 ```bash
 ./backup_cms.sh backup usermail userpass http://localhost:8000/cms ./import/cms/
 
 ./backup_cms.sh restore usermail userpass http://localhost:8000/cms ./import/cms/
+```
+
+## Knowledge base
+**Use the web frontend**
+not the directus gui, because directus do not support all used elements like:
+```
+<change-language lang="en">version anglaise svp</change-language>
 ```

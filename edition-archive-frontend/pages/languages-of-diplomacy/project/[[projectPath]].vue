@@ -1,15 +1,15 @@
 <template>
-  <SovietSurvivorsLayout :headline="$t('lod.mainMenu.about')">
+  <LoDLayout :headline="$t('lod.mainMenu.about')">
 
     <template #content>
       <CMSPage :slug="$route.path"/>
     </template>
 
     <template #menu>
-      <SovietSurvivorsMenu/>
+      <LoDMenu/>
     </template>
 
-  </SovietSurvivorsLayout>
+  </LoDLayout>
 </template>
 
 <script setup lang="ts">

@@ -100,6 +100,22 @@
     },
     "editionShortTitle": "Kurztitel der Editionen"
   },
+  "lod": {
+    "mainMenu": {
+      "home": "Startseite",
+      "project": "Projekt",
+      "search": "Dokumente",
+      "contact": "Kontakt"
+    },
+    "subMenu": {
+      "subMenu": "Seitenmenü",
+      "openSubMenu": "Seitenmenü öffnen",
+      "intro": "Einleitung",
+      "team": "Team",
+      "projectPartner": "Partner",
+      "editionGuidelines":"Richtlinien"
+    }
+  },
   "sosu": {
     "metadata": {
       "counts":  "{start} von {numFound}",
@@ -166,6 +182,21 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Deutscher Vernichtungskrieg"
+    }
+  },
+  "gazin": {
+    "mainMenu": {
+      "home": "Home",
+      "introduction": "Introduction",
+      "dengbejGazin": "Dengbêj Gazin",
+      "editionGuidelines": "Edition-Guidelines"
+    },
+    "subMenu": {
+      "subMenu": "Seitenmenü",
+      "openSubMenu": "Seitenmenü öffnen",
+      "editionGuidelines": "Edition-Guidelines",
+      "transcriptionNotes": "Transcription-Notes",
+      "translationNotes": "Translation-Notes"
     }
   },
   "search": {
