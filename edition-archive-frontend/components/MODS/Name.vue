@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 
-import {Name, NamePart} from "~/api/Mods";
+import {type Name, type NamePart} from "~/api/Mods";
 
 const props = defineProps<{
   name: Name,

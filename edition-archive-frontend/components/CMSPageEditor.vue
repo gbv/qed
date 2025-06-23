@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import Editor from '@tinymce/tinymce-vue';
 
-import {BlobInfo, FileUploadEvent} from "~/api/TinyMCEHelper";
+import {type BlobInfo, type FileUploadEvent} from "~/api/TinyMCEHelper";
 import {registerEditorLink, EDITOR_LINK_ELEMENT_NAME} from "~/api/TinyMCEEditorLink";
 import {registerEditorCapitalizeButton} from "~/api/TinyMCECapitalizeButton";
 

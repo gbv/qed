@@ -8,11 +8,22 @@ import {useI18n} from "vue-i18n";
 
 const props = defineProps(["lang"]);
 const i18n = useI18n();
+const {locale, locales, setLocale, setLocaleCookie,} = useI18n()
+
+const availableLocales = computed(() => {
+  return locales.value.filter(i => i.code !== locale.value)
+})
 
 function changeLanguage(newLanguage: string) {
   //i18n.locale.value = newLanguage;
-  i18n.setLocale(newLanguage);
-  i18n.setLocaleCookie(newLanguage);
+  availableLocales.value.forEach((llocale) => {
+    if (llocale.code === newLanguage) {
+      setLocale(llocale.code);
+      setLocaleCookie(llocale.code);
+    }
+  });
+
+
 }
 </script>
 

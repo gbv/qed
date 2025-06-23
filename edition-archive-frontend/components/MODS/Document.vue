@@ -289,9 +289,9 @@ import {
   findFirstElement,
   flattenElement,
   getAttribute,
-  XElement,
-  XNode
-} from "@mycore-org/xml-json-api";
+  type XElement,
+  type XNode
+} from "~/api/XMLApi";
 
 import type {Name} from "~/api/Mods";
 import {getGenre, getNames, getSubjects, getTitles} from "~/api/Mods";
@@ -317,6 +317,11 @@ const model = reactive({
     translations: [] as Translation[]
   }
 );
+
+const props = defineProps<{
+  xml: XElement,
+  id: string
+}>()
 
 const searchOriginals = async () => {
   const json = await fetch(`${sovietSurvivorsSolrURL}mir/select?q=mods.relatedItem.original:${props.id}&wt=json&fq=${SoSuFilterParams.join("%20AND%20")}`, {
@@ -349,10 +354,7 @@ const toggleShowMap = (coord: string) => {
   }
 }
 
-const props = defineProps<{
-  xml: XElement,
-  id: string
-}>()
+
 
 
 const mods = computed(() => {
@@ -438,11 +440,19 @@ const currentAbstractLanguage = computed(() => {
 });
 
 const currentTitle = computed(() => {
-  return titleAndAbstracts.value.get(currentAbstractLanguage.value)?.title;
+  let value = currentAbstractLanguage.value;
+  if(!value) {
+    return ""
+  }
+  return titleAndAbstracts.value.get(value)?.title;
 });
 
 const currentAbstract = computed(() => {
-  return titleAndAbstracts.value.get(currentAbstractLanguage.value)?.abstract;
+  let key = currentAbstractLanguage.value;
+  if(!key) {
+    return "";
+  }
+  return titleAndAbstracts.value.get(key)?.abstract;
 });
 
 const fullAbstract = computed(() => {

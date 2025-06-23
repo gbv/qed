@@ -55,7 +55,7 @@
 
 import {XMLApi} from "~/api/XMLApi";
 import {getMyCoReId, getMyCoReIdNumber} from "~/api/MyCoRe";
-import {buildSOSUSearchRequestURL, Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
+import {buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
 
 const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
 const route = useRoute();

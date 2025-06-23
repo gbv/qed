@@ -1,5 +1,5 @@
-update classification from url http://www.mycore.org/classifications/state.xml
-update classification from url http://www.mycore.org/classifications/mcr-roles.xml
-update classification from url http://mycore.de/classifications/derivate_types.xml
+update classification from url https://www.mycore.org/classifications/state.xml
+update classification from url https://www.mycore.org/classifications/mcr-roles.xml
+update classification from url https://mycore.de/classifications/derivate_types.xml
 init superuser
 reload solr configuration main in core main

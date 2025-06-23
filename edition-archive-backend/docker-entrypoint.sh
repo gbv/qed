@@ -96,9 +96,9 @@ function setUpMyCoRe {
   setDockerValues
   sed -ri "s/(<\/properties>)/<property name=\"hibernate\.connection\.provider_class\" value=\"org\.hibernate\.connection\.C3P0ConnectionProvider\" \/>\n<property name=\"hibernate\.c3p0\.min_size\" value=\"2\" \/>\n<property name=\"hibernate\.c3p0\.max_size\" value=\"50\" \/>\n<property name=\"hibernate\.c3p0\.acquire_increment\" value=\"2\" \/>\n<property name=\"hibernate\.c3p0\.max_statements\" value=\"30\" \/>\n<property name=\"hibernate\.c3p0\.timeout\" value=\"1800\" \/>\n\1/" "${PERSISTENCE_XML}"
   /opt/mycore/eab/bin/edition-archive-backend.sh init superuser
-  /opt/mycore/eab/bin/edition-archive-backend.sh update classification from url http://www.mycore.org/classifications/state.xml
-  /opt/mycore/eab/bin/edition-archive-backend.sh update classification from url http://www.mycore.org/classifications/mcr-roles.xml
-  /opt/mycore/eab/bin/edition-archive-backend.sh update classification from url http://mycore.de/classifications/derivate_types.xml
+  /opt/mycore/eab/bin/edition-archive-backend.sh update classification from url https://www.mycore.org/classifications/state.xml
+  /opt/mycore/eab/bin/edition-archive-backend.sh update classification from url https://www.mycore.org/classifications/mcr-roles.xml
+  /opt/mycore/eab/bin/edition-archive-backend.sh update classification from url https://mycore.de/classifications/derivate_types.xml
   /opt/mycore/eab/bin/edition-archive-backend.sh reload solr configuration main in core main
 }
 

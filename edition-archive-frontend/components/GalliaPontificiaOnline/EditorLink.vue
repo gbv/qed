@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import {flattenElement, getAttribute} from "@mycore-org/xml-json-api"
+import {flattenElement, getAttribute} from "~/api/XMLApi"
 import {escapeSpecialChars} from "~/api/Utils";
 
 const props = defineProps(["refe", "type"])

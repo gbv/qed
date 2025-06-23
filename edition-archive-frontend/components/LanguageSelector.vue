@@ -2,20 +2,13 @@
   <client-only>
 
     <div class="qed-lang-menu">
-      <a
-        :class="`dropdown-item ${ i18n.locale.value == 'de' ? 'active' : 'not-active' }`"
+      <template v-for="loopLocale in locales" :key="loopLocale.code">
+        <a
+          :class="`dropdown-item ${ locale == loopLocale.code ? 'active' : 'not-active' }`"
         href="#"
-        v-on:click.prevent="changeLanguage('de')">DE</a>
-      <span>|</span>
-      <a
-        :class="`dropdown-item ${ i18n.locale.value == 'en' ? 'active' : 'not-active' }`"
-        href="#"
-        v-on:click.prevent="changeLanguage('en')">EN</a>
-      <span>|</span>
-      <a
-        :class="`dropdown-item ${ i18n.locale.value == 'fr' ? 'active' : 'not-active' }`"
-        href="#"
-        v-on:click.prevent="changeLanguage('fr')">FR</a>
+        v-on:click.prevent="changeLanguage(loopLocale.code)">{{loopLocale.code.toUpperCase()}}</a>
+        <span v-if="locales[locales.length-1].code != loopLocale.code">|</span>
+      </template>
     </div>
 
     <!--
@@ -39,15 +32,17 @@
 
 <script lang="ts" setup>
 
-import {useI18n} from "vue-i18n";
 import LanguageDisplay from "~/components/LanguageDisplay.vue";
+import type {Locale} from "@intlify/core-base";
 
-const i18n = useI18n();
+const {locale, locales, setLocale, setLocaleCookie,} = useI18n()
 
-function changeLanguage(newLanguage: string) {
+
+
+function changeLanguage(newLanguage: Locale) {
   //i18n.locale.value = newLanguage;
-  i18n.setLocale(newLanguage);
-  i18n.setLocaleCookie(newLanguage);
+  setLocale(newLanguage);
+  setLocaleCookie(newLanguage);
 }
 
 

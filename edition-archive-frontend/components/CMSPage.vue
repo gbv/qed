@@ -38,9 +38,8 @@
 
 <script lang="ts" setup>
 import {createError} from "h3";
-import {useI18n} from "vue-i18n";
 import {useUserStore} from "~/store/UserStore";
-import {FileUploadEvent} from "~/api/TinyMCEHelper";
+import {type FileUploadEvent} from "~/api/TinyMCEHelper";
 
 
 const userStore = useUserStore();
@@ -95,7 +94,8 @@ const getMatchingTranslation = () => {
     return null;
   }
   return model.translations.find(t => {
-    return t.languages_code === i18n.localeProperties.value.iso;
+    return t.languages_code.startsWith(i18n.localeProperties.value.code+"") ||
+    t.languages_code === i18n.localeProperties.value.code;
   }) as PageTranslation || null;
 }
 
@@ -234,7 +234,7 @@ const editPage = () => {
   if (matchingTranslation == null) {
     const newTranslation = {
       Page_id: model.pageID,
-      languages_code: i18n.localeProperties.value.iso,
+      languages_code: i18n.localeProperties.value.code.toString(),
       content: `<div><h3>${i18n.t('cms.page.translation.new')}</h3></div>`,
     };
     model.translations.push(newTranslation);

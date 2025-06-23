@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import {flattenElement, getAttribute} from "@mycore-org/xml-json-api"
+import {flattenElement, getAttribute} from "~/api/XMLApi";
 
 const route = useRoute()
 const props = defineProps(["contents", "content"])
