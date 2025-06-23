@@ -79,7 +79,9 @@
   link: gazin
   card-class: active
   cc-author: "Marlene Schäfers"
+  cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Photo_Dengbej_Gazin_2012.jpg"
   cc-licence-text: "CC BY 4.0"
+  cc-licence-link: "https://creativecommons.org/licenses/by/4.0/deed.de"
   ---
     ::::LanguageSection{fallback=de}
     #de
