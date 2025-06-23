@@ -40,36 +40,13 @@
   ---
     ::::LanguageSection{fallback=en}
     #de
-    Diese Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
+    Diese digitale Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
     Sie macht die Arbeit der sowjetischen Historikerkommission für die breitere Öffentlichkeit zugänglich. Es
     werden mehr als 700 Dokumente (Interviews, Briefe, Memoiren etc.) präsentiert.
     #en
-    This scholarly edition features some of the earliest recorded voices of Soviet survivors of Nazi occupation.
+    This scholarly digital edition features some of the earliest recorded voices of Soviet survivors of Nazi occupation.
     It presents more than 700 documents (interviews, letters, memoirs, etc.) of the Soviet historians to the wider
     public.
-    ::::
-  :::
-#gazin
-  :::ContentCard
-  ---
-  img-href: /images/card-back-gazin.jpg
-  card-title: "Dengbêj Gazin: Songs of a Kurdish Woman"
-  link: gazin
-  card-class: active
-  ---
-    ::::LanguageSection{fallback=de}
-    #de
-    <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
-    Eine kritische Edition von Liedern aus dem Repertoire der kurdischen Dengbêj-Sängerin
-    Gazin (1959-2018) in Kurmanji mit türkischen Übersetzungen.
-    #en
-    <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
-    A critical edition of songs from the repertoire of the Kurdish singer Dengbêj Gazin
-    (1959-2018) in Kurmanji with Turkish translations.
-    #fr
-    <!-- Dengbêj Gazin : les chansons d'une kurde -->
-    Une édition critique de chansons du répertoire de la chanteuse kurde Dengbêj Gazin
-    1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
 #lod
@@ -86,12 +63,34 @@
     achtzehnten Jahrhundert im europäischen Kontext“ erstellt, das von der Deutschen Forschungsgemeinschaft
     gefördert wird (2022–2026).
     #en
-    The digital edition is prepared as part of the research project “The Languages of Diplomacy in Russia in
+    The scholarly digital edition is prepared as part of the research project “The Languages of Diplomacy in Russia in
     the Eighteenth Century in the European Context” funded by the German Research Foundation (2022-2026).
     #fr
     L’édition numérique est élaborée dans le cadre du projet de recherche « Les langues de la diplomatie en
     Russie au XVIIIe siècle dans le contexte européen », financé par la Fondation allemande pour la recherche
     (2022-2026).
+    ::::
+  :::
+#gazin
+  :::ContentCard
+  ---
+  img-href: /images/card-back-gazin.jpg
+  card-title: "Dengbêj Gazin: Songs of a Kurdish Woman"
+  link: gazin
+  card-class: active
+  cc-author: "Marlene Schäfers"
+  cc-licence-text: "CC BY 4.0"
+  ---
+    ::::LanguageSection{fallback=de}
+    #de
+    <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
+    Eine digitale Edition von Liedern (Audio und Liedtexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazin (1959-2018) in Kurmanji mit türkischen Übersetzungen.
+    #en
+    <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
+    A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazin (1959-2018) in Kurmanji with Turkish translations.
+    #fr
+    <!-- Dengbêj Gazin : les chansons d'une kurde -->
+    Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazin 1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
 #latour
