@@ -1,14 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    modules: [
-        '@nuxt/content',
-        '@nuxtjs/i18n',
-        '@nuxt/image-edge',
-        '@pinia/nuxt',
-        'nuxt-runtime-compiler'
-    ],
+    modules: ['@nuxt/content', '@nuxtjs/i18n', '@pinia/nuxt', '@nuxt/image'],
     experimental: {
       externalVue: true
     },
@@ -17,18 +10,19 @@ export default defineNuxtConfig({
         "bootstrap-icons/font/bootstrap-icons.css"
     ],
     i18n: {
-        langDir: 'locales/',
         lazy: true,
-        dynamicRouteParams: false,
         strategy: 'no_prefix',
+        bundle: {
+          optimizeTranslationDirective: false
+        },
         detectBrowserLanguage: {
           useCookie: true,
           alwaysRedirect: false,
         },
         locales: [
-          { code: 'de', iso: 'de-DE', file: 'de.json', name: 'Deutsch' },
-          { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
-          { code: 'fr', iso: 'fr-FR', file: 'fr.json', name: 'Français' }
+          { code: 'de', file: 'de.json', name: 'Deutsch' },
+          { code: 'en', file: 'en.json', name: 'English' },
+          { code: 'fr', file: 'fr.json', name: 'Français' }
         ]
     },
     runtimeConfig: {
@@ -58,6 +52,9 @@ export default defineNuxtConfig({
           }
         }
       }
-   }
+   },
+  vue: {
+      runtimeCompiler: true,
+  }
 })
 //

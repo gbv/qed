@@ -15,7 +15,7 @@ import {
   findFirstElement,
   flattenElement,
   getAttribute
-} from "@mycore-org/xml-json-api";
+} from "~/api/XMLApi";
 
 const props = defineProps<{
   classId: string,

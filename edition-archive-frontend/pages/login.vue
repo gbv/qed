@@ -30,7 +30,7 @@
 
 <script lang="ts" setup>
 import {useUserStore} from "~/store/UserStore";
-import {AuthResult, UserType} from "@directus/sdk"
+import {type AuthResult, type UserType} from "@directus/sdk"
 
 const {$directusURL} = useNuxtApp();
 const {query} = useRoute()
