@@ -75,7 +75,7 @@
   :::ContentCard
   ---
   img-href: /images/card-back-gazin.jpg
-  card-title: "Dengbêj Gazin: Songs of a Kurdish Woman"
+  card-title: "Dengbêj Gazîn: Songs of a Kurdish Woman"
   link: gazin
   card-class: not-active
   cc-author: "Marlene Schäfers"
