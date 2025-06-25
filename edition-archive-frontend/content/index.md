@@ -86,13 +86,13 @@
     ::::LanguageSection{fallback=de}
     #de
     <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
-    Eine digitale Edition von Liedern (Audio und Liedtexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazin (1959-2018) in Kurmanji mit türkischen Übersetzungen.
+    Eine digitale Edition von Liedern (Audio und Liedertexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazîn (1959-2018) in Kurmanji mit türkischen Übersetzungen.
     #en
     <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
-    A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazin (1959-2018) in Kurmanji with Turkish translations.
+    A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazîn (1959-2018) in Kurmanji with Turkish translations.
     #fr
     <!-- Dengbêj Gazin : les chansons d'une kurde -->
-    Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazin 1959-2018) en kurmanji avec des traductions en turc.
+    Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazîn (1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
 #latour
