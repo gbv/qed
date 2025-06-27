@@ -4,10 +4,10 @@
     <div class="container">
       <div class="row ">
         <div class="col project-headline__title">
-          <h1>Dengbêj Gazin: Songs of a Kurdish Woman</h1>
+          <h1>Dengbêj Gazîn: Songs of a Kurdish Woman</h1>
         </div>
         <div class="col project-headline__figure project-headline__figure--gazin">
-          <nuxt-img src="/images/card-back-gazin.jpg" preload class="" alt="Logo Gazin" />
+          <nuxt-img src="/images/card-back-gazin.jpg" preload class="" alt="Logo Gazîn" />
         </div>
       </div>
       <div class="project-headline__back project-headline__back--start">
