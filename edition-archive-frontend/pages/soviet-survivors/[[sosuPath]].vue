@@ -75,7 +75,7 @@ const selectedObject = ref(null as any);
 
 if (path === '/soviet-survivors/') {
   const {data, error} = await useAsyncData('solr-response', () => {
-    return $fetch($sovietSurvivorsSolrURL() + 'mir/select?q=%2BobjectType%3A"mods"&fl=*&sort=mods.dateIssued+desc&rows=99999&fq=common.mods.coordinates.str:*&fl=common.mods.coordinates:*&wt=json&XSL.Style=xml');
+    return $fetch($sovietSurvivorsSolrURL() + 'mir/select?q=%2BobjectType%3A"mods"&rows=99999&fq=common.mods.coordinates.str:*&fl=id,common.mods.coordinates,mods.abstract,mods.title.main,derCount&wt=json&XSL.Style=xml');
   });
 
   if (error.value) {
