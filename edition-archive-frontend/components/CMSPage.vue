@@ -40,6 +40,7 @@
 import {createError} from "h3";
 import {useUserStore} from "~/store/UserStore";
 import {type FileUploadEvent} from "~/api/TinyMCEHelper";
+import {refreshLogin} from "~/api/refreshLogin";
 
 
 const userStore = useUserStore();
@@ -284,6 +285,13 @@ if (model.pageID) {
   model.translations = await getTranslations(props.slug, model.pageID) || null;
 }
 
+if (process.client){
+   window.setInterval(()=> {
+       refreshLogin();
+       model.authHeader = userStore.accessToken ? {Authorization: `Bearer ${userStore.accessToken}`} : null;
+   },
+   1000 * 60 ); // refresh every minute
+}
 
 </script>
 

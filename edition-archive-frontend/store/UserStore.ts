@@ -78,10 +78,16 @@ export const useUserStore = defineStore('userStore', () => {
     userCookie.value = JSON.stringify(userResult);
   }
 
+  function refresh(refreshResponse: AuthResult) {
+    accessTokenCookie.value = refreshResponse.access_token;
+    refreshTokenCookie.value = refreshResponse.refresh_token || null;
+    expiresCookie.value = (refreshResponse.expires + new Date().valueOf()).toString();
+  }
+
   function logout() {
     deleteToken();
     userCookie.value = null;
   }
 
-  return {accessToken, refreshToken, expires, deleteToken, login, id, user, logout}
+  return {accessToken, refreshToken, expires, deleteToken, login, id, user, refresh, logout}
 });
