@@ -1,8 +1,9 @@
 <template>
 
-  <ol-map     :loadTilesWhileAnimating="true"
-                       :loadTilesWhileInteracting="true"
-                       style="height:600px">
+  <ol-map
+    class="map-with-metadata"
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true">
 
     <ol-view
       ref="view"
@@ -13,7 +14,7 @@
     />
 
     <ol-tile-layer>
-      <ol-source-osm />
+      <ol-source-osm/>
     </ol-tile-layer>
 
     <ol-vector-layer>
@@ -30,10 +31,11 @@
       :spiral="false"
       :animate="false"
       :autoclose="true"
+      :features="model.selectedFeaturesIntern"
       @select="selected">
 
 
-      <ol-style :overrideStyleFunction="styleSelectedCluster" />
+      <ol-style :overrideStyleFunction="styleSelectedCluster"/>
 
     </ol-interaction-select>
 
@@ -43,7 +45,7 @@
       :autoPan="true"
     >
       <div class="overlay-content">
-       <slot name="metadata" :solrdocs="selectedProperties"></slot>
+        <slot name="metadata" :solrdocs="selectedProperties"></slot>
       </div>
     </ol-overlay>
 
@@ -55,7 +57,7 @@
 
 
 import {transform} from 'ol/proj';
-import  {WKT} from 'ol/format';
+import {WKT} from 'ol/format';
 
 import markerIcon from "assets/map_pin_red.svg";
 import markerIconSelected from "assets/map_pin_dark_red.svg";
@@ -68,6 +70,7 @@ import {Style, Circle, Stroke, Fill, Text} from "ol/style";
 import {Cluster} from 'ol/source';
 import type GeometryCollection from "ol/geom/GeometryCollection";
 import {Point} from "ol/geom";
+import Collection from "ol/Collection";
 
 
 const props = defineProps<{
@@ -78,7 +81,7 @@ const props = defineProps<{
 }>();
 
 const slots = defineSlots<{
-    metadata: (scope: { solrdocs: any[] }) => any
+  metadata: (scope: { solrdocs: any[] }) => any
 }>()
 
 const wktField = "common.mods.coordinates";
@@ -92,13 +95,13 @@ const selectedProperties = computed(() => {
 
 
 const convertedSolrDocument = computed(() => {
-  if(!props.solrResponse || props.solrResponse.response === undefined || props.solrResponse.response.numFound == 0) {
+  if (!props.solrResponse || props.solrResponse.response === undefined || props.solrResponse.response.numFound == 0) {
     return [];
 
   }
   const convertedFeatures = [];
-  for(const solrDoc of props.solrResponse.response.docs) {
-    if(!solrDoc["common.mods.coordinates"]) {
+  for (const solrDoc of props.solrResponse.response.docs) {
+    if (!solrDoc["common.mods.coordinates"]) {
       continue;
     }
 
@@ -108,7 +111,7 @@ const convertedSolrDocument = computed(() => {
         featureProjection: 'EPSG:3857'
       });
 
-      if(!geometry) {
+      if (!geometry) {
         continue;
       }
 
@@ -186,20 +189,21 @@ const model = reactive({
   rotation: 0,
   overlayPositionX: 0,
   overlayPositionY: 0,
+  selectedFeaturesIntern: new Collection([]),
   selectedFeatures: [] as any[],
   position: transform([props.centerX, props.centerY], 'EPSG:4326', 'EPSG:3857'),
 });
 
 const selected = (selectEvent: SelectEvent) => {
   selectEvent.preventDefault();
-  if(selectEvent.deselected !== undefined) {
+  if (selectEvent.deselected !== undefined) {
     model.selectedFeatures = [];
   }
-  if(selectEvent.type=== 'select') {
-    if(selectEvent.selected !== undefined && selectEvent.selected.length > 0) {
+  if (selectEvent.type === 'select') {
+    if (selectEvent.selected !== undefined && selectEvent.selected.length > 0) {
       model.selectedFeatures = selectEvent.selected[0].get("features");
       let geometry = model.selectedFeatures[0].getGeometry();
-      if(geometry?.getType()=="Point") {
+      if (geometry?.getType() == "Point") {
         model.overlayPositionX = (geometry as Point).getCoordinates()[0];
         model.overlayPositionY = (geometry as Point).getCoordinates()[1];
       }
@@ -210,9 +214,24 @@ const selected = (selectEvent: SelectEvent) => {
 
 };
 
+defineExpose({
+  unselectAll: () => {
+    model.selectedFeaturesIntern.clear();
+
+    do {
+      model.selectedFeatures = [];
+    } while (model.selectedFeatures.length > 0);
+  }
+})
+
 </script>
 
 <style scoped>
 @import 'vue3-openlayers/dist/vue3-openlayers.css';
+
+.map-with-metadata {
+  height: 600px;
+  max-height: 90vh;
+}
 
 </style>

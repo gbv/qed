@@ -7,13 +7,20 @@
       <div v-if="$route.path=='/soviet-survivors/' && solrResponse!=null" class="row">
         <div class="col-12">
           <client-only>
-            <SovietSurvivorsMapWithMetadata :center-x="20.019309"
+            <SovietSurvivorsMapWithMetadata ref="sosuMap"
+                                            :center-x="20.019309"
                                             :center-y="52.114829"
                                             :solr-response="solrResponse"
                                             v-on:object-selected="objectSelected"
             >
               <template #metadata="{ solrdocs }">
                 <div class="card documents_card m-3">
+                  <div class="card-header">
+                    <div class="text-end">
+                      <span class="bi bi-x" v-on:click="unselectAll" :title="$t('button.close')">
+                      </span>
+                    </div>
+                  </div>
                   <div class="card-body">
                     <div class="row document mt-5" v-for="selectedObject in solrdocs">
 
@@ -104,11 +111,21 @@ const hitLink = (doc: any) => {
   return `/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}`;
 }
 
+const mapComponent = useTemplateRef('sosuMap');
+const unselectAll = () => {
+  if (mapComponent.value) {
+    mapComponent.value.unselectAll();
+  }
+}
+
 </script>
 <style scoped>
 .documents_card {
+  height: 350px !important;
+}
+
+.documents_card .card-body {
   overflow: scroll;
-  height: 500px !important;
 }
 
 .document:not(:last-child) {
@@ -136,6 +153,7 @@ const hitLink = (doc: any) => {
 <style>
 .ol-overlay-container {
   width: 30% !important;
-
+  min-width: 300px !important;
 }
+
 </style>

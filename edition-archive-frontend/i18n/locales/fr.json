@@ -305,7 +305,8 @@
   },
   "button":{
     "back": "Retour",
-    "toProject": "vers le projet"
+    "toProject": "vers le projet",
+    "close": "Fermer"
   },
   "cc": {
     "by": "von",
