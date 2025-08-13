@@ -23,8 +23,18 @@
                   </div>
                   <div class="card-body">
                     <div class="row document mt-5" v-for="selectedObject in solrdocs">
-
-                      <div v-if="selectedObject['derCount'] > 0" class="row">
+                      <div class="row">
+                        <div class="col-12">
+                          <h3 class="text-center">
+                            <nuxt-link
+                              :to="hitLink(selectedObject)"
+                              class="main-title">
+                              {{ selectedObject["mods.title.main"] }}
+                            </nuxt-link>
+                          </h3>
+                        </div>
+                      </div>
+                      <div v-if="selectedObject['derCount'] > 0" class="row mt-1">
                         <div class="col-12 text-center">
                           <div class="doc_thumbnail">
                             <img
@@ -36,24 +46,13 @@
                       </div>
                       <div class="row mt-1">
                         <div class="col-12">
-                          <h3 class="text-center">
-                            <nuxt-link
-                              :to="hitLink(selectedObject)"
-                              class="main-title">
-                              {{ selectedObject["mods.title.main"] }}
-                            </nuxt-link>
-                          </h3>
-
                           <div class="abstract">
                             <div v-if="selectedObject['mods.abstract']?.length>0">
                               {{ trimString(selectedObject["mods.abstract"][0]) }}
                             </div>
                           </div>
-
                         </div>
                       </div>
-
-
                     </div>
                   </div>
                 </div>
