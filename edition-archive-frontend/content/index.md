@@ -54,8 +54,8 @@
   ---
   img-href: /images/card-back-golovkin-mikhail.jpg
   card-title: The Languages of Diplomacy
-  link: languages-of-diplomacy/
-  card-class: active
+  link: http://qed.perspectivia.net/index.php?id=593
+  card-class: not-active
   ---
     ::::LanguageSection{fallback=en}
     #de
@@ -77,7 +77,7 @@
   img-href: /images/card-back-gazin.jpg
   card-title: "Dengbêj Gazîn: Songs of a Kurdish Woman"
   link: gazin
-  card-class: active
+  card-class: not-active
   cc-author: "Hürü Kaya"
   cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Photo_Dengbej_Gazin_2012.jpg"
   cc-licence-text: "CC BY 4.0"
@@ -85,13 +85,13 @@
   ---
     ::::LanguageSection{fallback=de}
     #de
-    <!-- Dengbêj Gazîn: Die Lieder einer Kurdin -->
+    <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
     Eine digitale Edition von Liedern (Audio und Liedertexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazîn (1959-2018) in Kurmanji mit türkischen Übersetzungen.
     #en
-    <!-- Dengbêj Gazîn: Songs of a Kurdish Woman -->
+    <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
     A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazîn (1959-2018) in Kurmanji with Turkish translations.
     #fr
-    <!-- Dengbêj Gazîn : les chansons d'une kurde -->
+    <!-- Dengbêj Gazin : les chansons d'une kurde -->
     Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazîn (1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
