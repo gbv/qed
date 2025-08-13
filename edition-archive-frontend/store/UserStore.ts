@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {AuthResult, UserType} from "@directus/sdk"
+import {type AuthResult, type UserType} from "@directus/sdk"
 
 
 export const useUserStore = defineStore('userStore', () => {

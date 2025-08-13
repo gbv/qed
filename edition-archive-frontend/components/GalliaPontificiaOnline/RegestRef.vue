@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {flattenElement, getAttribute} from "@mycore-org/xml-json-api"
+import {flattenElement, getAttribute} from "~/api/XMLApi"
 
 const route = useRoute()
 const props = defineProps(["refE"])

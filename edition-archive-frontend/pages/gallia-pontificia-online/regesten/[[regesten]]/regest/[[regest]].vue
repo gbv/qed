@@ -151,16 +151,16 @@
 import BrowseComponent from "~/components/BrowseBar.vue";
 import {XMLApi} from "~/api/XMLApi";
 import {
-  XElement,
-  XText,
+  type XElement,
+  type XText,
   findFirstElement,
   byName,
   flattenElementExcept,
   flattenElement,
   findElement,
   byAttr,
-  and, XNode
-} from "@mycore-org/xml-json-api"
+  and, type XNode
+} from "~/api/XMLApi"
 
 const route = useRoute()
 const config = useRuntimeConfig()

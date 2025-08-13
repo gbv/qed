@@ -170,10 +170,10 @@
 
 <script setup lang="ts">
 
-import {LocationQuery} from "vue-router";
+import {type LocationQuery} from "vue-router";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
-import {buildSOSUSearchRequestURL, Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
+import {buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
 
 
 const {$sovietSurvivorsSolrURL} = useNuxtApp();

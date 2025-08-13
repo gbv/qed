@@ -1,42 +1,40 @@
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin({
+  name: 'endpointsPlugin', setup: (nuxtApp) => {
     const config = useRuntimeConfig();
-    nuxtApp.provide('solrURL', () => {
-        if (process.server && !process.dev) {
+    return {
+      provide: {
+        'solrURL': () => {
+          if (import.meta.server && !import.meta.dev) {
             return config.public.solrURLServer;
-        } else {
+          } else {
             return config.public.solrURL;
-        }
-    });
-
-    nuxtApp.provide('backendURL', () => {
-        if (process.server && !process.dev) {
-            return config.public.backendURLServer;
-        } else {
-            return config.public.backendURL;
-        }
-    });
-
-    nuxtApp.provide('directusURL', () => {
-        if (process.server && !process.dev) {
-            return config.public.directusURLServer;
-        } else {
-            return config.public.directusURL;
-        }
-    });
-
-    nuxtApp.provide('sovietSurviorsURL', () => {
-        if (process.server && !process.dev) {
-            return config.public.sovietSurvivorsURLServer;
-        } else {
-            return config.public.sovietSurvivorsURL;
-        }
-    });
-
-    nuxtApp.provide('sovietSurvivorsSolrURL', () => {
-        if (process.server && !process.dev) {
+          }
+        }, 'sovietSurvivorsSolrURL': () => {
+          if (import.meta.server && !import.meta.dev) {
             return config.public.sovietSurvivorsSolrURLServer;
-        } else {
+          } else {
             return config.public.sovietSurvivorsSolrURL;
+          }
+        }, 'sovietSurviorsURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.sovietSurvivorsURLServer;
+          } else {
+            return config.public.sovietSurvivorsURL;
+          }
+        }, 'directusURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.directusURLServer;
+          } else {
+            return config.public.directusURL;
+          }
+        }, 'backendURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.backendURLServer;
+          } else {
+            return config.public.backendURL;
+          }
         }
-    });
+      }
+    }
+  }
 })

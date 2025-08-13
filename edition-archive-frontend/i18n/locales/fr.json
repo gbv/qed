@@ -1,68 +1,68 @@
 {
   "documentation": {
-    "namingConvention": {
-      "sections": "as array",
-      "whitespace": "as camel case"
+    "conventionDeNommage": {
+      "sections": "comme cas de chameau",
+      "espaceBlanc": "comme cas de chameau"
     }
   },
   "qed": {
     "mainMenu": {
       "menu":"Menu",
       "home": "Home",
-      "search": "Portal Search",
-      "about": "About qed"
+      "search": "Recherche de portail",
+      "about": "À propos de qed"
     },
     "homePage": {
-      "more": "More about QED"
+      "more": "Plus sur QED"
     },
     "footerMenu": {
-      "imprint": "Imprint",
-      "privacy": "Privacy policy",
-      "terms": "Terms of use",
+      "imprint": "Mentions légales",
+      "privacy": "Protection des données",
+      "terms": "Conditions d'utilisation",
       "contact": "Contact",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibilité"
     }
   },
   "gpo": {
     "mainMenu": {
-      "project": "Project",
+      "project": "Projet",
       "regesta": {
-        "label":"Regesta",
-        "reims1": "Reims I: Archbishops"
+        "label":"Regestes",
+        "reims1": "Reims I: Archevêques"
       },
       "publications": "Publications",
-      "citation": "Citation",
+      "citation": "Indication pour la citation",
       "contact": "Contact"
     },
     "subMenu": {
-      "subMenu": "Page menu",
-      "openSubMenu": "Open page menu",
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "reims1": {
-        "home": "Preliminary remarks",
-        "intro": "Historical introduction",
-        "regests": "Regesta",
-        "search": "Search",
-        "incipits": "Incipits",
-        "writings": "Manuscripts",
-        "decretals": "Decretals",
-        "sources": "General bibliography",
-        "persons": "Index of persons",
-        "places": "Index of places",
-        "citation":"Citation",
-        "export":"Data export"
+        "home": "Remarques préliminaires",
+        "intro": "Notice historique",
+        "regests": "Regestes",
+        "search": "Recherche",
+        "incipits": "Incipit",
+        "writings": "Sources manuscrites",
+        "decretals": "Décrétales",
+        "sources": "Bibliographie générale",
+        "persons": "Index des noms de personnes",
+        "places": "Index des noms de lieux",
+        "citation":"Indication pour la citation",
+        "export":"Exportation des données"
       }
     },
     "pages": {
       "regesta": {
         "reims1": {
-          "headline": "Reims I: Archbishops"
+          "headline": "Reims I: Archevêques"
         },
         "genf1": {
           "headline": "Genf I: Bischöfe"
         }
       },
       "regest": {
-        "headline": "Regesta",
+        "headline": "Regestes",
         "dekretale": "Dekretalen",
         "editionen": "Editionen",
         "erwaehnungen": "Erwähnungen",
@@ -75,107 +75,107 @@
         "ueberlieferungsform": "Überlieferungsform",
         "regests": "Regesten",
         "cite": {
-          "short": "GPO Reims I: Erzbischöfe, no.",
-          "long": "Gallia Pontificia online. Reims I: Erzbischöfe, edited by Ludwig Falkenstein. Digital edition by Robert Friedrich and Sebastian Gensicke, under the direction of Rolf Große, Paris 2023, no.",
+          "short": "GPO Reims I: Erzbischöfe, n°",
+          "long": "Gallia Pontificia online. Reims I: Erzbischöfe, par Ludwig Falkenstein. Édition électronique par Robert Friedrich et Sebastian Gensicke, sous la direction de Rolf Große, Paris 2023, n°",
           "url": "https://qed.perspectivia.net/gallia-pontificia-online/regesten/reims1/regest/",
           "switch": {
             "long": {
-              "text": "Show citation",
-              "title": "Switch citation style to long form"
+              "text": "Afficher citation complète",
+              "title": "Afficher la citation complète"
             },
             "short": {
-              "text": "Show abbreviated title",
-              "title": "Switch citation style to short form"
+              "text": "Afficher titre abrégé",
+              "title": "Afficher le titre abrégé"
             }
           }
         },
-        "nummer": "No."
+        "nummer": "N°"
       },
-      "incipitIndex": "Incipits",
-      "manuscriptIndex": "Manuscripts",
-      "dekretaleIndex": "Decretals",
-      "sourceIndex": "General bibliography",
-      "personIndex": "Index of persons",
-      "placeIndex": "Index of places"
+      "incipitIndex": "Incipit",
+      "manuscriptIndex": "Sources manuscrites",
+      "dekretaleIndex": "Décrétales",
+      "sourceIndex": "Bibliographie générale",
+      "personIndex": "Index des noms de personnes",
+      "placeIndex": "Index des noms de lieux"
     },
-    "editionShortTitle": "Short titles of editions"
+    "editionShortTitle": "Titre abrégé des éditions"
   },
   "lod": {
     "mainMenu": {
-      "home": "Startseite",
-      "project": "Project",
-      "search": "Documents",
+      "home": "Home",
+      "project": "Projet",
+      "search": "Document",
       "contact": "Contact"
     },
     "subMenu": {
-      "subMenu": "Page menu",
-      "openSubMenu": "Open page menu",
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "intro": "Introduction",
-      "team": "Team",
-      "projectPartner": "Partner",
-      "editionGuidelines":"Guidelines"
+      "team": "Équipe",
+      "projectPartner": "Partenaire",
+      "editionGuidelines":"Lignes directrices"
     }
   },
   "sosu": {
     "metadata": {
-      "counts":  "{start} of {numFound}",
+      "counts":  "{start} de {numFound}",
       "genre": "Genre",
-      "language": "Language",
-      "unknownGenre": "Unknown",
-      "dateIssued": "Date Issued",
-      "typeOfResource": "Type of Resource",
-      "extent": "Extent",
+      "language": "Langue",
+      "unknownGenre": "Inconnu",
+      "dateIssued": "Date de publication",
+      "typeOfResource": "Type de ressource",
+      "extent": "Étendue",
       "archive": "Archive",
-      "shelfLocator": "Shelf Locator",
+      "shelfLocator": "Cote",
       "abstract": {
-        "showMore": "Show more",
-        "showLess": "Show less"
+        "showMore": "Afficher plus",
+        "showLess": "Afficher moins"
       },
-      "download": "Download",
+      "download": "Télécharger",
       "downloadText": "Transcript",
       "subject": {
-        "topic": "Topic",
-        "geographic": "Geographic",
-        "coordinates": "Coordinates of creation location",
-        "hideMap": "Hide Map",
-        "showMap": "Show Map"
+        "topic": "Sujet",
+        "geographic": "Lieu",
+        "coordinates": "Coordonnées du lieu de création",
+        "hideMap": "Masquer la carte",
+        "showMap": "Afficher la carte"
       },
-      "creationDate": "Creation Date",
-      "creationPlace": "Creation location of document",
+      "creationDate": "Date de création",
+      "creationPlace": "Lieu de création du document",
       "related": {
-        "original": "Original of this translation",
-        "translation": "Available translations"
+        "original": "Original de cette traduction",
+        "translation": "Traductions disponibles"
       },
       "name": {
-        "family": "Family Name",
-        "given": "Given Name",
-        "termsOfAddress": "Terms of Address",
-        "date": "Date of Birth/Death",
+        "family": "Nom de famille",
+        "given": "Prénom",
+        "termsOfAddress": "Titre",
+        "date": "Date de naissance/décès",
         "affiliation": "Affiliation",
         "role": {
-          "isb": "Issuing Body",
+          "isb": "Organe émetteur",
           "ivr": "Interviewer",
-          "ive": "Interviewee",
-          "aut": "Author",
+          "ive": "Interviewé",
+          "aut": "Auteur",
           "scr": "Scribe",
-          "rcp": "Recipient",
-          "trl": "Translator"
+          "rcp": "Destinataire",
+          "trl": "Traducteur"
         }
       },
-      "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
+      "copyright": "© Copyright 2025 - Toutes les images sont protégées par des droits d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
       "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     },
     "mainMenu": {
       "home": "Home",
-      "about": "About",
+      "about": "À propos",
       "search": "Documents",
       "contact": "Contact"
     },
     "subMenu": {
-      "subMenu": "Page menu",
-      "openSubMenu": "Open page menu",
+      "subMenu": "Menu de la page",
+      "openSubMenu": "Ouvrir le menu de la page",
       "intro": "Introduction",
-      "search": "Search",
+      "search": "Recherche",
       "sovietHistorians": "Тhe Historical Commission",
       "learningEnvironment": "Learning Environment",
       "furtherLiterature": "Further Literature",
@@ -200,69 +200,69 @@
     }
   },
   "search": {
-    "label": "Search",
+    "label": "Recherche",
     "basic": "Simple",
-    "extended": "Advanced",
+    "extended": "Avancée",
     "pageGoTo": "Go to page {page}",
-    "hitCount": "{count} entries found",
+    "hitCount": "{count} résultat(s) trouvé(s)",
     "noHits": "Keine Treffer",
     "pageNext": "Next page",
     "pagePrev": "Previous page",
     "pagination": "pagination search",
-    "submit": "Search",
-    "goToRegest": "Go to no. {regest}",
-    "error": "Error while Searching: {error}",
-    "preview":"Preview",
+    "submit": "Rechercher",
+    "goToRegest": "Aller au n° {regest}",
+    "error": "Erreur lors de la recherche : {error}",
+    "preview":"Aperçu",
     "sort": {
-      "idno": "Number",
-      "relevance": "Relevance",
-      "asc": "Ascending",
-      "desc": "Descending"
+      "idno": "Numéro",
+      "relevance": "Pertinence",
+      "asc": "Croissant",
+      "desc": "Décroissant"
     },
     "facet": {
-      "openFacet": "Open facet",
-      "facet": "Facet",
-      "deperditum": "Deperditum/historiographical note ( * )",
-      "issuer": "Issuer",
-      "recipient": "Recipient",
-      "showLess": "Show less",
-      "showMore": "Show more",
+      "openFacet": "Open facette",
+      "facet": "Ouvrir le Facette",
+      "deperditum": "Déperditum/note historiographique ( * )",
+      "issuer": "Auteur",
+      "recipient": "Destinataire",
+      "showLess": "Voir moins",
+      "showMore": "Voir plus",
       "spurium": "Spurium (†)",
-      "ueberlieferungsform": "Form of tradition",
-      "translationOnly": "Only translations",
-      "originalOnly": "Only original",
-      "all": "All",
-      "translationMode": "Show translations",
-      "genre": "Document type",
-      "language": "Language"
+      "ueberlieferungsform": "Mode de transmission",
+      "translationOnly": "Traductions uniquement",
+      "originalOnly": "Originaux uniquement",
+      "all": "Tous les",
+      "translationMode": "Afficher les traductions",
+      "genre": "Genre",
+      "language": "Langue"
     },
     "field": {
-      "allMetaHelp": "Searches all metadata for the entered search term",
-      "allMeta": "Free search",
+      "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",
+      "allMeta": "Recherche libre",
       "dateHelp": "",
-      "dateRangeLabel": "Date Span",
+      "dateRangeLabel": "Période",
       "date": "Date",
       "dateTextHelp": "",
-      "dateText": "Date (Text)",
+      "dateText": "Date (Texte)",
       "initiumHelp": "",
       "initium": "Incipit",
       "issuerHelp": "",
-      "issuer": "Issuer",
+      "issuer": "Auteur",
       "jaffe2": "JK, JE, JL",
       "jaffe3": "J³",
       "personHelp": "Durchsucht die Metadaten nach einer Person",
-      "person": "Person",
+      "person": "Personne",
       "placeHelp": "Durchsucht die Metadaten nach einem Ort",
-      "place": "Place",
+      "place": "Lieu",
       "recipientHelp": "",
-      "recipient": "Recipient"
+      "recipient": "Destinataire"
     }
   },
   "browser": {
     "currentOf": " von ",
-    "invalidIndex": "Invalid",
-    "goTo": "Go to entry {to}",
-    "changeRegest": "Select a specific entry"
+    "invalidIndex": "Invalide",
+    "goTo": "Aller à l'entrée {to}",
+    "changeRegest": "Choisis une entrée spécifique"
   },
   "cms": {
     "page": {
@@ -304,11 +304,12 @@
     }
   },
   "button":{
-    "back": "Back",
-    "toProject": "To the Project"
+    "back": "Retour",
+    "toProject": "vers le projet",
+    "close": "Fermer"
   },
   "cc": {
-    "by": "by",
+    "by": "von",
     "photo": "Foto"
   },
   "login": {
@@ -344,10 +345,10 @@
   "url_type_band_xiv": "Volume XIV",
   "url_type_band_xv": "Volume XV",
   "url_type_band_xvi": "Volume XVI",
-  "url_type_digitalisat": "Digital copy",
+  "url_type_digitalisat": "Version numérique",
   "url_type_geschichtsquellen.de": "Geschichtsquellen.de",
-  "url_type_katalogisat": "Catalogue entry",
-  "url_type_link": "Link",
-  "url_type_online-zugriff": "Online access",
+  "url_type_katalogisat": "Catalogue",
+  "url_type_link": "Lien",
+  "url_type_online-zugriff": "Accès en ligne",
   "url_type_supplement": "Supplement"
 }

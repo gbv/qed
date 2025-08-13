@@ -298,9 +298,9 @@
 <script setup lang="ts">
 import {useI18n} from 'vue-i18n';
 import {XMLApi} from "~/api/XMLApi";
-import {byName, findFirstElement, flattenElement, byAttr, and, findElement} from "@mycore-org/xml-json-api"
+import {byName, findFirstElement, flattenElement, byAttr, and, findElement} from "~/api/XMLApi"
 import SolrPaginator from "~/components/SolrPaginator.vue";
-import {LocationQuery, LocationQueryValue} from "vue-router";
+import {type LocationQuery, type LocationQueryValue} from "vue-router";
 import {partialEscapeSpecialChars, trimString} from "~/api/Utils";
 
 const i18n = useI18n();

@@ -5,9 +5,8 @@ import {
   findFirstElement,
   flattenElement,
   getAttribute,
-  XElement
-} from "@mycore-org/xml-json-api";
-import Genre from "~/components/MODS/Genre.vue";
+  type XElement
+} from "~/api/XMLApi";
 
 export interface Title {
   language?: string;
