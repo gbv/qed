@@ -95,6 +95,12 @@ const getMatchingTranslation = () => {
     return null;
   }
   return model.translations.find(t => {
+    if(!t) {
+      return false;
+    }
+    if(!t.languages_code) {
+      return false;
+    }
     return t.languages_code.startsWith(i18n.localeProperties.value.code+"") ||
     t.languages_code === i18n.localeProperties.value.code;
   }) as PageTranslation || null;
@@ -227,8 +233,7 @@ watch(i18n.locale, async () => {
 
 const editPage = () => {
   if (model.translations == null ||
-    model.pageID == null ||
-    i18n.localeProperties.value.iso == undefined) {
+    model.pageID == null ) {
     return;
   }
   const matchingTranslation = getMatchingTranslation();
