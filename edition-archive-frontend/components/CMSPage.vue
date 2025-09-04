@@ -291,11 +291,22 @@ if (model.pageID) {
 }
 
 if (process.client){
-   window.setInterval(()=> {
-       refreshLogin();
-       model.authHeader = userStore.accessToken ? {Authorization: `Bearer ${userStore.accessToken}`} : null;
-   },
-   1000 * 60 ); // refresh every minute
+  let interval:number|null = null;
+
+  onMounted(() => {
+    interval = window.setInterval(()=> {
+        refreshLogin();
+        model.authHeader = userStore.accessToken ? {Authorization: `Bearer ${userStore.accessToken}`} : null;
+      },
+      1000 * 60 ); // refresh every minute
+  });
+
+  onUnmounted(()=> {
+    if(interval){
+      clearInterval(interval);
+    }
+  });
+
 }
 
 </script>
