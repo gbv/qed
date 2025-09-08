@@ -6,6 +6,20 @@
           <button class="btn btn-primary" type="button" @click="editPage"><i class="bi bi-pencil-square"> </i>
             {{ isNewTranslation ? $t("cms.page.newTranslation") : $t("cms.page.editTranslation") }}
           </button>
+          <button v-if="model.page?.status === 'published'"
+                  class="btn btn-warning"
+                  @click="draftPage"
+          >
+            <i class="bi bi-feather"> </i>
+            {{ $t("cms.page.draft") }}
+          </button>
+          <button v-else-if="model.page?.status === 'draft'"
+                  class="btn btn-success"
+                  @click="publishPage"
+          >
+            <i class="bi bi-check2-circle"> </i>
+            {{ $t("cms.page.publish") }}
+          </button>
           <button v-if="!isNewTranslation" class="btn btn-danger" type="button" @click="deletePage"><i
             class="bi bi-trash"> </i>
             {{ $t("cms.page.translation.delete") }}
@@ -56,6 +70,18 @@ interface PageTranslation {
   content: string,
 }
 
+interface Page {
+  date_created: string|null,
+  date_updated: string|null,
+  id: number,
+  project: string,
+  slug: string,
+  status: "published" | "draft" | "archived",
+  user_created: string|null,
+  user_updated: string|null,
+  contents: Array<number>,
+}
+
 interface FileObject {
   id: string,
   storage: string,
@@ -76,17 +102,18 @@ const model = reactive<{
   pageRequest: any,
   authHeader: any,
   edit: boolean,
-  pageID: number | null,
   translations: Array<PageTranslation> | null,
-  loading: boolean
+  loading: boolean,
+  page: Page | null,
+
 }>({
   contentRequest: null,
   pageRequest: null,
   authHeader: null,
   edit: false,
-  pageID: null,
   translations: null,
   loading: false,
+  page: null
 });
 
 
@@ -124,40 +151,6 @@ const isNewTranslation = computed(() => {
 
 // only execute if on client
 model.authHeader = userStore.accessToken ? {Authorization: `Bearer ${userStore.accessToken}`} : null;
-
-const getPageID = async (slug: string) => {
-  model.loading = true;
-  model.pageRequest = await useFetch(`${$directusURL()}items/Page?filter={"slug":"${slug}"}`, {key: slug});
-  if (!(model.pageRequest?.data?.data?.length > 0)) {
-    showError(
-      createError({
-        statusCode: 404,
-        statusMessage: 'Not Found',
-      })
-    );
-    return;
-  }
-
-  return model.pageRequest.data.data[0].id;
-}
-const getTranslations = async (slug: string, pageid: number) => {
-  model.contentRequest = await useFetch(`${$directusURL()}items/Page_translations?filter={"Page_id":${pageid}}`,
-    {key: `${slug}-translation`});
-
-  if (!(model.pageRequest?.data?.data?.length > 0)) {
-    showError(
-      createError({
-        statusCode: 404,
-        statusMessage: 'Not Found',
-      })
-    );
-    return;
-  }
-
-  model.loading = false;
-  return model.contentRequest.data.data as Array<PageTranslation>;
-}
-
 
 const saveContent = async (content: string) => {
   console.log("saveContent", currentTranslation.value);
@@ -199,7 +192,7 @@ const deletePage = async () => {
   }
 }
 const deletePageConfirmed = async () => {
-  if (model.pageID == null || currentTranslation.value == null || currentTranslation.value.id == undefined || model.translations == null) {
+  if (model.page == null || currentTranslation.value == null || currentTranslation.value.id == undefined || model.translations == null) {
     return;
   }
 
@@ -223,23 +216,75 @@ const deletePageConfirmed = async () => {
   stopEdit();
 }
 
+const draftPage = async () => {
+  if (model.page == null) {
+    return;
+  }
+
+  const draftRequest = await useFetch(`${$directusURL()}items/Page/${model.page.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      ...model.authHeader,
+    },
+    body: JSON.stringify(
+      {
+        status: 'draft'
+      }
+    ),
+  });
+
+  if (draftRequest.error.value) {
+    console.log(draftRequest.error.value);
+    showError(draftRequest.error.value);
+    return;
+  }
+
+  model.page.status = 'draft';
+  console.log("draftRequest", draftRequest.data.value);
+}
+
+const publishPage = async () => {
+  if (model.page == null) {
+    return;
+  }
+
+  const publishRequest = await useFetch(`${$directusURL()}items/Page/${model.page.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      ...model.authHeader,
+    },
+    body: JSON.stringify(
+      {
+        status: 'published'
+      }
+    ),
+  });
+
+  if (publishRequest.error.value) {
+    console.log(publishRequest.error.value);
+    showError(publishRequest.error.value);
+    return;
+  }
+
+  model.page.status = 'published';
+  console.log("publishRequest", publishRequest.data.value);
+}
+
 watch(i18n.locale, async () => {
   stopEdit();
-  model.pageID = await getPageID(props.slug);
-  if (model.pageID) {
-    model.translations = await getTranslations(props.slug, model.pageID) || null;
-  }
+  loadPageAndTranslations(props.slug);
 });
 
 const editPage = () => {
-  if (model.translations == null ||
-    model.pageID == null ) {
+  if (model.translations == null || model.page == null ) {
     return;
   }
   const matchingTranslation = getMatchingTranslation();
   if (matchingTranslation == null) {
     const newTranslation = {
-      Page_id: model.pageID,
+      Page_id: model.page.id,
       languages_code: i18n.localeProperties.value.code.toString(),
       content: `<div><h3>${i18n.t('cms.page.translation.new')}</h3></div>`,
     };
@@ -283,12 +328,53 @@ const fileUpload = async (fileUploadRequest: FileUploadEvent) => {
   fileUploadRequest.success(`${$directusURL()}assets/${result.id}`);
 }
 
+const loadPageAndTranslations = async (slug:string) => {
+  model.loading = true;
+  model.pageRequest = await useFetch(`${$directusURL()}items/Page?filter={"slug":"${slug}"}`, {key: slug});
+
+  if (!(model.pageRequest?.data?.data?.length > 0)) {
+    showError(
+      createError({
+        statusCode: 404,
+        statusMessage: 'Not Found',
+      })
+    );
+    return null;
+  }
+  let page = model.pageRequest.data.data[0];
+
+  model.page = page;
+
+  if (!(page.status === 'published' || model.authHeader)) {
+    showError(
+      createError({
+        statusCode: 403,
+        statusMessage: 'No Rights to access this page',
+      })
+    );
+    return null;
+  }
+
+  model.contentRequest = await useFetch(`${$directusURL()}items/Page_translations?filter={"Page_id":${model.page?.id}}`,
+    {key: `${props.slug}-translation`});
+
+  if (!(model.pageRequest?.data?.data?.length > 0)) {
+    showError(
+      createError({
+        statusCode: 404,
+        statusMessage: 'Not Found',
+      })
+    );
+    return null;
+  }
+
+  model.loading = false;
+  return model.contentRequest.data.data as Array<PageTranslation>;
+};
+
 
 // on load
-model.pageID = await getPageID(props.slug);
-if (model.pageID) {
-  model.translations = await getTranslations(props.slug, model.pageID) || null;
-}
+model.translations = await loadPageAndTranslations(props.slug);
 
 if (process.client){
   let interval:number|null = null;

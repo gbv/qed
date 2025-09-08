@@ -1,27 +1,29 @@
 <template>
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <h3>{{ $t("login.title") }}</h3>
-        </div>
-        <div class="card-body">
-          <form @submit.prevent="userLogin">
-            <div class="form-group">
-              <label for="email">{{ $t('login.email') }}</label>
-              <input id="email" v-model="loginData.email" :class="!validate.server && !validate.email ? '':'is-invalid'"
-                     class="form-control" type="email">
-            </div>
-            <div class="form-group">
-              <label for="password">{{ $t('login.password') }}</label>
-              <input id="password" v-model="loginData.password"
-                     :class="!validate.server && !validate.email ? '':'is-invalid'"
-                     class="form-control" type="password">
-            </div>
-            <div v-if="validate.server" class="alert alert-danger">{{ $t("login.invalid") }}</div>
-            <div v-if="validate.error" class="alert alert-danger">{{ $t("login.error") }}</div>
-            <button class="btn btn-primary" type="submit">{{ $t("login.submit") }}</button>
-          </form>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h3>{{ $t("login.title") }}</h3>
+          </div>
+          <div class="card-body">
+            <form @submit.prevent="userLogin">
+              <div class="form-group">
+                <label for="email">{{ $t('login.email') }}</label>
+                <input id="email" v-model="loginData.email" :class="!validate.server && !validate.email ? '':'is-invalid'"
+                       class="form-control" type="email">
+              </div>
+              <div class="form-group">
+                <label for="password">{{ $t('login.password') }}</label>
+                <input id="password" v-model="loginData.password"
+                       :class="!validate.server && !validate.email ? '':'is-invalid'"
+                       class="form-control" type="password">
+              </div>
+              <div v-if="validate.server" class="alert alert-danger">{{ $t("login.invalid") }}</div>
+              <div v-if="validate.error" class="alert alert-danger">{{ $t("login.error") }}</div>
+              <button class="btn btn-primary" type="submit">{{ $t("login.submit") }}</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -269,6 +269,8 @@
       "loading": "Lade Seite...",
       "newTranslation": "Neue Übersetzung",
       "editTranslation": "Übersetzung bearbeiten",
+      "draft": "Als Entwurf markieren",
+      "publish": "Veröffentlichen",
       "translation": {
         "new": "Neue Übersetzung",
         "delete": "Übersetzung löschen",
@@ -300,7 +302,8 @@
   "error": {
     "message": {
       "unknown": "Ein unbekannter Fehler ist aufgetreten.",
-      "404": "Seite konnte nicht gefunden werden."
+      "404": "Seite konnte nicht gefunden werden.",
+      "403": "Zugriff verweigert. Sie haben keine Berechtigung für diese Seite."
     }
   },
   "button":{

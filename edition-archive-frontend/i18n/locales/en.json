@@ -266,9 +266,11 @@
   },
   "cms": {
     "page": {
-      "loading": "Lade Seite...",
-      "newTranslation": "Neue Übersetzung",
-      "editTranslation": "Übersetzung bearbeiten",
+      "loading": "Loading page...",
+      "newTranslation": "New translation",
+      "editTranslation": "Edit translation",
+      "draft": "Mark as draft",
+      "publish": "Publish",
       "translation": {
         "new": "Neue Übersetzung",
         "delete": "Übersetzung löschen",
@@ -299,14 +301,15 @@
   },
   "error": {
     "message": {
-      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
-      "404": "Seite konnte nicht gefunden werden."
+      "unknown": "An unknown error has occurred.",
+      "404": "Page could not be found.",
+      "403": "Access denied. You do not have permission to view this page."
     }
   },
   "button":{
     "back": "Back",
     "toProject": "To the Project",
-    "close": "Close",
+    "close": "Close"
   },
   "cc": {
     "by": "by",

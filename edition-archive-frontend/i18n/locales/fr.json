@@ -266,9 +266,11 @@
   },
   "cms": {
     "page": {
-      "loading": "Lade Seite...",
-      "newTranslation": "Neue Übersetzung",
-      "editTranslation": "Übersetzung bearbeiten",
+      "loading": "Charger la page...",
+      "newTranslation": "Nouvelle traduction",
+      "editTranslation": "Modifier la traduction",
+      "draft": "Marquer comme brouillon",
+      "publish": "Publier",
       "translation": {
         "new": "Neue Übersetzung",
         "delete": "Übersetzung löschen",
@@ -299,8 +301,9 @@
   },
   "error": {
     "message": {
-      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
-      "404": "Seite konnte nicht gefunden werden."
+      "unknown": "Une erreur inconnue s'est produite.",
+      "404": "Page non trouvée.",
+      "403": "Accès refusé. Vous n'avez pas l'autorisation d'accéder à cette page."
     }
   },
   "button":{
