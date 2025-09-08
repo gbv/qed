@@ -113,6 +113,23 @@
                 <li class="nav-item">
                   <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">{{ $t('qed.footerMenu.accessibility') }}</nuxt-link>
                 </li>
+
+                <li class="nav-item"
+                    v-if="isClient">
+                    <nuxt-link
+                      v-if="!isLoggedIn"
+                      class="nav-link"
+                      active-class="active"
+                      @click="storeRedirect"
+                      to="/login"
+                    >{{ $t('qed.footerMenu.login') }}</nuxt-link>
+                    <a
+                      v-else
+                       class="nav-link"
+                       @click.prevent="logout"
+                       href="#logout"
+                    >{{ $t('qed.footerMenu.logout') }}</a>
+                </li>
               </ul>
             </div>
 
@@ -190,6 +207,17 @@
 </template>
 
 <script setup lang="ts">
+import {useUserStore} from "~/store/UserStore";
+import {useRedirectStore} from "~/store/RedirectStore";
+
+
+const userStore = useUserStore();
+const redirectStore = useRedirectStore();
+const router = useRouter();
+
+  const storeRedirect = () => {
+    redirectStore.setRedirectPath(router.currentRoute.value.fullPath);
+  }
 
   const i18n = useI18n();
   useHead ({
@@ -197,6 +225,19 @@
       lang: i18n.locale
     }
   })
+
+  const isClient = computed(() => {
+    return process.client;
+  });
+
+  const isLoggedIn = computed(() => {
+    return !!userStore.accessToken && !userStore.isExpired();
+  });
+
+  const logout = () => {
+    userStore.logout();
+    window.location.reload();
+  }
 
   // hide menu when it is visible and a click happend outside
   // every link in the menu will close the menu also

@@ -89,5 +89,5 @@ export const useUserStore = defineStore('userStore', () => {
     userCookie.value = null;
   }
 
-  return {accessToken, refreshToken, expires, deleteToken, login, id, user, refresh, logout}
+  return {accessToken, refreshToken, expires, deleteToken, login, id, user, refresh, logout, isExpired}
 });

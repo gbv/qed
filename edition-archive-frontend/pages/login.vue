@@ -32,11 +32,12 @@
 
 <script lang="ts" setup>
 import {useUserStore} from "~/store/UserStore";
+import {useRedirectStore} from "~/store/RedirectStore";
 import {type AuthResult, type UserType} from "@directus/sdk"
 
 const {$directusURL} = useNuxtApp();
-const {query} = useRoute()
 
+const redirectStore = useRedirectStore();
 const store = useUserStore();
 
 let loginData = reactive({
@@ -114,11 +115,15 @@ const userLogin = async () => {
   const userData = ((userResp.data.value as any).data) as UserType;
   store.login(tokenData, userData);
 
-  if (query.redirect) {
-    await navigateTo(`${query.redirect}`);
-  } else {
+
+  if(redirectStore.redirectPath) {
+    const path = redirectStore.redirectPath;
+    redirectStore.clearRedirectPath()
+    await navigateTo(path);
+  }else {
     await navigateTo('/');
   }
+
 }
 </script>
 

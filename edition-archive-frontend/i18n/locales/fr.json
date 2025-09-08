@@ -20,7 +20,9 @@
       "privacy": "Protection des données",
       "terms": "Conditions d'utilisation",
       "contact": "Contact",
-      "accessibility": "Accessibilité"
+      "accessibility": "Accessibilité",
+      "login": "Connexion",
+      "logout": "Déconnexion"
     }
   },
   "gpo": {

@@ -20,7 +20,9 @@
       "privacy": "Privacy policy",
       "terms": "Terms of use",
       "contact": "Contact",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibility",
+      "login": "Login",
+      "logout": "Logout"
     }
   },
   "gpo": {
@@ -266,11 +268,9 @@
   },
   "cms": {
     "page": {
-      "loading": "Loading page...",
-      "newTranslation": "New translation",
-      "editTranslation": "Edit translation",
-      "draft": "Mark as draft",
-      "publish": "Publish",
+      "loading": "Lade Seite...",
+      "newTranslation": "Neue Übersetzung",
+      "editTranslation": "Übersetzung bearbeiten",
       "translation": {
         "new": "Neue Übersetzung",
         "delete": "Übersetzung löschen",
