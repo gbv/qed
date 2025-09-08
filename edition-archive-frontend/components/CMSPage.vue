@@ -274,7 +274,7 @@ const publishPage = async () => {
 
 watch(i18n.locale, async () => {
   stopEdit();
-  loadPageAndTranslations(props.slug);
+  model.translations = await loadPageAndTranslations(props.slug);
 });
 
 const editPage = () => {
