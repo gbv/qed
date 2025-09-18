@@ -10,6 +10,8 @@
       "menu":"Menü",
       "home": "Startseite",
       "search": "Portalsuche",
+      "login": "Anmelden",
+      "logout": "Abmelden",
       "about": "Über qed"
     },
     "homePage": {
@@ -20,9 +22,7 @@
       "privacy": "Datenschutz",
       "terms": "Nutzungsbedingungen",
       "contact": "Kontakt",
-      "accessibility": "Barrierefreiheit",
-      "login": "Login",
-      "logout": "Logout"
+      "accessibility": "Barrierefreiheit"
     }
   },
   "gpo": {

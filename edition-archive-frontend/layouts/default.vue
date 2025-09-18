@@ -62,14 +62,14 @@
                                    active-class="active"
                                    @click="storeRedirect"
                                    to="/login"
-                        >{{ $t('qed.footerMenu.login') }}
+                        >{{ $t('qed.mainMenu.login') }}
                         </nuxt-link>
                         <a
                           v-else-if="isClient"
                           class="nav-link"
                           @click.prevent="logout"
                           href="#logout"
-                        >{{ $t('qed.footerMenu.logout') }}</a>
+                        >{{ $t('qed.mainMenu.logout') }}</a>
                       </li>
                     </client-only>
                     <li><hr class="dropdown-divider"></li>

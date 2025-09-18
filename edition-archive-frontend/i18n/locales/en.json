@@ -10,6 +10,8 @@
       "menu":"Menu",
       "home": "Home",
       "search": "Portal Search",
+      "login": "Login",
+      "logout": "Logout",
       "about": "About qed"
     },
     "homePage": {
@@ -20,9 +22,7 @@
       "privacy": "Privacy policy",
       "terms": "Terms of use",
       "contact": "Contact",
-      "accessibility": "Accessibility",
-      "login": "Login",
-      "logout": "Logout"
+      "accessibility": "Accessibility"
     }
   },
   "gpo": {
@@ -268,9 +268,10 @@
   },
   "cms": {
     "page": {
-      "loading": "Lade Seite...",
-      "newTranslation": "Neue Übersetzung",
-      "editTranslation": "Übersetzung bearbeiten",
+      "loading": "Loading page...",
+      "newTranslation": "New translation",
+      "editTranslation": "Edit translation",
+      "draft": "Mark as draft",
       "translation": {
         "new": "Neue Übersetzung",
         "delete": "Übersetzung löschen",

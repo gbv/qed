@@ -10,6 +10,8 @@
       "menu":"Menu",
       "home": "Home",
       "search": "Recherche de portail",
+      "login": "Connexion",
+      "logout": "Déconnexion",
       "about": "À propos de qed"
     },
     "homePage": {
@@ -20,9 +22,7 @@
       "privacy": "Protection des données",
       "terms": "Conditions d'utilisation",
       "contact": "Contact",
-      "accessibility": "Accessibilité",
-      "login": "Connexion",
-      "logout": "Déconnexion"
+      "accessibility": "Accessibilité"
     }
   },
   "gpo": {
