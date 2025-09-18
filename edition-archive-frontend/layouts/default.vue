@@ -52,6 +52,26 @@
                         href="/suche">{{ $t('qed.mainMenu.search') }}
                       </nuxt-link>
                     </li>
+                    <client-only>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li class="nav-item">
+                        <nuxt-link v-if="!isLoggedIn"
+                                   class="nav-link"
+                                   active-class="active"
+                                   @click="storeRedirect"
+                                   to="/login"
+                        >{{ $t('qed.footerMenu.login') }}
+                        </nuxt-link>
+                        <a
+                          v-else-if="isClient"
+                          class="nav-link"
+                          @click.prevent="logout"
+                          href="#logout"
+                        >{{ $t('qed.footerMenu.logout') }}</a>
+                      </li>
+                    </client-only>
                     <li><hr class="dropdown-divider"></li>
                     <li class="nav-item">
                       <nuxt-link
@@ -114,22 +134,6 @@
                   <nuxt-link class="nav-link" active-class="active" href="/barrierefreiheit">{{ $t('qed.footerMenu.accessibility') }}</nuxt-link>
                 </li>
 
-                <li class="nav-item"
-                    v-if="isClient">
-                    <nuxt-link
-                      v-if="!isLoggedIn"
-                      class="nav-link"
-                      active-class="active"
-                      @click="storeRedirect"
-                      to="/login"
-                    >{{ $t('qed.footerMenu.login') }}</nuxt-link>
-                    <a
-                      v-else
-                       class="nav-link"
-                       @click.prevent="logout"
-                       href="#logout"
-                    >{{ $t('qed.footerMenu.logout') }}</a>
-                </li>
               </ul>
             </div>
 
