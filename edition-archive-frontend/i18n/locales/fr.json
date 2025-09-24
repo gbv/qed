@@ -274,9 +274,9 @@
       "draft": "Marquer comme brouillon",
       "publish": "Publier",
       "translation": {
-        "new": "Neue Übersetzung",
-        "delete": "Übersetzung löschen",
-        "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
+        "new": "Nouvelle traduction",
+        "delete": "Supprimer",
+        "confirmDelete": "Confirmer la suppression"
       },
       "editor": {
         "capitalize": "Kapitälchen",

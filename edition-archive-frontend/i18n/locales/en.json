@@ -270,12 +270,12 @@
     "page": {
       "loading": "Loading page...",
       "newTranslation": "New translation",
-      "editTranslation": "Edit translation",
+      "editTranslation": "Edit",
       "draft": "Mark as draft",
       "translation": {
-        "new": "Neue Übersetzung",
-        "delete": "Übersetzung löschen",
-        "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
+        "new": "New translation",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this translation?"
       },
       "editor": {
         "capitalize": "Kapitälchen",

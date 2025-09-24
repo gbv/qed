@@ -270,12 +270,12 @@
     "page": {
       "loading": "Lade Seite...",
       "newTranslation": "Neue Übersetzung",
-      "editTranslation": "Übersetzung bearbeiten",
+      "editTranslation": "Bearbeiten",
       "draft": "Als Entwurf markieren",
       "publish": "Veröffentlichen",
       "translation": {
         "new": "Neue Übersetzung",
-        "delete": "Übersetzung löschen",
+        "delete": "Löschen",
         "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
       },
       "editor": {
