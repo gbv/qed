@@ -10,6 +10,8 @@
       "menu":"Menu",
       "home": "Home",
       "search": "Recherche de portail",
+      "login": "Connexion",
+      "logout": "Déconnexion",
       "about": "À propos de qed"
     },
     "homePage": {
@@ -266,13 +268,15 @@
   },
   "cms": {
     "page": {
-      "loading": "Lade Seite...",
-      "newTranslation": "Neue Übersetzung",
-      "editTranslation": "Übersetzung bearbeiten",
+      "loading": "Charger la page...",
+      "newTranslation": "Nouvelle traduction",
+      "editTranslation": "Modifier la traduction",
+      "draft": "Marquer comme brouillon",
+      "publish": "Publier",
       "translation": {
-        "new": "Neue Übersetzung",
-        "delete": "Übersetzung löschen",
-        "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
+        "new": "Nouvelle traduction",
+        "delete": "Supprimer",
+        "confirmDelete": "Confirmer la suppression"
       },
       "editor": {
         "capitalize": "Kapitälchen",
@@ -299,8 +303,9 @@
   },
   "error": {
     "message": {
-      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
-      "404": "Seite konnte nicht gefunden werden."
+      "unknown": "Une erreur inconnue s'est produite.",
+      "404": "Page non trouvée.",
+      "403": "Accès refusé. Vous n'avez pas l'autorisation d'accéder à cette page."
     }
   },
   "button":{

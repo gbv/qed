@@ -10,6 +10,8 @@
       "menu":"Menü",
       "home": "Startseite",
       "search": "Portalsuche",
+      "login": "Anmelden",
+      "logout": "Abmelden",
       "about": "Über qed"
     },
     "homePage": {
@@ -268,10 +270,12 @@
     "page": {
       "loading": "Lade Seite...",
       "newTranslation": "Neue Übersetzung",
-      "editTranslation": "Übersetzung bearbeiten",
+      "editTranslation": "Bearbeiten",
+      "draft": "Als Entwurf markieren",
+      "publish": "Veröffentlichen",
       "translation": {
         "new": "Neue Übersetzung",
-        "delete": "Übersetzung löschen",
+        "delete": "Löschen",
         "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
       },
       "editor": {
@@ -300,7 +304,8 @@
   "error": {
     "message": {
       "unknown": "Ein unbekannter Fehler ist aufgetreten.",
-      "404": "Seite konnte nicht gefunden werden."
+      "404": "Seite konnte nicht gefunden werden.",
+      "403": "Zugriff verweigert. Sie haben keine Berechtigung für diese Seite."
     }
   },
   "button":{
