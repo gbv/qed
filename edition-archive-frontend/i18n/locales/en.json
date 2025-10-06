@@ -119,54 +119,6 @@
     }
   },
   "sosu": {
-    "metadata": {
-      "counts":  "{start} of {numFound}",
-      "genre": "Genre",
-      "language": "Language",
-      "unknownGenre": "Unknown",
-      "dateIssued": "Date Issued",
-      "typeOfResource": "Type of Resource",
-      "extent": "Extent",
-      "archive": "Archive",
-      "shelfLocator": "Shelf Locator",
-      "abstract": {
-        "showMore": "Show more",
-        "showLess": "Show less"
-      },
-      "download": "Download",
-      "downloadText": "Transcript",
-      "subject": {
-        "topic": "Topic",
-        "geographic": "Geographic",
-        "coordinates": "Coordinates of creation location",
-        "hideMap": "Hide Map",
-        "showMap": "Show Map"
-      },
-      "creationDate": "Creation Date",
-      "creationPlace": "Creation location of document",
-      "related": {
-        "original": "Original of this translation",
-        "translation": "Available translations"
-      },
-      "name": {
-        "family": "Family Name",
-        "given": "Given Name",
-        "termsOfAddress": "Terms of Address",
-        "date": "Date of Birth/Death",
-        "affiliation": "Affiliation",
-        "role": {
-          "isb": "Issuing Body",
-          "ivr": "Interviewer",
-          "ive": "Interviewee",
-          "aut": "Author",
-          "scr": "Scribe",
-          "rcp": "Recipient",
-          "trl": "Translator"
-        }
-      },
-      "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
-      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
-    },
     "mainMenu": {
       "home": "Home",
       "about": "About",
@@ -184,9 +136,65 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Germany’s War of Extermination"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
+      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     }
   },
   "gazin": {
+    "metadata": {
+      "copyright": "© Copyright 2025 - All media are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
+      "cite": "Dengbêj Gazîn. Digital Edition by ... . Bonn: perspectivia.net, 2025.",
+      "transcription": "Transcription"
+    }
+  },
+  "metadata": {
+    "counts": "{start} of {numFound}",
+    "genre": "Genre",
+    "language": "Language",
+    "unknownGenre": "Unknown",
+    "dateIssued": "Date Issued",
+    "typeOfResource": "Type of Resource",
+    "extent": "Extent",
+    "archive": "Archive",
+    "shelfLocator": "Shelf Locator",
+    "abstract": {
+      "showMore": "Show more",
+      "showLess": "Show less"
+    },
+    "download": "Download",
+    "downloadText": "Transcript",
+    "subject": {
+      "topic": "Topic",
+      "geographic": "Geographic",
+      "coordinates": "Coordinates of creation location",
+      "hideMap": "Hide Map",
+      "showMap": "Show Map"
+    },
+    "creationDate": "Creation Date",
+    "creationPlace": "Creation location of document",
+    "related": {
+      "original": "Original of this translation",
+      "translation": "Available translations"
+    },
+    "name": {
+      "family": "Family Name",
+      "given": "Given Name",
+      "termsOfAddress": "Terms of Address",
+      "date": "Date of Birth/Death",
+      "affiliation": "Affiliation",
+      "role": {
+        "isb": "Issuing Body",
+        "ivr": "Interviewer",
+        "ive": "Interviewee",
+        "aut": "Author",
+        "scr": "Scribe",
+        "rcp": "Recipient",
+        "trl": "Translator",
+        "art": "Artist"
+      }
+    },
     "mainMenu": {
       "home": "Home",
       "introduction": "Introduction",

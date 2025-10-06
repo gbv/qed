@@ -14,7 +14,7 @@
               </nuxt-link>
             </div>
             <div class="col-2 text-center" v-if="data?.counts">
-              {{ $t("sosu.metadata.counts", { start: data?.counts?.start, numFound: data?.counts?.numFound }) }}
+              {{ $t("metadata.counts", { start: data?.counts?.start, numFound: data?.counts?.numFound }) }}
             </div>
             <div class="col-5 text-end">
               <nuxt-link :to="data?.next?.link"
@@ -29,7 +29,31 @@
 
       <div class="row sosu-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument v-if="data?.xml" :xml="data?.xml" :id="mycoreId"/>
+          <MODSDocument :backend-url="sovietSurviorsURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/soviet-survivors/documents/" :filter-params="filterParams">
+
+            <template #downloadLink>
+              <MODSMetaKeyValue v-if="downloadLink">
+                <template #key>
+                  {{ $t("metadata.download") }}
+                </template>
+                <template #value>
+                  <a :href="downloadLink" target="_blank">
+                    <span class="bi bi-file-earmark-zip" />{{ $t("metadata.downloadText") }}
+                  </a>
+                </template>
+              </MODSMetaKeyValue>
+            </template>
+
+            <template #media v-if="viewerLink">
+              <client-only>
+                <iframe :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
+              </client-only>
+
+              <div class="sosu-detail-view__copyrights--images">
+                {{ $t("sosu.metadata.copyright") }}
+              </div>
+            </template>
+          </MODSDocument>
         </div>
       </div>
       <div class="row sosu-detail-view__copyrights">
@@ -53,9 +77,12 @@
 <script setup lang="ts">
 
 
-import {XMLApi} from "~/api/XMLApi";
+import {byName, findFirstElement, flattenElement, getAttribute, XMLApi} from "~/api/XMLApi";
 import {getMyCoReId, getMyCoReIdNumber} from "~/api/MyCoRe";
-import {buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
+import {
+  buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel,
+  SoSuFilterParams, TranslationMode
+} from "~/api/SearchHelper";
 
 const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
 const route = useRoute();
@@ -66,6 +93,8 @@ const docId = route.params.docId as string;
 const OBJECT_PROJECT = "sovsurv";
 
 const mycoreId = getMyCoReId(OBJECT_PROJECT, parseInt(docId));
+
+const filterParams = SoSuFilterParams;
 
 interface LinkInfo {
   title: string;
@@ -139,9 +168,56 @@ const {data, error} = await useAsyncData(route.fullPath, async () => {
 });
 
 
+const downloadLink = computed(() => {
+  if(!data?.value?.xml){
+    return undefined;
+  }
+  if (findFirstElement(data.value.xml, byName("derobject")) != null) {
+    return `${sovietSurviorsURL}servlets/SovietSurvivorsExportServlet/?id=${mycoreId}`;
+  } else {
+    return undefined;
+  }
+})
+
+const viewerLink = computed(() => {
+  if(!data?.value?.xml){
+    return undefined;
+  }
+
+  let firstDerivate = findFirstElement(data.value.xml, byName("derobject"));
+
+  if (firstDerivate == null) {
+    return undefined;
+  }
+  let href = getAttribute(firstDerivate, "xlink:href");
+  if (href == null) {
+    return undefined;
+  }
+
+  let maindocElem = findFirstElement(firstDerivate, byName("maindoc"));
+  if (maindocElem == null) {
+    return undefined;
+  }
+
+  let maindoc = flattenElement(maindocElem);
+  if (maindoc == null) {
+    return undefined;
+  }
+
+  return sovietSurviorsURL + "rsc/viewer/" + href.value + "/" + maindoc +"?frame=true&embedded=true";
+
+});
+
 
 </script>
 
 <style>
+
+.viewer {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  height: 500px;
+}
 
 </style>

@@ -135,7 +135,7 @@
                 <div class="d-flex">
                   <i v-if="model.filters.genres.indexOf(genre.name) > -1" class="bi bi-check-square"></i>
                   <i v-else class="bi bi-square"></i>
-                  <MODSClassification class-id="mir_genres" :categ-id="genre.name" />
+                  <MODSClassification :app-url="sovietSurviorsURL" class-id="mir_genres" :categ-id="genre.name" />
                 </div>
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ genre.count }}</span>
               </li>
@@ -153,7 +153,7 @@
                 <div class="d-flex">
                   <i v-if="model.filters.languages.indexOf(language.name) > -1" class="bi bi-check-square"></i>
                   <i v-else class="bi bi-square"></i>
-                  <MODSClassification class-id="rfc5646" :categ-id="language.name" />
+                  <MODSClassification :app-url="sovietSurviorsURL" class-id="rfc5646" :categ-id="language.name" />
                 </div>
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ language.count }}</span>
               </li>

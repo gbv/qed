@@ -65,6 +65,14 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
+                  href="/gazin/search">
+                  {{ $t('search.label') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
                   href="/gazin/edition-guidelines">
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
                 </nuxt-link>

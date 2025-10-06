@@ -119,54 +119,6 @@
     }
   },
   "sosu": {
-    "metadata": {
-      "counts":  "{start} von {numFound}",
-      "genre": "Genre",
-      "language": "Sprache",
-      "unknownGenre": "Unbekannt",
-      "dateIssued": "Datum der Veröffentlichung",
-      "typeOfResource": "Ressourcentyp",
-      "extent": "Umfang",
-      "archive": "Archiv",
-      "shelfLocator": "Archivsignatur",
-      "download": "Download",
-      "downloadText": "Transkript",
-      "abstract": {
-        "showMore": "Mehr anzeigen",
-        "showLess": "Weniger anzeigen"
-      },
-      "subject": {
-        "topic": "Schlagwörter",
-        "geographic": "Orte",
-        "coordinates": "Koordinaten des Erstellungsorts",
-        "hideMap": "Karte ausblenden",
-        "showMap": "Karte einblenden"
-      },
-      "creationDate": "Erstellungsdatum",
-      "creationPlace": "Erstellungsort des Dokuments",
-      "related": {
-        "original": "Original dieser Übersetzung",
-        "translation": "Verfügbare Übersetzungen"
-      },
-      "name": {
-        "family": "Familienname",
-        "given": "Vorname",
-        "termsOfAddress": "Anrede",
-        "date": "Geburts- und Sterbedatum",
-        "affiliation": "Zugehörigkeit",
-        "role": {
-          "isb": "Herausgebendes Organ",
-          "ivr": "Interviewer",
-          "ive": "Interviewpartner",
-          "aut": "Autor",
-          "scr": "Schreiber",
-          "rcp": "Empfänger",
-          "trl": "Übersetzer"
-        }
-      },
-      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
-      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
-    },
     "mainMenu": {
       "home": "Startseite",
       "about": "Über",
@@ -184,6 +136,10 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Deutscher Vernichtungskrieg"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
+      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     }
   },
   "gazin": {
@@ -199,6 +155,61 @@
       "editionGuidelines": "Edition-Guidelines",
       "transcriptionNotes": "Transcription-Notes",
       "translationNotes": "Translation-Notes"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Alle Medien sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
+      "cite": "Dengbêj Gazîn. Digitale Edition herausgegeben von ... . Bonn: perspectivia.net, 2025.",
+      "transcription": "Transkription"
+    }
+  },
+  "metadata": {
+    "original": "Original",
+    "translation": "Übersetzung",
+    "counts": "{start} von {numFound}",
+    "genre": "Genre",
+    "language": "Sprache",
+    "unknownGenre": "Unbekannt",
+    "dateIssued": "Datum der Veröffentlichung",
+    "typeOfResource": "Ressourcentyp",
+    "extent": "Umfang",
+    "archive": "Archiv",
+    "shelfLocator": "Archivsignatur",
+    "download": "Download",
+    "downloadSound": "Audio",
+    "downloadText": "Transkript",
+    "abstract": {
+      "showMore": "Mehr anzeigen",
+      "showLess": "Weniger anzeigen"
+    },
+    "subject": {
+      "topic": "Schlagwörter",
+      "geographic": "Orte",
+      "coordinates": "Koordinaten des Erstellungsorts",
+      "hideMap": "Karte ausblenden",
+      "showMap": "Karte einblenden"
+    },
+    "creationDate": "Erstellungsdatum",
+    "creationPlace": "Erstellungsort des Dokuments",
+    "related": {
+      "original": "Original dieser Übersetzung",
+      "translation": "Verfügbare Übersetzungen"
+    },
+    "name": {
+      "family": "Familienname",
+      "given": "Vorname",
+      "termsOfAddress": "Anrede",
+      "date": "Geburts- und Sterbedatum",
+      "affiliation": "Zugehörigkeit",
+      "role": {
+        "isb": "Herausgebendes Organ",
+        "ivr": "Interviewer",
+        "ive": "Interviewpartner",
+        "aut": "Autor",
+        "scr": "Schreiber",
+        "rcp": "Empfänger",
+        "trl": "Übersetzer",
+        "art": "Künstler"
+      }
     }
   },
   "search": {
