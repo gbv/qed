@@ -1,8 +1,8 @@
 <template>
-  <GazinLayout>
+  <LoDLayout>
     <template #content>
       <div class="row">
-        <div class="col-12 gazin-detail-view__navigation">
+        <div class="col-12 lod-detail-view__navigation">
           <div class="top-nav d-flex row">
             <div class="col-5 text-start">
               <nuxt-link :to="data?.prev?.link" v-if="data?.prev">
@@ -23,46 +23,36 @@
         </div>
       </div>
 
-      <div class="row gazin-detail-view__metadata">
+      <div class="row lod-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :backend-url="gazinURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/gazin/documents/" :filter-params="filterParams">
+          <MODSDocument :backend-url="ditavURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/languages-of-diplomacy/documents/" :filter-params="filterParams">
             <template #downloadLink>
-              <MODSMetaKeyValue v-if="downloadLinkSound || downloadLinkTranscription">
+              <MODSMetaKeyValue v-if="downloadLink">
                 <template #key>
                   {{ $t("metadata.download") }}
                 </template>
                 <template #value>
-                  <a :href="downloadLinkSound" :download="downloadNameSound">
-                    <span class="bi bi-file-earmark-zip"/>{{ $t("metadata.downloadSound") }}
-                  </a>
-
-                  <span v-if="downloadLinkSound && downloadLinkTranscription"> | </span>
-
-                  <a :href="downloadLinkTranscription" :download="`transcription-${mycoreId}.xml`">
-                    <span class="bi bi-file-earmark-zip"/>{{ $t("metadata.downloadText") }}
+                  <a :href="downloadLink" target="_blank">
+                    <span class="bi bi-file-earmark-zip" />{{ $t("metadata.downloadText") }}
                   </a>
                 </template>
               </MODSMetaKeyValue>
             </template>
-            <template #media>
-              <div v-if="downloadLinkSound" class="sound mt-3">
-                <client-only>
-                  <audio :src="downloadLinkSound" controls>
-                    Your browser does not support the audio element.
-                  </audio>
-                </client-only>
-              </div>
 
-              <div v-if="derivateInfo?.id && derivateInfo.mainDoc" class="transcript mt-3">
-                <h3>{{ $t("gazin.metadata.transcription") }}</h3>
-               <GazinTranscriptionSplit v-if="data.xml" :backend-url="gazinURL" :mycore-id="mycoreId" :xml="data.xml"/>
+            <template #media v-if="viewerLink">
+              <client-only>
+                <iframe sandbox="allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation" :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
+              </client-only>
+
+              <div class="lod-detail-view__copyrights--images">
+                {{ $t("lod.metadata.copyright") }}
               </div>
             </template>
           </MODSDocument>
         </div>
       </div>
     </template>
-  </GazinLayout>
+  </LoDLayout>
 </template>
 
 <script setup lang="ts">
@@ -75,22 +65,26 @@ import {
   XMLApi
 } from '~/api/XMLApi';
 import { getMyCoReId, getMyCoReIdNumber } from '~/api/MyCoRe';
+
 import {
-  buildGazinSearchRequestURL,
-  GazinFilterParams, type GazinFilters, gazinModelToQuery, gazinQueryToModel
-} from '~/api/GazinSearchHelper';
+  buildLodSearchRequestURL,
+  LodFilterParams,
+  type LodFilters, lodModelToQuery,
+  lodQueryToModel,
+  TranslationMode
+} from "~/api/LodSearchHelper";
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
 const route = useRoute();
-const gazinURL = $ditavURL();
-const gazinSolrURL = $ditavSolrURL();
+const ditavURL = $ditavURL();
+const ditavSolrURL = $ditavSolrURL();
 
 const docId = route.params.docId as string;
-const OBJECT_PROJECT = 'gazin';
+const OBJECT_PROJECT = 'lod';
 
 const mycoreId = getMyCoReId(OBJECT_PROJECT, parseInt(docId));
 
-const filterParams = GazinFilterParams;
+const filterParams = LodFilterParams;
 
 interface LinkInfo {
   title: string;
@@ -113,7 +107,7 @@ const serializeQuery = (query: Record<string, any>): string => {
 const { data, error } = await useAsyncData(route.fullPath, async () => {
   const q = route.query.q as string;
   const promises: Array<Promise<any>> = [
-    fetch(`${gazinURL}api/v2/objects/${mycoreId}`, {
+    fetch(`${ditavURL}api/v2/objects/${mycoreId}`, {
       method: 'GET'
     })
       .then((resp) => resp.text())
@@ -123,16 +117,17 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
   const model = {
     filters: {
       genres: [],
-      languages: []
-    } as GazinFilters,
+      languages: [],
+      translationMode: TranslationMode.ALL,
+    } as LodFilters,
     start: 0
   };
-  gazinQueryToModel(route.query, model);
+  lodQueryToModel(route.query, model);
 
   if (q) {
     const startForQuery = model.start === 0 ? model.start : model.start - 1;
     promises.push(
-      fetch(buildGazinSearchRequestURL(gazinSolrURL, q, model.filters, startForQuery), {
+      fetch(buildLodSearchRequestURL(ditavSolrURL, q, model.filters, startForQuery), {
         method: 'GET',
         headers: {
           Accept: 'application/json'
@@ -148,7 +143,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
     const prevDoc = model.start === 0 ? undefined : docs[0];
     const nextDoc = model.start === 0 ? docs[1] : docs[2];
 
-    const query = gazinModelToQuery(model);
+    const query = lodModelToQuery(model);
 
     let prev: LinkInfo | undefined;
     if (prevDoc) {
@@ -156,7 +151,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       const prevQuery = serializeQuery(query);
       prev = {
         title: prevDoc['mods.title.main'] || prevDoc['search_result_link_text'],
-        link: `/gazin/documents/${getMyCoReIdNumber(prevDoc['id'])}?${prevQuery}`
+        link: `/languages-of-diplomacy/documents/${getMyCoReIdNumber(prevDoc['id'])}?${prevQuery}`
       };
     }
 
@@ -166,7 +161,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       const nextQuery = serializeQuery(query);
       next = {
         title: nextDoc['mods.title.main'] || nextDoc['search_result_link_text'],
-        link: `/gazin/documents/${getMyCoReIdNumber(nextDoc['id'])}?${nextQuery}`
+        link: `/languages-of-diplomacy/documents/${getMyCoReIdNumber(nextDoc['id'])}?${nextQuery}`
       };
     }
 
@@ -184,58 +179,46 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
   return { xml };
 });
 
-const derivateInfo = computed(() => {
-  if (data.value?.xml == null) {
+const downloadLink = computed(() => {
+  if(!data?.value?.xml){
     return undefined;
   }
-  let derivateElements = findElement(data.value.xml, byName("derobject"));
-  if (derivateElements.length == 0) {
-    return null;
-  }
-  const derivate = derivateElements[0]
-  const id = getAttribute(derivate, "xlink:href")?.value || null;
-  const mainDoc = flattenElement(findElement(derivate, byName("maindoc"))[0]);
-
-  return {id, mainDoc};
-});
-
-const downloadLinkSound = computed(() => {
-  if (data.value?.xml == null) {
-    return undefined;
-  }
-  const location = findFirstElement(data.value.xml, byName("mods:location"));
-  if (!location) {
-    return undefined;
-  }
-  const urlElement = findFirstElement(location, byName("mods:url"));
-  if (!urlElement) {
-    return undefined;
-  }
-  return flattenElement(urlElement) || undefined;
-});
-
-
-const downloadNameSound = computed(() => {
-  let parts = downloadLinkSound.value?.split("/");
-  if (parts && parts.length > 0) {
-    return decodeURIComponent(parts[parts.length - 1]);
-  }
-});
-
-const downloadLinkTranscription = computed(() => {
-  if (data.value?.xml == null) {
-    return undefined;
-  }
-  const derobjectElement = findFirstElement(data.value.xml, byName("derobject"));
-  if (derobjectElement != null) {
-    const maindoc = flattenElement(findFirstElement(derobjectElement, byName("maindoc")));
-    let derid = getAttribute(derobjectElement, "xlink:href")?.value;
-    return `${gazinURL}api/v2/objects/${mycoreId}/derivates/${derid}/contents/${maindoc}`;
+  if (findFirstElement(data.value.xml, byName("derobject")) != null) {
+    return `${ditavURL}servlets/DitavExportServlet/?id=${mycoreId}`;
   } else {
     return undefined;
   }
 });
 
+
+const viewerLink = computed(() => {
+  if(!data?.value?.xml){
+    return undefined;
+  }
+
+  let firstDerivate = findFirstElement(data.value.xml, byName("derobject"));
+
+  if (firstDerivate == null) {
+    return undefined;
+  }
+  let href = getAttribute(firstDerivate, "xlink:href");
+  if (href == null) {
+    return undefined;
+  }
+
+  let maindocElem = findFirstElement(firstDerivate, byName("maindoc"));
+  if (maindocElem == null) {
+    return undefined;
+  }
+
+  let maindoc = flattenElement(maindocElem);
+  if (maindoc == null) {
+    return undefined;
+  }
+
+  return ditavURL + "rsc/viewer/" + href.value + "/" + maindoc +"?frame=true&embedded=true";
+
+});
 
 
 if (error.value) {
@@ -249,4 +232,12 @@ if (error.value) {
 </script>
 
 <style>
+
+.viewer {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  height: 500px;
+}
+
 </style>

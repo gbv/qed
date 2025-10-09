@@ -87,9 +87,9 @@ import { getMyCoReIdNumber } from '~/api/MyCoRe';
 import { trimString } from '~/api/Utils';
 import { buildGazinSearchRequestURL, type GazinFilters, gazinModelToQuery, gazinQueryToModel } from '~/api/GazinSearchHelper';
 
-const { $gazinURL, $gazinSolrURL } = useNuxtApp();
-const gazinSolrURL = $gazinSolrURL();
-const gazinURL = $gazinURL();
+const { $ditavURL, $ditavSolrURL } = useNuxtApp();
+const gazinSolrURL = $ditavSolrURL();
+const gazinURL = $ditavURL();
 const route = useRoute();
 
 interface FacetEntry {

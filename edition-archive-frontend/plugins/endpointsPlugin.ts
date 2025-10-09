@@ -21,17 +21,17 @@ export default defineNuxtPlugin({
           } else {
             return config.public.sovietSurvivorsURL;
           }
-        }, 'gazinSolrURL': () => {
+        }, 'ditavSolrURL': () => {
           if (import.meta.server && !import.meta.dev) {
-            return config.public.gazinSolrURLServer;
+            return config.public.ditavSolrURLServer;
           } else {
-            return config.public.gazinSolrURL;
+            return config.public.ditavSolrURL;
           }
-        }, 'gazinURL': () => {
+        }, 'ditavURL': () => {
           if (import.meta.server && !import.meta.dev) {
-            return config.public.gazinURLServer;
+            return config.public.ditavURLServer;
           } else {
-            return config.public.gazinURL;
+            return config.public.ditavURL;
           }
         }, 'directusURL': () => {
           if (import.meta.server && !import.meta.dev) {

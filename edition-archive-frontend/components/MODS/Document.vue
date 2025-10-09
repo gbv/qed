@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="mods">
 
     <h2 v-if="mainTitle">
       {{ mainTitle.title }}

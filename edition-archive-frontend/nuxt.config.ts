@@ -37,10 +37,10 @@ export default defineNuxtConfig({
             sovietSurvivorsURL: 'https://qed.perspectivia.net/soviet-survivors-backend/',
             sovietSurvivorsSolrURL: 'https://qed.perspectivia.net/soviet-survivors-solr/',
             sovietSurvivorsSolrURLServer: 'https://qed.perspectivia.net/soviet-survivors-solr/',
-            gazinURL: 'https://ditav-test.gbv.de/',
-            gazinURLServer: 'https://ditav-test.gbv.de/',
-            gazinSolrURL: 'https://ditav-test.gbv.de/api/v1/search/',
-            gazinSolrURLServer: 'https://ditav-test.gbv.de/api/v1/search/'
+            ditavURL: 'https://ditav-test.gbv.de/',
+            ditavURLServer: 'https://ditav-test.gbv.de/',
+            ditavSolrURL: 'https://ditav-test.gbv.de/api/v1/search/',
+            ditavSolrURLServer: 'https://ditav-test.gbv.de/api/v1/search/'
         }
     },
     typescript: {
