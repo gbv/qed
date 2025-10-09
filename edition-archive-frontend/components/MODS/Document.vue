@@ -401,9 +401,14 @@ const titleAndAbstracts = computed(() => {
 })
 
 const documentLanguages = computed(() => {
-  const modsLanguage = findElement(mods.value, byName("mods:language"));
   const langs = [] as string[];
-  for (const lang of modsLanguage) {
+  mods.value.content.forEach((lang) => {
+    if(lang.type != "Element") {
+      return;
+    }
+    if(lang.name != "mods:language") {
+      return;
+    }
     const langTerm = findElement(lang, byName("mods:languageTerm"));
     if (langTerm != null) {
       langTerm.forEach((term) => {
@@ -413,7 +418,7 @@ const documentLanguages = computed(() => {
         }
       });
     }
-  }
+  });
   return langs;
 });
 
