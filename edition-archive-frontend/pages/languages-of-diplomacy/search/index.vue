@@ -45,7 +45,7 @@
                         href=""
                         class="hit_option hit_download">
                         <div class="hit_icon"
-                          :style="'background-image: url(&quot;' + ditavURL + '/api/iiif/image/v2/thumbnail/sovsurv_mods_' + getMyCoReIdNumber(doc['id']) + '/full/!300,300/0/default.jpg&quot;)'">
+                          :style="'background-image: url(&quot;' + ditavURL + '/api/iiif/image/v2/thumbnail/' + doc['id'] + '/full/!300,300/0/default.jpg&quot;)'">
                         </div>
                       </a>
                     </div>
