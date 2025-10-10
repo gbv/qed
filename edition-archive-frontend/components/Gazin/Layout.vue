@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row ">
         <div class="col project-headline__title">
-          <h1>Dengbêj Gazîn: Songs of a Kurdish Woman</h1>
+          <h1>{{ $t('gazin.project.headline') }}</h1>
         </div>
         <div class="col project-headline__figure project-headline__figure--gazin">
           <nuxt-img src="/images/card-back-gazin.jpg" preload class="" alt="Logo Gazîn" />
@@ -66,14 +66,14 @@
                   class="nav-link"
                   active-class="active"
                   href="/gazin/search">
-                  {{ $t('search.label') }}
+                  {{ $t('gazin.mainMenu.search') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/edition-guidelines">
+                  href="/gazin/edition-guidelines/translation-notes">
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
                 </nuxt-link>
               </li>
@@ -108,7 +108,7 @@
           data-bs-target="#offcanvasExample"
           aria-controls="offcanvasExample">
           <i class="bi bi-chevron-right"></i>
-          Seitenmenü öffnen
+          {{ $t('gazin.subMenu.openSubMenu') }}
         </button>
 
         <div
@@ -119,7 +119,7 @@
           id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Seitenmenü</h5>
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ $t('gazin.subMenu.subMenu') }}</h5>
             <button
               type="button"
               class="btn-close"

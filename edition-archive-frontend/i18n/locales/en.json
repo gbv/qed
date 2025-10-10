@@ -143,6 +143,23 @@
     }
   },
   "gazin": {
+    "project": {
+      "headline": "Dengbêj Gazîn: Songs of a Kurdish Woman"
+    },
+    "mainMenu": {
+      "home": "Home",
+      "introduction": "Introduction",
+      "dengbejGazin": "Dengbêj Gazîn",
+      "search": "Songs",
+      "editionGuidelines": "Edition Guidelines"
+    },
+    "subMenu": {
+      "subMenu": "Sidebar",
+      "openSubMenu": "Open sidebar",
+      "editionGuidelines": "Edition Guidelines",
+      "transcriptionNotes": "Transcription Notes",
+      "translationNotes": "Translation Notes"
+    },
     "metadata": {
       "copyright": "© Copyright 2025 - All media are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
       "cite": "Dengbêj Gazîn. Digital Edition by ... . Bonn: perspectivia.net, 2025.",

@@ -147,18 +147,22 @@
     }
   },
   "gazin": {
+    "project": {
+      "headline": "Dengbêj Gazîn: Die Lieder einer Kurdin"
+    },
     "mainMenu": {
-      "home": "Home",
-      "introduction": "Introduction",
+      "home": "Start",
+      "introduction": "Einleitung",
       "dengbejGazin": "Dengbêj Gazîn",
-      "editionGuidelines": "Edition-Guidelines"
+      "search": "Lieder",
+      "editionGuidelines": "Editionsrichtlinien"
     },
     "subMenu": {
       "subMenu": "Seitenmenü",
       "openSubMenu": "Seitenmenü öffnen",
-      "editionGuidelines": "Edition-Guidelines",
-      "transcriptionNotes": "Transcription-Notes",
-      "translationNotes": "Translation-Notes"
+      "editionGuidelines": "Editionsrichtlinien",
+      "transcriptionNotes": "Transkriptionsregeln",
+      "translationNotes": "Übersetzungsregeln"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Alle Medien sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
