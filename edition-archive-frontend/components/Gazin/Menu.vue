@@ -4,21 +4,13 @@
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/edition-guidelines">
-            {{ $t('gazin.subMenu.editionGuidelines') }}
-
-          </nuxt-link>
+          <nuxt-link class="nav-link" active-class="active" href="/gazin/edition-guidelines/translation-notes">
+            {{ $t('gazin.subMenu.translationNotes') }}
+        </nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/gazin/edition-guidelines/transcription-notes">
             {{ $t('gazin.subMenu.transcriptionNotes') }}
-
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/edition-guidelines/translation-notes">
-            {{ $t('gazin.subMenu.translationNotes') }}
-
           </nuxt-link>
         </li>
       </ul>

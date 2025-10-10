@@ -41,6 +41,10 @@
     width: 100%;
   }
 
+  table {
+    @extend .table;
+  }
+
 // Full HD devices and below: <= 1920px
 @include media-breakpoint-down(fhd) {
   // add/overwrite styles for responsive level fhd and lower

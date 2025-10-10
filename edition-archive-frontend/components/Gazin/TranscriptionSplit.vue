@@ -1,0 +1,189 @@
+<template>
+  <div class="row">
+    <client-only>
+    <div v-if="model.mainTranscriptUrl" :class="model.otherTranscriptUrl ? `col-6` : `col-12`">
+      <h4 v-if="isTranslation">{{$t('metadata.translation')}}</h4>
+      <h4 v-else>{{$t('metadata.original')}}</h4>
+      <GazinTranscription :tei-url="model.mainTranscriptUrl" />
+    </div>
+    <div v-else>
+      <!-- spinner -->
+      <div class="text-center">
+        <span class="spinner-border" role="status" aria-hidden="true"></span>
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div v-if="model.mainTranscriptUrl && model.otherTranscriptUrl" class="col-6">
+      <h4 v-if="isTranslation">{{$t('metadata.original')}}</h4>
+      <h4 v-else>{{$t('metadata.translation')}}</h4>
+      <GazinTranscription :tei-url="model.otherTranscriptUrl" />
+    </div>
+    </client-only>
+  </div>
+</template>
+
+<script setup lang="ts">
+
+import {
+  byName,
+  findElement, findFirstElement,
+  flattenElement,
+  getAttribute,
+  type XElement,
+  XMLApi
+} from "~/api/XMLApi";
+import {GazinFilterParams} from "~/api/GazinSearchHelper";
+
+
+const model = reactive({
+  mainTranscriptUrl: undefined as string | undefined,
+  otherTranscriptUrl: undefined as string | undefined
+});
+
+const props = defineProps<{ mycoreId: string, backendUrl: string, xml: XElement }>();
+
+const getMods = (xml: XElement) => {
+  return findFirstElement(xml, byName("mods:mods"));
+}
+
+const getRelatedItems = (xml: XElement) => {
+  return xml.content.filter(byName("mods:relatedItem")) as XElement[];
+}
+
+const filterRelatedItemsByType = (relatedItems: XElement[], type: string) => {
+  return relatedItems.filter((relatedItem) => {
+    return getAttribute(relatedItem, "type")?.value == type;
+  });
+}
+
+const mods = computed(() => {
+  if (props.xml == null) {
+    return undefined;
+  }
+  return getMods(props.xml);
+});
+
+const relatedItems = computed(() => {
+  if (mods.value == null) {
+    return undefined;
+  }
+  return getRelatedItems(mods.value);
+});
+
+const relatedItemsOriginal = computed(() => {
+  if (relatedItems.value == null) {
+    return undefined;
+  }
+  return filterRelatedItemsByType(relatedItems.value, "original");
+});
+
+const getFirstDerivateInfo = (xml: XElement) => {
+  const derobjectElement = findFirstElement(xml, byName("derobject"));
+  if (derobjectElement != null) {
+    const maindoc = flattenElement(findFirstElement(derobjectElement, byName("maindoc")));
+    let derid = getAttribute(derobjectElement, "xlink:href")?.value;
+    return {
+      id: derid,
+      mainDoc: maindoc
+    };
+  } else {
+    return null;
+  }
+}
+
+
+const transcriptionUrl = computed(() => {
+  if (props.xml == null) {
+    return undefined;
+  }
+
+  const info = getFirstDerivateInfo(props.xml);
+  if (info == null || info.id == null || info.mainDoc == null) {
+    return undefined;
+  }
+  return `${props.backendUrl}api/v2/objects/${props.mycoreId}/derivates/${info.id}/contents/${info.mainDoc}`;
+});
+
+const resolveOriginId = async () => {
+  const json = await fetch(`${props.backendUrl}api/v1/search?q=mods.relatedItem.original:${props.mycoreId}&wt=json&fq=${GazinFilterParams.join("%20AND%20")}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+    }
+  }).then((resp) => resp.json());
+
+  const ids = [];
+  for (const doc of json?.response?.docs) {
+    ids.push(doc.id);
+  }
+
+  if (ids.length == 0) {
+    return undefined;
+  }
+
+  return ids[0];
+};
+
+
+async function getObjectInfo(objectId: string) {
+  const req = await fetch(`${props.backendUrl}api/v2/objects/${objectId}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/xml",
+    }
+  });
+
+  const text = await req.text();
+  return {xml: await XMLApi(text), id: objectId};
+}
+
+const isTranslation = computed(() => {
+  return relatedItemsOriginal.value != null && relatedItemsOriginal.value.length > 0;
+});
+
+const loadOtherTranscriptionUrl = async () => {
+  const mods = getMods(props.xml);
+  if (mods == null) {
+    return undefined;
+  }
+  const relatedItems = getRelatedItems(mods);
+  const relatedItemsOriginal = filterRelatedItemsByType(relatedItems, "original");
+
+  if (relatedItemsOriginal != null && relatedItemsOriginal.length > 0) {
+    let translationId = getAttribute(relatedItemsOriginal[0], "xlink:href")?.value;
+    if (translationId == null) {
+      return undefined;
+    }
+    const object = await getObjectInfo(translationId);
+    if (object == null) {
+      return undefined;
+    }
+    const info = getFirstDerivateInfo(object.xml);
+    if (info == null || info.id == null || info.mainDoc == null) {
+      return undefined;
+    }
+    return `${props.backendUrl}api/v2/objects/${object.id}/derivates/${info.id}/contents/${info.mainDoc}`;
+  } else {
+    const originId = await resolveOriginId();
+    if (originId == null) {
+      return undefined;
+    }
+
+    const object = await getObjectInfo(originId);
+    if (object == null) {
+      return undefined;
+    }
+    const info = getFirstDerivateInfo(object.xml);
+    if (info == null || info.id == null || info.mainDoc == null) {
+      return undefined;
+    }
+    return `${props.backendUrl}api/v2/objects/${object.id}/derivates/${info.id}/contents/${info.mainDoc}`;
+  }
+
+}
+
+model.mainTranscriptUrl = transcriptionUrl.value;
+model.otherTranscriptUrl = await loadOtherTranscriptionUrl();
+
+</script>
