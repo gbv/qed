@@ -86,8 +86,8 @@
         <div class="project-institute project-institute--gazin">
           <a href="https://mwsosteuropa.hypotheses.org/">
             <nuxt-img
-              src="/images/mwno-logo-de.svg"
-              preload alt="Max Weber Netzwerk Osteuropa Logo" />
+              src="/images/logo-orient-institut-istanbul.jpg"
+              preload alt="Orient Institut Istanbul Logo" />
           </a>
         </div>
       </div>
