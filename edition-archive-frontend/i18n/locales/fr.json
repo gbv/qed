@@ -107,6 +107,7 @@
       "home": "Home",
       "project": "Projet",
       "search": "Document",
+      "editionGuidelines":"Lignes directrices",
       "contact": "Contact"
     },
     "subMenu": {
@@ -115,7 +116,9 @@
       "intro": "Introduction",
       "team": "Équipe",
       "projectPartner": "Partenaire",
-      "editionGuidelines":"Lignes directrices"
+      "publications": "Main Project Publications",
+      "citation": "Citation",
+      "export": "Data Export"
     }
   },
   "sosu": {

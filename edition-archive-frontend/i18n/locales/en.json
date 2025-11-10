@@ -104,9 +104,10 @@
   },
   "lod": {
     "mainMenu": {
-      "home": "Startseite",
-      "project": "Project",
+      "home": "Home",
+      "project": "About",
       "search": "Documents",
+      "editionGuidelines":"Guidelines",
       "contact": "Contact"
     },
     "subMenu": {
@@ -115,7 +116,9 @@
       "intro": "Introduction",
       "team": "Team",
       "projectPartner": "Partner",
-      "editionGuidelines":"Guidelines"
+      "publications": "Main Project Publications",
+      "citation": "Citation",
+      "export": "Data Export"
     }
   },
   "sosu": {
