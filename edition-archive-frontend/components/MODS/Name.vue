@@ -20,27 +20,27 @@
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
 
         <div class="row termsOfAddress" v-if="termsOfAddress">
-          <div class="col-4">{{ $t("sosu.metadata.name.termsOfAddress") }}</div>
+          <div class="col-4">{{ $t("metadata.name.termsOfAddress") }}</div>
           <div class="col-8">{{ termsOfAddress }}</div>
         </div>
 
         <div class="row given" v-if="namePartGiven">
-          <div class="col-4">{{ $t("sosu.metadata.name.given") }}</div>
+          <div class="col-4">{{ $t("metadata.name.given") }}</div>
           <div class="col-8">{{ namePartGiven }}</div>
         </div>
 
         <div class="row family" v-if="namePartFamily">
-          <div class="col-4">{{ $t("sosu.metadata.name.family") }}</div>
+          <div class="col-4">{{ $t("metadata.name.family") }}</div>
           <div class="col-8">{{ namePartFamily }}</div>
         </div>
 
         <div class="row date" v-if="date">
-          <div class="col-4">{{ $t("sosu.metadata.name.date") }}</div>
+          <div class="col-4">{{ $t("metadata.name.date") }}</div>
           <div class="col-8">{{ date }}</div>
         </div>
 
         <div class="row affiliation" v-if="affiliation">
-          <div class="col-4">{{ $t("sosu.metadata.name.affiliation") }}</div>
+          <div class="col-4">{{ $t("metadata.name.affiliation") }}</div>
           <div class="col-8">{{ affiliation }}</div>
         </div>
 
