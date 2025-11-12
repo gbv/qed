@@ -86,7 +86,7 @@ const gazinURL = $ditavURL();
 const gazinSolrURL = $ditavSolrURL();
 
 const docId = route.params.docId as string;
-const OBJECT_PROJECT = 'gazin';
+const OBJECT_PROJECT = 'gzn';
 
 const mycoreId = getMyCoReId(OBJECT_PROJECT, parseInt(docId));
 

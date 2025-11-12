@@ -4,7 +4,7 @@ export const GazinFilterParams = [
   'objectKind:mycoreobject',
   'objectType:mods',
   'state:published',
-  'objectProject:gazin',
+  'objectProject:gzn',
   "mods.genre:source_material"
 ];
 
