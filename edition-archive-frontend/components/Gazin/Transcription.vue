@@ -1,15 +1,13 @@
 <template>
   <div>
-    <template v-if="lines">
+    <template v-if="body">
       <div class="transcription">
-        <div v-if="lines.head.length>0" class="mb-3">
-          <strong>{{ lines.head }}</strong>
-        </div>
-        <div v-for="(group, gIndex) in lines.groups" :key="'group-' + gIndex" class="mb-4">
-          <div v-for="(line, lIndex) in group.lines" :key="'line-' + gIndex + '-' + lIndex" class="transcription-line">
-            {{ line }}
-          </div>
-        </div>
+        <TeiElementConvert :tei-element="body" :hook="hook">
+          <template #default="{ element }">
+            <editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
+            <!-- v-if isEdtitorialNoteNote(element) ignore the element-->
+          </template>
+        </TeiElementConvert>
       </div>
     </template>
     <div v-else class="text-center">
@@ -21,58 +19,81 @@
 
 <script setup lang="ts">
 
-import {byName, findElement, flattenElement, XMLApi} from "~/api/XMLApi";
+import $tei, {type TEINode, type TEIComment, type TEIText, type TEIElement} from "~/api/tei";
+import TeiElementConvert from "~/components/Gazin/TeiElementConvert.vue";
+import EditorialNote from "~/components/Gazin/EditorialNote.vue";
 
 const props = defineProps<{ teiUrl: string }>();
 
-const xml = useAsyncData(`transcription-${props.teiUrl}`, async () => {
+const teiStr = useAsyncData(`transcription-${props.teiUrl}`, async () => {
   const response = await fetch(props.teiUrl);
-  let text = await response.text();
-  let xml = await XMLApi(text);
-  return xml;
+  return await response.text();
 });
 
-interface SongText {
-  head: string;
-  groups: Array<{
-    lines: string[];
-  }>;
+const body = computed(() => {
+  if (teiStr.data.value == null) {
+    return null;
+  }
+  const tei = $tei(teiStr.data.value)
+  return tei.find("body").toArray()[0] || null;
+});
+
+const isEditorialNoteRef = (el: TEIElement | TEIText | TEIComment) => {
+  return el.type == "Element" && el.name == "ref" && el.attributes.type == "editorialNote";
 }
 
-const lines = computed(()=> {
-  if(xml.data.value == null){
-    return null;
+const isEdtitorialNoteNote = (el: TEINode) => {
+  return el.type == "Element" && el.name == "note" && el.attributes.type == "editorial";
+}
+
+const hook = (el: TEINode) => {
+  if(isEditorialNoteRef(el)) {
+    return true;
+  }
+  if(isEdtitorialNoteNote(el)) {
+    return true;
   }
 
-  const tei = xml.data.value;
-
-  const body = findElement(tei, byName('body'))[0];
-
-  if(body == null){
-    return null;
-  }
-
-  const div = findElement(body, byName('div'))[0];
-  if(div == null){
-    return null;
-  }
-
-  const songText: SongText = {
-    head: '',
-    groups: []
-  };
-
-  const head = findElement(div, byName('head'))[0];
-  if(head != null) {
-    songText.head = flattenElement(head) || '';
-  }
-
-  const lgElements = findElement(div, byName('lg'));
-  for(const lg of lgElements) {
-    const lines = findElement(lg, byName('l')).map(l => flattenElement(l) || '');
-    songText.groups.push({lines});
-  }
-  return songText;
-});
+  return false;
+}
 
 </script>
+
+<style>
+
+.tei-element[data-tei-attr-type="song"] {
+  counter-reset: line 0;
+}
+
+.tei-element[data-tei-name="head"] {
+  display: block;
+  background-color: #f1f1f1;
+}
+
+.tei-element[data-tei-name="head"]::before {
+  content: '#';
+  padding-right: 2em;
+}
+
+.tei-element[data-tei-name="lg"] {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.tei-element[data-tei-name="l"] {
+  counter-increment: line;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.tei-element[data-tei-name="l"]::before {
+  content: counter(line);
+  padding-right: 2em;
+}
+
+[data-tei-attr-rendition="#b"] {
+  font-weight: bold;
+}
+</style>

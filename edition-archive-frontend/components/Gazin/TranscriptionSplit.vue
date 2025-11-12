@@ -1,7 +1,6 @@
 <template>
   <div class="row">
-    <client-only>
-    <div v-if="model.mainTranscriptUrl" :class="model.otherTranscriptUrl ? `col-6` : `col-12`">
+    <div v-if="model.mainTranscriptUrl" :class="model.otherTranscriptUrl ? `no-padding-col col-6` : `col-12`">
       <h4 v-if="isTranslation">{{$t('metadata.translation')}}</h4>
       <h4 v-else>{{$t('metadata.original')}}</h4>
       <GazinTranscription :tei-url="model.mainTranscriptUrl" />
@@ -14,12 +13,11 @@
       </div>
     </div>
 
-    <div v-if="model.mainTranscriptUrl && model.otherTranscriptUrl" class="col-6">
+    <div v-if="model.mainTranscriptUrl && model.otherTranscriptUrl" class="no-padding-col col-6">
       <h4 v-if="isTranslation">{{$t('metadata.original')}}</h4>
       <h4 v-else>{{$t('metadata.translation')}}</h4>
       <GazinTranscription :tei-url="model.otherTranscriptUrl" />
     </div>
-    </client-only>
   </div>
 </template>
 
@@ -187,3 +185,14 @@ model.mainTranscriptUrl = transcriptionUrl.value;
 model.otherTranscriptUrl = await loadOtherTranscriptionUrl();
 
 </script>
+
+<style scoped>
+.no-padding-col {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+h4 {
+  padding-left: 1em;
+}
+</style>
