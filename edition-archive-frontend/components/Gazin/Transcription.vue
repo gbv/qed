@@ -96,4 +96,8 @@ const hook = (el: TEINode) => {
 [data-tei-attr-rendition="#b"] {
   font-weight: bold;
 }
+
+[data-tei-attr-rendition="#i"] {
+  font-style: italic;
+}
 </style>
