@@ -32,12 +32,6 @@
                   {{ $t("metadata.download") }}
                 </template>
                 <template #value>
-                  <a :href="downloadLinkSound" :download="downloadNameSound">
-                    <span class="bi bi-file-earmark-zip"/>{{ $t("metadata.downloadSound") }}
-                  </a>
-
-                  <span v-if="downloadLinkSound && downloadLinkTranscription"> | </span>
-
                   <a :href="downloadLinkTranscription" :download="`transcription-${mycoreId}.xml`">
                     <span class="bi bi-file-earmark-zip"/>{{ $t("metadata.downloadText") }}
                   </a>
@@ -212,14 +206,6 @@ const downloadLinkSound = computed(() => {
     return undefined;
   }
   return flattenElement(urlElement) || undefined;
-});
-
-
-const downloadNameSound = computed(() => {
-  let parts = downloadLinkSound.value?.split("/");
-  if (parts && parts.length > 0) {
-    return decodeURIComponent(parts[parts.length - 1]);
-  }
 });
 
 const downloadLinkTranscription = computed(() => {
