@@ -1,8 +1,3 @@
-let jsdom: any;
-if(import.meta.server) {
-  jsdom = await import("jsdom");
-}
-
 export interface TEIElement {
   type: "Element";
   name: string;
@@ -32,13 +27,20 @@ export type TEINode = TEIElement | TEIText | TEIComment;
  */
 export function parseTEI(xml: string): TEIElement[] {
   let doc: Document;
-  if(import.meta.server) {
-    const dom = new jsdom.JSDOM(`<!DOCTYPE html><body></body>`);
-    const parser = new dom.window.DOMParser();
-    doc = parser.parseFromString(xml, "text/xml");
-  } else {
+  // Use browser DOMParser when available, otherwise fallback to jsdom in Node
+  if (typeof DOMParser !== 'undefined') {
     const parser = new DOMParser();
-    doc = parser.parseFromString(xml, "application/xml");
+    doc = parser.parseFromString(xml, 'application/xml');
+  } else {
+    try {
+      // dynamic require so bundlers won't include jsdom in browser builds
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { JSDOM } = require('jsdom');
+      const dom = new JSDOM(xml, { contentType: 'text/xml' });
+      doc = dom.window.document as Document;
+    } catch (err) {
+      throw new Error("No DOMParser available and failed to load jsdom. Install 'jsdom' for server-side parsing.");
+    }
   }
 
 
@@ -305,8 +307,14 @@ export function $tei(input: string | Document | TEINode | TEINode[]): TeiQuery {
     for (let i = 0; i < doc.childNodes.length; i++) {
       const n = doc.childNodes[i];
       if (n.nodeType === (typeof Node !== 'undefined' ? Node.ELEMENT_NODE : 1)) {
-        const serializer = (typeof XMLSerializer !== 'undefined') ? new XMLSerializer() : null;
-        if (serializer) {
+        // Prefer global XMLSerializer, otherwise try using the Document's defaultView (jsdom window)
+        let serializer: any = null;
+        if (typeof XMLSerializer !== 'undefined') serializer = new XMLSerializer();
+        else if ((doc as any).defaultView && (doc as any).defaultView.XMLSerializer) {
+          serializer = new (doc as any).defaultView.XMLSerializer();
+        }
+
+        if (serializer && typeof serializer.serializeToString === 'function') {
           els.push(parseTEI(serializer.serializeToString(n))[0]);
         } else {
           // Fallback: use outerHTML/textContent where available
