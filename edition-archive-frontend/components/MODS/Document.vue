@@ -366,7 +366,18 @@ const mainTitle = computed(() => {
 });
 
 const titleAndAbstracts = computed(() => {
-  const abstracts = findElement(mods.value, and(byName("mods:abstract"), (el: XNode) => !byAttr("altFormat")(el)));
+  const abstracts = mods.value.content.filter(el=>{
+    if(el.type != "Element") {
+      return false;
+    }
+    if(el.name != "mods:abstract") {
+      return false;
+    }
+    if(getAttribute(el, "altFormat")) {
+      return false;
+    }
+    return true;
+  }) as XElement[];
   const map = new Map<string, TitleAbstractSubtitle>();
 
   abstracts.forEach((abstract => {
