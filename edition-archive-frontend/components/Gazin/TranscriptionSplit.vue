@@ -1,22 +1,19 @@
 <template>
   <div class="row">
-    <div v-if="model.mainTranscriptUrl" :class="model.otherTranscriptUrl ? `no-padding-col col-6` : `col-12`">
-      <h4 v-if="isTranslation">{{$t('metadata.translation')}}</h4>
-      <h4 v-else>{{$t('metadata.original')}}</h4>
-      <GazinTranscription :tei-url="model.mainTranscriptUrl" />
+    <div v-if="model.originalTranscriptUrl" :class="model.translationTranscriptUrl ? `no-padding-col col-6` : `col-12`">
+      <h4>{{$t('metadata.original')}}</h4>
+      <GazinTranscription :tei-url="model.originalTranscriptUrl" />
     </div>
-    <div v-else>
+    <div v-if="model.translationTranscriptUrl" :class="model.originalTranscriptUrl ? `no-padding-col col-6` : `col-12`">
+      <h4>{{$t('metadata.translation')}}</h4>
+      <GazinTranscription :tei-url="model.translationTranscriptUrl" />
+    </div>
+    <div v-if="!model.originalTranscriptUrl && !model.translationTranscriptUrl" class="col-12">
       <!-- spinner -->
       <div class="text-center">
         <span class="spinner-border" role="status" aria-hidden="true"></span>
         <span class="visually-hidden">Loading...</span>
       </div>
-    </div>
-
-    <div v-if="model.mainTranscriptUrl && model.otherTranscriptUrl" class="no-padding-col col-6">
-      <h4 v-if="isTranslation">{{$t('metadata.original')}}</h4>
-      <h4 v-else>{{$t('metadata.translation')}}</h4>
-      <GazinTranscription :tei-url="model.otherTranscriptUrl" />
     </div>
   </div>
 </template>
@@ -35,8 +32,8 @@ import {GazinFilterParams} from "~/api/GazinSearchHelper";
 
 
 const model = reactive({
-  mainTranscriptUrl: undefined as string | undefined,
-  otherTranscriptUrl: undefined as string | undefined
+  originalTranscriptUrl: undefined as string | undefined,
+  translationTranscriptUrl: undefined as string | undefined
 });
 
 const props = defineProps<{ mycoreId: string, backendUrl: string, xml: XElement }>();
@@ -181,8 +178,8 @@ const loadOtherTranscriptionUrl = async () => {
 
 }
 
-model.mainTranscriptUrl = transcriptionUrl.value;
-model.otherTranscriptUrl = await loadOtherTranscriptionUrl();
+model.originalTranscriptUrl = isTranslation ?  await loadOtherTranscriptionUrl() : transcriptionUrl.value;
+model.translationTranscriptUrl = isTranslation ? transcriptionUrl.value : await loadOtherTranscriptionUrl();
 
 </script>
 
