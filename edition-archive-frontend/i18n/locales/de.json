@@ -186,7 +186,6 @@
     "archive": "Archiv",
     "shelfLocator": "Archivsignatur",
     "download": "Download",
-    "downloadSound": "Audio",
     "downloadText": "Transkript",
     "abstract": {
       "showMore": "Mehr anzeigen",
@@ -219,7 +218,10 @@
         "scr": "Schreiber",
         "rcp": "Empfänger",
         "trl": "Übersetzer",
-        "art": "Künstler"
+        "art": "Künstler",
+        "prf": "Darsteller",
+        "crr": "Korrektor",
+        "trc": "Transkribierender"
       }
     }
   },

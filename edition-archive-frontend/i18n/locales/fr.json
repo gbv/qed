@@ -119,57 +119,13 @@
       "publications": "Main Project Publications",
       "citation": "Citation",
       "export": "Data Export"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0",
+      "cite": "Languages of Diplomacy. Édition numérique publiée par ... . Bonn : perspectivia.net, 2025."
     }
   },
   "sosu": {
-    "metadata": {
-      "counts":  "{start} de {numFound}",
-      "genre": "Genre",
-      "language": "Langue",
-      "unknownGenre": "Inconnu",
-      "dateIssued": "Date de publication",
-      "typeOfResource": "Type de ressource",
-      "extent": "Étendue",
-      "archive": "Archive",
-      "shelfLocator": "Cote",
-      "abstract": {
-        "showMore": "Afficher plus",
-        "showLess": "Afficher moins"
-      },
-      "download": "Télécharger",
-      "downloadText": "Transcript",
-      "subject": {
-        "topic": "Sujet",
-        "geographic": "Lieu",
-        "coordinates": "Coordonnées du lieu de création",
-        "hideMap": "Masquer la carte",
-        "showMap": "Afficher la carte"
-      },
-      "creationDate": "Date de création",
-      "creationPlace": "Lieu de création du document",
-      "related": {
-        "original": "Original de cette traduction",
-        "translation": "Traductions disponibles"
-      },
-      "name": {
-        "family": "Nom de famille",
-        "given": "Prénom",
-        "termsOfAddress": "Titre",
-        "date": "Date de naissance/décès",
-        "affiliation": "Affiliation",
-        "role": {
-          "isb": "Organe émetteur",
-          "ivr": "Interviewer",
-          "ive": "Interviewé",
-          "aut": "Auteur",
-          "scr": "Scribe",
-          "rcp": "Destinataire",
-          "trl": "Traducteur"
-        }
-      },
-      "copyright": "© Copyright 2025 - Toutes les images sont protégées par des droits d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
-      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
-    },
     "mainMenu": {
       "home": "Home",
       "about": "À propos",
@@ -187,6 +143,10 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Germany’s War of Extermination"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
+      "cite": "Soviet Survivors of Nazi Occupation : The First Testimonies. Édition numérique par Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn : perspectivia.net, 2025."
     }
   },
   "gazin": {
@@ -211,6 +171,58 @@
       "copyright": "© Copyright 2025 - All media are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
       "cite": "Dengbêj Gazîn. Digital Edition by ... . Bonn: perspectivia.net, 2025.",
       "transcription": "Transcription"
+    }
+  },
+  "metadata": {
+    "original": "Original",
+    "translation": "Traduction",
+    "counts":  "{start} de {numFound}",
+    "genre": "Genre",
+    "language": "Langue",
+    "unknownGenre": "Inconnu",
+    "dateIssued": "Date de publication",
+    "typeOfResource": "Type de ressource",
+    "extent": "Étendue",
+    "archive": "Archive",
+    "shelfLocator": "Cote",
+    "download": "Télécharger",
+    "downloadText": "Transcript",
+    "abstract": {
+      "showMore": "Afficher plus",
+      "showLess": "Afficher moins"
+    },
+    "subject": {
+      "topic": "Sujet",
+      "geographic": "Lieu",
+      "coordinates": "Coordonnées du lieu de création",
+      "hideMap": "Masquer la carte",
+      "showMap": "Afficher la carte"
+    },
+    "creationDate": "Date de création",
+    "creationPlace": "Lieu de création du document",
+    "related": {
+      "original": "Original de cette traduction",
+      "translation": "Traductions disponibles"
+    },
+    "name": {
+      "family": "Nom de famille",
+      "given": "Prénom",
+      "termsOfAddress": "Titre",
+      "date": "Date de naissance/décès",
+      "affiliation": "Affiliation",
+      "role": {
+        "isb": "Organe émetteur",
+        "ivr": "Interviewer",
+        "ive": "Interviewé",
+        "aut": "Auteur",
+        "scr": "Scribe",
+        "rcp": "Destinataire",
+        "trl": "Traducteur",
+        "art": "Artiste",
+        "prf": "Interprète",
+        "crr": "Correcteur",
+        "trc": "Transcripteur"
+      }
     }
   },
   "search": {

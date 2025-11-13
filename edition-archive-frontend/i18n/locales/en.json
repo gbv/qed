@@ -119,6 +119,10 @@
       "publications": "Main Project Publications",
       "citation": "Citation",
       "export": "Data Export"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
+      "cite": "Languages of Diplomacy. Digital Edition by ... . Bonn: perspectivia.net, 2025."
     }
   },
   "sosu": {
@@ -170,6 +174,8 @@
     }
   },
   "metadata": {
+    "original": "Original",
+    "translation": "Translation",
     "counts": "{start} of {numFound}",
     "genre": "Genre",
     "language": "Language",
@@ -179,12 +185,12 @@
     "extent": "Extent",
     "archive": "Archive",
     "shelfLocator": "Shelf Locator",
+    "download": "Download",
+    "downloadText": "Transcript",
     "abstract": {
       "showMore": "Show more",
       "showLess": "Show less"
     },
-    "download": "Download",
-    "downloadText": "Transcript",
     "subject": {
       "topic": "Topic",
       "geographic": "Geographic",
@@ -212,21 +218,11 @@
         "scr": "Scribe",
         "rcp": "Recipient",
         "trl": "Translator",
-        "art": "Artist"
+        "art": "Artist",
+        "prf": "Performer",
+        "crr": "Corrector",
+        "trc": "Transkribierender"
       }
-    },
-    "mainMenu": {
-      "home": "Home",
-      "introduction": "Introduction",
-      "dengbejGazin": "Dengbêj Gazîn",
-      "editionGuidelines": "Edition-Guidelines"
-    },
-    "subMenu": {
-      "subMenu": "Seitenmenü",
-      "openSubMenu": "Seitenmenü öffnen",
-      "editionGuidelines": "Edition-Guidelines",
-      "transcriptionNotes": "Transcription-Notes",
-      "translationNotes": "Translation-Notes"
     }
   },
   "search": {
@@ -300,6 +296,7 @@
       "newTranslation": "New translation",
       "editTranslation": "Edit",
       "draft": "Mark as draft",
+      "publish": "Publish",
       "translation": {
         "new": "New translation",
         "delete": "Delete",
