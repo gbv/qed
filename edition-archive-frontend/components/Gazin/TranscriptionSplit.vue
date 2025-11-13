@@ -178,8 +178,8 @@ const loadOtherTranscriptionUrl = async () => {
 
 }
 
-model.originalTranscriptUrl = isTranslation ?  await loadOtherTranscriptionUrl() : transcriptionUrl.value;
-model.translationTranscriptUrl = isTranslation ? transcriptionUrl.value : await loadOtherTranscriptionUrl();
+model.originalTranscriptUrl = !isTranslation.value ?  transcriptionUrl.value : await loadOtherTranscriptionUrl();
+model.translationTranscriptUrl = isTranslation.value ? transcriptionUrl.value : await loadOtherTranscriptionUrl();
 
 </script>
 
