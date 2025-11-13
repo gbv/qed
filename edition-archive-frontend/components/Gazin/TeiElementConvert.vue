@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import {type TEIComment, type TEIElement, type TEINode, type TEIText} from "~/api/tei";
+import {type TEIComment, type TEIElement, type TEINode, type TEIText} from "~/api/tei.model";
 
 
 const props = defineProps<{

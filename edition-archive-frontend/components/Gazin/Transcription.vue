@@ -19,11 +19,14 @@
 
 <script setup lang="ts">
 
-import $tei, {type TEINode, type TEIComment, type TEIText, type TEIElement} from "~/api/tei";
+import {type TEINode, type TEIComment, type TEIText, type TEIElement} from "~/api/tei.model";
 import TeiElementConvert from "~/components/Gazin/TeiElementConvert.vue";
 import EditorialNote from "~/components/Gazin/EditorialNote.vue";
 
 const props = defineProps<{ teiUrl: string }>();
+
+const {$tei} = useTei();
+
 
 const teiStr = useAsyncData(`transcription-${props.teiUrl}`, async () => {
   const response = await fetch(props.teiUrl);

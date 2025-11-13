@@ -9,8 +9,10 @@
 
 <script setup lang="ts">
 
-import {$tei, type TEIElement, TeiQuery} from "~/api/tei";
+import {type TEIElement} from "~/api/tei.model";
 import TeiElementConvert from "~/components/Gazin/TeiElementConvert.vue";
+
+const {$tei} = useTei();
 
 const props = defineProps<{
   /**
