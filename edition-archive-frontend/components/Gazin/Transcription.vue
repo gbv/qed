@@ -78,7 +78,7 @@ const hook = (el: TEINode) => {
 
 .tei-element[data-tei-name="lg"] {
   display: block;
-  margin-bottom: 1em;
+  margin-bottom: 3em;
 }
 
 .tei-element[data-tei-name="l"] {
@@ -89,9 +89,29 @@ const hook = (el: TEINode) => {
   margin-bottom: 0.2em;
 }
 
+.tei-element[data-tei-name="l"] {
+  position: relative;
+  padding-left: 4.5em; /* Platz für die Nummernspalte */
+  counter-increment: line;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.2em;
+  box-sizing: border-box;
+}
+
 .tei-element[data-tei-name="l"]::before {
   content: counter(line);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4.5em;
+  display: flex;
+  align-items: center;    /* vertikal zentriert über die volle Höhe */
+  justify-content: flex-end;
   padding-right: 2em;
+  height: auto;
 }
 
 [data-tei-attr-rendition="#b"] {
