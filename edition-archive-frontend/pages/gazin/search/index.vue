@@ -133,16 +133,16 @@ const search = async () => {
     });
   }
 
-  const categoryFacet = model.result?.facet_counts?.facet_fields?.['category'] || [];
+  const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
   model.facets.languages = [];
-  for (let i = 0; i < categoryFacet.length; i += 2) {
-    const value = categoryFacet[i] as string;
+  for (let i = 0; i < categoryTopFacet.length; i += 2) {
+    const value = categoryTopFacet[i] as string;
     if (!value?.startsWith('rfc5646:')) {
       continue;
     }
     model.facets.languages.push({
       name: value.split(':')[1],
-      count: categoryFacet[i + 1]
+      count: categoryTopFacet[i + 1]
     });
   }
 };

@@ -32,7 +32,7 @@ export const useTei = () => {
           const attrs: { [key: string]: string } = {};
           for (let i = 0; i < el.attributes.length; i++) {
             const a = el.attributes.item(i)!;
-            attrs[a.name] = a.value;
+            attrs[a.name.replaceAll(':', '-')] = a.value;
           }
           const teiEl: TEIElement = {
             type: "Element",
@@ -164,7 +164,7 @@ export const useTei = () => {
     id(idValue: string): TeiQuery {
       const out: TEIElement[] = [];
       function walk(el: TEIElement) {
-        if (el.attributes['xml:id'] === idValue || el.attributes['id'] === idValue) out.push(el);
+        if (el.attributes['xml-id'] === idValue || el.attributes['id'] === idValue) out.push(el);
         for (const c of el.children) if (c.type === 'Element') walk(c as TEIElement);
       }
       for (const n of this.nodes) {

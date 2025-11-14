@@ -235,12 +235,16 @@ const search = async () => {
     });
   }
 
-  const languageFacet = model.result?.facet_counts?.facet_fields["survivors.mods.language"] || [];
+  const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
   model.facets.languages = [];
-  for (let i = 0; i < languageFacet.length; i += 2) {
+  for (let i = 0; i < categoryTopFacet.length; i += 2) {
+    const value = categoryTopFacet[i] as string;
+    if (!value?.startsWith('rfc5646:')) {
+      continue;
+    }
     model.facets.languages.push({
-      name: languageFacet[i],
-      count: languageFacet[i + 1]
+      name: value.split(':')[1],
+      count: categoryTopFacet[i + 1]
     });
   }
 
@@ -257,14 +261,18 @@ const clickGenreFacet = async (genre: string) => {
 }
 
 const clickLanguageFacet = async (language: string) => {
+  const languages = model.filters.languages.indexOf(language) > -1
+    ? model.filters.languages.filter((l) => l !== language)
+    : [...model.filters.languages, language];
+
   await navigateTo({
     query: {
       ...lodModelToQuery(model),
-      languages: model.filters.languages.indexOf(language) > -1 ? model.filters.languages.filter((g) => g !== language) : [...model.filters.languages, language],
-      start: 0
+      languages,
+      start: '0'
     }
-  })
-}
+  });
+};
 
 const pageChangedCallback = async (page: number) => {
   await navigateTo({

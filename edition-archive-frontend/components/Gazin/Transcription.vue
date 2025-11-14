@@ -2,12 +2,12 @@
   <div>
     <template v-if="body">
       <div class="transcription">
-        <TeiElementConvert :tei-element="body" :hook="hook">
+        <tei-element-convert :tei-element="body" :hook="hook">
           <template #default="{ element }">
-            <editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
+            <gazin-editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
             <!-- v-if isEdtitorialNoteNote(element) ignore the element-->
           </template>
-        </TeiElementConvert>
+        </tei-element-convert>
       </div>
     </template>
     <div v-else class="text-center">
@@ -20,8 +20,6 @@
 <script setup lang="ts">
 
 import {type TEINode, type TEIComment, type TEIText, type TEIElement} from "~/api/tei.model";
-import TeiElementConvert from "~/components/Gazin/TeiElementConvert.vue";
-import EditorialNote from "~/components/Gazin/EditorialNote.vue";
 
 const props = defineProps<{ teiUrl: string }>();
 

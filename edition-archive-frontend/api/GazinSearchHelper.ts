@@ -35,7 +35,7 @@ export function buildGazinSearchRequestURL(url: string, search: string | null, f
   }
 
   urlObj.searchParams.append('facet.field', 'mods.genre');
-  urlObj.searchParams.append('facet.field', 'category');
+  urlObj.searchParams.append('facet.field', 'category.top');
   urlObj.searchParams.append('fq', GazinFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {

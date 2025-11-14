@@ -10,7 +10,6 @@
 <script setup lang="ts">
 
 import {type TEIElement} from "~/api/tei.model";
-import TeiElementConvert from "~/components/Gazin/TeiElementConvert.vue";
 
 const {$tei} = useTei();
 

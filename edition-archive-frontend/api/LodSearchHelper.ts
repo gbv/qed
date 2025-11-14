@@ -42,7 +42,7 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
   }
 
   urlObj.searchParams.append('facet.field', 'mods.genre');
-  urlObj.searchParams.append('facet.field', 'category');
+  urlObj.searchParams.append('facet.field', 'category.top');
   urlObj.searchParams.append('fq', LodFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
@@ -51,7 +51,7 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   if (filters?.languages?.length > 0) {
     for (const language of filters.languages) {
-      urlObj.searchParams.append('fq', `category:"rfc5646:${language}"`);
+      urlObj.searchParams.append('fq', `category.top:"rfc5646:${language}"`);
     }
   }
 
