@@ -27,7 +27,7 @@
         <div class="col-12">
           <MODSDocument :backend-url="gazinURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/gazin/documents/" :filter-params="filterParams">
             <template #downloadLink>
-              <MODSMetaKeyValue v-if="downloadLinkSound || downloadLinkTranscription">
+              <MODSMetaKeyValue v-if="downloadLinkTranscription">
                 <template #key>
                   {{ $t("metadata.download") }}
                 </template>
@@ -39,17 +39,23 @@
               </MODSMetaKeyValue>
             </template>
             <template #media>
-              <div v-if="downloadLinkSound" class="sound mt-3">
+
+              <div v-if="data.urlPresent && !data.youtube" class="sound mt-3">
+
                 <client-only>
-                  <audio :src="downloadLinkSound" controls>
+                  <audio :src="data.mp3OrYoutubeUrl" controls>
                     Your browser does not support the audio element.
                   </audio>
                 </client-only>
               </div>
+              <a v-else-if="data.urlPresent && data.youtube"
+                 :href="data.mp3OrYoutubeUrl">{{ data.mp3OrYoutubeUrl }}</a>
+
 
               <div v-if="derivateInfo?.id && derivateInfo.mainDoc" class="transcript mt-3">
                 <h3>{{ $t("gazin.metadata.transcription") }}</h3>
-               <GazinTranscriptionSplit v-if="data.xml" :backend-url="gazinURL" :mycore-id="mycoreId" :xml="data.xml"/>
+                <GazinTranscriptionSplit v-if="data.xml" :backend-url="gazinURL"
+                                         :mycore-id="mycoreId" :xml="data.xml"/>
               </div>
             </template>
           </MODSDocument>
@@ -65,13 +71,16 @@ import {
   findElement,
   findFirstElement,
   flattenElement,
-  getAttribute, type XElement,
+  getAttribute,
   XMLApi
 } from '~/api/XMLApi';
-import { getMyCoReId, getMyCoReIdNumber } from '~/api/MyCoRe';
+import {getMyCoReId, getMyCoReIdNumber} from '~/api/MyCoRe';
 import {
   buildGazinSearchRequestURL,
-  GazinFilterParams, type GazinFilters, gazinModelToQuery, gazinQueryToModel
+  GazinFilterParams,
+  type GazinFilters,
+  gazinModelToQuery,
+  gazinQueryToModel
 } from '~/api/GazinSearchHelper';
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
@@ -93,15 +102,22 @@ interface LinkInfo {
 
 const serializeQuery = (query: Record<string, any>): string => {
   return Object.keys(query)
-    .map((key) => {
-      const value = query[key];
-      if (Array.isArray(value)) {
-        return value.map((item: string) => `${key}=${item}`).join('&');
-      }
-      return `${key}=${value}`;
-    })
-    .filter(Boolean)
-    .join('&');
+  .map((key) => {
+    const value = query[key];
+    if (Array.isArray(value)) {
+      return value.map((item: string) => `${key}=${item}`).join('&');
+    }
+    return `${key}=${value}`;
+  })
+  .filter(Boolean)
+  .join('&');
+};
+
+const isYoutubeURL = (url: string|undefined): boolean => {
+  if (url == null) {
+    return false;
+  }
+  return url.includes("youtube.com") || url.includes("youtu.be");
 };
 
 const { data, error } = await useAsyncData(route.fullPath, async () => {
@@ -110,8 +126,8 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
     fetch(`${gazinURL}api/v2/objects/${mycoreId}`, {
       method: 'GET'
     })
-      .then((resp) => resp.text())
-      .then((text) => XMLApi(text))
+    .then((resp) => resp.text())
+    .then((text) => XMLApi(text))
   ];
 
   const model = {
@@ -136,6 +152,60 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
   }
 
   const [xml, searchResult] = await Promise.all(promises);
+
+  let mp3OrYoutubeUrl = undefined;
+  let youtube: boolean = false;
+  let urlPresent: boolean = false;
+
+  if (xml != null) {
+    const location = findFirstElement(xml, byName("mods:location"));
+
+    if (location != null) {
+      const urlElement = flattenElement(findFirstElement(location, byName("mods:url")));
+      if (urlElement != null) {
+        const urlRegexp = /https?:\/\/perspectivia\.net\/receive\/(?<objectID>[A-Za-z]+_mods_\d+)/;
+        const match = urlElement.match(urlRegexp);
+        const objectID = match?.groups?.objectID;
+        if (objectID != null) {
+          const newURL = `https://perspectivia.net/api/v2/objects/${objectID}`;
+          const response2 = await fetch(newURL, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/xml'
+            }
+          });
+          const text2 = await response2.text();
+          const xml2 = await XMLApi(text2);
+          const location2 = flattenElement(findFirstElement(xml2, byName("mods:location")))?.trim();
+          console.log("loc2 is" + location2);
+
+          if (isYoutubeURL(location2)) {
+            urlPresent = true;
+            youtube = true;
+            mp3OrYoutubeUrl = location2;
+          } else {
+            const derobjectElement = findFirstElement(xml2, byName("derobject"));
+            const maindoc = flattenElement(findFirstElement(xml2, byName("maindoc")));
+
+            console.log("maindoc is " + maindoc);
+            if (derobjectElement == null) {
+              mp3OrYoutubeUrl = undefined;
+              urlPresent = false;
+            } else {
+              const derivateID = getAttribute(derobjectElement, "xlink:href")?.value;
+              mp3OrYoutubeUrl = `https://perspectivia.net/api/v2/objects/${objectID}/derivates/${derivateID}/contents/${maindoc}`;
+              urlPresent = true;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  if (mp3OrYoutubeUrl == null) {
+    mp3OrYoutubeUrl = undefined;
+  }
 
   if (searchResult && q) {
     const docs = searchResult.response.docs;
@@ -171,11 +241,19 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       counts: {
         start: model.start + 1,
         numFound: searchResult.response.numFound
-      }
+      },
+      mp3OrYoutubeUrl,
+      youtube,
+      urlPresent
     };
   }
 
-  return { xml };
+  return {
+    xml,
+    mp3OrYoutubeUrl,
+    youtube,
+    urlPresent
+  };
 });
 
 const derivateInfo = computed(() => {
@@ -193,20 +271,6 @@ const derivateInfo = computed(() => {
   return {id, mainDoc};
 });
 
-const downloadLinkSound = computed(() => {
-  if (data.value?.xml == null) {
-    return undefined;
-  }
-  const location = findFirstElement(data.value.xml, byName("mods:location"));
-  if (!location) {
-    return undefined;
-  }
-  const urlElement = findFirstElement(location, byName("mods:url"));
-  if (!urlElement) {
-    return undefined;
-  }
-  return flattenElement(urlElement) || undefined;
-});
 
 const downloadLinkTranscription = computed(() => {
   if (data.value?.xml == null) {
