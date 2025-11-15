@@ -62,6 +62,10 @@ const hook = (el: TEINode) => {
 
 <style>
 
+:root {
+  --qed-counter-width: 3.15rem; /* Platz für die Nummernspalte */
+}
+
 .tei-element[data-tei-attr-type="song"] {
   counter-reset: line 0;
 }
@@ -69,34 +73,30 @@ const hook = (el: TEINode) => {
 .tei-element[data-tei-name="head"] {
   display: block;
   background-color: #f1f1f1;
-}
-
-.tei-element[data-tei-name="head"]::before {
-  content: '#';
-  padding-right: 2em;
+  padding-left: var(--qed-counter-width);
 }
 
 .tei-element[data-tei-name="lg"] {
   display: block;
-  margin-bottom: 3em;
+  margin-bottom: 3rem;
 }
 
 .tei-element[data-tei-name="l"] {
   counter-increment: line;
   display: block;
   border-bottom: 1px solid #ddd;
-  padding-bottom: 0.2em;
-  margin-bottom: 0.2em;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .tei-element[data-tei-name="l"] {
   position: relative;
-  padding-left: 4.5em; /* Platz für die Nummernspalte */
+  padding-left: var(--qed-counter-width);
   counter-increment: line;
   display: block;
   border-bottom: 1px solid #ddd;
-  padding-bottom: 0.2em;
-  margin-bottom: 0.2em;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.2rem;
   box-sizing: border-box;
 }
 
@@ -106,12 +106,13 @@ const hook = (el: TEINode) => {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4.5em;
+  width: var(--qed-counter-width);
   display: flex;
   align-items: center;    /* vertikal zentriert über die volle Höhe */
   justify-content: flex-end;
-  padding-right: 2em;
+  padding-right: 2rem;
   height: auto;
+  font-size: 0.7rem;
 }
 
 [data-tei-attr-rendition="#b"] {

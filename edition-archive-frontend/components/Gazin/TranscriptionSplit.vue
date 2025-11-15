@@ -185,7 +185,4 @@ model.translationTranscriptUrl = isTranslation.value ? transcriptionUrl.value : 
 
 <style scoped>
 
-h4 {
-  padding-left: 1em;
-}
 </style>

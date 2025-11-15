@@ -77,6 +77,14 @@
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
                 </nuxt-link>
               </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
+                  href="/gazin/contact">
+                  {{ $t('gazin.mainMenu.contact') }}
+                </nuxt-link>
+              </li>
             </ul>
           </div>
         </nav>
