@@ -261,7 +261,8 @@
       "all": "All",
       "translationMode": "Show translations",
       "genre": "Document type",
-      "language": "Language"
+      "language": "Language",
+      "translation_present": "Has translation"
     },
     "field": {
       "allMetaHelp": "Searches all metadata for the entered search term",

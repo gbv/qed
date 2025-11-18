@@ -261,7 +261,8 @@
       "all": "Alle",
       "translationMode": "Übersetzungen anzeigen",
       "genre": "Dokumententyp",
-      "language": "Sprache"
+      "language": "Sprache",
+      "translation_present": "Übersetzung vorhanden"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",

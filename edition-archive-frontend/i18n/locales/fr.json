@@ -261,7 +261,8 @@
       "all": "Tous les",
       "translationMode": "Afficher les traductions",
       "genre": "Genre",
-      "language": "Langue"
+      "language": "Langue",
+      "translation_present": "Traduction disponible"
     },
     "field": {
       "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",

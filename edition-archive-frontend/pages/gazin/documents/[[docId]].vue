@@ -80,7 +80,7 @@ import {
   GazinFilterParams,
   type GazinFilters,
   gazinModelToQuery,
-  gazinQueryToModel
+  gazinQueryToModel,
 } from '~/api/GazinSearchHelper';
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
@@ -133,7 +133,8 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
   const model = {
     filters: {
       genres: [],
-      languages: []
+      languages: [],
+      translations: []
     } as GazinFilters,
     start: 0
   };

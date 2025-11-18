@@ -56,6 +56,42 @@
 
         <div class="col-12 col-lg-4 order-1 order-lg-2 text-end text-lg-start results__facets">
 
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.genre") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="genre in model.facets.genres"
+                :class="model.filters.genres.indexOf(genre.name) > -1 ? 'active' : ''"
+                v-on:click="clickGenreFacet(genre.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <div class="d-flex">
+                  <i v-if="model.filters.genres.indexOf(genre.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                  <MODSClassification :app-url="gazinURL" class-id="gazin_genres" :categ-id="genre.name" />
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ genre.count }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.translation_present") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="translation in model.facets.translations"
+                :class="model.filters.translations.indexOf(translation.name) > -1 ? 'active' : ''"
+                v-on:click="clickTranslationFacet(translation.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <div class="d-flex">
+                  <i v-if="model.filters.translations.indexOf(translation.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                  <MODSClassification :app-url="gazinURL" class-id="translation" :categ-id="translation.name" />
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ translation.count }}</span>
+              </li>
+            </ul>
+          </div>
+
           <div class="facet" v-if="model.facets.languages.length > 0">
             <h4 class="facet-title">{{ $t('search.facet.language') }}</h4>
             <ul class="list-group">
@@ -105,10 +141,12 @@ const model = reactive({
   filters: {
     genres: [],
     languages: [],
+    translations: []
   } as GazinFilters,
   facets: {
     genres: [] as FacetEntry[],
     languages: [] as FacetEntry[],
+    translations: [] as FacetEntry[]
   }
 });
 
@@ -124,26 +162,29 @@ const search = async () => {
 
   model.count = model.result.response.numFound;
 
-  const genreFacet = model.result?.facet_counts?.facet_fields?.['mods.genre'] || [];
-  model.facets.genres = [];
-  for (let i = 0; i < genreFacet.length; i += 2) {
-    model.facets.genres.push({
-      name: genreFacet[i],
-      count: genreFacet[i + 1]
-    });
-  }
-
   const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
   model.facets.languages = [];
+  model.facets.genres = [];
+  model.facets.translations = [];
   for (let i = 0; i < categoryTopFacet.length; i += 2) {
     const value = categoryTopFacet[i] as string;
-    if (!value?.startsWith('rfc5646:')) {
-      continue;
+    if (value?.startsWith('rfc5646:')) {
+      model.facets.languages.push({
+        name: value.split(':')[1],
+        count: categoryTopFacet[i + 1]
+      });
+    } else if (value?.startsWith('gazin_genres:')) {
+      model.facets.genres.push({
+        name: value.split(':')[1],
+        count: categoryTopFacet[i + 1]
+      });
+    } else if (value?.startsWith('translation:')) {
+      model.facets.translations.push({
+        name: value.split(':')[1],
+        count: categoryTopFacet[i + 1]
+      });
     }
-    model.facets.languages.push({
-      name: value.split(':')[1],
-      count: categoryTopFacet[i + 1]
-    });
+
   }
 };
 
@@ -173,6 +214,18 @@ const clickLanguageFacet = async (language: string) => {
   await updateQuery({
     ...gazinModelToQuery(model),
     languages,
+    start: '0'
+  });
+};
+
+const clickTranslationFacet = async (translation: string) => {
+  const translations = model.filters.translations.indexOf(translation) > -1
+    ? model.filters.translations.filter((l) => l !== translation)
+    : [...model.filters.translations, translation];
+
+  await updateQuery({
+    ...gazinModelToQuery(model),
+    translations,
     start: '0'
   });
 };

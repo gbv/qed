@@ -18,6 +18,7 @@ export const GazinParams = [
 export interface GazinFilters {
   genres: string[];
   languages: string[];
+  translations: string[];
 }
 
 export function buildGazinSearchRequestURL(url: string, search: string | null, filters: GazinFilters, start: number, rows = 20) {
@@ -34,17 +35,20 @@ export function buildGazinSearchRequestURL(url: string, search: string | null, f
     urlObj.searchParams.set(key, value ?? 'true');
   }
 
-  urlObj.searchParams.append('facet.field', 'mods.genre');
   urlObj.searchParams.append('facet.field', 'category.top');
   urlObj.searchParams.append('fq', GazinFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
-    urlObj.searchParams.append('fq', `mods.genre:(${filters.genres.join(' AND ')})`);
+    urlObj.searchParams.append('fq', `category.top:(${filters.genres.map((gName=> `"gazin_genres:${gName}"`)).join(' AND ')})`);
+  }
+
+  if(filters?.translations?.length > 0) {
+    urlObj.searchParams.append('fq', `category.top:(${filters.translations.map((gName=> `"translation:${gName}"`)).join(' AND ')})`);
   }
 
   if (filters?.languages?.length > 0) {
     for (const language of filters.languages) {
-      urlObj.searchParams.append('fq', `category:"rfc5646:${language}"`);
+      urlObj.searchParams.append('fq', `category.top:"rfc5646:${language}"`);
     }
   }
 
@@ -65,6 +69,10 @@ export function gazinModelToQuery(model: any): any {
     query.languages = model.filters.languages.slice();
   }
 
+  if (model.filters.translations.length > 0) {
+    query.translations = model.filters.translations.slice();
+  }
+
   return query;
 }
 
@@ -82,5 +90,11 @@ export function gazinQueryToModel(query: LocationQuery, model: any) {
     model.filters.languages = Array.isArray(query.languages) ? [...query.languages as string[]] : [query.languages as string];
   } else {
     model.filters.languages = [];
+  }
+
+  if (query.translations) {
+    model.filters.translations = Array.isArray(query.translations) ? [...query.translations as string[]] : [query.translations as string];
+  } else {
+    model.filters.translations = [];
   }
 }
