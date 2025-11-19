@@ -5,7 +5,7 @@ export const LodFilterParams = [
   'objectType:mods',
   'state:published',
   'objectProject:lod',
-  "mods.genre:letter"
+  "NOT(category.top:mir_genres\\:edition)"
 ];
 
 export const LodParams = [
