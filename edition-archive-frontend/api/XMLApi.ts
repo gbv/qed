@@ -286,6 +286,10 @@ export function or(...filters: Array<XFilter<XText | XElement | XCDATA | XCommen
   }
 }
 
+export function not(filter: XFilter<XNode>): XFilter<XNode> {
+  return (elem) => !filter(elem);
+}
+
 export function filterElement(list: Array<XText | XElement | XCDATA | XComment | XAttribute>): Array<XElement> {
   return list.filter(el => el.type == 'Element') as Array<XElement>
 }

@@ -20,7 +20,7 @@ import {
 const props = defineProps<{
   appUrl: string,
   classId: string,
-  categId: string
+  categId?: string
 }>()
 
 const i18n = useI18n();
@@ -39,8 +39,14 @@ const translatedValue = computed(() => {
     return i18n.t("sosu.metadata.unknownGenre");
   }
 
-  const categoryElement = findFirstElement(classificationElement, and(byName("category"),
-    byAttr("ID", props.categId)));
+  let categoryElement;
+  if(props.categId) {
+    categoryElement = findFirstElement(classificationElement, and(byName("category"),
+      byAttr("ID", props.categId)));
+  } else {
+    categoryElement = classificationElement;
+  }
+
 
   if (categoryElement == null) {
     return i18n.t("sosu.metadata.unknownGenre");

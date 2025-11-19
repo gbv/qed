@@ -98,6 +98,16 @@
         </template>
       </MODSMetaKeyValue>
 
+      <MODSMetaKeyValue v-for="classification in classifications">
+        <template #key>
+          <MODSClassification :app-url="backendUrl" :classId="classification.classId" />
+        </template>
+        <template #value>
+          <MODSClassification :app-url="backendUrl" :classId="classification.classId" :categId="classification.categId" />
+        </template>
+      </MODSMetaKeyValue>
+
+
       <MODSMetaKeyValue v-for="(names, role) in namesByRole">
         <template #key>
           {{ $t(`metadata.name.role.${role}`) }}
@@ -149,15 +159,6 @@
           <span v-for="date in dateIssued">
             {{ date }}
           </span>
-        </template>
-      </MODSMetaKeyValue>
-
-      <MODSMetaKeyValue v-if="typeOfResource">
-        <template #key>
-          {{ $t("metadata.typeOfResource") }}
-        </template>
-        <template #value>
-          {{ typeOfResource }}
         </template>
       </MODSMetaKeyValue>
 
@@ -280,7 +281,7 @@ import {
   findElement,
   findFirstElement,
   flattenElement,
-  getAttribute,
+  getAttribute, not,
   type XElement,
   type XNode
 } from "~/api/XMLApi";
@@ -314,7 +315,8 @@ const props = defineProps<{
   id: string,
   projectDocumentUrlPrefix: string,
   backendUrl: string,
-  filterParams: string[]
+  filterParams: string[],
+  showClassifications?: string[]
 }>()
 
 const searchOriginals = async () => {
@@ -563,6 +565,31 @@ const archive = computed( ()=> {
 
   return {classId: 'sursurv_archives', categId: categValue};
 });
+
+const classifications = computed(()=> {
+  const el = mods.value.content.filter(and(byName('mods:classification'), byAttr('authorityURI'), not(byAttr('generator')))) as XElement[];
+  return el.map((el) => {
+    const authorityURI = getAttribute(el, 'authorityURI')?.value;
+    const valueURI = getAttribute(el, 'valueURI')?.value;
+    return { authorityURI, valueURI };
+  })
+  .filter(({authorityURI, valueURI}) => authorityURI != null && valueURI != null)
+  .map(({authorityURI, valueURI}) => {
+    authorityURI = authorityURI as string;
+    valueURI = valueURI as string;
+    const classId = authorityURI.substring(authorityURI.lastIndexOf("/")+1);
+    const categId = valueURI.substring(valueURI.lastIndexOf("#")+1);
+    return {classId, categId};
+  })
+  .filter(({classId}) => {
+    if (props.showClassifications && props.showClassifications.length > 0) {
+      return props.showClassifications.indexOf(classId) > -1;
+    }
+    return false;
+  })
+  .filter((c) => c != null) as {classId: string, categId: string}[];
+});
+
 
 const shelfLocator = computed(() => {
   return flattenElement(findFirstElement(mods.value, byName("mods:shelfLocator")));
