@@ -175,6 +175,7 @@
     }
   },
   "metadata": {
+    "showImage": "Show image",
     "original": "Original",
     "translation": "Translation",
     "counts": "{start} of {numFound}",

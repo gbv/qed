@@ -1,12 +1,35 @@
 <template>
   <div class="row">
-    <div v-for="(content, slot) in $slots" :class="`col-xl-4 col-lg-6 col-12 mt-3 mb-5`">
-      <slot :name="slot"/>
+    <div v-for="(content, slot) in orderedSlots" :class="`col-${12/Object.keys($slots).length}`">
+      <slot :key="slot" :name="slot"/>
     </div>
+
+
   </div>
 </template>
 
 <script setup lang="ts">
+
+const props = defineProps<{
+  order?: Array<string>,
+}>();
+
+const slots = useSlots();
+
+const orderedSlots = computed(() => {
+  if(!props.order) {
+    return slots;
+  }
+
+  const ordered: Record<string, any> = {};
+  props.order.forEach((slotName) => {
+    if(slots[slotName]) {
+      ordered[slotName] = slots[slotName];
+    }
+  });
+
+  return ordered;
+});
 
 </script>
 

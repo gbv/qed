@@ -39,14 +39,8 @@
               </MODSMetaKeyValue>
             </template>
 
-            <template #media v-if="viewerLink">
-              <client-only>
-                <iframe sandbox="allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation" :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
-              </client-only>
-
-              <div class="lod-detail-view__copyrights--images">
-                {{ $t("lod.metadata.copyright") }}
-              </div>
+            <template #media v-if="maindoc">
+              <Viewer v-if="derivateId" :app-url="ditavURL" :mycore-id="mycoreId" :derivate-id="derivateId" :tei-url="`${ditavURL}api/v2/objects/${mycoreId}/derivates/${derivateId}/contents/${maindoc}`" />
             </template>
           </MODSDocument>
         </div>
@@ -191,7 +185,7 @@ const downloadLink = computed(() => {
 });
 
 
-const viewerLink = computed(() => {
+const maindoc = computed(() => {
   if(!data?.value?.xml){
     return undefined;
   }
@@ -216,9 +210,27 @@ const viewerLink = computed(() => {
     return undefined;
   }
 
-  return ditavURL + "rsc/viewer/" + href.value + "/" + maindoc +"?frame=true&embedded=true";
-
+  return maindoc;
 });
+
+
+const derivateId = computed(() => {
+  if(!data?.value?.xml){
+    return undefined;
+  }
+
+  let firstDerivate = findFirstElement(data.value.xml, byName("derobject"));
+
+  if (firstDerivate == null) {
+    return undefined;
+  }
+  let href = getAttribute(firstDerivate, "xlink:href");
+  if (href == null) {
+    return undefined;
+  }
+  return href.value;
+});
+
 
 
 if (error.value) {
@@ -233,11 +245,5 @@ if (error.value) {
 
 <style>
 
-.viewer {
-  display: block;
-  margin-top: 1rem;
-  width: 100%;
-  height: 500px;
-}
 
 </style>
