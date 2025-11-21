@@ -14,8 +14,8 @@
          v-on:click.prevent="changeViewMode('xml')"
       >XML</a>
     </nav>
-    <rows class="viewer-content" :order="['img', 'tei','xml']">
-      <template v-if="model.viewMode == 'dual'" #img>
+    <div class="viewer-content row">
+      <div v-if="model.viewMode == 'dual'" class="col-6">
         <div class="viewer-image-content">
           <div class="viewer-image-wrapper">
             <nuxt-picture
@@ -59,8 +59,8 @@
             </div>
           </div>
         </div>
-      </template>
-      <template v-if="model.viewMode == 'dual' || model.viewMode == 'single'" #tei>
+      </div>
+      <div v-if="model.viewMode == 'dual' || model.viewMode == 'single'" :class="model.viewMode == 'dual' ? 'col-6' : 'col-12'">
         <div class="viewer-text-content" ref="viewerRoot">
           <tei-element-convert v-if="teiBody" :tei-element="teiBody" :hook="elementFilter">
             <template #default="{ element }">
@@ -81,13 +81,13 @@
             </template>
           </tei-element-convert>
         </div>
-      </template>
-      <template v-if="model.viewMode == 'xml'" #xml>
+      </div>
+      <div v-if="model.viewMode == 'xml'" class="col-12">
         <div class="viewer-xml-content">
           <pre>{{ teiFileContent.data.value }}</pre>
         </div>
-      </template>
-    </rows>
+      </div>
+    </div>
   </div>
 
 </template>
