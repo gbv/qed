@@ -72,6 +72,12 @@
                 v-on:page-break-in-view="changeImage"
                 v-on:image-icon-clicked="changeImage"
               />
+              <ref-element
+                v-else-if="element.type === 'Element' && (element.name === 'persName' || element.name === 'orgName')"
+                :element="element"
+
+              />
+
             </template>
           </tei-element-convert>
         </div>
@@ -109,6 +115,14 @@ const model = reactive({
 const elementFilter = (el: TEINode) => {
   if(el.type === 'Element') {
     if(el.name === 'pb') {
+      return true;
+    }
+
+    if(el.name === 'orgName') {
+      return true;
+    }
+
+    if(el.name === 'persName') {
       return true;
     }
   }
@@ -258,6 +272,36 @@ const changeImage = (pbElement: TEIElement) => {
     width: 100% !important;
     box-sizing: border-box;
   }
+}
+
+
+[data-tei-attr-rendition~="#b"] {
+  font-weight: bold;
+}
+
+[data-tei-attr-rendition~="#i"] {
+  font-style: italic;
+}
+
+[data-tei-attr-rendition~="#sup"] {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+[data-tei-attr-rendition~="#u"] {
+  text-decoration: underline;
+}
+
+.tei-element[data-tei-name="del"] {
+  text-decoration: line-through;
+}
+
+.tei-element[data-tei-name="add"] {
+  text-decoration: underline;
+}
+
+.tei-element[data-tei-name="lb"] {
+  display: block;
 }
 
 

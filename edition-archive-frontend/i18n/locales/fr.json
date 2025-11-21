@@ -174,7 +174,23 @@
       "transcription": "Transcription"
     }
   },
+  "language": {
+    "de": "allemand",
+    "en": "anglais",
+    "fr": "français",
+    "it": "italien",
+    "la": "latin",
+    "pl": "polonais",
+    "ru": "russe",
+    "tr": "turc",
+    "ku": "kurde"
+  },
   "metadata": {
+    "skos": {
+      "prefLabel": "Terme préféré",
+      "altLabel": "Autre terme",
+      "definition": "Définition"
+    },
     "showImage": "Afficher l'image",
     "original": "Original",
     "translation": "Traduction",
