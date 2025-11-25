@@ -47,9 +47,22 @@
                     Your browser does not support the audio element.
                   </audio>
                 </client-only>
+                <!--
+                <div class="gazin-detail-view__copyrights--images">
+                  {{ $t("gazin.metadata.copyright") }}
+                </div>
+                -->
               </div>
-              <a v-else-if="data.urlPresent && data.youtube"
-                 :href="data.mp3OrYoutubeUrl">{{ data.mp3OrYoutubeUrl }}</a>
+              <div v-else-if="data.urlPresent && data.youtube">
+                <a :href="data.mp3OrYoutubeUrl">{{ data.mp3OrYoutubeUrl }}</a>
+
+                <!--
+                <div class="gazin-detail-view__copyrights--images">
+                  {{ $t("gazin.metadata.copyright") }}
+                </div>
+                -->
+              </div>
+
 
 
               <div v-if="derivateInfo?.id && derivateInfo.mainDoc" class="transcript mt-3">
@@ -59,6 +72,19 @@
               </div>
             </template>
           </MODSDocument>
+        </div>
+      </div>
+      <div class="row gazin-detail-view__copyrights">
+        <div class="col">
+          {{ $t("gazin.metadata.cite") }}
+        </div>
+
+        <div class="col-auto regest-licence text-end">
+          <a href="https://creativecommons.org/licenses/by/4.0/deed.de" title="CC BY 4.0" class="no-external-mark">
+            <nuxt-img src="/images/creative-commons.svg" alt="cc" />
+            <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
+
+          </a>
         </div>
       </div>
     </template>
