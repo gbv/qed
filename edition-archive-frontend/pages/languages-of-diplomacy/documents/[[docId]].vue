@@ -25,7 +25,7 @@
 
       <div class="row lod-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :backend-url="ditavURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/languages-of-diplomacy/documents/" :filter-params="filterParams">
+          <MODSDocument :backend-url="ditavURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/languages-of-diplomacy/documents/" :filter-params="filterParams" :hide-genre="true">
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
                 <template #key>

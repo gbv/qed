@@ -72,7 +72,7 @@
     <div class="metadata mt-3">
       <h3>Metadaten</h3>
 
-      <MODSMetaKeyValue v-if="genres != null && genres.length>0">
+      <MODSMetaKeyValue v-if="!props.hideGenre && genres != null && genres.length>0">
         <template #key>
           {{ $t("metadata.genre") }}
         </template>
@@ -316,7 +316,8 @@ const props = defineProps<{
   projectDocumentUrlPrefix: string,
   backendUrl: string,
   filterParams: string[],
-  showClassifications?: string[]
+  showClassifications?: string[],
+  hideGenre?: boolean
 }>()
 
 const searchOriginals = async () => {

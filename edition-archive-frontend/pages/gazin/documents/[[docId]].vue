@@ -25,7 +25,7 @@
 
       <div class="row gazin-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :show-classifications="['gazin_genres']" :backend-url="gazinURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/gazin/documents/" :filter-params="filterParams">
+          <MODSDocument :show-classifications="['gazin_genres']" :backend-url="gazinURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/gazin/documents/" :filter-params="filterParams" :hide-genre="true">
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLinkTranscription">
                 <template #key>
