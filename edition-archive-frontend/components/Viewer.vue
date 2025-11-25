@@ -72,12 +72,12 @@
                 v-on:page-break-in-view="changeImage"
                 v-on:image-icon-clicked="changeImage"
               />
-              <ref-element
+              <tei-ref-element
                 v-else-if="element.type === 'Element' && (element.name === 'persName' || element.name === 'orgName')"
                 :element="element"
-
               />
-
+              <tei-editorial-note v-else-if="element.type === 'Element' && element.name === 'note' && element.attributes.type === 'editorial'"
+                :note="element" />
             </template>
           </tei-element-convert>
         </div>

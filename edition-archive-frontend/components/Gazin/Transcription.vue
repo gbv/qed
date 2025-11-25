@@ -4,7 +4,7 @@
       <div class="transcription">
         <tei-element-convert :tei-element="body" :hook="hook">
           <template #default="{ element }">
-            <gazin-editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
+            <tei-editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
             <!-- v-if isEdtitorialNoteNote(element) ignore the element-->
           </template>
         </tei-element-convert>

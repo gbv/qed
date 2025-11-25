@@ -1,5 +1,5 @@
 <template>
-  <a v-on:click.prevent="open=!open" href="#note">{{ $tei(props.note).text() }} <i class="bi bi-book"></i></a>
+  <a class="editorial-note" v-on:click.prevent="open=!open" href="#note"><i class="bi bi-chat-right-text"></i> {{ $tei(props.note).text() }}</a>
   <div v-if="open" class="popout">
     <a class="close icon-link float-end" href="#hide" v-on:click.prevent="open=!open"><i
       class="bi bi-x-circle"></i></a>
@@ -33,6 +33,20 @@ const refTarget = computed(() => {
 </script>
 
 <style scoped>
+
+i {
+  margin-right: 3px;
+}
+
+/* prevents unwanted line breaks */
+.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+  display: inline;
+}
+
+.editorial-note:hover {
+  background-color: rgb(225, 225, 225);
+}
+
 .popout {
   display: block;
   background-color: white;

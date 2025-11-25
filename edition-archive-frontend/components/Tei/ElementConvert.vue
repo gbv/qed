@@ -2,7 +2,7 @@
   <span class="tei-element" :data-tei-name="tagName" v-if="elementType=='Element'"
         v-bind="attributes">
     <template v-for="child in children">
-      <TeiElementConvert
+      <ElementConvert
         v-if="props.hook == undefined || !props.hook(child)"
         :tei-element="child"
         :hook="props.hook"
@@ -10,7 +10,7 @@
         <template #default="slotProps" v-if="$slots.default">
           <slot name="default" v-bind="slotProps"></slot>
         </template>
-      </TeiElementConvert>
+      </ElementConvert>
       <template v-else-if="$slots.default">
         <slot name="default" :element="child" />
       </template>

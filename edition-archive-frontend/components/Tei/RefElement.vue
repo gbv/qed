@@ -1,15 +1,13 @@
 <template>
-  <span class="popout-wrapper position-relative d-inline">
-    <a href="#" v-if="hasRefAttribute" v-on:click.prevent="model.show ? hide():show()">
+  <span class="ref-element popout-wrapper position-relative d-inline">
+    <a class="" href="#" v-if="hasRefAttribute" v-on:click.prevent="model.show ? hide():show()">
       <i v-if="elementName === 'persName'" class="bi bi-person"></i>
       <i v-else-if="elementName === 'orgName'" class="bi bi-bank"></i>
-    </a>
-
-    {{ contentText }}
+    </a>{{ contentText }}
 
     <div v-if="model.show" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hide()"><i class="bi bi-x-circle"></i></a>
-      <lazy-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
+      <lazy-tei-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
     </div>
 
   </span>
@@ -52,6 +50,24 @@ const show = () => {
 
 
 <style scoped>
+
+i {
+  margin-right: 3px;
+}
+
+/* prevents unwanted line breaks */
+.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+  display: inline;
+}
+
+.editorial-note:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.ref-element:hover {
+  background-color: rgb(225, 225, 225);
+}
+
 .popout {
   display: block;
   background-color: white;
