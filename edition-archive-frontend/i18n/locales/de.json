@@ -279,7 +279,9 @@
       "translationMode": "Übersetzungen anzeigen",
       "genre": "Dokumententyp",
       "language": "Sprache",
-      "translation_present": "Übersetzung vorhanden"
+      "translation_present": "Übersetzung vorhanden",
+      "tr_translation_present": "Übersetzung ins türkische vorhanden",
+      "song_type": "Liedtyp"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",

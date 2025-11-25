@@ -57,7 +57,7 @@
         <div class="col-12 col-lg-4 order-1 order-lg-2 text-end text-lg-start results__facets">
 
           <div class="facet">
-            <h4 class="facet-title">{{ $t("search.facet.genre") }}</h4>
+            <h4 class="facet-title">{{ $t("search.facet.song_type") }}</h4>
             <ul class="list-group">
               <li
                 v-for="genre in model.facets.genres"
@@ -75,7 +75,7 @@
           </div>
 
           <div class="facet">
-            <h4 class="facet-title">{{ $t("search.facet.translation_present") }}</h4>
+            <h4 class="facet-title">{{ $t("search.facet.tr_translation_present") }}</h4>
             <ul class="list-group">
               <li
                 v-for="translation in model.facets.translations"
@@ -178,7 +178,7 @@ const search = async () => {
         name: value.split(':')[1],
         count: categoryTopFacet[i + 1]
       });
-    } else if (value?.startsWith('translation:')) {
+    } else if (value?.startsWith('translation_available:')) {
       model.facets.translations.push({
         name: value.split(':')[1],
         count: categoryTopFacet[i + 1]

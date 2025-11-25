@@ -279,7 +279,9 @@
       "translationMode": "Afficher les traductions",
       "genre": "Genre",
       "language": "Langue",
-      "translation_present": "Traduction disponible"
+      "translation_present": "Traduction disponible",
+      "tr_translation_present": "Traduction en turc disponible",
+      "song_type": "Type de chanson"
     },
     "field": {
       "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",

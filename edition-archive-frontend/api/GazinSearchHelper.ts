@@ -43,7 +43,7 @@ export function buildGazinSearchRequestURL(url: string, search: string | null, f
   }
 
   if(filters?.translations?.length > 0) {
-    urlObj.searchParams.append('fq', `category.top:(${filters.translations.map((gName=> `"translation:${gName}"`)).join(' AND ')})`);
+    urlObj.searchParams.append('fq', `category.top:(${filters.translations.map((gName=> `"translation_available:${gName}"`)).join(' AND ')})`);
   }
 
   if (filters?.languages?.length > 0) {
