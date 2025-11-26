@@ -239,7 +239,8 @@
         "art": "Artiste",
         "prf": "Interprète",
         "crr": "Correcteur",
-        "trc": "Transcripteur"
+        "trc": "Transcripteur",
+        "his": "Institution d'accueil"
       }
     }
   },

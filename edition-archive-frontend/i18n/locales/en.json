@@ -239,7 +239,8 @@
         "art": "Artist",
         "prf": "Performer",
         "crr": "Corrector",
-        "trc": "Transkribierender"
+        "trc": "Transcriber",
+        "his": "Host Institution"
       }
     }
   },

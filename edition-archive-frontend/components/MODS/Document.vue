@@ -115,7 +115,7 @@
         <template #value>
           <ol class="nameList">
             <li class="name" v-for="name in names">
-              <MODSName :name="name" />
+              <MODSName :app-url="props.backendUrl" :name="name" />
             </li>
           </ol>
         </template>

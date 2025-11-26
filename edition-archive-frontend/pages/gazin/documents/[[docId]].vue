@@ -204,7 +204,6 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
           const text2 = await response2.text();
           const xml2 = await XMLApi(text2);
           const location2 = flattenElement(findFirstElement(xml2, byName("mods:location")))?.trim();
-          console.log("loc2 is" + location2);
 
           if (isYoutubeURL(location2)) {
             urlPresent = true;
@@ -214,7 +213,6 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
             const derobjectElement = findFirstElement(xml2, byName("derobject"));
             const maindoc = flattenElement(findFirstElement(xml2, byName("maindoc")));
 
-            console.log("maindoc is " + maindoc);
             if (derobjectElement == null) {
               mp3OrYoutubeUrl = undefined;
               urlPresent = false;
