@@ -100,6 +100,15 @@
       "personIndex": "Index des noms de personnes",
       "placeIndex": "Index des noms de lieux"
     },
+    "viewer": {
+      "image": {
+        "loading": "Chargement de l'image...",
+        "error": "Impossible de charger les informations de l'image",
+        "notAvailable": "Aucune image de page disponible",
+        "maximize": "Agrandir l'image",
+        "close": "Fermer"
+      }
+    },
     "editionShortTitle": "Titre abrégé des éditions"
   },
   "lod": {

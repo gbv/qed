@@ -17,46 +17,16 @@
     <div class="viewer-content row">
       <div v-if="model.viewMode == 'dual'" class="col-6">
         <div class="viewer-image-content">
-          <div class="viewer-image-wrapper">
-            <nuxt-picture
-              v-if="model.currentImage"
-              :src="imageSrc"
-              :imgAttrs="{ class: 'viewer-image', alt: 'Current page image' }"
-            />
-
-            <div v-else>
-              <em>Keine Seitenabbildung verfügbar</em>
-            </div>
-
-            <!-- Maximize button (sichtbar nur wenn ein Bild vorhanden ist) -->
-            <button
-              v-if="model.currentImage"
-              type="button"
-              aria-label="Bild vergrößern"
-              v-on:click="toggleImageMaximize"
-              class="btn btn-sm btn-light position-absolute top-0 end-0 m-2"
-            >
-              <i class="bi bi-arrows-angle-expand" aria-hidden="true"></i>
-            </button>
-          </div>
-
-          <!-- Fullscreen overlay -->
-          <div
-            v-if="isImageMaximized"
-            class="viewer-image-fullscreen"
-            v-on:click.self="toggleImageMaximize"
-          >
-            <button
-              type="button"
-              aria-label="Schließen"
-              v-on:click="toggleImageMaximize"
-              class="btn btn-light position-fixed top-0 end-0 m-3"
-            >
-              <i class="bi bi-x-lg" aria-hidden="true"></i>
-            </button>
-            <div class="viewer-image-fullscreen-inner">
-              <nuxt-picture :src="imageSrc" :imgAttrs="{ class: 'viewer-image-fullscreen-img', alt: 'Vergrößertes Bild' }" />
-            </div>
+          <iiif-image
+            v-if="model.currentImage"
+            :app-url="appUrl"
+            :derivate-id="derivateId"
+            :image-path="model.currentImage.replace('#', '')"
+            :alt="$t('gpo.viewer.image.notAvailable')"
+            :show-maximize-button="true"
+          />
+          <div v-else>
+            <em>{{ $t('gpo.viewer.image.notAvailable') }}</em>
           </div>
         </div>
       </div>
@@ -151,29 +121,6 @@ const teiBody = computed(() => {
     return null;
   }
   return $tei(teiDocument.value).find("body").toArray()[0] || null;
-});
-
-// Neue Logik für Bildvergrößerung
-const isImageMaximized = ref(false);
-
-const imageSrc = computed(() => {
-  if (!model.currentImage) return '';
-  return `${props.appUrl}api/v2/objects/${props.mycoreId}/derivates/${props.derivateId}/contents/${model.currentImage.replace('#','')}`;
-});
-
-const toggleImageMaximize = () => {
-  isImageMaximized.value = !isImageMaximized.value;
-}
-
-// ESC-Taste schließt die Vollbild-Ansicht
-onMounted(() => {
-  const onKey = (ev: KeyboardEvent) => {
-    if (ev.key === 'Escape' && isImageMaximized.value) {
-      isImageMaximized.value = false;
-    }
-  };
-  window.addEventListener('keydown', onKey);
-  onUnmounted(() => window.removeEventListener('keydown', onKey));
 });
 
 
@@ -309,82 +256,12 @@ const changeImage = (pbElement: TEIElement) => {
 
 /* Viewer image styles */
 
-.viewer-image {
-  max-width: 100%;
-  max-height: 500px; /* feste Max-Höhe hier statt Prozent */
-  height: auto;
-  width: auto;
-  object-fit: contain; /* Bild bleibt im Verhältnis */
-  display: block;
-}
-
-
 .viewer-image-content {
   max-height: 500px;
-  overflow: auto; /* sorgt dafür, dass zu große Bilder scrollen */
+  overflow: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* wrapper to position the maximize button */
-.viewer-image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-/* Entfernte eigene Button-Styles: wir nutzen Bootstrap-Utilities und Icons */
-
-.viewer-image-fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  align-items: flex-start; /* allow scrolling and ensure tall images are not clipped */
-  justify-content: center;
-  z-index: 2000;
-  padding: 1rem;
-  box-sizing: border-box; /* damit Padding in der Berechnung berücksichtigt wird */
-  overflow: auto; /* erlaubt Scrollen, falls nötig (kleine Bildschirme) */
-}
-
-/* Inner wrapper centers content vertically when there's enough space */
-.viewer-image-fullscreen-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 2rem); /* sorgt dafür, dass das Bild zentriert wird, wenn es kleiner ist */
-  width: 100%;
-  box-sizing: border-box;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-/* Bild im Fullscreen so skalieren, dass nichts abgeschnitten wird */
-.viewer-image-fullscreen-img,
-.viewer-image-fullscreen picture,
-.viewer-image-fullscreen img,
-.viewer-image-fullscreen picture img {
-  /* großzügigeren Abstand lassen (Close-Button, Padding, evtl. Browser-UI) */
-  max-width: calc(100vw - 4rem);
-  max-height: calc(100vh - 8rem);
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Falls nuxt-picture damit ein <picture> enthält und dieses ein <img> als Kind hat, treffen wir dieses gezielt */
-.viewer-image-fullscreen picture > img,
-.viewer-image-fullscreen picture img {
-  max-height: calc(100vh - 8rem) !important;
-  max-width: calc(100vw - 4rem) !important;
-  width: auto !important;
-  height: auto !important;
 }
 
 
