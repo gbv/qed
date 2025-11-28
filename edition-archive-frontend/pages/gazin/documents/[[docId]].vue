@@ -53,10 +53,12 @@
                 </div>
               </div>
               <div v-else-if="data.urlPresent && data.youtube && data.mp3OrYoutubeUrl" class="youtube-section mt-3">
-                <YouTubeEmbed
-                  :youtube-url="data.mp3OrYoutubeUrl"
-                  preview-image="images/card-back-gazin.jpg"
-                />
+                <div class="youtube-wrapper">
+                  <YouTubeEmbed
+                    :youtube-url="data.mp3OrYoutubeUrl"
+                    preview-image="images/card-back-gazin.jpg"
+                  />
+                </div>
 
                 <div class="gazin-detail-view__copyrights--images mt-2">
                   {{ $t("gazin.metadata.copyright") }}
@@ -333,5 +335,9 @@ if (error.value) {
 .youtube-section {
   width: 100%;
   max-width: 100%;
+}
+
+.youtube-wrapper {
+  padding: 0 2rem;
 }
 </style>
