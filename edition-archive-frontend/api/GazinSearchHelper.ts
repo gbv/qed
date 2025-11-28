@@ -5,7 +5,8 @@ export const GazinFilterParams = [
   'objectType:mods',
   'state:published',
   'objectProject:gzn',
-  "mods.genre:source_material"
+  "mods.genre:source_material",
+  "category.top:\"rfc5646:ku\""
 ];
 
 export const GazinParams = [

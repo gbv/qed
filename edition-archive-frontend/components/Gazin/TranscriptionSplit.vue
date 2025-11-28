@@ -100,8 +100,10 @@ const transcriptionUrl = computed(() => {
   return `${props.backendUrl}api/v2/objects/${props.mycoreId}/derivates/${info.id}/contents/${info.mainDoc}`;
 });
 
+
 const resolveOriginId = async () => {
-  const json = await fetch(`${props.backendUrl}api/v1/search?q=mods.relatedItem.original:${props.mycoreId}&wt=json&fq=${GazinFilterParams.join("%20AND%20")}`, {
+  const filterParmas = GazinFilterParams.filter((param) => param.indexOf("rfc5646:ku") == -1);
+  const json = await fetch(`${props.backendUrl}api/v1/search?q=mods.relatedItem.original:${props.mycoreId}&wt=json&fq=${filterParmas.join("%20AND%20")}`, {
     method: "GET",
     headers: {
       "Accept": "application/json",

@@ -119,7 +119,7 @@ const OBJECT_PROJECT = 'gzn';
 
 const mycoreId = getMyCoReId(OBJECT_PROJECT, parseInt(docId));
 
-const filterParams = GazinFilterParams;
+const filterParams = GazinFilterParams.filter((param) => param.indexOf("rfc5646:ku") == -1);
 
 interface LinkInfo {
   title: string;
