@@ -92,7 +92,7 @@
 
       <div class="col-auto">
         <div class="project-institute project-institute--gazin">
-          <a href="https://mwsosteuropa.hypotheses.org/">
+          <a href="https://oiist.org/" title="Orient Institut Istanbul" target="_blank" rel="noopener">
             <nuxt-img
               src="/images/logo-orient-institut-istanbul.jpg"
               preload alt="Orient Institut Istanbul Logo" />
