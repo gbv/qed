@@ -17,7 +17,6 @@ export const GazinParams = [
 
 export interface GazinFilters {
   genres: string[];
-  languages: string[];
   translations: string[];
 }
 
@@ -44,12 +43,6 @@ export function buildGazinSearchRequestURL(url: string, search: string | null, f
 
   if(filters?.translations?.length > 0) {
     urlObj.searchParams.append('fq', `category.top:(${filters.translations.map((gName=> `"translation_available:${gName}"`)).join(' AND ')})`);
-  }
-
-  if (filters?.languages?.length > 0) {
-    for (const language of filters.languages) {
-      urlObj.searchParams.append('fq', `category.top:"rfc5646:${language}"`);
-    }
   }
 
   return urlObj.toString();

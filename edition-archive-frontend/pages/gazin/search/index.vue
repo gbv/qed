@@ -92,25 +92,6 @@
             </ul>
           </div>
 
-          <div class="facet" v-if="model.facets.languages.length > 0">
-            <h4 class="facet-title">{{ $t('search.facet.language') }}</h4>
-            <ul class="list-group">
-              <li
-                v-for="language in model.facets.languages"
-                :key="`lang-${language.name}`"
-                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable"
-                :class="model.filters.languages.indexOf(language.name) > -1 ? 'active' : ''"
-                @click="clickLanguageFacet(language.name)"
-              >
-                <div class="d-flex">
-                  <i v-if="model.filters.languages.indexOf(language.name) > -1" class="bi bi-check-square"></i>
-                  <i v-else class="bi bi-square"></i>
-                  <MODSClassification :app-url="gazinURL" class-id="rfc5646" :categ-id="language.name" />
-                </div>
-                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ language.count }}</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </template>
@@ -140,12 +121,10 @@ const model = reactive({
   start: parseInt(route.query.start as string) || 0,
   filters: {
     genres: [],
-    languages: [],
     translations: []
   } as GazinFilters,
   facets: {
     genres: [] as FacetEntry[],
-    languages: [] as FacetEntry[],
     translations: [] as FacetEntry[]
   }
 });
@@ -163,17 +142,11 @@ const search = async () => {
   model.count = model.result.response.numFound;
 
   const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
-  model.facets.languages = [];
   model.facets.genres = [];
   model.facets.translations = [];
   for (let i = 0; i < categoryTopFacet.length; i += 2) {
     const value = categoryTopFacet[i] as string;
-    if (value?.startsWith('rfc5646:')) {
-      model.facets.languages.push({
-        name: value.split(':')[1],
-        count: categoryTopFacet[i + 1]
-      });
-    } else if (value?.startsWith('gazin_genres:')) {
+    if (value?.startsWith('gazin_genres:')) {
       model.facets.genres.push({
         name: value.split(':')[1],
         count: categoryTopFacet[i + 1]
@@ -202,18 +175,6 @@ const clickGenreFacet = async (genre: string) => {
   await updateQuery({
     ...gazinModelToQuery(model),
     genres,
-    start: '0'
-  });
-};
-
-const clickLanguageFacet = async (language: string) => {
-  const languages = model.filters.languages.indexOf(language) > -1
-    ? model.filters.languages.filter((l) => l !== language)
-    : [...model.filters.languages, language];
-
-  await updateQuery({
-    ...gazinModelToQuery(model),
-    languages,
     start: '0'
   });
 };
