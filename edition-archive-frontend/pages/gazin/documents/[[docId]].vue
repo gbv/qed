@@ -47,20 +47,17 @@
                     Your browser does not support the audio element.
                   </audio>
                 </client-only>
-                <!--
+
                 <div class="gazin-detail-view__copyrights--images">
                   {{ $t("gazin.metadata.copyright") }}
                 </div>
-                -->
               </div>
               <div v-else-if="data.urlPresent && data.youtube">
                 <a :href="data.mp3OrYoutubeUrl">{{ data.mp3OrYoutubeUrl }}</a>
 
-                <!--
                 <div class="gazin-detail-view__copyrights--images">
                   {{ $t("gazin.metadata.copyright") }}
                 </div>
-                -->
               </div>
 
 
