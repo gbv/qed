@@ -95,6 +95,12 @@ You can also delete cookies that have already been set at any time by selecting 
 ## Integration of third-party services and content
 It may happen that content from third-party companies and contract data processors (these service providers are contractually bound by the Max Weber Foundation and may use personal data that they receive in this context for the commissioned purpose only) such as videos, maps, RSS feeds, social media messages, images or graphics from other websites are integrated into this online service. This always assumes that the providers of this content recognise the IP address of the user, as they cannot send the content to the browser of the respective user otherwise. The IP address is therefore required to display this content. We endeavour to only use content whose respective providers only use the IP address to deliver the content. However, we have no influence on whether the third-party providers store the IP address, e.g. for statistical purposes. Insofar as we are aware of this, we will inform users accordingly.
 
+## Embedded YouTube videos
+
+We embed YouTube videos on some of our web pages. The operator of the corresponding plugins is YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. When you visit a page with the YouTube plugin, a connection is established to YouTube servers. YouTube is informed which pages you visit. If you are logged into your YouTube account, YouTube can associate your browsing behaviour with you personally. You can prevent this by logging out of your YouTube account beforehand. When a YouTube video is started, the provider uses cookies that collect information about user behaviour. Anyone who has deactivated the storage of cookies for the Google Ad programme will not have to expect such cookies when watching YouTube videos either. However, YouTube also stores non-personal usage information in other cookies. If you wish to prevent this, you must block the storage of cookies in your browser. Further information on data protection at "YouTube" can be found in the provider's privacy policy at: www.google.de/intl/de/policies/privacy/
+
+The legal basis for this processing is consent pursuant to Art. 6 para. 1 lit. a GDPR, provided this has been granted.
+
 ## Contact us
 When contacting us by email, the user details are stored for the purpose of processing the enquiry and in the case that follow-up questions arise.
 
@@ -161,8 +167,14 @@ Nous n’utilisons que des cookies de session. Pour vous opposer à l’utilisat
 
 En outre, vous pouvez à tout moment supprimer vous-même les cookies déjà installés en sélectionnant l’option de menu correspondante dans votre navigateur Internet ou en suppri-mant les cookies dans le répertoire prévu à cet effet sur votre disque dur.
 
-## Intégration de services et de contenus d’acteurs tiers
-Dans le cadre de notre offre en ligne, il peut arriver que nous intégrions des contenus d’acteurs tiers et de sous-traitants (ceux-ci sont liés par contrat à la Fondation Max Weber et ne sont habilités à utiliser les données personnelles qu’ils collectent incidemment qu’aux fins prescrites) comme par exemple vidéos, matériel cartographique, RSS-Feeds, informations des réseaux sociaux, images ou graphiques d’autres sites internet. Ceci suppose cependant toujours que les fournisseurs de ces contenus identifient l’adresse IP de l’utilisateur car sans cette adresse IP ils ne peuvent pas communiquer leurs contenus au navigateur de l’utilisateur. L’adresse IP est de ce fait indispensable à l’affichage de ces contenus. Nous nous efforçons de n’employer que des contenus pour lesquels les fournisseurs n’utilisent l’adresse IP qu’à des fins de transmission. Pour autant, nous ne pouvons pas garantir que des tiers n’enregistrent pas l’adresse IP à des fins statistiques. Quand nous en avons connaissance, nous en informons immédiatement nos utilisateurs.
+## Intégration de services et de contenus d'acteurs tiers
+Dans le cadre de notre offre en ligne, il peut arriver que nous intégrions des contenus d'acteurs tiers et de sous-traitants (ceux-ci sont liés par contrat à la Fondation Max Weber et ne sont habilités à utiliser les données personnelles qu'ils collectent incidemment qu'aux fins prescrites) comme par exemple vidéos, matériel cartographique, RSS-Feeds, informations des réseaux sociaux, images ou graphiques d'autres sites internet. Ceci suppose cependant toujours que les fournisseurs de ces contenus identifient l'adresse IP de l'utilisateur car sans cette adresse IP ils ne peuvent pas communiquer leurs contenus au navigateur de l'utilisateur. L'adresse IP est de ce fait indispensable à l'affichage de ces contenus. Nous nous efforçons de n'employer que des contenus pour lesquels les fournisseurs n'utilisent l'adresse IP qu'à des fins de transmission. Pour autant, nous ne pouvons pas garantir que des tiers n'enregistrent pas l'adresse IP à des fins statistiques. Quand nous en avons connaissance, nous en informons immédiatement nos utilisateurs.
+
+## Vidéos YouTube intégrées
+
+Nous intégrons des vidéos YouTube sur certaines de nos pages web. L'opérateur des plugins correspondants est YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. Lorsque vous visitez une page contenant le plugin YouTube, une connexion est établie avec les serveurs de YouTube. YouTube est informé des pages que vous visitez. Si vous êtes connecté à votre compte YouTube, YouTube peut associer votre comportement de navigation à votre personne. Vous pouvez empêcher cela en vous déconnectant au préalable de votre compte YouTube. Lorsqu'une vidéo YouTube est lancée, le fournisseur utilise des cookies qui collectent des informations sur le comportement des utilisateurs. Toute personne ayant désactivé le stockage des cookies pour le programme Google Ad n'aura pas non plus à s'attendre à de tels cookies lors du visionnage de vidéos YouTube. Cependant, YouTube stocke également des informations d'utilisation non personnelles dans d'autres cookies. Si vous souhaitez empêcher cela, vous devez bloquer le stockage des cookies dans votre navigateur. De plus amples informations sur la protection des données chez "YouTube" sont disponibles dans la déclaration de confidentialité du fournisseur à l'adresse : www.google.de/intl/de/policies/privacy/
+
+La base juridique de ce traitement est le consentement conformément à l'art. 6, al. 1, lit. a du RGPD, dans la mesure où celui-ci a été accordé.
 
 ## Prise de contact
 Lors d’une prise de contact avec nos services par courrier électronique, les données de l’utilisateur sont enregistrées de manière à pouvoir répondre à sa demande et à celles ultérieures.
@@ -200,3 +212,4 @@ Graurheindorfer Str. 153,<br>
 poststelle@bfdi.bund.de,<br>
 https://www.bfdi.bund.de/DE/Service/Kontakt/kontakt_node.html
 ::::
+
