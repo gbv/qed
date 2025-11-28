@@ -110,7 +110,7 @@
 
       <MODSMetaKeyValue v-for="(names, role) in namesByRole">
         <template #key>
-          {{ $t(`metadata.name.role.${role}`) }}
+          <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
         </template>
         <template #value>
           <ol class="nameList">
