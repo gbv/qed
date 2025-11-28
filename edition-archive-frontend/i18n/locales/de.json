@@ -251,6 +251,11 @@
         "trc": "Transkribierender",
         "his": "Beherbergende Einrichtung"
       }
+    },
+    "youtubeConsent": {
+      "warning": "Mit der Anzeige dieses Videos erklären Sie sich einverstanden, dass Informationen an YouTube übermittelt werden.",
+      "accept": "Einverstanden",
+      "privacyLink": "Hinweise in der Datenschutzerklärung lesen"
     }
   },
   "search": {

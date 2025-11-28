@@ -251,6 +251,11 @@
         "trc": "Transcriber",
         "his": "Host Institution"
       }
+    },
+    "youtubeConsent": {
+      "warning": "By displaying this video, you agree that information will be transmitted to YouTube.",
+      "accept": "I agree",
+      "privacyLink": "Read privacy policy notes"
     }
   },
   "search": {

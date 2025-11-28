@@ -52,10 +52,13 @@
                   {{ $t("gazin.metadata.copyright") }}
                 </div>
               </div>
-              <div v-else-if="data.urlPresent && data.youtube">
-                <a :href="data.mp3OrYoutubeUrl">{{ data.mp3OrYoutubeUrl }}</a>
+              <div v-else-if="data.urlPresent && data.youtube && data.mp3OrYoutubeUrl" class="youtube-section mt-3">
+                <YouTubeEmbed
+                  :youtube-url="data.mp3OrYoutubeUrl"
+                  preview-image="images/card-back-gazin.jpg"
+                />
 
-                <div class="gazin-detail-view__copyrights--images">
+                <div class="gazin-detail-view__copyrights--images mt-2">
                   {{ $t("gazin.metadata.copyright") }}
                 </div>
               </div>
@@ -320,5 +323,15 @@ if (error.value) {
 }
 </script>
 
-<style>
+<style scoped>
+.sound audio {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.youtube-section {
+  width: 100%;
+  max-width: 100%;
+}
 </style>

@@ -251,6 +251,11 @@
         "trc": "Transcripteur",
         "his": "Institution d'accueil"
       }
+    },
+    "youtubeConsent": {
+      "warning": "En affichant cette vidéo, vous acceptez que des informations soient transmises à YouTube.",
+      "accept": "J'accepte",
+      "privacyLink": "Lire les mentions relatives à la protection des données"
     }
   },
   "search": {
