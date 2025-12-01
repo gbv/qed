@@ -73,7 +73,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/edition-guidelines/translation-notes">
+                  href="/gazin/edition-guidelines/transcription-notes">
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
                 </nuxt-link>
               </li>
