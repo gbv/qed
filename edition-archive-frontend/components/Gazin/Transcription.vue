@@ -78,13 +78,19 @@ const hook = (el: TEINode) => {
 
 .tei-element[data-tei-name="lg"] {
   display: block;
-  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  border-bottom: 1px solid #ddd;
 }
+
+.tei-element[data-tei-name="lg"]:last-of-type {
+  border-bottom: none;
+}
+
 
 .tei-element[data-tei-name="l"] {
   counter-increment: line;
   display: block;
-  border-bottom: 1px solid #ddd;
   padding-bottom: 0.2rem;
   margin-bottom: 0.2rem;
 }
@@ -94,7 +100,6 @@ const hook = (el: TEINode) => {
   padding-left: var(--qed-counter-width);
   counter-increment: line;
   display: block;
-  border-bottom: 1px solid #ddd;
   padding-bottom: 0.2rem;
   margin-bottom: 0.2rem;
   box-sizing: border-box;
