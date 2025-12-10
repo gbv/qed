@@ -205,7 +205,9 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
           });
           const text2 = await response2.text();
           const xml2 = await XMLApi(text2);
-          const location2 = flattenElement(findFirstElement(xml2, byName("mods:location")))?.trim();
+          const mods2 = findFirstElement(xml2, byName("mods:mods"));
+          const location2Element = mods2?.content.find((elem) => elem.type =='Element' && elem.name === "mods:location") || null;
+          const location2 = flattenElement(location2Element)?.trim();
 
           if (isYoutubeURL(location2)) {
             urlPresent = true;
