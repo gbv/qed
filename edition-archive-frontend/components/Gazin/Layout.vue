@@ -49,8 +49,8 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/introduction">
-                  {{ $t('gazin.mainMenu.introduction') }}
+                  href="/gazin/project/introduction">
+                  {{ $t('gazin.mainMenu.project') }}
               </nuxt-link>
               </li>
               <li class="nav-item">

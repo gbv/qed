@@ -13,14 +13,14 @@
   ---
   #title
     ::::LanguageSection{fallback=de}
-    #de 
+    #de
     Gallia Pontificia online
     #en
     Gallia Pontificia online
     #fr
     Gallia Pontificia online
     ::::
-    
+
   #default
     ::::LanguageSection{fallback=de}
     #de
@@ -116,11 +116,11 @@
   #title
     ::::LanguageSection{fallback=de}
     #de
-    Dengbêj Gazin: Die Lieder einer Kurdin
+    Dengbêj Gazîn: Die Lieder einer Kurdin
     #en
-    Dengbêj Gazin: Songs of a Kurdish Woman
+    Dengbêj Gazîn: Songs of a Kurdish Woman
     #fr
-    Dengbêj Gazin : les chansons d'une kurde
+    Dengbêj Gazîn: Les chansons d'une femme kurde
     ::::
   #default
     ::::LanguageSection{fallback=de}

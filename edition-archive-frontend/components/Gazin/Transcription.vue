@@ -109,11 +109,11 @@ const hook = (el: TEINode) => {
   content: counter(line);
   position: absolute;
   left: 0;
-  top: 0;
+  top: 2px;
   bottom: 0;
   width: var(--qed-counter-width);
   display: flex;
-  align-items: center;    /* vertikal zentriert über die volle Höhe */
+  align-items: start;
   justify-content: flex-end;
   padding-right: 2rem;
   height: auto;
@@ -127,4 +127,5 @@ const hook = (el: TEINode) => {
 [data-tei-attr-rendition="#i"] {
   font-style: italic;
 }
+
 </style>

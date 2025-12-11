@@ -164,7 +164,7 @@
     },
     "mainMenu": {
       "home": "Home",
-      "introduction": "Introduction",
+      "project": "About",
       "dengbejGazin": "Dengbêj Gazîn",
       "search": "Songs",
       "editionGuidelines": "Edition Guidelines",
@@ -173,9 +173,11 @@
     "subMenu": {
       "subMenu": "Sidebar",
       "openSubMenu": "Open sidebar",
+      "introduction": "Einleitung",
       "editionGuidelines": "Edition Guidelines",
       "transcriptionNotes": "Transcription Notes",
-      "translationNotes": "Translation Notes"
+      "translationNotes": "Translation Notes",
+      "citation": "Citation"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - All media are copyright protected. Transcriptions and metadata are licensed under CC BY 4.0.",
