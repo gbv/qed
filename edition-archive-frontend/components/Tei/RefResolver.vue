@@ -26,7 +26,7 @@
 
 
   </div>
-  <div class="text-center" v v-else-if="model.isSkos && model.resolvedSkos == null">
+  <div class="text-center" v-else-if="model.isSkos && model.resolvedSkos == null">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
@@ -43,7 +43,7 @@ const props = defineProps<{
 
 const model = reactive({
   resolvedSkos: null as JSKOSEntity | null,
-  isSkos: true as boolean,
+  isSkos: false as boolean,
 });
 
 

@@ -5,6 +5,10 @@
         <tei-element-convert :tei-element="body" :hook="hook">
           <template #default="{ element }">
             <tei-editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
+            <tei-ref-element
+              v-else-if="element.type === 'Element' && (element.name === 'persName' || element.name === 'orgName' || element.name === 'placeName')"
+              :element="element"
+            />
             <!-- v-if isEdtitorialNoteNote(element) ignore the element-->
           </template>
         </tei-element-convert>
@@ -52,6 +56,9 @@ const hook = (el: TEINode) => {
     return true;
   }
   if(isEdtitorialNoteNote(el)) {
+    return true;
+  }
+  if(el.type === "Element" && (el.name === "persName" || el.name === "orgName" || el.name === "placeName")) {
     return true;
   }
 

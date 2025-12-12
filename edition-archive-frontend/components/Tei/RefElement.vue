@@ -1,11 +1,12 @@
 <template>
   <span class="ref-element popout-wrapper position-relative d-inline">
-    <a class="" href="#" v-if="hasRefAttribute" v-on:click.prevent="model.show ? hide():show()">
+    <a class="ref-element" href="#ref" v-if="hasRefAttribute" v-on:click.prevent="model.show ? hide():show()">
       <i v-if="elementName === 'persName'" class="bi bi-person"></i>
       <i v-else-if="elementName === 'orgName'" class="bi bi-bank"></i>
-    </a>{{ contentText }}
+      <i v-else-if="elementName === 'placeName'" class="bi bi-geo-alt"></i>{{ contentText }}
+    </a>
 
-    <div v-if="model.show" class="popout text-start">
+    <div v-if="model.show && isCompatibleRef" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hide()"><i class="bi bi-x-circle"></i></a>
       <lazy-tei-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
     </div>
@@ -36,6 +37,15 @@ const contentText = computed(() => {
 
 const hasRefAttribute = computed(() => {
   return 'ref' in props.element.attributes;
+});
+
+const isCompatibleRef = computed(() => {
+  const ref = props.element.attributes.ref;
+  if (!ref) {
+    return false;
+  }
+
+  return ref.startsWith('http://uri.gbv.de/terminology/') || ref.startsWith('https://uri.gbv.de/terminology/');
 });
 
 const hide = () => {
