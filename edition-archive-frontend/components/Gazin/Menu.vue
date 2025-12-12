@@ -30,6 +30,11 @@
             {{ $t('gazin.subMenu.citation') }}
         </nuxt-link>
         </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/gazin/project/export">
+            {{ $t('gazin.subMenu.export') }}
+        </nuxt-link>
+        </li>
       </ul>
     </nav>
   </template>

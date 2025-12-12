@@ -177,7 +177,8 @@
       "editionGuidelines": "Editionsrichtlinien",
       "transcriptionNotes": "Transkriptionsregeln",
       "translationNotes": "Übersetzungsregeln",
-      "citation": "Zitierhinweis"
+      "citation": "Zitierhinweis",
+      "export":"Datenexport"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Alle Medien sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC-BY 4.0",

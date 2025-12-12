@@ -177,7 +177,8 @@
       "editionGuidelines": "Edition Guidelines",
       "transcriptionNotes": "Transcription Notes",
       "translationNotes": "Translation Notes",
-      "citation": "Citation"
+      "citation": "Citation",
+      "export":"Data Export"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - All media are copyright protected. Transcriptions and metadata are licensed under CC BY 4.0.",
