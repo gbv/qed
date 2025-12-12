@@ -12,7 +12,7 @@ export const GazinFilterParams = [
 export const GazinParams = [
   'wt=json',
   'indent=true',
-  'sort=id asc',
+  'sort=mods.identifier.type.intern asc',
   'facet=true'
 ];
 
