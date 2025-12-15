@@ -298,7 +298,7 @@
       "language": "Language",
       "translation_present": "Has translation",
       "tr_translation_present": "Translation into Turkish available",
-      "song_type": "Song type"
+      "song_type": "Song Type"
     },
     "field": {
       "allMetaHelp": "Searches all metadata for the entered search term",
