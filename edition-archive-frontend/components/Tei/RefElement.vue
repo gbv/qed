@@ -1,17 +1,17 @@
 <template>
-  <span class="ref-element popout-wrapper position-relative d-inline">
-    <a class="ref-element" href="#ref" v-if="hasRefAttribute" v-on:click.prevent="model.show ? hide():show()">
+  <div class="ref-element popout-wrapper position-relative d-inline">
+    <component :is="textTag" v-bind="textAttrs" v-on:click.prevent="model.show ? hide():show()">
       <i v-if="elementName === 'persName'" class="bi bi-person"></i>
       <i v-else-if="elementName === 'orgName'" class="bi bi-bank"></i>
       <i v-else-if="elementName === 'placeName'" class="bi bi-geo-alt"></i>{{ contentText }}
-    </a>
+    </component>
 
-    <div v-if="model.show && isCompatibleRef" class="popout text-start">
+    <div v-if="model.show && hasRefAttribute && isCompatibleRef" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hide()"><i class="bi bi-x-circle"></i></a>
       <lazy-tei-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
     </div>
 
-  </span>
+  </div>
 </template>
 <script setup lang="ts">
 
@@ -23,6 +23,27 @@ const props = defineProps<{
 
 const model = reactive({
   show: false as boolean,
+});
+
+const textTag = computed(() => {
+  if(hasRefAttribute.value) {
+    return "a";
+  } else {
+    return "span";
+  }
+});
+
+const textAttrs = computed(() => {
+  if(hasRefAttribute.value) {
+    return {
+      href: "#ref",
+      class: "ref-element ref-element-link",
+    };
+  } else {
+    return {
+      class: "ref-element",
+    };
+  }
 });
 
 const {$tei} = useTei();
@@ -73,6 +94,7 @@ i {
 .editorial-note:hover {
   background-color: rgb(225, 225, 225);
 }
+
 
 .ref-element:hover {
   background-color: rgb(225, 225, 225);
