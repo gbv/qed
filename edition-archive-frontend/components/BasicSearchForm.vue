@@ -9,6 +9,7 @@
             <i class="bi bi-search ms-1"></i>
           </button>
         </div>
+        <div class="form-text text-start ms-2">{{ $t("search.submitHelp") }}</div>
       </form>
     </div>
   </div>

@@ -271,6 +271,7 @@
     "pagePrev": "Page précédente",
     "pagination": "Pagination search",
     "submit": "Rechercher",
+    "submitHelp": "Utilisez * pour rechercher des mots partiels, par exemple av*",
     "goToRegest": "Aller au n° {regest}",
     "error": "Erreur lors de la recherche : {error}",
     "preview":"Aperçu",
