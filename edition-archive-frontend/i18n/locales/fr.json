@@ -164,21 +164,20 @@
     },
     "mainMenu": {
       "home": "Home",
-      "project": "Projet",
-      "dengbejGazin": "Dengbêj Gazîn",
+      "edition": "Edition",
       "search": "Songs",
       "editionGuidelines": "Edition Guidelines",
+      "citation": "Citation",
       "contact": "Contact"
     },
     "subMenu": {
       "subMenu": "Sidebar",
       "openSubMenu": "Open sidebar",
-      "introduction": "Introduction",
-      "editionGuidelines": "Edition Guidelines",
-      "transcriptionNotes": "Transcription Notes",
-      "translationNotes": "Translation Notes",
-      "citation": "Citation",
-      "export":"Data Export"
+      "introduction":"Introduction",
+      "dengbejGazin": "Dengbêj Gazîn",
+      "export":"Data Export",
+      "transcription": "Transcription",
+      "translation": "Translation"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Tous les médias sont protégés par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY 4.0.",
@@ -265,12 +264,12 @@
     "label": "Recherche",
     "basic": "Simple",
     "extended": "Avancée",
-    "pageGoTo": "Go to page {page}",
+    "pageGoTo": "Aller à la page {page}",
     "hitCount": "{count} résultat(s) trouvé(s)",
-    "noHits": "Keine Treffer",
-    "pageNext": "Next page",
-    "pagePrev": "Previous page",
-    "pagination": "pagination search",
+    "noHits": "Aucun résultat",
+    "pageNext": "Page suivante",
+    "pagePrev": "Page précédente",
+    "pagination": "Pagination search",
     "submit": "Rechercher",
     "goToRegest": "Aller au n° {regest}",
     "error": "Erreur lors de la recherche : {error}",
@@ -282,8 +281,8 @@
       "desc": "Décroissant"
     },
     "facet": {
-      "openFacet": "Open facette",
-      "facet": "Ouvrir le Facette",
+      "openFacet": "Ouvrir le Facette",
+      "facet": "Facette",
       "deperditum": "Déperditum/note historiographique ( * )",
       "issuer": "Auteur",
       "recipient": "Destinataire",

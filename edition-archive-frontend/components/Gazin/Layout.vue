@@ -49,17 +49,9 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/project/introduction">
-                  {{ $t('gazin.mainMenu.project') }}
+                  href="/gazin/edition/introduction">
+                  {{ $t('gazin.mainMenu.edition') }}
               </nuxt-link>
-              </li>
-              <li class="nav-item">
-                <nuxt-link
-                  class="nav-link"
-                  active-class="active"
-                  href="/gazin/dengbej-gazin">
-                  {{ $t('gazin.mainMenu.dengbejGazin') }}
-                </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link
@@ -73,8 +65,16 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/edition-guidelines/transcription-notes">
+                  href="/gazin/edition-guidelines/transcription">
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
+                  href="/gazin/citation">
+                  {{ $t('gazin.mainMenu.citation') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">

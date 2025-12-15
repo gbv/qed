@@ -4,34 +4,49 @@
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/edition-guidelines/transcription-notes">
-            {{ $t('gazin.subMenu.transcriptionNotes') }}
+          <nuxt-link
+            class="nav-link"
+            active-class="active"
+            href="/gazin/edition-guidelines/transcription">
+            {{ $t('gazin.subMenu.transcription') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/edition-guidelines/translation-notes">
-            {{ $t('gazin.subMenu.translationNotes') }}
+          <nuxt-link
+            class="nav-link"
+            active-class="active"
+            href="/gazin/edition-guidelines/translation">
+            {{ $t('gazin.subMenu.translation') }}
         </nuxt-link>
         </li>
       </ul>
     </nav>
   </template>
 
-    <template v-if="$route.params.projectPath =='' || $route.params.projectPath">
+    <template v-if="$route.params.editionPath =='' || $route.params.editionPath">
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/project/introduction">
+          <nuxt-link
+            class="nav-link"
+            active-class="active"
+            href="/gazin/edition/introduction">
             {{ $t('gazin.subMenu.introduction') }}
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/project/citation">
-            {{ $t('gazin.subMenu.citation') }}
-        </nuxt-link>
+          <nuxt-link
+            class="nav-link"
+            active-class="active"
+            href="/gazin/edition/dengbej-gazin">
+            {{ $t('gazin.subMenu.dengbejGazin') }}
+          </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/gazin/project/export">
+          <nuxt-link
+            class="nav-link"
+            active-class="active"
+            href="/gazin/edition/export">
             {{ $t('gazin.subMenu.export') }}
         </nuxt-link>
         </li>

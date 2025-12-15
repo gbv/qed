@@ -164,21 +164,20 @@
     },
     "mainMenu": {
       "home": "Home",
-      "project": "About",
-      "dengbejGazin": "Dengbêj Gazîn",
+      "edition": "Edition",
       "search": "Songs",
       "editionGuidelines": "Edition Guidelines",
+      "citation": "Citation",
       "contact": "Contact"
     },
     "subMenu": {
       "subMenu": "Sidebar",
       "openSubMenu": "Open sidebar",
-      "introduction": "Introduction",
-      "editionGuidelines": "Edition Guidelines",
-      "transcriptionNotes": "Transcription Notes",
-      "translationNotes": "Translation Notes",
-      "citation": "Citation",
-      "export":"Data Export"
+      "introduction":"Introduction",
+      "dengbejGazin": "Dengbêj Gazîn",
+      "export":"Data Export",
+      "transcription": "Transcription",
+      "translation": "Translation"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - All media are copyright protected. Transcriptions and metadata are licensed under CC BY 4.0.",
@@ -267,7 +266,7 @@
     "extended": "Advanced",
     "pageGoTo": "Go to page {page}",
     "hitCount": "{count} entries found",
-    "noHits": "Keine Treffer",
+    "noHits": "No results",
     "pageNext": "Next page",
     "pagePrev": "Previous page",
     "pagination": "pagination search",
