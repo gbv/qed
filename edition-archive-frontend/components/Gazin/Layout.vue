@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <div v-else class=" project-content external-links">
+    <div v-else class=" external-links">
       <slot name="content" />
     </div>
 
