@@ -107,7 +107,7 @@
   img-href: /images/card-back-gazin.jpg
   img-alt: "Foto der kurdischen Dengbêj-Sängerin Gazîn"
   link: gazin
-  card-class: not-active
+  card-class: active
   cc-author: "Hürü Kaya"
   cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Photo_Dengbej_Gazin_2012.jpg"
   cc-licence-text: "CC BY 4.0"
