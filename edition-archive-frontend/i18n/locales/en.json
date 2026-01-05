@@ -197,6 +197,16 @@
     "ku": "Kurdish"
   },
   "metadata": {
+    "geonames": {
+      "name": "Name",
+      "countryName": "Country",
+      "adminName1": "Administrative Region",
+      "fcodeName": "Feature Type",
+      "population": "Population",
+      "timezone": "Timezone",
+      "coordinates": "Coordinates",
+      "wikipedia": "Wikipedia"
+    },
     "skos": {
       "prefLabel": "Preferred Term",
       "altLabel": "Alternative Term",

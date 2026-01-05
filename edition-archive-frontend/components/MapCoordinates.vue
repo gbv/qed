@@ -1,7 +1,7 @@
 <template>
   <ol-map     :loadTilesWhileAnimating="true"
                        :loadTilesWhileInteracting="true"
-                       style="height:400px">
+                       :style="`height: ${height}px;`">
 
     <ol-view
       ref="view"
@@ -36,9 +36,12 @@
 import {transform} from 'ol/proj';
 
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   coordinates: string,
-}>()
+  height?: number
+}>(), {
+  height: 400
+});
 
 const center = computed(() => {
   const coordinates = props.coordinates.split(" ");

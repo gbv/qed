@@ -243,7 +243,7 @@
         </MODSMetaKeyValue>
         <div class="mt-2" v-if="geoSubject.coordinates.length>0" v-for="subjectCoordinate in geoSubject.coordinates">
           <client-only>
-            <SovietSurvivorsMapCoordinates v-if="mapVisible(subjectCoordinate)" :coordinates="subjectCoordinate"/>
+            <MapCoordinates v-if="mapVisible(subjectCoordinate)" :coordinates="subjectCoordinate"/>
           </client-only>
         </div>
       </template>

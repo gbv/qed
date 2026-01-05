@@ -197,6 +197,16 @@
     "ku": "kurde"
   },
   "metadata": {
+    "geonames": {
+      "name": "Nom",
+      "countryName": "Pays",
+      "adminName1": "Région administrative",
+      "fcodeName": "Type de lieu",
+      "population": "Population",
+      "timezone": "Fuseau horaire",
+      "coordinates": "Coordonnées",
+      "wikipedia": "Wikipédia"
+    },
     "skos": {
       "prefLabel": "Terme préféré",
       "altLabel": "Autre terme",

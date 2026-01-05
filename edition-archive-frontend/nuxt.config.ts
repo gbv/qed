@@ -40,7 +40,8 @@ export default defineNuxtConfig({
             ditavURL: 'https://ditav-test.gbv.de/',
             ditavURLServer: 'https://ditav-test.gbv.de/',
             ditavSolrURL: 'https://ditav-test.gbv.de/api/v1/search/',
-            ditavSolrURLServer: 'https://ditav-test.gbv.de/api/v1/search/'
+            ditavSolrURLServer: 'https://ditav-test.gbv.de/api/v1/search/',
+            geonamesUsername: 'qedperspectivia'
         }
     },
     typescript: {

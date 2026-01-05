@@ -198,6 +198,16 @@
     "ku": "Kurdisch"
   },
   "metadata": {
+    "geonames": {
+      "name": "Name",
+      "countryName": "Land",
+      "adminName1": "Verwaltungsregion",
+      "fcodeName": "Ortstyp",
+      "population": "Einwohnerzahl",
+      "timezone": "Zeitzone",
+      "coordinates": "Koordinaten",
+      "wikipedia": "Wikipedia"
+    },
     "skos": {
       "prefLabel": "Bevorzugter Begriff",
       "altLabel": "Alternativer Begriff",

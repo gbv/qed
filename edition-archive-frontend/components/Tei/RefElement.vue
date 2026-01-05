@@ -8,7 +8,7 @@
 
     <div v-if="model.show && hasRefAttribute && isCompatibleRef" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hide()"><i class="bi bi-x-circle"></i></a>
-      <lazy-tei-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
+      <tei-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
     </div>
 
   </div>
@@ -66,7 +66,8 @@ const isCompatibleRef = computed(() => {
     return false;
   }
 
-  return ref.startsWith('http://uri.gbv.de/terminology/') || ref.startsWith('https://uri.gbv.de/terminology/');
+  return ref.startsWith('http://uri.gbv.de/terminology/') || ref.startsWith('https://uri.gbv.de/terminology/')
+  || ref.startsWith('https://sws.geonames.org/') || ref.startsWith('https://geonames.org/');
 });
 
 const hide = () => {
