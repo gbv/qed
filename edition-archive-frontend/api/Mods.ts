@@ -19,9 +19,12 @@ export interface Name {
   displayForm?: string;
   type?: "personal" | "corporate" | "conference";
   roles: string[];
-  nameParts: NamePart[];
+  nameParts?: NamePart[];
   affiliation?: string;
   gender?: string;
+  classification?: string;
+  category?: string;
+  nameIdentifiers?: NameIdentifier[];
 }
 
 export interface NamePart {
@@ -38,6 +41,12 @@ export interface Subject {
 export interface Classification {
   classId: string;
   categId: string;
+}
+
+export interface NameIdentifier {
+  type?: string;
+  typeURI?: string;
+  value: string;
 }
 
 export function getTitles(modsOrRelatedItem: XElement): Title[] {
@@ -84,11 +93,23 @@ export function getNames(modsOrRelatedItem: XElement): Name[] {
       return {type, value: flattenElement(namePart) || undefined};
     }).filter(el => el.value != null) as NamePart[];
 
+    const nameIdentifiers = findElement(name, byName("mods:nameIdentifier")).map(nameIdentifier => {
+      const type = getAttribute(nameIdentifier, "type")?.value || undefined;
+      const typeURI = getAttribute(nameIdentifier, "typeURI")?.value || undefined;
+      const value = flattenElement(nameIdentifier) || undefined;
+      return {type, typeURI, value};
+    }).filter(el => el.value != null) as NameIdentifier[];
+
     const displayForm = flattenElement(findFirstElement(name, byName("mods:displayForm"))) || undefined;
 
     const affiliation = flattenElement(findFirstElement(name, byName("mods:affiliation"))) || undefined;
 
-    namesResult.push({type, roles, nameParts, displayForm, affiliation});
+    const authorityURI = getAttribute(name, "authorityURI")?.value || undefined;
+    const classification = authorityURI?.split("/").pop() || undefined;
+    const valueURI = getAttribute(name, "valueURI")?.value || undefined;
+    const category = valueURI?.split("/").pop()?.split("#").pop() || undefined;
+
+    namesResult.push({type, roles, nameParts, displayForm, nameIdentifiers, affiliation, classification, category});
 
 
   }

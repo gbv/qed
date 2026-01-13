@@ -1,35 +1,37 @@
 <template>
-  <NuxtLayout>
-    <div class="error-info-hidden">
-      <p>
-        error.statusCode: {{ error?.statusCode || ""}} <br/>
-        error.message: {{ error?.message }}
-      </p>
-      <hr/>
+  <div>
+    <NuxtLayout>
+      <div class="error-info-hidden">
+        <p>
+          error.statusCode: {{ error?.statusCode || ""}} <br/>
+          error.message: {{ error?.message }}
+        </p>
+        <hr/>
 
-    </div>
-    <!-- customise 404 message from template section -->
+      </div>
+      <!-- customise 404 message from template section -->
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <section class="error 404" v-if="error?.statusCode === 404">
-            <h3>{{ $t("error.message.404") }}</h3>
-            <button class="btn btn-primary float-end" @click="handleError">{{ $t("button.back") }}</button>
-          </section>
-          <section class="error 403" v-else-if="error?.statusCode === 403">
-            <h3>{{ $t("error.message.403") }}</h3>
-            <button class="btn btn-primary float-end" @click="handleError">{{ $t("button.back") }}</button>
-          </section>
-          <section class="error" v-else>
-            <h3>{{ $t("error.message.unknown") }}</h3>
-          </section>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <section class="error 404" v-if="error?.statusCode === 404">
+              <h3>{{ $t("error.message.404") }}</h3>
+              <button class="btn btn-primary float-end" @click="handleError">{{ $t("button.back") }}</button>
+            </section>
+            <section class="error 403" v-else-if="error?.statusCode === 403">
+              <h3>{{ $t("error.message.403") }}</h3>
+              <button class="btn btn-primary float-end" @click="handleError">{{ $t("button.back") }}</button>
+            </section>
+            <section class="error" v-else>
+              <h3>{{ $t("error.message.unknown") }}</h3>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
 
 
-  </NuxtLayout>
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup lang="ts">

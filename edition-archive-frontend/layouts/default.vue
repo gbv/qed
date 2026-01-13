@@ -189,7 +189,9 @@
 
             <div class="col-md-4">
               <div class="copyright_by">
-                <a class="mws-link" href="https://www.maxweberstiftung.de">© Max Weber Stiftung 2024</a>
+                <a class="mws-link" href="https://www.maxweberstiftung.de">© Max Weber Stiftung
+                  <client-only>{{ currentYear }}</client-only>
+                </a>
               </div>
             </div>
 
@@ -218,6 +220,8 @@ import {useRedirectStore} from "~/store/RedirectStore";
 const userStore = useUserStore();
 const redirectStore = useRedirectStore();
 const router = useRouter();
+
+const currentYear = new Date().getFullYear();
 
   const storeRedirect = () => {
     redirectStore.setRedirectPath(router.currentRoute.value.fullPath);

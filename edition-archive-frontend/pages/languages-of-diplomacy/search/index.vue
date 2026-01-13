@@ -1,5 +1,5 @@
 <template>
-  <SovietSurvivorsLayout :headline="$t('search.label')">
+  <LoDLayout :headline="$t('search.label')">
 
     <template #content>
       <h3>{{$t("search.label")}}</h3>
@@ -45,7 +45,7 @@
                         href=""
                         class="hit_option hit_download">
                         <div class="hit_icon"
-                          :style="'background-image: url(&quot;' + $sovietSurviorsURL() + '/api/iiif/image/v2/thumbnail/sovsurv_mods_' + getMyCoReIdNumber(doc['id']) + '/full/!300,300/0/default.jpg&quot;)'">
+                          :style="'background-image: url(&quot;' + ditavURL + '/api/iiif/image/v2/thumbnail/' + doc['id'] + '/full/!300,300/0/default.jpg&quot;)'">
                         </div>
                       </a>
                     </div>
@@ -135,7 +135,7 @@
                 <div class="d-flex">
                   <i v-if="model.filters.genres.indexOf(genre.name) > -1" class="bi bi-check-square"></i>
                   <i v-else class="bi bi-square"></i>
-                  <MODSClassification :app-url="sovietSurviorsURL" class-id="mir_genres" :categ-id="genre.name" />
+                  <MODSClassification :app-url="ditavURL" class-id="mir_genres" :categ-id="genre.name" />
                 </div>
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ genre.count }}</span>
               </li>
@@ -153,7 +153,7 @@
                 <div class="d-flex">
                   <i v-if="model.filters.languages.indexOf(language.name) > -1" class="bi bi-check-square"></i>
                   <i v-else class="bi bi-square"></i>
-                  <MODSClassification :app-url="sovietSurviorsURL" class-id="rfc5646" :categ-id="language.name" />
+                  <MODSClassification :app-url="ditavURL" class-id="rfc5646" :categ-id="language.name" />
                 </div>
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ language.count }}</span>
               </li>
@@ -165,7 +165,7 @@
 
     </template>
 
-  </SovietSurvivorsLayout>
+  </LoDLayout>
 </template>
 
 <script setup lang="ts">
@@ -173,14 +173,17 @@
 import {type LocationQuery} from "vue-router";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
-import {buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel, TranslationMode} from "~/api/SearchHelper";
+import {
+  buildLodSearchRequestURL, type LodFilters, lodModelToQuery, lodQueryToModel,
+  TranslationMode
+} from "~/api/LodSearchHelper";
 
 
-const {$sovietSurvivorsSolrURL} = useNuxtApp();
-const {$sovietSurviorsURL} = useNuxtApp();
+const {$ditavSolrURL} = useNuxtApp();
+const {$ditavURL} = useNuxtApp();
 const route = useRoute();
-const sovietSurviorsSolrURL = $sovietSurvivorsSolrURL();
-const sovietSurviorsURL = $sovietSurviorsURL();
+const ditavSolrURL = $ditavSolrURL();
+const ditavURL = $ditavURL();
 
 interface FacetEntry {
   name: string,
@@ -196,7 +199,7 @@ const model = reactive({
     genres: [],
     languages: [],
     translationMode: TranslationMode.ALL,
-  } as Filters,
+  } as LodFilters,
   facets: {
     genres: [] as FacetEntry[],
     languages: [] as FacetEntry[],
@@ -206,14 +209,14 @@ const model = reactive({
 
 
 watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
-  queryToModel(newQueryString, model);
+  lodQueryToModel(newQueryString, model);
   console.log(["searching", newQueryString]);
   await search();
 });
 
 
 const search = async () => {
-  const url = buildSOSUSearchRequestURL(sovietSurviorsSolrURL, model.searchString, model.filters, model.start);
+  const url = buildLodSearchRequestURL(ditavSolrURL, model.searchString, model.filters, model.start);
 
   model.result = await fetch(url, {
     method: "GET",
@@ -232,12 +235,16 @@ const search = async () => {
     });
   }
 
-  const languageFacet = model.result?.facet_counts?.facet_fields["survivors.mods.language"] || [];
+  const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
   model.facets.languages = [];
-  for (let i = 0; i < languageFacet.length; i += 2) {
+  for (let i = 0; i < categoryTopFacet.length; i += 2) {
+    const value = categoryTopFacet[i] as string;
+    if (!value?.startsWith('rfc5646:')) {
+      continue;
+    }
     model.facets.languages.push({
-      name: languageFacet[i],
-      count: languageFacet[i + 1]
+      name: value.split(':')[1],
+      count: categoryTopFacet[i + 1]
     });
   }
 
@@ -246,7 +253,7 @@ const search = async () => {
 const clickGenreFacet = async (genre: string) => {
   await navigateTo({
     query: {
-      ...modelToQuery(model),
+      ...lodModelToQuery(model),
       genres: model.filters.genres.indexOf(genre) > -1 ? model.filters.genres.filter((g) => g !== genre) : [...model.filters.genres, genre],
       start: 0
     }
@@ -254,19 +261,23 @@ const clickGenreFacet = async (genre: string) => {
 }
 
 const clickLanguageFacet = async (language: string) => {
+  const languages = model.filters.languages.indexOf(language) > -1
+    ? model.filters.languages.filter((l) => l !== language)
+    : [...model.filters.languages, language];
+
   await navigateTo({
     query: {
-      ...modelToQuery(model),
-      languages: model.filters.languages.indexOf(language) > -1 ? model.filters.languages.filter((g) => g !== language) : [...model.filters.languages, language],
-      start: 0
+      ...lodModelToQuery(model),
+      languages,
+      start: '0'
     }
-  })
-}
+  });
+};
 
 const pageChangedCallback = async (page: number) => {
   await navigateTo({
     query: {
-      ...modelToQuery(model),
+      ...lodModelToQuery(model),
       start: (page - 1) * 20
     }
   })
@@ -275,7 +286,7 @@ const pageChangedCallback = async (page: number) => {
 const changeTranslationMode = async (tm: TranslationMode) => {
   await navigateTo({
     query: {
-      ...modelToQuery(model),
+      ...lodModelToQuery(model),
       translationMode: tm,
       start: 0
     }
@@ -285,7 +296,7 @@ const changeTranslationMode = async (tm: TranslationMode) => {
 const changeSearchString = async (event: { searchString: string }) => {
   await navigateTo({
     query: {
-      ...modelToQuery(model),
+      ...lodModelToQuery(model),
       q: event.searchString,
       start: 0
     }
@@ -293,13 +304,13 @@ const changeSearchString = async (event: { searchString: string }) => {
 }
 
 const hitLink = (doc: any, index: number) => {
-  const query = modelToQuery(model);
+  const query = lodModelToQuery(model);
   query.start =  model.start + index;
   const queryStr = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
-  return `/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
+  return `/languages-of-diplomacy/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
 }
 
-queryToModel(route.query, model);
+lodQueryToModel(route.query, model);
 await search();
 
 

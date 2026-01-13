@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="mods">
 
     <h2 v-if="mainTitle">
       {{ mainTitle.title }}
@@ -8,37 +8,43 @@
       </template>
     </h2>
     <div v-if="model.translations?.length > 0">
-      {{ $t("sosu.metadata.related.translation") }}:
+      {{ $t("metadata.related.translation") }}:
       <span
         class="sosu-document-translations"
         v-for="translation in model.translations">
         <nuxt-link
-          :to="`/soviet-survivors/documents/${getMyCoReIdNumber(translation.id)}`">
+          :to="`${projectDocumentUrlPrefix}${getMyCoReIdNumber(translation.id)}`">
           {{ translation.title }}
         </nuxt-link>
       </span>
     </div>
 
     <div v-if="relatedItemsOriginal?.length > 0">
-      {{ $t("sosu.metadata.related.original") }}:
+      {{ $t("metadata.related.original") }}:
       <span
         class="sosu-document-original"
         v-for="relatedItem in relatedItemsOriginal">
         <nuxt-link
-          :to="`/soviet-survivors/documents/${getMyCoReIdNumber(getAttribute(relatedItem, 'xlink:href')?.value)}`">
+          :to="`${projectDocumentUrlPrefix}${getMyCoReIdNumber(getAttribute(relatedItem, 'xlink:href')?.value)}`">
           {{ getTitles(relatedItem)[0].title }}
         </nuxt-link>
       </span>
     </div>
 
-    <ul class="nav nav-tabs mt-4">
+    <ul v-if="titleAndAbstracts.size>1" class="nav nav-tabs mt-4">
       <li class="nav-item" v-for="lang in titleAndAbstracts.keys()">
         <a :href="`#${lang}`" :class="`nav-link${currentAbstractLanguage == lang ? ' active' : ''}`"
            v-on:click.prevent="model.currentAbstractLang = lang">
-          <MODSClassification class-id="rfc5646" :categ-id="lang"/>
+          <MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="lang"/>
         </a>
       </li>
     </ul>
+    <!--
+    <div class="mt-4" v-if="titleAndAbstracts.size==1">
+      <MODSClassification  :app-url="backendUrl" class-id="rfc5646" :categ-id="titleAndAbstracts.keys().toArray()[0]"/>
+    </div>
+    -->
+
 
 
     <h2 class="mt-4" v-if="mainTitle?.title != currentTitle" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
@@ -50,69 +56,75 @@
       <span v-else-if="!model.showFullAbstract">
         {{ shortAbstract }}
         <a href="#" @click="model.showFullAbstract = true">
-          {{ $t("sosu.metadata.abstract.showMore") }}
+          {{ $t("metadata.abstract.showMore") }}
         </a>
       </span>
       <span v-else>
         {{ fullAbstract }}
         <a href="#" @click="model.showFullAbstract = false">
-          {{ $t("sosu.metadata.abstract.showLess") }}
+          {{ $t("metadata.abstract.showLess") }}
         </a>
       </span>
     </div>
 
-    <iframe v-if="viewerLink" :src="viewerLink" class="viewer" frameborder="0" scrolling="no" />
-
-    <div class="sosu-detail-view__copyrights--images" v-if="viewerLink">
-      {{ $t("sosu.metadata.copyright") }}
-    </div>
+    <slot name="media" />
 
     <div class="metadata mt-3">
       <h3>Metadaten</h3>
 
-      <SovietSurvivorsMetaKeyValue v-if="genres != null && genres.length>0">
+      <MODSMetaKeyValue v-if="!props.hideGenre && genres != null && genres.length>0">
         <template #key>
-          {{ $t("sosu.metadata.genre") }}
+          {{ $t("metadata.genre") }}
         </template>
         <template #value>
           <ol class="genreList">
             <li class="genre" v-for="genre in genres">
-              <MODSClassification :classId="genre.classId" :categId="genre.categId" />
+              <MODSClassification :app-url="backendUrl"  :classId="genre.classId" :categId="genre.categId" />
             </li>
           </ol>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
-      <SovietSurvivorsMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
+      <MODSMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
         <template #key>
-          {{ $t("sosu.metadata.language") }}
+          {{ $t("metadata.language") }}
         </template>
         <template #value>
           <ol class="languageList">
             <li class="language" v-for="language in documentLanguages">
-              <MODSClassification class-id="rfc5646" :categ-id="language"/>
+              <MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="language"/>
             </li>
           </ol>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
-      <SovietSurvivorsMetaKeyValue v-for="(names, role) in namesByRole">
+      <MODSMetaKeyValue v-for="classification in classifications">
         <template #key>
-          {{ $t(`sosu.metadata.name.role.${role}`) }}
+          <MODSClassification :app-url="backendUrl" :classId="classification.classId" />
+        </template>
+        <template #value>
+          <MODSClassification :app-url="backendUrl" :classId="classification.classId" :categId="classification.categId" />
+        </template>
+      </MODSMetaKeyValue>
+
+
+      <MODSMetaKeyValue v-for="(names, role) in namesByRole">
+        <template #key>
+          <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
         </template>
         <template #value>
           <ol class="nameList">
             <li class="name" v-for="name in names">
-              <MODSName :name="name" />
+              <MODSName :app-url="props.backendUrl" :name="name" />
             </li>
           </ol>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
       <!--
-      <SovietSurvivorsMetaKeyValue v-if="relatedItemsOriginal?.length > 0">
+      <MODSMetaKeyValue v-if="relatedItemsOriginal?.length > 0">
         <template #key>
-          {{ $t("sosu.metadata.related.original") }}
+          {{ $t("metadata.related.original") }}
         </template>
         <template #value>
           <span v-for="relatedItem in relatedItemsOriginal">
@@ -122,11 +134,11 @@
             </nuxt-link>
           </span>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
-      <SovietSurvivorsMetaKeyValue v-if="model.translations?.length > 0">
+      <MODSMetaKeyValue v-if="model.translations?.length > 0">
         <template #key>
-          {{ $t("sosu.metadata.related.translation") }}
+          {{ $t("metadata.related.translation") }}
         </template>
         <template #value>
           <span v-for="translation in model.translations" class="sosu-document-translations">
@@ -136,44 +148,35 @@
             </nuxt-link>
           </span>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
       -->
 
-      <SovietSurvivorsMetaKeyValue v-if="dateIssued?.length > 0">
+      <MODSMetaKeyValue v-if="dateIssued?.length > 0">
         <template #key>
-          {{ $t("sosu.metadata.dateIssued") }}
+          {{ $t("metadata.dateIssued") }}
         </template>
         <template #value>
           <span v-for="date in dateIssued">
             {{ date }}
           </span>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
-      <SovietSurvivorsMetaKeyValue v-if="typeOfResource">
+      <MODSMetaKeyValue v-if="physicalDescriptionExtent?.length > 0">
         <template #key>
-          {{ $t("sosu.metadata.typeOfResource") }}
-        </template>
-        <template #value>
-          {{ typeOfResource }}
-        </template>
-      </SovietSurvivorsMetaKeyValue>
-
-      <SovietSurvivorsMetaKeyValue v-if="physicalDescriptionExtent?.length > 0">
-        <template #key>
-          {{ $t("sosu.metadata.extent") }}
+          {{ $t("metadata.extent") }}
         </template>
         <template #value>
           <span v-for="extent in physicalDescriptionExtent">
             {{ extent }}
           </span>
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
 
-      <SovietSurvivorsMetaKeyValue v-for="topicSubject in topicSubjects">
+      <MODSMetaKeyValue v-for="topicSubject in topicSubjects">
         <template #key>
-          {{ $t("sosu.metadata.subject.topic") }}
+          {{ $t("metadata.subject.topic") }}
         </template>
         <template #value>
           <ol class="subjectTopicList">
@@ -186,13 +189,13 @@
           </ol>
 
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
 
       <template v-for="geoSubject in geographicSubjects">
-        <SovietSurvivorsMetaKeyValue v-if="geoSubject.geographic.length > 1">
+        <MODSMetaKeyValue v-if="geoSubject.geographic.length > 1">
           <template #key>
-            {{ $t("sosu.metadata.subject.geographic") }}
+            {{ $t("metadata.subject.geographic") }}
           </template>
           <template #value>
             <ol class="subjectGeographicList">
@@ -201,29 +204,29 @@
               </li>
             </ol>
           </template>
-        </SovietSurvivorsMetaKeyValue>
+        </MODSMetaKeyValue>
 
-        <SovietSurvivorsMetaKeyValue v-if="creationDate">
+        <MODSMetaKeyValue v-if="creationDate">
           <template #key>
-            {{ $t("sosu.metadata.creationDate") }}
+            {{ $t("metadata.creationDate") }}
           </template>
           <template #value>
             {{ creationDate }}
           </template>
-        </SovietSurvivorsMetaKeyValue>
+        </MODSMetaKeyValue>
 
-        <SovietSurvivorsMetaKeyValue v-if="creationPlace">
+        <MODSMetaKeyValue v-if="creationPlace">
           <template #key>
-            {{ $t("sosu.metadata.creationPlace") }}
+            {{ $t("metadata.creationPlace") }}
           </template>
           <template #value>
             {{ creationPlace }}
           </template>
-        </SovietSurvivorsMetaKeyValue>
+        </MODSMetaKeyValue>
 
-        <SovietSurvivorsMetaKeyValue v-if="geoSubject.coordinates.length>0">
+        <MODSMetaKeyValue v-if="geoSubject.coordinates.length>0">
           <template #key>
-            {{ $t("sosu.metadata.subject.coordinates") }}
+            {{ $t("metadata.subject.coordinates") }}
           </template>
           <template #value>
             <ol class="subjectCoordinateList" v-if="geoSubject.coordinates.length>0">
@@ -231,50 +234,40 @@
                 {{ subjectCoordinate }}
                 <button class="btn btn-primary btn-sm" v-on:click="toggleShowMap(subjectCoordinate)">
                   {{
-                    $t(!mapVisible(subjectCoordinate) ? "sosu.metadata.subject.showMap" : "sosu.metadata.subject.hideMap")
+                    $t(!mapVisible(subjectCoordinate) ? "metadata.subject.showMap" : "metadata.subject.hideMap")
                   }}
                 </button>
               </li>
             </ol>
           </template>
-        </SovietSurvivorsMetaKeyValue>
+        </MODSMetaKeyValue>
         <div class="mt-2" v-if="geoSubject.coordinates.length>0" v-for="subjectCoordinate in geoSubject.coordinates">
           <client-only>
-            <SovietSurvivorsMapCoordinates v-if="mapVisible(subjectCoordinate)" :coordinates="subjectCoordinate"/>
+            <MapCoordinates v-if="mapVisible(subjectCoordinate)" :coordinates="subjectCoordinate"/>
           </client-only>
         </div>
       </template>
 
-      <!-- hier -->
-      <SovietSurvivorsMetaKeyValue v-if="archive">
+      <MODSMetaKeyValue v-if="archive">
         <template #key>
-          {{ $t("sosu.metadata.archive") }}
+          {{ $t("metadata.archive") }}
         </template>
         <template #value>
-          <MODSClassification :classId="archive.classId" :categId="archive.categId" />
+          <MODSClassification :app-url="backendUrl" :classId="archive.classId" :categId="archive.categId" />
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
-      <SovietSurvivorsMetaKeyValue v-if="shelfLocator">
+      <MODSMetaKeyValue v-if="shelfLocator">
         <template #key>
-          {{ $t("sosu.metadata.shelfLocator") }}
+          {{ $t("metadata.shelfLocator") }}
         </template>
         <template #value>
           {{ shelfLocator}}
         </template>
-      </SovietSurvivorsMetaKeyValue>
+      </MODSMetaKeyValue>
 
+      <slot name="downloadLink" v-if="slots.downloadLink" />
 
-      <SovietSurvivorsMetaKeyValue v-if="downloadLink">
-        <template #key>
-          {{ $t("sosu.metadata.download") }}
-        </template>
-        <template #value>
-          <a :href="downloadLink" target="_blank">
-            <span class="bi bi-file-earmark-zip" />{{ $t("sosu.metadata.downloadText") }}
-          </a>
-        </template>
-      </SovietSurvivorsMetaKeyValue>
     </div>
   </div>
 </template>
@@ -288,7 +281,7 @@ import {
   findElement,
   findFirstElement,
   flattenElement,
-  getAttribute,
+  getAttribute, not,
   type XElement,
   type XNode
 } from "~/api/XMLApi";
@@ -297,12 +290,11 @@ import type {Name} from "~/api/Mods";
 import {getGenre, getNames, getSubjects, getTitles} from "~/api/Mods";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
-import {SoSuFilterParams} from "~/api/SearchHelper";
 
-
-const {$sovietSurviorsURL, $sovietSurvivorsSolrURL} = useNuxtApp();
-const sovietSurviorsURL = $sovietSurviorsURL();
-const sovietSurvivorsSolrURL = $sovietSurvivorsSolrURL();
+const slots = defineSlots<{
+  media?: {};
+  downloadLink?: {};
+}>()
 
 
 interface Translation {
@@ -320,11 +312,16 @@ const model = reactive({
 
 const props = defineProps<{
   xml: XElement,
-  id: string
+  id: string,
+  projectDocumentUrlPrefix: string,
+  backendUrl: string,
+  filterParams: string[],
+  showClassifications?: string[],
+  hideGenre?: boolean
 }>()
 
 const searchOriginals = async () => {
-  const json = await fetch(`${sovietSurvivorsSolrURL}mir/select?q=mods.relatedItem.original:${props.id}&wt=json&fq=${SoSuFilterParams.join("%20AND%20")}`, {
+  const json = await fetch(`${props.backendUrl}api/v1/search?q=mods.relatedItem.original:${props.id}&wt=json&fq=${props.filterParams.join("%20AND%20")}`, {
     method: "GET",
     headers: {
       "Accept": "application/json",
@@ -372,7 +369,18 @@ const mainTitle = computed(() => {
 });
 
 const titleAndAbstracts = computed(() => {
-  const abstracts = findElement(mods.value, and(byName("mods:abstract"), (el: XNode) => !byAttr("altFormat")(el)));
+  const abstracts = mods.value.content.filter(el=>{
+    if(el.type != "Element") {
+      return false;
+    }
+    if(el.name != "mods:abstract") {
+      return false;
+    }
+    if(getAttribute(el, "altFormat")) {
+      return false;
+    }
+    return true;
+  }) as XElement[];
   const map = new Map<string, TitleAbstractSubtitle>();
 
   abstracts.forEach((abstract => {
@@ -407,9 +415,14 @@ const titleAndAbstracts = computed(() => {
 })
 
 const documentLanguages = computed(() => {
-  const modsLanguage = findElement(mods.value, byName("mods:language"));
   const langs = [] as string[];
-  for (const lang of modsLanguage) {
+  mods.value.content.forEach((lang) => {
+    if(lang.type != "Element") {
+      return;
+    }
+    if(lang.name != "mods:language") {
+      return;
+    }
     const langTerm = findElement(lang, byName("mods:languageTerm"));
     if (langTerm != null) {
       langTerm.forEach((term) => {
@@ -419,7 +432,7 @@ const documentLanguages = computed(() => {
         }
       });
     }
-  }
+  });
   return langs;
 });
 
@@ -554,17 +567,35 @@ const archive = computed( ()=> {
   return {classId: 'sursurv_archives', categId: categValue};
 });
 
+const classifications = computed(()=> {
+  const el = mods.value.content.filter(and(byName('mods:classification'), byAttr('authorityURI'), not(byAttr('generator')))) as XElement[];
+  return el.map((el) => {
+    const authorityURI = getAttribute(el, 'authorityURI')?.value;
+    const valueURI = getAttribute(el, 'valueURI')?.value;
+    return { authorityURI, valueURI };
+  })
+  .filter(({authorityURI, valueURI}) => authorityURI != null && valueURI != null)
+  .map(({authorityURI, valueURI}) => {
+    authorityURI = authorityURI as string;
+    valueURI = valueURI as string;
+    const classId = authorityURI.substring(authorityURI.lastIndexOf("/")+1);
+    const categId = valueURI.substring(valueURI.lastIndexOf("#")+1);
+    return {classId, categId};
+  })
+  .filter(({classId}) => {
+    if (props.showClassifications && props.showClassifications.length > 0) {
+      return props.showClassifications.indexOf(classId) > -1;
+    }
+    return false;
+  })
+  .filter((c) => c != null) as {classId: string, categId: string}[];
+});
+
+
 const shelfLocator = computed(() => {
   return flattenElement(findFirstElement(mods.value, byName("mods:shelfLocator")));
 });
 
-const downloadLink = computed(() => {
-  if (findFirstElement(props.xml, byName("derobject")) != null) {
-    return `${sovietSurviorsURL}servlets/SovietSurvivorsExportServlet/?id=${props.id}`;
-  } else {
-    return undefined;
-  }
-})
 
 const genres = computed(() => {
   return getGenre(mods.value);
@@ -586,42 +617,14 @@ const creationDate = computed(() => {
   return flattenElement(findFirstElement(originInfo, byName("mods:dateCreated")));
 });
 
-const viewerLink = computed(() => {
-  let firstDerivate = findFirstElement(props.xml, byName("derobject"));
 
-  if (firstDerivate == null) {
-    return undefined;
-  }
-  let href = getAttribute(firstDerivate, "xlink:href");
-  if (href == null) {
-    return undefined;
-  }
-
-  let maindocElem = findFirstElement(firstDerivate, byName("maindoc"));
-  if (maindocElem == null) {
-    return undefined;
-  }
-
-  let maindoc = flattenElement(maindocElem);
-  if (maindoc == null) {
-    return undefined;
-  }
-
-  return sovietSurviorsURL + "rsc/viewer/" + href.value + "/" + maindoc +"?frame=true&embedded=true";
-
-});
 
 
 </script>
 
 <style scoped>
 
-.viewer {
-  display: block;
-  margin-top: 1rem;
-  width: 100%;
-  height: 500px;
-}
+
 
 /* display topic list elements as normal text */
 .subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li {

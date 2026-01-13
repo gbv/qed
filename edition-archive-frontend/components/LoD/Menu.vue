@@ -18,13 +18,21 @@
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project/partner">
             {{ $t('lod.subMenu.projectPartner') }}
-
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project/edition-guidelines">
-            {{ $t('lod.subMenu.editionGuidelines') }}
-
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project/publications">
+            {{ $t('lod.subMenu.publications') }}
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project/citation">
+            {{ $t('lod.subMenu.citation') }}
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/project/export">
+            {{ $t('lod.subMenu.export') }}
           </nuxt-link>
         </li>
       </ul>

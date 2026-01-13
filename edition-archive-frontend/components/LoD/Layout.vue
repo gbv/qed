@@ -57,6 +57,14 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
+                  href="/languages-of-diplomacy/edition-guidelines">
+                  {{ $t('lod.mainMenu.editionGuidelines') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
                   href="/languages-of-diplomacy/search/">
                   {{ $t('lod.mainMenu.search') }}
                 </nuxt-link>

@@ -4,11 +4,21 @@ export async function XMLApi(xmlStr: string) {
         const dom = new jsdom.JSDOM(`<!DOCTYPE html><body></body>`);
         const parser = new dom.window.DOMParser();
         const xml = parser.parseFromString(xmlStr, "text/xml");
-        return dom2XElement(xml.firstChild as Element);
+        for (const n of xml.childNodes) {
+          if(n.nodeType === n.ELEMENT_NODE) {
+            return dom2XElement(n as Element);
+          }
+        }
+        throw "No root element found";
     } else {
         const parser = new DOMParser();
         const xml = parser.parseFromString(xmlStr, "text/xml");
-        return dom2XElement(xml.firstChild as Element);
+        for (const n of xml.childNodes) {
+          if(n.nodeType === n.ELEMENT_NODE) {
+            return dom2XElement(n as Element);
+          }
+        }
+        throw "No root element found";
     }
 }
 
@@ -274,6 +284,10 @@ export function or(...filters: Array<XFilter<XText | XElement | XCDATA | XCommen
     }
     return false;
   }
+}
+
+export function not(filter: XFilter<XNode>): XFilter<XNode> {
+  return (elem) => !filter(elem);
 }
 
 export function filterElement(list: Array<XText | XElement | XCDATA | XComment | XAttribute>): Array<XElement> {

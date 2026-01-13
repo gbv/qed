@@ -100,6 +100,15 @@
       "personIndex": "Index des noms de personnes",
       "placeIndex": "Index des noms de lieux"
     },
+    "viewer": {
+      "image": {
+        "loading": "Chargement de l'image...",
+        "error": "Impossible de charger les informations de l'image",
+        "notAvailable": "Aucune image de page disponible",
+        "maximize": "Agrandir l'image",
+        "close": "Fermer"
+      }
+    },
     "editionShortTitle": "Titre abrégé des éditions"
   },
   "lod": {
@@ -107,6 +116,7 @@
       "home": "Home",
       "project": "Projet",
       "search": "Document",
+      "editionGuidelines":"Lignes directrices",
       "contact": "Contact"
     },
     "subMenu": {
@@ -115,58 +125,16 @@
       "intro": "Introduction",
       "team": "Équipe",
       "projectPartner": "Partenaire",
-      "editionGuidelines":"Lignes directrices"
+      "publications": "Main Project Publications",
+      "citation": "Citation",
+      "export": "Data Export"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0",
+      "cite": "Languages of Diplomacy. Édition numérique publiée par ... . Bonn : perspectivia.net, 2025."
     }
   },
   "sosu": {
-    "metadata": {
-      "counts":  "{start} de {numFound}",
-      "genre": "Genre",
-      "language": "Langue",
-      "unknownGenre": "Inconnu",
-      "dateIssued": "Date de publication",
-      "typeOfResource": "Type de ressource",
-      "extent": "Étendue",
-      "archive": "Archive",
-      "shelfLocator": "Cote",
-      "abstract": {
-        "showMore": "Afficher plus",
-        "showLess": "Afficher moins"
-      },
-      "download": "Télécharger",
-      "downloadText": "Transcript",
-      "subject": {
-        "topic": "Sujet",
-        "geographic": "Lieu",
-        "coordinates": "Coordonnées du lieu de création",
-        "hideMap": "Masquer la carte",
-        "showMap": "Afficher la carte"
-      },
-      "creationDate": "Date de création",
-      "creationPlace": "Lieu de création du document",
-      "related": {
-        "original": "Original de cette traduction",
-        "translation": "Traductions disponibles"
-      },
-      "name": {
-        "family": "Nom de famille",
-        "given": "Prénom",
-        "termsOfAddress": "Titre",
-        "date": "Date de naissance/décès",
-        "affiliation": "Affiliation",
-        "role": {
-          "isb": "Organe émetteur",
-          "ivr": "Interviewer",
-          "ive": "Interviewé",
-          "aut": "Auteur",
-          "scr": "Scribe",
-          "rcp": "Destinataire",
-          "trl": "Traducteur"
-        }
-      },
-      "copyright": "© Copyright 2025 - Toutes les images sont protégées par des droits d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
-      "cite": "Soviet Survivors of Nazi Occupation: The First Testimonies. Digital Edition by Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
-    },
     "mainMenu": {
       "home": "Home",
       "about": "À propos",
@@ -184,34 +152,136 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Germany’s War of Extermination"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
+      "cite": "Soviet Survivors of Nazi Occupation : The First Testimonies. Édition numérique par Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn : perspectivia.net, 2025."
     }
   },
   "gazin": {
+    "project": {
+      "headline": "Dengbêj Gazîn: Songs of a Kurdish Woman"
+    },
     "mainMenu": {
       "home": "Home",
-      "introduction": "Introduction",
-      "dengbejGazin": "Dengbêj Gazîn",
-      "editionGuidelines": "Edition-Guidelines"
+      "edition": "Edition",
+      "search": "Songs",
+      "editionGuidelines": "Edition Guidelines",
+      "citation": "Citation",
+      "contact": "Contact"
     },
     "subMenu": {
-      "subMenu": "Seitenmenü",
-      "openSubMenu": "Seitenmenü öffnen",
-      "editionGuidelines": "Edition-Guidelines",
-      "transcriptionNotes": "Transcription-Notes",
-      "translationNotes": "Translation-Notes"
+      "subMenu": "Sidebar",
+      "openSubMenu": "Open sidebar",
+      "introduction":"Introduction",
+      "dengbejGazin": "Dengbêj Gazîn",
+      "export":"Data Export",
+      "transcription": "Transcription",
+      "translation": "Translation"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Tous les médias sont protégés par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY 4.0.",
+      "cite": "Dengbêj Gazîn : Songs of a Kurdish Woman. Édition numérique par Argun Çakır. Bonn : perspectivia.net, 2025.",
+      "transcription": "Transcription"
+    }
+  },
+  "language": {
+    "de": "allemand",
+    "en": "anglais",
+    "fr": "français",
+    "it": "italien",
+    "la": "latin",
+    "pl": "polonais",
+    "ru": "russe",
+    "tr": "turc",
+    "ku": "kurde"
+  },
+  "metadata": {
+    "geonames": {
+      "name": "Nom",
+      "countryName": "Pays",
+      "adminName1": "Région administrative",
+      "fcodeName": "Type de lieu",
+      "population": "Population",
+      "timezone": "Fuseau horaire",
+      "coordinates": "Coordonnées",
+      "wikipedia": "Wikipédia"
+    },
+    "skos": {
+      "prefLabel": "Terme préféré",
+      "altLabel": "Autre terme",
+      "definition": "Définition"
+    },
+    "showImage": "Afficher l'image",
+    "original": "Original",
+    "translation": "Traduction",
+    "counts":  "{start} de {numFound}",
+    "genre": "Genre",
+    "language": "Langue",
+    "unknownGenre": "Inconnu",
+    "dateIssued": "Date de publication",
+    "typeOfResource": "Type de ressource",
+    "extent": "Étendue",
+    "archive": "Archive",
+    "shelfLocator": "Cote",
+    "download": "Télécharger",
+    "downloadText": "Transcript",
+    "abstract": {
+      "showMore": "Afficher plus",
+      "showLess": "Afficher moins"
+    },
+    "subject": {
+      "topic": "Sujet",
+      "geographic": "Lieu",
+      "coordinates": "Coordonnées du lieu de création",
+      "hideMap": "Masquer la carte",
+      "showMap": "Afficher la carte"
+    },
+    "creationDate": "Date de création",
+    "creationPlace": "Lieu de création du document",
+    "related": {
+      "original": "Original de cette traduction",
+      "translation": "Traductions disponibles"
+    },
+    "name": {
+      "family": "Nom de famille",
+      "given": "Prénom",
+      "termsOfAddress": "Titre",
+      "date": "Date de naissance/décès",
+      "affiliation": "Affiliation",
+      "role": {
+        "isb": "Organe émetteur",
+        "ivr": "Interviewer",
+        "ive": "Interviewé",
+        "aut": "Auteur",
+        "scr": "Scribe",
+        "rcp": "Destinataire",
+        "trl": "Traducteur",
+        "art": "Artiste",
+        "prf": "Interprète",
+        "crr": "Correcteur",
+        "trc": "Transcripteur",
+        "his": "Institution d'accueil"
+      }
+    },
+    "youtubeConsent": {
+      "warning": "En affichant cette vidéo, vous acceptez que des informations soient transmises à YouTube.",
+      "accept": "J'accepte",
+      "privacyLink": "Lire les mentions relatives à la protection des données"
     }
   },
   "search": {
     "label": "Recherche",
     "basic": "Simple",
     "extended": "Avancée",
-    "pageGoTo": "Go to page {page}",
+    "pageGoTo": "Aller à la page {page}",
     "hitCount": "{count} résultat(s) trouvé(s)",
-    "noHits": "Keine Treffer",
-    "pageNext": "Next page",
-    "pagePrev": "Previous page",
-    "pagination": "pagination search",
+    "noHits": "Aucun résultat",
+    "pageNext": "Page suivante",
+    "pagePrev": "Page précédente",
+    "pagination": "Pagination search",
     "submit": "Rechercher",
+    "submitHelp": "Utilisez * pour rechercher des mots partiels, par exemple av*",
     "goToRegest": "Aller au n° {regest}",
     "error": "Erreur lors de la recherche : {error}",
     "preview":"Aperçu",
@@ -222,8 +292,8 @@
       "desc": "Décroissant"
     },
     "facet": {
-      "openFacet": "Open facette",
-      "facet": "Ouvrir le Facette",
+      "openFacet": "Ouvrir le Facette",
+      "facet": "Facette",
       "deperditum": "Déperditum/note historiographique ( * )",
       "issuer": "Auteur",
       "recipient": "Destinataire",
@@ -236,7 +306,10 @@
       "all": "Tous les",
       "translationMode": "Afficher les traductions",
       "genre": "Genre",
-      "language": "Langue"
+      "language": "Langue",
+      "translation_present": "Traduction disponible",
+      "tr_translation_present": "Traduction en turc disponible",
+      "song_type": "Type de chanson"
     },
     "field": {
       "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",

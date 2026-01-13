@@ -21,6 +21,18 @@ export default defineNuxtPlugin({
           } else {
             return config.public.sovietSurvivorsURL;
           }
+        }, 'ditavSolrURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.ditavSolrURLServer;
+          } else {
+            return config.public.ditavSolrURL;
+          }
+        }, 'ditavURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.ditavURLServer;
+          } else {
+            return config.public.ditavURL;
+          }
         }, 'directusURL': () => {
           if (import.meta.server && !import.meta.dev) {
             return config.public.directusURLServer;

@@ -3,7 +3,7 @@
   :::ContentCard
   ---
   img-href: /images/card-back-lettre-pape.png
-  card-title: Gallia Pontificia online
+  img-alt: "Foto einer Papsturkunde"
   link: gallia-pontificia-online/
   card-class: active
   cc-author: "BVMM"
@@ -11,6 +11,17 @@
   cc-licence-text: "CC BY-NC"
   cc-licence-link: "http://creativecommons.org/licenses/by-nc/3.0/deed.fr"
   ---
+  #title
+    ::::LanguageSection{fallback=de}
+    #de
+    Gallia Pontificia online
+    #en
+    Gallia Pontificia online
+    #fr
+    Gallia Pontificia online
+    ::::
+
+  #default
     ::::LanguageSection{fallback=de}
     #de
     Die »Gallia Pontificia« ist das Langzeitprojekt des DHI Paris.
@@ -34,10 +45,19 @@
   :::ContentCard
   ---
   img-href: /images/card-back-sovjet.jpg
-  card-title: Sowjetische Zeitzeugen
+  img-alt: "Foto eines sowjetischen Überlebenden"
   link: soviet-survivors/
   card-class: active
   ---
+  #title
+    ::::LanguageSection{fallback=en}
+    #de
+    Sowjetische Zeitzeugen
+    #en
+    Soviet Survivors
+    ::::
+
+  #default
     ::::LanguageSection{fallback=en}
     #de
     Diese digitale Edition versammelt die ersten aufgezeichneten Stimmen von sowjetischen Überlebenden der NS-Herrschaft.
@@ -53,10 +73,20 @@
   :::ContentCard
   ---
   img-href: /images/card-back-golovkin-mikhail.jpg
-  card-title: The Languages of Diplomacy
+  img-alt: "Portrait von Michail Golovkin"
   link: http://qed.perspectivia.net/index.php?id=593
   card-class: not-active
   ---
+  #title
+    ::::LanguageSection{fallback=de}
+    #de
+    The Languages of Diplomacy
+    #en
+    The Languages of Diplomacy
+    #fr
+    The Languages of Diplomacy
+    ::::
+  #default
     ::::LanguageSection{fallback=en}
     #de
     Die digitale Edition wird im Rahmen des Forschungsprojekts „Die Sprachen der Diplomatie in Russland im
@@ -75,23 +105,30 @@
   :::ContentCard
   ---
   img-href: /images/card-back-gazin.jpg
-  card-title: "Dengbêj Gazîn: Songs of a Kurdish Woman"
+  img-alt: "Foto der kurdischen Dengbêj-Sängerin Gazîn"
   link: gazin
-  card-class: not-active
+  card-class: active
   cc-author: "Hürü Kaya"
   cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Photo_Dengbej_Gazin_2012.jpg"
   cc-licence-text: "CC BY 4.0"
   cc-licence-link: "https://creativecommons.org/licenses/by/4.0/deed.de"
   ---
+  #title
     ::::LanguageSection{fallback=de}
     #de
-    <!-- Dengbêj Gazin: Die Lieder einer Kurdin -->
+    Dengbêj Gazîn: Die Lieder einer Kurdin
+    #en
+    Dengbêj Gazîn: Songs of a Kurdish Woman
+    #fr
+    Dengbêj Gazîn: Les chansons d'une femme kurde
+    ::::
+  #default
+    ::::LanguageSection{fallback=de}
+    #de
     Eine digitale Edition von Liedern (Audio und Liedertexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazîn (1959-2018) in Kurmanji mit türkischen Übersetzungen.
     #en
-    <!-- Dengbêj Gazin: Songs of a Kurdish Woman -->
     A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazîn (1959-2018) in Kurmanji with Turkish translations.
     #fr
-    <!-- Dengbêj Gazin : les chansons d'une kurde -->
     Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazîn (1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
@@ -99,6 +136,7 @@
   :::ContentCard
   ---
   img-href: /images/cover-latour.png
+  img-alt: "Das Werk Stillleben mit Torso und Blumen von Henri Fantin-Latour"
   card-title: Briefwechsel zwischen Henri Fantin-Latour und Otto Scholderer (1858-1902)
   link: https://quellen.perspectivia.net/de/fantin-scholderer/start
   card-class: old-project
@@ -109,10 +147,12 @@
   :::ContentCard
   ---
   img-href: /images/cover-friedrich.png
+  img-alt: "Geschnitzte Sonnenstrahldarstellung im Rokokostil"
   card-title: “… gantz unvergleichlich …”
   link: https://quellen.perspectivia.net/de/borchward/start
   card-class: old-project
   ---
+  #default
   Ernst Samuel Jacob Borchwards Reise ins Potsdam Friedrichs des Großen 1749.
   :::
 <!-- #juden -->

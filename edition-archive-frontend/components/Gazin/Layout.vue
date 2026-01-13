@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row ">
         <div class="col project-headline__title">
-          <h1>Dengbêj Gazîn: Songs of a Kurdish Woman</h1>
+          <h1>{{ $t('gazin.project.headline') }}</h1>
         </div>
         <div class="col project-headline__figure project-headline__figure--gazin">
           <nuxt-img src="/images/card-back-gazin.jpg" preload class="" alt="Logo Gazîn" />
@@ -49,24 +49,40 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/introduction">
-                  {{ $t('gazin.mainMenu.introduction') }}
+                  href="/gazin/edition/introduction">
+                  {{ $t('gazin.mainMenu.edition') }}
               </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/dengbej-gazin">
-                  {{ $t('gazin.mainMenu.dengbejGazin') }}
+                  href="/gazin/search">
+                  {{ $t('gazin.mainMenu.search') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/edition-guidelines">
+                  href="/gazin/edition-guidelines/transcription">
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
+                  href="/gazin/citation">
+                  {{ $t('gazin.mainMenu.citation') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
+                  href="/gazin/contact">
+                  {{ $t('gazin.mainMenu.contact') }}
                 </nuxt-link>
               </li>
             </ul>
@@ -76,10 +92,10 @@
 
       <div class="col-auto">
         <div class="project-institute project-institute--gazin">
-          <a href="https://mwsosteuropa.hypotheses.org/">
+          <a href="https://oiist.org/" title="Orient Institut Istanbul" target="_blank" rel="noopener">
             <nuxt-img
-              src="/images/mwno-logo-de.svg"
-              preload alt="Max Weber Netzwerk Osteuropa Logo" />
+              src="/images/logo-orient-institut-istanbul.jpg"
+              preload alt="Orient Institut Istanbul Logo" />
           </a>
         </div>
       </div>
@@ -100,7 +116,7 @@
           data-bs-target="#offcanvasExample"
           aria-controls="offcanvasExample">
           <i class="bi bi-chevron-right"></i>
-          Seitenmenü öffnen
+          {{ $t('gazin.subMenu.openSubMenu') }}
         </button>
 
         <div
@@ -111,7 +127,7 @@
           id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Seitenmenü</h5>
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ $t('gazin.subMenu.subMenu') }}</h5>
             <button
               type="button"
               class="btn-close"

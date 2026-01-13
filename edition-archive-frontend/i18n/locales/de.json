@@ -100,6 +100,15 @@
       "personIndex": "Personen",
       "placeIndex": "Orte"
     },
+    "viewer": {
+      "image": {
+        "loading": "Lade Bild...",
+        "error": "Bildinformationen konnten nicht geladen werden",
+        "notAvailable": "Keine Seitenabbildung verfügbar",
+        "maximize": "Bild vergrößern",
+        "close": "Schließen"
+      }
+    },
     "editionShortTitle": "Kurztitel der Editionen"
   },
   "lod": {
@@ -107,6 +116,7 @@
       "home": "Startseite",
       "project": "Projekt",
       "search": "Dokumente",
+      "editionGuidelines":"Richtlinien",
       "contact": "Kontakt"
     },
     "subMenu": {
@@ -115,58 +125,16 @@
       "intro": "Einleitung",
       "team": "Team",
       "projectPartner": "Partner",
-      "editionGuidelines":"Richtlinien"
+      "publications": "Main Project Publications",
+      "citation": "Citation",
+      "export": "Data Export"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
+      "cite": "Languages of Diplomacy. Digitale Edition herausgegeben von ... . Bonn: perspectivia.net, 2025."
     }
   },
   "sosu": {
-    "metadata": {
-      "counts":  "{start} von {numFound}",
-      "genre": "Genre",
-      "language": "Sprache",
-      "unknownGenre": "Unbekannt",
-      "dateIssued": "Datum der Veröffentlichung",
-      "typeOfResource": "Ressourcentyp",
-      "extent": "Umfang",
-      "archive": "Archiv",
-      "shelfLocator": "Archivsignatur",
-      "download": "Download",
-      "downloadText": "Transkript",
-      "abstract": {
-        "showMore": "Mehr anzeigen",
-        "showLess": "Weniger anzeigen"
-      },
-      "subject": {
-        "topic": "Schlagwörter",
-        "geographic": "Orte",
-        "coordinates": "Koordinaten des Erstellungsorts",
-        "hideMap": "Karte ausblenden",
-        "showMap": "Karte einblenden"
-      },
-      "creationDate": "Erstellungsdatum",
-      "creationPlace": "Erstellungsort des Dokuments",
-      "related": {
-        "original": "Original dieser Übersetzung",
-        "translation": "Verfügbare Übersetzungen"
-      },
-      "name": {
-        "family": "Familienname",
-        "given": "Vorname",
-        "termsOfAddress": "Anrede",
-        "date": "Geburts- und Sterbedatum",
-        "affiliation": "Zugehörigkeit",
-        "role": {
-          "isb": "Herausgebendes Organ",
-          "ivr": "Interviewer",
-          "ive": "Interviewpartner",
-          "aut": "Autor",
-          "scr": "Schreiber",
-          "rcp": "Empfänger",
-          "trl": "Übersetzer"
-        }
-      },
-      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
-      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
-    },
     "mainMenu": {
       "home": "Startseite",
       "about": "Über",
@@ -184,21 +152,123 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Deutscher Vernichtungskrieg"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
+      "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     }
   },
+
   "gazin": {
+    "project": {
+      "headline": "Dengbêj Gazîn: Die Lieder einer Kurdin"
+    },
     "mainMenu": {
-      "home": "Home",
-      "introduction": "Introduction",
-      "dengbejGazin": "Dengbêj Gazîn",
-      "editionGuidelines": "Edition-Guidelines"
+      "home": "Start",
+      "edition": "Edition",
+      "search": "Lieder",
+      "editionGuidelines": "Editionsrichtlinien",
+      "citation": "Zitierhinweis",
+      "contact": "Kontakt"
     },
     "subMenu": {
       "subMenu": "Seitenmenü",
       "openSubMenu": "Seitenmenü öffnen",
-      "editionGuidelines": "Edition-Guidelines",
-      "transcriptionNotes": "Transcription-Notes",
-      "translationNotes": "Translation-Notes"
+      "introduction":"Einleitung",
+      "dengbejGazin": "Dengbêj Gazîn",
+      "export":"Datenexport",
+      "transcription": "Transkription",
+      "translation": "Übersetzung"
+    },
+    "metadata": {
+      "copyright": "© Copyright 2025 - Alle Medien sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC-BY 4.0",
+      "cite": "Dengbêj Gazîn: Die Lieder einer Kurdin. Digitale Edition herausgegeben von Argun Çakır. Bonn: perspectivia.net, 2025.",
+      "transcription": "Transkription"
+    }
+  },
+  "language": {
+    "de": "Deutsch",
+    "en": "Englisch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "la": "Latein",
+    "pl": "Polnisch",
+    "ru": "Russisch",
+    "tr": "Türkisch",
+    "ku": "Kurdisch"
+  },
+  "metadata": {
+    "geonames": {
+      "name": "Name",
+      "countryName": "Land",
+      "adminName1": "Verwaltungsregion",
+      "fcodeName": "Ortstyp",
+      "population": "Einwohnerzahl",
+      "timezone": "Zeitzone",
+      "coordinates": "Koordinaten",
+      "wikipedia": "Wikipedia"
+    },
+    "skos": {
+      "prefLabel": "Bevorzugter Begriff",
+      "altLabel": "Alternativer Begriff",
+      "definition": "Definition"
+    },
+    "showImage": "Bild anzeigen",
+    "original": "Original",
+    "translation": "Übersetzung",
+    "counts": "{start} von {numFound}",
+    "genre": "Genre",
+    "language": "Sprache",
+    "unknownGenre": "Unbekannt",
+    "dateIssued": "Datum der Veröffentlichung",
+    "typeOfResource": "Ressourcentyp",
+    "extent": "Umfang",
+    "archive": "Archiv",
+    "shelfLocator": "Archivsignatur",
+    "download": "Download",
+    "downloadText": "Transkript",
+    "abstract": {
+      "showMore": "Mehr anzeigen",
+      "showLess": "Weniger anzeigen"
+    },
+    "subject": {
+      "topic": "Schlagwörter",
+      "geographic": "Orte",
+      "coordinates": "Koordinaten des Erstellungsorts",
+      "hideMap": "Karte ausblenden",
+      "showMap": "Karte einblenden"
+    },
+    "creationDate": "Erstellungsdatum",
+    "creationPlace": "Erstellungsort des Dokuments",
+    "related": {
+      "original": "Original dieser Übersetzung",
+      "translation": "Verfügbare Übersetzungen"
+    },
+    "name": {
+      "family": "Familienname",
+      "given": "Vorname",
+      "termsOfAddress": "Anrede",
+      "date": "Geburts- und Sterbedatum",
+      "affiliation": "Zugehörigkeit",
+      "role": {
+        "isb": "Herausgebendes Organ",
+        "ivr": "Interviewer",
+        "ive": "Interviewpartner",
+        "aut": "Autor",
+        "scr": "Schreiber",
+        "rcp": "Empfänger",
+        "trl": "Übersetzer",
+        "art": "Künstler",
+        "prf": "Darsteller",
+        "crr": "Korrektor",
+        "trc": "Transkribierender",
+        "his": "Beherbergende Einrichtung"
+      }
+    },
+    "youtubeConsent": {
+      "warning": "Mit der Anzeige dieses Videos erklären Sie sich einverstanden, dass Informationen an YouTube übermittelt werden.",
+      "accept": "Einverstanden",
+      "privacyLink": "Hinweise in der Datenschutzerklärung lesen"
     }
   },
   "search": {
@@ -212,6 +282,7 @@
     "pagePrev": "Vorherige Seite",
     "pagination": "Paginierung Suche",
     "submit": "Suchen",
+    "submitHelp": "Verwende * zur Suche nach Teilwörtern, z.B.: av*",
     "goToRegest": "Gehe zu Nr. {regest}",
     "error": "Fehler bei der Suche: {error}",
     "preview":"Vorschau",
@@ -236,7 +307,10 @@
       "all": "Alle",
       "translationMode": "Übersetzungen anzeigen",
       "genre": "Dokumententyp",
-      "language": "Sprache"
+      "language": "Sprache",
+      "translation_present": "Übersetzung vorhanden",
+      "tr_translation_present": "Übersetzung ins Türkische vorhanden",
+      "song_type": "Liedtyp"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
