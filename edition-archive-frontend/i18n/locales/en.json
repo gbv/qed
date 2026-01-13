@@ -346,11 +346,52 @@
       "editTranslation": "Edit",
       "draft": "Mark as draft",
       "publish": "Publish",
+      "archive": "Archive",
+      "noContent": "no content",
+      "noContentForLanguage": "No content available in this language.",
+      "new": "new",
+      "title": "Title",
+      "titlePlaceholder": "Enter page title...",
+      "content": "Content",
+      "cancel": "Cancel",
+      "saveAsDraft": "Save as draft",
+      "saveAndPublish": "Save and publish",
+      "comment": "Change comment",
+      "commentPlaceholder": "Briefly describe what was changed...",
+      "saveError": "Error saving the page.",
+      "archiveError": "Error archiving the page.",
+      "confirmArchive": "Are you sure you want to archive this page? It will no longer be publicly visible.",
+      "versionHistory": "Version History",
+      "version": "Version",
+      "noVersions": "No versions available.",
+      "loadVersion": "Load this version",
+      "loadVersionError": "Error loading the version.",
+      "draftWarning": {
+        "title": "Draft!",
+        "message": "This page has not been published yet. The changes are not visible to other users."
+      },
+      "status": {
+        "draft": "Draft",
+        "published": "Published",
+        "archived": "Archived"
+      },
       "translation": {
         "new": "New translation",
         "delete": "Delete",
         "confirmDelete": "Are you sure you want to delete this translation?"
       },
+      "notFound": {
+        "title": "Page not found",
+        "message": "The page '{slug}' does not exist yet.",
+        "createButton": "Create page",
+        "creating": "Creating page..."
+      },
+      "archived": {
+        "title": "Page archived",
+        "message": "This page has been archived and is no longer publicly visible.",
+        "restoreButton": "Restore and edit"
+      },
+      "createError": "Error creating page",
       "editor": {
         "capitalize": "Kapitälchen",
         "bibl": {
@@ -391,9 +432,10 @@
     "photo": "Foto"
   },
   "login": {
+    "username": "Username",
     "email": "Email",
-    "error": "Unbekannter Fehler beim Login",
-    "invalid": "Ungültige Email oder Passwort",
+    "error": "Unknown error during login",
+    "invalid": "Invalid username or password",
     "password": "Password",
     "submit": "Login",
     "title": "Login",

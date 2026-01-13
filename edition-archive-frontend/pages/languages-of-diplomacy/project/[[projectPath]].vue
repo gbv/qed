@@ -2,7 +2,7 @@
   <LoDLayout :headline="$t('lod.mainMenu.about')">
 
     <template #content>
-      <CMSPage :slug="$route.path"/>
+      <CMSPage :slug="`/qed${path}`"/>
     </template>
 
     <template #menu>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute();
+  const {path} = useRoute();
 </script>
 
 <style scoped>

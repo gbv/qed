@@ -186,15 +186,15 @@
     }
   },
   "language": {
-    "de": "allemand",
-    "en": "anglais",
-    "fr": "français",
-    "it": "italien",
-    "la": "latin",
-    "pl": "polonais",
-    "ru": "russe",
-    "tr": "turc",
-    "ku": "kurde"
+    "de": "Allemand",
+    "en": "Anglais",
+    "fr": "Français",
+    "it": "Italien",
+    "la": "Latin",
+    "pl": "Polonais",
+    "ru": "Russe",
+    "tr": "Turc",
+    "ku": "Kurde"
   },
   "metadata": {
     "geonames": {
@@ -341,16 +341,57 @@
   },
   "cms": {
     "page": {
-      "loading": "Charger la page...",
+      "loading": "Chargement de la page...",
       "newTranslation": "Nouvelle traduction",
-      "editTranslation": "Modifier la traduction",
+      "editTranslation": "Modifier",
       "draft": "Marquer comme brouillon",
       "publish": "Publier",
+      "archive": "Archiver",
+      "noContent": "pas de contenu",
+      "noContentForLanguage": "Aucun contenu disponible dans cette langue.",
+      "new": "nouveau",
+      "title": "Titre",
+      "titlePlaceholder": "Entrez le titre de la page...",
+      "content": "Contenu",
+      "cancel": "Annuler",
+      "saveAsDraft": "Enregistrer comme brouillon",
+      "saveAndPublish": "Enregistrer et publier",
+      "comment": "Commentaire de modification",
+      "commentPlaceholder": "Décrivez brièvement ce qui a été modifié...",
+      "saveError": "Erreur lors de l'enregistrement de la page.",
+      "archiveError": "Erreur lors de l'archivage de la page.",
+      "confirmArchive": "Voulez-vous vraiment archiver cette page ? Elle ne sera plus visible publiquement.",
+      "versionHistory": "Historique des versions",
+      "version": "Version",
+      "noVersions": "Aucune version disponible.",
+      "loadVersion": "Charger cette version",
+      "loadVersionError": "Erreur lors du chargement de la version.",
+      "draftWarning": {
+        "title": "Brouillon !",
+        "message": "Cette page n'a pas encore été publiée. Les modifications ne sont pas visibles pour les autres utilisateurs."
+      },
+      "status": {
+        "draft": "Brouillon",
+        "published": "Publié",
+        "archived": "Archivé"
+      },
       "translation": {
         "new": "Nouvelle traduction",
         "delete": "Supprimer",
         "confirmDelete": "Confirmer la suppression"
       },
+      "notFound": {
+        "title": "Page non trouvée",
+        "message": "La page '{slug}' n'existe pas encore.",
+        "createButton": "Créer la page",
+        "creating": "Création de la page..."
+      },
+      "archived": {
+        "title": "Page archivée",
+        "message": "Cette page a été archivée et n'est plus visible publiquement.",
+        "restoreButton": "Restaurer et modifier"
+      },
+      "createError": "Erreur lors de la création de la page",
       "editor": {
         "capitalize": "Kapitälchen",
         "bibl": {
@@ -391,12 +432,13 @@
     "photo": "Foto"
   },
   "login": {
+    "username": "Nom d'utilisateur",
     "email": "Email",
-    "error": "Unbekannter Fehler beim Login",
-    "invalid": "Ungültige Email oder Passwort",
-    "password": "Password",
-    "submit": "Login",
-    "title": "Login",
+    "error": "Erreur inconnue lors de la connexion",
+    "invalid": "Nom d'utilisateur ou mot de passe invalide",
+    "password": "Mot de passe",
+    "submit": "Connexion",
+    "title": "Connexion",
     "menu": {
       "login": "Login",
       "logout": "Logout"

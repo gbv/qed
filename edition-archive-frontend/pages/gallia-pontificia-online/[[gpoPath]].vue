@@ -2,7 +2,7 @@
   <GalliaPontificiaOnlineLayout>
 
     <template #content>
-      <CMSPage :slug="$route.path" />
+      <CMSPage :slug="`/qed${path}`" />
     </template>
 
   </GalliaPontificiaOnlineLayout>

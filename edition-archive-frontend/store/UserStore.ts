@@ -1,93 +1,120 @@
 import {defineStore} from "pinia";
-import {type AuthResult, type UserType} from "@directus/sdk"
 
+// CMS Auth Response Type
+interface CMSAuthResult {
+  access_token: string;
+  token_type: string;
+  expires_in?: number; // in seconds
+}
 
 export const useUserStore = defineStore('userStore', () => {
   const accessTokenCookie = useCookie('access_token', {watch: "shallow"});
-  const refreshTokenCookie = useCookie('refresh_token', {watch: "shallow"});
   const expiresCookie = useCookie('expires', {watch: "shallow"});
   const userCookie = useCookie('user', {watch: "shallow"});
 
-
   const accessToken = computed(() => {
-    if(isExpired()){
+    if (isExpired()) {
       logout();
     }
     return accessTokenCookie.value;
   });
 
-  const refreshToken = computed(() => refreshTokenCookie.value);
   const expires = computed(() => expiresCookie.value);
+  
   const user = computed(() => {
-    clearIfExpired();
+    if (isExpired()) {
+      return null;
+    }
     if (typeof userCookie.value === "string") {
       return userCookie.value ? JSON.parse(userCookie.value) : null;
-    } else {
-      return userCookie.value || null;
     }
+    return userCookie.value || null;
   });
 
-  function isExpired() {
-    if (expires.value) {
-      return new Date().valueOf() > parseInt(expires.value);
-    } else {
+  // Prüft ob der Token abgelaufen ist
+  function isExpired(): boolean {
+    // Kein Token = nicht abgelaufen (einfach nicht eingeloggt)
+    if (!accessTokenCookie.value) {
+      return false;
+    }
+    // Token vorhanden aber kein Ablaufdatum = als abgelaufen betrachten
+    if (!expiresCookie.value) {
       return true;
     }
+    return Date.now() > parseInt(expiresCookie.value);
   }
 
-  function clearIfExpired() {
-    if ((expires.value != null || accessToken.value != null || user != null) && isExpired()) {
-      logout();
-    }
+  // Prüft ob ein gültiger (nicht abgelaufener) Token existiert
+  function hasValidToken(): boolean {
+    return !!accessTokenCookie.value && !!expiresCookie.value && Date.now() <= parseInt(expiresCookie.value);
   }
 
-  function universalAtob(str: string) {
+  // Prüft ob der Benutzer eingeloggt ist
+  function isLoggedIn(): boolean {
+    return hasValidToken();
+  }
+
+  function universalAtob(str: string): string {
     if (process.server) {
       return Buffer.from(str, 'base64').toString();
-    } else {
-      return atob(str).toString();
     }
+    return atob(str);
   }
 
-  function jwtDecode(token: string) {
+  function jwtDecode(token: string): Record<string, any> {
     const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const text = universalAtob(base64);
     return JSON.parse(text);
   }
 
+  // Benutzer-ID aus dem Token
   const id = computed(() => {
-    if (accessToken.value) {
-      const decoded = jwtDecode(accessToken.value);
-      return decoded.id;
-    } else {
+    if (!hasValidToken() || !accessTokenCookie.value) {
+      return null;
+    }
+    try {
+      const decoded = jwtDecode(accessTokenCookie.value);
+      return decoded.id || decoded.sub || null;
+    } catch {
       return null;
     }
   });
 
-  function deleteToken() {
+  // Login mit CMS Basic Auth
+  function login(authResult: CMSAuthResult, username: string): void {
+    accessTokenCookie.value = authResult.access_token;
+    // Default: 10 Minuten wenn kein expires_in angegeben (basierend auf JWT exp)
+    const expiresIn = (authResult.expires_in || 600) * 1000;
+    expiresCookie.value = (expiresIn + Date.now()).toString();
+    userCookie.value = JSON.stringify({ name: username });
+  }
+
+  // Update token nach Refresh
+  function updateToken(authResult: CMSAuthResult): void {
+    accessTokenCookie.value = authResult.access_token;
+    // Default: 10 Minuten wenn kein expires_in angegeben
+    const expiresIn = (authResult.expires_in || 600) * 1000;
+    expiresCookie.value = (expiresIn + Date.now()).toString();
+  }
+
+  // Logout - alle Cookies löschen
+  function logout(): void {
     accessTokenCookie.value = null;
-    refreshTokenCookie.value = null;
     expiresCookie.value = null;
-  }
-
-  function login(loginResponse: AuthResult, userResult: UserType) {
-    accessTokenCookie.value = loginResponse.access_token;
-    refreshTokenCookie.value = loginResponse.refresh_token || null;
-    expiresCookie.value = (loginResponse.expires + new Date().valueOf()).toString();
-    userCookie.value = JSON.stringify(userResult);
-  }
-
-  function refresh(refreshResponse: AuthResult) {
-    accessTokenCookie.value = refreshResponse.access_token;
-    refreshTokenCookie.value = refreshResponse.refresh_token || null;
-    expiresCookie.value = (refreshResponse.expires + new Date().valueOf()).toString();
-  }
-
-  function logout() {
-    deleteToken();
     userCookie.value = null;
   }
 
-  return {accessToken, refreshToken, expires, deleteToken, login, id, user, refresh, logout, isExpired}
+  return {
+    accessToken,
+    expires,
+    user,
+    id,
+    login,
+    logout,
+    updateToken,
+    isExpired,
+    hasValidToken,
+    isLoggedIn
+  };
 });

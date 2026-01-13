@@ -8,15 +8,15 @@
           </div>
           <div class="card-body">
             <form @submit.prevent="userLogin">
-              <div class="form-group">
-                <label for="email">{{ $t('login.email') }}</label>
-                <input id="email" v-model="loginData.email" :class="!validate.server && !validate.email ? '':'is-invalid'"
-                       class="form-control" type="email">
+              <div class="form-group mb-3">
+                <label for="username">{{ $t('login.username') }}</label>
+                <input id="username" v-model="loginData.username" :class="!validate.server && !validate.username ? '':'is-invalid'"
+                       class="form-control" type="text">
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="password">{{ $t('login.password') }}</label>
                 <input id="password" v-model="loginData.password"
-                       :class="!validate.server && !validate.email ? '':'is-invalid'"
+                       :class="!validate.server && !validate.password ? '':'is-invalid'"
                        class="form-control" type="password">
               </div>
               <div v-if="validate.server" class="alert alert-danger">{{ $t("login.invalid") }}</div>
@@ -33,97 +33,78 @@
 <script lang="ts" setup>
 import {useUserStore} from "~/store/UserStore";
 import {useRedirectStore} from "~/store/RedirectStore";
-import {type AuthResult, type UserType} from "@directus/sdk"
 
-const {$directusURL} = useNuxtApp();
+const {$cmsURL} = useNuxtApp();
 
 const redirectStore = useRedirectStore();
 const store = useUserStore();
 
 let loginData = reactive({
-  email: '',
+  username: '',
   password: ''
 });
 
 let validate = reactive({
-  email: false,
+  username: false,
   password: false,
   server: false,
   error: false
 });
 
-const emailChanged = () => {
-  validate.email = false;
-  validate.server = false;
-}
-
-const passwordChanged = () => {
-  validate.password = false;
-  validate.server = false;
-}
-
 const userLogin = async () => {
-  validate.email = false;
+  validate.username = false;
   validate.password = false;
   validate.server = false;
   validate.error = false;
 
-  if ((loginData.email || "").trim().length == 0) {
-    validate.email = true;
+  if ((loginData.username || "").trim().length == 0) {
+    validate.username = true;
     return;
   }
   if ((loginData.password || "").trim().length == 0) {
     validate.password = true;
     return;
   }
-  const {data, error} = await useFetch($directusURL() + '/auth/login', {
-    method: 'POST',
-    body: JSON.stringify(loginData),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
 
-  if (error.value) {
-    if (error.value.statusCode) {
-      if (error.value.statusCode === 401) {
+  // Create Basic Auth header
+  const credentials = btoa(`${loginData.username}:${loginData.password}`);
+  
+  try {
+    const response = await fetch(`${$cmsURL()}api/v2/auth/login`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Basic ${credentials}`
+      }
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
         validate.server = true;
-        validate.email = true;
+        validate.username = true;
         validate.password = true;
-
       } else {
         validate.error = true;
       }
+      console.error('Login failed:', response.status, response.statusText);
+      return;
     }
-    console.error(error.value);
-    return;
-  }
 
-  const tokenData = ((data.value as any).data as AuthResult);
+    const tokenData = await response.json();
+    
+    // Store the token
+    store.login(tokenData, loginData.username);
 
-  const userResp = await useFetch($directusURL() + '/users/me', {
-    headers: {
-      'Authorization': `Bearer ${tokenData.access_token}`
+    if(redirectStore.redirectPath) {
+      const path = redirectStore.redirectPath;
+      redirectStore.clearRedirectPath()
+      await navigateTo(path);
+    } else {
+      await navigateTo('/');
     }
-  });
-
-  if (userResp.error.value) {
-    console.error(userResp.error.value);
-    return;
+  } catch (err) {
+    console.error('Login error:', err);
+    validate.error = true;
   }
-
-  const userData = ((userResp.data.value as any).data) as UserType;
-  store.login(tokenData, userData);
-
-
-  if(redirectStore.redirectPath) {
-    const path = redirectStore.redirectPath;
-    redirectStore.clearRedirectPath()
-    await navigateTo(path);
-  }else {
-    await navigateTo('/');
-  }
-
 }
 </script>
 
