@@ -391,6 +391,7 @@
         "message": "This page has been archived and is no longer publicly visible.",
         "restoreButton": "Restore and edit"
       },
+      "noWritePermission": "You do not have permission to edit this page.",
       "createError": "Error creating page",
       "editor": {
         "capitalize": "Kapitälchen",

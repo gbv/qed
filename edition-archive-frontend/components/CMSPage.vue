@@ -4,11 +4,11 @@
       <!-- Action Buttons -->
       <div class="btn-block d-flex flex-nowrap flex-row justify-content-end mb-3">
         <div v-if="model.authHeader && !model.edit && !model.pageNotFound && model.currentVersion?.status !== 'archived'" class="btn-group" role="group">
-          <button class="btn btn-primary" type="button" @click="startEdit">
+          <button v-if="model.permissions?.write" class="btn btn-primary" type="button" @click="startEdit">
             <i class="bi bi-pencil-square"> </i>
             {{ $t("cms.page.editTranslation") }}
           </button>
-          <button v-if="model.currentVersion?.status === 'published'"
+          <button v-if="model.permissions?.delete && model.currentVersion?.status === 'published'"
                   class="btn btn-warning"
                   @click="archivePage"
           >
@@ -35,6 +35,7 @@
               <h4>{{ $t('cms.page.notFound.title') }}</h4>
               <p class="text-muted">{{ $t('cms.page.notFound.message', { slug: props.slug }) }}</p>
               <button 
+                v-if="model.permissions?.write"
                 class="btn btn-primary btn-lg" 
                 type="button" 
                 :disabled="model.isCreatingPage"
@@ -44,6 +45,10 @@
                 <i v-else class="bi bi-plus-circle me-2"> </i>
                 {{ $t('cms.page.notFound.createButton') }}
               </button>
+              <p v-else class="text-muted mt-3">
+                <i class="bi bi-lock"> </i>
+                {{ $t('cms.page.noWritePermission') }}
+              </p>
             </div>
           </div>
         </div>
@@ -58,6 +63,7 @@
               <h4>{{ $t('cms.page.archived.title') }}</h4>
               <p class="text-muted">{{ $t('cms.page.archived.message') }}</p>
               <button 
+                v-if="model.permissions?.write"
                 class="btn btn-primary btn-lg" 
                 type="button" 
                 @click="restoreAndEdit"
@@ -65,6 +71,10 @@
                 <i class="bi bi-arrow-counterclockwise me-2"> </i>
                 {{ $t('cms.page.archived.restoreButton') }}
               </button>
+              <p v-else class="text-muted mt-3">
+                <i class="bi bi-lock"> </i>
+                {{ $t('cms.page.noWritePermission') }}
+              </p>
             </div>
           </div>
         </div>
@@ -298,6 +308,15 @@ interface VersionSummary {
   created_by: string;
 }
 
+// Berechtigungen für eine Seite
+interface PagePermissions {
+  slug_exists: boolean;
+  write: boolean;
+  read_draft: boolean;
+  read_archived: boolean;
+  delete: boolean;
+}
+
 const model = reactive<{
   authHeader: Record<string, string> | null;
   edit: boolean;
@@ -313,6 +332,7 @@ const model = reactive<{
   showVersionHistory: boolean;
   pageNotFound: boolean;
   isCreatingPage: boolean;
+  permissions: PagePermissions | null;
 }>({
   authHeader: null,
   edit: false,
@@ -327,7 +347,8 @@ const model = reactive<{
   loadingVersions: false,
   showVersionHistory: false,
   pageNotFound: false,
-  isCreatingPage: false
+  isCreatingPage: false,
+  permissions: null
 });
 
 
@@ -485,12 +506,26 @@ const apiRequest = async <T>(
   }
 };
 
+// Load permissions for a slug
+const loadPermissions = async (slug: string): Promise<PagePermissions | null> => {
+  if (!model.authHeader) return null;
+  
+  const result = await apiRequest<PagePermissions>(`/pages/_permissions?slug=${encodeURIComponent(slug)}`);
+  return result.data || null;
+};
+
 // Load page and current version
 const loadPage = async (slug: string) => {
   model.loading = true;
   model.pageNotFound = false;
   model.page = null;
   model.currentVersion = null;
+  model.permissions = null;
+  
+  // Lade Permissions wenn eingeloggt
+  if (model.authHeader) {
+    model.permissions = await loadPermissions(slug);
+  }
 
   // Find page by slug
   const pagesResult = await apiRequest<Page[]>(`/pages?slug=${encodeURIComponent(slug)}`);
@@ -513,8 +548,11 @@ const loadPage = async (slug: string) => {
 
   model.page = pagesResult.data[0];
 
-  // Load published or current version based on auth status
-  const versionEndpoint = model.authHeader 
+  // Load version based on auth status and permissions
+  // read_draft erlaubt Zugriff auf aktuelle Version (kann draft sein)
+  // Sonst nur published Version laden
+  const canReadDraft = model.authHeader && model.permissions?.read_draft;
+  const versionEndpoint = canReadDraft
     ? `/pages/${model.page.id}/versions/current`
     : `/pages/${model.page.id}/versions/published`;
 
@@ -543,42 +581,26 @@ const loadPage = async (slug: string) => {
   model.loading = false;
 };
 
-// Create a new page
+// Create a new page - opens editor only, actual page creation happens on save
 const createNewPage = async () => {
-  model.isCreatingPage = true;
-  
-  // Erstelle die Seite mit dem aktuellen Slug
-  const createResult = await apiRequest<Page>('/pages', {
-    method: 'POST',
-    body: JSON.stringify({
-      slug: props.slug
-    })
-  });
-  
-  if (createResult.error || !createResult.data) {
-    console.error('Failed to create page:', createResult.error);
-    alert(i18n.t('cms.page.createError'));
-    model.isCreatingPage = false;
-    return;
-  }
-  
-  model.page = createResult.data;
-  model.pageNotFound = false;
-  model.isCreatingPage = false;
+  // Token erneuern beim Öffnen des Editors
+  await refreshToken();
   
   // Initialisiere leere Übersetzungen für alle Sprachen
   const editTranslations: Record<string, EditTranslation> = {};
   for (const lang of orderedLanguages.value) {
     editTranslations[lang] = {
       title: '',
-      content: `<div><p>${i18n.t('cms.page.translation.new')}</p></div>`,
+      content: '',
       isNew: true
     };
   }
   
   model.editTranslations = editTranslations;
   model.activeEditTab = i18n.locale.value;
+  model.pageNotFound = false; // Box ausblenden
   model.edit = true;
+  // model.page bleibt null - wird erst beim Speichern erstellt
 };
 
 // Restore archived page and start editing
@@ -602,7 +624,7 @@ const restoreAndEdit = async () => {
     } else {
       editTranslations[lang] = {
         title: '',
-        content: `<div><p>${i18n.t('cms.page.translation.new')}</p></div>`,
+        content: '',
         isNew: true
       };
     }
@@ -631,7 +653,7 @@ const startEdit = async () => {
     
     editTranslations[lang] = {
       title: existingTranslation?.title || '',
-      content: existingTranslation?.content || `<div><p>${i18n.t('cms.page.translation.new')}</p></div>`,
+      content: existingTranslation?.content || '',
       isNew: !existingTranslation
     };
   }
@@ -692,7 +714,7 @@ const loadVersionIntoEditor = async (versionNumber: number) => {
     
     model.editTranslations[lang] = {
       title: versionTranslation?.title || '',
-      content: versionTranslation?.content || `<div><p>${i18n.t('cms.page.translation.new')}</p></div>`,
+      content: versionTranslation?.content || '',
       isNew: !versionTranslation
     };
   }
@@ -748,7 +770,26 @@ const saveAndPublish = async () => {
 
 // Save new version
 const saveVersion = async (status: 'draft' | 'published') => {
-  if (!model.page || !model.editTranslations) return;
+  if (!model.editTranslations) return;
+
+  // Falls die Seite noch nicht existiert (pageNotFound), erst erstellen
+  if (!model.page) {
+    const createResult = await apiRequest<Page>('/pages', {
+      method: 'POST',
+      body: JSON.stringify({
+        slug: props.slug
+      })
+    });
+    
+    if (createResult.error || !createResult.data) {
+      console.error('Failed to create page:', createResult.error);
+      alert(i18n.t('cms.page.createError'));
+      return;
+    }
+    
+    model.page = createResult.data;
+    model.pageNotFound = false;
+  }
 
   // Build translations array from edit data
   const translations: Array<{ language: string; title: string; content: string }> = [];

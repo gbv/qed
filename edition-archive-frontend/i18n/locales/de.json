@@ -392,6 +392,7 @@
         "message": "Diese Seite wurde archiviert und ist nicht mehr öffentlich sichtbar.",
         "restoreButton": "Wiederherstellen und bearbeiten"
       },
+      "noWritePermission": "Sie haben keine Berechtigung, diese Seite zu bearbeiten.",
       "createError": "Fehler beim Erstellen der Seite",
       "editor": {
         "capitalize": "Kapitälchen",
