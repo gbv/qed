@@ -8,9 +8,12 @@ interface CMSAuthResult {
 }
 
 export const useUserStore = defineStore('userStore', () => {
-  const accessTokenCookie = useCookie('access_token', {watch: "shallow"});
-  const expiresCookie = useCookie('expires', {watch: "shallow"});
-  const userCookie = useCookie('user', {watch: "shallow"});
+  // maxAge in Sekunden - 24 Stunden als Standard, damit Cookies nicht als Session-Cookies verloren gehen
+  const cookieOptions = { watch: "shallow" as const, maxAge: 60 * 10 };
+  
+  const accessTokenCookie = useCookie('access_token', cookieOptions);
+  const expiresCookie = useCookie('expires', cookieOptions);
+  const userCookie = useCookie('user', cookieOptions);
 
   const accessToken = computed(() => {
     if (isExpired()) {
