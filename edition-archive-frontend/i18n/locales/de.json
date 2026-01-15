@@ -158,7 +158,6 @@
       "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     }
   },
-
   "gazin": {
     "project": {
       "headline": "Dengbêj Gazîn: Die Lieder einer Kurdin"
@@ -310,7 +309,8 @@
       "language": "Sprache",
       "translation_present": "Übersetzung vorhanden",
       "tr_translation_present": "Übersetzung ins Türkische vorhanden",
-      "song_type": "Liedtyp"
+      "song_type": "Liedtyp",
+      "author": "Autor"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",

@@ -309,7 +309,8 @@
       "language": "Langue",
       "translation_present": "Traduction disponible",
       "tr_translation_present": "Traduction en turc disponible",
-      "song_type": "Type de chanson"
+      "song_type": "Type de chanson",
+      "author": "Auteur"
     },
     "field": {
       "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",

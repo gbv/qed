@@ -162,7 +162,8 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
     filters: {
       genres: [],
       languages: [],
-      translations: []
+      translations: [],
+      authors: []
     } as GazinFilters,
     start: 0
   };

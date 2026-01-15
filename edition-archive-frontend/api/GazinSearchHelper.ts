@@ -19,6 +19,7 @@ export const GazinParams = [
 export interface GazinFilters {
   genres: string[];
   translations: string[];
+  authors: string[];
 }
 
 export function buildGazinSearchRequestURL(url: string, search: string | null, filters: GazinFilters, start: number, rows = 20) {
@@ -36,6 +37,7 @@ export function buildGazinSearchRequestURL(url: string, search: string | null, f
   }
 
   urlObj.searchParams.append('facet.field', 'category.top');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.author.facet');
   urlObj.searchParams.append('fq', GazinFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
@@ -44,6 +46,10 @@ export function buildGazinSearchRequestURL(url: string, search: string | null, f
 
   if(filters?.translations?.length > 0) {
     urlObj.searchParams.append('fq', `category.top:(${filters.translations.map((gName=> `"translation_available:${gName}"`)).join(' AND ')})`);
+  }
+
+  if(filters?.authors?.length > 0) {
+    urlObj.searchParams.append('fq', `ditav.mods.author.facet:(${filters.authors.map((aName=> `"${aName}"`)).join(' OR ')})`);
   }
 
   return urlObj.toString();
@@ -65,6 +71,10 @@ export function gazinModelToQuery(model: any): any {
 
   if (model.filters.translations.length > 0) {
     query.translations = model.filters.translations.slice();
+  }
+
+  if (model.filters.authors.length > 0) {
+    query.authors = model.filters.authors.slice();
   }
 
   return query;
@@ -90,5 +100,11 @@ export function gazinQueryToModel(query: LocationQuery, model: any) {
     model.filters.translations = Array.isArray(query.translations) ? [...query.translations as string[]] : [query.translations as string];
   } else {
     model.filters.translations = [];
+  }
+
+  if(query.authors) {
+    model.filters.authors = Array.isArray(query.authors) ? [...query.authors as string[]] : [query.authors as string];
+  } else {
+    model.filters.authors = [];
   }
 }
