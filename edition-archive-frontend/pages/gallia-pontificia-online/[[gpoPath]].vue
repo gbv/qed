@@ -2,7 +2,7 @@
   <GalliaPontificiaOnlineLayout>
 
     <template #content>
-      <CMSPage :slug="`/qed${path}`" />
+      <CMSPage default-language="en" :languages="['de', 'en', 'fr']" :slug="`/qed${path}`" />
     </template>
 
   </GalliaPontificiaOnlineLayout>

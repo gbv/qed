@@ -2,7 +2,7 @@
   <GazinLayout :headline="$t('gazin.mainMenu.project')">
 
     <template #content>
-      <CMSPage :slug="`/qed${path}`"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'ku', 'tr']" :slug="`/qed${path}`"/>
     </template>
 
     <template #menu>

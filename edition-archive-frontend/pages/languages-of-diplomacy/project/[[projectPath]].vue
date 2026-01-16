@@ -2,7 +2,7 @@
   <LoDLayout :headline="$t('lod.mainMenu.about')">
 
     <template #content>
-      <CMSPage :slug="`/qed${path}`"/>
+      <CMSPage default-language="en" :languages="['de', 'en']" :slug="`/qed${path}`"/>
     </template>
 
     <template #menu>

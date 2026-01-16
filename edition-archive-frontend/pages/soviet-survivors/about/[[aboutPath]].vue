@@ -2,7 +2,7 @@
   <SovietSurvivorsLayout :headline="$t('lod.mainMenu.about')">
 
     <template #content>
-      <CMSPage :languages="['de', 'en', 'ru']" :slug="`/qed${path}`"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'ru']" :slug="`/qed${path}`"/>
     </template>
 
     <template #menu>
