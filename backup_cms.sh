@@ -87,13 +87,13 @@ curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/schema/snapshot?
 echo "Exporting collections..."
 
 echo "Exporting page translations..."
-curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page_translations?fields=Page_id,content,id,languages_code" | jq ".data" > "${target_dir}/Page_translations.json"
+curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page_translations?fields=Page_id,content,id,languages_code&limit=-1" | jq ".data" > "${target_dir}/Page_translations.json"
 
 echo "Exporting pages..."
-curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page?fields=id,status,slug,project" | jq ".data" > "${target_dir}/Page.json"
+curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/Page?fields=id,status,slug,project&limit=-1" | jq ".data" > "${target_dir}/Page.json"
 
 echo "Exporting languages..."
-curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/languages?fields=code,name,direction" | jq ".data" > "${target_dir}/languages.json"
+curl -X GET -H "Authorization: Bearer ${token}" "${schema_host}/items/languages?fields=code,name,direction&limit=-1" | jq ".data" > "${target_dir}/languages.json"
 
 echo "Exporting files..."
 # get all files
