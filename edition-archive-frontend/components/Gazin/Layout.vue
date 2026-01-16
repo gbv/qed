@@ -65,7 +65,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin/edition-guidelines/transcription">
+                  href="/gazin/guidelines/transcription">
                   {{ $t('gazin.mainMenu.editionGuidelines') }}
                 </nuxt-link>
               </li>

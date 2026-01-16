@@ -7,7 +7,7 @@
           <nuxt-link
             class="nav-link"
             active-class="active"
-            href="/gazin/edition-guidelines/transcription">
+            href="/gazin/guidelines/transcription">
             {{ $t('gazin.subMenu.transcription') }}
           </nuxt-link>
         </li>
@@ -15,7 +15,7 @@
           <nuxt-link
             class="nav-link"
             active-class="active"
-            href="/gazin/edition-guidelines/translation">
+            href="/gazin/guidelines/translation">
             {{ $t('gazin.subMenu.translation') }}
         </nuxt-link>
         </li>
