@@ -16,7 +16,8 @@ const isGBVTerminology = (ref: string) => {
 }
 
 const isGeoNames = (ref: string) => {
-  return ref.startsWith("https://sws.geonames.org/") || ref.startsWith("https://geonames.org/");
+  return ref.startsWith("https://sws.geonames.org/") || ref.startsWith("https://geonames.org/")
+    || ref.startsWith("https://www.geonames.org/");
 };
 
 const props = defineProps<{
