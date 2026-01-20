@@ -102,5 +102,14 @@ const editorOptions: Ref<any> = ref({
 <style lang="scss">
 @import 'tinymce/skins/ui/oxide/skin.min.css';
 
+.cms-editor {
+  min-height: 200px;
+}
+
+.mce-content-body {
+  min-height: 200px;
+  border: 2px solid #F7F7F9;
+}
+
 
 </style>

@@ -229,7 +229,7 @@
           </div>
 
           <!-- Editor Action Buttons -->
-          <div class="d-flex gap-2 justify-content-end mt-3">
+          <div class="d-flex gap-2 justify-content-end mt-3 mb-3">
             <button class="btn btn-secondary" type="button" @click="stopEdit">
               <i class="bi bi-x-circle"> </i>
               {{ $t('cms.page.cancel') }}
