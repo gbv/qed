@@ -406,7 +406,12 @@ const determineInitialTab = (): string => {
   if (hasTranslation(currentLocale)) {
     return currentLocale;
   }
-  
+
+  // If defaultLanguage is set and has content, use it
+  if (props.defaultLanguage && hasTranslation(props.defaultLanguage)) {
+    return props.defaultLanguage;
+  }
+
   // Find first language with content
   for (const lang of orderedLanguages.value) {
     if (hasTranslation(lang)) {
@@ -414,11 +419,6 @@ const determineInitialTab = (): string => {
     }
   }
 
-  // If defaultLanguage is set and has content, use it
-  if (props.defaultLanguage && hasTranslation(props.defaultLanguage)) {
-    return props.defaultLanguage;
-  }
-  
   // Fallback to first language
   return orderedLanguages.value[0] || 'de';
 };
