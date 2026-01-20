@@ -85,6 +85,15 @@
         </template>
       </MODSMetaKeyValue>
 
+      <MODSMetaKeyValue v-if="doi">
+        <template #key>
+          {{ $t("metadata.doi") }}
+        </template>
+        <template #value>
+          {{ doi }}
+        </template>
+      </MODSMetaKeyValue>
+
       <MODSMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
         <template #key>
           {{ $t("metadata.language") }}
@@ -551,6 +560,17 @@ const topicSubjects = computed(() => {
 const geographicSubjects = computed(() => {
   let subjects = getSubjects(mods.value);
   return subjects.filter(subject => subject.geographic.length > 0 || subject.coordinates.length > 0);
+});
+
+const doi = computed(() => {
+  const identifierElements = mods.value.content.filter(byName("mods:identifier")) as XElement[];
+  for (const identifierElement of identifierElements) {
+    const typeAttr = getAttribute(identifierElement, "type");
+    if (typeAttr != null && typeAttr.value === "doi") {
+      return flattenElement(identifierElement);
+    }
+  }
+  return null;
 });
 
 const archive = computed( ()=> {
