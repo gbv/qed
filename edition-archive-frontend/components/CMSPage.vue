@@ -425,13 +425,12 @@ const determineInitialTab = (): string => {
 
 // Update auth header from user store - only if token is valid
 const updateAuthHeader = () => {
+  // Erst Cleanup durchführen um abgelaufene Sessions zu bereinigen
+  userStore.checkAndCleanup();
+  
   if (userStore.hasValidToken()) {
     model.authHeader = { Authorization: `Bearer ${userStore.accessToken}` };
   } else {
-    // Token abgelaufen oder nicht vorhanden - aufräumen und ohne Auth fortfahren
-    if (userStore.accessToken) {
-      userStore.logout();
-    }
     model.authHeader = null;
   }
 };
@@ -584,7 +583,7 @@ const loadPage = async (slug: string) => {
 // Create a new page - opens editor only, actual page creation happens on save
 const createNewPage = async () => {
   // Token erneuern beim Öffnen des Editors
-  await refreshToken();
+  await userStore.refreshToken();
   
   // Initialisiere leere Übersetzungen für alle Sprachen
   const editTranslations: Record<string, EditTranslation> = {};
@@ -608,7 +607,7 @@ const restoreAndEdit = async () => {
   if (!model.page || !model.currentVersion) return;
   
   // Token erneuern beim Öffnen des Editors
-  await refreshToken();
+  await userStore.refreshToken();
   
   // Initialisiere Edit-Translations aus der archivierten Version
   const editTranslations: Record<string, EditTranslation> = {};
@@ -643,7 +642,7 @@ const startEdit = async () => {
   if (!model.page) return;
 
   // Token erneuern beim Öffnen des Editors
-  await refreshToken();
+  await userStore.refreshToken();
 
   // Initialize edit translations for all languages
   const editTranslations: Record<string, EditTranslation> = {};
@@ -914,61 +913,30 @@ watch(() => props.slug, async (newSlug) => {
   await loadPage(newSlug);
 });
 
-// Token refresh function - erneuert den Token beim API
-const refreshToken = async () => {
-  if (!userStore.hasValidToken()) {
-    model.authHeader = null;
-    return;
-  }
-  
-  try {
-    const response = await fetch(`${$cmsURL()}api/v2/auth/renew`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${userStore.accessToken}`
-      }
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      if (data.access_token) {
-        userStore.updateToken(data);
-        model.authHeader = { Authorization: `Bearer ${data.access_token}` };
-        console.log('Token refreshed successfully');
-      }
-    } else if (response.status === 401) {
-      // Token ungültig - ausloggen
-      userStore.logout();
-      model.authHeader = null;
-    }
-  } catch (error) {
-    console.error('Token refresh failed:', error);
-  }
-};
-
 // Initial load
 await loadPage(props.slug);
 
 // Token refresh on client
 if (process.client) {
-  let interval: number | null = null;
-
   onMounted(() => {
-    // Refresh Token alle 5 Minuten wenn eingeloggt
-    interval = window.setInterval(() => {
-      if (userStore.hasValidToken()) {
-        refreshToken();
-      } else {
-        updateAuthHeader();
-      }
-    }, 1000 * 60 * 5); // refresh every 5 minutes
+    // Führe bei Client-Hydration ein Cleanup durch
+    // SSR könnte mit einem noch gültigen Token gerendert haben, der jetzt abgelaufen ist
+    userStore.checkAndCleanup();
+    updateAuthHeader();
+    
+    // Starte Auto-Refresh wenn eingeloggt
+    if (userStore.hasValidToken()) {
+      userStore.startAutoRefresh();
+    }
   });
 
   onUnmounted(() => {
-    if (interval) {
-      clearInterval(interval);
-    }
+    userStore.stopAutoRefresh();
+  });
+  
+  // Reagiere auf Token-Änderungen (z.B. nach Refresh)
+  watch(() => userStore.accessToken, () => {
+    updateAuthHeader();
   });
 }
 </script>

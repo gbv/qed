@@ -34,10 +34,8 @@
 import {useUserStore} from "~/store/UserStore";
 import {useRedirectStore} from "~/store/RedirectStore";
 
-const {$cmsURL} = useNuxtApp();
-
 const redirectStore = useRedirectStore();
-const store = useUserStore();
+const userStore = useUserStore();
 
 let loginData = reactive({
   username: '',
@@ -66,44 +64,26 @@ const userLogin = async () => {
     return;
   }
 
-  // Create Basic Auth header
-  const credentials = btoa(`${loginData.username}:${loginData.password}`);
+  const result = await userStore.login(loginData.username, loginData.password);
   
-  try {
-    const response = await fetch(`${$cmsURL()}api/v2/auth/login`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Basic ${credentials}`
-      }
-    });
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        validate.server = true;
-        validate.username = true;
-        validate.password = true;
-      } else {
-        validate.error = true;
-      }
-      console.error('Login failed:', response.status, response.statusText);
-      return;
-    }
-
-    const tokenData = await response.json();
-    
-    // Store the token
-    store.login(tokenData, loginData.username);
-
-    if(redirectStore.redirectPath) {
-      const path = redirectStore.redirectPath;
-      redirectStore.clearRedirectPath()
-      await navigateTo(path);
+  if (!result.success) {
+    if (result.error === 'invalid_credentials') {
+      validate.server = true;
+      validate.username = true;
+      validate.password = true;
     } else {
-      await navigateTo('/');
+      validate.error = true;
     }
-  } catch (err) {
-    console.error('Login error:', err);
-    validate.error = true;
+    return;
+  }
+
+  // Login erfolgreich - weiterleiten
+  if (redirectStore.redirectPath) {
+    const path = redirectStore.redirectPath;
+    redirectStore.clearRedirectPath();
+    await navigateTo(path);
+  } else {
+    await navigateTo('/');
   }
 }
 </script>
