@@ -227,6 +227,8 @@
     "shelfLocator": "Archivsignatur",
     "download": "Download",
     "downloadText": "Transkript",
+    "downloadOriginal": "Original Herunterladen",
+    "downloadTranslation": "Übersetzung Herunterladen",
     "abstract": {
       "showMore": "Mehr anzeigen",
       "showLess": "Weniger anzeigen"

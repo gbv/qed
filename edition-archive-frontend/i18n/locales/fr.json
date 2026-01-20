@@ -227,6 +227,8 @@
     "shelfLocator": "Cote",
     "download": "Télécharger",
     "downloadText": "Transcript",
+    "downloadOriginal": "Télécharger l'original",
+    "downloadTranslation": "Télécharger la traduction",
     "abstract": {
       "showMore": "Afficher plus",
       "showLess": "Afficher moins"

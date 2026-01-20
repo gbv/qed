@@ -227,6 +227,8 @@
     "shelfLocator": "Shelf Locator",
     "download": "Download",
     "downloadText": "Transcript",
+    "downloadOriginal": "Download Original",
+    "downloadTranslation": "Download Translation",
     "abstract": {
       "showMore": "Show more",
       "showLess": "Show less"
