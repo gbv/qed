@@ -85,15 +85,6 @@
         </template>
       </MODSMetaKeyValue>
 
-      <MODSMetaKeyValue v-if="doi">
-        <template #key>
-          {{ $t("metadata.doi") }}
-        </template>
-        <template #value>
-          {{ doi }}
-        </template>
-      </MODSMetaKeyValue>
-
       <MODSMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
         <template #key>
           {{ $t("metadata.language") }}
@@ -276,6 +267,15 @@
       </MODSMetaKeyValue>
 
       <slot name="downloadLink" v-if="slots.downloadLink" />
+
+      <MODSMetaKeyValue v-if="doi">
+        <template #key>
+          {{ $t("metadata.doi") }}
+        </template>
+        <template #value>
+          <a :href="`https://dx.doi.org/${doi}`">{{ doi }}</a>
+        </template>
+      </MODSMetaKeyValue>
 
     </div>
   </div>
