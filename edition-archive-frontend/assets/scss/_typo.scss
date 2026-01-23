@@ -62,6 +62,12 @@
         color: $secondary;
         margin-left: .25rem;
       }
+      /* show cite icon for project DOIs */
+      &[href*="dx.doi.org/10.58137"]::after {
+        content: "\F470";
+        font-size: 22px;
+        bottom: -5px;
+      }
     }
   }
 
