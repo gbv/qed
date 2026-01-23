@@ -190,13 +190,15 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
   let urlPresent: boolean = false;
 
   if (xml != null) {
-    const location = findFirstElement(xml, byName("mods:location"));
+    const modsRoot = findFirstElement(xml, byName("mods:mods"));
+    const locationElement = modsRoot?.content.find((elem) => elem.type === 'Element' && elem.name === "mods:location") as XElement | undefined || null;
 
-    if (location != null) {
-      const urlElement = flattenElement(findFirstElement(location, byName("mods:url")));
+    if (locationElement != null) {
+      const urlElement = findFirstElement(locationElement, byName("mods:url"));
       if (urlElement != null) {
+        const url = flattenElement(urlElement)?.trim() ?? "";
         const urlRegexp = /https?:\/\/perspectivia\.net\/receive\/(?<objectID>[A-Za-z]+_mods_\d+)/;
-        const match = urlElement.match(urlRegexp);
+        const match = url.match(urlRegexp);
         const objectID = match?.groups?.objectID;
         if (objectID != null) {
           const newURL = `https://perspectivia.net/api/v2/objects/${objectID}`;
