@@ -158,7 +158,6 @@
       "cite": "Sowjetische Zeitzeugen der NS-Herrschaft: die ersten Interviews. Digitale Edition herausgegeben von Jochen Hellbeck, Viktoria Naumenko, Darja Lotareva. Bonn: perspectivia.net, 2025."
     }
   },
-
   "gazin": {
     "project": {
       "headline": "Dengbêj Gazîn: Die Lieder einer Kurdin"
@@ -167,7 +166,7 @@
       "home": "Start",
       "edition": "Edition",
       "search": "Lieder",
-      "editionGuidelines": "Editionsrichtlinien",
+      "editionGuidelines": "Richtlinien",
       "citation": "Zitierhinweis",
       "contact": "Kontakt"
     },
@@ -181,8 +180,8 @@
       "translation": "Übersetzung"
     },
     "metadata": {
-      "copyright": "© Copyright 2025 - Alle Medien sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC-BY 4.0",
-      "cite": "Dengbêj Gazîn: Die Lieder einer Kurdin. Digitale Edition herausgegeben von Argun Çakır. Bonn: perspectivia.net, 2025.",
+      "copyright": "© Copyright 2026 - Alle Medien sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC-BY 4.0",
+      "cite": "Dengbêj Gazîn: Die Lieder einer Kurdin. Digitale Edition herausgegeben von Argun Çakır. Bonn: perspectivia.net, 2026.",
       "transcription": "Transkription"
     }
   },
@@ -213,6 +212,7 @@
       "altLabel": "Alternativer Begriff",
       "definition": "Definition"
     },
+    "doi": "DOI",
     "showImage": "Bild anzeigen",
     "original": "Original",
     "translation": "Übersetzung",
@@ -227,6 +227,8 @@
     "shelfLocator": "Archivsignatur",
     "download": "Download",
     "downloadText": "Transkript",
+    "downloadOriginal": "Original herunterladen",
+    "downloadTranslation": "Übersetzung herunterladen",
     "abstract": {
       "showMore": "Mehr anzeigen",
       "showLess": "Weniger anzeigen"
@@ -310,7 +312,8 @@
       "language": "Sprache",
       "translation_present": "Übersetzung vorhanden",
       "tr_translation_present": "Übersetzung ins Türkische vorhanden",
-      "song_type": "Liedtyp"
+      "song_type": "Liedtyp",
+      "author": "Autor"
     },
     "field": {
       "allMetaHelp": "Durchsucht alle Metadaten nach dem eingegebenen Suchbegriff",
@@ -347,11 +350,53 @@
       "editTranslation": "Bearbeiten",
       "draft": "Als Entwurf markieren",
       "publish": "Veröffentlichen",
+      "archive": "Archivieren",
+      "noContent": "kein Inhalt",
+      "noContentForLanguage": "Kein Inhalt in dieser Sprache verfügbar.",
+      "new": "neu",
+      "title": "Titel",
+      "titlePlaceholder": "Seitentitel eingeben...",
+      "content": "Inhalt",
+      "cancel": "Abbrechen",
+      "saveAsDraft": "Als Entwurf speichern",
+      "saveAndPublish": "Speichern und veröffentlichen",
+      "comment": "Kommentar zur Änderung",
+      "commentPlaceholder": "Beschreiben Sie kurz, was geändert wurde...",
+      "saveError": "Fehler beim Speichern der Seite.",
+      "archiveError": "Fehler beim Archivieren der Seite.",
+      "confirmArchive": "Möchten Sie diese Seite wirklich archivieren? Sie wird nicht mehr öffentlich sichtbar sein.",
+      "versionHistory": "Versionshistorie",
+      "version": "Version",
+      "noVersions": "Keine Versionen vorhanden.",
+      "loadVersion": "Diese Version laden",
+      "loadVersionError": "Fehler beim Laden der Version.",
+      "draftWarning": {
+        "title": "Entwurf!",
+        "message": "Diese Seite ist noch nicht veröffentlicht. Die Änderungen sind für andere Benutzer nicht sichtbar."
+      },
+      "status": {
+        "draft": "Entwurf",
+        "published": "Veröffentlicht",
+        "archived": "Archiviert"
+      },
       "translation": {
         "new": "Neue Übersetzung",
         "delete": "Löschen",
         "confirmDelete": "Soll die Übersetzung wirklich gelöscht werden?"
       },
+      "notFound": {
+        "title": "Seite nicht gefunden",
+        "message": "Die Seite '{slug}' existiert noch nicht.",
+        "createButton": "Seite erstellen",
+        "creating": "Seite wird erstellt..."
+      },
+      "archived": {
+        "title": "Seite archiviert",
+        "message": "Diese Seite wurde archiviert und ist nicht mehr öffentlich sichtbar.",
+        "restoreButton": "Wiederherstellen und bearbeiten"
+      },
+      "noWritePermission": "Sie haben keine Berechtigung, diese Seite zu bearbeiten.",
+      "createError": "Fehler beim Erstellen der Seite",
       "editor": {
         "capitalize": "Kapitälchen",
         "bibl": {
@@ -392,15 +437,16 @@
     "photo": "Foto"
   },
   "login": {
+    "username": "Benutzername",
     "email": "Email",
     "error": "Unbekannter Fehler beim Login",
-    "invalid": "Ungültige Email oder Passwort",
-    "password": "Password",
-    "submit": "Login",
-    "title": "Login",
+    "invalid": "Ungültiger Benutzername oder Passwort",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "title": "Anmeldung",
     "menu": {
-      "login": "Login",
-      "logout": "Logout"
+      "login": "Anmelden",
+      "logout": "Abmelden"
     }
   },
   "url_type_arlima.net": "Arlima.net",

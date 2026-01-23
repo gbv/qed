@@ -2,7 +2,7 @@
   <GazinLayout :headline="$t('gazin.mainMenu.project')">
 
     <template #content>
-      <CMSPage :slug="$route.path"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'ku', 'tr']" :slug="`/qed${path}`"/>
     </template>
 
     <template #menu>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute();
+  const {path} = useRoute();
 </script>
 
 <style scoped>

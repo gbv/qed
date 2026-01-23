@@ -2,16 +2,7 @@
   <div>
     <template v-if="body">
       <div class="transcription">
-        <tei-element-convert :tei-element="body" :hook="hook">
-          <template #default="{ element }">
-            <tei-editorial-note v-if="isEditorialNoteRef(element)" :note="element" />
-            <tei-ref-element
-              v-else-if="element.type === 'Element' && (element.name === 'persName' || element.name === 'orgName' || element.name === 'placeName')"
-              :element="element"
-            />
-            <!-- v-if isEdtitorialNoteNote(element) ignore the element-->
-          </template>
-        </tei-element-convert>
+        <tei-element-convert :tei-element="body" />
       </div>
     </template>
     <div v-else class="text-center">
@@ -22,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-
-import {type TEINode, type TEIComment, type TEIText, type TEIElement} from "~/api/tei.model";
 
 const props = defineProps<{ teiUrl: string }>();
 
@@ -43,27 +32,7 @@ const body = computed(() => {
   return tei.find("body").toArray()[0] || null;
 });
 
-const isEditorialNoteRef = (el: TEIElement | TEIText | TEIComment) => {
-  return el.type == "Element" && el.name == "ref" && el.attributes.type == "editorialNote";
-}
 
-const isEdtitorialNoteNote = (el: TEINode) => {
-  return el.type == "Element" && el.name == "note" && el.attributes.type == "editorial";
-}
-
-const hook = (el: TEINode) => {
-  if(isEditorialNoteRef(el)) {
-    return true;
-  }
-  if(isEdtitorialNoteNote(el)) {
-    return true;
-  }
-  if(el.type === "Element" && (el.name === "persName" || el.name === "orgName" || el.name === "placeName")) {
-    return true;
-  }
-
-  return false;
-}
 
 </script>
 

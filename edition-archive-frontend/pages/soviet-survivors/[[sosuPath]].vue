@@ -2,7 +2,7 @@
   <SovietSurvivorsLayout>
 
     <template #content>
-      <CMSPage :slug="$route.path"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'ru']" :slug="`/qed${path}`"/>
 
       <div v-if="$route.path=='/soviet-survivors/' && solrResponse!=null" class="row">
         <div class="col-12">

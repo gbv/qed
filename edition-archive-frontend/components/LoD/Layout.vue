@@ -57,7 +57,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/languages-of-diplomacy/edition-guidelines">
+                  href="/languages-of-diplomacy/guidelines">
                   {{ $t('lod.mainMenu.editionGuidelines') }}
                 </nuxt-link>
               </li>

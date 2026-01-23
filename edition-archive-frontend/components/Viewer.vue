@@ -42,12 +42,6 @@
                 v-on:page-break-in-view="changeImage"
                 v-on:image-icon-clicked="changeImage"
               />
-              <tei-ref-element
-                v-else-if="element.type === 'Element' && (element.name === 'persName' || element.name === 'orgName' || element.name === 'placeName')"
-                :element="element"
-              />
-              <tei-editorial-note v-else-if="element.type === 'Element' && element.name === 'note' && element.attributes.type === 'editorial'"
-                :note="element" />
             </template>
           </tei-element-convert>
         </div>
@@ -87,19 +81,6 @@ const elementFilter = (el: TEINode) => {
     if(el.name === 'pb') {
       return true;
     }
-
-    if(el.name === 'orgName') {
-      return true;
-    }
-
-    if(el.name === 'persName') {
-      return true;
-    }
-
-    if(el.name === 'placeName') {
-      return true;
-    }
-
   }
 
   return false;

@@ -8,15 +8,15 @@
           </div>
           <div class="card-body">
             <form @submit.prevent="userLogin">
-              <div class="form-group">
-                <label for="email">{{ $t('login.email') }}</label>
-                <input id="email" v-model="loginData.email" :class="!validate.server && !validate.email ? '':'is-invalid'"
-                       class="form-control" type="email">
+              <div class="form-group mb-3">
+                <label for="username">{{ $t('login.username') }}</label>
+                <input id="username" v-model="loginData.username" :class="!validate.server && !validate.username ? '':'is-invalid'"
+                       class="form-control" type="text">
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="password">{{ $t('login.password') }}</label>
                 <input id="password" v-model="loginData.password"
-                       :class="!validate.server && !validate.email ? '':'is-invalid'"
+                       :class="!validate.server && !validate.password ? '':'is-invalid'"
                        class="form-control" type="password">
               </div>
               <div v-if="validate.server" class="alert alert-danger">{{ $t("login.invalid") }}</div>
@@ -33,97 +33,58 @@
 <script lang="ts" setup>
 import {useUserStore} from "~/store/UserStore";
 import {useRedirectStore} from "~/store/RedirectStore";
-import {type AuthResult, type UserType} from "@directus/sdk"
-
-const {$directusURL} = useNuxtApp();
 
 const redirectStore = useRedirectStore();
-const store = useUserStore();
+const userStore = useUserStore();
 
 let loginData = reactive({
-  email: '',
+  username: '',
   password: ''
 });
 
 let validate = reactive({
-  email: false,
+  username: false,
   password: false,
   server: false,
   error: false
 });
 
-const emailChanged = () => {
-  validate.email = false;
-  validate.server = false;
-}
-
-const passwordChanged = () => {
-  validate.password = false;
-  validate.server = false;
-}
-
 const userLogin = async () => {
-  validate.email = false;
+  validate.username = false;
   validate.password = false;
   validate.server = false;
   validate.error = false;
 
-  if ((loginData.email || "").trim().length == 0) {
-    validate.email = true;
+  if ((loginData.username || "").trim().length == 0) {
+    validate.username = true;
     return;
   }
   if ((loginData.password || "").trim().length == 0) {
     validate.password = true;
     return;
   }
-  const {data, error} = await useFetch($directusURL() + '/auth/login', {
-    method: 'POST',
-    body: JSON.stringify(loginData),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
 
-  if (error.value) {
-    if (error.value.statusCode) {
-      if (error.value.statusCode === 401) {
-        validate.server = true;
-        validate.email = true;
-        validate.password = true;
-
-      } else {
-        validate.error = true;
-      }
+  const result = await userStore.login(loginData.username, loginData.password);
+  
+  if (!result.success) {
+    if (result.error === 'invalid_credentials') {
+      validate.server = true;
+      validate.username = true;
+      validate.password = true;
+    } else {
+      validate.error = true;
     }
-    console.error(error.value);
     return;
   }
 
-  const tokenData = ((data.value as any).data as AuthResult);
-
-  const userResp = await useFetch($directusURL() + '/users/me', {
-    headers: {
-      'Authorization': `Bearer ${tokenData.access_token}`
-    }
-  });
-
-  if (userResp.error.value) {
-    console.error(userResp.error.value);
-    return;
-  }
-
-  const userData = ((userResp.data.value as any).data) as UserType;
-  store.login(tokenData, userData);
-
-
-  if(redirectStore.redirectPath) {
+  // Login erfolgreich - weiterleiten
+  if (redirectStore.redirectPath) {
     const path = redirectStore.redirectPath;
-    redirectStore.clearRedirectPath()
+    redirectStore.clearRedirectPath();
     await navigateTo(path);
-  }else {
+  } else {
     await navigateTo('/');
   }
-
 }
 </script>
 

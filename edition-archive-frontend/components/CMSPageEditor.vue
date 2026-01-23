@@ -1,6 +1,8 @@
 <template>
-  <editor v-model="model.content" :init="editorOptions">
-  </editor>
+  <div class="cms-editor">
+    <editor v-model="model.content" :init="editorOptions">
+    </editor>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -45,9 +47,15 @@ const model = reactive({
   content: props.content,
 });
 
-const saveContent = () => {
-  emit('save', model.content);
-}
+// Watch for content prop changes
+watch(() => props.content, (newContent) => {
+  model.content = newContent;
+});
+
+// Watch for internal changes and emit save
+watch(() => model.content, (newContent) => {
+  emit('save', newContent);
+});
 
 const cancelSave = () => {
   emit('cancel');
@@ -73,12 +81,11 @@ const editorOptions: Ref<any> = ref({
   "menubar": false,
   "statusbar": false,
   "toolbar_persist": true,
-  "plugins": "save media table hr lists image link pagebreak code insertdatetime autoresize paste preview fullscreen directionality",
-  "toolbar": "save cancel | bold italic underline capitalize | h1 h2 h3 h4 | aligncenter alignjustify alignleft alignright alignnone | numlist bullist | removeformat blockquote | bibl image | hr code",
+  "plugins": "media table hr lists image link pagebreak code insertdatetime autoresize paste preview fullscreen directionality",
+  "toolbar": "cancel | bold italic underline capitalize | h1 h2 h3 h4 | aligncenter alignjustify alignleft alignright alignnone | numlist bullist | removeformat blockquote | bibl image | hr code",
   "formats": {
     smallcaps: {inline: 'span', styles: {'font-variant': 'small-caps'}},
   },
-  "save_onsavecallback": saveContent,
   "save_oncancelcallback": cancelSave,
   "images_upload_handler": fileUpload as any,
   "setup": setup,
@@ -94,6 +101,15 @@ const editorOptions: Ref<any> = ref({
 
 <style lang="scss">
 @import 'tinymce/skins/ui/oxide/skin.min.css';
+
+.cms-editor {
+  min-height: 200px;
+}
+
+.mce-content-body {
+  min-height: 200px;
+  border: 2px solid #F7F7F9;
+}
 
 
 </style>

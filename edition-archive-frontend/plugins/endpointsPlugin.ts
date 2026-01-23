@@ -39,7 +39,14 @@ export default defineNuxtPlugin({
           } else {
             return config.public.directusURL;
           }
-        }, 'backendURL': () => {
+        }, 'cmsURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.cmsServer;
+          } else {
+            return config.public.cms;
+          }
+        },
+        'backendURL': () => {
           if (import.meta.server && !import.meta.dev) {
             return config.public.backendURLServer;
           } else {

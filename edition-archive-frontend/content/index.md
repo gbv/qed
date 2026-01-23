@@ -69,6 +69,37 @@
     public.
     ::::
   :::
+#gazin
+  :::ContentCard
+  ---
+  img-href: /images/card-back-gazin.jpg
+  img-alt: "Foto der kurdischen Dengbêj-Sängerin Gazîn"
+  link: gazin
+  card-class: active
+  cc-author: "Hürü Kaya"
+  cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Photo_Dengbej_Gazin_2012.jpg"
+  cc-licence-text: "CC BY 4.0"
+  cc-licence-link: "https://creativecommons.org/licenses/by/4.0/deed.de"
+  ---
+  #title
+    ::::LanguageSection{fallback=de}
+    #de
+    Dengbêj Gazîn: Die Lieder einer Kurdin
+    #en
+    Dengbêj Gazîn: Songs of a Kurdish Woman
+    #fr
+    Dengbêj Gazîn: Les chansons d'une femme kurde
+    ::::
+  #default
+    ::::LanguageSection{fallback=de}
+    #de
+    Eine digitale Edition von Liedern (Audio und Liedertexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazîn (1959-2018) in Kurmanji mit türkischen Übersetzungen.
+    #en
+    A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazîn (1959-2018) in Kurmanji with Turkish translations.
+    #fr
+    Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazîn (1959-2018) en kurmanji avec des traductions en turc.
+    ::::
+  :::
 #lod
   :::ContentCard
   ---
@@ -99,37 +130,6 @@
     L’édition numérique est élaborée dans le cadre du projet de recherche « Les langues de la diplomatie en
     Russie au XVIIIe siècle dans le contexte européen », financé par la Fondation allemande pour la recherche
     (2022-2026).
-    ::::
-  :::
-#gazin
-  :::ContentCard
-  ---
-  img-href: /images/card-back-gazin.jpg
-  img-alt: "Foto der kurdischen Dengbêj-Sängerin Gazîn"
-  link: gazin
-  card-class: active
-  cc-author: "Hürü Kaya"
-  cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Photo_Dengbej_Gazin_2012.jpg"
-  cc-licence-text: "CC BY 4.0"
-  cc-licence-link: "https://creativecommons.org/licenses/by/4.0/deed.de"
-  ---
-  #title
-    ::::LanguageSection{fallback=de}
-    #de
-    Dengbêj Gazîn: Die Lieder einer Kurdin
-    #en
-    Dengbêj Gazîn: Songs of a Kurdish Woman
-    #fr
-    Dengbêj Gazîn: Les chansons d'une femme kurde
-    ::::
-  #default
-    ::::LanguageSection{fallback=de}
-    #de
-    Eine digitale Edition von Liedern (Audio und Liedertexte) aus dem Repertoire der kurdischen Dengbêj-Sängerin Gazîn (1959-2018) in Kurmanji mit türkischen Übersetzungen.
-    #en
-    A digital scholarly edition of songs (audio and lyrics) from the repertoire of the Kurdish singer Dengbêj Gazîn (1959-2018) in Kurmanji with Turkish translations.
-    #fr
-    Une édition numérique de chansons (audio et paroles) du répertoire de la chanteuse kurde Dengbêj Gazîn (1959-2018) en kurmanji avec des traductions en turc.
     ::::
   :::
 #latour

@@ -32,8 +32,10 @@
                   {{ $t("metadata.download") }}
                 </template>
                 <template #value>
-                  <a :href="downloadLinkTranscription" :download="`transcription-${mycoreId}.xml`">
-                    <span class="bi bi-file-earmark-zip"/>{{ $t("metadata.downloadText") }}
+                  <a v-if="data" :href="downloadLinkTranscription" :download="`transcription-${mycoreId}.xml`">
+                    <span class="bi bi-file-earmark-zip"/>
+                    <span class="download-original" v-if="isOriginal"> {{ $t("metadata.downloadOriginal") }}</span>
+                    <span class="download-translation" v-else> {{ $t("metadata.downloadTranslation") }}</span>
                   </a>
                 </template>
               </MODSMetaKeyValue>
@@ -99,7 +101,7 @@ import {
   findElement,
   findFirstElement,
   flattenElement,
-  getAttribute,
+  getAttribute, type XElement,
   XMLApi
 } from '~/api/XMLApi';
 import {getMyCoReId, getMyCoReIdNumber} from '~/api/MyCoRe';
@@ -162,7 +164,8 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
     filters: {
       genres: [],
       languages: [],
-      translations: []
+      translations: [],
+      authors: []
     } as GazinFilters,
     start: 0
   };
@@ -298,6 +301,21 @@ const derivateInfo = computed(() => {
   const mainDoc = flattenElement(findElement(derivate, byName("maindoc"))[0]);
 
   return {id, mainDoc};
+});
+
+const isOriginal = computed(() => {
+  const mods = findFirstElement(data.value?.xml, byName("mods:mods"));
+  if(mods) {
+    const relatedItems = mods.content.filter((elem) => elem.type == 'Element' && elem.name === "mods:relatedItem");
+    for(let relatedItemAny of relatedItems) {
+      const relatedItem = relatedItemAny as XElement;
+      const typeAttr = getAttribute(relatedItem, "type");
+      if (typeAttr?.value === "original") {
+        return false;
+      }
+    }
+  }
+  return true;
 });
 
 

@@ -92,6 +92,24 @@
             </ul>
           </div>
 
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.author") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="author in model.facets.authors"
+                :class="model.filters.authors.indexOf(author.name) > -1 ? 'active' : ''"
+                v-on:click="clickAuthosFacet(author.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <div class="d-flex">
+                  <i v-if="model.filters.authors.indexOf(author.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                 {{ author.name }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ author.count }}</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </template>
@@ -121,11 +139,13 @@ const model = reactive({
   start: parseInt(route.query.start as string) || 0,
   filters: {
     genres: [],
-    translations: []
+    translations: [],
+    authors: []
   } as GazinFilters,
   facets: {
     genres: [] as FacetEntry[],
-    translations: [] as FacetEntry[]
+    translations: [] as FacetEntry[],
+    authors: [] as FacetEntry[]
   }
 });
 
@@ -144,6 +164,7 @@ const search = async () => {
   const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
   model.facets.genres = [];
   model.facets.translations = [];
+  model.facets.authors = [];
   for (let i = 0; i < categoryTopFacet.length; i += 2) {
     const value = categoryTopFacet[i] as string;
     if (value?.startsWith('gazin_genres:')) {
@@ -158,6 +179,14 @@ const search = async () => {
       });
     }
 
+  }
+
+  const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.author.facet'] || [];
+  for (let i = 0; i < authorFacet.length; i += 2) {
+    model.facets.authors.push({
+      name: authorFacet[i] as string,
+      count: authorFacet[i + 1]
+    });
   }
 };
 
@@ -187,6 +216,18 @@ const clickTranslationFacet = async (translation: string) => {
   await updateQuery({
     ...gazinModelToQuery(model),
     translations,
+    start: '0'
+  });
+};
+
+const clickAuthosFacet = async (author: string) => {
+  const authors = model.filters.authors.indexOf(author) > -1
+    ? model.filters.authors.filter((a) => a !== author)
+    : [...model.filters.authors, author];
+
+  await updateQuery({
+    ...gazinModelToQuery(model),
+    authors,
     start: '0'
   });
 };

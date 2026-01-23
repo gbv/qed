@@ -2,7 +2,7 @@
   <LoDLayout>
 
     <template #content>
-      <CMSPage :slug="$route.path"/>
+      <CMSPage default-language="en" :languages="['de', 'en']" :slug="`/qed${path}`"/>
     </template>
 
   </LoDLayout>

@@ -3,7 +3,7 @@
         v-bind="attributes">
     <template v-for="child in children">
       <ElementConvert
-        v-if="props.hook == undefined || !props.hook(child)"
+        v-if="!defaultHook(child) && (props.hook == undefined || !props.hook(child) || $slots.default)"
         :tei-element="child"
         :hook="props.hook"
       >
@@ -11,8 +11,15 @@
           <slot name="default" v-bind="slotProps"></slot>
         </template>
       </ElementConvert>
-      <template v-else-if="$slots.default">
+      <template v-else-if="$slots.default && props.hook != undefined && props.hook(child)">
         <slot name="default" :element="child" />
+      </template>
+      <template v-else-if="child.type == 'Element' && defaultHook(child)">
+        <tei-ref-element
+          v-if="(child.name === 'persName' || child.name === 'orgName' || child.name === 'placeName')"
+          :element="child"
+        />
+        <tei-editorial-note v-if="isEditorialNoteRef(child)" :note="child" />
       </template>
     </template>
   </span>
@@ -24,6 +31,28 @@
 <script setup lang="ts">
 import {type TEIComment, type TEIElement, type TEINode, type TEIText} from "~/api/tei.model";
 
+
+const isEditorialNoteRef = (el: TEIElement | TEIText | TEIComment) => {
+  return el.type == "Element" && el.name == "ref" && el.attributes.type == "editorialNote";
+}
+
+const isEdtitorialNoteNote = (el: TEINode) => {
+  return el.type == "Element" && el.name == "note" && el.attributes.type == "editorial";
+}
+
+const defaultHook = (el: TEINode) => {
+  if (isEditorialNoteRef(el)) {
+    return true;
+  }
+  if (isEdtitorialNoteNote(el)) {
+    return true;
+  }
+  if (el.type === "Element" && (el.name === "persName" || el.name === "orgName" || el.name === "placeName")) {
+    return true;
+  }
+
+  return false;
+}
 
 const props = defineProps<{
   teiElement: TEINode,

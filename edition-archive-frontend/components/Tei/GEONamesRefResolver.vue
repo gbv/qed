@@ -61,6 +61,7 @@ const resolveGeoNames = async (ref: string) => {
   console.log("Resolving GeoNames ref:", ref);
   const geonameIdMatch = ref.match(/https:\/\/sws\.geonames\.org\/(\d+)/);
   const geonameIdMatchAlt = ref.match(/https:\/\/geonames\.org\/(\d+)/);
+  const geonameIdMatchAlt2 = ref.match(/https:\/\/www\.geonames\.org\/(\d+)/);
 
 
   let geonameId;
@@ -68,6 +69,8 @@ const resolveGeoNames = async (ref: string) => {
     geonameId = geonameIdMatch[1];
   } else if(geonameIdMatchAlt != null && geonameIdMatchAlt.length > 1) {
     geonameId = geonameIdMatchAlt[1];
+  } else if(geonameIdMatchAlt2 != null && geonameIdMatchAlt2.length > 1) {
+    geonameId = geonameIdMatchAlt2[1];
   } else {
     console.warn("GeoNames ref does not contain a valid geonameId:", ref);
     return null;

@@ -2,7 +2,7 @@
   <GazinLayout>
 
     <template #content>
-      <CMSPage :slug="$route.path"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'ku', 'tr']" :slug="`/qed${path}`"/>
     </template>
 
   </GazinLayout>
