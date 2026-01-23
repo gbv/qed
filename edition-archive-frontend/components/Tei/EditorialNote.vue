@@ -1,5 +1,6 @@
 <template>
-  <a class="editorial-note" v-on:click.prevent="open=!open" href="#note"><i class="bi bi-chat-right-text"></i> {{ $tei(props.note).text() }}</a>
+  <a class="editorial-note" v-on:click.prevent="open=!open" href="#note"><i class="bi bi-chat-right-text"></i>
+  <TeiElementConvert :tei-element="props.note" /></a>
   <div v-if="open" class="popout">
     <a class="close icon-link float-end" href="#hide" v-on:click.prevent="open=!open"><i
       class="bi bi-x-circle"></i></a>

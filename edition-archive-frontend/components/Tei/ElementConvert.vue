@@ -19,10 +19,7 @@
           v-if="(child.name === 'persName' || child.name === 'orgName' || child.name === 'placeName')"
           :element="child"
         />
-        <tei-editorial-note
-          v-else-if="child.name === 'note' && child.attributes.type === 'editorial'"
-          :note="child"
-        />
+        <tei-editorial-note v-if="isEditorialNoteRef(child)" :note="child" />
       </template>
     </template>
   </span>
