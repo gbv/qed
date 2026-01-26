@@ -41,7 +41,7 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/gazin">
+                  href="/gazin/">
                   {{ $t('gazin.mainMenu.home') }}
                 </nuxt-link>
               </li>
