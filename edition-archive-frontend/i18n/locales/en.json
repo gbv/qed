@@ -116,18 +116,32 @@
       "home": "Home",
       "project": "About",
       "search": "Documents",
+      "indices": "Indices",
       "editionGuidelines":"Guidelines",
-      "contact": "Contact"
+      "contact": "Contact",
+      "citation": "Citation"
     },
     "subMenu": {
       "subMenu": "Page menu",
       "openSubMenu": "Open page menu",
-      "intro": "Introduction",
+      "intro": "Project",
       "team": "Team",
-      "projectPartner": "Partner",
+      "acknowledgments": "Acknowledgments",
       "publications": "Main Project Publications",
-      "citation": "Citation",
-      "export": "Data Export"
+      "export": "Data Export",
+      "types": "Document Types and Provenance",
+      "descriptions": "Document Descriptions",
+      "metadata": "Indexing and Metadata",
+      "titles": "Document Titles",
+      "names": "Personal and Geographical Names",
+      "dates": "Dates",
+      "principles": "Principles of Text Transmission and Presentation",
+      "copies": "Facsimile Copies of the Documents",
+      "marking": "Marking of Mentioned Persons, Organizations, and Place Names",
+      "commentary": "Commentary",
+      "references": "References to Source Publications and Studies",
+      "tei": "Principles of TEI Text Encoding"
+
     },
     "metadata": {
       "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",

@@ -114,20 +114,33 @@
   "lod": {
     "mainMenu": {
       "home": "Home",
-      "project": "Projet",
+      "project": "À propos de",
       "search": "Document",
+      "indices": "Indizes",
       "editionGuidelines":"Lignes directrices",
-      "contact": "Contact"
+      "contact": "Contact",
+      "citation": "Citation"
     },
     "subMenu": {
       "subMenu": "Menu de la page",
       "openSubMenu": "Ouvrir le menu de la page",
-      "intro": "Introduction",
+      "intro": "Projet",
       "team": "Équipe",
-      "projectPartner": "Partenaire",
-      "publications": "Main Project Publications",
-      "citation": "Citation",
-      "export": "Data Export"
+      "acknowledgments": "Remerciements",
+      "publications": "Principales publications du projet",
+      "export": "Exportation des données",
+      "types" : "Types et provenance des documents",
+      "descriptions" : "Descriptions des documents",
+      "metadata" : "Indexation et métadonnées",
+      "titles" : "Titres des documents",
+      "names" : "Noms de personnes et noms géographiques",
+      "dates" : "Dates",
+      "principles" : "Principes de transmission et de présentation du texte",
+      "copies" : "Copies fac-similées des documents",
+      "marking" : "Marquage des personnes, organisations et noms de lieux mentionnés",
+      "commentary" : "Commentaires",
+      "references" : "Références aux publications et études sources",
+      "tei" : "Principes de codage de texte TEI"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0",
