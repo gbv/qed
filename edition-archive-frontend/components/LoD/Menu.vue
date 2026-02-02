@@ -86,11 +86,6 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/guidelines/references">
-            {{ $t('lod.subMenu.references') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/guidelines/tei">
             {{ $t('lod.subMenu.tei') }}
           </nuxt-link>

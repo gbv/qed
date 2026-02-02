@@ -139,7 +139,6 @@
       "copies" : "Copies fac-similées des documents",
       "marking" : "Marquage des personnes, organisations et noms de lieux mentionnés",
       "commentary" : "Commentaires",
-      "references" : "Références aux publications et études sources",
       "tei" : "Principes de codage de texte TEI"
     },
     "metadata": {
@@ -199,15 +198,14 @@
     }
   },
   "language": {
-    "de": "Allemand",
-    "en": "Anglais",
+    "de": "Deutsch",
+    "en": "English",
     "fr": "Français",
-    "it": "Italien",
-    "la": "Latin",
-    "pl": "Polonais",
-    "ru": "Russe",
-    "tr": "Turc",
-    "ku": "Kurde"
+    "it": "Italiano",
+    "ru": "Pусский",
+    "tr": "Türkçe",
+    "ku": "Kurdî",
+    "uk": "Yкраїнська"
   },
   "metadata": {
     "geonames": {
@@ -446,8 +444,8 @@
     "close": "Fermer"
   },
   "cc": {
-    "by": "von",
-    "photo": "Foto"
+    "by": ":",
+    "photo": "Photo"
   },
   "login": {
     "username": "Nom d'utilisateur",

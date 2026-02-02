@@ -139,7 +139,6 @@
       "copies": "Faksimile-Kopien der Dokumente",
       "marking": "Kennzeichnung der erwähnten Personen, Organisationen und Ortsnamen",
       "commentary": "Kommentar",
-      "references": "Verweise auf Quellenpublikationen und Studien",
       "tei": "Grundsätze der TEI-Textkodierung"
     },
     "metadata": {
@@ -200,14 +199,13 @@
   },
   "language": {
     "de": "Deutsch",
-    "en": "Englisch",
-    "fr": "Französisch",
-    "it": "Italienisch",
-    "la": "Latein",
-    "pl": "Polnisch",
-    "ru": "Russisch",
-    "tr": "Türkisch",
-    "ku": "Kurdisch"
+    "en": "English",
+    "fr": "Français",
+    "it": "Italiano",
+    "ru": "Pусский",
+    "tr": "Türkçe",
+    "ku": "Kurdî",
+    "uk": "Yкраїнська"
   },
   "metadata": {
     "geonames": {
@@ -446,8 +444,8 @@
     "close": "Schließen"
   },
   "cc": {
-    "by": "von",
-    "photo": "Foto"
+    "by": "",
+    "photo": "Foto:"
   },
   "login": {
     "username": "Benutzername",
