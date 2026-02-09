@@ -2,7 +2,7 @@
   <LoDLayout>
 
     <template #content>
-      <CMSPage default-language="en" :languages="['de', 'en']" :slug="`/qed${path}`"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'fr', 'ru']" :slug="`/qed${path}`"/>
     </template>
 
   </LoDLayout>
