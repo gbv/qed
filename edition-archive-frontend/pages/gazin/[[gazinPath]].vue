@@ -2,7 +2,7 @@
   <GazinLayout>
 
     <template #content>
-      <CMSPage default-language="en" :languages="['de', 'en', 'ku', 'tr']" :slug="`/qed${path}`"/>
+      <CMSPage default-language="en" :languages="['de', 'en', 'ku', 'tr']" :slug="`/qed${computedPath}`"/>
     </template>
 
   </GazinLayout>
@@ -11,6 +11,13 @@
 <script lang="ts" setup>
 
 const {path} = useRoute()
+
+const computedPath = computed(() => {
+  if (path == '/gazin') {
+    return '/gazin/'
+  }
+  return path;
+})
 
 </script>
 <style scoped>
