@@ -57,14 +57,6 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
-                  href="/languages-of-diplomacy/guidelines">
-                  {{ $t('lod.mainMenu.editionGuidelines') }}
-                </nuxt-link>
-              </li>
-              <li class="nav-item">
-                <nuxt-link
-                  class="nav-link"
-                  active-class="active"
                   href="/languages-of-diplomacy/search/">
                   {{ $t('lod.mainMenu.search') }}
                 </nuxt-link>
@@ -73,8 +65,24 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
+                  href="/languages-of-diplomacy/guidelines">
+                  {{ $t('lod.mainMenu.editionGuidelines') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
                   href="/languages-of-diplomacy/contact">
                   {{ $t('lod.mainMenu.contact') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
+                  href="/languages-of-diplomacy/citation">
+                  {{ $t('lod.mainMenu.citation') }}
                 </nuxt-link>
               </li>
             </ul>

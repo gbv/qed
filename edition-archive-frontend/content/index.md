@@ -48,6 +48,10 @@
   img-alt: "Foto eines sowjetischen Überlebenden"
   link: soviet-survivors/
   card-class: active
+  cc-author: "Russisches Staatsarchiv für Film-, Foto- und Tondokumente (RGAKFD)"
+  cc-source: "https://qed.perspectivia.net/_ipx/w_2048&f_webp/images/card-back-sovjet.jpg"
+  cc-licence-text: "In Copyright"
+  cc-licence-link: "https://rightsstatements.org/page/InC/1.0/"
   ---
   #title
     ::::LanguageSection{fallback=en}

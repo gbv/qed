@@ -114,20 +114,32 @@
   "lod": {
     "mainMenu": {
       "home": "Startseite",
-      "project": "Projekt",
+      "project": "Über",
       "search": "Dokumente",
+      "indices": "Indizes",
       "editionGuidelines":"Richtlinien",
-      "contact": "Kontakt"
+      "contact": "Kontakt",
+       "citation": "Zitierhinweis"
     },
     "subMenu": {
       "subMenu": "Seitenmenü",
       "openSubMenu": "Seitenmenü öffnen",
-      "intro": "Einleitung",
+      "intro": "Projekt",
       "team": "Team",
-      "projectPartner": "Partner",
-      "publications": "Main Project Publications",
-      "citation": "Citation",
-      "export": "Data Export"
+      "acknowledgments": "Danksagungen",
+      "publications": "Wichtigste Projektveröffentlichungen",
+      "export": "Daten Export",
+      "types": "Dokumenttypen und Herkunft",
+      "descriptions": "Dokumentenbeschreibungen",
+      "metadata": "Indizierung und Metadaten",
+      "titles": "Dokumenttitel",
+      "names": "Personen- und Ortsnamen",
+      "dates": "Daten",
+      "principles": "Grundsätze der Textübertragung und -darstellung",
+      "copies": "Faksimile-Kopien der Dokumente",
+      "marking": "Kennzeichnung der erwähnten Personen, Organisationen und Ortsnamen",
+      "commentary": "Kommentar",
+      "tei": "Grundsätze der TEI-Textkodierung"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
@@ -187,14 +199,13 @@
   },
   "language": {
     "de": "Deutsch",
-    "en": "Englisch",
-    "fr": "Französisch",
-    "it": "Italienisch",
-    "la": "Latein",
-    "pl": "Polnisch",
-    "ru": "Russisch",
-    "tr": "Türkisch",
-    "ku": "Kurdisch"
+    "en": "English",
+    "fr": "Français",
+    "it": "Italiano",
+    "ru": "Pусский",
+    "tr": "Türkçe",
+    "ku": "Kurdî",
+    "uk": "Yкраїнська"
   },
   "metadata": {
     "geonames": {
@@ -433,8 +444,8 @@
     "close": "Schließen"
   },
   "cc": {
-    "by": "von",
-    "photo": "Foto"
+    "by": "",
+    "photo": "Foto:"
   },
   "login": {
     "username": "Benutzername",
