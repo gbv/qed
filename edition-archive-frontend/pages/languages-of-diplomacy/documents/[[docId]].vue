@@ -25,7 +25,7 @@
 
       <div class="row lod-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :backend-url="ditavURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/languages-of-diplomacy/documents/" :filter-params="filterParams" :hide-genre="true">
+          <MODSDocument :show-classifications="['lod_archives','lod_document_classification']" :backend-url="ditavURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/languages-of-diplomacy/documents/" :filter-params="filterParams" :hide-genre="false">
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
                 <template #key>
@@ -43,6 +43,17 @@
               <Viewer v-if="derivateId" :app-url="ditavURL" :mycore-id="mycoreId" :derivate-id="derivateId" :tei-url="`${ditavURL}api/v2/objects/${mycoreId}/derivates/${derivateId}/contents/${maindoc}`" />
             </template>
           </MODSDocument>
+        </div>
+      </div>
+      <div class="row lod-detail-view__copyrights">
+        <div class="col">
+          {{ $t("lod.metadata.cite") }}
+        </div>
+        <div class="col-auto regest-licence text-end">
+          <a href="https://creativecommons.org/licenses/by/4.0/deed.de" title="CC BY 4.0" class="no-external-mark">
+            <nuxt-img src="/images/creative-commons.svg" alt="cc" />
+            <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
+          </a>
         </div>
       </div>
     </template>
@@ -112,6 +123,8 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
     filters: {
       genres: [],
       languages: [],
+      authors: [],
+      recipients: [],
       translationMode: TranslationMode.ALL,
     } as LodFilters,
     start: 0
