@@ -109,7 +109,7 @@
   ---
   img-href: /images/card-back-golovkin-mikhail.jpg
   img-alt: "Portrait von Michail Golovkin"
-  link: http://qed.perspectivia.net/index.php?id=593
+  link: languages-of-diplomacy/
   card-class: active
   ---
   #title
