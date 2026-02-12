@@ -201,7 +201,7 @@
                 <div class="d-flex">
                   <i v-if="model.filters.recipients.indexOf(recipient.name) > -1" class="bi bi-check-square"></i>
                   <i v-else class="bi bi-square"></i>
-                  <MODSClassification :app-url="ditavURL" class-id="rfc5646" :categ-id="recipient.name" />
+                  {{ recipient.name }}
                 </div>
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ recipient.count }}</span>
               </li>
@@ -366,7 +366,7 @@ const clickAuthorFacet = async (author: string) => {
 
 const clickRecipientFacet = async (recipient: string) => {
   const recipients = model.filters.recipients.indexOf(recipient) > -1
-    ? model.filters.recipients.filter((a) => a !== recipient)
+    ? model.filters.recipients.filter((r) => r !== recipient)
     : [...model.filters.recipients, recipient];
 
   await navigateTo({
