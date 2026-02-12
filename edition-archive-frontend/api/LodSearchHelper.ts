@@ -24,6 +24,8 @@ export enum TranslationMode {
 export interface LodFilters {
   genres: string[];
   languages: string[];
+  authors: string[];
+  recipients: string[];
   translationMode: TranslationMode;
 }
 
@@ -43,6 +45,8 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   urlObj.searchParams.append('facet.field', 'mods.genre');
   urlObj.searchParams.append('facet.field', 'category.top');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.author.facet');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.recipient.facet');
   urlObj.searchParams.append('fq', LodFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
@@ -53,6 +57,14 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
     for (const language of filters.languages) {
       urlObj.searchParams.append('fq', `category.top:"rfc5646:${language}"`);
     }
+  }
+
+  if(filters?.authors?.length > 0) {
+    urlObj.searchParams.append('fq', `ditav.mods.author.facet:(${filters.authors.map((aName=> `"${aName}"`)).join(' OR ')})`);
+  }
+
+  if(filters?.recipients?.length > 0) {
+    urlObj.searchParams.append('fq', `ditav.mods.recipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
   }
 
   return urlObj.toString();
@@ -70,6 +82,14 @@ export function lodModelToQuery(model: any): any {
 
   if (model.filters.languages.length > 0) {
     query.languages = model.filters.languages.slice();
+  }
+
+  if (model.filters.authors.length > 0) {
+    query.authors = model.filters.authors.slice();
+  }
+
+  if (model.filters.recipients.length > 0) {
+    query.recipients = model.filters.recipients.slice();
   }
 
   return query;
@@ -90,4 +110,17 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
   } else {
     model.filters.languages = [];
   }
+
+  if(query.authors) {
+    model.filters.authors = Array.isArray(query.authors) ? [...query.authors as string[]] : [query.authors as string];
+  } else {
+    model.filters.authors = [];
+  }
+
+  if(query.recipients) {
+    model.filters.recipients = Array.isArray(query.recipients) ? [...query.recipients as string[]] : [query.recipients as string];
+  } else {
+    model.filters.recipients = [];
+  }
+
 }
