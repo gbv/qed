@@ -358,9 +358,11 @@ const clickAuthorFacet = async (author: string) => {
     : [...model.filters.authors, author];
 
   await navigateTo({
-    ...lodModelToQuery(model),
-    authors,
-    start: '0'
+    query: {
+      ...lodModelToQuery(model),
+      authors,
+      start: '0'
+    }
   });
 };
 
@@ -370,9 +372,11 @@ const clickRecipientFacet = async (recipient: string) => {
     : [...model.filters.recipients, recipient];
 
   await navigateTo({
-    ...lodModelToQuery(model),
-    recipients,
-    start: '0'
+    query: {
+      ...lodModelToQuery(model),
+      recipients,
+      start: '0'
+    }
   });
 };
 
