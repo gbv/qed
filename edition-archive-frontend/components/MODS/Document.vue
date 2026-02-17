@@ -109,6 +109,15 @@
         </template>
       </MODSMetaKeyValue>
 
+      <MODSMetaKeyValue v-for="note in notesWithType">
+        <template #key>
+          <MODSClassification :app-url="backendUrl" :classId="'noteTypes'" :categ-id="note.type" />
+        </template>
+        <template #value>
+          {{ note.content }}
+        </template>
+      </MODSMetaKeyValue>
+
 
       <MODSMetaKeyValue v-for="(names, role) in namesByRole">
         <template #key>
@@ -328,6 +337,7 @@ const props = defineProps<{
   backendUrl: string,
   filterParams: string[],
   showClassifications?: string[],
+  showNoteTypes?: string[],
   hideGenre?: boolean
 }>()
 
@@ -613,6 +623,21 @@ const classifications = computed(()=> {
   .filter((c) => c != null) as {classId: string, categId: string}[];
 });
 
+
+const notesWithType = computed(() => {
+  const noteElements = mods.value.content.filter(byName("mods:note")) as XElement[];
+  const notes = [] as {type: string, content: string}[];
+  noteElements.forEach((noteElement) => {
+    const typeAttr = getAttribute(noteElement, "type");
+    if (typeAttr != null) {
+      const content = flattenElement(noteElement);
+      if (content) {
+        notes.push({type: typeAttr.value, content});
+      }
+    }
+  });
+  return notes;
+});
 
 const shelfLocator = computed(() => {
   return flattenElement(findFirstElement(mods.value, byName("mods:shelfLocator")));

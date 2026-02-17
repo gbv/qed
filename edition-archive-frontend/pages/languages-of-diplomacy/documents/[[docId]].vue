@@ -25,7 +25,15 @@
 
       <div class="row lod-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :show-classifications="['lod_archives','lod_document_classification']" :backend-url="ditavURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/languages-of-diplomacy/documents/" :filter-params="filterParams" :hide-genre="false">
+          <MODSDocument :show-classifications="['lod_archives','lod_document_classification']"
+                        :show-note-types="['original_version', 'date', 'source_note', 'source characteristics']"
+                        :backend-url="ditavURL" v-if="data?.xml"
+                        :xml="data?.xml"
+                        :id="mycoreId"
+                        projectDocumentUrlPrefix="/languages-of-diplomacy/documents/"
+                        :filter-params="filterParams"
+                        :hide-genre="false"
+          >
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
                 <template #key>
