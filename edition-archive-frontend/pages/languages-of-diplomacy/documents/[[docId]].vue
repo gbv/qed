@@ -26,7 +26,7 @@
       <div class="row lod-detail-view__metadata">
         <div class="col-12">
           <MODSDocument :show-classifications="['lod_archives','lod_document_classification']"
-                        :show-note-types="['original_version', 'date', 'source_note', 'source characteristics']"
+                        :hide-note-types="[]"
                         :backend-url="ditavURL" v-if="data?.xml"
                         :xml="data?.xml"
                         :id="mycoreId"

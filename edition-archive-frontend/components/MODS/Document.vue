@@ -337,7 +337,7 @@ const props = defineProps<{
   backendUrl: string,
   filterParams: string[],
   showClassifications?: string[],
-  showNoteTypes?: string[],
+  hideNoteTypes?: string[],
   hideGenre?: boolean
 }>()
 
@@ -629,7 +629,7 @@ const notesWithType = computed(() => {
   const notes = [] as {type: string, content: string}[];
   noteElements.forEach((noteElement) => {
     const typeAttr = getAttribute(noteElement, "type");
-    if (typeAttr != null) {
+    if (typeAttr != null && (!props.hideNoteTypes || !props.hideNoteTypes.includes(typeAttr.value))) {
       const content = flattenElement(noteElement);
       if (content) {
         notes.push({type: typeAttr.value, content});
