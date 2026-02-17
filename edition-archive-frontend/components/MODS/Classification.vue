@@ -36,7 +36,11 @@ const translatedValue = computed(() => {
   const classificationElement = response.data.value;
 
   if (classificationElement == null) {
-    return i18n.t("sosu.metadata.unknownGenre");
+    if(props.categId) {
+      return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
+    } else {
+      return i18n.t(`metadata.classification.${props.classId}`);
+    }
   }
 
   let categoryElement;
@@ -49,7 +53,11 @@ const translatedValue = computed(() => {
 
 
   if (categoryElement == null) {
-    return i18n.t("sosu.metadata.unknownGenre");
+    if(props.categId) {
+      return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
+    } else {
+      return i18n.t(`metadata.classification.${props.classId}`);
+    }
   }
 
   let labelElement = findFirstElement(categoryElement, and(byName("label"),
