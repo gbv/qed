@@ -72,6 +72,8 @@
     <div class="metadata mt-3">
       <h3>Metadaten</h3>
 
+      <!-- todo: show all translated and alternate titles -->
+
       <MODSMetaKeyValue v-if="!props.hideGenre && genres != null && genres.length>0">
         <template #key>
           {{ $t("metadata.genre") }}

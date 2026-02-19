@@ -98,7 +98,7 @@
               <li
                 v-for="author in model.facets.authors"
                 :class="model.filters.authors.indexOf(author.name) > -1 ? 'active' : ''"
-                v-on:click="clickAuthosFacet(author.name)"
+                v-on:click="clickAuthorFacet(author.name)"
                 class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
                 <div class="d-flex">
                   <i v-if="model.filters.authors.indexOf(author.name) > -1" class="bi bi-check-square"></i>
@@ -220,7 +220,7 @@ const clickTranslationFacet = async (translation: string) => {
   });
 };
 
-const clickAuthosFacet = async (author: string) => {
+const clickAuthorFacet = async (author: string) => {
   const authors = model.filters.authors.indexOf(author) > -1
     ? model.filters.authors.filter((a) => a !== author)
     : [...model.filters.authors, author];

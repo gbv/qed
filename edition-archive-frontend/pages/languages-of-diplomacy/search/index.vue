@@ -128,7 +128,7 @@
             <h4 class="facet-title">{{ $t("search.facet.genre") }}</h4>
             <ul class="list-group">
               <li
-                v-for="genre in model.facets.genres"
+                v-for="genre in model.facets.genresExpand ? model.facets.genres: model.facets.genres.slice(0,10)"
                 :class="model.filters.genres.indexOf(genre.name) > -1 ? 'active' : ''"
                 v-on:click="clickGenreFacet(genre.name)"
                 class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
@@ -140,13 +140,17 @@
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ genre.count }}</span>
               </li>
             </ul>
+            <a v-if="model.facets.genresExpand===false && model.facets.genres.length>10"
+               href="#more" v-on:click.prevent="model.facets.genresExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+            <a v-if="model.facets.genresExpand===true && model.facets.genres.length>10"
+               href="#less" v-on:click.prevent="model.facets.genresExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
           </div>
 
           <div class="facet">
             <h4 class="facet-title">{{ $t("search.facet.language") }}</h4>
             <ul class="list-group">
               <li
-                v-for="language in model.facets.languages"
+                v-for="language in model.facets.languagesExpand ? model.facets.languages: model.facets.languages.slice(0,10)"
                 :class="model.filters.languages.indexOf(language.name) > -1 ? 'active' : ''"
                 v-on:click="clickLanguageFacet(language.name)"
                 class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
@@ -158,6 +162,54 @@
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ language.count }}</span>
               </li>
             </ul>
+            <a v-if="model.facets.languagesExpand===false && model.facets.languages.length>10"
+               href="#more" v-on:click.prevent="model.facets.languagesExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+            <a v-if="model.facets.languagesExpand===true && model.facets.languages.length>10"
+               href="#less" v-on:click.prevent="model.facets.languagesExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
+          </div>
+
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.author") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="author in model.facets.authorsExpand ? model.facets.authors: model.facets.authors.slice(0,10)"
+                :class="model.filters.authors.indexOf(author.name) > -1 ? 'active' : ''"
+                v-on:click="clickAuthorFacet(author.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <div class="d-flex">
+                  <i v-if="model.filters.authors.indexOf(author.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                 {{ author.name }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ author.count }}</span>
+              </li>
+            </ul>
+            <a v-if="model.facets.authorsExpand===false && model.facets.authors.length>10"
+               href="#more" v-on:click.prevent="model.facets.authorsExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+            <a v-if="model.facets.authorsExpand===true && model.facets.authors.length>10"
+               href="#less" v-on:click.prevent="model.facets.authorsExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
+          </div>
+
+          <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.recipient") }}</h4>
+            <ul class="list-group">
+              <li
+                v-for="recipient in model.facets.recipientsExpand ? model.facets.recipients: model.facets.recipients.slice(0,10)"
+                :class="model.filters.recipients.indexOf(recipient.name) > -1 ? 'active' : ''"
+                v-on:click="clickRecipientFacet(recipient.name)"
+                class="list-group-item facet-item d-flex justify-content-between align-items-center clickable">
+                <div class="d-flex">
+                  <i v-if="model.filters.recipients.indexOf(recipient.name) > -1" class="bi bi-check-square"></i>
+                  <i v-else class="bi bi-square"></i>
+                  {{ recipient.name }}
+                </div>
+                <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ recipient.count }}</span>
+              </li>
+            </ul>
+            <a v-if="model.facets.recipientsExpand===false && model.facets.recipients.length>10"
+               href="#more" v-on:click.prevent="model.facets.recipientsExpand=true" class="d-block">{{ $t('search.facet.showMore') }}</a>
+            <a v-if="model.facets.recipientsExpand===true && model.facets.recipients.length>10"
+               href="#less" v-on:click.prevent="model.facets.recipientsExpand=false" class="d-block">{{ $t('search.facet.showLess') }}</a>
           </div>
 
         </div>
@@ -198,11 +250,19 @@ const model = reactive({
   filters: { // enabled
     genres: [],
     languages: [],
+    authors: [],
+    recipients: [],
     translationMode: TranslationMode.ALL,
   } as LodFilters,
   facets: {
     genres: [] as FacetEntry[],
+    genresExpand: false,
     languages: [] as FacetEntry[],
+    languagesExpand: false,
+    authors: [] as FacetEntry[],
+    authorsExpand: false,
+    recipients: [] as FacetEntry[],
+    recipientsExpand: false
   }
 });
 
@@ -237,6 +297,8 @@ const search = async () => {
 
   const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
   model.facets.languages = [];
+  model.facets.authors = [];
+  model.facets.recipients = [];
   for (let i = 0; i < categoryTopFacet.length; i += 2) {
     const value = categoryTopFacet[i] as string;
     if (!value?.startsWith('rfc5646:')) {
@@ -245,6 +307,22 @@ const search = async () => {
     model.facets.languages.push({
       name: value.split(':')[1],
       count: categoryTopFacet[i + 1]
+    });
+  }
+
+  const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.author.facet'] || [];
+  for (let i = 0; i < authorFacet.length; i += 2) {
+    model.facets.authors.push({
+      name: authorFacet[i] as string,
+      count: authorFacet[i + 1]
+    });
+  }
+
+  const recipientFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.recipient.facet'] || [];
+  for (let i = 0; i < recipientFacet.length; i += 2) {
+    model.facets.recipients.push({
+      name: recipientFacet[i] as string,
+      count: recipientFacet[i + 1]
     });
   }
 
@@ -269,6 +347,34 @@ const clickLanguageFacet = async (language: string) => {
     query: {
       ...lodModelToQuery(model),
       languages,
+      start: '0'
+    }
+  });
+};
+
+const clickAuthorFacet = async (author: string) => {
+  const authors = model.filters.authors.indexOf(author) > -1
+    ? model.filters.authors.filter((a) => a !== author)
+    : [...model.filters.authors, author];
+
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      authors,
+      start: '0'
+    }
+  });
+};
+
+const clickRecipientFacet = async (recipient: string) => {
+  const recipients = model.filters.recipients.indexOf(recipient) > -1
+    ? model.filters.recipients.filter((r) => r !== recipient)
+    : [...model.filters.recipients, recipient];
+
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      recipients,
       start: '0'
     }
   });

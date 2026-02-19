@@ -3,7 +3,7 @@
         v-bind="attributes">
     <template v-for="child in children">
       <ElementConvert
-        v-if="!defaultHook(child) && (props.hook == undefined || !props.hook(child) || $slots.default)"
+        v-if="!defaultHook(child) && (props.hook == undefined || !props.hook(child) || !$slots.default)"
         :tei-element="child"
         :hook="props.hook"
       >
