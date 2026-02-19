@@ -142,8 +142,8 @@
       "tei" : "Principes de codage de texte TEI"
     },
     "metadata": {
-      "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0",
-      "cite": "Languages of Diplomacy. Édition numérique publiée par ... . Bonn : perspectivia.net, 2025."
+      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "allRightsReserved": "{license} et toutes les images : Tous droits réservés ; détenteur des droits : {archiv}"
     }
   },
   "sosu": {

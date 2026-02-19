@@ -25,15 +25,27 @@ const props = defineProps<{
 
 const i18n = useI18n();
 
-const response = useAsyncData(`clazz-${props.classId}`, async () => {
+const response = useAsyncData(`clazz-${props.appUrl}-${props.classId}`, async () => {
   const response = await fetch(`${props.appUrl}api/v2/classifications/${props.classId}`);
-  return await response.text().then((xmlText) => {
+  const xml = await response.text().then((xmlText) => {
     return XMLApi(xmlText);
   });
+  return {
+    appUrl: props.appUrl,
+    class: props.classId,
+    xml
+  };
 });
 
 const translatedValue = computed(() => {
-  const classificationElement = response.data.value;
+  if(response.data.value == null) {
+    if(props.categId) {
+      return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
+    } else {
+      return i18n.t(`metadata.classification.${props.classId}`);
+    }
+  }
+  const classificationElement = response.data.value.xml;
 
   if (classificationElement == null) {
     if(props.categId) {

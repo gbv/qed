@@ -47,22 +47,33 @@
               </MODSMetaKeyValue>
             </template>
 
-            <template #media v-if="maindoc">
-              <Viewer v-if="derivateId" :app-url="ditavURL" :mycore-id="mycoreId" :derivate-id="derivateId" :tei-url="`${ditavURL}api/v2/objects/${mycoreId}/derivates/${derivateId}/contents/${maindoc}`" />
+            <template #media>
+              <Viewer v-if="maindoc && derivateId" :app-url="ditavURL" :mycore-id="mycoreId" :derivate-id="derivateId" :tei-url="`${ditavURL}api/v2/objects/${mycoreId}/derivates/${derivateId}/contents/${maindoc}`" />
+
+              <translate-with-class
+                v-if="maindoc && archive && accessConditionUseAndReproduction"
+                message-key="lod.metadata.allRightsReserved"
+                :classifications="[
+                  {key: 'archiv', appUrl: ditavURL, classId:archive.classId, categId: archive.categId },
+                  {key: 'license', appUrl: ditavURL, classId: accessConditionUseAndReproduction.classId, categId: accessConditionUseAndReproduction.categId}
+                ]"
+                :other-props="{}"
+              />
+
             </template>
           </MODSDocument>
         </div>
       </div>
-      <div class="row lod-detail-view__copyrights">
-        <div class="col">
-          {{ $t("lod.metadata.cite") }}
-        </div>
-        <div class="col-auto regest-licence text-end">
-          <a href="https://creativecommons.org/licenses/by/4.0/deed.de" title="CC BY 4.0" class="no-external-mark">
-            <nuxt-img src="/images/creative-commons.svg" alt="cc" />
-            <nuxt-img src="/images/creative-commons-by.svg" alt="by" />
-          </a>
-        </div>
+      <div v-if="accessConditionUseAndReproduction" class="row lod-detail-view__copyrights">
+        <citation-display
+          v-if="mods"
+          translation-template="lod.metadata.citation"
+          :mods="mods"
+          :licence-app-u-r-l="ditavURL"
+          :licence-category="accessConditionUseAndReproduction.categId"
+          :licence-class="accessConditionUseAndReproduction.classId"
+        />
+
       </div>
     </template>
   </LoDLayout>
@@ -234,6 +245,74 @@ const maindoc = computed(() => {
   return maindoc;
 });
 
+
+const mods = computed(() => {
+  if(!data?.value?.xml){
+    return undefined;
+  }
+
+  let modsElement = findFirstElement(data.value.xml, byName("mods:mods"));
+  if (modsElement == null) {
+    return undefined;
+  }
+  return modsElement;
+});
+
+
+const accessConditionUseAndReproduction = computed(() => {
+  if(!mods.value){
+    return false;
+  }
+
+  return mods.value.content.filter(byName("mods:accessCondition")).filter((accessCondition) => {
+    const typeAttr = getAttribute(accessCondition as XElement, "type");
+    if (typeAttr && typeAttr.value === "use and reproduction") {
+      return true;
+    }
+  }).map(ac => {
+    const xlinkHref = getAttribute(ac as XElement, "xlink:href");
+    if (xlinkHref) {
+      const hrefValue = xlinkHref.value;
+      const split = hrefValue.split("#");
+      if (split.length === 2) {
+        return {
+          classId: split[0].split("/").pop() || "",
+          categId: split[1]
+        };
+      }
+    }
+    return undefined;
+  })[0];
+});
+
+const archive = computed(() => {
+  if(!mods.value){
+    return undefined;
+  }
+
+  const archiveClassification = mods.value.content
+    .filter(byName("mods:classification"))
+    .filter((classification) => {
+    const authorityURI = getAttribute(classification as XElement, "authorityURI");
+    if (authorityURI && authorityURI.value.endsWith("lod_archives")) {
+      return true;
+    }
+  })[0];
+
+  if(archiveClassification) {
+    const archiveCategory = getAttribute(archiveClassification as XElement, "valueURI");
+    if (archiveCategory) {
+      const split = archiveCategory.value.split("#")[1];
+      if (split) {
+        return {
+          classId: "lod_archives",
+          categId: split
+        }
+      }
+    }
+  }
+  return undefined;
+})
 
 const derivateId = computed(() => {
   if(!data?.value?.xml){

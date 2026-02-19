@@ -142,8 +142,8 @@
       "tei": "Principles of TEI Text Encoding"
     },
     "metadata": {
-      "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
-      "cite": "Languages of Diplomacy. Digital Edition by ... . Bonn: perspectivia.net, 2025."
+      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "allRightsReserved": "{license} and all Images: all rights reserved; Rechteinhaber: {archiv}"
     }
   },
   "sosu": {
