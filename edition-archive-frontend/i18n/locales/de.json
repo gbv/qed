@@ -244,6 +244,13 @@
       "showMore": "Mehr anzeigen",
       "showLess": "Weniger anzeigen"
     },
+    "titleType": {
+      "main": "Titel",
+      "translated": "Übersetzung des Titels",
+      "alternative": "Alternativer Titel",
+      "abbreviated": "Abgekürzter Titel",
+      "uniform": "Normtitel"
+    },
     "subject": {
       "topic": "Schlagwörter",
       "geographic": "Orte",

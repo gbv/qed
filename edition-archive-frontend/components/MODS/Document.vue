@@ -1,10 +1,10 @@
 <template>
   <div v-if="mods">
 
-    <h2 v-if="mainTitle">
-      {{ mainTitle.title }}
-      <template v-if="mainTitle.subtitle">
-        : {{ mainTitle.subtitle }}
+    <h2 v-if="displayTitle">
+      {{ displayTitle.title }}
+      <template v-if="displayTitle.subtitle">
+        : {{ displayTitle.subtitle }}
       </template>
     </h2>
     <div v-if="model.translations?.length > 0">
@@ -31,48 +31,51 @@
       </span>
     </div>
 
-    <ul v-if="titleAndAbstracts.size>1" class="nav nav-tabs mt-4">
-      <li class="nav-item" v-for="lang in titleAndAbstracts.keys()">
-        <a :href="`#${lang}`" :class="`nav-link${currentAbstractLanguage == lang ? ' active' : ''}`"
-           v-on:click.prevent="model.currentAbstractLang = lang">
-          <MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="lang"/>
-        </a>
-      </li>
-    </ul>
-    <!--
-    <div class="mt-4" v-if="titleAndAbstracts.size==1">
-      <MODSClassification  :app-url="backendUrl" class-id="rfc5646" :categ-id="titleAndAbstracts.keys().toArray()[0]"/>
-    </div>
-    -->
+    <template v-if="abstracts.size > 0">
+      <ul v-if="abstracts.size > 1" class="nav nav-tabs mt-4">
+        <li class="nav-item" v-for="lang in abstracts.keys()">
+          <a :href="`#${lang}`" :class="`nav-link${currentAbstractLanguage == lang ? ' active' : ''}`"
+             v-on:click.prevent="model.currentAbstractLang = lang">
+            <MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="lang"/>
+          </a>
+        </li>
+      </ul>
 
-
-
-    <h2 class="mt-4" v-if="mainTitle?.title != currentTitle" :lang="currentAbstractLanguage">{{ currentTitle }}</h2>
-
-    <div class="abstract" :class="mainTitle?.title == currentTitle? 'mt-4' : ''" v-if="fullAbstract?.length">
-      <span v-if="fullAbstract?.length < 200">
-        {{ fullAbstract }}
-      </span>
-      <span v-else-if="!model.showFullAbstract">
-        {{ shortAbstract }}
-        <a href="#" @click="model.showFullAbstract = true">
-          {{ $t("metadata.abstract.showMore") }}
-        </a>
-      </span>
-      <span v-else>
-        {{ fullAbstract }}
-        <a href="#" @click="model.showFullAbstract = false">
-          {{ $t("metadata.abstract.showLess") }}
-        </a>
-      </span>
-    </div>
+      <div class="abstract mt-4" v-if="fullAbstract?.length">
+        <span v-if="fullAbstract?.length < 200">
+          {{ fullAbstract }}
+        </span>
+        <span v-else-if="!model.showFullAbstract">
+          {{ shortAbstract }}
+          <a href="#" @click="model.showFullAbstract = true">
+            {{ $t("metadata.abstract.showMore") }}
+          </a>
+        </span>
+        <span v-else>
+          {{ fullAbstract }}
+          <a href="#" @click="model.showFullAbstract = false">
+            {{ $t("metadata.abstract.showLess") }}
+          </a>
+        </span>
+      </div>
+    </template>
 
     <slot name="media" />
 
     <div class="metadata mt-3">
       <h3>Metadaten</h3>
 
-      <!-- todo: show all translated and alternate titles -->
+      <MODSMetaKeyValue v-for="title in allTitles" :key="title.title">
+        <template #key>
+          {{ $te(`metadata.titleType.${title.type || 'main'}`) ? $t(`metadata.titleType.${title.type || 'main'}`) : title.type }}
+          <span v-if="title.language" class="title-language">
+            (<MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="title.language"/>)
+          </span>
+        </template>
+        <template #value>
+          {{ title.title }}<template v-if="title.subtitle">: {{ title.subtitle }}</template>
+        </template>
+      </MODSMetaKeyValue>
 
       <MODSMetaKeyValue v-if="!props.hideGenre && genres != null && genres.length>0">
         <template #key>
@@ -131,36 +134,6 @@
           </ol>
         </template>
       </MODSMetaKeyValue>
-
-      <!--
-      <MODSMetaKeyValue v-if="relatedItemsOriginal?.length > 0">
-        <template #key>
-          {{ $t("metadata.related.original") }}
-        </template>
-        <template #value>
-          <span v-for="relatedItem in relatedItemsOriginal">
-            <nuxt-link
-              :to="`/soviet-survivors/documents/${getMyCoReIdNumber(getAttribute(relatedItem, 'xlink:href')?.value)}`">
-              {{ getTitles(relatedItem)[0].title }}
-            </nuxt-link>
-          </span>
-        </template>
-      </MODSMetaKeyValue>
-
-      <MODSMetaKeyValue v-if="model.translations?.length > 0">
-        <template #key>
-          {{ $t("metadata.related.translation") }}
-        </template>
-        <template #value>
-          <span v-for="translation in model.translations" class="sosu-document-translations">
-            <nuxt-link
-              :to="`/soviet-survivors/documents/${getMyCoReIdNumber(translation.id)}`">
-              {{ translation.title }}
-            </nuxt-link>
-          </span>
-        </template>
-      </MODSMetaKeyValue>
-      -->
 
       <MODSMetaKeyValue v-if="dateIssued?.length > 0">
         <template #key>
@@ -338,7 +311,8 @@ const props = defineProps<{
   filterParams: string[],
   showClassifications?: string[],
   hideNoteTypes?: string[],
-  hideGenre?: boolean
+  hideGenre?: boolean,
+  preferredTitleLanguage?: string
 }>()
 
 const searchOriginals = async () => {
@@ -379,61 +353,68 @@ const mods = computed(() => {
   return findFirstElement(props.xml, byName("mods:mods")) as XElement;
 });
 
-interface TitleAbstractSubtitle {
-  title?: string|null;
-  subtitle?: string|null;
-  abstract?: string|null;
-}
+/**
+ * The title to display at the top of the document, selected by priority:
+ * 1. Title matching the optional `language` prop
+ * 2. Main title (no type attribute)
+ * 3. First title in the MODS document
+ *
+ * Uses getTitles() which only searches direct children of mods:mods,
+ * so titles inside mods:relatedItem are never included.
+ */
+const displayTitle = computed(() => {
+  const titles = getTitles(mods.value);
 
-const mainTitle = computed(() => {
-  return getTitles(mods.value).find((title) => !title.type);
+  if (props.preferredTitleLanguage) {
+    const langTitle = titles.find(t => t.language === props.preferredTitleLanguage);
+    if (langTitle) {
+      return langTitle;
+    }
+  }
+
+  const mainTitle = titles.find(t => !t.type);
+  if (mainTitle) {
+    return mainTitle;
+  }
+
+  return titles[0] ?? null;
 });
 
-const titleAndAbstracts = computed(() => {
-  const abstracts = mods.value.content.filter(el=>{
-    if(el.type != "Element") {
+/**
+ * All titles from the MODS document for display in the metadata section.
+ * Uses getTitles() which only searches direct children of mods:mods.
+ */
+const allTitles = computed(() => {
+  return getTitles(mods.value);
+});
+
+/**
+ * Map of language code → abstract text, built from direct mods:abstract
+ * children only (excludes abstracts inside mods:relatedItem).
+ */
+const abstracts = computed(() => {
+  const abstractElements = mods.value.content.filter(el => {
+    if (el.type != "Element") {
       return false;
     }
-    if(el.name != "mods:abstract") {
+    if (el.name != "mods:abstract") {
       return false;
     }
-    if(getAttribute(el, "altFormat")) {
+    if (getAttribute(el, "altFormat")) {
       return false;
     }
     return true;
   }) as XElement[];
-  const map = new Map<string, TitleAbstractSubtitle>();
 
-  abstracts.forEach((abstract => {
+  const map = new Map<string, string>();
+  abstractElements.forEach(abstract => {
     const lang = getAttribute(abstract, "xml:lang")?.value;
     if (lang) {
-      if (map.has(lang)) {
-        const obj = map.get(lang) as TitleAbstractSubtitle;
-        obj.abstract = flattenElement(abstract);
-      } else {
-        map.set(lang, {abstract: flattenElement(abstract)});
-      }
-    }
-  }));
-
-  getTitles(mods.value).forEach((title) => {
-    const lang = title.language;
-    if (lang) {
-      if (map.has(lang)) {
-        const obj = map.get(lang) as TitleAbstractSubtitle;
-        obj.title = title.title;
-        obj.subtitle = title.subtitle;
-      } else {
-        map.set(lang, {
-          title: title.title,
-          subtitle: title.subtitle
-        });
-      }
+      map.set(lang, flattenElement(abstract) || "");
     }
   });
-
   return map;
-})
+});
 
 const documentLanguages = computed(() => {
   const langs = [] as string[];
@@ -458,35 +439,22 @@ const documentLanguages = computed(() => {
 });
 
 const currentAbstractLanguage = computed(() => {
-  if (model.currentAbstractLang) {
+  if (model.currentAbstractLang && abstracts.value.has(model.currentAbstractLang)) {
     return model.currentAbstractLang;
   }
 
-  const avail = documentLanguages.value
-    .filter((lang) => titleAndAbstracts.value.has(lang));
+  const avail = documentLanguages.value.filter(lang => abstracts.value.has(lang));
+  if (avail.length > 0) return avail[0];
 
-  if (avail.length > 0) {
-    return avail[0];
-  }
-
-  return titleAndAbstracts.value.keys().next().value;
-
-});
-
-const currentTitle = computed(() => {
-  let value = currentAbstractLanguage.value;
-  if(!value) {
-    return ""
-  }
-  return titleAndAbstracts.value.get(value)?.title;
+  return abstracts.value.keys().next().value ?? null;
 });
 
 const currentAbstract = computed(() => {
-  let key = currentAbstractLanguage.value;
-  if(!key) {
+  const key = currentAbstractLanguage.value;
+  if (!key) {
     return "";
   }
-  return titleAndAbstracts.value.get(key)?.abstract;
+  return abstracts.value.get(key) ?? "";
 });
 
 const fullAbstract = computed(() => {
@@ -685,5 +653,10 @@ const creationDate = computed(() => {
 .subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList {
   padding: 0;
   margin: 0;
+}
+
+.title-language {
+  color: #999;
+  font-size: 0.9em;
 }
 </style>

@@ -33,6 +33,7 @@
                         projectDocumentUrlPrefix="/languages-of-diplomacy/documents/"
                         :filter-params="filterParams"
                         :hide-genre="false"
+                        preferred-title-language="en"
           >
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">

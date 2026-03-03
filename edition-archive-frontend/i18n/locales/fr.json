@@ -244,6 +244,13 @@
       "showMore": "Afficher plus",
       "showLess": "Afficher moins"
     },
+    "titleType": {
+      "main": "Titre",
+      "translated": "Titre traduit",
+      "alternative": "Titre alternatif",
+      "abbreviated": "Titre abrégé",
+      "uniform": "Titre uniforme"
+    },
     "subject": {
       "topic": "Sujet",
       "geographic": "Lieu",
