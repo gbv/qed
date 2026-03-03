@@ -51,34 +51,49 @@
             <template #media>
               <Viewer v-if="maindoc && derivateId" :app-url="ditavURL" :mycore-id="mycoreId" :derivate-id="derivateId" :tei-url="`${ditavURL}api/v2/objects/${mycoreId}/derivates/${derivateId}/contents/${maindoc}`" />
 
-              <translate-with-class
-                v-if="maindoc && archive && accessConditionUseAndReproduction"
-                message-key="lod.metadata.allRightsReserved"
-                :classifications="[
+              <div class="content-copyright">
+                <translate-with-class
+                  v-if="maindoc && archive && accessConditionUseAndReproduction"
+                  message-key="lod.metadata.allRightsReserved"
+                  :classifications="[
                   {key: 'archiv', appUrl: ditavURL, classId:archive.classId, categId: archive.categId },
                   {key: 'license', appUrl: ditavURL, classId: accessConditionUseAndReproduction.classId, categId: accessConditionUseAndReproduction.categId}
                 ]"
-                :other-props="{}"
-              />
+                  :other-props="{}"
+                />
+              </div>
 
             </template>
           </MODSDocument>
         </div>
       </div>
-      <div v-if="accessConditionUseAndReproduction" class="row lod-detail-view__copyrights">
-        <citation-display
-          v-if="mods"
-          translation-template="lod.metadata.citation"
-          :mods="mods"
-          :licence-app-u-r-l="ditavURL"
-          :licence-category="accessConditionUseAndReproduction.categId"
-          :licence-class="accessConditionUseAndReproduction.classId"
-        />
+      <citation-display
+        v-if="accessConditionUseAndReproduction && mods"
+        translation-template="lod.metadata.citation"
+        :mods="mods"
+        :licence-app-u-r-l="ditavURL"
+        :licence-category="accessConditionUseAndReproduction.categId"
+        :licence-class="accessConditionUseAndReproduction.classId"
+      />
 
-      </div>
     </template>
   </LoDLayout>
 </template>
+
+
+<style>
+
+.content-copyright {
+  text-align: end;
+  margin-top: 1rem;
+}
+
+.content-copyright:before {
+  content: "© ";
+}
+
+</style>
+
 
 <script setup lang="ts">
 import {
@@ -344,7 +359,3 @@ if (error.value) {
 }
 </script>
 
-<style>
-
-
-</style>

@@ -15,7 +15,7 @@
       >XML</a>
     </nav>
     <div class="viewer-content row">
-      <div v-if="model.viewMode == 'dual'" class="col-6">
+      <div v-if="model.viewMode == 'dual'" class="viewer-col col-6">
         <div class="viewer-image-content">
           <iiif-image
             v-if="model.currentImage"
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div v-if="model.viewMode == 'dual' || model.viewMode == 'single'" :class="model.viewMode == 'dual' ? 'col-6' : 'col-12'">
+      <div v-if="model.viewMode == 'dual' || model.viewMode == 'single'" :class="model.viewMode == 'dual' ? 'viewer-col col-6' : 'viewer-col col-12'">
         <div class="viewer-text-content" ref="viewerRoot">
           <tei-element-convert v-if="teiBody" :tei-element="teiBody" :hook="elementFilter">
             <template #default="{ element }">
@@ -46,7 +46,7 @@
           </tei-element-convert>
         </div>
       </div>
-      <div v-if="model.viewMode == 'xml'" class="col-12">
+      <div v-if="model.viewMode == 'xml'" class="viewer-col col-12">
         <div class="viewer-xml-content">
           <pre>{{ teiFileContent.data.value }}</pre>
         </div>
@@ -125,21 +125,33 @@ const changeImage = (pbElement: TEIElement) => {
 
 <style scoped>
 
-.viewer-content {
-  margin-top: 1rem;
+.viewer {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
 .viewer-nav {
+  flex-shrink: 0;
   margin-top: 2rem;
 }
 
-.viewer-text-content, .viewer-xml-content {
-  display: block;
-  max-height: 500px;
+.viewer-content {
+  flex: 1;
+  min-height: 0;
+  margin-top: 1rem;
+}
+
+.viewer-col {
+  height: 100%;
+}
+
+.viewer-text-content,
+.viewer-xml-content {
+  height: 100%;
   overflow-y: scroll;
   overflow-x: auto;
 }
-
 
 </style>
 
@@ -243,7 +255,7 @@ const changeImage = (pbElement: TEIElement) => {
 /* Viewer image styles */
 
 .viewer-image-content {
-  max-height: 500px;
+  height: 100%;
   overflow: auto;
   display: flex;
   align-items: center;

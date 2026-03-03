@@ -1,6 +1,6 @@
 <template>
   <div v-if="translatedLicense"
-       class="row lod-detail-view__copyrights">
+       class="row citation-display">
     <div class="col">
       {{
         $t(props.translationTemplate, {
@@ -28,6 +28,19 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+
+.citation-display {
+  margin-top: .5rem;
+}
+
+img {
+  text-align: right;
+  margin-bottom: 3rem;
+}
+
+</style>
 
 <script setup lang="ts">
 
@@ -186,7 +199,3 @@ const url = computed(() => {
 
 </script>
 
-
-<style scoped>
-
-</style>
