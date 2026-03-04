@@ -192,7 +192,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       query.start = (model.start - 1).toString();
       const prevQuery = serializeQuery(query);
       prev = {
-        title: prevDoc['mods.title.main'] || prevDoc['search_result_link_text'],
+        title: prevDoc['ditav.mods.title.lang.en'][0] || prevDoc['mods.title.main'] || prevDoc['mods.title'][0],
         link: `/languages-of-diplomacy/documents/${getMyCoReIdNumber(prevDoc['id'])}?${prevQuery}`
       };
     }
@@ -202,7 +202,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       query.start = (model.start + 1).toString();
       const nextQuery = serializeQuery(query);
       next = {
-        title: nextDoc['mods.title.main'] || nextDoc['search_result_link_text'],
+        title: nextDoc['ditav.mods.title.lang.en'][0] || nextDoc['mods.title.main'] || nextDoc['mods.title'][0],
         link: `/languages-of-diplomacy/documents/${getMyCoReIdNumber(nextDoc['id'])}?${nextQuery}`
       };
     }
