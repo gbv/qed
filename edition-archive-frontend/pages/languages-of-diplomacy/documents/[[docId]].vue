@@ -51,9 +51,8 @@
             <template #media>
               <Viewer v-if="maindoc && derivateId" :app-url="ditavURL" :mycore-id="mycoreId" :derivate-id="derivateId" :tei-url="`${ditavURL}api/v2/objects/${mycoreId}/derivates/${derivateId}/contents/${maindoc}`" />
 
-              <div class="content-copyright">
+              <div class="content-copyright" v-if="maindoc && archive && accessConditionUseAndReproduction">
                 <translate-with-class
-                  v-if="maindoc && archive && accessConditionUseAndReproduction"
                   message-key="lod.metadata.allRightsReserved"
                   :classifications="[
                   {key: 'archiv', appUrl: ditavURL, classId:archive.classId, categId: archive.categId },
