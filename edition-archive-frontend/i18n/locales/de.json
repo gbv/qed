@@ -260,6 +260,10 @@
     },
     "creationDate": "Erstellungsdatum",
     "creationPlace": "Erstellungsort des Dokuments",
+    "originInfo": {
+      "place": "Absendeort",
+      "date": "Datum"
+    },
     "related": {
       "original": "Original dieser Übersetzung",
       "translation": "Verfügbare Übersetzungen"

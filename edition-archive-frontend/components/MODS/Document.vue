@@ -135,6 +135,29 @@
         </template>
       </MODSMetaKeyValue>
 
+      <template v-for="originInfo in originInfos">
+        <MODSMetaKeyValue v-for="(agents, role) in originInfo.agentsByRole">
+          <template #key>
+            <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+          </template>
+          <template #value>
+            <ol class="nameList">
+              <li class="name" v-for="agent in agents">
+                <MODSName :app-url="props.backendUrl" :name="agent" />
+              </li>
+            </ol>
+          </template>
+        </MODSMetaKeyValue>
+        <MODSMetaKeyValue v-if="originInfo.place?.placeTerm">
+          <template #key>{{ $t("metadata.originInfo.place") }}</template>
+          <template #value>{{ originInfo.place!.placeTerm }}</template>
+        </MODSMetaKeyValue>
+        <MODSMetaKeyValue v-if="originInfo.displayDate">
+          <template #key>{{ $t("metadata.originInfo.date") }}</template>
+          <template #value>{{ originInfo.displayDate }}</template>
+        </MODSMetaKeyValue>
+      </template>
+
       <MODSMetaKeyValue v-if="dateIssued?.length > 0">
         <template #key>
           {{ $t("metadata.dateIssued") }}
@@ -280,7 +303,7 @@ import {
 } from "~/api/XMLApi";
 
 import type {Name} from "~/api/Mods";
-import {getGenre, getNames, getSubjects, getTitles} from "~/api/Mods";
+import {getGenre, getNames, getOriginInfos, getSubjects, getTitles} from "~/api/Mods";
 import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
 
@@ -488,6 +511,10 @@ const namesByRole = computed(() => {
     });
   });
   return nbr;
+});
+
+const originInfos = computed(() => {
+  return getOriginInfos(mods.value);
 });
 
 

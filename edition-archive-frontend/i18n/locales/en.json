@@ -260,6 +260,10 @@
     },
     "creationDate": "Creation Date",
     "creationPlace": "Creation location of document",
+    "originInfo": {
+      "place": "Place of Dispatch",
+      "date": "Date"
+    },
     "related": {
       "original": "Original of this translation",
       "translation": "Available translations"
