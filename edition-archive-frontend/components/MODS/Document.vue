@@ -63,7 +63,7 @@
     <slot name="media" />
 
     <div class="metadata mt-3">
-      <h3>Metadaten</h3>
+      <h3>{{ $t('metadata.heading') }}</h3>
 
       <MODSMetaKeyValue v-for="title in allTitles" :key="title.title">
         <template #key>

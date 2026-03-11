@@ -244,6 +244,14 @@
       "showMore": "Mehr anzeigen",
       "showLess": "Weniger anzeigen"
     },
+    "heading": "Metadaten",
+    "viewer": {
+      "viewMode": {
+        "single": "Einzelansicht",
+        "dual": "Doppelansicht",
+        "xml": "XML"
+      }
+    },
     "titleType": {
       "main": "Titel",
       "translated": "Übersetzung des Titels",

@@ -4,15 +4,15 @@
       <a :class="`nav-link${ model.viewMode == 'single' ? ' active':''}`"
          href="#"
          v-on:click.prevent="changeViewMode('single')"
-      >Einzelansicht</a>
+      >{{ $t('metadata.viewer.viewMode.single') }}</a>
       <a :class="`nav-link${ model.viewMode == 'dual' ? ' active':''}`"
          href="#"
          v-on:click.prevent="changeViewMode('dual')"
-      >Doppelansicht</a>
+      >{{ $t('metadata.viewer.viewMode.dual') }}</a>
       <a :class="`nav-link${ model.viewMode == 'xml' ? ' active':''}`"
          href="#"
          v-on:click.prevent="changeViewMode('xml')"
-      >XML</a>
+      >{{ $t('metadata.viewer.viewMode.xml') }}</a>
     </nav>
     <div class="viewer-content row">
       <div v-if="model.viewMode == 'dual'" class="viewer-col col-6">

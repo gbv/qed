@@ -143,7 +143,7 @@
     },
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
-      "allRightsReserved": "{license} and all Images: all rights reserved; Rechteinhaber: {archiv}"
+      "allRightsReserved": "{license} and all Images: all rights reserved; Rights holder: {archiv}"
     }
   },
   "sosu": {
@@ -243,6 +243,14 @@
     "abstract": {
       "showMore": "Show more",
       "showLess": "Show less"
+    },
+    "heading": "Metadata",
+    "viewer": {
+      "viewMode": {
+        "single": "Single view",
+        "dual": "Double view",
+        "xml": "XML"
+      }
     },
     "titleType": {
       "main": "Title",
