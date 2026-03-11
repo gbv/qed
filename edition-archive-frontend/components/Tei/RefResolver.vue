@@ -12,7 +12,7 @@ import JSKOSGBVRefResolver from "~/components/Tei/JSKOSGBVRefResolver.vue";
 import GEONamesRefResolver from "~/components/Tei/GEONamesRefResolver.vue";
 
 const isGBVTerminology = (ref: string) => {
-  return ref.startsWith("http://uri.gbv.de/terminology/");
+  return ref.startsWith("http://uri.gbv.de/terminology/") || ref.startsWith("https://uri.gbv.de/terminology/");
 }
 
 const isGeoNames = (ref: string) => {
