@@ -21,7 +21,7 @@
             v-if="model.currentImage"
             :app-url="appUrl"
             :derivate-id="derivateId"
-            :image-path="model.currentImage.replace('#', '')"
+            :image-path="model.currentImage"
             :alt="$t('gpo.viewer.image.notAvailable')"
             :show-maximize-button="true"
           />
@@ -86,6 +86,22 @@ const elementFilter = (el: TEINode) => {
   return false;
 }
 
+const resolveImagePath = (facsPath: string): string => {
+  const cleanFacs = facsPath.replace(/^#/, '');
+  try {
+    const resolvedUrl = new URL(cleanFacs, props.teiUrl);
+    const resolvedPath = resolvedUrl.pathname;
+    const contentsMarker = '/contents/';
+    const idx = resolvedPath.indexOf(contentsMarker);
+    if (idx !== -1) {
+      return resolvedPath.slice(idx + contentsMarker.length);
+    }
+  } catch {
+    // fallback below
+  }
+  return cleanFacs;
+};
+
 const teiFileContent = useAsyncData(`lod-viewer-tei-${props.mycoreId}-${props.derivateId}-${props.teiUrl}`, async () => {
   const response = await fetch(props.teiUrl);
   return await response.text();
@@ -97,7 +113,8 @@ const teiDocument = computed(() => {
   }
   const parsedTei = $tei(teiFileContent.data.value);
 
-  model.currentImage = parsedTei.find("pb").first().attr("facs") as string  || null;
+  const firstFacs = parsedTei.find("pb").first().attr("facs") as string;
+  model.currentImage = firstFacs ? resolveImagePath(firstFacs) : null;
 
   return parsedTei.get(0);
 });
@@ -116,7 +133,7 @@ const changeViewMode = (mode: 'single' | 'dual' | 'xml') => {
 
 const changeImage = (pbElement: TEIElement) => {
   if(pbElement.attributes.facs) {
-    model.currentImage = pbElement.attributes.facs;
+    model.currentImage = resolveImagePath(pbElement.attributes.facs);
   }
 }
 
@@ -140,6 +157,7 @@ const changeImage = (pbElement: TEIElement) => {
   flex: 1;
   min-height: 0;
   margin-top: 1rem;
+  height: 0;
 }
 
 .viewer-col {
