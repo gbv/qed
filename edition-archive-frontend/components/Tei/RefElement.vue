@@ -67,7 +67,7 @@ const isCompatibleRef = computed(() => {
   }
 
   return ref.startsWith('http://uri.gbv.de/terminology/') || ref.startsWith('https://uri.gbv.de/terminology/')
-  || ref.startsWith('https://sws.geonames.org/') || ref.startsWith('https://geonames.org/');
+  || ref.startsWith('https://sws.geonames.org/') || ref.startsWith('https://geonames.org/') || ref.startsWith("https://www.geonames.org/");
 });
 
 const hide = () => {
