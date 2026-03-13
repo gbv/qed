@@ -7,7 +7,7 @@
           <h1>Languages of Diplomacy</h1>
         </div>
         <div class="col project-headline__figure project-headline__figure--lod">
-          <nuxt-img src="/images/card-back-golovkin-mikhail.jpg" preload class="" alt="Logo Languages of Diplomacy" />
+          <nuxt-img src="/images/Antioch_Dmitrievich_Kantemir_(by_J._Amigoni).jpg" preload class="" alt="Logo Languages of Diplomacy" />
         </div>
       </div>
       <div class="project-headline__back project-headline__back--start">
