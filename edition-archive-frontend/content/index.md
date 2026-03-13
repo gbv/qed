@@ -107,10 +107,14 @@
 #lod
   :::ContentCard
   ---
-  img-href: /images/card-back-golovkin-mikhail.jpg
-  img-alt: "Portrait von Michail Golovkin"
+  img-href: /images/Antioch_Dmitrievich_Kantemir_(by_J._Amigoni).jpg
+  img-alt: "Antioch Dmitrievich Kantemir"
   link: languages-of-diplomacy/
   card-class: active
+  cc-author: "Jacopo  Amigoni"
+  cc-source: "https://qed.perspectivia.net/_ipx/w_1536&f_webp/images/Antioch_Dmitrievich_Kantemir_(by_J._Amigoni).jpg"
+  cc-licence-text: "CC0 1.0 Public Domain"
+  cc-licence-link: "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
   ---
   #title
     ::::LanguageSection{fallback=de}
