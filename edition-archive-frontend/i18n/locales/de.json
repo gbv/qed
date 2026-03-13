@@ -142,8 +142,8 @@
       "tei": "Grundsätze der TEI-Textkodierung"
     },
     "metadata": {
-      "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
-      "cite": "Languages of Diplomacy. Digitale Edition herausgegeben von ... . Bonn: perspectivia.net, 2025."
+      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "allRightsReserved": "{license} und alle Bilder: Alle Rechte vorbehalten; Rechteinhaber: {archiv}"
     }
   },
   "sosu": {
@@ -244,6 +244,21 @@
       "showMore": "Mehr anzeigen",
       "showLess": "Weniger anzeigen"
     },
+    "heading": "Metadaten",
+    "viewer": {
+      "viewMode": {
+        "single": "Einzelansicht",
+        "dual": "Doppelansicht",
+        "xml": "XML"
+      }
+    },
+    "titleType": {
+      "main": "Titel",
+      "translated": "Übersetzung des Titels",
+      "alternative": "Alternativer Titel",
+      "abbreviated": "Abgekürzter Titel",
+      "uniform": "Normtitel"
+    },
     "subject": {
       "topic": "Schlagwörter",
       "geographic": "Orte",
@@ -253,6 +268,10 @@
     },
     "creationDate": "Erstellungsdatum",
     "creationPlace": "Erstellungsort des Dokuments",
+    "originInfo": {
+      "place": "Absendeort",
+      "date": "Datum"
+    },
     "related": {
       "original": "Original dieser Übersetzung",
       "translation": "Verfügbare Übersetzungen"

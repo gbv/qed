@@ -142,8 +142,8 @@
       "tei": "Principles of TEI Text Encoding"
     },
     "metadata": {
-      "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
-      "cite": "Languages of Diplomacy. Digital Edition by ... . Bonn: perspectivia.net, 2025."
+      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "allRightsReserved": "{license} and all Images: all rights reserved; Rights holder: {archiv}"
     }
   },
   "sosu": {
@@ -244,6 +244,21 @@
       "showMore": "Show more",
       "showLess": "Show less"
     },
+    "heading": "Metadata",
+    "viewer": {
+      "viewMode": {
+        "single": "Single view",
+        "dual": "Double view",
+        "xml": "XML"
+      }
+    },
+    "titleType": {
+      "main": "Title",
+      "translated": "Translated Title",
+      "alternative": "Alternative Title",
+      "abbreviated": "Abbreviated Title",
+      "uniform": "Uniform Title"
+    },
     "subject": {
       "topic": "Topic",
       "geographic": "Geographic",
@@ -253,6 +268,10 @@
     },
     "creationDate": "Creation Date",
     "creationPlace": "Creation location of document",
+    "originInfo": {
+      "place": "Place of Dispatch",
+      "date": "Date"
+    },
     "related": {
       "original": "Original of this translation",
       "translation": "Available translations"

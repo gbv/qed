@@ -143,6 +143,70 @@ export function getSubjects(modsOrRelatedItem: XElement): Subject[] {
   });
 }
 
+export interface OriginInfoPlace {
+  placeTerm?: string;
+  placeIdentifier?: string;
+}
+
+export interface OriginInfo {
+  eventType?: string;
+  agentsByRole: Record<string, Name[]>;
+  place?: OriginInfoPlace;
+  displayDate?: string;
+}
+
+export function getOriginInfos(mods: XElement): OriginInfo[] {
+  if (mods == null) return [];
+  const originInfoElements = mods.content.filter(byName("mods:originInfo")) as XElement[];
+  const result: OriginInfo[] = [];
+
+  for (const originInfoEl of originInfoElements) {
+    const eventType = getAttribute(originInfoEl, "eventType")?.value;
+    const agentsByRole: Record<string, Name[]> = {};
+
+    for (const agent of originInfoEl.content.filter(byName("mods:agent")) as XElement[]) {
+      const role = findFirstElement(agent, byName("mods:role"));
+      if (role == null) continue;
+
+      const roles = findElement(role, byName("mods:roleTerm")).map(roleTerm => {
+        if (getAttribute(roleTerm, "type")?.value != "code") return null;
+        return flattenElement(roleTerm) || undefined;
+      }).filter(el => el != null) as string[];
+
+      const nameParts = findElement(agent, byName("mods:namePart")).map(namePart => {
+        const type = getAttribute(namePart, "type")?.value || undefined;
+        return {type, value: flattenElement(namePart) || undefined};
+      }).filter(el => el.value != null) as NamePart[];
+
+      const nameIdentifiers = findElement(agent, byName("mods:nameIdentifier")).map(nameIdentifier => {
+        const type = getAttribute(nameIdentifier, "type")?.value || undefined;
+        const typeURI = getAttribute(nameIdentifier, "typeURI")?.value || undefined;
+        const value = flattenElement(nameIdentifier) || undefined;
+        return {type, typeURI, value};
+      }).filter(el => el.value != null) as NameIdentifier[];
+
+      const displayForm = flattenElement(findFirstElement(agent, byName("mods:displayForm"))) || undefined;
+      const name: Name = {roles, nameParts, displayForm, nameIdentifiers};
+
+      for (const roleCode of roles) {
+        if (!agentsByRole[roleCode]) agentsByRole[roleCode] = [];
+        agentsByRole[roleCode].push(name);
+      }
+    }
+
+    const placeEl = findFirstElement(originInfoEl, byName("mods:place"));
+    const place: OriginInfoPlace | undefined = placeEl ? {
+      placeTerm: flattenElement(findFirstElement(placeEl, byName("mods:placeTerm"))) || undefined,
+      placeIdentifier: flattenElement(findFirstElement(placeEl, byName("mods:placeIdentifier"))) || undefined,
+    } : undefined;
+
+    const displayDate = flattenElement(findFirstElement(originInfoEl, byName("mods:displayDate"))) || undefined;
+
+    result.push({eventType, agentsByRole, place, displayDate});
+  }
+  return result;
+}
+
 export function getGenre(modsOrRelatedItem: XElement): Classification[] {
   if(modsOrRelatedItem == null) return [];
   const genres = modsOrRelatedItem.content

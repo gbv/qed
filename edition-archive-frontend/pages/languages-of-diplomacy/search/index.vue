@@ -54,14 +54,14 @@
                       <nuxt-link
                         :to="hitLink(doc, index)"
                         class="main-title">
-                        {{ doc["mods.title.main"] }}
+                        {{ doc['ditav.mods.title.lang.en'][0] || doc['mods.title.main'] || doc['mods.title'][0] }}
                       </nuxt-link>
                     </h3>
                     <div class="hit_number">
                     </div>
                     <div class="hit_abstract">
-                      <div v-if="doc['mods.abstract']?.length>0">
-                        {{ trimString(doc["mods.abstract"][0]) }}
+                      <div v-if="doc['ditav.mods.title.lang.en'].length>0 && doc['mods.title.main']">
+                        {{ doc['mods.title.main'] }}
                       </div>
                     </div>
                   </div>

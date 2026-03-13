@@ -4,24 +4,24 @@
       <a :class="`nav-link${ model.viewMode == 'single' ? ' active':''}`"
          href="#"
          v-on:click.prevent="changeViewMode('single')"
-      >Einzelansicht</a>
+      >{{ $t('metadata.viewer.viewMode.single') }}</a>
       <a :class="`nav-link${ model.viewMode == 'dual' ? ' active':''}`"
          href="#"
          v-on:click.prevent="changeViewMode('dual')"
-      >Doppelansicht</a>
+      >{{ $t('metadata.viewer.viewMode.dual') }}</a>
       <a :class="`nav-link${ model.viewMode == 'xml' ? ' active':''}`"
          href="#"
          v-on:click.prevent="changeViewMode('xml')"
-      >XML</a>
+      >{{ $t('metadata.viewer.viewMode.xml') }}</a>
     </nav>
     <div class="viewer-content row">
-      <div v-if="model.viewMode == 'dual'" class="col-6">
+      <div v-if="model.viewMode == 'dual'" class="viewer-col col-6">
         <div class="viewer-image-content">
           <iiif-image
             v-if="model.currentImage"
             :app-url="appUrl"
             :derivate-id="derivateId"
-            :image-path="model.currentImage.replace('#', '')"
+            :image-path="model.currentImage"
             :alt="$t('gpo.viewer.image.notAvailable')"
             :show-maximize-button="true"
           />
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div v-if="model.viewMode == 'dual' || model.viewMode == 'single'" :class="model.viewMode == 'dual' ? 'col-6' : 'col-12'">
+      <div v-if="model.viewMode == 'dual' || model.viewMode == 'single'" :class="model.viewMode == 'dual' ? 'viewer-col col-6' : 'viewer-col col-12'">
         <div class="viewer-text-content" ref="viewerRoot">
           <tei-element-convert v-if="teiBody" :tei-element="teiBody" :hook="elementFilter">
             <template #default="{ element }">
@@ -46,7 +46,7 @@
           </tei-element-convert>
         </div>
       </div>
-      <div v-if="model.viewMode == 'xml'" class="col-12">
+      <div v-if="model.viewMode == 'xml'" class="viewer-col col-12">
         <div class="viewer-xml-content">
           <pre>{{ teiFileContent.data.value }}</pre>
         </div>
@@ -86,6 +86,22 @@ const elementFilter = (el: TEINode) => {
   return false;
 }
 
+const resolveImagePath = (facsPath: string): string => {
+  const cleanFacs = facsPath.replace(/^#/, '');
+  try {
+    const resolvedUrl = new URL(cleanFacs, props.teiUrl);
+    const resolvedPath = resolvedUrl.pathname;
+    const contentsMarker = '/contents/';
+    const idx = resolvedPath.indexOf(contentsMarker);
+    if (idx !== -1) {
+      return resolvedPath.slice(idx + contentsMarker.length);
+    }
+  } catch {
+    // fallback below
+  }
+  return cleanFacs;
+};
+
 const teiFileContent = useAsyncData(`lod-viewer-tei-${props.mycoreId}-${props.derivateId}-${props.teiUrl}`, async () => {
   const response = await fetch(props.teiUrl);
   return await response.text();
@@ -97,7 +113,8 @@ const teiDocument = computed(() => {
   }
   const parsedTei = $tei(teiFileContent.data.value);
 
-  model.currentImage = parsedTei.find("pb").first().attr("facs") as string  || null;
+  const firstFacs = parsedTei.find("pb").first().attr("facs") as string;
+  model.currentImage = firstFacs ? resolveImagePath(firstFacs) : null;
 
   return parsedTei.get(0);
 });
@@ -116,7 +133,7 @@ const changeViewMode = (mode: 'single' | 'dual' | 'xml') => {
 
 const changeImage = (pbElement: TEIElement) => {
   if(pbElement.attributes.facs) {
-    model.currentImage = pbElement.attributes.facs;
+    model.currentImage = resolveImagePath(pbElement.attributes.facs);
   }
 }
 
@@ -125,21 +142,34 @@ const changeImage = (pbElement: TEIElement) => {
 
 <style scoped>
 
-.viewer-content {
-  margin-top: 1rem;
+.viewer {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
 .viewer-nav {
+  flex-shrink: 0;
   margin-top: 2rem;
 }
 
-.viewer-text-content, .viewer-xml-content {
-  display: block;
-  max-height: 500px;
+.viewer-content {
+  flex: 1;
+  min-height: 0;
+  margin-top: 1rem;
+  height: 0;
+}
+
+.viewer-col {
+  height: 100%;
+}
+
+.viewer-text-content,
+.viewer-xml-content {
+  height: 100%;
   overflow-y: scroll;
   overflow-x: auto;
 }
-
 
 </style>
 
@@ -237,13 +267,15 @@ const changeImage = (pbElement: TEIElement) => {
   display: block;
 }
 
-
-
+.tei-element[data-tei-name="p"], .tei-element[data-tei-name="title"], .tei-element[data-tei-name="note"] {
+  display: block;
+  min-height: 1em;
+}
 
 /* Viewer image styles */
 
 .viewer-image-content {
-  max-height: 500px;
+  height: 100%;
   overflow: auto;
   display: flex;
   align-items: center;

@@ -269,15 +269,16 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 500px;
-  overflow: auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .iiif-image {
   max-width: 100%;
-  max-height: 500px;
-  height: auto;
+  max-height: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
   display: block;
 }
