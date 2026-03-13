@@ -267,7 +267,7 @@ const changeImage = (pbElement: TEIElement) => {
   display: block;
 }
 
-.tei-element[data-tei-name="p"] {
+.tei-element[data-tei-name="p"], .tei-element[data-tei-name="title"], .tei-element[data-tei-name="note"] {
   display: block;
   min-height: 1em;
 }
