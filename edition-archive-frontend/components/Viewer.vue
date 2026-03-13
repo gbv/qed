@@ -267,8 +267,10 @@ const changeImage = (pbElement: TEIElement) => {
   display: block;
 }
 
-
-
+.tei-element[data-tei-name="p"] {
+  display: block;
+  min-height: 1em;
+}
 
 /* Viewer image styles */
 
