@@ -272,6 +272,13 @@ const changeImage = (pbElement: TEIElement) => {
   min-height: 1em;
 }
 
+.tei-element[data-tei-name="head"] {
+  display: block;
+  font-weight: bold;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 /* Viewer image styles */
 
 .viewer-image-content {

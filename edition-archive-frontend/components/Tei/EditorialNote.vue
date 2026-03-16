@@ -56,5 +56,7 @@ i {
   padding: 1rem;
   margin: 1rem;
   min-height: 5rem;
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

@@ -110,4 +110,9 @@ i {
   margin: 1rem;
   min-height: 5rem;
 }
+
+.popout-wrapper {
+  font-weight: normal;
+  font-style: normal;
+}
 </style>
