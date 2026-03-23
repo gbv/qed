@@ -116,7 +116,7 @@
       "home": "Home",
       "project": "À propos de",
       "search": "Document",
-      "indices": "Indizes",
+      "indices": "Index",
       "editionGuidelines":"Lignes directrices",
       "contact": "Contact",
       "citation": "Citation"
@@ -139,7 +139,11 @@
       "copies" : "Copies fac-similées des documents",
       "marking" : "Marquage des personnes, organisations et noms de lieux mentionnés",
       "commentary" : "Commentaires",
-      "tei" : "Principes de codage de texte TEI"
+      "references": "Références aux publications et études sources",
+      "tei" : "Principes de codage de texte TEI",
+      "places": "Lieux",
+      "people": "Personnes",
+      "archives": "Archives"
     },
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",

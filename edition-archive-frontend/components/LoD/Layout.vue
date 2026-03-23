@@ -65,6 +65,14 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
+                  href="/languages-of-diplomacy/indices/places">
+                  {{ $t('lod.mainMenu.indices') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
                   href="/languages-of-diplomacy/guidelines">
                   {{ $t('lod.mainMenu.editionGuidelines') }}
                 </nuxt-link>

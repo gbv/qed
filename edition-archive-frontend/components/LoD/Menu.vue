@@ -86,6 +86,11 @@
           </nuxt-link>
         </li>
         <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/guidelines/references">
+            {{ $t('lod.subMenu.references') }}
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/guidelines/tei">
             {{ $t('lod.subMenu.tei') }}
           </nuxt-link>
@@ -95,8 +100,30 @@
   </template>
 
   <template v-else-if="$route.params.searchPath == '' || $route.params.searchPath">
-
   </template>
+
+  <template v-if="$route.params.indicesPath =='' || $route.params.indicesPath">
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/places">
+            {{ $t('lod.subMenu.places') }}
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/people">
+            {{ $t('lod.subMenu.people') }}
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/archives">
+            {{ $t('lod.subMenu.archives') }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </nav>
+  </template>
+
 
   <template v-else>
   </template>
