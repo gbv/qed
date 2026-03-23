@@ -116,7 +116,7 @@
       "home": "Startseite",
       "project": "Über",
       "search": "Dokumente",
-      "indices": "Indizes",
+      "indices": "Register",
       "editionGuidelines":"Richtlinien",
       "contact": "Kontakt",
        "citation": "Zitierhinweis"
@@ -139,7 +139,11 @@
       "copies": "Faksimile-Kopien der Dokumente",
       "marking": "Kennzeichnung der erwähnten Personen, Organisationen und Ortsnamen",
       "commentary": "Kommentar",
-      "tei": "Grundsätze der TEI-Textkodierung"
+      "references": "Verweise auf Quellenpublikationen und Studien",
+      "tei": "Grundsätze der TEI-Textkodierung",
+      "places": "Orte",
+      "people": "Personen",
+      "archives": "Archive"
     },
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
