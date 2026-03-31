@@ -27,6 +27,7 @@ export interface LodFilters {
   authors: string[];
   recipients: string[];
   translationMode: TranslationMode;
+  hasDigitalisat: boolean;
 }
 
 export function buildLodSearchRequestURL(url: string, search: string | null, filters: LodFilters, start: number, rows = 20) {
@@ -67,6 +68,21 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
     urlObj.searchParams.append('fq', `ditav.mods.recipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
   }
 
+  switch (filters.translationMode) {
+    case TranslationMode.ALL:
+      break;
+    case TranslationMode.TRANSLATION_ONLY:
+      urlObj.searchParams.append('fq', 'category.top:"translation\\:yes"');
+      break;
+    case TranslationMode.ORIGINAL_ONLY:
+      urlObj.searchParams.append('fq', 'NOT(category.top:"translation\\:yes")');
+      break;
+  }
+
+  if (filters.hasDigitalisat) {
+    urlObj.searchParams.append('fq', '{!join from=derivateID to=derivates}(objectType:data_file AND fileName:(*.jpg OR *.jpeg OR *.png OR *.tif OR *.tiff OR *.gif OR *.bmp OR *.webp OR *.svg))');
+  }
+
   return urlObj.toString();
 }
 
@@ -90,6 +106,14 @@ export function lodModelToQuery(model: any): any {
 
   if (model.filters.recipients.length > 0) {
     query.recipients = model.filters.recipients.slice();
+  }
+
+  if (model.filters.translationMode !== TranslationMode.ALL) {
+    query.translationMode = model.filters.translationMode;
+  }
+
+  if (model.filters.hasDigitalisat) {
+    query.hasDigitalisat = 'true';
   }
 
   return query;
@@ -122,5 +146,11 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
   } else {
     model.filters.recipients = [];
   }
+
+  if (query.translationMode) {
+    model.filters.translationMode = query.translationMode as TranslationMode;
+  }
+
+  model.filters.hasDigitalisat = query.hasDigitalisat === 'true';
 
 }

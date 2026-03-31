@@ -125,6 +125,22 @@
           </div>
 
           <div class="facet">
+            <h4 class="facet-title">{{ $t("search.facet.hasDigitalisat") }}</h4>
+            <form class="row p-3">
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"
+                         :checked="model.filters.hasDigitalisat" id="facetHasDigitalisat"
+                         v-on:change="toggleHasDigitalisat()">
+                  <label class="form-check-label" for="facetHasDigitalisat">
+                    {{ $t("search.facet.hasDigitalisatOnly") }}
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="facet">
             <h4 class="facet-title">{{ $t("search.facet.genre") }}</h4>
             <ul class="list-group">
               <li
@@ -253,6 +269,7 @@ const model = reactive({
     authors: [],
     recipients: [],
     translationMode: TranslationMode.ALL,
+    hasDigitalisat: false,
   } as LodFilters,
   facets: {
     genres: [] as FacetEntry[],
@@ -385,6 +402,16 @@ const pageChangedCallback = async (page: number) => {
     query: {
       ...lodModelToQuery(model),
       start: (page - 1) * 20
+    }
+  })
+}
+
+const toggleHasDigitalisat = async () => {
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      hasDigitalisat: !model.filters.hasDigitalisat ? 'true' : undefined,
+      start: 0
     }
   })
 }

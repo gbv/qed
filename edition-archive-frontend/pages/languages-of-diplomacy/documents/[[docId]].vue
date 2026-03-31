@@ -160,6 +160,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       authors: [],
       recipients: [],
       translationMode: TranslationMode.ALL,
+      hasDigitalisat: false,
     } as LodFilters,
     start: 0
   };
