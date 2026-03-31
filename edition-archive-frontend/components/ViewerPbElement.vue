@@ -41,7 +41,6 @@ const imageIconClicked = () => {
 const intersectionChanged = (entries: IntersectionObserverEntry[]) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      console.log("Page break in view:", props.pbElement);
       emit('page-break-in-view', props.pbElement);
     }
   });

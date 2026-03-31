@@ -25,7 +25,6 @@ const open = ref(false);
 
 const refTarget = computed(() => {
   const targetId = props.note.attributes.corresp?.replace("#", "") || "";
-  console.log([ "root is", $tei(props.note).root(), "id is " + targetId ]);
   return $tei(props.note).root().id(targetId).get(0);
 });
 

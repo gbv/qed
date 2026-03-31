@@ -287,7 +287,6 @@ const model = reactive({
 
 watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuery) => {
   lodQueryToModel(newQueryString, model);
-  console.log(["searching", newQueryString]);
   await search();
 });
 

@@ -58,7 +58,6 @@ const model = reactive({
 });
 
 const resolveGeoNames = async (ref: string) => {
-  console.log("Resolving GeoNames ref:", ref);
   const geonameIdMatch = ref.match(/https:\/\/sws\.geonames\.org\/(\d+)/);
   const geonameIdMatchAlt = ref.match(/https:\/\/geonames\.org\/(\d+)/);
   const geonameIdMatchAlt2 = ref.match(/https:\/\/www\.geonames\.org\/(\d+)/);
@@ -76,7 +75,6 @@ const resolveGeoNames = async (ref: string) => {
     return null;
   }
   let input = `https://www.geonames.org/getJSON?geonameId=${geonameId}&username=${geonamesUsername}`;
-  console.log("Fetching GeoNames data from", input);
   const response = await fetch(input);
   if (!response.ok) {
     return null;

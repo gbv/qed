@@ -131,8 +131,6 @@ const {data, error} = await useAsyncData(route.fullPath, async () => {
 
   const [xml, searchResult] = await Promise.all(promises);
 
-  console.log(["Data" ,xml, searchResult] )
-
   if(searchResult && q){
     const docs = searchResult.response.docs;
 
