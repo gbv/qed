@@ -1,6 +1,15 @@
+import type {InjectionKey} from "vue";
 import type {JSKOSEntity} from "~/api/jskos";
 
-const knownIdentifierPatterns: { pattern: RegExp; label: string }[] = [
+export interface DanteEntityPaths {
+  searchBasePath?: string;
+  personIndexPath?: string;
+  organisationIndexPath?: string;
+}
+
+export const DanteEntityPathsKey: InjectionKey<DanteEntityPaths> = Symbol('DanteEntityPaths');
+
+export const knownIdentifierPatterns: { pattern: RegExp; label: string }[] = [
   {pattern: /^https?:\/\/d-nb\.info\/gnd\//, label: 'GND'},
   {pattern: /^https?:\/\/portal\.dnb\.de\//, label: 'GND'},
   {pattern: /^https?:\/\/viaf\.org\/viaf\//, label: 'VIAF'},
@@ -12,35 +21,58 @@ const knownIdentifierPatterns: { pattern: RegExp; label: string }[] = [
   {pattern: /^https?:\/\/dbe\.rah\.es\//, label: 'DBE'},
 ];
 
-export interface DanteEntityType {
-  key: 'person' | 'organisation';
-  indexPath: string;
-  indexTranslationKey: string;
+export function getMappingLinks(entity: JSKOSEntity): { href: string; label: string }[] {
+  if (!entity.mappings) return [];
+  return entity.mappings
+    .map((mapping) => mapping.to?.memberSet?.[0]?.uri)
+    .filter((uri): uri is string => !!uri)
+    .map((uri) => {
+      const known = knownIdentifierPatterns.find((p) => p.pattern.test(uri));
+      return {href: uri, label: known?.label || new URL(uri).hostname};
+    });
 }
 
-const entityTypes: Record<string, DanteEntityType> = {
-  person: {key: 'person', indexPath: '/languages-of-diplomacy/indices/people', indexTranslationKey: 'lod.person.personIndex'},
-  organisation: {key: 'organisation', indexPath: '/languages-of-diplomacy/indices/organisations', indexTranslationKey: 'lod.organisation.organisationIndex'},
-};
+export function getSearchLink(entity: JSKOSEntity, searchBasePath: string | undefined): string | undefined {
+  if (!searchBasePath) return undefined;
+  if (!entity.uri) return searchBasePath;
+  try {
+    const url = new URL(entity.uri);
+    const uriPath = url.pathname.replace(/^\//, '');
+    return `${searchBasePath}?q=${encodeURIComponent(uriPath)}`;
+  } catch {
+    return searchBasePath;
+  }
+}
 
 export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: Ref<'person' | 'organisation'>) {
   const {locale} = useI18n();
+  const paths = inject(DanteEntityPathsKey, {});
 
   const resolvedSkos = ref<JSKOSEntity | null | undefined>(null);
 
+  let currentRequestId = 0;
+
   const resolve = async (uri: string | undefined) => {
+    const requestId = ++currentRequestId;
     if (!uri) {
       resolvedSkos.value = undefined;
       return;
     }
     resolvedSkos.value = null;
-    const response = await fetch(`https://api.dante.gbv.de/data?uri=${uri}&properties=*`);
-    if (!response.ok) {
+    try {
+      const response = await fetch(`https://api.dante.gbv.de/data?uri=${uri}&properties=*`);
+      if (requestId !== currentRequestId) return;
+      if (!response.ok) {
+        resolvedSkos.value = undefined;
+        return;
+      }
+      const data = await response.json() as JSKOSEntity[];
+      if (requestId !== currentRequestId) return;
+      resolvedSkos.value = data[0] ?? undefined;
+    } catch {
+      if (requestId !== currentRequestId) return;
       resolvedSkos.value = undefined;
-      return;
     }
-    const data = await response.json() as JSKOSEntity[];
-    resolvedSkos.value = data[0] ?? undefined;
   };
 
   watch(danteUri, resolve, {immediate: true});
@@ -52,46 +84,46 @@ export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: R
   });
 
   const identifierLinks = computed(() => {
-    if (!resolvedSkos.value?.mappings) return [];
-    return resolvedSkos.value.mappings
-      .map((mapping) => mapping.to?.memberSet?.[0]?.uri)
-      .filter((uri): uri is string => !!uri)
-      .map((uri) => {
-        const known = knownIdentifierPatterns.find((p) => p.pattern.test(uri));
-        return {href: uri, label: known?.label || new URL(uri).hostname};
-      });
+    if (!resolvedSkos.value) return [];
+    return getMappingLinks(resolvedSkos.value);
   });
 
   const searchLink = computed(() => {
+    if (!paths.searchBasePath) return undefined;
     const uri = danteUri.value;
-    if (!uri) return '/languages-of-diplomacy/search/';
+    if (!uri) return paths.searchBasePath;
     try {
       const url = new URL(uri);
       const uriPath = url.pathname.replace(/^\//, '');
-      return `/languages-of-diplomacy/search/?q=${encodeURIComponent(uriPath)}`;
+      return `${paths.searchBasePath}?q=${encodeURIComponent(uriPath)}`;
     } catch {
-      return '/languages-of-diplomacy/search/';
+      return paths.searchBasePath;
     }
   });
 
-  const resolvedEntityType = computed((): DanteEntityType | undefined => {
-    if (entityType?.value) return entityTypes[entityType.value];
+  const resolvedEntityType = computed((): 'person' | 'organisation' | undefined => {
+    if (entityType?.value) return entityType.value;
     const uri = resolvedSkos.value?.uri || danteUri.value || '';
-    if (uri.includes('lod_organisations')) return entityTypes.organisation;
-    if (uri.includes('lod_persons')) return entityTypes.person;
+    if (uri.includes('lod_organisations')) return 'organisation';
+    if (uri.includes('lod_persons')) return 'person';
     return undefined;
   });
 
   const indexLink = computed(() => {
-    const config = resolvedEntityType.value;
-    if (!config) return undefined;
+    const t = resolvedEntityType.value;
+    if (!t) return undefined;
+    const basePath = t === 'person' ? paths.personIndexPath : paths.organisationIndexPath;
+    if (!basePath) return undefined;
     const uri = resolvedSkos.value?.uri || danteUri.value;
     const anchor = uri?.split('/').pop();
-    return config.indexPath + (anchor ? `#${anchor}` : '');
+    return basePath + (anchor ? `#${anchor}` : '');
   });
 
   const indexTranslationKey = computed(() => {
-    return resolvedEntityType.value?.indexTranslationKey;
+    const t = resolvedEntityType.value;
+    if (t === 'person') return 'register.person';
+    if (t === 'organisation') return 'register.organisation';
+    return undefined;
   });
 
   const loading = computed(() => resolvedSkos.value === null);

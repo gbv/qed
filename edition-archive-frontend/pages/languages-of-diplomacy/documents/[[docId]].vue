@@ -116,6 +116,13 @@ import {
   lodQueryToModel,
   TranslationMode
 } from "~/api/LodSearchHelper";
+import {DanteEntityPathsKey} from "~/composables/DanteEntity";
+
+provide(DanteEntityPathsKey, {
+  searchBasePath: '/languages-of-diplomacy/search/',
+  personIndexPath: '/languages-of-diplomacy/indices/people',
+  organisationIndexPath: '/languages-of-diplomacy/indices/organisations',
+});
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
 const route = useRoute();

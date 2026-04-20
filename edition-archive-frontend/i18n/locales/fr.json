@@ -149,13 +149,11 @@
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
       "allRightsReserved": "{license} et toutes les images : Tous droits réservés ; détenteur des droits : {archiv}"
-    },
-    "person": {
-      "personIndex": "Index des personnes"
-    },
-    "organisation": {
-      "organisationIndex": "Index des institutions"
     }
+  },
+  "register": {
+    "person": "Index des personnes",
+    "organisation": "Index des institutions"
   },
   "sosu": {
     "mainMenu": {

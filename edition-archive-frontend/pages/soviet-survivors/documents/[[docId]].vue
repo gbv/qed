@@ -78,6 +78,11 @@
 
 
 import {byName, findFirstElement, flattenElement, getAttribute, XMLApi} from "~/api/XMLApi";
+import {DanteEntityPathsKey} from "~/composables/DanteEntity";
+
+provide(DanteEntityPathsKey, {
+  searchBasePath: '/soviet-survivors/search/',
+});
 import {getMyCoReId, getMyCoReIdNumber} from "~/api/MyCoRe";
 import {
   buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel,

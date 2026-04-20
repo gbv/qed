@@ -112,6 +112,11 @@ import {
   gazinModelToQuery,
   gazinQueryToModel,
 } from '~/api/GazinSearchHelper';
+import {DanteEntityPathsKey} from "~/composables/DanteEntity";
+
+provide(DanteEntityPathsKey, {
+  searchBasePath: '/gazin/search/',
+});
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
 const route = useRoute();

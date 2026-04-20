@@ -149,13 +149,11 @@
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
       "allRightsReserved": "{license} und alle Bilder: Alle Rechte vorbehalten; Rechteinhaber: {archiv}"
-    },
-    "person": {
-      "personIndex": "Personenregister"
-    },
-    "organisation": {
-      "organisationIndex": "Institutionenregister"
     }
+  },
+  "register": {
+    "person": "Personenregister",
+    "organisation": "Institutionenregister"
   },
   "sosu": {
     "mainMenu": {
