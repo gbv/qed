@@ -24,8 +24,8 @@
                           :categ-id="props.name.category" />
     </span>
 
-    <div v-if="model.show && expandable" class="popout text-start">
-      <a class="close icon-link float-end" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
+    <div v-if="model.show && expandable" class="popout text-start position-relative">
+      <a class="close-btn" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
 
         <div class="row termsOfAddress" v-if="termsOfAddress">
           <div class="col-4">{{ $t("metadata.name.termsOfAddress") }}</div>
@@ -52,7 +52,7 @@
           <div class="col-8">{{ affiliation }}</div>
         </div>
 
-      <div class="row name-identifiers" v-for="identifier in props.name.nameIdentifiers">
+      <div class="row name-identifiers" v-for="identifier in nonDanteIdentifiers">
         <div class="col-4 identifier-type">{{ identifier.type }}</div>
         <div class="col-8 identifier-value">
           <a v-if="identifier.typeURI != null" :href="`${identifier.typeURI}${identifier.value}`"
@@ -62,6 +62,21 @@
           <template v-else>{{ identifier.value }}</template>
         </div>
       </div>
+
+      <div v-if="danteLoading" class="mt-2 text-center">
+        <div class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <DanteLinkBar
+        v-else-if="danteResolved"
+        class="mt-2"
+        :dante-uri="danteFullUri"
+        :identifier-links="danteIdentifierLinks"
+        :search-link="danteSearchLink"
+        :index-link="danteIndexLink"
+        :index-translation-key="danteIndexTranslationKey"
+      />
 
     </div>
 
@@ -88,6 +103,32 @@ const affiliation = computed(()=> {
 
 const role = computed(() => {
   return props.role != null ? props.role : props.name.roles[0];
+});
+
+const danteIdentifier = computed(() => {
+  return props.name.nameIdentifiers?.find(id => id.type === 'dante');
+});
+
+const danteFullUri = computed(() => {
+  if (!danteIdentifier.value) return undefined;
+  const typeURI = danteIdentifier.value.typeURI || 'https://uri.gbv.de/terminology/lod_persons/';
+  return `${typeURI}${danteIdentifier.value.value}`;
+});
+
+const danteUriRef = computed(() => model.show ? danteFullUri.value : undefined);
+
+const {
+  identifierLinks: danteIdentifierLinks,
+  searchLink: danteSearchLink,
+  indexLink: danteIndexLink,
+  indexTranslationKey: danteIndexTranslationKey,
+  loading: danteLoading,
+  resolved: danteResolved,
+} = useDanteEntity(danteUriRef);
+
+const nonDanteIdentifiers = computed(() => {
+  if (!props.name.nameIdentifiers) return [];
+  return props.name.nameIdentifiers.filter(id => id.type !== 'dante');
 });
 
 const expandable = computed(() => namePartGiven.value || namePartFamily.value || date.value || affiliation.value || (props.name.nameIdentifiers && props.name.nameIdentifiers.length > 0));
@@ -161,5 +202,11 @@ const termsOfAddress = computed(() => {
 
 .identifier-type {
   text-transform: uppercase;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 </style>

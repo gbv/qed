@@ -1,5 +1,5 @@
 <template>
-  <div class="viewer">
+  <div :class="['viewer', { 'viewer-fullscreen': model.fullscreen }]">
     <nav class="nav nav-tabs viewer-nav">
       <a :class="`nav-link${ model.viewMode == 'single' ? ' active':''}`"
          href="#"
@@ -13,19 +13,28 @@
          href="#"
          v-on:click.prevent="changeViewMode('xml')"
       >{{ $t('metadata.viewer.viewMode.xml') }}</a>
+      <button
+        type="button"
+        class="btn btn-sm btn-light viewer-fullscreen-toggle"
+        :aria-label="model.fullscreen ? $t('metadata.viewer.fullscreen.close') : $t('metadata.viewer.fullscreen.open')"
+        :title="model.fullscreen ? $t('metadata.viewer.fullscreen.close') : $t('metadata.viewer.fullscreen.open')"
+        v-on:click="toggleFullscreen"
+      >
+        <i :class="model.fullscreen ? 'bi bi-fullscreen-exit' : 'bi bi-fullscreen'" aria-hidden="true"></i>
+      </button>
     </nav>
     <div class="viewer-content row">
       <div v-if="model.viewMode == 'dual'" class="viewer-col col-6">
-        <div class="viewer-image-content">
+        <div class="viewer-image-content" ref="imageContainerRef">
           <iiif-image
             v-if="model.currentImage"
             :app-url="appUrl"
             :derivate-id="derivateId"
             :image-path="model.currentImage"
             :alt="$t('gpo.viewer.image.notAvailable')"
-            :show-maximize-button="true"
+            @loaded="onImageLoaded"
           />
-          <div v-else>
+          <div v-else class="viewer-image-placeholder">
             <em>{{ $t('gpo.viewer.image.notAvailable') }}</em>
           </div>
         </div>
@@ -39,6 +48,7 @@
                 :show-image-icon="model.viewMode == 'dual'"
                 :pb-element="element"
                 :viewerRoot="viewerRoot"
+                :is-active="isActivePb(element)"
                 v-on:page-break-in-view="changeImage"
                 v-on:image-icon-clicked="changeImage"
               />
@@ -70,11 +80,15 @@ const props = defineProps<{
 const {$tei} = useTei();
 
 const viewerRoot = useTemplateRef("viewerRoot");
+const imageContainerRef = useTemplateRef<HTMLDivElement>("imageContainerRef");
 
 const model = reactive({
   viewMode: 'single' as 'single' | 'dual' | 'xml',
   currentImage: null as string|null,
+  fullscreen: false,
 });
+
+let shouldResetScroll = false;
 
 const elementFilter = (el: TEINode) => {
   if(el.type === 'Element') {
@@ -115,6 +129,7 @@ const teiDocument = computed(() => {
 
   const firstFacs = parsedTei.find("pb").first().attr("facs") as string;
   model.currentImage = firstFacs ? resolveImagePath(firstFacs) : null;
+  shouldResetScroll = true;
 
   return parsedTei.get(0);
 });
@@ -131,11 +146,61 @@ const changeViewMode = (mode: 'single' | 'dual' | 'xml') => {
   model.viewMode = mode;
 }
 
+const toggleFullscreen = () => {
+  model.fullscreen = !model.fullscreen;
+}
+
 const changeImage = (pbElement: TEIElement) => {
-  if(pbElement.attributes.facs) {
-    model.currentImage = resolveImagePath(pbElement.attributes.facs);
+  if (!pbElement.attributes.facs) return;
+  const newPath = resolveImagePath(pbElement.attributes.facs);
+  if (newPath === model.currentImage) return;
+  shouldResetScroll = true;
+  model.currentImage = newPath;
+}
+
+const isActivePb = (el: TEIElement): boolean => {
+  if (!model.currentImage) return false;
+  const facs = el.attributes.facs;
+  if (!facs) return false;
+  return resolveImagePath(facs) === model.currentImage;
+}
+
+const onImageLoaded = async () => {
+  if (!shouldResetScroll) return;
+  shouldResetScroll = false;
+  await nextTick();
+  const container = imageContainerRef.value;
+  if (!container) return;
+  container.scrollTop = 0;
+}
+
+const onKeyDown = (ev: KeyboardEvent) => {
+  if (ev.key === 'Escape' && model.fullscreen) {
+    model.fullscreen = false;
   }
 }
+
+let previousBodyOverflow = '';
+watch(() => model.fullscreen, (fullscreen) => {
+  if (typeof document === 'undefined') return;
+  if (fullscreen) {
+    previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = previousBodyOverflow;
+  }
+});
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeyDown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeyDown);
+  if (typeof document !== 'undefined' && model.fullscreen) {
+    document.body.style.overflow = previousBodyOverflow;
+  }
+});
 
 </script>
 
@@ -148,9 +213,29 @@ const changeImage = (pbElement: TEIElement) => {
   flex-direction: column;
 }
 
+.viewer-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  z-index: 2000;
+  padding: 0.5rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
 .viewer-nav {
   flex-shrink: 0;
   margin-top: 2rem;
+  align-items: center;
+}
+
+.viewer-fullscreen .viewer-nav {
+  margin-top: 0;
+}
+
+.viewer-fullscreen-toggle {
+  margin-left: auto;
 }
 
 .viewer-content {
@@ -162,6 +247,19 @@ const changeImage = (pbElement: TEIElement) => {
 
 .viewer-col {
   height: 100%;
+  min-height: 0;
+}
+
+.viewer-image-content {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.viewer-image-placeholder {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
 }
 
 .viewer-text-content,
@@ -278,16 +376,5 @@ const changeImage = (pbElement: TEIElement) => {
   padding-top: 1em;
   padding-bottom: 1em;
 }
-
-/* Viewer image styles */
-
-.viewer-image-content {
-  height: 100%;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 
 </style>

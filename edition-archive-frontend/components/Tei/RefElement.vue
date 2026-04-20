@@ -8,7 +8,9 @@
 
     <div v-if="model.show && hasRefAttribute && isCompatibleRef" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hide()"><i class="bi bi-x-circle"></i></a>
-      <tei-ref-resolver :v-if="hasRefAttribute" :ref-attribute="props.element.attributes.ref" />
+      <tei-dante-ref-resolver v-if="isPersonWithGBVRef" :ref-attribute="props.element.attributes.ref" entity-type="person" />
+      <tei-dante-ref-resolver v-else-if="isOrgWithGBVRef" :ref-attribute="props.element.attributes.ref" entity-type="organisation" />
+      <tei-ref-resolver v-else :ref-attribute="props.element.attributes.ref" />
     </div>
 
   </div>
@@ -68,6 +70,19 @@ const isCompatibleRef = computed(() => {
 
   return ref.startsWith('http://uri.gbv.de/terminology/') || ref.startsWith('https://uri.gbv.de/terminology/')
   || ref.startsWith('https://sws.geonames.org/') || ref.startsWith('https://geonames.org/') || ref.startsWith("https://www.geonames.org/");
+});
+
+const isGBVTerminology = computed(() => {
+  const ref = props.element.attributes.ref;
+  return ref && (ref.startsWith('http://uri.gbv.de/terminology/') || ref.startsWith('https://uri.gbv.de/terminology/'));
+});
+
+const isPersonWithGBVRef = computed(() => {
+  return elementName.value === 'persName' && isGBVTerminology.value;
+});
+
+const isOrgWithGBVRef = computed(() => {
+  return elementName.value === 'orgName' && isGBVTerminology.value;
 });
 
 const hide = () => {

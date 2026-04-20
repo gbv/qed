@@ -65,225 +65,335 @@
     <div class="metadata mt-3">
       <h3>{{ $t('metadata.heading') }}</h3>
 
-      <MODSMetaKeyValue v-for="title in allTitles" :key="title.title">
-        <template #key>
-          {{ $te(`metadata.titleType.${title.type || 'main'}`) ? $t(`metadata.titleType.${title.type || 'main'}`) : title.type }}
-          <span v-if="title.language" class="title-language">
-            (<MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="title.language"/>)
-          </span>
-        </template>
-        <template #value>
-          {{ title.title }}<template v-if="title.subtitle">: {{ title.subtitle }}</template>
-        </template>
-      </MODSMetaKeyValue>
+      <template v-for="section in effectiveMetadataOrder" :key="section">
 
-      <MODSMetaKeyValue v-if="!props.hideGenre && genres != null && genres.length>0">
-        <template #key>
-          {{ $t("metadata.genre") }}
+        <!-- titles -->
+        <template v-if="section === 'titles'">
+          <MODSMetaKeyValue v-for="title in allTitles" :key="title.title">
+            <template #key>
+              {{ $te(`metadata.titleType.${title.type || 'main'}`) ? $t(`metadata.titleType.${title.type || 'main'}`) : title.type }}
+              <span v-if="title.language" class="title-language">
+                (<MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="title.language"/>)
+              </span>
+            </template>
+            <template #value>
+              {{ title.title }}<template v-if="title.subtitle">: {{ title.subtitle }}</template>
+            </template>
+          </MODSMetaKeyValue>
         </template>
-        <template #value>
-          <ol class="genreList">
-            <li class="genre" v-for="genre in genres">
-              <MODSClassification :app-url="backendUrl"  :classId="genre.classId" :categId="genre.categId" />
-            </li>
-          </ol>
-        </template>
-      </MODSMetaKeyValue>
 
-      <MODSMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
-        <template #key>
-          {{ $t("metadata.language") }}
+        <!-- genres -->
+        <template v-if="section === 'genres'">
+          <MODSMetaKeyValue v-if="!props.hideGenre && genres != null && genres.length>0">
+            <template #key>
+              {{ $t("metadata.genre") }}
+            </template>
+            <template #value>
+              <ol class="genreList">
+                <li class="genre" v-for="genre in genres">
+                  <MODSClassification :app-url="backendUrl" :classId="genre.classId" :categId="genre.categId" />
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
         </template>
-        <template #value>
-          <ol class="languageList">
-            <li class="language" v-for="language in documentLanguages">
-              <MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="language"/>
-            </li>
-          </ol>
-        </template>
-      </MODSMetaKeyValue>
 
-      <MODSMetaKeyValue v-for="classification in classifications">
-        <template #key>
-          <MODSClassification :app-url="backendUrl" :classId="classification.classId" />
+        <!-- languages -->
+        <template v-if="section === 'languages'">
+          <MODSMetaKeyValue v-if="documentLanguages != null && documentLanguages.length>0">
+            <template #key>
+              {{ $t("metadata.language") }}
+            </template>
+            <template #value>
+              <ol class="languageList">
+                <li class="language" v-for="language in documentLanguages">
+                  <MODSClassification :app-url="backendUrl" class-id="rfc5646" :categ-id="language"/>
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
         </template>
-        <template #value>
-          <MODSClassification :app-url="backendUrl" :classId="classification.classId" :categId="classification.categId" />
-        </template>
-      </MODSMetaKeyValue>
 
-      <MODSMetaKeyValue v-for="note in notesWithType">
-        <template #key>
-          <MODSClassification :app-url="backendUrl" :classId="'noteTypes'" :categ-id="note.type" />
+        <!-- classifications (grouped by classId) -->
+        <template v-if="section === 'classifications'">
+          <MODSMetaKeyValue v-for="(categIds, classId) in classificationsByClassId" :key="classId">
+            <template #key>
+              <template v-if="$te(`metadata.classificationLabel.${classId}`)">
+                {{ $t(`metadata.classificationLabel.${classId}`, categIds.length) }}
+              </template>
+              <MODSClassification v-else :app-url="backendUrl" :classId="classId" />
+            </template>
+            <template #value>
+              <ol v-if="categIds.length > 1" class="classificationList">
+                <li v-for="categId in categIds" :key="categId">
+                  <MODSClassification :app-url="backendUrl" :classId="classId" :categId="categId" />
+                </li>
+              </ol>
+              <MODSClassification v-else :app-url="backendUrl" :classId="classId" :categId="categIds[0]" />
+            </template>
+          </MODSMetaKeyValue>
         </template>
-        <template #value>
-          {{ note.content }}
-        </template>
-      </MODSMetaKeyValue>
 
-
-      <MODSMetaKeyValue v-for="(names, role) in namesByRole">
-        <template #key>
-          <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+        <!-- notes -->
+        <template v-if="section === 'notes'">
+          <MODSMetaKeyValue v-for="note in sortedNotes">
+            <template #key>
+              <MODSClassification :app-url="backendUrl" :classId="'noteTypes'" :categ-id="note.type" />
+            </template>
+            <template #value>
+              {{ note.content }}
+            </template>
+          </MODSMetaKeyValue>
         </template>
-        <template #value>
-          <ol class="nameList">
-            <li class="name" v-for="name in names">
-              <MODSName :app-url="props.backendUrl" :name="name" />
-            </li>
-          </ol>
-        </template>
-      </MODSMetaKeyValue>
 
-      <template v-for="originInfo in originInfos">
-        <MODSMetaKeyValue v-for="(agents, role) in originInfo.agentsByRole">
-          <template #key>
-            <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+        <!-- names (top-level mods:name, excluding his) -->
+        <template v-if="section === 'names'">
+          <MODSMetaKeyValue v-for="(names, role) in namesByRole">
+            <template #key>
+              <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+            </template>
+            <template #value>
+              <ol class="nameList">
+                <li class="name" v-for="name in names">
+                  <MODSName :app-url="props.backendUrl" :name="name" />
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- originInfos -->
+        <template v-if="section === 'originInfos'">
+          <template v-for="oi in sortedOriginInfos">
+            <MODSMetaKeyValue v-for="(agents, role) in oi.agentsByRole">
+              <template #key>
+                <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+              </template>
+              <template #value>
+                <ol class="nameList">
+                  <li class="name" v-for="agent in agents">
+                    <MODSName :app-url="props.backendUrl" :name="agent" />
+                  </li>
+                </ol>
+              </template>
+            </MODSMetaKeyValue>
+            <MODSMetaKeyValue v-if="oi.displayDate">
+              <template #key>{{ $te(`metadata.originInfo.${oi.eventType}.date`) ? $t(`metadata.originInfo.${oi.eventType}.date`) : $t("metadata.originInfo.date") }}</template>
+              <template #value>{{ oi.displayDate }}</template>
+            </MODSMetaKeyValue>
+            <MODSMetaKeyValue v-if="oi.place?.placeTerm || oi.place?.placeIdentifier">
+              <template #key>{{ $te(`metadata.originInfo.${oi.eventType}.place`) ? $t(`metadata.originInfo.${oi.eventType}.place`) : $t("metadata.originInfo.place") }}</template>
+              <template #value>
+                <MODSPlaceRef :place-term="oi.place?.placeTerm" :place-identifier="oi.place?.placeIdentifier" />
+              </template>
+            </MODSMetaKeyValue>
           </template>
-          <template #value>
-            <ol class="nameList">
-              <li class="name" v-for="agent in agents">
-                <MODSName :app-url="props.backendUrl" :name="agent" />
-              </li>
-            </ol>
+        </template>
+
+        <!-- dateIssued -->
+        <template v-if="section === 'dateIssued'">
+          <MODSMetaKeyValue v-if="dateIssued?.length > 0">
+            <template #key>
+              {{ $t("metadata.dateIssued") }}
+            </template>
+            <template #value>
+              <span v-for="date in dateIssued">
+                {{ date }}
+              </span>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- extent -->
+        <template v-if="section === 'extent'">
+          <MODSMetaKeyValue v-if="physicalDescriptionExtent?.length > 0">
+            <template #key>
+              {{ $t("metadata.extent") }}
+            </template>
+            <template #value>
+              <span v-for="extent in physicalDescriptionExtent">
+                {{ extent }}
+              </span>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- topicSubjects -->
+        <template v-if="section === 'topicSubjects'">
+          <MODSMetaKeyValue v-for="topicSubject in topicSubjects">
+            <template #key>
+              {{ $t("metadata.subject.topic") }}
+            </template>
+            <template #value>
+              <ol class="subjectTopicList">
+                <li class="subjectTopic" v-for="topic in topicSubject.topic">
+                  <nuxt-link
+                    :to="`/soviet-survivors/search?q=%22${topic}%22`">
+                    {{ topic }}
+                  </nuxt-link>
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- geographicSubjects -->
+        <template v-if="section === 'geographicSubjects'">
+          <template v-for="geoSubject in geographicSubjects">
+            <MODSMetaKeyValue v-if="geoSubject.geographic.length > 1">
+              <template #key>
+                {{ $t("metadata.subject.geographic") }}
+              </template>
+              <template #value>
+                <ol class="subjectGeographicList">
+                  <li class="subjectGeographic" v-for="geographic in geoSubject.geographic">
+                    {{ geographic }}
+                  </li>
+                </ol>
+              </template>
+            </MODSMetaKeyValue>
+
+            <MODSMetaKeyValue v-if="creationDate">
+              <template #key>
+                {{ $t("metadata.creationDate") }}
+              </template>
+              <template #value>
+                {{ creationDate }}
+              </template>
+            </MODSMetaKeyValue>
+
+            <MODSMetaKeyValue v-if="creationPlace">
+              <template #key>
+                {{ $t("metadata.creationPlace") }}
+              </template>
+              <template #value>
+                {{ creationPlace }}
+              </template>
+            </MODSMetaKeyValue>
+
+            <MODSMetaKeyValue v-if="geoSubject.coordinates.length>0">
+              <template #key>
+                {{ $t("metadata.subject.coordinates") }}
+              </template>
+              <template #value>
+                <ol class="subjectCoordinateList" v-if="geoSubject.coordinates.length>0">
+                  <li class="subjectCoordinates" v-for="subjectCoordinate in geoSubject.coordinates">
+                    {{ subjectCoordinate }}
+                    <button class="btn btn-primary btn-sm" v-on:click="toggleShowMap(subjectCoordinate)">
+                      {{
+                        $t(!mapVisible(subjectCoordinate) ? "metadata.subject.showMap" : "metadata.subject.hideMap")
+                      }}
+                    </button>
+                  </li>
+                </ol>
+              </template>
+            </MODSMetaKeyValue>
+            <div class="mt-2" v-if="geoSubject.coordinates.length>0" v-for="subjectCoordinate in geoSubject.coordinates">
+              <client-only>
+                <MapCoordinates v-if="mapVisible(subjectCoordinate)" :coordinates="subjectCoordinate"/>
+              </client-only>
+            </div>
           </template>
-        </MODSMetaKeyValue>
-        <MODSMetaKeyValue v-if="originInfo.place?.placeTerm">
-          <template #key>{{ $t("metadata.originInfo.place") }}</template>
-          <template #value>{{ originInfo.place!.placeTerm }}</template>
-        </MODSMetaKeyValue>
-        <MODSMetaKeyValue v-if="originInfo.displayDate">
-          <template #key>{{ $t("metadata.originInfo.date") }}</template>
-          <template #value>{{ originInfo.displayDate }}</template>
-        </MODSMetaKeyValue>
+        </template>
+
+        <!-- citedPersons -->
+        <template v-if="section === 'citedPersons'">
+          <MODSMetaKeyValue v-for="(persons, role) in citedPersonsByRole" :key="role">
+            <template #key>
+              <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+            </template>
+            <template #value>
+              <ol class="nameList">
+                <li class="name" v-for="person in persons">
+                  <MODSName :app-url="props.backendUrl" :name="person" />
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
+          <MODSMetaKeyValue v-if="citedPersonsWithoutRole.length > 0">
+            <template #key>
+              {{ $t("metadata.subject.citedPersons") }}
+            </template>
+            <template #value>
+              <ol class="nameList">
+                <li class="name" v-for="person in citedPersonsWithoutRole">
+                  <MODSName :app-url="props.backendUrl" :name="person" />
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- citedInstitutions -->
+        <template v-if="section === 'citedInstitutions'">
+          <MODSMetaKeyValue v-for="(institutions, role) in citedInstitutionsByRole" :key="role">
+            <template #key>
+              <MODSClassification :app-url="backendUrl" class-id="marcrelator" :categ-id="role" />
+            </template>
+            <template #value>
+              <ol class="nameList">
+                <li class="name" v-for="institution in institutions">
+                  <MODSName :app-url="props.backendUrl" :name="institution" />
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
+          <MODSMetaKeyValue v-if="citedInstitutionsWithoutRole.length > 0">
+            <template #key>
+              {{ $t("metadata.subject.citedInstitutions") }}
+            </template>
+            <template #value>
+              <ol class="nameList">
+                <li class="name" v-for="institution in citedInstitutionsWithoutRole">
+                  <MODSName :app-url="props.backendUrl" :name="institution" />
+                </li>
+              </ol>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- archive -->
+        <template v-if="section === 'archive'">
+          <MODSMetaKeyValue v-if="archive">
+            <template #key>
+              {{ $t("metadata.archive") }}
+            </template>
+            <template #value>
+              <MODSClassification :app-url="backendUrl" :classId="archive.classId" :categId="archive.categId" />
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- shelfLocator -->
+        <template v-if="section === 'shelfLocator'">
+          <MODSMetaKeyValue v-if="shelfLocator">
+            <template #key>
+              {{ $t("metadata.shelfLocator") }}
+            </template>
+            <template #value>
+              {{ shelfLocator}}
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
+        <!-- downloadLink -->
+        <template v-if="section === 'downloadLink'">
+          <slot name="downloadLink" v-if="slots.downloadLink" />
+        </template>
+
+        <!-- doi -->
+        <template v-if="section === 'doi'">
+          <MODSMetaKeyValue v-if="doi">
+            <template #key>
+              {{ $t("metadata.doi") }}
+            </template>
+            <template #value>
+              <a :href="`https://dx.doi.org/${doi}`">{{ doi }}</a>
+            </template>
+          </MODSMetaKeyValue>
+        </template>
+
       </template>
-
-      <MODSMetaKeyValue v-if="dateIssued?.length > 0">
-        <template #key>
-          {{ $t("metadata.dateIssued") }}
-        </template>
-        <template #value>
-          <span v-for="date in dateIssued">
-            {{ date }}
-          </span>
-        </template>
-      </MODSMetaKeyValue>
-
-      <MODSMetaKeyValue v-if="physicalDescriptionExtent?.length > 0">
-        <template #key>
-          {{ $t("metadata.extent") }}
-        </template>
-        <template #value>
-          <span v-for="extent in physicalDescriptionExtent">
-            {{ extent }}
-          </span>
-        </template>
-      </MODSMetaKeyValue>
-
-
-      <MODSMetaKeyValue v-for="topicSubject in topicSubjects">
-        <template #key>
-          {{ $t("metadata.subject.topic") }}
-        </template>
-        <template #value>
-          <ol class="subjectTopicList">
-            <li class="subjectTopic" v-for="topic in topicSubject.topic">
-              <nuxt-link
-                :to="`/soviet-survivors/search?q=%22${topic}%22`">
-                {{ topic }}
-              </nuxt-link>
-            </li>
-          </ol>
-
-        </template>
-      </MODSMetaKeyValue>
-
-
-      <template v-for="geoSubject in geographicSubjects">
-        <MODSMetaKeyValue v-if="geoSubject.geographic.length > 1">
-          <template #key>
-            {{ $t("metadata.subject.geographic") }}
-          </template>
-          <template #value>
-            <ol class="subjectGeographicList">
-              <li class="subjectGeographic" v-for="geographic in geoSubject.geographic">
-                {{ geographic }}
-              </li>
-            </ol>
-          </template>
-        </MODSMetaKeyValue>
-
-        <MODSMetaKeyValue v-if="creationDate">
-          <template #key>
-            {{ $t("metadata.creationDate") }}
-          </template>
-          <template #value>
-            {{ creationDate }}
-          </template>
-        </MODSMetaKeyValue>
-
-        <MODSMetaKeyValue v-if="creationPlace">
-          <template #key>
-            {{ $t("metadata.creationPlace") }}
-          </template>
-          <template #value>
-            {{ creationPlace }}
-          </template>
-        </MODSMetaKeyValue>
-
-        <MODSMetaKeyValue v-if="geoSubject.coordinates.length>0">
-          <template #key>
-            {{ $t("metadata.subject.coordinates") }}
-          </template>
-          <template #value>
-            <ol class="subjectCoordinateList" v-if="geoSubject.coordinates.length>0">
-              <li class="subjectCoordinates" v-for="subjectCoordinate in geoSubject.coordinates">
-                {{ subjectCoordinate }}
-                <button class="btn btn-primary btn-sm" v-on:click="toggleShowMap(subjectCoordinate)">
-                  {{
-                    $t(!mapVisible(subjectCoordinate) ? "metadata.subject.showMap" : "metadata.subject.hideMap")
-                  }}
-                </button>
-              </li>
-            </ol>
-          </template>
-        </MODSMetaKeyValue>
-        <div class="mt-2" v-if="geoSubject.coordinates.length>0" v-for="subjectCoordinate in geoSubject.coordinates">
-          <client-only>
-            <MapCoordinates v-if="mapVisible(subjectCoordinate)" :coordinates="subjectCoordinate"/>
-          </client-only>
-        </div>
-      </template>
-
-      <MODSMetaKeyValue v-if="archive">
-        <template #key>
-          {{ $t("metadata.archive") }}
-        </template>
-        <template #value>
-          <MODSClassification :app-url="backendUrl" :classId="archive.classId" :categId="archive.categId" />
-        </template>
-      </MODSMetaKeyValue>
-
-      <MODSMetaKeyValue v-if="shelfLocator">
-        <template #key>
-          {{ $t("metadata.shelfLocator") }}
-        </template>
-        <template #value>
-          {{ shelfLocator}}
-        </template>
-      </MODSMetaKeyValue>
-
-      <slot name="downloadLink" v-if="slots.downloadLink" />
-
-      <MODSMetaKeyValue v-if="doi">
-        <template #key>
-          {{ $t("metadata.doi") }}
-        </template>
-        <template #value>
-          <a :href="`https://dx.doi.org/${doi}`">{{ doi }}</a>
-        </template>
-      </MODSMetaKeyValue>
-
     </div>
   </div>
 </template>
@@ -326,6 +436,14 @@ const model = reactive({
   }
 );
 
+type MetadataSection = 'titles' | 'genres' | 'languages' | 'classifications' | 'notes' | 'names' | 'originInfos' | 'dateIssued' | 'extent' | 'topicSubjects' | 'geographicSubjects' | 'citedPersons' | 'citedInstitutions' | 'archive' | 'shelfLocator' | 'downloadLink' | 'doi';
+
+const DEFAULT_METADATA_ORDER: MetadataSection[] = [
+  'titles', 'names', 'dateIssued', 'originInfos', 'languages', 'genres', 'classifications',
+  'topicSubjects', 'geographicSubjects', 'citedPersons', 'citedInstitutions', 'notes', 'extent',
+  'archive', 'shelfLocator', 'downloadLink', 'doi'
+];
+
 const props = defineProps<{
   xml: XElement,
   id: string,
@@ -335,7 +453,12 @@ const props = defineProps<{
   showClassifications?: string[],
   hideNoteTypes?: string[],
   hideGenre?: boolean,
-  preferredTitleLanguage?: string
+  preferredTitleLanguage?: string,
+  originInfoOrder?: string[],
+  noteTypeOrder?: string[],
+  classificationOrder?: string[],
+  archiveClassId?: string,
+  metadataOrder?: MetadataSection[]
 }>()
 
 const searchOriginals = async () => {
@@ -503,6 +626,7 @@ const namesByRole = computed(() => {
   const nbr = {} as Record<string, Name[]>;
   names.value.forEach((name) => {
     name.roles.forEach((role) => {
+      if (role === 'his') return;
       if (!nbr.hasOwnProperty(role)) {
         nbr[role]= [name];
       } else {
@@ -515,6 +639,72 @@ const namesByRole = computed(() => {
 
 const originInfos = computed(() => {
   return getOriginInfos(mods.value);
+});
+
+const sortedOriginInfos = computed(() => {
+  if (!props.originInfoOrder) return originInfos.value;
+  const order = props.originInfoOrder;
+  return [...originInfos.value].sort((a, b) => {
+    const idxA = a.eventType ? order.indexOf(a.eventType) : -1;
+    const idxB = b.eventType ? order.indexOf(b.eventType) : -1;
+    return (idxA === -1 ? order.length : idxA) - (idxB === -1 ? order.length : idxB);
+  });
+});
+
+const sortedNotes = computed(() => {
+  if (!props.noteTypeOrder) return notesWithType.value;
+  const order = props.noteTypeOrder;
+  return [...notesWithType.value].sort((a, b) => {
+    const idxA = order.indexOf(a.type);
+    const idxB = order.indexOf(b.type);
+    return (idxA === -1 ? order.length : idxA) - (idxB === -1 ? order.length : idxB);
+  });
+});
+
+const effectiveMetadataOrder = computed(() => {
+  return props.metadataOrder ?? DEFAULT_METADATA_ORDER;
+});
+
+const citedPersons = computed(() => {
+  return getSubjects(mods.value)
+    .flatMap(s => s.names)
+    .filter(n => n.type === 'personal');
+});
+
+const citedInstitutions = computed(() => {
+  return getSubjects(mods.value)
+    .flatMap(s => s.names)
+    .filter(n => n.type === 'corporate');
+});
+
+function groupNamesByRole(names: Name[]): Record<string, Name[]> {
+  const nbr = {} as Record<string, Name[]>;
+  names.forEach((name) => {
+    name.roles.forEach((role) => {
+      if (!nbr.hasOwnProperty(role)) {
+        nbr[role] = [name];
+      } else {
+        nbr[role].push(name);
+      }
+    });
+  });
+  return nbr;
+}
+
+const citedPersonsByRole = computed(() => {
+  return groupNamesByRole(citedPersons.value.filter(n => n.roles.length > 0));
+});
+
+const citedPersonsWithoutRole = computed(() => {
+  return citedPersons.value.filter(n => n.roles.length === 0);
+});
+
+const citedInstitutionsByRole = computed(() => {
+  return groupNamesByRole(citedInstitutions.value.filter(n => n.roles.length > 0));
+});
+
+const citedInstitutionsWithoutRole = computed(() => {
+  return citedInstitutions.value.filter(n => n.roles.length === 0);
 });
 
 
@@ -580,18 +770,20 @@ const doi = computed(() => {
   return null;
 });
 
-const archive = computed( ()=> {
-  const el = findFirstElement(mods.value, and(byName('mods:classification'), byAttr('authorityURI', 'https://qed.perspectivia.net/soviet-survivors-backend/classifications/sursurv_archives')));
-  if(el == null) {
-    return undefined;
-  }
+const archive = computed(() => {
+  const classId = props.archiveClassId;
+  if (!classId) return undefined;
+  const el = mods.value.content
+    .filter(and(byName('mods:classification'), byAttr('authorityURI')))
+    .find(el => {
+      const uri = getAttribute(el as XElement, 'authorityURI')?.value;
+      return uri?.endsWith(`/${classId}`);
+    }) as XElement | undefined;
+  if (!el) return undefined;
   const valueURI = getAttribute(el, 'valueURI')?.value;
-  if(!valueURI) {
-    return undefined;
-  }
-  const categValue = valueURI.substring(valueURI.lastIndexOf("#")+1);
-
-  return {classId: 'sursurv_archives', categId: categValue};
+  if (!valueURI) return undefined;
+  const categId = valueURI.substring(valueURI.lastIndexOf("#") + 1);
+  return {classId, categId};
 });
 
 const classifications = computed(()=> {
@@ -616,6 +808,26 @@ const classifications = computed(()=> {
     return false;
   })
   .filter((c) => c != null) as {classId: string, categId: string}[];
+});
+
+const classificationsByClassId = computed(() => {
+  const grouped = {} as Record<string, string[]>;
+  for (const c of classifications.value) {
+    if (!grouped[c.classId]) grouped[c.classId] = [];
+    grouped[c.classId].push(c.categId);
+  }
+  if (!props.classificationOrder) return grouped;
+  const order = props.classificationOrder;
+  const sorted = {} as Record<string, string[]>;
+  const keys = Object.keys(grouped).sort((a, b) => {
+    const idxA = order.indexOf(a);
+    const idxB = order.indexOf(b);
+    return (idxA === -1 ? order.length : idxA) - (idxB === -1 ? order.length : idxB);
+  });
+  for (const key of keys) {
+    sorted[key] = grouped[key];
+  }
+  return sorted;
 });
 
 
@@ -669,7 +881,7 @@ const creationDate = computed(() => {
 
 
 /* display topic list elements as normal text */
-.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li {
+.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li, .classificationList li {
   list-style-type: none;
   display: block;
 }
@@ -677,7 +889,7 @@ const creationDate = computed(() => {
 
 
 /* remove padding and margin from list elements */
-.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList {
+.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList, .classificationList {
   padding: 0;
   margin: 0;
 }

@@ -36,6 +36,7 @@ export interface Subject {
   topic: string[];
   geographic: string[];
   coordinates: string[];
+  names: Name[];
 }
 
 export interface Classification {
@@ -69,51 +70,46 @@ export function getTitles(modsOrRelatedItem: XElement): Title[] {
 }
 
 
+function parseName(nameEl: XElement): Name {
+  const type = (getAttribute(nameEl, "type")?.value as "personal" | "corporate" | "conference") || undefined;
+
+  const role = findFirstElement(nameEl, byName("mods:role"));
+  const roles = role
+    ? findElement(role, byName("mods:roleTerm")).map(roleTerm => {
+        if (getAttribute(roleTerm, "type")?.value != "code") return null;
+        return flattenElement(roleTerm) || undefined;
+      }).filter(el => el != null) as string[]
+    : [];
+
+  const nameParts = findElement(nameEl, byName("mods:namePart")).map(namePart => {
+    const type = getAttribute(namePart, "type")?.value || undefined;
+    return {type, value: flattenElement(namePart) || undefined};
+  }).filter(el => el.value != null) as NamePart[];
+
+  const nameIdentifiers = findElement(nameEl, byName("mods:nameIdentifier")).map(nameIdentifier => {
+    const type = getAttribute(nameIdentifier, "type")?.value || undefined;
+    const typeURI = getAttribute(nameIdentifier, "typeURI")?.value || undefined;
+    const value = flattenElement(nameIdentifier) || undefined;
+    return {type, typeURI, value};
+  }).filter(el => el.value != null) as NameIdentifier[];
+
+  const displayForm = flattenElement(findFirstElement(nameEl, byName("mods:displayForm"))) || undefined;
+  const affiliation = flattenElement(findFirstElement(nameEl, byName("mods:affiliation"))) || undefined;
+
+  const authorityURI = getAttribute(nameEl, "authorityURI")?.value || undefined;
+  const classification = authorityURI?.split("/").pop() || undefined;
+  const valueURI = getAttribute(nameEl, "valueURI")?.value || undefined;
+  const category = valueURI?.split("/").pop()?.split("#").pop() || undefined;
+
+  return {type, roles, nameParts, displayForm, nameIdentifiers, affiliation, classification, category};
+}
+
 export function getNames(modsOrRelatedItem: XElement): Name[] {
   if(modsOrRelatedItem == null) return [];
   const names = modsOrRelatedItem.content.filter(byName("mods:name")) as XElement[];
-  const namesResult: Name[] = [];
-
-  for (const name of names) {
-    const role = findFirstElement(name, byName("mods:role"));
-    if (role == null) continue;
-
-    const roles = findElement(role, byName("mods:roleTerm")).map(roleTerm => {
-      if (getAttribute(roleTerm, "type")?.value != "code") {
-        return null;
-      }
-      return flattenElement(roleTerm) || undefined;
-    }).filter(el => el != null) as string[];
-
-    const type = (getAttribute(name, "type")?.value as "personal" | "corporate" | "conference") || undefined;
-
-
-    const nameParts = findElement(name, byName("mods:namePart")).map(namePart => {
-      const type = getAttribute(namePart, "type")?.value || undefined;
-      return {type, value: flattenElement(namePart) || undefined};
-    }).filter(el => el.value != null) as NamePart[];
-
-    const nameIdentifiers = findElement(name, byName("mods:nameIdentifier")).map(nameIdentifier => {
-      const type = getAttribute(nameIdentifier, "type")?.value || undefined;
-      const typeURI = getAttribute(nameIdentifier, "typeURI")?.value || undefined;
-      const value = flattenElement(nameIdentifier) || undefined;
-      return {type, typeURI, value};
-    }).filter(el => el.value != null) as NameIdentifier[];
-
-    const displayForm = flattenElement(findFirstElement(name, byName("mods:displayForm"))) || undefined;
-
-    const affiliation = flattenElement(findFirstElement(name, byName("mods:affiliation"))) || undefined;
-
-    const authorityURI = getAttribute(name, "authorityURI")?.value || undefined;
-    const classification = authorityURI?.split("/").pop() || undefined;
-    const valueURI = getAttribute(name, "valueURI")?.value || undefined;
-    const category = valueURI?.split("/").pop()?.split("#").pop() || undefined;
-
-    namesResult.push({type, roles, nameParts, displayForm, nameIdentifiers, affiliation, classification, category});
-
-
-  }
-  return namesResult;
+  return names
+    .map(parseName)
+    .filter(name => name.roles.length > 0);
 }
 
 export function getSubjects(modsOrRelatedItem: XElement): Subject[] {
@@ -133,13 +129,16 @@ export function getSubjects(modsOrRelatedItem: XElement): Subject[] {
         return flattenElement(topicElement) as string;
       });
 
-
     const coordinates = findElement(subject, byName("mods:coordinates"))
       .map((coordinatesElement) => {
         coordinatesElement = coordinatesElement as XElement;
         return flattenElement(coordinatesElement) as string;
       });
-    return {geographic, topic, coordinates};
+
+    const names = (subject.content.filter(byName("mods:name")) as XElement[])
+      .map(parseName);
+
+    return {geographic, topic, coordinates, names};
   });
 }
 
@@ -165,30 +164,10 @@ export function getOriginInfos(mods: XElement): OriginInfo[] {
     const agentsByRole: Record<string, Name[]> = {};
 
     for (const agent of originInfoEl.content.filter(byName("mods:agent")) as XElement[]) {
-      const role = findFirstElement(agent, byName("mods:role"));
-      if (role == null) continue;
+      const name = parseName(agent);
+      if (name.roles.length === 0) continue;
 
-      const roles = findElement(role, byName("mods:roleTerm")).map(roleTerm => {
-        if (getAttribute(roleTerm, "type")?.value != "code") return null;
-        return flattenElement(roleTerm) || undefined;
-      }).filter(el => el != null) as string[];
-
-      const nameParts = findElement(agent, byName("mods:namePart")).map(namePart => {
-        const type = getAttribute(namePart, "type")?.value || undefined;
-        return {type, value: flattenElement(namePart) || undefined};
-      }).filter(el => el.value != null) as NamePart[];
-
-      const nameIdentifiers = findElement(agent, byName("mods:nameIdentifier")).map(nameIdentifier => {
-        const type = getAttribute(nameIdentifier, "type")?.value || undefined;
-        const typeURI = getAttribute(nameIdentifier, "typeURI")?.value || undefined;
-        const value = flattenElement(nameIdentifier) || undefined;
-        return {type, typeURI, value};
-      }).filter(el => el.value != null) as NameIdentifier[];
-
-      const displayForm = flattenElement(findFirstElement(agent, byName("mods:displayForm"))) || undefined;
-      const name: Name = {roles, nameParts, displayForm, nameIdentifiers};
-
-      for (const roleCode of roles) {
+      for (const roleCode of name.roles) {
         if (!agentsByRole[roleCode]) agentsByRole[roleCode] = [];
         agentsByRole[roleCode].push(name);
       }

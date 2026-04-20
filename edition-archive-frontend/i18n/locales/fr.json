@@ -143,11 +143,18 @@
       "tei" : "Principes de codage de texte TEI",
       "places": "Lieux",
       "people": "Personnes",
+      "organisations": "Institutions",
       "archives": "Archives"
     },
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
       "allRightsReserved": "{license} et toutes les images : Tous droits réservés ; détenteur des droits : {archiv}"
+    },
+    "person": {
+      "personIndex": "Index des personnes"
+    },
+    "organisation": {
+      "organisationIndex": "Index des institutions"
     }
   },
   "sosu": {
@@ -232,14 +239,14 @@
     "original": "Original",
     "translation": "Traduction",
     "counts":  "{start} de {numFound}",
-    "genre": "Genre",
+    "genre": "Type de document",
     "language": "Langue",
     "unknownGenre": "Inconnu",
     "dateIssued": "Date de publication",
     "typeOfResource": "Type de ressource",
     "extent": "Étendue",
     "archive": "Archive",
-    "shelfLocator": "Cote",
+    "shelfLocator": "Référence archivistique",
     "download": "Télécharger",
     "downloadText": "Transcript",
     "downloadOriginal": "Télécharger l'original",
@@ -254,6 +261,10 @@
         "single": "Vue simple",
         "dual": "Vue double",
         "xml": "XML"
+      },
+      "fullscreen": {
+        "open": "Plein écran",
+        "close": "Quitter le plein écran"
       }
     },
     "titleType": {
@@ -268,13 +279,27 @@
       "geographic": "Lieu",
       "coordinates": "Coordonnées du lieu de création",
       "hideMap": "Masquer la carte",
-      "showMap": "Afficher la carte"
+      "showMap": "Afficher la carte",
+      "citedPersons": "Personnes citées",
+      "citedInstitutions": "Institutions citées"
+    },
+    "classificationLabel": {
+      "lod_document_classification": "Sous-type de document | Sous-types de document",
+      "lod_archives": "Archive | Archives"
     },
     "creationDate": "Date de création",
     "creationPlace": "Lieu de création du document",
     "originInfo": {
-      "place": "Lieu d'expédition",
-      "date": "Date"
+      "place": "Lieu",
+      "date": "Date",
+      "created": {
+        "place": "Lieu de création",
+        "date": "Date de création"
+      },
+      "received": {
+        "place": "Lieu de réception",
+        "date": "Date de réception"
+      }
     },
     "related": {
       "original": "Original de cette traduction",

@@ -143,11 +143,18 @@
       "tei": "Grundsätze der TEI-Textkodierung",
       "places": "Orte",
       "people": "Personen",
+      "organisations": "Institutionen",
       "archives": "Archive"
     },
     "metadata": {
       "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
       "allRightsReserved": "{license} und alle Bilder: Alle Rechte vorbehalten; Rechteinhaber: {archiv}"
+    },
+    "person": {
+      "personIndex": "Personenregister"
+    },
+    "organisation": {
+      "organisationIndex": "Institutionenregister"
     }
   },
   "sosu": {
@@ -232,7 +239,7 @@
     "original": "Original",
     "translation": "Übersetzung",
     "counts": "{start} von {numFound}",
-    "genre": "Genre",
+    "genre": "Dokumenttyp",
     "language": "Sprache",
     "unknownGenre": "Unbekannt",
     "dateIssued": "Datum der Veröffentlichung",
@@ -254,6 +261,10 @@
         "single": "Einzelansicht",
         "dual": "Doppelansicht",
         "xml": "XML"
+      },
+      "fullscreen": {
+        "open": "Vollbild",
+        "close": "Vollbild beenden"
       }
     },
     "titleType": {
@@ -268,13 +279,27 @@
       "geographic": "Orte",
       "coordinates": "Koordinaten des Erstellungsorts",
       "hideMap": "Karte ausblenden",
-      "showMap": "Karte einblenden"
+      "showMap": "Karte einblenden",
+      "citedPersons": "Erwähnte Personen",
+      "citedInstitutions": "Erwähnte Institutionen"
+    },
+    "classificationLabel": {
+      "lod_document_classification": "Dokumentuntertyp | Dokumentuntertypen",
+      "lod_archives": "Archiv | Archive"
     },
     "creationDate": "Erstellungsdatum",
     "creationPlace": "Erstellungsort des Dokuments",
     "originInfo": {
-      "place": "Absendeort",
-      "date": "Datum"
+      "place": "Ort",
+      "date": "Datum",
+      "created": {
+        "place": "Entstehungsort",
+        "date": "Entstehungsdatum"
+      },
+      "received": {
+        "place": "Empfangsort",
+        "date": "Empfangsdatum"
+      }
     },
     "related": {
       "original": "Original dieser Übersetzung",

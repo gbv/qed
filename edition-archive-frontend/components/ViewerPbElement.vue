@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-element" ref="pbElement">
+  <div :class="['pb-element', { 'pb-element--active': isActive }]" ref="pbElement">
     <span v-if="n">~
       <span class="page-number">{{ n }}</span>
       <a v-if="facs && showImageIcon" v-on:click="imageIconClicked" :title="$t('metadata.showImage')"><span
@@ -14,7 +14,8 @@ import type {TEIElement} from "~/api/tei.model";
 const props = defineProps<{
   pbElement: TEIElement,
   viewerRoot: HTMLElement | null,
-  showImageIcon?: boolean
+  showImageIcon?: boolean,
+  isActive?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -96,6 +97,14 @@ watch(() => pbElement.value, (newVal, oldVal) => {
 
 .pb-element {
   text-align: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.pb-element--active {
+  color: var(--bs-primary);
+  font-weight: bold;
+  background-color: rgba(var(--bs-primary-rgb), 0.12);
 }
 
 .page-number {

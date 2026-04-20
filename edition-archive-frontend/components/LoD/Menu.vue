@@ -102,7 +102,7 @@
   <template v-else-if="$route.params.searchPath == '' || $route.params.searchPath">
   </template>
 
-  <template v-if="$route.params.indicesPath =='' || $route.params.indicesPath">
+  <template v-if="$route.params.indicesPath =='' || $route.params.indicesPath || $route.path.startsWith('/languages-of-diplomacy/indices')">
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -113,6 +113,11 @@
         <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/people">
             {{ $t('lod.subMenu.people') }}
+          </nuxt-link>
+        </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/organisations">
+            {{ $t('lod.subMenu.organisations') }}
           </nuxt-link>
         </li>
         <li class="nav-item">

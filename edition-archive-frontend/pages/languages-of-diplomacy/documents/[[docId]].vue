@@ -25,7 +25,8 @@
 
       <div class="row lod-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :show-classifications="['lod_archives','lod_document_classification']"
+          <MODSDocument :show-classifications="['lod_document_classification']"
+                        archive-class-id="lod_archives"
                         :hide-note-types="[]"
                         :backend-url="ditavURL" v-if="data?.xml"
                         :xml="data?.xml"
@@ -34,6 +35,9 @@
                         :filter-params="filterParams"
                         :hide-genre="false"
                         preferred-title-language="en"
+                        :origin-info-order="['created', 'received']"
+                        :note-type-order="['source_note', 'language', 'source_characteristics', 'statement_of_responsibility']"
+                        :classification-order="['lod_document_classification', 'lod_archives']"
           >
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
