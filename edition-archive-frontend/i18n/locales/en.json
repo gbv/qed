@@ -116,7 +116,7 @@
       "home": "Home",
       "project": "About",
       "search": "Documents",
-      "indices": "Indices",
+      "indices": "Indexes",
       "editionGuidelines":"Guidelines",
       "contact": "Contact",
       "citation": "Citation"
@@ -141,7 +141,6 @@
       "commentary": "Commentary",
       "references": "References to Source Publications and Studies",
       "tei": "Principles of TEI Text Encoding",
-      "places": "Places",
       "people": "People",
       "organisations": "Organisations",
       "archives": "Archives"

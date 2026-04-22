@@ -83,6 +83,14 @@ export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: R
     return prefLabel[locale.value] || prefLabel['de'] || prefLabel['en'] || Object.values(prefLabel)[0] || '';
   });
 
+  const firstDefinition = computed(() => {
+    const definition = resolvedSkos.value?.definition;
+    if (!definition) return '';
+    const candidate = definition[locale.value] || definition['de'] || definition['en'] || Object.values(definition)[0];
+    if (!candidate) return '';
+    return Array.isArray(candidate) ? (candidate[0] ?? '') : candidate;
+  });
+
   const identifierLinks = computed(() => {
     if (!resolvedSkos.value) return [];
     return getMappingLinks(resolvedSkos.value);
@@ -132,6 +140,7 @@ export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: R
   return {
     resolvedSkos,
     preferredLabel,
+    firstDefinition,
     identifierLinks,
     searchLink,
     indexLink,

@@ -83,12 +83,20 @@ const getLabel = (entity: JSKOSEntity): string => {
 
 const {data} = await useAsyncData(`dante-vocab-index-${props.vocabularyId}`, async () => {
   const pageSize = 1000;
-  const all: JSKOSEntity[] = [];
+  const byUri = new Map<string, JSKOSEntity>();
+  const extras: JSKOSEntity[] = [];
   for (let offset = 0; ; offset += pageSize) {
     const page = await $fetch<JSKOSEntity[]>(`https://api.dante.gbv.de/voc/${props.vocabularyId}/top?properties=prefLabel,notation,mappings&offset=${offset}`);
-    all.push(...page);
+    for (const entity of page) {
+      if (entity.uri) {
+        if (!byUri.has(entity.uri)) byUri.set(entity.uri, entity);
+      } else {
+        extras.push(entity);
+      }
+    }
     if (page.length < pageSize) break;
   }
+  const all = [...byUri.values(), ...extras];
   all.sort((a, b) => getLabel(a).localeCompare(getLabel(b)));
   return all;
 });

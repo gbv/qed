@@ -106,11 +106,6 @@
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/places">
-            {{ $t('lod.subMenu.places') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
           <nuxt-link class="nav-link" active-class="active" href="/languages-of-diplomacy/indices/people">
             {{ $t('lod.subMenu.people') }}
           </nuxt-link>
