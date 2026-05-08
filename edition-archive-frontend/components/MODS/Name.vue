@@ -27,6 +27,9 @@
     <div v-if="model.show && expandable" class="popout text-start position-relative">
       <a class="close-btn" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
 
+      <TeiDanteRefResolver v-if="danteFullUri" :ref-attribute="danteFullUri" :entity-type="danteEntityType" />
+
+      <template v-else>
         <div class="row termsOfAddress" v-if="termsOfAddress">
           <div class="col-4">{{ $t("metadata.name.termsOfAddress") }}</div>
           <div class="col-8">{{ termsOfAddress }}</div>
@@ -52,31 +55,17 @@
           <div class="col-8">{{ affiliation }}</div>
         </div>
 
-      <div class="row name-identifiers" v-for="identifier in nonDanteIdentifiers">
-        <div class="col-4 identifier-type">{{ identifier.type }}</div>
-        <div class="col-8 identifier-value">
-          <a v-if="identifier.typeURI != null" :href="`${identifier.typeURI}${identifier.value}`"
-             target="_blank" rel="noopener">
-            {{ identifier.value }}
-          </a>
-          <template v-else>{{ identifier.value }}</template>
+        <div class="row name-identifiers" v-for="identifier in nonDanteIdentifiers">
+          <div class="col-4 identifier-type">{{ identifier.type }}</div>
+          <div class="col-8 identifier-value">
+            <a v-if="identifier.typeURI != null" :href="`${identifier.typeURI}${identifier.value}`"
+               target="_blank" rel="noopener">
+              {{ identifier.value }}
+            </a>
+            <template v-else>{{ identifier.value }}</template>
+          </div>
         </div>
-      </div>
-
-      <div v-if="danteLoading" class="mt-2 text-center">
-        <div class="spinner-border spinner-border-sm" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-      <DanteLinkBar
-        v-else-if="danteResolved"
-        class="mt-2"
-        :dante-uri="danteFullUri"
-        :identifier-links="danteIdentifierLinks"
-        :search-link="danteSearchLink"
-        :index-link="danteIndexLink"
-        :index-translation-key="danteIndexTranslationKey"
-      />
+      </template>
 
     </div>
 
@@ -115,16 +104,11 @@ const danteFullUri = computed(() => {
   return `${typeURI}${danteIdentifier.value.value}`;
 });
 
-const danteUriRef = computed(() => model.show ? danteFullUri.value : undefined);
-
-const {
-  identifierLinks: danteIdentifierLinks,
-  searchLink: danteSearchLink,
-  indexLink: danteIndexLink,
-  indexTranslationKey: danteIndexTranslationKey,
-  loading: danteLoading,
-  resolved: danteResolved,
-} = useDanteEntity(danteUriRef);
+const danteEntityType = computed((): 'person' | 'organisation' | undefined => {
+  if (props.name.type === 'personal') return 'person';
+  if (props.name.type === 'corporate') return 'organisation';
+  return undefined;
+});
 
 const nonDanteIdentifiers = computed(() => {
   if (!props.name.nameIdentifiers) return [];

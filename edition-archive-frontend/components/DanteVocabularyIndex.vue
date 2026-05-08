@@ -13,44 +13,12 @@
         {{ getLabel(entity) }}
         <i v-if="hasMappings(entity)" class="bi bi-link-45deg text-secondary"></i>
       </a>
-      <div v-if="entity.uri && (loading[entity.uri] || expandedData[entity.uri])"
+      <div v-if="entity.uri && expanded[entity.uri]"
            class="popout text-start mt-2 position-relative">
         <a class="close-btn" href="#" v-on:click.prevent="closeEntry(entity)">
           <i class="bi bi-x-circle"></i>
         </a>
-
-        <template v-if="loading[entity.uri]">
-          <div class="text-center">
-            <div class="spinner-border spinner-border-sm" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </template>
-        <template v-else-if="expandedData[entity.uri]">
-          <j-skos-lang-map-display
-            v-if="expandedData[entity.uri].prefLabel"
-            :lang-map="expandedData[entity.uri].prefLabel!"
-            translation-key="metadata.skos.prefLabel"
-          />
-          <j-skos-lang-map-display
-            v-if="expandedData[entity.uri].altLabel"
-            :lang-map="expandedData[entity.uri].altLabel!"
-            translation-key="metadata.skos.altLabel"
-          />
-          <j-skos-lang-map-display
-            v-if="expandedData[entity.uri].definition"
-            :lang-map="expandedData[entity.uri].definition!"
-            translation-key="metadata.skos.definition"
-          />
-
-          <div class="link-list mt-2">
-            <a :href="entity.uri" target="_blank" rel="noopener noreferrer">DANTE</a>
-            <template v-for="id in getMappingLinks(entity)" :key="id.href">
-              <a :href="id.href" target="_blank" rel="noopener noreferrer">{{ id.label }}</a>
-            </template>
-            <nuxt-link v-if="searchLinkFor(entity)" :to="searchLinkFor(entity)!">{{ $t('search.label') }}</nuxt-link>
-          </div>
-        </template>
+        <TeiDanteRefResolver :ref-attribute="entity.uri" :prefer-long-definition="true" />
       </div>
     </li>
   </ul>
@@ -58,19 +26,15 @@
 
 <script lang="ts" setup>
 import type {JSKOSEntity} from "~/api/jskos";
-import {DanteEntityPathsKey, getMappingLinks, getSearchLink} from "~/composables/DanteEntity";
 
 const props = defineProps<{
   vocabularyId: string;
   icon: string;
 }>();
 
-const paths = inject(DanteEntityPathsKey, {});
-
 const route = useRoute();
 const highlight = computed(() => route.hash.substring(1));
-const expandedData = reactive<Record<string, JSKOSEntity>>({});
-const loading = reactive<Record<string, boolean>>({});
+const expanded = reactive<Record<string, boolean>>({});
 
 const getLabel = (entity: JSKOSEntity): string => {
   if (!entity.prefLabel) return '';
@@ -113,38 +77,26 @@ const hasMappings = (entity: JSKOSEntity): boolean => {
   return !!entity.mappings && entity.mappings.length > 0;
 };
 
-const searchLinkFor = (entity: JSKOSEntity) => getSearchLink(entity, paths.searchBasePath);
-
-const toggleEntry = async (entity: JSKOSEntity) => {
+const toggleEntry = (entity: JSKOSEntity) => {
   if (!entity.uri) return;
-  if (expandedData[entity.uri] || loading[entity.uri]) {
-    delete expandedData[entity.uri];
-    delete loading[entity.uri];
+  if (expanded[entity.uri]) {
+    delete expanded[entity.uri];
   } else {
-    loading[entity.uri] = true;
-    try {
-      const result = await $fetch<JSKOSEntity[]>(`https://api.dante.gbv.de/data?uri=${entity.uri}&properties=*`);
-      if (result?.[0]) {
-        expandedData[entity.uri] = result[0];
-      }
-    } finally {
-      delete loading[entity.uri];
-    }
+    expanded[entity.uri] = true;
   }
 };
 
 const closeEntry = (entity: JSKOSEntity) => {
   if (entity.uri) {
-    delete expandedData[entity.uri];
-    delete loading[entity.uri];
+    delete expanded[entity.uri];
   }
 };
 
 const scrollToHighlight = async () => {
   if (highlight.value && data.value) {
     const entity = data.value.find(e => anchorId(e) === highlight.value);
-    if (entity && entity.uri && !expandedData[entity.uri]) {
-      await toggleEntry(entity);
+    if (entity && entity.uri && !expanded[entity.uri]) {
+      expanded[entity.uri] = true;
     }
     await nextTick();
     const el = document.getElementById(highlight.value);

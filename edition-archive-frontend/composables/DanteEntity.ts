@@ -44,7 +44,7 @@ export function getSearchLink(entity: JSKOSEntity, searchBasePath: string | unde
   }
 }
 
-export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: Ref<'person' | 'organisation'>) {
+export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: Ref<'person' | 'organisation' | undefined>) {
   const {locale} = useI18n();
   const paths = inject(DanteEntityPathsKey, {});
 
@@ -89,6 +89,15 @@ export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: R
     const candidate = definition[locale.value] || definition['de'] || definition['en'] || Object.values(definition)[0];
     if (!candidate) return '';
     return Array.isArray(candidate) ? (candidate[0] ?? '') : candidate;
+  });
+
+  const longerDefinition = computed(() => {
+    const definition = resolvedSkos.value?.definition;
+    if (!definition) return '';
+    const candidate = definition[locale.value] || definition['de'] || definition['en'] || Object.values(definition)[0];
+    if (!candidate) return '';
+    if (!Array.isArray(candidate)) return candidate;
+    return candidate[1] ?? candidate[0] ?? '';
   });
 
   const identifierLinks = computed(() => {
@@ -141,6 +150,7 @@ export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: R
     resolvedSkos,
     preferredLabel,
     firstDefinition,
+    longerDefinition,
     identifierLinks,
     searchLink,
     indexLink,

@@ -29,7 +29,7 @@
 
       <div class="row sosu-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :backend-url="sovietSurviorsURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/soviet-survivors/documents/" :filter-params="filterParams" archive-class-id="sursurv_archives">
+          <MODSDocument :backend-url="sovietSurviorsURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/soviet-survivors/documents/" :filter-params="filterParams" archive-class-id="sursurv_archives" topic-search-url-prefix="/soviet-survivors/search?q=">
 
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">

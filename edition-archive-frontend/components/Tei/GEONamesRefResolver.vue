@@ -1,30 +1,8 @@
 <template>
   <div>
-    <a class="mb-1" :href="props.refAttribute" target="_blank" rel="noopener noreferrer">
-      {{ props.refAttribute }}
-    </a>
-
     <div v-if="model.geonamesEntry">
       <ref-label-lang-value-display v-if="model.geonamesEntry.name" label-translation-key="metadata.geonames.name" :value="model.geonamesEntry.name" />
 
-      <ref-label-lang-value-display v-if="model.geonamesEntry.countryName" label-translation-key="metadata.geonames.countryName" :value="model.geonamesEntry.countryName" />
-
-      <ref-label-lang-value-display v-if="model.geonamesEntry.adminName1" label-translation-key="metadata.geonames.adminName1" :value="model.geonamesEntry.adminName1" />
-
-      <ref-label-lang-value-display v-if="model.geonamesEntry.fcodeName" label-translation-key="metadata.geonames.fcodeName" :value="model.geonamesEntry.fcodeName" />
-
-      <ref-label-lang-value-display v-if="model.geonamesEntry.population && model.geonamesEntry.population > 0" label-translation-key="metadata.geonames.population" :value="model.geonamesEntry.population.toLocaleString()" />
-
-      <ref-label-lang-value-display v-if="model.geonamesEntry.timezone?.timeZoneId" label-translation-key="metadata.geonames.timezone" :value="model.geonamesEntry.timezone.timeZoneId" />
-
-      <!-- Wikipedia zuerst -->
-      <ref-label-lang-value-display v-if="model.geonamesEntry.wikipediaURL" label-translation-key="metadata.geonames.wikipedia">
-        <a :href="'https://' + model.geonamesEntry.wikipediaURL" target="_blank" rel="noopener noreferrer">
-          {{ model.geonamesEntry.wikipediaURL }}
-        </a>
-      </ref-label-lang-value-display>
-
-      <!-- Koordinaten anzeigen + einklappbare Karte innerhalb des selben Elements -->
       <ref-label-lang-value-display v-if="model.geonamesEntry.lat && model.geonamesEntry.lng" label-translation-key="metadata.geonames.coordinates">
         <template #default>
           <span>{{ `${model.geonamesEntry.lat}, ${model.geonamesEntry.lng}` }}</span>

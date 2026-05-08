@@ -58,7 +58,7 @@
       </div>
       <div v-if="model.viewMode == 'xml'" class="viewer-col col-12">
         <div class="viewer-xml-content">
-          <pre>{{ teiFileContent.data.value }}</pre>
+          <pre>{{ teiBodyXml }}</pre>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@ const props = defineProps<{
   teiUrl: string
 }>();
 
-const {$tei} = useTei();
+const {$tei, serializeFirstElement} = useTei();
 
 const viewerRoot = useTemplateRef("viewerRoot");
 const imageContainerRef = useTemplateRef<HTMLDivElement>("imageContainerRef");
@@ -139,6 +139,12 @@ const teiBody = computed(() => {
     return null;
   }
   return $tei(teiDocument.value).find("body").toArray()[0] || null;
+});
+
+const teiBodyXml = computed(() => {
+  const raw = teiFileContent.data.value;
+  if (!raw) return '';
+  return serializeFirstElement(raw, 'body') ?? raw;
 });
 
 
@@ -375,6 +381,16 @@ onUnmounted(() => {
   font-weight: bold;
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+
+.tei-element[data-tei-name="salute"], .tei-element[data-tei-name="dateline"], .tei-element[data-tei-name="signed"] {
+  display: block;
+  padding: 0.5em;
+}
+
+.tei-element[data-tei-name="signed"] {
+  text-align: right;
 }
 
 </style>

@@ -228,9 +228,11 @@
               <ol class="subjectTopicList">
                 <li class="subjectTopic" v-for="topic in topicSubject.topic">
                   <nuxt-link
-                    :to="`/soviet-survivors/search?q=%22${topic}%22`">
+                    v-if="props.topicSearchUrlPrefix"
+                    :to="`${props.topicSearchUrlPrefix}%22${topic}%22`">
                     {{ topic }}
                   </nuxt-link>
+                  <span v-else>{{ topic }}</span>
                 </li>
               </ol>
             </template>
@@ -458,7 +460,8 @@ const props = defineProps<{
   noteTypeOrder?: string[],
   classificationOrder?: string[],
   archiveClassId?: string,
-  metadataOrder?: MetadataSection[]
+  metadataOrder?: MetadataSection[],
+  topicSearchUrlPrefix?: string
 }>()
 
 const searchOriginals = async () => {

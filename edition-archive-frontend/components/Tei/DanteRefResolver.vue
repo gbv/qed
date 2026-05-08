@@ -3,8 +3,8 @@
     <span v-if="resolved" class="entity-title">
       {{ preferredLabel }}
     </span>
-    <p v-if="resolved && firstDefinition" class="entity-definition">
-      {{ firstDefinition }}
+    <p v-if="resolved && shownDefinition" class="entity-definition">
+      {{ shownDefinition }}
     </p>
     <DanteLinkBar
       v-if="resolved"
@@ -26,14 +26,17 @@
 
 const props = defineProps<{
   refAttribute: string;
-  entityType: 'person' | 'organisation';
+  entityType?: 'person' | 'organisation';
+  preferLongDefinition?: boolean;
 }>();
 
 const danteUri = computed(() => props.refAttribute);
 const entityTypeRef = computed(() => props.entityType);
 
-const {preferredLabel, firstDefinition, identifierLinks, searchLink, indexLink, indexTranslationKey, loading, resolved} =
+const {preferredLabel, firstDefinition, longerDefinition, identifierLinks, searchLink, indexLink, indexTranslationKey, loading, resolved} =
   useDanteEntity(danteUri, entityTypeRef);
+
+const shownDefinition = computed(() => props.preferLongDefinition ? longerDefinition.value : firstDefinition.value);
 
 </script>
 

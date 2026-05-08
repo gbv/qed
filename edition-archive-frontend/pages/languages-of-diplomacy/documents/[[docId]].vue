@@ -38,6 +38,7 @@
                         :origin-info-order="['created', 'received']"
                         :note-type-order="['source_note', 'language', 'source_characteristics', 'statement_of_responsibility']"
                         :classification-order="['lod_document_classification', 'lod_archives']"
+                        topic-search-url-prefix="/languages-of-diplomacy/search/?q="
           >
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
