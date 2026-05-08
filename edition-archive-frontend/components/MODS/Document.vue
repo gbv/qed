@@ -206,14 +206,12 @@
 
         <!-- extent -->
         <template v-if="section === 'extent'">
-          <MODSMetaKeyValue v-if="physicalDescriptionExtent?.length > 0">
+          <MODSMetaKeyValue v-for="extent in physicalDescriptionExtent" :key="`${extent.unit ?? ''}-${extent.value}`">
             <template #key>
-              {{ $t("metadata.extent") }}
+              {{ extent.unit && $te(`metadata.extentUnit.${extent.unit}`) ? $t(`metadata.extentUnit.${extent.unit}`) : $t("metadata.extent") }}
             </template>
             <template #value>
-              <span v-for="extent in physicalDescriptionExtent">
-                {{ extent }}
-              </span>
+              {{ extent.value }}
             </template>
           </MODSMetaKeyValue>
         </template>
@@ -749,7 +747,11 @@ const physicalDescriptionExtent = computed(() => {
     return [];
   }
   return (findElement(physicalDescription.value, byName("mods:extent")) as XElement[])
-    .map((extend) => flattenElement(extend)) as string[];
+    .map((extend) => ({
+      value: flattenElement(extend) ?? "",
+      unit: getAttribute(extend, "unit")?.value,
+    }))
+    .filter((extent) => extent.value !== "");
 });
 
 const topicSubjects = computed(() => {

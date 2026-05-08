@@ -241,7 +241,10 @@
     "unknownGenre": "Unknown",
     "dateIssued": "Date Issued",
     "typeOfResource": "Type of Resource",
-    "extent": "Extent",
+    "extent": "Number of folios in the record",
+    "extentUnit": {
+      "folios": "Number of folios in the record"
+    },
     "archive": "Archive",
     "shelfLocator": "Archival reference",
     "download": "Download",

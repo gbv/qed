@@ -241,7 +241,10 @@
     "unknownGenre": "Unbekannt",
     "dateIssued": "Datum der Veröffentlichung",
     "typeOfResource": "Ressourcentyp",
-    "extent": "Umfang",
+    "extent": "Anzahl der Folios im Dokument",
+    "extentUnit": {
+      "folios": "Anzahl der Folios im Dokument"
+    },
     "archive": "Archiv",
     "shelfLocator": "Archivsignatur",
     "download": "Download",
