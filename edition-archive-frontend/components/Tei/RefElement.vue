@@ -6,7 +6,7 @@
       <i v-else-if="elementName === 'placeName'" class="bi bi-geo-alt"></i>{{ contentText }}
     </component>
 
-    <div v-if="model.show && hasRefAttribute && isCompatibleRef" class="popout text-start">
+    <div v-if="model.show && hasRefAttribute && isCompatibleRef" ref="popoutRef" class="popout text-start">
       <a class="close icon-link float-end" href="#hide" v-on:click.prevent="hide()"><i class="bi bi-x-circle"></i></a>
       <tei-dante-ref-resolver v-if="isPersonWithGBVRef" :ref-attribute="props.element.attributes.ref" entity-type="person" />
       <tei-dante-ref-resolver v-else-if="isOrgWithGBVRef" :ref-attribute="props.element.attributes.ref" entity-type="organisation" />
@@ -26,6 +26,9 @@ const props = defineProps<{
 const model = reactive({
   show: false as boolean,
 });
+
+const showRef = toRef(model, 'show');
+const {popoutRef} = usePopoutAutoScroll(showRef);
 
 const textTag = computed(() => {
   if(hasRefAttribute.value) {

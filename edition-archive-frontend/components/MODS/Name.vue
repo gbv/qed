@@ -3,11 +3,11 @@
     <a href="#"
       v-if="expandable"
       :class="`bi bi-${icon} bi-interactive`"
-      v-on:click.prevent="model.show=!model.show"> </a>
+      v-on:click.prevent="toggle()"> </a>
     <span
       v-else
       :class="`bi bi-${icon}`"
-      v-on:click.prevent="model.show=!model.show" > </span>
+      v-on:click.prevent="toggle()" > </span>
 
     <span v-if="props.name.displayForm != null">
       <!-- display form code -->
@@ -24,7 +24,7 @@
                           :categ-id="props.name.category" />
     </span>
 
-    <div v-if="model.show && expandable" class="popout text-start position-relative">
+    <div v-if="model.show && expandable" ref="popoutRef" class="popout text-start position-relative">
       <a class="close-btn" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
 
       <TeiDanteRefResolver v-if="danteFullUri" :ref-attribute="danteFullUri" :entity-type="danteEntityType" />
@@ -85,6 +85,12 @@ const props = defineProps<{
 const model = reactive({
   show: false,
 })
+
+const {popoutRef} = usePopoutAutoScroll(toRef(model, 'show'));
+
+const toggle = () => {
+  model.show = !model.show;
+};
 
 const affiliation = computed(()=> {
   return props.name.affiliation;
