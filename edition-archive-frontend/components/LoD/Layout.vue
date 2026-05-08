@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row ">
         <div class="col project-headline__title">
-          <h1>Languages of Diplomacy</h1>
+          <h1>Languages of Russian Eighteenth-Century Diplomacy</h1>
         </div>
         <div class="col project-headline__figure project-headline__figure--lod">
           <nuxt-img src="/images/Antioch_Dmitrievich_Kantemir_(by_J._Amigoni).jpg" preload class="" alt="Logo Languages of Diplomacy" />
@@ -124,7 +124,7 @@
           data-bs-target="#offcanvasExample"
           aria-controls="offcanvasExample">
           <i class="bi bi-chevron-right"></i>
-          Seitenmenü öffnen
+          {{ $t('lod.subMenu.openSubMenu') }}
         </button>
 
         <div
