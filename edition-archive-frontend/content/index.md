@@ -119,11 +119,11 @@
   #title
     ::::LanguageSection{fallback=de}
     #de
-    The Languages of Diplomacy
+    Languages of Russian Eighteenth-Century Diplomacy
     #en
-    The Languages of Diplomacy
+    Languages of Russian Eighteenth-Century Diplomacy
     #fr
-    The Languages of Diplomacy
+    Languages of Russian Eighteenth-Century Diplomacy
     ::::
   #default
     ::::LanguageSection{fallback=en}
