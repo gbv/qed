@@ -21,13 +21,19 @@ export enum TranslationMode {
   TRANSLATION_ONLY = "TRANSLATION_ONLY"
 }
 
+export enum ManuscriptMode {
+  ALL = "ALL",
+  WITH = "WITH",
+  WITHOUT = "WITHOUT"
+}
+
 export interface LodFilters {
   genres: string[];
   languages: string[];
   authors: string[];
   recipients: string[];
   translationMode: TranslationMode;
-  hasDigitalisat: boolean;
+  manuscriptMode: ManuscriptMode;
 }
 
 export function buildLodSearchRequestURL(url: string, search: string | null, filters: LodFilters, start: number, rows = 20) {
@@ -79,8 +85,14 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
       break;
   }
 
-  if (filters.hasDigitalisat) {
-    urlObj.searchParams.append('fq', '{!join from=derivateID to=derivates}(objectType:data_file AND fileName:(*.jpg OR *.jpeg OR *.png OR *.tif OR *.tiff OR *.gif OR *.bmp OR *.webp OR *.svg))');
+  const manuscriptJoin = "{!join from=derivateID to=derivates v='objectType:data_file AND fileName:(*.jpg OR *.jpeg OR *.png OR *.tif OR *.tiff OR *.gif OR *.bmp OR *.webp OR *.svg)'}";
+  switch (filters.manuscriptMode) {
+    case ManuscriptMode.WITH:
+      urlObj.searchParams.append('fq', manuscriptJoin);
+      break;
+    case ManuscriptMode.WITHOUT:
+      urlObj.searchParams.append('fq', `-${manuscriptJoin}`);
+      break;
   }
 
   return urlObj.toString();
@@ -112,8 +124,8 @@ export function lodModelToQuery(model: any): any {
     query.translationMode = model.filters.translationMode;
   }
 
-  if (model.filters.hasDigitalisat) {
-    query.hasDigitalisat = 'true';
+  if (model.filters.manuscriptMode !== ManuscriptMode.ALL) {
+    query.manuscriptMode = model.filters.manuscriptMode;
   }
 
   return query;
@@ -151,6 +163,6 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
     model.filters.translationMode = query.translationMode as TranslationMode;
   }
 
-  model.filters.hasDigitalisat = query.hasDigitalisat === 'true';
+  model.filters.manuscriptMode = (query.manuscriptMode as ManuscriptMode) || ManuscriptMode.ALL;
 
 }

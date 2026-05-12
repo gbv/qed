@@ -125,18 +125,42 @@
           </div>
 
           <div class="facet">
-            <h4 class="facet-title">{{ $t("search.facet.hasDigitalisat") }}</h4>
+            <h4 class="facet-title">{{ $t("search.facet.manuscriptMode") }}</h4>
             <form class="row p-3">
+
               <div class="col-12">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox"
-                         :checked="model.filters.hasDigitalisat" id="facetHasDigitalisat"
-                         v-on:change="toggleHasDigitalisat()">
-                  <label class="form-check-label" for="facetHasDigitalisat">
-                    {{ $t("search.facet.hasDigitalisatOnly") }}
+                  <input class="form-check-input" name="manuscriptMode" type="radio"
+                         :checked="model.filters.manuscriptMode == ManuscriptMode.ALL" id="facetManuscriptAll"
+                         v-on:change="changeManuscriptMode(ManuscriptMode.ALL)">
+                  <label class="form-check-label" for="facetManuscriptAll">
+                    {{ $t("search.facet.all") }}
                   </label>
                 </div>
               </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="manuscriptMode" type="radio"
+                         :checked="model.filters.manuscriptMode == ManuscriptMode.WITH" id="facetManuscriptWith"
+                         v-on:change="changeManuscriptMode(ManuscriptMode.WITH)">
+                  <label class="form-check-label" for="facetManuscriptWith">
+                    {{ $t("search.facet.manuscriptWith") }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="manuscriptMode" type="radio"
+                         :checked="model.filters.manuscriptMode == ManuscriptMode.WITHOUT" id="facetManuscriptWithout"
+                         v-on:change="changeManuscriptMode(ManuscriptMode.WITHOUT)">
+                  <label class="form-check-label" for="facetManuscriptWithout">
+                    {{ $t("search.facet.manuscriptWithout") }}
+                  </label>
+                </div>
+              </div>
+
             </form>
           </div>
 
@@ -243,7 +267,7 @@ import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
 import {
   buildLodSearchRequestURL, type LodFilters, lodModelToQuery, lodQueryToModel,
-  TranslationMode
+  ManuscriptMode, TranslationMode
 } from "~/api/LodSearchHelper";
 
 
@@ -269,7 +293,7 @@ const model = reactive({
     authors: [],
     recipients: [],
     translationMode: TranslationMode.ALL,
-    hasDigitalisat: false,
+    manuscriptMode: ManuscriptMode.ALL,
   } as LodFilters,
   facets: {
     genres: [] as FacetEntry[],
@@ -405,11 +429,11 @@ const pageChangedCallback = async (page: number) => {
   })
 }
 
-const toggleHasDigitalisat = async () => {
+const changeManuscriptMode = async (mm: ManuscriptMode) => {
   await navigateTo({
     query: {
       ...lodModelToQuery(model),
-      hasDigitalisat: !model.filters.hasDigitalisat ? 'true' : undefined,
+      manuscriptMode: mm,
       start: 0
     }
   })

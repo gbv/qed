@@ -115,7 +115,7 @@ import {
   LodFilterParams,
   type LodFilters, lodModelToQuery,
   lodQueryToModel,
-  TranslationMode
+  ManuscriptMode, TranslationMode
 } from "~/api/LodSearchHelper";
 import {DanteEntityPathsKey} from "~/composables/DanteEntity";
 
@@ -172,7 +172,7 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       authors: [],
       recipients: [],
       translationMode: TranslationMode.ALL,
-      hasDigitalisat: false,
+      manuscriptMode: ManuscriptMode.ALL,
     } as LodFilters,
     start: 0
   };

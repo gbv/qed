@@ -373,8 +373,9 @@
       "tr_translation_present": "Translation into Turkish available",
       "song_type": "Song Type",
       "author": "Author",
-      "hasDigitalisat": "Digital copy",
-      "hasDigitalisatOnly": "Only with digital copy"
+      "manuscriptMode": "Manuscript available",
+      "manuscriptWith": "Only with manuscript",
+      "manuscriptWithout": "Only without manuscript"
     },
     "field": {
       "allMetaHelp": "Searches all metadata for the entered search term",
