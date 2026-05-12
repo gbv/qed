@@ -146,7 +146,7 @@
       "archives": "Archives"
     },
     "metadata": {
-      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "citation": "{title} ; édition numérique Languages of Russian Eighteenth-Century Diplomacy, publiée par le Max Weber Network Eastern Europe, éditée par Viktor Borisov, Sophie Holm, Dzianis Kandakou et Maya Lavrinovich, sous la direction de Vladislav Rjéoutski, {publicationPlace} : {publisher} {publicationYear}",
       "allRightsReserved": "{license} et toutes les images : Tous droits réservés ; détenteur des droits : {archiv}"
     }
   },
