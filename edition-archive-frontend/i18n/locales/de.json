@@ -334,6 +334,7 @@
   },
   "search": {
     "label": "Suche",
+    "removeFilter": "Filter entfernen",
     "basic": "Einfach",
     "extended": "Erweitert",
     "pageGoTo": "Gehe zu Seite {page}",

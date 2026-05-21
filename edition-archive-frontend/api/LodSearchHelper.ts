@@ -32,8 +32,21 @@ export interface LodFilters {
   languages: string[];
   authors: string[];
   recipients: string[];
+  personEntityLinks: string[];
+  orgEntityLinks: string[];
   translationMode: TranslationMode;
   manuscriptMode: ManuscriptMode;
+}
+
+/**
+ * Builds a Solr fq that matches documents whose metadata OR whose TEI/XML files
+ * reference the given LOD entity URI. The file match uses the same derivate join
+ * as the manuscript filter; the metadata field lives on the object itself, so it
+ * is OR-ed in via the _query_ magic field.
+ */
+function buildEntityLinkFilter(uri: string, metadataField: string, fileField: string): string {
+  const join = `{!join from=derivateID to=derivates v='objectType:data_file AND ${fileField}:\\"${uri}\\"'}`;
+  return `(${metadataField}:"${uri}" OR _query_:"${join}")`;
 }
 
 export function buildLodSearchRequestURL(url: string, search: string | null, filters: LodFilters, start: number, rows = 20) {
@@ -73,6 +86,14 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   if(filters?.recipients?.length > 0) {
     urlObj.searchParams.append('fq', `ditav.mods.recipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
+  }
+
+  for (const uri of filters?.personEntityLinks ?? []) {
+    urlObj.searchParams.append('fq', buildEntityLinkFilter(uri, 'ditav.mods.dante_metadata_pers_link', 'ditav.mods.dante_file_pers_link'));
+  }
+
+  for (const uri of filters?.orgEntityLinks ?? []) {
+    urlObj.searchParams.append('fq', buildEntityLinkFilter(uri, 'ditav.mods.dante_metadata_org_link', 'ditav.mods.dante_file_org_link'));
   }
 
   switch (filters.translationMode) {
@@ -121,6 +142,14 @@ export function lodModelToQuery(model: any): any {
     query.recipients = model.filters.recipients.slice();
   }
 
+  if (model.filters.personEntityLinks.length > 0) {
+    query.personEntityLink = model.filters.personEntityLinks.slice();
+  }
+
+  if (model.filters.orgEntityLinks.length > 0) {
+    query.orgEntityLink = model.filters.orgEntityLinks.slice();
+  }
+
   if (model.filters.translationMode !== TranslationMode.ALL) {
     query.translationMode = model.filters.translationMode;
   }
@@ -158,6 +187,18 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
     model.filters.recipients = Array.isArray(query.recipients) ? [...query.recipients as string[]] : [query.recipients as string];
   } else {
     model.filters.recipients = [];
+  }
+
+  if(query.personEntityLink) {
+    model.filters.personEntityLinks = Array.isArray(query.personEntityLink) ? [...query.personEntityLink as string[]] : [query.personEntityLink as string];
+  } else {
+    model.filters.personEntityLinks = [];
+  }
+
+  if(query.orgEntityLink) {
+    model.filters.orgEntityLinks = Array.isArray(query.orgEntityLink) ? [...query.orgEntityLink as string[]] : [query.orgEntityLink as string];
+  } else {
+    model.filters.orgEntityLinks = [];
   }
 
   if (query.translationMode) {

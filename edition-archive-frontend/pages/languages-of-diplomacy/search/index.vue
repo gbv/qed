@@ -16,6 +16,20 @@
         <!-- results -->
         <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
 
+          <!-- active entity filters -->
+          <div
+            v-if="model.filters.personEntityLinks.length > 0 || model.filters.orgEntityLinks.length > 0"
+            class="entity-filters mb-3 mt-3">
+            <LoDEntityFilterChip
+              v-for="uri in model.filters.personEntityLinks" :key="`p-${uri}`"
+              :uri="uri" type="person"
+              v-on:remove="removePersonEntityLink(uri)" />
+            <LoDEntityFilterChip
+              v-for="uri in model.filters.orgEntityLinks" :key="`o-${uri}`"
+              :uri="uri" type="organisation"
+              v-on:remove="removeOrgEntityLink(uri)" />
+          </div>
+
           <!-- results: headline and sorting-->
           <div class="row g-0 result-options">
             <div class="col hit-count ms-3">
@@ -292,6 +306,8 @@ const model = reactive({
     languages: [],
     authors: [],
     recipients: [],
+    personEntityLinks: [],
+    orgEntityLinks: [],
     translationMode: TranslationMode.ALL,
     manuscriptMode: ManuscriptMode.ALL,
   } as LodFilters,
@@ -420,6 +436,26 @@ const clickRecipientFacet = async (recipient: string) => {
   });
 };
 
+const removePersonEntityLink = async (uri: string) => {
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      personEntityLink: model.filters.personEntityLinks.filter((u) => u !== uri),
+      start: 0
+    }
+  })
+}
+
+const removeOrgEntityLink = async (uri: string) => {
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      orgEntityLink: model.filters.orgEntityLinks.filter((u) => u !== uri),
+      start: 0
+    }
+  })
+}
+
 const pageChangedCallback = async (page: number) => {
   await navigateTo({
     query: {
@@ -461,9 +497,19 @@ const changeSearchString = async (event: { searchString: string }) => {
 
 const hitLink = (doc: any, index: number) => {
   const query = lodModelToQuery(model);
-  query.start =  model.start + index;
-  const queryStr = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
-  return `/languages-of-diplomacy/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
+  query.start = model.start + index;
+  const params = new URLSearchParams();
+  for (const key of Object.keys(query)) {
+    const value = query[key];
+    if (Array.isArray(value)) {
+      for (const entry of value) {
+        params.append(key, String(entry));
+      }
+    } else {
+      params.append(key, String(value));
+    }
+  }
+  return `/languages-of-diplomacy/documents/${getMyCoReIdNumber(doc['id'])}?${params.toString()}`;
 }
 
 lodQueryToModel(route.query, model);

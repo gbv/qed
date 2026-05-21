@@ -35,13 +35,8 @@ export function getMappingLinks(entity: JSKOSEntity): { href: string; label: str
 export function getSearchLink(entity: JSKOSEntity, searchBasePath: string | undefined): string | undefined {
   if (!searchBasePath) return undefined;
   if (!entity.uri) return searchBasePath;
-  try {
-    const url = new URL(entity.uri);
-    const uriPath = url.pathname.replace(/^\//, '');
-    return `${searchBasePath}?q=${encodeURIComponent(uriPath)}`;
-  } catch {
-    return searchBasePath;
-  }
+  const param = entity.uri.includes('lod_organisations') ? 'orgEntityLink' : 'personEntityLink';
+  return `${searchBasePath}?${param}=${encodeURIComponent(entity.uri)}`;
 }
 
 export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: Ref<'person' | 'organisation' | undefined>) {
@@ -105,25 +100,20 @@ export function useDanteEntity(danteUri: Ref<string | undefined>, entityType?: R
     return getMappingLinks(resolvedSkos.value);
   });
 
-  const searchLink = computed(() => {
-    if (!paths.searchBasePath) return undefined;
-    const uri = danteUri.value;
-    if (!uri) return paths.searchBasePath;
-    try {
-      const url = new URL(uri);
-      const uriPath = url.pathname.replace(/^\//, '');
-      return `${paths.searchBasePath}?q=${encodeURIComponent(uriPath)}`;
-    } catch {
-      return paths.searchBasePath;
-    }
-  });
-
   const resolvedEntityType = computed((): 'person' | 'organisation' | undefined => {
     if (entityType?.value) return entityType.value;
     const uri = resolvedSkos.value?.uri || danteUri.value || '';
     if (uri.includes('lod_organisations')) return 'organisation';
     if (uri.includes('lod_persons')) return 'person';
     return undefined;
+  });
+
+  const searchLink = computed(() => {
+    if (!paths.searchBasePath) return undefined;
+    const uri = danteUri.value;
+    if (!uri) return paths.searchBasePath;
+    const param = resolvedEntityType.value === 'organisation' ? 'orgEntityLink' : 'personEntityLink';
+    return `${paths.searchBasePath}?${param}=${encodeURIComponent(uri)}`;
   });
 
   const indexLink = computed(() => {

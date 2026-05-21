@@ -35,3 +35,6 @@ docker
 # eclipse
 .project
 .settings/
+
+# Local design specs (not tracked)
+docs/
