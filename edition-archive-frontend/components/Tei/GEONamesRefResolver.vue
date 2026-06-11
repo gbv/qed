@@ -29,7 +29,7 @@ const props = defineProps<{
   refAttribute: string,
 }>();
 
-const {public: {geonamesUsername}} = useRuntimeConfig()
+const {$geonamesURL} = useNuxtApp();
 
 const model = reactive({
   geonamesEntry: null as GeoNamesEntry | null,
@@ -52,7 +52,7 @@ const resolveGeoNames = async (ref: string) => {
     console.warn("GeoNames ref does not contain a valid geonameId:", ref);
     return null;
   }
-  let input = `https://www.geonames.org/getJSON?geonameId=${geonameId}&username=${geonamesUsername}`;
+  let input = `${$geonamesURL()}${geonameId}`;
   const response = await fetch(input);
   if (!response.ok) {
     return null;

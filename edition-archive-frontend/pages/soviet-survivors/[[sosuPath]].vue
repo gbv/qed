@@ -7,11 +7,11 @@
       <div v-if="$route.path=='/soviet-survivors/' && solrResponse!=null" class="row">
         <div class="col-12">
           <client-only>
-            <SovietSurvivorsMapWithMetadata ref="sosuMap"
-                                            :center-x="20.019309"
-                                            :center-y="52.114829"
-                                            :solr-response="solrResponse"
-                                            v-on:object-selected="objectSelected"
+            <MapWithMetadata ref="sosuMap"
+                             :center-x="20.019309"
+                             :center-y="52.114829"
+                             :solr-response="solrResponse"
+                             v-on:object-selected="objectSelected"
             >
               <template #metadata="{ solrdocs }">
                 <div class="card documents_card m-3">
@@ -36,12 +36,7 @@
                       </div>
                       <div v-if="selectedObject['derCount'] > 0" class="row mt-1">
                         <div class="col-12 text-center">
-                          <div class="doc_thumbnail">
-                            <img
-                              :src=" $sovietSurviorsURL() + '/api/iiif/image/v2/thumbnail/' + selectedObject['id'] + '/full/!300,300/0/default.jpg'"
-                              alt="thumbnail"
-                              class="img-thumbnail">
-                          </div>
+                          <IiifThumbnail :app-url="$sovietSurviorsURL()" :id="selectedObject['id']" />
                         </div>
                       </div>
                       <div class="row mt-1">
@@ -58,7 +53,7 @@
                 </div>
               </template>
 
-            </SovietSurvivorsMapWithMetadata>
+            </MapWithMetadata>
           </client-only>
         </div>
       </div>
