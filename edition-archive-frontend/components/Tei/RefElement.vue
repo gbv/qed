@@ -1,5 +1,5 @@
 <template>
-  <div class="ref-element popout-wrapper position-relative d-inline">
+  <div class="ref-element popout-wrapper position-relative" :class="isSignature ? 'tei-signature' : 'd-inline'">
     <component :is="textTag" v-bind="textAttrs" v-on:click.prevent="model.show ? hide():show()">
       <i v-if="elementName === 'persName'" class="bi bi-person"></i>
       <i v-else-if="elementName === 'orgName'" class="bi bi-bank"></i>
@@ -55,6 +55,13 @@ const {$tei} = useTei();
 
 const elementName = computed(() => {
   return props.element.name;
+});
+
+// signatures may be marked via @type or @rendition; they have to render
+// right-aligned (like in the LeafWriter) instead of inline in running text
+const isSignature = computed(() => {
+  return elementName.value === 'persName'
+    && (props.element.attributes.type === 'signature' || props.element.attributes.rendition === 'signature');
 });
 
 const contentText = computed(() => {

@@ -384,13 +384,35 @@ onUnmounted(() => {
 }
 
 
-.tei-element[data-tei-name="salute"], .tei-element[data-tei-name="dateline"], .tei-element[data-tei-name="signed"] {
+/* letter structure (opener / closer) — mirror the LeafWriter layout */
+.tei-element[data-tei-name="opener"],
+.tei-element[data-tei-name="closer"] {
   display: block;
-  padding: 0.5em;
+}
+
+.tei-element[data-tei-name="salute"],
+.tei-element[data-tei-name="dateline"],
+.tei-element[data-tei-name="signed"] {
+  display: block;
+  padding: 0.25em 0.5em;
+}
+
+/* the closing part (date, valediction, signature) is right-aligned;
+   text-align is inherited by the contained dateline / salute / signed */
+.tei-element[data-tei-name="closer"] {
+  text-align: right;
 }
 
 .tei-element[data-tei-name="signed"] {
   text-align: right;
+}
+
+/* a signature persName (@type/@rendition="signature") that is not wrapped
+   in <signed> still has to render as a right-aligned block of its own */
+.ref-element.tei-signature {
+  display: block;
+  text-align: right;
+  padding: 0.25em 0.5em;
 }
 
 </style>
