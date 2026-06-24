@@ -115,7 +115,7 @@
     "mainMenu": {
       "home": "Home",
       "project": "À propos de",
-      "search": "Document",
+      "search": "Documents",
       "indices": "Index",
       "editionGuidelines":"Lignes directrices",
       "contact": "Contact",
@@ -139,7 +139,7 @@
       "copies" : "Copies fac-similées des documents",
       "marking" : "Marquage des personnes, organisations et noms de lieux mentionnés",
       "commentary" : "Commentaires",
-      "references": "Références aux publications et études sources",
+      "references": "Références aux sources publiées et aux études",
       "tei" : "Principes de codage de texte TEI",
       "people": "Personnes",
       "organisations": "Institutions",
@@ -200,7 +200,7 @@
       "translation": "Translation"
     },
     "metadata": {
-      "copyright": "© Copyright 2026 - Tous les médias sont protégés par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY 4.0.",
+      "copyright": "© Copyright 2026 - Tous médias sont protégés par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY 4.0.",
       "cite": "Dengbêj Gazîn : Songs of a Kurdish Woman. Édition numérique par Argun Çakır. Bonn : perspectivia.net, 2026.",
       "transcription": "Transcription"
     }
@@ -364,19 +364,19 @@
       "showMore": "Voir plus",
       "spurium": "Spurium (†)",
       "ueberlieferungsform": "Mode de transmission",
-      "translationOnly": "Traductions uniquement",
-      "originalOnly": "Originaux uniquement",
-      "all": "Tous les",
-      "translationMode": "Afficher les traductions",
+      "translationOnly": "Traductions",
+      "originalOnly": "Originaux",
+      "all": "Tous",
+      "translationMode": "Afficher",
       "genre": "Genre",
       "language": "Langue",
       "translation_present": "Traduction disponible",
       "tr_translation_present": "Traduction en turc disponible",
       "song_type": "Type de chanson",
       "author": "Auteur",
-      "manuscriptMode": "Manuscrit disponible",
-      "manuscriptWith": "Uniquement avec manuscrit",
-      "manuscriptWithout": "Uniquement sans manuscrit"
+      "manuscriptMode": "Manuscrits numérisés",
+      "manuscriptWith": "Avec des manuscrits numérisés",
+      "manuscriptWithout": "Sans manuscrits numérisés"
     },
     "field": {
       "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",
