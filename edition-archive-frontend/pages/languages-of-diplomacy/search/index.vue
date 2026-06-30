@@ -74,7 +74,7 @@
                     <div class="hit_number">
                     </div>
                     <div class="hit_abstract">
-                      <div v-if="doc['ditav.mods.title.lang.en'].length>0 && doc['mods.title.main']">
+                      <div v-if="doc['ditav.mods.title.lang.en'].length>0 && doc['mods.title.main'] && doc['mods.title.main'] !== doc['ditav.mods.title.lang.en'][0]">
                         {{ doc['mods.title.main'] }}
                       </div>
                     </div>
