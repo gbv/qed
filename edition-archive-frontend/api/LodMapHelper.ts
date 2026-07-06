@@ -32,7 +32,7 @@ export function buildLodObjectsURL(ditavSolrURL: string, ids: string[]): string 
   const idQuery = ids.map((id) => `"${id}"`).join(' OR ');
   url.searchParams.set('q', `id:(${idQuery})`);
   url.searchParams.set('fl',
-    'id,derCount,ditav.mods.title.lang.en,mods.title.main,mods.title,ditav.mods.author.facet,ditav.mods.recipient.facet');
+    'id,derCount,ditav.mods.title.lang.en,mods.title.main,mods.title,ditav.mods.origin.author.facet,ditav.mods.origin.receipient.facet');
   url.searchParams.set('rows', ids.length.toString());
   url.searchParams.set('wt', 'json');
   return url.toString();
@@ -54,8 +54,8 @@ export function lodDocumentTitle(doc: any): string {
  * string when neither is present.
  */
 export function lodDocumentSubtitle(doc: any): string {
-  const author = doc?.['ditav.mods.author.facet']?.[0];
-  const recipient = doc?.['ditav.mods.recipient.facet']?.[0];
+  const author = doc?.['ditav.mods.origin.author.facet']?.[0];
+  const recipient = doc?.['ditav.mods.origin.receipient.facet']?.[0];
   if (author && recipient) {
     return `${author} → ${recipient}`;
   }

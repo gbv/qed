@@ -366,7 +366,7 @@ const search = async () => {
     });
   }
 
-  const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.author.facet'] || [];
+  const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.origin.author.facet'] || [];
   for (let i = 0; i < authorFacet.length; i += 2) {
     model.facets.authors.push({
       name: authorFacet[i] as string,
@@ -374,7 +374,7 @@ const search = async () => {
     });
   }
 
-  const recipientFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.recipient.facet'] || [];
+  const recipientFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.origin.receipient.facet'] || [];
   for (let i = 0; i < recipientFacet.length; i += 2) {
     model.facets.recipients.push({
       name: recipientFacet[i] as string,

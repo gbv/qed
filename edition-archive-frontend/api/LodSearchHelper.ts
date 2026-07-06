@@ -66,8 +66,8 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   urlObj.searchParams.append('facet.field', 'mods.genre');
   urlObj.searchParams.append('facet.field', 'category.top');
-  urlObj.searchParams.append('facet.field', 'ditav.mods.author.facet');
-  urlObj.searchParams.append('facet.field', 'ditav.mods.recipient.facet');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.origin.author.facet');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.origin.receipient.facet');
   urlObj.searchParams.append('fq', LodFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
@@ -81,11 +81,11 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
   }
 
   if(filters?.authors?.length > 0) {
-    urlObj.searchParams.append('fq', `ditav.mods.author.facet:(${filters.authors.map((aName=> `"${aName}"`)).join(' OR ')})`);
+    urlObj.searchParams.append('fq', `ditav.mods.origin.author.facet:(${filters.authors.map((aName=> `"${aName}"`)).join(' OR ')})`);
   }
 
   if(filters?.recipients?.length > 0) {
-    urlObj.searchParams.append('fq', `ditav.mods.recipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
+    urlObj.searchParams.append('fq', `ditav.mods.origin.receipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
   }
 
   for (const uri of filters?.personEntityLinks ?? []) {
