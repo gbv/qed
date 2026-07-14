@@ -27,7 +27,7 @@
         <div class="col-12">
           <MODSDocument :show-classifications="['lod_document_classification', 'translation']"
                         archive-class-id="lod_archives"
-                        :hide-note-types="['statement_of_responsibility', 'original_or_copy']"
+                        :hide-note-types="['statement_of_responsibility', 'original_version']"
                         :backend-url="ditavURL" v-if="data?.xml"
                         :xml="data?.xml"
                         :id="mycoreId"
