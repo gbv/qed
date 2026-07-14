@@ -227,7 +227,7 @@
                 <li class="subjectTopic" v-for="topic in topicSubject.topic">
                   <nuxt-link
                     v-if="props.topicSearchUrlPrefix"
-                    :to="`${props.topicSearchUrlPrefix}%22${topic}%22`">
+                    :to="`${props.topicSearchUrlPrefix}${topic}`">
                     {{ topic }}
                   </nuxt-link>
                   <span v-else>{{ topic }}</span>

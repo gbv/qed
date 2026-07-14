@@ -54,7 +54,8 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   urlObj.search = '';
 
-  const queryTerm = search && search !== '*' ? `"${search}"` : '*';
+  const escaped = search?.replace(/(["\\])/g, '\\$1');
+  const queryTerm = escaped && escaped !== '*' ? `"${escaped}"` : '*';
   urlObj.searchParams.set('q', `allMeta:${queryTerm}`);
   urlObj.searchParams.set('rows', rows.toString());
   urlObj.searchParams.set('start', start.toString());
