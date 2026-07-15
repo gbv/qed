@@ -21,13 +21,32 @@ export enum TranslationMode {
   TRANSLATION_ONLY = "TRANSLATION_ONLY"
 }
 
+export enum ManuscriptMode {
+  ALL = "ALL",
+  WITH = "WITH",
+  WITHOUT = "WITHOUT"
+}
+
 export interface LodFilters {
   genres: string[];
   languages: string[];
   authors: string[];
   recipients: string[];
+  personEntityLinks: string[];
+  orgEntityLinks: string[];
   translationMode: TranslationMode;
-  hasDigitalisat: boolean;
+  manuscriptMode: ManuscriptMode;
+}
+
+/**
+ * Builds a Solr fq that matches documents whose metadata OR whose TEI/XML files
+ * reference the given LOD entity URI. The file match uses the same derivate join
+ * as the manuscript filter; the metadata field lives on the object itself, so it
+ * is OR-ed in via the _query_ magic field.
+ */
+function buildEntityLinkFilter(uri: string, metadataField: string, fileField: string): string {
+  const join = `{!join from=derivateID to=derivates v='objectType:data_file AND ${fileField}:\\"${uri}\\"'}`;
+  return `(${metadataField}:"${uri}" OR _query_:"${join}")`;
 }
 
 export function buildLodSearchRequestURL(url: string, search: string | null, filters: LodFilters, start: number, rows = 20) {
@@ -35,7 +54,9 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   urlObj.search = '';
 
-  urlObj.searchParams.set('q', `allMeta:${search || '*'}`);
+  const escaped = search?.replace(/(["\\])/g, '\\$1');
+  const queryTerm = escaped && escaped !== '*' ? `"${escaped}"` : '*';
+  urlObj.searchParams.set('q', `allMeta:${queryTerm}`);
   urlObj.searchParams.set('rows', rows.toString());
   urlObj.searchParams.set('start', start.toString());
 
@@ -46,8 +67,8 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   urlObj.searchParams.append('facet.field', 'mods.genre');
   urlObj.searchParams.append('facet.field', 'category.top');
-  urlObj.searchParams.append('facet.field', 'ditav.mods.author.facet');
-  urlObj.searchParams.append('facet.field', 'ditav.mods.recipient.facet');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.origin.author.facet');
+  urlObj.searchParams.append('facet.field', 'ditav.mods.origin.receipient.facet');
   urlObj.searchParams.append('fq', LodFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
@@ -61,11 +82,19 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
   }
 
   if(filters?.authors?.length > 0) {
-    urlObj.searchParams.append('fq', `ditav.mods.author.facet:(${filters.authors.map((aName=> `"${aName}"`)).join(' OR ')})`);
+    urlObj.searchParams.append('fq', `ditav.mods.origin.author.facet:(${filters.authors.map((aName=> `"${aName}"`)).join(' OR ')})`);
   }
 
   if(filters?.recipients?.length > 0) {
-    urlObj.searchParams.append('fq', `ditav.mods.recipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
+    urlObj.searchParams.append('fq', `ditav.mods.origin.receipient.facet:(${filters.recipients.map((aName=> `"${aName}"`)).join(' OR ')})`);
+  }
+
+  for (const uri of filters?.personEntityLinks ?? []) {
+    urlObj.searchParams.append('fq', buildEntityLinkFilter(uri, 'ditav.mods.dante_metadata_pers_link', 'ditav.mods.dante_file_pers_link'));
+  }
+
+  for (const uri of filters?.orgEntityLinks ?? []) {
+    urlObj.searchParams.append('fq', buildEntityLinkFilter(uri, 'ditav.mods.dante_metadata_org_link', 'ditav.mods.dante_file_org_link'));
   }
 
   switch (filters.translationMode) {
@@ -79,8 +108,14 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
       break;
   }
 
-  if (filters.hasDigitalisat) {
-    urlObj.searchParams.append('fq', '{!join from=derivateID to=derivates}(objectType:data_file AND fileName:(*.jpg OR *.jpeg OR *.png OR *.tif OR *.tiff OR *.gif OR *.bmp OR *.webp OR *.svg))');
+  const manuscriptJoin = "{!join from=derivateID to=derivates v='objectType:data_file AND fileName:(*.jpg OR *.jpeg OR *.png OR *.tif OR *.tiff OR *.gif OR *.bmp OR *.webp OR *.svg)'}";
+  switch (filters.manuscriptMode) {
+    case ManuscriptMode.WITH:
+      urlObj.searchParams.append('fq', manuscriptJoin);
+      break;
+    case ManuscriptMode.WITHOUT:
+      urlObj.searchParams.append('fq', `-${manuscriptJoin}`);
+      break;
   }
 
   return urlObj.toString();
@@ -108,12 +143,20 @@ export function lodModelToQuery(model: any): any {
     query.recipients = model.filters.recipients.slice();
   }
 
+  if (model.filters.personEntityLinks.length > 0) {
+    query.personEntityLink = model.filters.personEntityLinks.slice();
+  }
+
+  if (model.filters.orgEntityLinks.length > 0) {
+    query.orgEntityLink = model.filters.orgEntityLinks.slice();
+  }
+
   if (model.filters.translationMode !== TranslationMode.ALL) {
     query.translationMode = model.filters.translationMode;
   }
 
-  if (model.filters.hasDigitalisat) {
-    query.hasDigitalisat = 'true';
+  if (model.filters.manuscriptMode !== ManuscriptMode.ALL) {
+    query.manuscriptMode = model.filters.manuscriptMode;
   }
 
   return query;
@@ -147,10 +190,22 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
     model.filters.recipients = [];
   }
 
+  if(query.personEntityLink) {
+    model.filters.personEntityLinks = Array.isArray(query.personEntityLink) ? [...query.personEntityLink as string[]] : [query.personEntityLink as string];
+  } else {
+    model.filters.personEntityLinks = [];
+  }
+
+  if(query.orgEntityLink) {
+    model.filters.orgEntityLinks = Array.isArray(query.orgEntityLink) ? [...query.orgEntityLink as string[]] : [query.orgEntityLink as string];
+  } else {
+    model.filters.orgEntityLinks = [];
+  }
+
   if (query.translationMode) {
     model.filters.translationMode = query.translationMode as TranslationMode;
   }
 
-  model.filters.hasDigitalisat = query.hasDigitalisat === 'true';
+  model.filters.manuscriptMode = (query.manuscriptMode as ManuscriptMode) || ManuscriptMode.ALL;
 
 }

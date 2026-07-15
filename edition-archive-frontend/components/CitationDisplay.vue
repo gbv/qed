@@ -8,9 +8,10 @@
           authors: authorsStrings.join(", "),
           title: title,
           publicationYear: publicationYearAndPlace?.dateIssued,
-          publicationPlace: publicationYearAndPlace?.placeTerm
+          publicationPlace: publicationYearAndPlace?.placeTerm,
+          publisher: publisher
         })
-      }}
+      }}<template v-if="doi">. DOI: {{ doi }}</template>
       <a v-if="url" :href="url">
         {{ url }}
       </a>
@@ -176,12 +177,21 @@ const publicationYearAndPlace = computed(() => {
     .map((originInfo) => {
     let dateIssued = findFirstElement(originInfo as XElement, byName("mods:dateIssued"));
     let placeTerm = findFirstElement(originInfo as XElement, and(byName("mods:placeTerm"), byAttr("type", "text")));
+    let publisherEl = findFirstElement(originInfo as XElement, byName("mods:publisher"));
 
     return {
       dateIssued: dateIssued? flattenElement(dateIssued): undefined,
-      placeTerm: placeTerm? flattenElement(placeTerm): undefined
+      placeTerm: placeTerm? flattenElement(placeTerm): undefined,
+      publisher: publisherEl? flattenElement(publisherEl): undefined
     }
   })[0];
+});
+
+const publisher = computed(() => publicationYearAndPlace.value?.publisher);
+
+const doi = computed(() => {
+  const identifier = findFirstElement(props.mods, and(byName("mods:identifier"), byAttr("type", "doi")));
+  return identifier ? flattenElement(identifier) : null;
 });
 
 const url = computed(() => {
@@ -198,4 +208,3 @@ const url = computed(() => {
 });
 
 </script>
-

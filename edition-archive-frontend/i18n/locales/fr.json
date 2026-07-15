@@ -115,7 +115,7 @@
     "mainMenu": {
       "home": "Home",
       "project": "À propos de",
-      "search": "Document",
+      "search": "Documents",
       "indices": "Index",
       "editionGuidelines":"Lignes directrices",
       "contact": "Contact",
@@ -139,16 +139,20 @@
       "copies" : "Copies fac-similées des documents",
       "marking" : "Marquage des personnes, organisations et noms de lieux mentionnés",
       "commentary" : "Commentaires",
-      "references": "Références aux publications et études sources",
+      "references": "Références aux sources publiées et aux études",
       "tei" : "Principes de codage de texte TEI",
-      "places": "Lieux",
       "people": "Personnes",
+      "organisations": "Institutions",
       "archives": "Archives"
     },
     "metadata": {
-      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "citation": "{title} ; édition numérique Languages of Russian Eighteenth-Century Diplomacy, publiée par le Max Weber Network Eastern Europe, éditée par Viktor Borisov, Sophie Holm, Dzianis Kandakou et Maya Lavrinovich, sous la direction de Vladislav Rjéoutski, {publicationPlace} : {publisher} {publicationYear}",
       "allRightsReserved": "{license} et toutes les images : Tous droits réservés ; détenteur des droits : {archiv}"
     }
+  },
+  "register": {
+    "person": "Index des personnes",
+    "organisation": "Index des institutions"
   },
   "sosu": {
     "mainMenu": {
@@ -196,7 +200,7 @@
       "translation": "Translation"
     },
     "metadata": {
-      "copyright": "© Copyright 2026 - Tous les médias sont protégés par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY 4.0.",
+      "copyright": "© Copyright 2026 - Tous médias sont protégés par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY 4.0.",
       "cite": "Dengbêj Gazîn : Songs of a Kurdish Woman. Édition numérique par Argun Çakır. Bonn : perspectivia.net, 2026.",
       "transcription": "Transcription"
     }
@@ -232,14 +236,17 @@
     "original": "Original",
     "translation": "Traduction",
     "counts":  "{start} de {numFound}",
-    "genre": "Genre",
+    "genre": "Type de document",
     "language": "Langue",
     "unknownGenre": "Inconnu",
     "dateIssued": "Date de publication",
     "typeOfResource": "Type de ressource",
-    "extent": "Étendue",
+    "extent": "Nombre de folios dans le document",
+    "extentUnit": {
+      "folios": "Nombre de folios dans le document"
+    },
     "archive": "Archive",
-    "shelfLocator": "Cote",
+    "shelfLocator": "Référence archivistique",
     "download": "Télécharger",
     "downloadText": "Transcript",
     "downloadOriginal": "Télécharger l'original",
@@ -254,6 +261,10 @@
         "single": "Vue simple",
         "dual": "Vue double",
         "xml": "XML"
+      },
+      "fullscreen": {
+        "open": "Plein écran",
+        "close": "Quitter le plein écran"
       }
     },
     "titleType": {
@@ -268,13 +279,27 @@
       "geographic": "Lieu",
       "coordinates": "Coordonnées du lieu de création",
       "hideMap": "Masquer la carte",
-      "showMap": "Afficher la carte"
+      "showMap": "Afficher la carte",
+      "citedPersons": "Personnes citées",
+      "citedInstitutions": "Institutions citées"
+    },
+    "classificationLabel": {
+      "lod_document_classification": "Sous-type de document | Sous-types de document",
+      "lod_archives": "Archive | Archives"
     },
     "creationDate": "Date de création",
     "creationPlace": "Lieu de création du document",
     "originInfo": {
-      "place": "Lieu d'expédition",
-      "date": "Date"
+      "place": "Lieu",
+      "date": "Date",
+      "created": {
+        "place": "Lieu de création",
+        "date": "Date de création"
+      },
+      "received": {
+        "place": "Lieu de réception",
+        "date": "Date de réception"
+      }
     },
     "related": {
       "original": "Original de cette traduction",
@@ -309,6 +334,7 @@
   },
   "search": {
     "label": "Recherche",
+    "removeFilter": "Supprimer le filtre",
     "basic": "Simple",
     "extended": "Avancée",
     "pageGoTo": "Aller à la page {page}",
@@ -338,18 +364,19 @@
       "showMore": "Voir plus",
       "spurium": "Spurium (†)",
       "ueberlieferungsform": "Mode de transmission",
-      "translationOnly": "Traductions uniquement",
-      "originalOnly": "Originaux uniquement",
-      "all": "Tous les",
-      "translationMode": "Afficher les traductions",
+      "translationOnly": "Traductions",
+      "originalOnly": "Originaux",
+      "all": "Tous",
+      "translationMode": "Afficher",
       "genre": "Genre",
       "language": "Langue",
       "translation_present": "Traduction disponible",
       "tr_translation_present": "Traduction en turc disponible",
       "song_type": "Type de chanson",
       "author": "Auteur",
-      "hasDigitalisat": "Copie numérique",
-      "hasDigitalisatOnly": "Uniquement avec copie numérique"
+      "manuscriptMode": "Manuscrits numérisés",
+      "manuscriptWith": "Avec des manuscrits numérisés",
+      "manuscriptWithout": "Sans manuscrits numérisés"
     },
     "field": {
       "allMetaHelp": "Recherche dans toutes les métadonnées selon le terme de recherche saisi",

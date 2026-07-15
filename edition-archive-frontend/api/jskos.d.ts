@@ -137,6 +137,18 @@ export interface JSKOSEntity {
   endpoint?: URI;
 
   serves?: URI[];
+
+  mappings?: JSKOSMapping[];
+}
+
+export interface JSKOSMemberSet {
+  memberSet?: { uri: URI }[];
+}
+
+export interface JSKOSMapping {
+  type?: URI[];
+  from?: JSKOSMemberSet;
+  to?: JSKOSMemberSet;
 }
 
 /**

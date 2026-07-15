@@ -29,7 +29,7 @@
 
       <div class="row sosu-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :backend-url="sovietSurviorsURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/soviet-survivors/documents/" :filter-params="filterParams">
+          <MODSDocument :backend-url="sovietSurviorsURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/soviet-survivors/documents/" :filter-params="filterParams" archive-class-id="sursurv_archives" topic-search-url-prefix="/soviet-survivors/search?q=">
 
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
@@ -78,6 +78,11 @@
 
 
 import {byName, findFirstElement, flattenElement, getAttribute, XMLApi} from "~/api/XMLApi";
+import {DanteEntityPathsKey} from "~/composables/DanteEntity";
+
+provide(DanteEntityPathsKey, {
+  searchBasePath: '/soviet-survivors/search/',
+});
 import {getMyCoReId, getMyCoReIdNumber} from "~/api/MyCoRe";
 import {
   buildSOSUSearchRequestURL, type Filters, modelToQuery, queryToModel,

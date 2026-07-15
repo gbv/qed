@@ -3,11 +3,11 @@
     <a href="#"
       v-if="expandable"
       :class="`bi bi-${icon} bi-interactive`"
-      v-on:click.prevent="model.show=!model.show"> </a>
+      v-on:click.prevent="toggle()"> </a>
     <span
       v-else
       :class="`bi bi-${icon}`"
-      v-on:click.prevent="model.show=!model.show" > </span>
+      v-on:click.prevent="toggle()" > </span>
 
     <span v-if="props.name.displayForm != null">
       <!-- display form code -->
@@ -24,9 +24,12 @@
                           :categ-id="props.name.category" />
     </span>
 
-    <div v-if="model.show && expandable" class="popout text-start">
-      <a class="close icon-link float-end" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
+    <div v-if="model.show && expandable" ref="popoutRef" class="popout text-start position-relative">
+      <a class="close-btn" href="#hide" v-on:click.prevent="model.show = false"><i class="bi bi-x-circle"></i></a>
 
+      <TeiDanteRefResolver v-if="danteFullUri" :ref-attribute="danteFullUri" :entity-type="danteEntityType" />
+
+      <template v-else>
         <div class="row termsOfAddress" v-if="termsOfAddress">
           <div class="col-4">{{ $t("metadata.name.termsOfAddress") }}</div>
           <div class="col-8">{{ termsOfAddress }}</div>
@@ -52,16 +55,17 @@
           <div class="col-8">{{ affiliation }}</div>
         </div>
 
-      <div class="row name-identifiers" v-for="identifier in props.name.nameIdentifiers">
-        <div class="col-4 identifier-type">{{ identifier.type }}</div>
-        <div class="col-8 identifier-value">
-          <a v-if="identifier.typeURI != null" :href="`${identifier.typeURI}${identifier.value}`"
-             target="_blank" rel="noopener">
-            {{ identifier.value }}
-          </a>
-          <template v-else>{{ identifier.value }}</template>
+        <div class="row name-identifiers" v-for="identifier in nonDanteIdentifiers">
+          <div class="col-4 identifier-type">{{ identifier.type }}</div>
+          <div class="col-8 identifier-value">
+            <a v-if="identifier.typeURI != null" :href="`${identifier.typeURI}${identifier.value}`"
+               target="_blank" rel="noopener">
+              {{ identifier.value }}
+            </a>
+            <template v-else>{{ identifier.value }}</template>
+          </div>
         </div>
-      </div>
+      </template>
 
     </div>
 
@@ -82,12 +86,39 @@ const model = reactive({
   show: false,
 })
 
+const {popoutRef} = usePopoutAutoScroll(toRef(model, 'show'));
+
+const toggle = () => {
+  model.show = !model.show;
+};
+
 const affiliation = computed(()=> {
   return props.name.affiliation;
 })
 
 const role = computed(() => {
   return props.role != null ? props.role : props.name.roles[0];
+});
+
+const danteIdentifier = computed(() => {
+  return props.name.nameIdentifiers?.find(id => id.type === 'dante');
+});
+
+const danteFullUri = computed(() => {
+  if (!danteIdentifier.value) return undefined;
+  const typeURI = danteIdentifier.value.typeURI || 'https://uri.gbv.de/terminology/lod_persons/';
+  return `${typeURI}${danteIdentifier.value.value}`;
+});
+
+const danteEntityType = computed((): 'person' | 'organisation' | undefined => {
+  if (props.name.type === 'personal') return 'person';
+  if (props.name.type === 'corporate') return 'organisation';
+  return undefined;
+});
+
+const nonDanteIdentifiers = computed(() => {
+  if (!props.name.nameIdentifiers) return [];
+  return props.name.nameIdentifiers.filter(id => id.type !== 'dante');
 });
 
 const expandable = computed(() => namePartGiven.value || namePartFamily.value || date.value || affiliation.value || (props.name.nameIdentifiers && props.name.nameIdentifiers.length > 0));
@@ -161,5 +192,11 @@ const termsOfAddress = computed(() => {
 
 .identifier-type {
   text-transform: uppercase;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 </style>

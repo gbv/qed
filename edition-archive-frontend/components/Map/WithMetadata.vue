@@ -44,7 +44,7 @@
       :position="[model.overlayPositionX, model.overlayPositionY, 500, 500]"
       :autoPan="true"
     >
-      <div class="overlay-content">
+      <div class="overlay-content" :key="model.selectionVersion">
         <slot name="metadata" :solrdocs="selectedProperties"></slot>
       </div>
     </ol-overlay>
@@ -59,32 +59,36 @@
 import {transform} from 'ol/proj';
 import {WKT} from 'ol/format';
 
-import markerIcon from "assets/map_pin_red.svg";
-import markerIconSelected from "assets/map_pin_dark_red.svg";
 import Feature, {type FeatureLike} from "ol/Feature";
-import {Select} from "ol/interaction";
 import type {SelectEvent} from "ol/interaction/Select";
 import {Style, Circle, Stroke, Fill, Text} from "ol/style";
 
-
-import {Cluster} from 'ol/source';
 import type GeometryCollection from "ol/geom/GeometryCollection";
 import {Point} from "ol/geom";
 import Collection from "ol/Collection";
 
 
 const props = defineProps<{
-  // hier muss das solr response als json rein welches, die dokumente mit dem Feld common.mods.coordinates mit WKT enthält
+  // solr response json whose docs carry a WKT field (see wktField). The field may hold plain
+  // POINTs or a GEOMETRYCOLLECTION; collections are expanded into one marker per geometry.
   solrResponse: any,
   centerX: number,
   centerY: number,
+  // name of the solr field holding the WKT geometry; defaults to the soviet-survivors field
+  wktField?: string,
 }>();
 
 const slots = defineSlots<{
   metadata: (scope: { solrdocs: any[] }) => any
 }>()
 
-const wktField = "common.mods.coordinates";
+const emit = defineEmits<{
+  // fired whenever the cluster selection changes; carries the selected docs so callers
+  // can lazily load extra data (e.g. titles) for just those docs
+  select: [solrdocs: any[]]
+}>()
+
+const wktFieldName = computed(() => props.wktField ?? "common.mods.coordinates");
 const wkt = new WKT();
 
 const selectedProperties = computed(() => {
@@ -99,14 +103,15 @@ const convertedSolrDocument = computed(() => {
     return [];
 
   }
+  const field = wktFieldName.value;
   const convertedFeatures = [];
   for (const solrDoc of props.solrResponse.response.docs) {
-    if (!solrDoc["common.mods.coordinates"]) {
+    if (!solrDoc[field]) {
       continue;
     }
 
-    for (const coord of solrDoc[wktField]) {
-      let geometry = wkt.readGeometry(coord, {
+    for (const coord of solrDoc[field]) {
+      const geometry = wkt.readGeometry(coord, {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857'
       });
@@ -115,19 +120,18 @@ const convertedSolrDocument = computed(() => {
         continue;
       }
 
-      if (geometry.getType() === "GeometryCollection") {
-        const geometryCollection = geometry as GeometryCollection;
-        if (geometryCollection.getGeometries().length > 0) {
-          geometry = geometryCollection.getGeometries()[0];
-        }
+      // a single doc may reference several places via a GEOMETRYCOLLECTION; render each as
+      // its own marker so all places appear on the map (all pointing back to the same doc).
+      const geometries = geometry.getType() === "GeometryCollection"
+        ? (geometry as GeometryCollection).getGeometries()
+        : [geometry];
+
+      for (const singleGeometry of geometries) {
+        convertedFeatures.push(new Feature({
+          geometry: singleGeometry,
+          properties: solrDoc
+        }));
       }
-
-      const feature = new Feature({
-        geometry,
-        properties: solrDoc
-      });
-
-      convertedFeatures.push(feature);
     }
 
   }
@@ -189,6 +193,9 @@ const model = reactive({
   rotation: 0,
   overlayPositionX: 0,
   overlayPositionY: 0,
+  // bumped on every new cluster selection; used as the overlay content :key so the metadata
+  // panel remounts fresh (resetting any scroll position from the previously opened cluster)
+  selectionVersion: 0,
   selectedFeaturesIntern: new Collection([]),
   selectedFeatures: [] as any[],
   position: transform([props.centerX, props.centerY], 'EPSG:4326', 'EPSG:3857'),
@@ -199,19 +206,17 @@ const selected = (selectEvent: SelectEvent) => {
   if (selectEvent.deselected !== undefined) {
     model.selectedFeatures = [];
   }
-  if (selectEvent.type === 'select') {
-    if (selectEvent.selected !== undefined && selectEvent.selected.length > 0) {
-      model.selectedFeatures = selectEvent.selected[0].get("features");
-      let geometry = model.selectedFeatures[0].getGeometry();
-      if (geometry?.getType() == "Point") {
-        model.overlayPositionX = (geometry as Point).getCoordinates()[0];
-        model.overlayPositionY = (geometry as Point).getCoordinates()[1];
-      }
-      return;
+  if (selectEvent.type === 'select'
+    && selectEvent.selected !== undefined && selectEvent.selected.length > 0) {
+    model.selectedFeatures = selectEvent.selected[0].get("features");
+    model.selectionVersion++;
+    const geometry = model.selectedFeatures[0].getGeometry();
+    if (geometry?.getType() == "Point") {
+      model.overlayPositionX = (geometry as Point).getCoordinates()[0];
+      model.overlayPositionY = (geometry as Point).getCoordinates()[1];
     }
   }
-
-
+  emit('select', selectedProperties.value);
 };
 
 defineExpose({

@@ -25,7 +25,7 @@
 
       <div class="row gazin-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :show-classifications="['gazin_genres']" :backend-url="gazinURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/gazin/documents/" :filter-params="filterParams" :hide-genre="true">
+          <MODSDocument :show-classifications="['gazin_genres']" :backend-url="gazinURL" v-if="data?.xml" :xml="data?.xml" :id="mycoreId" projectDocumentUrlPrefix="/gazin/documents/" :filter-params="filterParams" :hide-genre="true" topic-search-url-prefix="/gazin/search?q=">
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLinkTranscription">
                 <template #key>
@@ -112,6 +112,11 @@ import {
   gazinModelToQuery,
   gazinQueryToModel,
 } from '~/api/GazinSearchHelper';
+import {DanteEntityPathsKey} from "~/composables/DanteEntity";
+
+provide(DanteEntityPathsKey, {
+  searchBasePath: '/gazin/search/',
+});
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
 const route = useRoute();

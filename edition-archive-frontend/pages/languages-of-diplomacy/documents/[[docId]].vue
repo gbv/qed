@@ -25,8 +25,9 @@
 
       <div class="row lod-detail-view__metadata">
         <div class="col-12">
-          <MODSDocument :show-classifications="['lod_archives','lod_document_classification']"
-                        :hide-note-types="[]"
+          <MODSDocument :show-classifications="['lod_document_classification', 'translation']"
+                        archive-class-id="lod_archives"
+                        :hide-note-types="['statement_of_responsibility', 'original_version']"
                         :backend-url="ditavURL" v-if="data?.xml"
                         :xml="data?.xml"
                         :id="mycoreId"
@@ -34,6 +35,10 @@
                         :filter-params="filterParams"
                         :hide-genre="false"
                         preferred-title-language="en"
+                        :origin-info-order="['created', 'received']"
+                        :note-type-order="['source_note', 'language', 'source_characteristics', 'statement_of_responsibility']"
+                        :classification-order="['lod_document_classification', 'translation', 'lod_archives']"
+                        topic-search-url-prefix="/languages-of-diplomacy/search/?q="
           >
             <template #downloadLink>
               <MODSMetaKeyValue v-if="downloadLink">
@@ -110,8 +115,15 @@ import {
   LodFilterParams,
   type LodFilters, lodModelToQuery,
   lodQueryToModel,
-  TranslationMode
+  ManuscriptMode, TranslationMode
 } from "~/api/LodSearchHelper";
+import {DanteEntityPathsKey} from "~/composables/DanteEntity";
+
+provide(DanteEntityPathsKey, {
+  searchBasePath: '/languages-of-diplomacy/search/',
+  personIndexPath: '/languages-of-diplomacy/indices/people',
+  organisationIndexPath: '/languages-of-diplomacy/indices/organisations',
+});
 
 const { $ditavURL, $ditavSolrURL } = useNuxtApp();
 const route = useRoute();
@@ -159,8 +171,10 @@ const { data, error } = await useAsyncData(route.fullPath, async () => {
       languages: [],
       authors: [],
       recipients: [],
+      personEntityLinks: [],
+      orgEntityLinks: [],
       translationMode: TranslationMode.ALL,
-      hasDigitalisat: false,
+      manuscriptMode: ManuscriptMode.ALL,
     } as LodFilters,
     start: 0
   };

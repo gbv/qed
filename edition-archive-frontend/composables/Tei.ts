@@ -3,12 +3,25 @@ import {type TEIElement, type TEINode, type TEIText, type TEIComment} from "~/ap
 export const useTei = () => {
 
   let parser: any;
+  let serializer: any;
 
   if(import.meta.server) {
     const dom = new (useNuxtApp().$jsdom)(`<!DOCTYPE html><body></body>`);
     parser = new dom.window.DOMParser();
+    serializer = new dom.window.XMLSerializer();
   } else {
     parser = new DOMParser();
+    serializer = new XMLSerializer();
+  }
+
+  /**
+   * Parse XML and serialize the first matching element by tag name.
+   */
+  function serializeFirstElement(xml: string, tagName: string): string | null {
+    const doc: Document = parser.parseFromString(xml, 'application/xml');
+    const el = doc.getElementsByTagName(tagName)[0];
+    if (!el) return null;
+    return serializer.serializeToString(el);
   }
 
   /**
@@ -306,7 +319,7 @@ export const useTei = () => {
     return new TeiQuery(input as TEINode);
   }
 
-  return { $tei };
+  return { $tei, serializeFirstElement };
 }
 
 

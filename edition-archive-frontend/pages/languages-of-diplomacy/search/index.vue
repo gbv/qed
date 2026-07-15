@@ -16,6 +16,20 @@
         <!-- results -->
         <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
 
+          <!-- active entity filters -->
+          <div
+            v-if="model.filters.personEntityLinks.length > 0 || model.filters.orgEntityLinks.length > 0"
+            class="entity-filters mb-3 mt-3">
+            <LoDEntityFilterChip
+              v-for="uri in model.filters.personEntityLinks" :key="`p-${uri}`"
+              :uri="uri" type="person"
+              v-on:remove="removePersonEntityLink(uri)" />
+            <LoDEntityFilterChip
+              v-for="uri in model.filters.orgEntityLinks" :key="`o-${uri}`"
+              :uri="uri" type="organisation"
+              v-on:remove="removeOrgEntityLink(uri)" />
+          </div>
+
           <!-- results: headline and sorting-->
           <div class="row g-0 result-options">
             <div class="col hit-count ms-3">
@@ -60,7 +74,7 @@
                     <div class="hit_number">
                     </div>
                     <div class="hit_abstract">
-                      <div v-if="doc['ditav.mods.title.lang.en'].length>0 && doc['mods.title.main']">
+                      <div v-if="doc['ditav.mods.title.lang.en'].length>0 && doc['mods.title.main'] && doc['mods.title.main'] !== doc['ditav.mods.title.lang.en'][0]">
                         {{ doc['mods.title.main'] }}
                       </div>
                     </div>
@@ -125,18 +139,42 @@
           </div>
 
           <div class="facet">
-            <h4 class="facet-title">{{ $t("search.facet.hasDigitalisat") }}</h4>
+            <h4 class="facet-title">{{ $t("search.facet.manuscriptMode") }}</h4>
             <form class="row p-3">
+
               <div class="col-12">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox"
-                         :checked="model.filters.hasDigitalisat" id="facetHasDigitalisat"
-                         v-on:change="toggleHasDigitalisat()">
-                  <label class="form-check-label" for="facetHasDigitalisat">
-                    {{ $t("search.facet.hasDigitalisatOnly") }}
+                  <input class="form-check-input" name="manuscriptMode" type="radio"
+                         :checked="model.filters.manuscriptMode == ManuscriptMode.ALL" id="facetManuscriptAll"
+                         v-on:change="changeManuscriptMode(ManuscriptMode.ALL)">
+                  <label class="form-check-label" for="facetManuscriptAll">
+                    {{ $t("search.facet.all") }}
                   </label>
                 </div>
               </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="manuscriptMode" type="radio"
+                         :checked="model.filters.manuscriptMode == ManuscriptMode.WITH" id="facetManuscriptWith"
+                         v-on:change="changeManuscriptMode(ManuscriptMode.WITH)">
+                  <label class="form-check-label" for="facetManuscriptWith">
+                    {{ $t("search.facet.manuscriptWith") }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" name="manuscriptMode" type="radio"
+                         :checked="model.filters.manuscriptMode == ManuscriptMode.WITHOUT" id="facetManuscriptWithout"
+                         v-on:change="changeManuscriptMode(ManuscriptMode.WITHOUT)">
+                  <label class="form-check-label" for="facetManuscriptWithout">
+                    {{ $t("search.facet.manuscriptWithout") }}
+                  </label>
+                </div>
+              </div>
+
             </form>
           </div>
 
@@ -243,7 +281,7 @@ import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
 import {
   buildLodSearchRequestURL, type LodFilters, lodModelToQuery, lodQueryToModel,
-  TranslationMode
+  ManuscriptMode, TranslationMode
 } from "~/api/LodSearchHelper";
 
 
@@ -268,8 +306,10 @@ const model = reactive({
     languages: [],
     authors: [],
     recipients: [],
+    personEntityLinks: [],
+    orgEntityLinks: [],
     translationMode: TranslationMode.ALL,
-    hasDigitalisat: false,
+    manuscriptMode: ManuscriptMode.ALL,
   } as LodFilters,
   facets: {
     genres: [] as FacetEntry[],
@@ -326,7 +366,7 @@ const search = async () => {
     });
   }
 
-  const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.author.facet'] || [];
+  const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.origin.author.facet'] || [];
   for (let i = 0; i < authorFacet.length; i += 2) {
     model.facets.authors.push({
       name: authorFacet[i] as string,
@@ -334,7 +374,7 @@ const search = async () => {
     });
   }
 
-  const recipientFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.recipient.facet'] || [];
+  const recipientFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.origin.receipient.facet'] || [];
   for (let i = 0; i < recipientFacet.length; i += 2) {
     model.facets.recipients.push({
       name: recipientFacet[i] as string,
@@ -396,6 +436,26 @@ const clickRecipientFacet = async (recipient: string) => {
   });
 };
 
+const removePersonEntityLink = async (uri: string) => {
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      personEntityLink: model.filters.personEntityLinks.filter((u) => u !== uri),
+      start: 0
+    }
+  })
+}
+
+const removeOrgEntityLink = async (uri: string) => {
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      orgEntityLink: model.filters.orgEntityLinks.filter((u) => u !== uri),
+      start: 0
+    }
+  })
+}
+
 const pageChangedCallback = async (page: number) => {
   await navigateTo({
     query: {
@@ -405,11 +465,11 @@ const pageChangedCallback = async (page: number) => {
   })
 }
 
-const toggleHasDigitalisat = async () => {
+const changeManuscriptMode = async (mm: ManuscriptMode) => {
   await navigateTo({
     query: {
       ...lodModelToQuery(model),
-      hasDigitalisat: !model.filters.hasDigitalisat ? 'true' : undefined,
+      manuscriptMode: mm,
       start: 0
     }
   })
@@ -437,9 +497,19 @@ const changeSearchString = async (event: { searchString: string }) => {
 
 const hitLink = (doc: any, index: number) => {
   const query = lodModelToQuery(model);
-  query.start =  model.start + index;
-  const queryStr = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
-  return `/languages-of-diplomacy/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
+  query.start = model.start + index;
+  const params = new URLSearchParams();
+  for (const key of Object.keys(query)) {
+    const value = query[key];
+    if (Array.isArray(value)) {
+      for (const entry of value) {
+        params.append(key, String(entry));
+      }
+    } else {
+      params.append(key, String(value));
+    }
+  }
+  return `/languages-of-diplomacy/documents/${getMyCoReIdNumber(doc['id'])}?${params.toString()}`;
 }
 
 lodQueryToModel(route.query, model);

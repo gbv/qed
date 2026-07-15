@@ -25,7 +25,9 @@ export interface Filters {
 }
 
 export function buildSOSUSearchRequestURL(url: string, search: string | null, filters: Filters, start: number, rows = 20) {
-  const query = `allMeta:${search || "*"}`
+  const escaped = search?.replace(/(["\\])/g, '\\$1');
+  const queryTerm = escaped && escaped !== "*" ? `"${escaped}"` : "*";
+  const query = `allMeta:${encodeURIComponent(queryTerm)}`
   const genreFilter = filters?.genres?.length > 0 ? `fq=mods.genre:(${filters.genres.join("%20AND%20")})` : '';
   const languageFilter = filters?.languages?.length > 0 ? `fq=survivors.mods.language:${filters.languages.join("%20AND%20")}` : '';
   let translationFilter = '';

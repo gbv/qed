@@ -116,7 +116,7 @@
       "home": "Home",
       "project": "About",
       "search": "Documents",
-      "indices": "Indices",
+      "indices": "Indexes",
       "editionGuidelines":"Guidelines",
       "contact": "Contact",
       "citation": "Citation"
@@ -141,14 +141,18 @@
       "commentary": "Commentary",
       "references": "References to Source Publications and Studies",
       "tei": "Principles of TEI Text Encoding",
-      "places": "Places",
       "people": "People",
+      "organisations": "Organisations",
       "archives": "Archives"
     },
     "metadata": {
-      "citation": "{authors}, {title}, {publicationYear}, {publicationPlace}",
+      "citation": "{title}; Digital edition Languages of Russian Eighteenth-Century Diplomacy, published by the Max Weber Network Eastern Europe, edited by Viktor Borisov, Sophie Holm, Dzianis Kandakou, and Maya Lavrinovich, under the direction of Vladislav Rjéoutski, {publicationPlace}: {publisher} {publicationYear}",
       "allRightsReserved": "{license} and all Images: all rights reserved; Rights holder: {archiv}"
     }
+  },
+  "register": {
+    "person": "Index of persons",
+    "organisation": "Index of organisations"
   },
   "sosu": {
     "mainMenu": {
@@ -232,14 +236,17 @@
     "original": "Original",
     "translation": "Translation",
     "counts": "{start} of {numFound}",
-    "genre": "Genre",
+    "genre": "Document type",
     "language": "Language",
     "unknownGenre": "Unknown",
     "dateIssued": "Date Issued",
     "typeOfResource": "Type of Resource",
-    "extent": "Extent",
+    "extent": "Number of folios in the record",
+    "extentUnit": {
+      "folios": "Number of folios in the record"
+    },
     "archive": "Archive",
-    "shelfLocator": "Shelf Locator",
+    "shelfLocator": "Archival reference",
     "download": "Download",
     "downloadText": "Transcript",
     "downloadOriginal": "Download original",
@@ -254,6 +261,10 @@
         "single": "Single view",
         "dual": "Double view",
         "xml": "XML"
+      },
+      "fullscreen": {
+        "open": "Fullscreen",
+        "close": "Exit fullscreen"
       }
     },
     "titleType": {
@@ -268,13 +279,27 @@
       "geographic": "Geographic",
       "coordinates": "Coordinates of creation location",
       "hideMap": "Hide Map",
-      "showMap": "Show Map"
+      "showMap": "Show Map",
+      "citedPersons": "Cited persons",
+      "citedInstitutions": "Cited institutions"
+    },
+    "classificationLabel": {
+      "lod_document_classification": "Document subtype | Document subtypes",
+      "lod_archives": "Archive | Archives"
     },
     "creationDate": "Creation Date",
     "creationPlace": "Creation location of document",
     "originInfo": {
-      "place": "Place of Dispatch",
-      "date": "Date"
+      "place": "Place",
+      "date": "Date",
+      "created": {
+        "place": "Place of creation",
+        "date": "Date of creation"
+      },
+      "received": {
+        "place": "Place of reception",
+        "date": "Date of reception"
+      }
     },
     "related": {
       "original": "Original of this translation",
@@ -309,6 +334,7 @@
   },
   "search": {
     "label": "Search",
+    "removeFilter": "Remove filter",
     "basic": "Simple",
     "extended": "Advanced",
     "pageGoTo": "Go to page {page}",
@@ -339,7 +365,7 @@
       "spurium": "Spurium (†)",
       "ueberlieferungsform": "Form of tradition",
       "translationOnly": "Only translations",
-      "originalOnly": "Only original",
+      "originalOnly": "Original",
       "all": "All",
       "translationMode": "Show translations",
       "genre": "Document type",
@@ -348,8 +374,9 @@
       "tr_translation_present": "Translation into Turkish available",
       "song_type": "Song Type",
       "author": "Author",
-      "hasDigitalisat": "Digital copy",
-      "hasDigitalisatOnly": "Only with digital copy"
+      "manuscriptMode": "Manuscript available",
+      "manuscriptWith": "Only with manuscript",
+      "manuscriptWithout": "Only without manuscript"
     },
     "field": {
       "allMetaHelp": "Searches all metadata for the entered search term",

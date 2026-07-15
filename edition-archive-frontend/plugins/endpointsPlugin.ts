@@ -52,6 +52,13 @@ export default defineNuxtPlugin({
           } else {
             return config.public.backendURL;
           }
+        },
+        'geonamesURL': () => {
+          if (import.meta.server && !import.meta.dev) {
+            return config.public.geonamesURLServer;
+          } else {
+            return config.public.geonamesURL;
+          }
         }
       }
     }
