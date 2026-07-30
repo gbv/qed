@@ -189,7 +189,7 @@
                 <div class="d-flex">
                   <i v-if="model.filters.genres.indexOf(genre.name) > -1" class="bi bi-check-square"></i>
                   <i v-else class="bi bi-square"></i>
-                  <MODSClassification :app-url="ditavURL" class-id="mir_genres" :categ-id="genre.name" />
+                  <MODSClassification :app-url="ditavURL" class-id="lod_document_classification" :categ-id="genre.name" />
                 </div>
                 <span class="badge badge-facet rounded-pill mt-1 ms-1">{{ genre.count }}</span>
               </li>
@@ -342,28 +342,24 @@ const search = async () => {
   }).then((resp) => resp.json());
 
   model.count = model.result.response.numFound;
-  const genreFacet = model.result?.facet_counts?.facet_fields["mods.genre"] || [];
-  model.facets.genres = [];
-  for (let i = 0; i < genreFacet.length; i += 2) {
-    model.facets.genres.push({
-      name: genreFacet[i],
-      count: genreFacet[i + 1]
-    });
-  }
-
   const categoryTopFacet = model.result?.facet_counts?.facet_fields?.['category.top'] || [];
+  model.facets.genres = [];
   model.facets.languages = [];
   model.facets.authors = [];
   model.facets.recipients = [];
   for (let i = 0; i < categoryTopFacet.length; i += 2) {
     const value = categoryTopFacet[i] as string;
-    if (!value?.startsWith('rfc5646:')) {
-      continue;
+    if (value?.startsWith('lod_document_classification:')) {
+      model.facets.genres.push({
+        name: value.split(':')[1],
+        count: categoryTopFacet[i + 1]
+      });
+    } else if (value?.startsWith('rfc5646:')) {
+      model.facets.languages.push({
+        name: value.split(':')[1],
+        count: categoryTopFacet[i + 1]
+      });
     }
-    model.facets.languages.push({
-      name: value.split(':')[1],
-      count: categoryTopFacet[i + 1]
-    });
   }
 
   const authorFacet = model.result?.facet_counts?.facet_fields?.['ditav.mods.origin.author.facet'] || [];

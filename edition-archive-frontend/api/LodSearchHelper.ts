@@ -65,14 +65,14 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
     urlObj.searchParams.set(key, value ?? 'true');
   }
 
-  urlObj.searchParams.append('facet.field', 'mods.genre');
   urlObj.searchParams.append('facet.field', 'category.top');
   urlObj.searchParams.append('facet.field', 'ditav.mods.origin.author.facet');
   urlObj.searchParams.append('facet.field', 'ditav.mods.origin.receipient.facet');
   urlObj.searchParams.append('fq', LodFilterParams.join(' AND '));
 
   if (filters?.genres?.length > 0) {
-    urlObj.searchParams.append('fq', `mods.genre:(${filters.genres.join(' AND ')})`);
+    const genreFilters = filters.genres.map(g => `"lod_document_classification:${g}"`);
+    urlObj.searchParams.append('fq', `category.top:(${genreFilters.join(' AND ')})`);
   }
 
   if (filters?.languages?.length > 0) {
