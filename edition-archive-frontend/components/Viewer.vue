@@ -350,6 +350,10 @@ onUnmounted(() => {
   font-style: italic;
 }
 
+[data-tei-attr-rendition~="#s"] {
+  text-decoration: line-through;
+}
+
 [data-tei-attr-rendition~="#sup"] {
   vertical-align: super;
   font-size: smaller;
