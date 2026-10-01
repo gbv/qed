@@ -159,7 +159,8 @@
       "home": "Home",
       "about": "À propos",
       "search": "Documents",
-      "contact": "Contact"
+      "contact": "Contact",
+      "citation": "Citation"
     },
     "subMenu": {
       "subMenu": "Menu de la page",

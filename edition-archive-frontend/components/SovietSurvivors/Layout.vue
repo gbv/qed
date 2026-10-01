@@ -77,6 +77,14 @@
                   {{ $t('sosu.mainMenu.contact') }}
                 </nuxt-link>
               </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
+                  href="/soviet-survivors/citation">
+                  {{ $t('sosu.mainMenu.citation') }}
+                </nuxt-link>
+              </li>
             </ul>
           </div>
         </nav>
