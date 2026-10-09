@@ -159,12 +159,18 @@
       "home": "Startseite",
       "about": "Über",
       "search": "Dokumente",
+      "indices": "Register",
       "contact": "Kontakt",
       "citation": "Zitierhinweis"
     },
     "subMenu": {
       "subMenu": "Seitenmenü",
       "openSubMenu": "Seitenmenü öffnen",
+      "indices": "Register",
+      "keywordEnglish": "Englisch",
+      "keywordGerman": "Deutsch",
+      "keywordRussian": "Russisch",
+      "keywordUkrainian": "Ukrainisch",
       "intro": "Einleitung",
       "search": "Suche",
       "sovietHistorians": "Die Historikerkommission",

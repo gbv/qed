@@ -159,12 +159,18 @@
       "home": "Home",
       "about": "About",
       "search": "Documents",
+      "indices": "Indexes",
       "contact": "Contact",
       "citation": "Citation"
     },
     "subMenu": {
       "subMenu": "Page menu",
       "openSubMenu": "Open page menu",
+      "indices": "Indexes",
+      "keywordEnglish": "English",
+      "keywordGerman": "German",
+      "keywordRussian": "Russian",
+      "keywordUkrainian": "Ukrainian",
       "intro": "Introduction",
       "search": "Search",
       "sovietHistorians": "Тhe Historical Commission",

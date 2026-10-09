@@ -5,14 +5,21 @@
     </div>
   </div>
   <ul class="list-group list-group-flush no-underline" v-if="data">
-    <li v-for="entity in data" :key="entity.uri" :id="anchorId(entity)"
+    <li v-for="entity in filteredData" :key="entity.uri" :id="anchorId(entity)"
         class="list-group-item">
       <a href="#" :class="highlight === anchorId(entity) ? 'text-secondary' : ''"
          v-on:click.prevent="toggleEntry(entity)">
         <i :class="`bi ${icon}`"></i>
-        {{ getLabel(entity) }}
+        {{ getLabel(entity, language) }}
         <i v-if="hasMappings(entity)" class="bi bi-link-45deg text-secondary"></i>
       </a>
+      <nuxt-link v-if="searchBasePath && getLabel(entity, language)"
+                 class="ms-2"
+             :to="{path: searchBasePath, query: {q: getLabel(entity, language), start: '0'}}"
+                 :title="$t('search.label')"
+                 :aria-label="$t('search.label')">
+        <i class="bi bi-search"></i>
+      </nuxt-link>
       <div v-if="entity.uri && expanded[entity.uri]"
            class="popout text-start mt-2 position-relative">
         <a class="close-btn" href="#" v-on:click.prevent="closeEntry(entity)">
@@ -30,15 +37,20 @@ import type {JSKOSEntity} from "~/api/jskos";
 const props = defineProps<{
   vocabularyId: string;
   icon: string;
+  searchBasePath?: string;
+  language?: string;
 }>();
 
 const route = useRoute();
 const highlight = computed(() => route.hash.substring(1));
 const expanded = reactive<Record<string, boolean>>({});
+const searchBasePath = computed(() => props.searchBasePath);
+const language = computed(() => props.language || 'en');
 
-const getLabel = (entity: JSKOSEntity): string => {
+const getLabel = (entity: JSKOSEntity, preferredLanguage = language.value): string => {
   if (!entity.prefLabel) return '';
-  return entity.prefLabel['zxx'] as string
+  return entity.prefLabel[preferredLanguage] as string
+    || entity.prefLabel['zxx'] as string
     || entity.prefLabel['de'] as string
     || entity.prefLabel['en'] as string
     || Object.values(entity.prefLabel)[0] as string
@@ -63,6 +75,13 @@ const {data} = await useAsyncData(`dante-vocab-index-${props.vocabularyId}`, asy
   const all = [...byUri.values(), ...extras];
   all.sort((a, b) => getLabel(a).localeCompare(getLabel(b)));
   return all;
+});
+
+const filteredData = computed(() => {
+  if (!data.value) return [];
+  return data.value
+    .filter(entity => !!entity.prefLabel?.[language.value])
+    .sort((a, b) => getLabel(a, language.value).localeCompare(getLabel(b, language.value)));
 });
 
 const anchorId = (entity: JSKOSEntity): string => {
