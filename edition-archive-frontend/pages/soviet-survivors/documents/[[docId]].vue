@@ -119,6 +119,7 @@ const {data, error} = await useAsyncData(route.fullPath, async () => {
     filters: { // enabled
       genres: [],
       languages: [],
+      keywordEntityLinks: [],
       translationMode: TranslationMode.ALL,
     } as Filters,
     start: 0

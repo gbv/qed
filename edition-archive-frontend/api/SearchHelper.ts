@@ -21,6 +21,7 @@ export enum TranslationMode {
 export interface Filters {
   genres: string[];
   languages: string[];
+  keywordEntityLinks: string[];
   translationMode: TranslationMode;
 }
 
@@ -30,6 +31,7 @@ export function buildSOSUSearchRequestURL(url: string, search: string | null, fi
   const query = `allMeta:${encodeURIComponent(queryTerm)}`
   const genreFilter = filters?.genres?.length > 0 ? `fq=mods.genre:(${filters.genres.join("%20AND%20")})` : '';
   const languageFilter = filters?.languages?.length > 0 ? `fq=survivors.mods.language:${filters.languages.join("%20AND%20")}` : '';
+  const keywordEntityFilters = filters?.keywordEntityLinks?.map(uri => `fq=ditav.mods.dante_metadata_link:%22${encodeURIComponent(uri)}%22`) || [];
   let translationFilter = '';
   switch (filters.translationMode) {
     case TranslationMode.ALL:
@@ -42,7 +44,7 @@ export function buildSOSUSearchRequestURL(url: string, search: string | null, fi
       translationFilter = "fq=NOT%28mods.relatedItem.original:*%29";
       break;
   }
-  let filtersParams = [genreFilter, languageFilter, translationFilter, ...SoSuParams].filter(s=>s.length>0).join("&");
+  let filtersParams = [genreFilter, languageFilter, translationFilter, ...keywordEntityFilters, ...SoSuParams].filter(s=>s.length>0).join("&");
   return `${url}mir/select?q=${query}&fq=${SoSuFilterParams.join("%20AND%20")}&${filtersParams}&start=${start}&rows=${rows}&facet=true&facet.field=survivors.mods.language`;
 }
 
@@ -62,6 +64,10 @@ export function modelToQuery(model: any): any {
 
   if (model.filters.languages.length > 0) {
     query.languages = model.filters.languages;
+  }
+
+  if (model.filters.keywordEntityLinks.length > 0) {
+    query.keywordEntityLink = model.filters.keywordEntityLinks.slice();
   }
 
   if (model.filters.translationMode !== TranslationMode.ALL) {
@@ -93,6 +99,14 @@ export function modelToQuery(model: any): any {
     } else {
       model.filters.languages = [query.languages as string];
     }
+  }
+
+  if (query.keywordEntityLink) {
+    model.filters.keywordEntityLinks = Array.isArray(query.keywordEntityLink)
+      ? query.keywordEntityLink as string[]
+      : [query.keywordEntityLink as string];
+  } else {
+    model.filters.keywordEntityLinks = [];
   }
 
   if (query.translationMode) {

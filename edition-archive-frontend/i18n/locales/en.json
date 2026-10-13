@@ -160,7 +160,8 @@
       "about": "About",
       "search": "Documents",
       "contact": "Contact",
-      "citation": "Citation"
+      "citation": "Citation",
+      "indices": "Indexes"
     },
     "subMenu": {
       "subMenu": "Page menu",
@@ -172,7 +173,11 @@
       "furtherLiterature": "Further Literature",
       "team": "Team",
       "userGuide": "User Guide",
-      "warOfAnnihilation": "Germany’s War of Extermination"
+      "warOfAnnihilation": "Germany’s War of Extermination",
+      "keywordEnglish": "English",
+      "keywordGerman": "German",
+      "keywordRussian": "Russian",
+      "keywordUkrainian": "Ukrainian"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - All images are copyright protected. Transcriptions and metadata are licensed under CC BY-SA 4.0.",
@@ -371,10 +376,7 @@
       "translationMode": "Show translations",
       "genre": "Document type",
       "language": "Language",
-      "translation_present": "Has translation",
-      "tr_translation_present": "Translation into Turkish available",
-      "song_type": "Song Type",
-      "author": "Author",
+      "people": "People",
       "manuscriptMode": "Manuscript available",
       "manuscriptWith": "Only with manuscript",
       "manuscriptWithout": "Only without manuscript"

@@ -160,7 +160,8 @@
       "about": "Über",
       "search": "Dokumente",
       "contact": "Kontakt",
-      "citation": "Zitierhinweis"
+      "citation": "Zitierhinweis",
+      "indices": "Register"
     },
     "subMenu": {
       "subMenu": "Seitenmenü",
@@ -172,7 +173,11 @@
       "furtherLiterature": "Weiterführende Literatur",
       "team": "Team",
       "userGuide": "User Guide",
-      "warOfAnnihilation": "Deutscher Vernichtungskrieg"
+      "warOfAnnihilation": "Deutscher Vernichtungskrieg",
+      "keywordEnglish": "Englisch",
+      "keywordGerman": "Deutsch",
+      "keywordRussian": "Russisch",
+      "keywordUkrainian": "Ukrainisch"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
@@ -371,10 +376,7 @@
       "translationMode": "Übersetzungen anzeigen",
       "genre": "Dokumententyp",
       "language": "Sprache",
-      "translation_present": "Übersetzung vorhanden",
-      "tr_translation_present": "Übersetzung ins Türkische vorhanden",
-      "song_type": "Liedtyp",
-      "author": "Autor",
+      "people": "Personen",
       "manuscriptMode": "Manuskript vorhanden",
       "manuscriptWith": "Nur mit Manuskript",
       "manuscriptWithout": "Nur ohne Manuskript"
