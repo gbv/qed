@@ -318,10 +318,24 @@ const changeSearchString = async (event: { searchString: string }) => {
   })
 }
 
+const buildQueryString = (query: Record<string, any>) => {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(query)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        params.append(key, String(item));
+      }
+    } else if (value !== undefined && value !== null) {
+      params.append(key, String(value));
+    }
+  }
+  return params.toString();
+}
+
 const hitLink = (doc: any, index: number) => {
   const query = modelToQuery(model);
   query.start =  model.start + index;
-  const queryStr = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+  const queryStr = buildQueryString(query);
   return `/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
 }
 

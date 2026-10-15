@@ -106,6 +106,20 @@ interface LinkInfo {
   link: string;
 }
 
+const buildQueryString = (query: Record<string, any>) => {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(query)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        params.append(key, String(item));
+      }
+    } else if (value !== undefined && value !== null) {
+      params.append(key, String(value));
+    }
+  }
+  return params.toString();
+}
+
 const {data, error} = await useAsyncData(route.fullPath, async () => {
   const q = route.query.q as string;
   const promises : Array<Promise<any>> = [ fetch(sovietSurviorsURL + `api/v2/objects/${mycoreId}`, {
@@ -146,9 +160,9 @@ const {data, error} = await useAsyncData(route.fullPath, async () => {
     const query = modelToQuery(model);
 
     query.start =  (model.start-1)+"";
-    const queryStrPrev = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+    const queryStrPrev = buildQueryString(query);
     query.start =  (model.start +1)+"";
-    const queryStrNext = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+    const queryStrNext = buildQueryString(query);
 
 
     return {
