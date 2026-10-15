@@ -16,6 +16,16 @@
         <!-- results -->
         <div class="col-12 col-lg-8 order-2 order-lg-1 results__list">
 
+          <!-- active keyword filters -->
+          <div
+            v-if="model.filters.keywordEntityLinks.length > 0"
+            class="entity-filters mb-3 mt-3">
+            <SovietSurvivorsKeywordFilterChip
+              v-for="uri in model.filters.keywordEntityLinks" :key="uri"
+              :uri="uri"
+              v-on:remove="removeKeywordEntityLink(uri)" />
+          </div>
+
           <!-- results: headline and sorting-->
           <div class="row g-0 result-options">
             <div class="col hit-count ms-3">
@@ -53,7 +63,7 @@
                     <h3 class="hit_title">
                       <nuxt-link
                         :to="hitLink(doc, index)"
-                        class="main-title">
+                        class="main-title no-external-mark">
                         {{ doc["mods.title.main"] }}
                       </nuxt-link>
                     </h3>
@@ -195,6 +205,7 @@ const model = reactive({
   filters: { // enabled
     genres: [],
     languages: [],
+    keywordEntityLinks: [],
     translationMode: TranslationMode.ALL,
   } as Filters,
   facets: {
@@ -262,6 +273,22 @@ const clickLanguageFacet = async (language: string) => {
   })
 }
 
+const removeKeywordEntityLink = async (uri: string) => {
+  const keywordEntityLinks = model.filters.keywordEntityLinks.filter((link) => link !== uri);
+  const query = modelToQuery(model);
+  if (keywordEntityLinks.length > 0) {
+    query.keywordEntityLink = keywordEntityLinks;
+  } else {
+    delete query.keywordEntityLink;
+  }
+  await navigateTo({
+    query: {
+      ...query,
+      start: 0
+    }
+  });
+};
+
 const pageChangedCallback = async (page: number) => {
   await navigateTo({
     query: {
@@ -291,10 +318,24 @@ const changeSearchString = async (event: { searchString: string }) => {
   })
 }
 
+const buildQueryString = (query: Record<string, any>) => {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(query)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        params.append(key, String(item));
+      }
+    } else if (value !== undefined && value !== null) {
+      params.append(key, String(value));
+    }
+  }
+  return params.toString();
+}
+
 const hitLink = (doc: any, index: number) => {
   const query = modelToQuery(model);
   query.start =  model.start + index;
-  const queryStr = Object.keys(query).map((key) => `${key}=${query[key]}`).join("&");
+  const queryStr = buildQueryString(query);
   return `/soviet-survivors/documents/${getMyCoReIdNumber(doc['id'])}?${queryStr}`;
 }
 

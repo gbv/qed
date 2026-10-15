@@ -2,7 +2,9 @@
   <LoDLayout>
     <template #content>
       <h3>{{ $t("register.organisation") }}</h3>
-      <DanteVocabularyIndex vocabulary-id="lod_organisations" icon="bi-bank"/>
+      <DanteVocabularyIndex vocabulary-id="lod_organisations" icon="bi-bank" language="zxx"
+               search-base-path="/languages-of-diplomacy/search/"
+               entity-link-param="orgEntityLink"/>
     </template>
 
     <template #menu>

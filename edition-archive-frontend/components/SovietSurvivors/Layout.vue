@@ -73,6 +73,14 @@
                 <nuxt-link
                   class="nav-link"
                   active-class="active"
+                  href="/soviet-survivors/indices/keywords/">
+                  {{ $t('sosu.mainMenu.indices') }}
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  class="nav-link"
+                  active-class="active"
                   href="/soviet-survivors/contact">
                   {{ $t('sosu.mainMenu.contact') }}
                 </nuxt-link>

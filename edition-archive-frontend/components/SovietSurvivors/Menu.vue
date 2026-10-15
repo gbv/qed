@@ -47,7 +47,23 @@
 
   </template>
 
+  <template v-else-if="$route.path.startsWith('/soviet-survivors/indices')">
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li v-for="keywordLanguage in sovietSurvivorsKeywordLanguages" :key="keywordLanguage.code" class="nav-item">
+          <nuxt-link class="nav-link" :class="{active: (!($route.query.language) && keywordLanguage.code === 'en') || $route.query.language === keywordLanguage.code}" :href="`/soviet-survivors/indices/keywords?language=${keywordLanguage.code}`">
+            {{ $t(keywordLanguage.labelKey) }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </nav>
+  </template>
+
   <template v-else>
   </template>
 
 </template>
+
+<script lang="ts" setup>
+import {sovietSurvivorsKeywordLanguages} from '~/composables/sovietSurvivorsKeywordLanguages';
+</script>
