@@ -16,6 +16,8 @@
 </template>
 
 <script lang="ts" setup>
+import {sovietSurvivorsKeywordLanguages} from '~/composables/sovietSurvivorsKeywordLanguages';
+
 const {t} = useI18n();
 const route = useRoute();
 const language = computed(() => {
@@ -23,12 +25,7 @@ const language = computed(() => {
   return typeof value === 'string' ? value : 'en';
 });
 const languageLabel = computed(() => {
-  const labels: Record<string, string> = {
-    en: 'sosu.subMenu.keywordEnglish',
-    de: 'sosu.subMenu.keywordGerman',
-    ru: 'sosu.subMenu.keywordRussian',
-    uk: 'sosu.subMenu.keywordUkrainian',
-  };
-  return t(labels[language.value] || labels.en);
+  const selectedLanguage = sovietSurvivorsKeywordLanguages.find((keywordLanguage) => keywordLanguage.code === language.value);
+  return t(selectedLanguage?.labelKey || sovietSurvivorsKeywordLanguages[0].labelKey);
 });
 </script>

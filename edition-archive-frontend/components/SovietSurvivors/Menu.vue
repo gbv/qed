@@ -50,24 +50,9 @@
   <template v-else-if="$route.path.startsWith('/soviet-survivors/indices')">
     <nav class="navbar">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <nuxt-link class="nav-link" :class="{active: !($route.query.language) || $route.query.language === 'en'}" href="/soviet-survivors/indices/keywords?language=en">
-            {{ $t('sosu.subMenu.keywordEnglish') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" :class="{active: $route.query.language === 'de'}" href="/soviet-survivors/indices/keywords?language=de">
-            {{ $t('sosu.subMenu.keywordGerman') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" :class="{active: $route.query.language === 'ru'}" href="/soviet-survivors/indices/keywords?language=ru">
-            {{ $t('sosu.subMenu.keywordRussian') }}
-          </nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" :class="{active: $route.query.language === 'uk'}" href="/soviet-survivors/indices/keywords?language=uk">
-            {{ $t('sosu.subMenu.keywordUkrainian') }}
+        <li v-for="keywordLanguage in sovietSurvivorsKeywordLanguages" :key="keywordLanguage.code" class="nav-item">
+          <nuxt-link class="nav-link" :class="{active: (!($route.query.language) && keywordLanguage.code === 'en') || $route.query.language === keywordLanguage.code}" :href="`/soviet-survivors/indices/keywords?language=${keywordLanguage.code}`">
+            {{ $t(keywordLanguage.labelKey) }}
           </nuxt-link>
         </li>
       </ul>
@@ -78,3 +63,7 @@
   </template>
 
 </template>
+
+<script lang="ts" setup>
+import {sovietSurvivorsKeywordLanguages} from '~/composables/sovietSurvivorsKeywordLanguages';
+</script>
