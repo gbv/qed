@@ -377,6 +377,10 @@
       "genre": "Document type",
       "language": "Language",
       "people": "People",
+      "translation_present": "Has translation",
+      "tr_translation_present": "Translation into Turkish available",
+      "song_type": "Song Type",
+      "author": "Author",
       "manuscriptMode": "Manuscript available",
       "manuscriptWith": "Only with manuscript",
       "manuscriptWithout": "Only without manuscript"

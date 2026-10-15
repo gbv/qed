@@ -377,6 +377,10 @@
       "genre": "Genre",
       "language": "Langue",
       "people": "Personnes",
+      "translation_present": "Traduction disponible",
+      "tr_translation_present": "Traduction en turc disponible",
+      "song_type": "Type de chanson",
+      "author": "Auteur",
       "manuscriptMode": "Manuscrits numérisés",
       "manuscriptWith": "Avec des manuscrits numérisés",
       "manuscriptWithout": "Sans manuscrits numérisés"

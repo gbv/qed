@@ -1,34 +1,36 @@
 <template>
-  <div class="text-center" v-if="!data">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-  <ul class="list-group list-group-flush no-underline" v-if="data">
-    <li v-for="entity in filteredData" :key="entity.uri" :id="anchorId(entity)"
-        class="list-group-item">
-      <a href="#" :class="highlight === anchorId(entity) ? 'text-secondary' : ''"
-         v-on:click.prevent="toggleEntry(entity)">
-        <i v-if="icon" :class="`bi ${icon}`"></i>
-        {{ getLabel(entity, language) }}
-        <i v-if="showMappings && hasMappings(entity)" class="bi bi-link-45deg text-secondary"></i>
-      </a>
-            <nuxt-link v-if="searchBasePath && getLabel(entity, language)"
-                       class="ms-2 no-external-mark"
-              :to="{path: searchBasePath, query: getSearchQuery(entity)}"
-                 :title="$t('search.label')"
-                 :aria-label="$t('search.label')">
-        <i class="bi bi-search"></i>
-      </nuxt-link>
-      <div v-if="entity.uri && expanded[entity.uri]"
-           class="popout text-start mt-2 position-relative">
-        <a class="close-btn" href="#" v-on:click.prevent="closeEntry(entity)">
-          <i class="bi bi-x-circle"></i>
-        </a>
-        <TeiDanteRefResolver :ref-attribute="entity.uri" :prefer-long-definition="true" />
+  <div>
+    <div class="text-center" v-if="!data">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-    </li>
-  </ul>
+    </div>
+    <ul class="list-group list-group-flush no-underline" v-if="data">
+      <li v-for="entity in filteredData" :key="entity.uri" :id="anchorId(entity)"
+          class="list-group-item">
+        <a href="#" :class="highlight === anchorId(entity) ? 'text-secondary' : ''"
+           v-on:click.prevent="toggleEntry(entity)">
+          <i v-if="icon" :class="`bi ${icon}`"></i>
+          {{ getLabel(entity, language) }}
+          <i v-if="showMappings && hasMappings(entity)" class="bi bi-link-45deg text-secondary"></i>
+        </a>
+        <nuxt-link v-if="searchBasePath && getLabel(entity, language)"
+                   class="ms-2 no-external-mark"
+                   :to="{path: searchBasePath, query: getSearchQuery(entity)}"
+                   :title="$t('search.label')"
+                   :aria-label="$t('search.label')">
+          <i class="bi bi-search"></i>
+        </nuxt-link>
+        <div v-if="entity.uri && expanded[entity.uri]"
+             class="popout text-start mt-2 position-relative">
+          <a class="close-btn" href="#" v-on:click.prevent="closeEntry(entity)">
+            <i class="bi bi-x-circle"></i>
+          </a>
+          <TeiDanteRefResolver :ref-attribute="entity.uri" :prefer-long-definition="true" />
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts" setup>

@@ -23,11 +23,10 @@ defineEmits<{
 }>();
 
 const uriRef = toRef(props, 'uri');
-const {preferredLabel, loading} = useDanteEntity(uriRef);
+const {preferredLabel} = useDanteEntity(uriRef);
 
 const label = computed(() => {
   if (preferredLabel.value) return preferredLabel.value;
-  if (loading.value) return props.uri.split('/').pop() ?? props.uri;
   return props.uri.split('/').pop() ?? props.uri;
 });
 </script>

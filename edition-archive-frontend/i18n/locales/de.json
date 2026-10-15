@@ -377,6 +377,10 @@
       "genre": "Dokumententyp",
       "language": "Sprache",
       "people": "Personen",
+      "translation_present": "Übersetzung vorhanden",
+      "tr_translation_present": "Übersetzung ins Türkische vorhanden",
+      "song_type": "Liedtyp",
+      "author": "Autor",
       "manuscriptMode": "Manuskript vorhanden",
       "manuscriptWith": "Nur mit Manuskript",
       "manuscriptWithout": "Nur ohne Manuskript"
