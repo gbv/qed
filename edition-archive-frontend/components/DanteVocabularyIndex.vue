@@ -36,14 +36,16 @@
 <script lang="ts" setup>
 import type {JSKOSEntity} from "~/api/jskos";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   vocabularyId: string;
   icon?: string;
   showMappings?: boolean;
   searchBasePath?: string;
   entityLinkParam?: string;
   language?: string;
-}>();
+}>(), {
+  showMappings: true,
+});
 
 const route = useRoute();
 const highlight = computed(() => route.hash.substring(1));
