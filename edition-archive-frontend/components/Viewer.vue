@@ -65,7 +65,17 @@
 
           <div v-if="footnotes.length > 0" class="footnotes-section">
             <div v-for="(note, index) in footnotes" :id="footnoteId(note)" :key="index" class="footnote-item">
-              <a :href="`#${footnoteReferenceId(note)}`" class="footnote-number">{{ index + 1 }}</a> <tei-element-convert :tei-element="note" />
+              <a :href="`#${footnoteReferenceId(note)}`" class="footnote-number">{{ index + 1 }}</a>
+              <tei-element-convert
+                :tei-element="note"
+                :hook="(element: TEINode) => element.type === 'Element' && element.name === 'note' && element.attributes.place === 'foot'"
+              >
+                <template #default="{ element }">
+                  <sup v-if="element.type === 'Element'" :id="footnoteReferenceId(element)" class="footnote-reference">
+                    <a :href="`#${footnoteId(element)}`">{{ footnoteNumber(element) }}</a>
+                  </sup>
+                </template>
+              </tei-element-convert>
             </div>
           </div>
         </div>
