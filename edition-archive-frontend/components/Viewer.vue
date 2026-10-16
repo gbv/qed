@@ -49,11 +49,25 @@
                 :pb-element="element"
                 :viewerRoot="viewerRoot"
                 :is-active="isActivePb(element)"
+                :footnote-reference="footnoteReferenceAfter(element)"
                 v-on:page-break-in-view="changeImage"
                 v-on:image-icon-clicked="changeImage"
               />
+              <sup
+                v-else-if="element.type === 'Element' && element.name === 'note' && element.attributes.place === 'foot' && !isFootnoteAfterPageBreak(element)"
+                :id="footnoteReferenceId(element)"
+                class="footnote-reference"
+              >
+                <a :href="`#${footnoteId(element)}`">{{ footnoteNumber(element) }}</a>
+              </sup>
             </template>
           </tei-element-convert>
+
+          <div v-if="footnotes.length > 0" class="footnotes-section">
+            <div v-for="(note, index) in footnotes" :id="footnoteId(note)" :key="index" class="footnote-item">
+              <a :href="`#${footnoteReferenceId(note)}`" class="footnote-number">{{ index + 1 }}</a> <tei-element-convert :tei-element="note" />
+            </div>
+          </div>
         </div>
       </div>
       <div v-if="model.viewMode == 'xml'" class="viewer-col col-12">
@@ -93,6 +107,9 @@ let shouldResetScroll = false;
 const elementFilter = (el: TEINode) => {
   if(el.type === 'Element') {
     if(el.name === 'pb') {
+      return true;
+    }
+    if(el.name === 'note' && el.attributes.place === 'foot') {
       return true;
     }
   }
@@ -140,6 +157,52 @@ const teiBody = computed(() => {
   }
   return $tei(teiDocument.value).find("body").toArray()[0] || null;
 });
+
+const footnotes = computed(() => {
+  if (teiDocument.value == null) {
+    return [];
+  }
+
+  return $tei(teiDocument.value)
+    .find((element) => element.name === 'note' && element.attributes.place === 'foot')
+    .toArray()
+    .filter((note): note is TEIElement => note.type === 'Element');
+});
+
+const footnoteNumber = (note: TEIElement): number => {
+  return footnotes.value.findIndex((footnote) => footnote === note) + 1;
+};
+
+const footnoteId = (note: TEIElement): string => {
+  return `footnote-${footnoteNumber(note)}`;
+};
+
+const footnoteReferenceId = (note: TEIElement): string => {
+  return `footnote-ref-${footnoteNumber(note)}`;
+};
+
+const footnoteReferenceAfter = (pb: TEIElement) => {
+  const parent = pb.parent;
+  if (!parent) return null;
+  const pbIndex = parent.children.indexOf(pb);
+  const next = parent.children[pbIndex + 1];
+  if (next?.type !== 'Element' || next.name !== 'note' || next.attributes.place !== 'foot') {
+    return null;
+  }
+  return {
+    id: footnoteReferenceId(next),
+    targetId: footnoteId(next),
+    number: footnoteNumber(next),
+  };
+};
+
+const isFootnoteAfterPageBreak = (note: TEIElement): boolean => {
+  const parent = note.parent;
+  if (!parent) return false;
+  const noteIndex = parent.children.indexOf(note);
+  const previous = parent.children[noteIndex - 1];
+  return previous?.type === 'Element' && previous.name === 'pb';
+};
 
 const teiBodyXml = computed(() => {
   const raw = teiFileContent.data.value;
@@ -417,6 +480,42 @@ onUnmounted(() => {
   display: block;
   text-align: right;
   padding: 0.25em 0.5em;
+}
+
+/* footnote styles */
+.tei-element[data-tei-name="note"][data-tei-attr-place="foot"] {
+  display: block;
+  font-size: 0.85em;
+  line-height: 1.4;
+  margin-top: 0.5em;
+}
+
+.footnotes-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+.footnotes-section h3 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.footnote-item {
+  margin-bottom: 0.5em;
+}
+
+.footnote-item > .tei-element[data-tei-name="note"][data-tei-attr-place="foot"] {
+  display: inline;
+  margin-top: 0;
+}
+
+.footnote-reference {
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
 
 </style>

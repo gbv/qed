@@ -4,6 +4,9 @@
       <span class="page-number">{{ n }}</span>
       <a v-if="facs && showImageIcon" v-on:click="imageIconClicked" :title="$t('metadata.showImage')"><span
         class="bi bi-image imabe-icon"> </span></a> ~</span>
+    <sup v-if="footnoteReference" :id="footnoteReference.id" class="footnote-reference">
+      <a :href="`#${footnoteReference.targetId}`">{{ footnoteReference.number }}</a>
+    </sup>
   </div>
 </template>
 
@@ -15,7 +18,12 @@ const props = defineProps<{
   pbElement: TEIElement,
   viewerRoot: HTMLElement | null,
   showImageIcon?: boolean,
-  isActive?: boolean
+  isActive?: boolean,
+  footnoteReference?: {
+    id: string,
+    targetId: string,
+    number: number
+  } | null
 }>();
 
 const emit = defineEmits<{
