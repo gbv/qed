@@ -1,5 +1,4 @@
 import type {LocationQuery} from "vue-router";
-import { buildSearchQuery } from '~/api/SearchQuery';
 
 export const SoSuFilterParams = [
   "objectKind:mycoreobject",
@@ -29,7 +28,7 @@ export interface Filters {
 export function buildSOSUSearchRequestURL(url: string, search: string | null, filters: Filters, start: number, rows = 20) {
   const escaped = search?.replace(/(["\\])/g, '\\$1');
   const queryTerm = escaped && escaped !== "*" ? `"${escaped}"` : "*";
-  const query = encodeURIComponent(buildSearchQuery(queryTerm));
+  const query = `allMeta:${encodeURIComponent(queryTerm)}`
   const genreFilter = filters?.genres?.length > 0 ? `fq=mods.genre:(${filters.genres.join("%20AND%20")})` : '';
   const languageFilter = filters?.languages?.length > 0 ? `fq=survivors.mods.language:${filters.languages.join("%20AND%20")}` : '';
   const keywordEntityFilters = filters?.keywordEntityLinks?.map(uri => `fq=ditav.mods.dante_metadata_link:%22${encodeURIComponent(uri)}%22`) || [];
@@ -114,4 +113,3 @@ export function modelToQuery(model: any): any {
     model.filters.translationMode = query.translationMode as TranslationMode;
   }
 }
-
