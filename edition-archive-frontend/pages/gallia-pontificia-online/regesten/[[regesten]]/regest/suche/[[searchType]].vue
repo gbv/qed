@@ -19,7 +19,7 @@
             <template v-slot:einfach>
               <BasicSearchForm
                 v-on:search="basicSearchCallback"
-                :searchString="model.searchString"/>
+                :searchString="model.searchString || ''"/>
             </template>
 
             <template v-slot:erweitert>
@@ -302,6 +302,7 @@ import {byName, findFirstElement, flattenElement, byAttr, and, findElement} from
 import SolrPaginator from "~/components/SolrPaginator.vue";
 import {type LocationQuery, type LocationQueryValue} from "vue-router";
 import {partialEscapeSpecialChars, trimString} from "~/api/Utils";
+import { buildSearchQuery } from "~/api/SearchQuery";
 
 const i18n = useI18n();
 const route = useRoute();
@@ -563,10 +564,11 @@ async function triggerSearch(query: LocationQuery) {
 
         let url: string;
         if (model.searchString === "") {
-          url = `${$solrURL()}main/select/?q=allMeta:* AND objectType:regest AND objectProject:gpo&wt=json`;
+          url = `${$solrURL()}main/select/?q=${buildSearchQuery('*')} AND objectType:regest AND objectProject:gpo&wt=json`;
         } else {
           let escapedAllMeta = partialEscapeSpecialChars(model.searchString);
-          url = `${$solrURL()}main/select/?q=(allMeta:${escapedAllMeta} OR allMeta.de:${escapedAllMeta} OR allMeta.en:${escapedAllMeta} OR allMeta.fr:${escapedAllMeta}) AND objectType:regest AND objectProject:gpo&wt=json`;
+          const query = buildSearchQuery(escapedAllMeta);
+          url = `${$solrURL()}main/select/?q=${query} AND objectType:regest AND objectProject:gpo&wt=json`;
         }
 
         applyQueryFacet(query);

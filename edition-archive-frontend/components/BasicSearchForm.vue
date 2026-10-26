@@ -19,7 +19,9 @@
 <script setup>
 
 const emit = defineEmits(["search"])
-const props = defineProps(["searchString"]);
+const props = defineProps({
+  searchString: { type: String, default: "*" }
+});
 const searchString = ref(props.searchString);
 
 watch(() => props.searchString, (newSearchString) => {
