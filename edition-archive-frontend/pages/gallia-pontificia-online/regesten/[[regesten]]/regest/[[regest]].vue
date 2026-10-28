@@ -204,7 +204,7 @@ const traverse = (element: XElement, nodeHandler:(node:XNode)=>void) => {
 
 const {data: viewModel, error} = await useAsyncData(`idno:${regestedIdno}`, async () => {
   const [request, countRequest] = await Promise.all([
-    fetch(`${$solrURL()}main/select/?q=idno:${regestedIdno}&wt=json`),
+    fetch(`${$solrURL()}main/select/?q=objectType:regest%20AND%20idno:${encodeURIComponent(regestedIdno)}&wt=json`),
     fetch(`${$solrURL()}main/select/?q=objectType:regest&wt=json&rows=0`)]);
 
   const [json, countJson] = await Promise.all([request.json(), countRequest.json()]);
@@ -298,7 +298,7 @@ const browseIndexEntered = (index: number) => {
 
 if (error.value) {
   console.error(error.value);
-  if (error.value as unknown as number === 404) {
+  if ((error.value as any).statusCode === 404) {
     showError(
       createError({
         statusCode: 404,
