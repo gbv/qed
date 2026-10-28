@@ -298,7 +298,7 @@ const browseIndexEntered = (index: number) => {
 
 if (error.value) {
   console.error(error.value);
-  if ((error.value as any).statusCode === 404) {
+  if ((error.value as unknown) === 404 || (error.value as any).statusCode === 404) {
     showError(
       createError({
         statusCode: 404,
