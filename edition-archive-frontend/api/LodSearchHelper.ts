@@ -1,4 +1,5 @@
 import type { LocationQuery } from 'vue-router';
+import { buildSearchQuery, useMyCoReFindEndpoint } from '~/api/SearchQuery';
 
 export const LodFilterParams = [
   'objectKind:mycoreobject',
@@ -53,10 +54,13 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
   const urlObj = new URL(url);
 
   urlObj.search = '';
+  useMyCoReFindEndpoint(urlObj);
 
   const escaped = search?.replace(/(["\\])/g, '\\$1');
   const queryTerm = escaped && escaped !== '*' ? `"${escaped}"` : '*';
-  urlObj.searchParams.set('q', `allMeta:${queryTerm}`);
+  const searchTerm = buildSearchQuery(queryTerm);
+  urlObj.searchParams.set('condQuery', searchTerm);
+  urlObj.searchParams.set('initialCondQuery', searchTerm);
   urlObj.searchParams.set('rows', rows.toString());
   urlObj.searchParams.set('start', start.toString());
 

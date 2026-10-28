@@ -19,7 +19,7 @@
             <template v-slot:einfach>
               <BasicSearchForm
                 v-on:search="basicSearchCallback"
-                :searchString="model.searchString"/>
+                :searchString="model.searchString || ''"/>
             </template>
 
             <template v-slot:erweitert>

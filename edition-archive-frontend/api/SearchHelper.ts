@@ -113,4 +113,3 @@ export function modelToQuery(model: any): any {
     model.filters.translationMode = query.translationMode as TranslationMode;
   }
 }
-
