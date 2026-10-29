@@ -181,10 +181,14 @@
               <template #key>{{ $te(`metadata.originInfo.${oi.eventType}.date`) ? $t(`metadata.originInfo.${oi.eventType}.date`) : $t("metadata.originInfo.date") }}</template>
               <template #value>{{ oi.displayDate }}</template>
             </MODSMetaKeyValue>
-            <MODSMetaKeyValue v-if="oi.place?.placeTerm || oi.place?.placeIdentifier">
+            <MODSMetaKeyValue v-if="oi.places?.length">
               <template #key>{{ $te(`metadata.originInfo.${oi.eventType}.place`) ? $t(`metadata.originInfo.${oi.eventType}.place`) : $t("metadata.originInfo.place") }}</template>
               <template #value>
-                <MODSPlaceRef :place-term="oi.place?.placeTerm" :place-identifier="oi.place?.placeIdentifier" />
+                <ol class="placeList">
+                  <li class="place" v-for="place in oi.places">
+                    <MODSPlaceRef :place-term="place.placeTerm" :place-identifier="place.placeIdentifier" />
+                  </li>
+                </ol>
               </template>
             </MODSMetaKeyValue>
           </template>
@@ -897,15 +901,13 @@ const creationDate = computed(() => {
 
 
 /* display topic list elements as normal text */
-.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li, .classificationList li {
+.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li, .classificationList li, .placeList li {
   list-style-type: none;
   display: block;
 }
 
-
-
 /* remove padding and margin from list elements */
-.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList, .classificationList {
+.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList, .classificationList, .placeList {
   padding: 0;
   margin: 0;
 }

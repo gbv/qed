@@ -150,7 +150,7 @@ export interface OriginInfoPlace {
 export interface OriginInfo {
   eventType?: string;
   agentsByRole: Record<string, Name[]>;
-  place?: OriginInfoPlace;
+  places: OriginInfoPlace[];
   displayDate?: string;
 }
 
@@ -173,15 +173,15 @@ export function getOriginInfos(mods: XElement): OriginInfo[] {
       }
     }
 
-    const placeEl = findFirstElement(originInfoEl, byName("mods:place"));
-    const place: OriginInfoPlace | undefined = placeEl ? {
-      placeTerm: flattenElement(findFirstElement(placeEl, byName("mods:placeTerm"))) || undefined,
-      placeIdentifier: flattenElement(findFirstElement(placeEl, byName("mods:placeIdentifier"))) || undefined,
-    } : undefined;
+    const places = (originInfoEl.content.filter(byName("mods:place")) as XElement[])
+      .map(placeEl => ({
+        placeTerm: flattenElement(findFirstElement(placeEl, byName("mods:placeTerm"))) || undefined,
+        placeIdentifier: flattenElement(findFirstElement(placeEl, byName("mods:placeIdentifier"))) || undefined,
+      }));
 
     const displayDate = flattenElement(findFirstElement(originInfoEl, byName("mods:displayDate"))) || undefined;
 
-    result.push({eventType, agentsByRole, place, displayDate});
+    result.push({eventType, agentsByRole, places, displayDate});
   }
   return result;
 }
