@@ -453,6 +453,7 @@ const props = defineProps<{
   showClassifications?: string[],
   hideNoteTypes?: string[],
   hideGenre?: boolean,
+  hideTranslator?: boolean,
   preferredTitleLanguage?: string,
   originInfoOrder?: string[],
   noteTypeOrder?: string[],
@@ -628,6 +629,7 @@ const namesByRole = computed(() => {
   names.value.forEach((name) => {
     name.roles.forEach((role) => {
       if (role === 'his') return;
+      if (props.hideTranslator && role === 'trl') return;
       if (!nbr.hasOwnProperty(role)) {
         nbr[role]= [name];
       } else {
@@ -643,9 +645,18 @@ const originInfos = computed(() => {
 });
 
 const sortedOriginInfos = computed(() => {
-  if (!props.originInfoOrder) return originInfos.value;
+  let infos = originInfos.value;
+  if (props.hideTranslator) {
+    infos = infos.map(oi => {
+      const agentsByRole = Object.fromEntries(
+        Object.entries(oi.agentsByRole).filter(([role]) => role !== 'trl')
+      );
+      return {...oi, agentsByRole};
+    });
+  }
+  if (!props.originInfoOrder) return infos;
   const order = props.originInfoOrder;
-  return [...originInfos.value].sort((a, b) => {
+  return [...infos].sort((a, b) => {
     const idxA = a.eventType ? order.indexOf(a.eventType) : -1;
     const idxB = b.eventType ? order.indexOf(b.eventType) : -1;
     return (idxA === -1 ? order.length : idxA) - (idxB === -1 ? order.length : idxB);

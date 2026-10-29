@@ -34,6 +34,7 @@
                         projectDocumentUrlPrefix="/languages-of-diplomacy/documents/"
                         :filter-params="filterParams"
                         :hide-genre="true"
+                        :hide-translator="true"
                         preferred-title-language="en"
                         :origin-info-order="['created', 'received']"
                         :note-type-order="['source_note', 'language', 'source_characteristics', 'statement_of_responsibility']"
