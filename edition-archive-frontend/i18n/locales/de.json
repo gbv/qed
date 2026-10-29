@@ -161,7 +161,9 @@
       "search": "Dokumente",
       "contact": "Kontakt",
       "citation": "Zitierhinweis",
-      "indices": "Register"
+      "indices": {
+        "keywords": "Schlagwörter"
+      }
     },
     "subMenu": {
       "subMenu": "Seitenmenü",
@@ -174,10 +176,10 @@
       "team": "Team",
       "userGuide": "User Guide",
       "warOfAnnihilation": "Deutscher Vernichtungskrieg",
-      "keywordEnglish": "Englisch",
-      "keywordGerman": "Deutsch",
-      "keywordRussian": "Russisch",
-      "keywordUkrainian": "Ukrainisch"
+      "keywordEnglish": "Keywords (english)",
+      "keywordGerman": "Schlagwörter (deutsch)",
+      "keywordRussian": "Ключевые слова (русский)",
+      "keywordUkrainian": "Ключові слова (українською)"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Alle Bilder sind urheberrechtlich geschützt. Für Transkriptionen und Metadaten gilt CC BY-SA 4.0",
