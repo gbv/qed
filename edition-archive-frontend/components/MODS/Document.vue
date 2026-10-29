@@ -901,15 +901,13 @@ const creationDate = computed(() => {
 
 
 /* display topic list elements as normal text */
-.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li, .classificationList li {
+.subjectTopicList li, .subjectGeographicList li, .subjectCoordinateList li, .nameList li, .genreList li, .languageList li, .classificationList li, .placeList li {
   list-style-type: none;
   display: block;
 }
 
-
-
 /* remove padding and margin from list elements */
-.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList, .classificationList {
+.subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList, .classificationList, .placeList {
   padding: 0;
   margin: 0;
 }
