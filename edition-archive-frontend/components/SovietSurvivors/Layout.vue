@@ -74,7 +74,7 @@
                   class="nav-link"
                   active-class="active"
                   href="/soviet-survivors/indices/keywords/">
-                  {{ $t('sosu.mainMenu.indices') }}
+                  {{ $t('sosu.mainMenu.indices.keywords') }}
                 </nuxt-link>
               </li>
               <li class="nav-item">

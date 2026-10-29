@@ -4,7 +4,7 @@
       <SovietSurvivorsMenu />
     </template>
     <template #content>
-      <h3>{{ $t('sosu.mainMenu.indices') }}: {{ languageLabel }}</h3>
+      <h3>{{ languageLabel }}</h3>
       <DanteVocabularyIndex
         vocabulary-id="sovsur_keywords"
         :show-mappings="false"

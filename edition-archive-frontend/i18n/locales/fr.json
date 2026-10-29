@@ -161,7 +161,9 @@
       "search": "Documents",
       "contact": "Contact",
       "citation": "Citation",
-      "indices": "Index"
+      "indices": {
+        "keywords": "Mots-clés"
+      }
     },
     "subMenu": {
       "subMenu": "Menu de la page",
@@ -172,12 +174,12 @@
       "learningEnvironment": "Learning Environment",
       "furtherLiterature": "Further Literature",
       "team": "Team",
-      "userGuide": "User Guide",
-      "warOfAnnihilation": "Germany’s War of Extermination",
-      "keywordEnglish": "Anglais",
-      "keywordGerman": "Allemand",
-      "keywordRussian": "Russe",
-      "keywordUkrainian": "Ukrainien"
+      "userGuide": "Guide de l'utilisateur",
+      "warOfAnnihilation": "Guerre d'extermination de l'Allemagne",
+      "keywordEnglish": "Keywords (english)",
+      "keywordGerman": "Schlagwörter (deutsch)",
+      "keywordRussian": "Ключевые слова (русский)",
+      "keywordUkrainian": "Ключові слова (українською)"
     },
     "metadata": {
       "copyright": "© Copyright 2025 - Toutes les images sont protégées par le droit d'auteur. Les transcriptions et les métadonnées sont sous licence CC BY-SA 4.0.",
