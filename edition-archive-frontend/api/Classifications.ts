@@ -29,9 +29,9 @@ export function findClassificationCategoryPath(classification: XElement, categId
 }
 
 export function getClassificationLabel(category: XElement, language: string): string | undefined {
-  const localizedLabel = findFirstElement(category, (element) => {
-    return byName("label")(element) && byAttr("xml:lang", language)(element);
-  });
-  const label = localizedLabel ?? findFirstElement(category, byName("label"));
+  const labels = category.content.filter((element): element is XElement =>
+    element.type === "Element" && byName("label")(element)
+  );
+  const label = labels.find(byAttr("xml:lang", language)) ?? labels[0];
   return label ? getAttribute(label, "text")?.value : undefined;
 }
