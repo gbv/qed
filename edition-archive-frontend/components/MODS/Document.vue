@@ -126,10 +126,12 @@
             <template #value>
               <ol v-if="categIds.length > 1" class="classificationList">
                 <li v-for="categId in categIds" :key="categId">
-                  <MODSClassification :app-url="backendUrl" :classId="classId" :categId="categId" />
+                  <MODSClassification :app-url="backendUrl" :classId="classId" :categId="categId"
+                                      :show-ancestors="props.hierarchicalClassifications?.includes(classId)" />
                 </li>
               </ol>
-              <MODSClassification v-else :app-url="backendUrl" :classId="classId" :categId="categIds[0]" />
+              <MODSClassification v-else :app-url="backendUrl" :classId="classId" :categId="categIds[0]"
+                                  :show-ancestors="props.hierarchicalClassifications?.includes(classId)" />
             </template>
           </MODSMetaKeyValue>
         </template>
@@ -464,7 +466,8 @@ const props = defineProps<{
   classificationOrder?: string[],
   archiveClassId?: string,
   metadataOrder?: MetadataSection[],
-  topicSearchUrlPrefix?: string
+  topicSearchUrlPrefix?: string,
+  hierarchicalClassifications?: string[]
 }>()
 
 const searchOriginals = async () => {
