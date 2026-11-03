@@ -7,23 +7,23 @@
 <script setup lang="ts">
 
 import {XMLApi} from "~/api/XMLApi";
-import {
-  and,
-  byAttr,
-  byName,
-  findElement,
-  findFirstElement,
-  flattenElement,
-  getAttribute
-} from "~/api/XMLApi";
+import {findClassificationCategoryPath, getClassificationLabel} from "~/api/Classifications";
 
 const props = defineProps<{
   appUrl: string,
   classId: string,
-  categId?: string
+  categId?: string,
+  showAncestors?: boolean
 }>()
 
 const i18n = useI18n();
+
+const fallbackTranslation = () => {
+  if (props.categId) {
+    return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
+  }
+  return i18n.t(`metadata.classification.${props.classId}`);
+};
 
 const response = useAsyncData(`clazz-${props.appUrl}-${props.classId}`, async () => {
   const response = await fetch(`${props.appUrl}api/v2/classifications/${props.classId}`);
@@ -39,52 +39,32 @@ const response = useAsyncData(`clazz-${props.appUrl}-${props.classId}`, async ()
 
 const translatedValue = computed(() => {
   if(response.data.value == null) {
-    if(props.categId) {
-      return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
-    } else {
-      return i18n.t(`metadata.classification.${props.classId}`);
-    }
+    return fallbackTranslation();
   }
   const classificationElement = response.data.value.xml;
 
   if (classificationElement == null) {
-    if(props.categId) {
-      return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
-    } else {
-      return i18n.t(`metadata.classification.${props.classId}`);
-    }
+    return fallbackTranslation();
   }
 
-  let categoryElement;
-  if(props.categId) {
-    categoryElement = findFirstElement(classificationElement, and(byName("category"),
-      byAttr("ID", props.categId)));
-  } else {
-    categoryElement = classificationElement;
+  if (!props.categId) {
+    return getClassificationLabel(classificationElement, i18n.locale.value) ?? fallbackTranslation();
   }
 
-
-  if (categoryElement == null) {
-    if(props.categId) {
-      return i18n.t(`metadata.classification.${props.classId}.${props.categId}`);
-    } else {
-      return i18n.t(`metadata.classification.${props.classId}`);
-    }
+  const categoryPath = findClassificationCategoryPath(classificationElement, props.categId);
+  if (!categoryPath) {
+    return fallbackTranslation();
   }
 
-  let labelElement = findFirstElement(categoryElement, and(byName("label"),
-    byAttr("xml:lang", i18n.locale.value)));
+  const labels = categoryPath
+    .map(category => getClassificationLabel(category, i18n.locale.value))
+    .filter((label): label is string => label != null && label.length > 0);
 
-
-  if (labelElement == null) {
-    labelElement = findFirstElement(categoryElement, byName("label"));
-  }
-
-  if (labelElement == null) {
+  if (labels.length === 0) {
     return i18n.t("sosu.metadata.unknownGenre");
   }
 
-  return getAttribute(labelElement, "text")?.value;
+  return props.showAncestors ? labels.join(" > ") : labels[labels.length - 1];
 });
 
 </script>
