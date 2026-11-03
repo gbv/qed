@@ -1,11 +1,12 @@
 <template>
-  <SovietSurvivorsLayout>
+  <SovietSurvivorsLayout key="soviet-survivors-keywords" :headline="$t('sosu.mainMenu.indices.keywords')">
     <template #content>
       <TabsCard
         :tabs="tabs"
         :current="language"
         @tab-changed="tabChanged">
         <template #en>
+          <h2>{{ $t('sosu.subMenu.keywordEnglish') }}</h2>
           <DanteVocabularyIndex
             vocabulary-id="sovsur_keywords"
             :show-mappings="false"
@@ -14,6 +15,7 @@
             language="en" />
         </template>
         <template #de>
+          <h2>{{ $t('sosu.subMenu.keywordGerman') }}</h2>
           <DanteVocabularyIndex
             vocabulary-id="sovsur_keywords"
             :show-mappings="false"
@@ -22,6 +24,7 @@
             language="de" />
         </template>
         <template #ru>
+          <h2>{{ $t('sosu.subMenu.keywordRussian') }}</h2>
           <DanteVocabularyIndex
             vocabulary-id="sovsur_keywords"
             :show-mappings="false"
@@ -30,6 +33,7 @@
             language="ru" />
         </template>
         <template #uk>
+          <h2>{{ $t('sosu.subMenu.keywordUkrainian') }}</h2>
           <DanteVocabularyIndex
             vocabulary-id="sovsur_keywords"
             :show-mappings="false"
@@ -45,7 +49,7 @@
 <script lang="ts" setup>
 import {sovietSurvivorsKeywordLanguages} from '~/composables/sovietSurvivorsKeywordLanguages';
 
-const {t} = useI18n();
+const {t, locale} = useI18n();
 const route = useRoute();
 const router = useRouter();
 

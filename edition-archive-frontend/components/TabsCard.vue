@@ -4,6 +4,7 @@
       <li v-for="tab in tabs" :key="tab.id" class="nav-item" role="presentation">
         <button
              :class="['nav-link', {active: tab.id === model.currentTab?.id}]"
+             :aria-selected="tab.id === model.currentTab?.id"
              type="button"
              role="tab"
              v-on:click="changeToTab(tab)">
@@ -11,7 +12,7 @@
         </button>
       </li>
     </ul>
-    <div class="tab-content border border-top-0 p-3" v-if="model.currentTab">
+    <div class="tab-content p-3" v-if="model.currentTab">
       <slot :name="model.currentTab.id"></slot>
     </div>
   </div>
