@@ -1,18 +1,18 @@
 <template>
-  <div class="card" :class="cardClass">
-    <div class="card-header">
-      <ul class="nav nav-tabs card-header-tabs">
-        <li v-for="tab in tabs" class="nav-item">
-          <a class="nav-link"
-             :class="tab === model.currentTab ? 'active' : ''"
-             v-on:click="changeToTab(tab)"
-             href="#">
+  <div :class="cardClass">
+    <ul class="nav nav-tabs" role="tablist">
+      <li v-for="tab in tabs" :key="tab.id" class="nav-item" role="presentation">
+        <button
+             :class="['nav-link', {active: tab.id === model.currentTab?.id}]"
+             :aria-selected="tab.id === model.currentTab?.id"
+             type="button"
+             role="tab"
+             v-on:click="changeToTab(tab)">
              {{ tab.title }}
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="card-body mt-3" v-if="model.currentTab">
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content p-3" v-if="model.currentTab">
       <slot :name="model.currentTab.id"></slot>
     </div>
   </div>

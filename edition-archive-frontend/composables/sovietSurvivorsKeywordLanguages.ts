@@ -1,6 +1,6 @@
 export const sovietSurvivorsKeywordLanguages = [
-  {code: 'en', labelKey: 'sosu.subMenu.keywordEnglish'},
-  {code: 'de', labelKey: 'sosu.subMenu.keywordGerman'},
-  {code: 'ru', labelKey: 'sosu.subMenu.keywordRussian'},
-  {code: 'uk', labelKey: 'sosu.subMenu.keywordUkrainian'},
+  {code: 'en', labelKey: 'language.en'},
+  {code: 'de', labelKey: 'language.de'},
+  {code: 'ru', labelKey: 'language.ru'},
+  {code: 'uk', labelKey: 'language.uk'},
 ] as const;
