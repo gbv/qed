@@ -74,10 +74,6 @@
       <artifactId>postgresql</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.mchange</groupId>
-      <artifactId>c3p0</artifactId>
-    </dependency>
-    <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
     </dependency>
@@ -100,10 +96,6 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.solr</groupId>
-      <artifactId>solr-solrj</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.solr</groupId>
@@ -144,11 +136,6 @@
     <dependency>
       <groupId>org.mycore</groupId>
       <artifactId>mycore-ocfl</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-c3p0</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>com.mchange</groupId>
