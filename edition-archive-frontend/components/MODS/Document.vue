@@ -793,7 +793,7 @@ const searchSeeAlsoTitles = async () => {
 };
 
 model.translations = await searchOriginals();
-await searchSeeAlsoTitles();
+await searchSeeAlsoTitles().catch(() => {});
 
 const originInfo = computed(() => {
   return mods.value.content.filter(byName("mods:originInfo")) as XElement[];
