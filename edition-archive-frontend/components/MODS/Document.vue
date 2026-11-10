@@ -773,6 +773,7 @@ const searchSeeAlsoTitles = async () => {
   const url = new URL(`${props.backendUrl}api/v1/search`);
   url.searchParams.set("q", `id:(${query})`);
   url.searchParams.set("fl", "id,ditav.mods.title.lang.en,mods.title.main,mods.title");
+  url.searchParams.set("rows", String(ids.length));
   url.searchParams.set("wt", "json");
 
   const json = await fetch(url, {
