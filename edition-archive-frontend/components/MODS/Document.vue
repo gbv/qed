@@ -400,6 +400,22 @@
         </template>
 
       </template>
+
+      <MODSMetaKeyValue v-if="relatedItemsSeeAlso.length > 0">
+        <template #key>
+          {{ $t("metadata.related.seeAlso") }}
+        </template>
+        <template #value>
+          <ol class="related-items-see-also">
+            <li v-for="relatedItem in relatedItemsSeeAlso" :key="getAttribute(relatedItem, 'xlink:href')?.value">
+              <nuxt-link
+                :to="`${projectDocumentUrlPrefix}${getMyCoReIdNumber(getAttribute(relatedItem, 'xlink:href')?.value)}`">
+                {{ model.seeAlsoTitles[getAttribute(relatedItem, 'xlink:href')?.value || ''] || getAttribute(relatedItem, 'xlink:href')?.value }}
+              </nuxt-link>
+            </li>
+          </ol>
+        </template>
+      </MODSMetaKeyValue>
     </div>
   </div>
 </template>
@@ -438,7 +454,8 @@ const model = reactive({
     hideCoordinates: [] as string[],
     showFullAbstract: false as boolean,
     currentAbstractLang: null as string | null,
-    translations: [] as Translation[]
+    translations: [] as Translation[],
+    seeAlsoTitles: {} as Record<string, string>
   }
 );
 
@@ -486,8 +503,6 @@ const searchOriginals = async () => {
 
   return translations;
 };
-
-model.translations = await searchOriginals();
 
 const mapVisible = (coord: string) => {
   return model.hideCoordinates.indexOf(coord) == -1;
@@ -738,6 +753,48 @@ const relatedItemsOriginal = computed(() => {
   });
 });
 
+const relatedItemsSeeAlso = computed(() => {
+  return relatedItems.value.filter((relatedItem) => {
+    return getAttribute(relatedItem, "otherType")?.value == "see_also"
+      && getAttribute(relatedItem, "xlink:href")?.value;
+  });
+});
+
+const searchSeeAlsoTitles = async () => {
+  const ids = relatedItemsSeeAlso.value
+    .map((relatedItem) => getAttribute(relatedItem, "xlink:href")?.value)
+    .filter((id): id is string => Boolean(id));
+
+  if (ids.length === 0) {
+    return;
+  }
+
+  const query = ids.map((id) => `"${id}"`).join(" OR ");
+  const url = new URL(`${props.backendUrl}api/v1/search`);
+  url.searchParams.set("q", `id:(${query})`);
+  url.searchParams.set("fl", "id,ditav.mods.title.lang.en,mods.title.main,mods.title");
+  url.searchParams.set("wt", "json");
+
+  const json = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+    }
+  }).then((resp) => resp.json());
+
+  for (const doc of json?.response?.docs || []) {
+    const title = doc["ditav.mods.title.lang.en"]?.[0]
+      || doc["mods.title.main"]
+      || doc["mods.title"]?.[0];
+    if (title && doc.id) {
+      model.seeAlsoTitles[doc.id] = title;
+    }
+  }
+};
+
+model.translations = await searchOriginals();
+await searchSeeAlsoTitles();
+
 const originInfo = computed(() => {
   return mods.value.content.filter(byName("mods:originInfo")) as XElement[];
 });
@@ -913,6 +970,10 @@ const creationDate = computed(() => {
 .subjectTopicList, .subjectGeographicList, .subjectCoordinateList, .nameList, .genreList, .languageList, .classificationList, .placeList {
   padding: 0;
   margin: 0;
+}
+
+.related-items-see-also {
+  padding-left: 1rem;
 }
 
 .title-language {
