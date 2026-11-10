@@ -311,7 +311,8 @@
     },
     "related": {
       "original": "Original of this translation",
-      "translation": "Available translations"
+      "translation": "Available translations",
+      "seeAlso": "See also"
     },
     "name": {
       "family": "Family Name",
