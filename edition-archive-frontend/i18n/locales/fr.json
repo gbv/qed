@@ -394,6 +394,9 @@
       "dateHelp": "",
       "dateRangeLabel": "Période",
       "date": "Date",
+      "datePlaceholder": "AAAA ou AAAA-MM-JJ",
+      "dateFrom": "De la date",
+      "dateTo": "À la date",
       "dateTextHelp": "",
       "dateText": "Date (Texte)",
       "initiumHelp": "",
@@ -402,12 +405,14 @@
       "issuer": "Auteur",
       "jaffe2": "JK, JE, JL",
       "jaffe3": "J³",
-      "personHelp": "Durchsucht die Metadaten nach einer Person",
+      "personHelp": "Recherche dans les métadonnées pour une personne",
       "person": "Personne",
-      "placeHelp": "Durchsucht die Metadaten nach einem Ort",
+      "placeHelp": "Recherche dans les métadonnées pour un lieu",
       "place": "Lieu",
       "recipientHelp": "",
-      "recipient": "Destinataire"
+      "recipient": "Destinataire",
+      "subjectHelp": "Recherche dans les sujets/thématiques",
+      "subject": "Sujet"
     }
   },
   "browser": {

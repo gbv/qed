@@ -3,10 +3,46 @@
 
     <template #content>
       <h3>{{$t("search.label")}}</h3>
-      <!-- search form-->
-      <div  class="row">
+      
+      <!-- Tabs for basic/extended search -->
+      <div class="row mb-3">
+        <div class="col-12">
+          <ul class="nav nav-tabs" id="searchTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="basic-tab" @click="activeTab = 'basic'" :class="{active: activeTab === 'basic'}">
+                {{ $t('search.basic') }}
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="extended-tab" @click="activeTab = 'extended'" :class="{active: activeTab === 'extended'}">
+                {{ $t('search.extended') }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Basic Search Tab -->
+      <div v-if="activeTab === 'basic'" class="row">
         <div class="col-12 col-lg-8">
           <BasicSearchForm :searchString="model.searchString" v-on:search="changeSearchString"/>
+        </div>
+      </div>
+
+      <!-- Extended Search Tab -->
+      <div v-if="activeTab === 'extended'" class="row">
+        <div class="col-12 col-lg-8">
+          <LoDAdvancedSearchForm 
+            :allMeta="model.advanced?.allMeta"
+            :person="model.advanced?.person"
+            :place="model.advanced?.place"
+            :subject="model.advanced?.subject"
+            :dateRangeRange="model.advanced?.dateRangeRange"
+            :dateRangeFrom="model.advanced?.dateRangeFrom"
+            :dateRangeTo="model.advanced?.dateRangeTo"
+            :dateText="model.advanced?.dateText"
+            v-on:search="handleAdvancedSearch"
+          />
         </div>
       </div>
 
@@ -281,15 +317,17 @@ import {getMyCoReIdNumber} from "~/api/MyCoRe";
 import {trimString} from "~/api/Utils";
 import {
   buildLodSearchRequestURL, type LodFilters, lodModelToQuery, lodQueryToModel,
-  ManuscriptMode, TranslationMode
+  ManuscriptMode, TranslationMode, type LodAdvancedSearch
 } from "~/api/LodSearchHelper";
-
+import LoDAdvancedSearchForm from "~/components/LoDAdvancedSearchForm.vue";
 
 const {$ditavSolrURL} = useNuxtApp();
 const {$ditavURL} = useNuxtApp();
 const route = useRoute();
 const ditavSolrURL = $ditavSolrURL();
 const ditavURL = $ditavURL();
+
+const activeTab = ref('basic');
 
 interface FacetEntry {
   name: string,
@@ -311,6 +349,7 @@ const model = reactive({
     translationMode: TranslationMode.ALL,
     manuscriptMode: ManuscriptMode.ALL,
   } as LodFilters,
+  advanced: {} as LodAdvancedSearch,
   facets: {
     genres: [] as FacetEntry[],
     genresExpand: false,
@@ -332,7 +371,7 @@ watch(() => route.query, async (newQueryString: LocationQuery, old: LocationQuer
 
 
 const search = async () => {
-  const url = buildLodSearchRequestURL(ditavSolrURL, model.searchString, model.filters, model.start);
+  const url = buildLodSearchRequestURL(ditavSolrURL, model.searchString, model.filters, model.start, 20, model.advanced);
 
   model.result = await fetch(url, {
     method: "GET",
@@ -489,6 +528,17 @@ const changeSearchString = async (event: { searchString: string }) => {
       start: 0
     }
   })
+}
+
+const handleAdvancedSearch = async (advanced: LodAdvancedSearch) => {
+  // Update model.advanced with the new values
+  if (!model.advanced) {
+    model.advanced = {} as LodAdvancedSearch;
+  }
+  Object.assign(model.advanced, advanced);
+  
+  // Trigger search with the updated model
+  await search();
 }
 
 const hitLink = (doc: any, index: number) => {

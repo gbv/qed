@@ -394,6 +394,9 @@
       "dateHelp": "",
       "dateRangeLabel": "Zeitraum",
       "date": "Datum",
+      "datePlaceholder": "JJJJ oder JJJJ-MM-TT",
+      "dateFrom": "Von Datum",
+      "dateTo": "Bis Datum",
       "dateTextHelp": "",
       "dateText": "Datum (Text)",
       "initiumHelp": "",
@@ -407,7 +410,9 @@
       "placeHelp": "Durchsucht die Metadaten nach einem Ort",
       "place": "Ort",
       "recipientHelp": "",
-      "recipient": "Empfänger"
+      "recipient": "Empfänger",
+      "subjectHelp": "Durchsucht die Sachbegriffe (Themen)",
+      "subject": "Sachbegriff"
     }
   },
   "browser": {

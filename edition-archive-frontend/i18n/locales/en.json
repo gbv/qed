@@ -394,6 +394,9 @@
       "dateHelp": "",
       "dateRangeLabel": "Date Span",
       "date": "Date",
+      "datePlaceholder": "YYYY or YYYY-MM-DD",
+      "dateFrom": "From date",
+      "dateTo": "To date",
       "dateTextHelp": "",
       "dateText": "Date (Text)",
       "initiumHelp": "",
@@ -402,12 +405,14 @@
       "issuer": "Issuer",
       "jaffe2": "JK, JE, JL",
       "jaffe3": "J³",
-      "personHelp": "Durchsucht die Metadaten nach einer Person",
+      "personHelp": "Searches metadata for a person",
       "person": "Person",
-      "placeHelp": "Durchsucht die Metadaten nach einem Ort",
+      "placeHelp": "Searches metadata for a place",
       "place": "Place",
       "recipientHelp": "",
-      "recipient": "Recipient"
+      "recipient": "Recipient",
+      "subjectHelp": "Searches subject topics",
+      "subject": "Subject"
     }
   },
   "browser": {

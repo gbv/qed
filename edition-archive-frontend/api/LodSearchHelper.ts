@@ -39,6 +39,18 @@ export interface LodFilters {
   manuscriptMode: ManuscriptMode;
 }
 
+// Advanced search fields
+export interface LodAdvancedSearch {
+  allMeta?: string;
+  person?: string;
+  place?: string;
+  subject?: string;
+  dateRangeRange?: boolean;
+  dateRangeFrom?: number | string;
+  dateRangeTo?: number | string;
+  dateText?: string;
+}
+
 /**
  * Builds a Solr fq that matches documents whose metadata OR whose TEI/XML files
  * reference the given LOD entity URI. The file match uses the same derivate join
@@ -50,7 +62,84 @@ function buildEntityLinkFilter(uri: string, metadataField: string, fileField: st
   return `(${metadataField}:"${uri}" OR _query_:"${join}")`;
 }
 
-export function buildLodSearchRequestURL(url: string, search: string | null, filters: LodFilters, start: number, rows = 20) {
+function normalizeDateBoundary(value: number | string, endOfYear: boolean): string | null {
+  const date = String(value).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return date;
+  }
+  if (/^\d{4}$/.test(date)) {
+    return `${date}-${endOfYear ? '12-31' : '01-01'}`;
+  }
+  return null;
+}
+
+/**
+ * Builds a Solr query string for advanced search fields using fq filters.
+ * Returns an array of filter strings that can be appended to the URL.
+ */
+function buildAdvancedSearchFilters(advanced: LodAdvancedSearch): string[] {
+  const filters: string[] = [];
+  
+  // Free text search (allMeta) - uses allMeta field
+  if (advanced.allMeta && advanced.allMeta !== '*') {
+    const escaped = advanced.allMeta.replace(/(["\\])/g, '\\$1');
+    filters.push(`allMeta:"${escaped}"`);
+  }
+  
+  // Person search - matches author or recipient facets
+  if (advanced.person && advanced.person !== '') {
+    const escaped = advanced.person.replace(/(["\\])/g, '\\$1');
+    filters.push(`(ditav.mods.origin.author.facet:*${escaped}* OR ditav.mods.origin.receipient.facet:*${escaped}*)`);
+  }
+  
+  // Place search - matches place field
+  if (advanced.place && advanced.place !== '') {
+    const escaped = advanced.place.replace(/(["\\])/g, '\\$1');
+    filters.push(`ditav.mods.place:"${escaped}"`);
+  }
+  
+  // Subject search - MODS topics are indexed in mods.subject
+  if (advanced.subject && advanced.subject !== '') {
+    if (advanced.subject === '*') {
+      filters.push('mods.subject:[* TO *]');
+    } else {
+      const escaped = advanced.subject.replace(/(["\\])/g, '\\$1');
+      filters.push(`mods.subject:"${escaped}"`);
+    }
+  }
+  
+  // Date and date range search against raw dateCreated start/end values.
+  if (advanced.dateRangeRange) {
+    if (advanced.dateRangeFrom && advanced.dateRangeTo) {
+      const from = normalizeDateBoundary(advanced.dateRangeFrom, false);
+      const to = normalizeDateBoundary(advanced.dateRangeTo, true);
+      if (from && to) {
+        filters.push(`ditav.mods.dateCreated.start:[${from} TO *]`);
+        filters.push(`ditav.mods.dateCreated.end:[* TO ${to}]`);
+      }
+    }
+  } else if (advanced.dateRangeFrom) {
+    const date = normalizeDateBoundary(advanced.dateRangeFrom, false);
+    if (date && /^\d{4}-\d{2}-\d{2}$/.test(String(advanced.dateRangeFrom).trim())) {
+      filters.push(`ditav.mods.dateCreated.start:"${date}"`);
+      filters.push(`ditav.mods.dateCreated.end:"${date}"`);
+    } else if (date) {
+      const end = normalizeDateBoundary(advanced.dateRangeFrom, true);
+      filters.push(`ditav.mods.dateCreated.start:[${date} TO ${end}]`);
+      filters.push(`ditav.mods.dateCreated.end:[${date} TO ${end}]`);
+    }
+  }
+  
+  // Date text search (displayDate field)
+  if (advanced.dateText && advanced.dateText !== '') {
+    const escaped = advanced.dateText.replace(/(["\\])/g, '\\$1');
+    filters.push(`ditav.mods.displayDate:"${escaped}"`);
+  }
+  
+  return filters;
+}
+
+export function buildLodSearchRequestURL(url: string, search: string | null, filters: LodFilters, start: number, rows = 20, advanced?: LodAdvancedSearch) {
   const urlObj = new URL(url);
 
   urlObj.search = '';
@@ -99,6 +188,14 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   for (const uri of filters?.orgEntityLinks ?? []) {
     urlObj.searchParams.append('fq', buildEntityLinkFilter(uri, 'ditav.mods.dante_metadata_org_link', 'ditav.mods.dante_file_org_link'));
+  }
+
+  // Add advanced search filters
+  if (advanced) {
+    const advancedFilters = buildAdvancedSearchFilters(advanced);
+    for (const f of advancedFilters) {
+      urlObj.searchParams.append('fq', f);
+    }
   }
 
   switch (filters.translationMode) {
@@ -163,6 +260,19 @@ export function lodModelToQuery(model: any): any {
     query.manuscriptMode = model.filters.manuscriptMode;
   }
 
+  // Advanced search fields
+  if (model.advanced) {
+    const adv = model.advanced;
+    if (adv.allMeta && adv.allMeta !== '*') query.allMeta = adv.allMeta;
+    if (adv.person) query.person = adv.person;
+    if (adv.place) query.place = adv.place;
+    if (adv.subject) query.subject = adv.subject;
+    if (adv.dateRangeRange !== undefined) query.dateRangeRange = adv.dateRangeRange;
+    if (adv.dateRangeFrom !== undefined && adv.dateRangeFrom !== '') query.dateRangeFrom = adv.dateRangeFrom;
+    if (adv.dateRangeTo !== undefined && adv.dateRangeTo !== '') query.dateRangeTo = adv.dateRangeTo;
+    if (adv.dateText) query.dateText = adv.dateText;
+  }
+
   return query;
 }
 
@@ -212,4 +322,34 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
 
   model.filters.manuscriptMode = (query.manuscriptMode as ManuscriptMode) || ManuscriptMode.ALL;
 
+  // Advanced search fields
+  if (!model.advanced) {
+    model.advanced = {};
+  }
+  
+  if (query.allMeta) {
+    model.advanced.allMeta = query.allMeta as string;
+  }
+  if (query.person) {
+    model.advanced.person = query.person as string;
+  }
+  if (query.place) {
+    model.advanced.place = query.place as string;
+  }
+  if (query.subject) {
+    model.advanced.subject = query.subject as string;
+  }
+  if (query.dateRangeRange !== undefined) {
+    const rangeVal = query.dateRangeRange as string;
+    model.advanced.dateRangeRange = rangeVal === 'true' || rangeVal === '1';
+  }
+  if (query.dateRangeFrom !== undefined && query.dateRangeFrom !== '') {
+    model.advanced.dateRangeFrom = query.dateRangeFrom;
+  }
+  if (query.dateRangeTo !== undefined && query.dateRangeTo !== '') {
+    model.advanced.dateRangeTo = query.dateRangeTo;
+  }
+  if (query.dateText) {
+    model.advanced.dateText = query.dateText as string;
+  }
 }
