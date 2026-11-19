@@ -9,12 +9,12 @@
         <div class="col-12">
           <ul class="nav nav-tabs" id="searchTabs" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="basic-tab" @click="activeTab = 'basic'" :class="{active: activeTab === 'basic'}">
+              <button class="nav-link" id="basic-tab" @click="switchTab('basic')" :class="{active: activeTab === 'basic'}">
                 {{ $t('search.basic') }}
               </button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="extended-tab" @click="activeTab = 'extended'" :class="{active: activeTab === 'extended'}">
+              <button class="nav-link" id="extended-tab" @click="switchTab('extended')" :class="{active: activeTab === 'extended'}">
                 {{ $t('search.extended') }}
               </button>
             </li>
@@ -35,6 +35,7 @@
           <LoDAdvancedSearchForm 
             :allMeta="model.advanced?.allMeta"
             :person="model.advanced?.person"
+            :personEntityLink="model.advanced?.personEntityLink"
             :place="model.advanced?.place"
             :subject="model.advanced?.subject"
             :dateRangeRange="model.advanced?.dateRangeRange"
@@ -329,6 +330,11 @@ const ditavURL = $ditavURL();
 
 const activeTab = ref('basic');
 
+const switchTab = async (tab: 'basic' | 'extended') => {
+  activeTab.value = tab;
+  await navigateTo({ query: {} });
+}
+
 interface FacetEntry {
   name: string,
   count: number
@@ -531,14 +537,24 @@ const changeSearchString = async (event: { searchString: string }) => {
 }
 
 const handleAdvancedSearch = async (advanced: LodAdvancedSearch) => {
-  // Update model.advanced with the new values
-  if (!model.advanced) {
-    model.advanced = {} as LodAdvancedSearch;
+  const previousPersonEntityLink = model.advanced.personEntityLink;
+  if (previousPersonEntityLink) {
+    model.filters.personEntityLinks = model.filters.personEntityLinks
+      .filter((uri) => uri !== previousPersonEntityLink);
   }
-  Object.assign(model.advanced, advanced);
-  
-  // Trigger search with the updated model
-  await search();
+  if (advanced.personEntityLink) {
+    model.filters.personEntityLinks = [
+      ...model.filters.personEntityLinks.filter((uri) => uri !== advanced.personEntityLink),
+      advanced.personEntityLink
+    ];
+  }
+  model.advanced = advanced;
+  await navigateTo({
+    query: {
+      ...lodModelToQuery(model),
+      start: 0
+    }
+  });
 }
 
 const hitLink = (doc: any, index: number) => {

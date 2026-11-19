@@ -43,6 +43,7 @@ export interface LodFilters {
 export interface LodAdvancedSearch {
   allMeta?: string;
   person?: string;
+  personEntityLink?: string;
   place?: string;
   subject?: string;
   dateRangeRange?: boolean;
@@ -80,16 +81,17 @@ function normalizeDateBoundary(value: number | string, endOfYear: boolean): stri
 function buildAdvancedSearchFilters(advanced: LodAdvancedSearch): string[] {
   const filters: string[] = [];
   
-  // Free text search (allMeta) - uses allMeta field
+  // Search both the default field and the Russian analyzed copy. The latter
+  // makes inflected Russian forms match after the schema is reindexed.
   if (advanced.allMeta && advanced.allMeta !== '*') {
     const escaped = advanced.allMeta.replace(/(["\\])/g, '\\$1');
-    filters.push(`allMeta:"${escaped}"`);
+    filters.push(`(allMeta:${escaped} OR allMeta.ru:${escaped})`);
   }
   
   // Person search - matches author or recipient facets
-  if (advanced.person && advanced.person !== '') {
+  if (advanced.person && advanced.person !== '' && !advanced.personEntityLink) {
     const escaped = advanced.person.replace(/(["\\])/g, '\\$1');
-    filters.push(`(ditav.mods.origin.author.facet:*${escaped}* OR ditav.mods.origin.receipient.facet:*${escaped}*)`);
+    filters.push(`(ditav.mods.origin.author.facet:*${escaped}* OR ditav.mods.origin.receipient.facet:*${escaped}* OR allMeta:${escaped})`);
   }
   
   // Place search - matches place field
@@ -145,11 +147,8 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
   urlObj.search = '';
   useMyCoReFindEndpoint(urlObj);
 
-  const escaped = search?.replace(/(["\\])/g, '\\$1');
-  const queryTerm = escaped && escaped !== '*' ? `"${escaped}"` : '*';
-  const searchTerm = buildSearchQuery(queryTerm);
-  urlObj.searchParams.set('condQuery', searchTerm);
-  urlObj.searchParams.set('initialCondQuery', searchTerm);
+  urlObj.searchParams.set('condQuery', '*');
+  urlObj.searchParams.set('initialCondQuery', '*');
   urlObj.searchParams.set('rows', rows.toString());
   urlObj.searchParams.set('start', start.toString());
 
@@ -188,6 +187,13 @@ export function buildLodSearchRequestURL(url: string, search: string | null, fil
 
   for (const uri of filters?.orgEntityLinks ?? []) {
     urlObj.searchParams.append('fq', buildEntityLinkFilter(uri, 'ditav.mods.dante_metadata_org_link', 'ditav.mods.dante_file_org_link'));
+  }
+
+  // Apply simple search like the advanced freetext field. Keep both values
+  // separate so a simple query and advanced fields can be combined.
+  if (search && search !== '*' && advanced?.allMeta !== search) {
+    const escaped = search.replace(/(["\\])/g, '\\$1');
+    urlObj.searchParams.append('fq', `(allMeta:${escaped} OR allMeta.ru:${escaped})`);
   }
 
   // Add advanced search filters
@@ -323,15 +329,16 @@ export function lodQueryToModel(query: LocationQuery, model: any) {
   model.filters.manuscriptMode = (query.manuscriptMode as ManuscriptMode) || ManuscriptMode.ALL;
 
   // Advanced search fields
-  if (!model.advanced) {
-    model.advanced = {};
-  }
+  model.advanced = {};
   
   if (query.allMeta) {
     model.advanced.allMeta = query.allMeta as string;
   }
   if (query.person) {
     model.advanced.person = query.person as string;
+  }
+  if (query.personEntityLink) {
+    model.advanced.personEntityLink = query.personEntityLink as string;
   }
   if (query.place) {
     model.advanced.place = query.place as string;

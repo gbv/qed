@@ -101,6 +101,7 @@ const emit = defineEmits(["search"])
 const props = defineProps({
   allMeta: { type: String, default: "" },
   person: { type: String, default: "" },
+  personEntityLink: { type: String, default: "" },
   place: { type: String, default: "" },
   subject: { type: String, default: "" },
   dateRangeRange: { type: Boolean, default: false },
@@ -112,6 +113,7 @@ const props = defineProps({
 const model = reactive({
   allMeta: props.allMeta,
   person: props.person,
+  personEntityLink: props.personEntityLink,
   place: props.place,
   subject: props.subject,
   dateRangeRange: props.dateRangeRange,
@@ -129,6 +131,7 @@ const placeSearchTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 // Watch props and update model
 watch(() => props.allMeta, (newAllMeta) => { model.allMeta = newAllMeta })
 watch(() => props.person, (newPerson) => { model.person = newPerson })
+watch(() => props.personEntityLink, (newPersonEntityLink) => { model.personEntityLink = newPersonEntityLink })
 watch(() => props.place, (newPlace) => { model.place = newPlace })
 watch(() => props.subject, (newSubject) => { model.subject = newSubject })
 watch(() => props.dateRangeRange, (newDateRange) => { model.dateRangeRange = newDateRange })
@@ -139,6 +142,7 @@ watch(() => props.dateText, (newDateText) => { model.dateText = newDateText })
 // Debounced search functions
 const debouncedPersonSearch = (event: Event) => {
   const value = (event.target as HTMLInputElement).value
+  model.personEntityLink = ""
   if (value.length < 3) {
     personSuggestions.value = []
     return
@@ -196,6 +200,7 @@ const searchDante = async (type: 'person' | 'place', search: string) => {
 // Select suggestion
 const selectPersonSuggestion = (suggestion: any) => {
   model.person = suggestion.label
+  model.personEntityLink = suggestion.uri || ""
   personSuggestions.value = []
 }
 
@@ -208,6 +213,7 @@ const selectPlaceSuggestion = (suggestion: any) => {
 const clear = () => {
   model.allMeta = ""
   model.person = ""
+  model.personEntityLink = ""
   model.place = ""
   model.subject = ""
   model.dateRangeRange = false
