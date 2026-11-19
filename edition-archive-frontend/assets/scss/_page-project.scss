@@ -139,6 +139,21 @@
 // Small devices (landscape phones) and below: <= 768px
 @include media-breakpoint-down(md) {
   // add/overwrite styles for responsive level md and lower
+  .project-headline {
+    &__figure--lod {
+      display: none;
+    }
+
+    &--home {
+      .project-headline {
+        &__title {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 // Extra small devices (portrait phones): <= 576px
